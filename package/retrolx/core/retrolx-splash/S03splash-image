@@ -1,0 +1,41 @@
+#!/bin/bash
+
+do_start ()
+{
+    if [[ $(ls /boot/splash/*.{jpg,png}  2>/dev/null) ]]
+    then
+        image="$(ls /boot/splash/*.{jpg,png} | sed -e "$((RANDOM%$(ls -1 /boot/splash/*.{jpg,png} | wc -l)+1))!d")"
+    else
+        image="/usr/share/batocera/splash/logo-version.png"
+	# no image => for ogoa (or any other), logo-version-wxh.png
+	if ! test -e "${image}"
+	then
+	    image="/usr/share/batocera/splash/logo-version-"$(batocera-resolution currentResolution)".png"
+	fi
+    fi
+
+    # on some sytems, fb0 is not immediatly loaded, so, keep a chance by waiting a bit
+    N=0
+    while ! test -e /dev/fb0 -o $N -gt 15
+    do
+        sleep 1
+        let N++
+    done
+    test -e /dev/fb0 && fbv -f -i "${image}"
+    sleep infinity
+    wait $!
+}
+
+case "$1" in
+    start)
+        grep -qE '^[ ]*splash.screen.enabled[ ]*=[ ]*0[ ]*$' "/boot/batocera-boot.conf" && exit 0
+        do_start &
+        ;;
+    stop)
+        ;;
+    restart|reload)
+        ;;
+    *)
+esac
+
+exit $?

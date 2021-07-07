@@ -4,11 +4,11 @@ batocera/core/batocera-scripts/Config.in:	select BR2_PACKAGE_DBUS_PYTHON        
 batocera/core/batocera-scripts/Config.in:	select BR2_PACKAGE_JQ # for vulkan parsing
 batocera/core/batocera-scripts/Config.in:	select BR2_PACKAGE_PYTHON_GOBJECT # for bluetooth agent
 
-batocera/core/batocera-splash/Config.in:    select BR2_PACKAGE_FFMPEG_FFPLAY if BR2_PACKAGE_BATOCERA_SPLASH_FFPLAY
-batocera/core/batocera-splash/Config.in:    select BR2_PACKAGE_DEJAVU_SANS   if BR2_PACKAGE_BATOCERA_SPLASH_OMXPLAYER
-batocera/core/batocera-splash/Config.in:    select BR2_PACKAGE_OMXPLAYER     if BR2_PACKAGE_BATOCERA_SPLASH_OMXPLAYER
-batocera/core/batocera-splash/Config.in:    select BR2_PACKAGE_MPV           if BR2_PACKAGE_BATOCERA_SPLASH_MPV
-batocera/core/batocera-splash/Config.in:    select BR2_PACKAGE_LIBASS        if BR2_PACKAGE_BATOCERA_SPLASH_MPV
+batocera/core/batocera-splash/Config.in:    select BR2_PACKAGE_FFMPEG_FFPLAY if BR2_PACKAGE_RETROLX_SPLASH_FFPLAY
+batocera/core/batocera-splash/Config.in:    select BR2_PACKAGE_DEJAVU_SANS   if BR2_PACKAGE_RETROLX_SPLASH_OMXPLAYER
+batocera/core/batocera-splash/Config.in:    select BR2_PACKAGE_OMXPLAYER     if BR2_PACKAGE_RETROLX_SPLASH_OMXPLAYER
+batocera/core/batocera-splash/Config.in:    select BR2_PACKAGE_MPV           if BR2_PACKAGE_RETROLX_SPLASH_MPV
+batocera/core/batocera-splash/Config.in:    select BR2_PACKAGE_LIBASS        if BR2_PACKAGE_RETROLX_SPLASH_MPV
 
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_LUAJIT           if !BR2_aarch64 # for performance
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_LUA              if  BR2_aarch64
@@ -36,7 +36,7 @@ batocera/core/batocera-system/Config.in:	select BR2_TARGET_ROOTFS_SQUASHFS      
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_QTSIXA_SHANWAN                       # ps3 pad
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_XARCADE2JSTICK                       # keyboard events of the Xarcade Tankstick
 
-batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_BATOCERA_SPLASH                      # boot splash
+batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_RETROLX_SPLASH                      # boot splash
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_BATOCERA_SCRIPTS                     # batocera scripts
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_BATOCERA_SETTINGS                    # batocera-settings-get/set
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_BATOCERA_AUDIO                       # batocera audio

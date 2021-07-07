@@ -1,0 +1,66 @@
+#!/bin/bash
+
+soundDisabled() {
+    grep -qE "^[ ]*splash.screen.sound[ ]*=[ ]*0[ ]*$" /boot/batocera-boot.conf
+}
+
+do_start ()
+{
+    if ls /boot/splash/*.mp4 >/dev/null 2>/dev/null
+    then
+        do_videostart "$(ls /boot/splash/*.mp4 | sed -e "$((RANDOM%$(ls -1 /boot/splash/*.mp4 | wc -l)+1))!d")"
+    elif [[ $(ls /boot/splash/*.{jpg,png}  2>/dev/null) ]]
+    then
+        do_imagestart "$(ls /boot/splash/*.{jpg,png} | sed -e "$((RANDOM%$(ls -1 /boot/splash/*.{jpg,png} | wc -l)+1))!d")"
+    else
+        do_videostart "/usr/share/batocera/splash/splash.mp4"
+    fi
+}
+
+do_imagestart()
+{
+    image="$1"
+    # on some sytems, fb0 is not immediatly loaded, so, keep a chance by waiting a bit
+    N=0
+    while ! test -e /dev/fb0 -o $N -gt 15
+    do
+        sleep 1
+        let N++
+    done
+    test -e /dev/fb0 && fbv -f -i "${image}"
+    sleep infinity
+    wait $!
+}
+
+do_videostart ()
+{
+    video="$1"
+    # Launch the video
+    omx_fnt="--font=/usr/share/fonts/dejavu/DejaVuSans-BoldOblique.ttf"
+    omx_opt="--no-keys --layer=10000 --aspect-mode=fill"
+    omx_srt="--no-ghost-box --lines=1 --align=left $omx_fnt --font-size=20 --subtitles=/usr/share/batocera/splash/splash.srt"
+
+    omx_nosound=
+    if soundDisabled
+    then
+        omx_nosound="-n -1"
+    fi
+
+    /usr/bin/omxplayer -o both $omx_opt $omx_srt $omx_nosound "$video" &
+    wait $!    
+}
+
+
+case "$1" in
+    start)
+        grep -qE '^[ ]*splash.screen.enabled[ ]*=[ ]*0[ ]*$' "/boot/batocera-boot.conf" && exit 0
+        do_start &
+        ;;
+    stop)
+        ;;
+    restart|reload)
+        ;;
+    *)
+esac
+
+exit $?
