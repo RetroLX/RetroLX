@@ -32,7 +32,6 @@ from generators.wine.wineGenerator import WineGenerator
 from generators.cemu.cemuGenerator import CemuGenerator
 from generators.melonds.melondsGenerator import MelonDSGenerator
 from generators.rpcs3.rpcs3Generator import Rpcs3Generator
-from generators.pygame.pygameGenerator import PygameGenerator
 from generators.mame.mameGenerator import MameGenerator
 from generators.devilutionx.devilutionxGenerator import DevilutionXGenerator
 from generators.hatari.hatariGenerator import HatariGenerator
@@ -51,6 +50,8 @@ from generators.drastic.drasticGenerator import DrasticGenerator
 from generators.xemu.xemuGenerator import XemuGenerator
 from generators.cgenius.cgeniusGenerator import CGeniusGenerator
 from generators.flatpak.flatpakGenerator import FlatpakGenerator
+from generators.ecwolf.ecwolfGenerator import ECWolfGenerator
+from generators.lexaloffle.lexaloffleGenerator import LexaloffleGenerator
 
 import controllersConfig as controllers
 import signal
@@ -87,7 +88,6 @@ generators = {
     'melonds' : MelonDSGenerator(),
     'rpcs3' : Rpcs3Generator(),
     'mame' : MameGenerator(),
-    'pygame': PygameGenerator(),
     'devilutionx': DevilutionXGenerator(),
     'hatari': HatariGenerator(),
     'solarus': SolarusGenerator(),
@@ -105,6 +105,8 @@ generators = {
     'xemu': XemuGenerator(),
     'cgenius': CGeniusGenerator(),
     'flatpak': FlatpakGenerator(),
+    'ecwolf': ECWolfGenerator(),
+    'lexaloffle': LexaloffleGenerator(),
 }
 
 def main(args, maxnbplayers):

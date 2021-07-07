@@ -1,0 +1,4 @@
+config BR2_PACKAGE_KERNEL_S812
+        bool "kernel-s812"
+        help
+          Amlogic S812 (Meson8) kernel for RetroLX
