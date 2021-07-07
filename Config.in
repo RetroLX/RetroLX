@@ -192,7 +192,6 @@ menu "Emulators"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-fmsx/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-watara/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-genesisplusgx-wide/Config.in"
-      source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-swanstation/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-ecwolf/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-fbalpha/Config.in"
      endmenu
@@ -216,6 +215,7 @@ menu "Emulators"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/emulators/libretro/libretro-mame2010/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/emulators/libretro/libretro-ppsspp/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/emulators/libretro/libretro-scummvm/Config.in"
+      source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/emulators/libretro/libretro-swanstation/Config.in"
   endmenu
 
   menu "Ports"
