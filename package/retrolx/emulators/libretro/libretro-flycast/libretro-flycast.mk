@@ -7,7 +7,9 @@
 LIBRETRO_FLYCAST_VERSION = 8e4fa54e26232d6d54d3b0adca163ae7e617b9bd
 LIBRETRO_FLYCAST_SITE = $(call github,libretro,flycast,$(LIBRETRO_FLYCAST_VERSION))
 LIBRETRO_FLYCAST_LICENSE = GPLv2
-LIBRETRO_FLYCAST_DEPENDENCIES = retroarch
+
+LIBRETRO_FLYCAST_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
+LIBRETRO_FLYCAST_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-flycast
 
 LIBRETRO_FLYCAST_PLATFORM = $(LIBRETRO_PLATFORM)
 LIBRETRO_FLYCAST_EXTRA_ARGS = HAVE_OPENMP=1
@@ -32,7 +34,7 @@ else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI3),y)
         LIBRETRO_FLYCAST_EXTRA_ARGS += ARCH=arm FORCE_GLES=1 LDFLAGS=-lrt
     endif
 
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_XU4),y)
+else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_EXYNOS5422),y)
 LIBRETRO_FLYCAST_PLATFORM = odroid
 LIBRETRO_FLYCAST_EXTRA_ARGS += BOARD=ODROID-XU4 FORCE_GLES=1 ARCH=arm
 
@@ -95,8 +97,27 @@ define LIBRETRO_FLYCAST_BUILD_CMDS
 endef
 
 define LIBRETRO_FLYCAST_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/flycast_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/flycast_libretro.so
+	echo "lr-flycast built as package, no rootfs install"
 endef
+
+define LIBRETRO_FLYCAST_MAKEPKG
+	# Create directories
+	mkdir -p $(LIBRETRO_FLYCAST_PKG_DIR)$(LIBRETRO_FLYCAST_PKG_INSTALL_DIR)
+
+	# Copy package files
+	$(INSTALL) -D $(@D)/flycast_libretro.so \
+	$(LIBRETRO_FLYCAST_PKG_DIR)$(LIBRETRO_FLYCAST_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(LIBRETRO_FLYCAST_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-flycast/PKGINFO \
+	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
+endef
+
+LIBRETRO_FLYCAST_POST_INSTALL_TARGET_HOOKS = LIBRETRO_FLYCAST_MAKEPKG
 
 $(eval $(generic-package))
