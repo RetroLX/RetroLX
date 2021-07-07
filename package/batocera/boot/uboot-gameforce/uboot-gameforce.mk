@@ -15,9 +15,10 @@ define UBOOT_GAMEFORCE_BUILD_CMDS
 endef
 
 define UBOOT_GAMEFORCE_INSTALL_TARGET_CMDS
-	cp $(@D)/sd_fuse/idbloader.img $(BINARIES_DIR)/idbloader.img
-	cp $(@D)/sd_fuse/uboot.img     $(BINARIES_DIR)/uboot.img
-	cp $(@D)/sd_fuse/trust.img     $(BINARIES_DIR)/trust.img
+	mkdir -p $(BINARIES_DIR)/gameforce
+	cp $(@D)/sd_fuse/idbloader.img $(BINARIES_DIR)/gameforce/idbloader.img
+	cp $(@D)/sd_fuse/uboot.img     $(BINARIES_DIR)/gameforce/uboot.img
+	cp $(@D)/sd_fuse/trust.img     $(BINARIES_DIR)/gameforce/trust.img
 endef
 
 $(eval $(generic-package))
