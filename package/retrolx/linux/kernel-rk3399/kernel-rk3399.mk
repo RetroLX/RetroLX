@@ -3,7 +3,7 @@
 # RetroLX Rockchip RK3399 kernel package
 #
 ################################################################################
-KERNEL_RK3399_VERSION = 5.10.46
+KERNEL_RK3399_VERSION = 5.10.48
 KERNEL_RK3399_SITE = https://github.com/RetroLX/kernel-rk3399.git
 KERNEL_RK3399_SITE_METHOD = git
 

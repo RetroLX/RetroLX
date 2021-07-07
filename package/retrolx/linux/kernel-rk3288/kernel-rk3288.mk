@@ -3,7 +3,7 @@
 # RetroLX Rockchip RK3288 kernel package
 #
 ################################################################################
-KERNEL_RK3288_VERSION = 5.10.46
+KERNEL_RK3288_VERSION = 5.10.48
 KERNEL_RK3288_SITE = https://github.com/RetroLX/kernel-rk3288.git
 KERNEL_RK3288_SITE_METHOD = git
 
