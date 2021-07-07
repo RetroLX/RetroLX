@@ -1,0 +1,11 @@
+--- a/ffmpeg/linux_arm64.sh	2021-07-07 19:26:50.834115163 +0200
++++ b/ffmpeg/linux_arm64.sh	2021-07-07 19:26:59.167448186 +0200
+@@ -86,7 +86,7 @@
+ ./configure --target-os=linux \
+     --prefix=./linux/aarch64 \
+     ${GENERAL} \
+-    --extra-cflags=" -O3 -fasm -Wno-psabi -fno-short-enums -fno-strict-aliasing -finline-limit=300 " \
++    --extra-cflags=" -fPIC -O3 -fasm -Wno-psabi -fno-short-enums -fno-strict-aliasing -finline-limit=300 " \
+     --disable-shared \
+     --enable-static \
+     --enable-zlib \
