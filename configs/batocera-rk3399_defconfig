@@ -82,8 +82,8 @@ BR2_PACKAGE_LUA_5_1=y
 
 BR2_PACKAGE_FIRMWARE_ROCKPRO64=y
 
-# choices can be put in _defconfig files only
-BR2_PACKAGE_BATOCERA_SPLASH_MPV=y
+# RetroLX splash support
+BR2_PACKAGE_RETROLX_SPLASH_MPV=y
 
 # Batocera
 #BR2_PACKAGE_BATOCERA_DEV=y
