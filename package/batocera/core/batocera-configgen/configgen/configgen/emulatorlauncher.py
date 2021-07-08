@@ -7,7 +7,6 @@ from sys import exit
 from Emulator import Emulator
 from Evmapy import Evmapy
 import generators
-from generators.kodi.kodiGenerator import KodiGenerator
 from generators.linapple.linappleGenerator import LinappleGenerator
 from generators.libretro.libretroGenerator import LibretroGenerator
 from generators.moonlight.moonlightGenerator import MoonlightGenerator
@@ -62,7 +61,6 @@ import utils.videoMode as videoMode
 from utils.logger import eslog
 
 generators = {
-    'kodi': KodiGenerator(),
     'linapple': LinappleGenerator(),
     'libretro': LibretroGenerator(),
     'moonlight': MoonlightGenerator(),

@@ -25,7 +25,7 @@ d_cp() {
 }
 
 
-if mkdir "${TMPDIR}" && mkdir "${TMPDIR}/system" "${TMPDIR}/joysticks" "${TMPDIR}/lirc" "${TMPDIR}/kodi" "${TMPDIR}/coredumps"
+if mkdir "${TMPDIR}" && mkdir "${TMPDIR}/system" "${TMPDIR}/joysticks" "${TMPDIR}/coredumps"
 then
     if ! cd "${TMPDIR}"
     then
@@ -88,17 +88,6 @@ do
     udevadm info -q all -n "${J}" > "${DJOYS}/udevadm.${N}.txt"
 done
 sdl2-jstest -l > "${DJOYS}/sdl2-jstest.txt"
-
-# lirc
-DLIRC="${TMPDIR}/lirc"
-f_cp "${DHOME}/.config/lirc/lircd.conf" "${DLIRC}"
-
-# kodi
-DKODI="${TMPDIR}/kodi"
-f_cp "${DHOME}/.kodi/userdata/Lircmap.xml"          	      "${DKODI}"
-d_cp "${DHOME}/.kodi/userdata/addon_data/peripheral.joystick" "${DKODI}"
-d_cp "${DHOME}/.kodi/userdata/remotes"              	      "${DKODI}"
-f_cp "${DHOME}/.kodi/temp/kodi.log"                 	      "${DKODI}"
 
 # core dumps
 DCORE="${TMPDIR}/coredumps"

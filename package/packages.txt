@@ -48,7 +48,6 @@ batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_SDL2_KMSDRM         
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_LIBDRM                               if !BR2_PACKAGE_BATOCERA_RPI_VCORE
 batocera/core/batocera-system/Config.in:    select BR2_PACKAGE_LIBDRM_EXYNOS                        if BR2_PACKAGE_LIBDRM && BR2_PACKAGE_BATOCERA_TARGET_EXYNOS5422
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_BATOCERA_DRMINFO                     if BR2_PACKAGE_LIBDRM
-batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_LIRC_TOOLS                           # lirc (remote control)
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_LIBCEC                               # libcec
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_EDID_DECODE                          # edid monitor/tv support
 batocera/core/batocera-system/Config.in:	select BR2_PACKAGE_READ_EDID                            # edid monitor/tv support
