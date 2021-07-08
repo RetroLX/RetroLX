@@ -1,0 +1,6 @@
+pkgname = daphne
+pkgver = 2.6.0-1
+pkgdesc = Daphne Laserdic Emulator
+group = emulator
+packager = https://retrolx.org 
+url = https://github.com/DirtBagXon/hypseus-singe
