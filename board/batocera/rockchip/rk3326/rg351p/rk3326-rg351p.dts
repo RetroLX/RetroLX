@@ -660,9 +660,9 @@
 	status = "okay";
 };
 
-&rga {
+/*&rga {
 	status = "okay";
-};
+};*/
 
 &pinctrl {
 

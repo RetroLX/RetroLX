@@ -26,12 +26,12 @@ BR2_ROOTFS_POST_BUILD_SCRIPT="$(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/scrip
 # Kernel
 BR2_LINUX_KERNEL=y
 BR2_LINUX_KERNEL_CUSTOM_VERSION=y
-BR2_LINUX_KERNEL_CUSTOM_VERSION_VALUE="5.10.48"
-BR2_KERNEL_HEADERS_5_10=y
+BR2_LINUX_KERNEL_CUSTOM_VERSION_VALUE="5.13.1"
+BR2_KERNEL_HEADERS_5_12=y
 BR2_LINUX_KERNEL_DTS_SUPPORT=y
-#BR2_LINUX_KERNEL_INTREE_DTS_NAME=""
+BR2_LINUX_KERNEL_INTREE_DTS_NAME="rockchip/rk3326-odroid-go2 rockchip/rk3326-odroid-go2-v11 rockchip/rk3326-odroid-go3"
 BR2_LINUX_KERNEL_NEEDS_HOST_OPENSSL=y
-BR2_LINUX_KERNEL_CUSTOM_DTS_PATH="$(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/odroidgoa/rk3326-odroid-go2.dts $(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/odroidgoa/rk3326-odroid-go2-v11.dts $(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/odroidgoa/rk3326-odroid-go3.dts $(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/gameforce/rk3326-gameforce.dts $(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/rg351p/rk3326-rg351p.dts $(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/rg351v/rk3326-rg351v.dts"
+BR2_LINUX_KERNEL_CUSTOM_DTS_PATH="$(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/gameforce/rk3326-gameforce.dts $(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/rg351p/rk3326-rg351p.dts $(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/rg351v/rk3326-rg351v.dts"
 BR2_LINUX_KERNEL_PATCH="$(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/linux_patches"
 BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
 BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="$(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/rockchip/rk3326/linux-defconfig.config"
@@ -48,8 +48,8 @@ BR2_PACKAGE_HOST_SQUASHFS=y
 # Out-of-tree kernel modules
 BR2_PACKAGE_RTL8821AU=y
 BR2_PACKAGE_RTL8192EU=y
-BR2_PACKAGE_RTL8821CE=y
-BR2_PACKAGE_RTL8723DS=y
+# weird glibc 2.33 breakage BR2_PACKAGE_RTL8821CE=y
+# breaks on 5.13 BR2_PACKAGE_RTL8723DS=y
 
 # Enables ccache
-BR2_CCACHE=y
+BR2_CCACHE=n
