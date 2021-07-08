@@ -897,30 +897,6 @@ config BR2_PACKAGE_BATOCERA_MUPEN64
 	help
 	  Mupen64
 
-config BR2_PACKAGE_BATOCERA_KODI19
-	bool "batocera.linux Kodi19 packages selection"
-	default n
-	select BR2_PACKAGE_PYTHON3              # kodi19 is based on python3
-	select BR2_PACKAGE_PYTHON_PYOPENSSL     # used by some kodi plugins
-	select BR2_PACKAGE_X264                 # decoder
-	select BR2_PACKAGE_X265                 # decoder
-	select BR2_PACKAGE_LIBAACS              # decoder
-	select BR2_PACKAGE_LIBDVDCSS            # decoder
-	select BR2_PACKAGE_GNUTLS               # https streams
-
-	# ffmpeg 
-	select BR2_PACKAGE_FFMPEG_GPL           # video recording
-	select BR2_PACKAGE_FFMPEG_FFPROBE       # determine the audio&video characteristics of a container file
-	select BR2_PACKAGE_FFMPEG_AVRESAMPLE    # audio resampler
-	select BR2_PACKAGE_LIBCDIO_PARANOIA     # cd-audio
-	select BR2_PACKAGE_LIBOPENH264          # openh264
-
-	select BR2_PACKAGE_LIBVA_INTEL_DRIVER   if BR2_PACKAGE_XORG7 && BR2_PACKAGE_MESA3D_DRI_DRIVER
-	select BR2_PACKAGE_LIBVA_UTILS          if BR2_PACKAGE_XORG7 && BR2_PACKAGE_MESA3D_DRI_DRIVER
-
-	select BR2_PACKAGE_PYTHON_PYCRYPTODOMEX # some plugin like netflix need it
-	select BR2_PACKAGE_LIBNSS
-
 config BR2_PACKAGE_BATOCERA_RPI_VCORE
 	bool "batocera.linux support vcore RPI"
 

@@ -8,6 +8,9 @@ config BR2_PACKAGE_DOSBOX_X
         select BR2_PACKAGE_LIBPNG
         select BR2_PACKAGE_LIBOGG
         select BR2_PACKAGE_LIBVORBIS      
+        select BR2_PACKAGE_FFMPEG
+        select BR2_PACKAGE_FFMPEG_AVRESAMPLE
+        select BR2_PACKAGE_FFMPEG_SWSCALE
 
 	help
 	  DOSBox is a DOS-emulator that uses the SDL-library 
