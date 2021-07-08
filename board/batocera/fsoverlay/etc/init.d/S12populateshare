@@ -10,7 +10,6 @@ OUT=/userdata
 # force the creation of some directories
 for DIR in cheats \
            system/.cache \
-           system/.config/lirc \
            system/bluetooth \
            system/configs \
            system/pacman \
@@ -32,11 +31,9 @@ done
 # there are almost empty, it's just for the structure
 # the user can delete the directory, it will recreate the structure
 # the user can delete files, files will not be recreated
-for FILE in music bios extractions kodi library saves screenshots splash \
-            system/.config/lirc/lircd.conf \
+for FILE in music bios extractions library saves screenshots splash \
             system/configs/emulationstation/es_input.cfg \
             system/configs/emulationstation/es_settings.cfg \
-            system/.kodi \
             system/configs/amiberry \
             system/configs/cannonball \
             system/configs/dosbox \
@@ -50,7 +47,6 @@ for FILE in music bios extractions kodi library saves screenshots splash \
             system/pacman/pacman.conf \
             bios/mame2003
 do
-    # not wanted for kodi
     test -e "${IN}/${FILE}" && test ! -e "${OUT}/${FILE}" && mkdir -p $(dirname "${OUT}/${FILE}") && cp -r "${IN}/${FILE}" "${OUT}/${FILE}"
 done
 

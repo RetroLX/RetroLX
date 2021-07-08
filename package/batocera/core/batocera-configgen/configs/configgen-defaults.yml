@@ -151,10 +151,6 @@ intellivision:
 jaguar:
   emulator: libretro
   core:     virtualjaguar
-kodi:
-  emulator: kodi
-  options:
-    videomode: default
 lightgun:
   emulator: libretro
   core:     mame078plus

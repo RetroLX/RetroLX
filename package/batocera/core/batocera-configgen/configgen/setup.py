@@ -7,7 +7,6 @@ setup(name='batocera-configgen',
       packages=[
         'configgen',
         'configgen.generators', 
-        'configgen.generators.kodi', 
         'configgen.generators.libretro', 
         'configgen.generators.linapple', 
         'configgen.generators.moonlight', 
