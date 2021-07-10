@@ -1,0 +1,6 @@
+pkgname = retrofe
+pkgver = 20210710-1
+pkgdesc = RetroFE frontend
+group = frontend
+packager = https://retrolx.org 
+url = http://retrofe.nl/
