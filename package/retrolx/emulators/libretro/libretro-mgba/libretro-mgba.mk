@@ -3,10 +3,13 @@
 # MGBA
 #
 ################################################################################
-# Version.: Release on Apr 18, 2021
-LIBRETRO_MGBA_VERSION = 0.9.1
+# Version.: Release on Jul 11, 2021
+LIBRETRO_MGBA_VERSION = 0.9.2
 LIBRETRO_MGBA_SITE = $(call github,mgba-emu,mgba,$(LIBRETRO_MGBA_VERSION))
 LIBRETRO_MGBA_LICENSE = MPLv2.0
+
+LIBRETRO_MGBA_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
+LIBRETRO_MGBA_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-mgba
 
 LIBRETRO_MGBA_DEPENDENCIES = libzip libpng zlib
 
@@ -29,8 +32,28 @@ LIBRETRO_MGBA_CONF_OPTS += -DUSE_EPOXY=OFF
 LIBRETRO_MGBA_CONF_OPTS += -DCMAKE_BUILD_TYPE=Release
 
 define LIBRETRO_MGBA_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/mgba_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/mgba_libretro.so
+	echo "lr-mgba built as package, no rootfs install"
 endef
+
+define LIBRETRO_MGBA_MAKEPKG
+	# Create directories
+	mkdir -p $(LIBRETRO_MGBA_PKG_DIR)$(LIBRETRO_MGBA_PKG_INSTALL_DIR)
+
+	# Copy package files
+	$(INSTALL) -D $(@D)/mgba_libretro.so \
+	$(LIBRETRO_MGBA_PKG_DIR)$(LIBRETRO_MGBA_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(LIBRETRO_MGBA_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-mgba/PKGINFO \
+	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
+endef
+
+LIBRETRO_MGBA_POST_INSTALL_TARGET_HOOKS = LIBRETRO_MGBA_MAKEPKG
+
 
 $(eval $(cmake-package))
