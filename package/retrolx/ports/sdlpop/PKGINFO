@@ -1,0 +1,6 @@
+pkgname = sdlpop
+pkgver = 20210710-1
+pkgdesc = Prince of Persia port
+group = port
+packager = https://retrolx.org 
+url = https://github.com/NagyD/SDLPoP

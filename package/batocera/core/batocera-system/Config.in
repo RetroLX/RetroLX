@@ -386,9 +386,14 @@ config BR2_PACKAGE_BATOCERA_TOOLS
 config BR2_PACKAGE_RETROLX_PACKAGES
 	bool "RetroLX pacman-managed software"
 
+	# Commodore Amiga computers emulator (only for ARM / AArch64 devices)
 	select BR2_PACKAGE_AMIBERRY             if !BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
 
-	select BR2_PACKAGE_DEVILUTIONX          if !BR2_PACKAGE_BATOCERA_TARGET_CHA
+	# Diablo 1 engine
+	select BR2_PACKAGE_DEVILUTIONX
+
+	# Commander Genius (Commander Keen series)
+	select BR2_PACKAGE_CGENIUS
 
 	select BR2_PACKAGE_DOSBOX_X                 if !BR2_PACKAGE_BATOCERA_TARGET_RPI1	&& \
                                                     !BR2_PACKAGE_BATOCERA_TARGET_RPI2		&& \
@@ -635,9 +640,6 @@ config BR2_PACKAGE_BATOCERA_PORTS_SYSTEMS
 
 	# Xash3D-FWGS (Half-Life 1)
 	select BR2_PACKAGE_XASH3D_FWGS              if  !BR2_PACKAGE_BATOCERA_TARGET_CHA
-
-	# Commander Genius (Commander Keen series)
-	#select BR2_PACKAGE_CGENIUS                 if  !BR2_PACKAGE_BATOCERA_TARGET_CHA
 
 	help
 		Ports

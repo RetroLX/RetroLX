@@ -1,0 +1,6 @@
+pkgname = cgenius
+pkgver = 2.8.2.5-1
+pkgdesc = Commander Genius (Commander Keen series engine)
+group = port
+packager = https://retrolx.org 
+url = https://clonekeenplus.sourceforge.io
