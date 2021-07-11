@@ -1,0 +1,6 @@
+pkgname = lr-bsnes-hd
+pkgver = 20210711-1
+pkgdesc = bsnes HD libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://www.libretro.com/index.php/category/bsnes-hd/
