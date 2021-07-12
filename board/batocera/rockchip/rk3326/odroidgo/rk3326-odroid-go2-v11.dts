@@ -12,7 +12,7 @@
 
 / {
 	model = "ODROID-GO Advance";
-	compatible = "hardkernel,rk3326-odroid-go2-v11", "rockchip,rk3326";
+	compatible = "hardkernel,rk3326-odroid-go2", "rockchip,rk3326";
 
 	chosen {
 		stdout-path = "serial2:115200n8";
@@ -24,10 +24,71 @@
 		pwms = <&pwm1 0 25000 0>;
 	};
 
-	gpio-keys {
-		compatible = "gpio-keys";
+        battery_cell: battery-cell {
+                compatible = "simple-battery";
+                energy-full-design-microamp-hours = <3000000>;
+                voltage-min-design-microvolt = <3500000>;
+                voltage-max-design-microvolt = <4100000>;
+
+                ocv-capacity-celcius = <20>;
+                ocv-capacity-table-0 =  <3500 0>, <3625 5>, <3685 10>, <3697 15>,
+                                        <3718 20>, <3735 25>, <3748 30>, <3760 35>,
+                                        <3774 40>, <3788 45>, <3802 50>, <3816 55>,
+                                        <3834 60>, <3853 65>, <3877 70>, <3908 75>,
+                                        <3946 80>, <3975 85>, <4018 90>, <4071 95>,
+                                        <4106 100>;
+        };
+
+
+	utils {
+                        compatible = "gpio-keys";
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        button@0 { // F4
+                                label = "GPIO BTN-VOLUP";
+                                linux,code = <KEY_VOLUMEUP>;
+                                gpios = <&gpio2 RK_PA3 GPIO_ACTIVE_LOW>;
+                        };
+                        button@1 { // F3
+                                label = "GPIO BTN-VOLDN";
+                                linux,code = <KEY_VOLUMEDOWN>;
+                                gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;
+                        };
+                        button@2 { // F2
+                                label = "Mod button";
+                                gpios = <&gpio2 RK_PA1 GPIO_ACTIVE_LOW>;
+                                linux,code = <KEY_LEFTMETA>; // 0x2c2
+                        };
+        };
+
+	joypad {
+		compatible = "gpio-keys-adc";
+
 		pinctrl-names = "default";
 		pinctrl-0 = <&btn_pins>;
+
+        	io-channels = <&saradc 1>,
+        	              <&saradc 2>;
+        	#address-cells = <1>;
+        	#size-cells = <0>;
+	
+	        axis@0 {
+	                reg = <0>;
+	                abs-flat = <10>;
+	                abs-fuzz = <10>;
+	                abs-range = <172 772>;
+	                linux,code = <ABS_X>;
+			analog;
+	        };
+
+	        axis@1 {
+	                reg = <1>;
+	                abs-flat = <10>;
+	                abs-fuzz = <10>;
+	                abs-range = <278 815>;
+	                linux,code = <ABS_Y>;
+			analog;
+	        };
 
 		/*
 		 *    *** ODROIDGO2-Advance v11 Switch layout  ***
@@ -45,94 +106,95 @@
 		 */
 
 		sw1 {
+			reg = <2>;
 			gpios = <&gpio1 RK_PB4 GPIO_ACTIVE_LOW>;
 			label = "DPAD-UP";
 			linux,code = <BTN_DPAD_UP>;
 		};
 		sw2 {
+			reg = <3>;
 			gpios = <&gpio1 RK_PB5 GPIO_ACTIVE_LOW>;
 			label = "DPAD-DOWN";
 			linux,code = <BTN_DPAD_DOWN>;
 		};
 		sw3 {
+			reg = <4>;
 			gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_LOW>;
 			label = "DPAD-LEFT";
 			linux,code = <BTN_DPAD_LEFT>;
 		};
 		sw4 {
+			reg = <5>;
 			gpios = <&gpio1 RK_PB7 GPIO_ACTIVE_LOW>;
 			label = "DPAD-RIGHT";
 			linux,code = <BTN_DPAD_RIGHT>;
 		};
 		sw5 {
+			reg = <6>;
 			gpios = <&gpio1 RK_PA2 GPIO_ACTIVE_LOW>;
 			label = "BTN-A";
 			linux,code = <BTN_EAST>;
 		};
 		sw6 {
+			reg = <7>;
 			gpios = <&gpio1 RK_PA5 GPIO_ACTIVE_LOW>;
 			label = "BTN-B";
 			linux,code = <BTN_SOUTH>;
 		};
 		sw7 {
+			reg = <8>;
 			gpios = <&gpio1 RK_PA6 GPIO_ACTIVE_LOW>;
 			label = "BTN-Y";
 			linux,code = <BTN_WEST>;
 		};
 		sw8 {
+			reg = <9>;
 			gpios = <&gpio1 RK_PA7 GPIO_ACTIVE_LOW>;
 			label = "BTN-X";
 			linux,code = <BTN_NORTH>;
 		};
-		sw9 {
-			gpios = <&gpio2 RK_PA0 GPIO_ACTIVE_LOW>;
-			label = "F1";
-			linux,code = <BTN_TRIGGER_HAPPY1>;
-		};
-		sw10 {
-			gpios = <&gpio2 RK_PA1 GPIO_ACTIVE_LOW>;
-			label = "F2";
-			linux,code = <BTN_TRIGGER_HAPPY2>;
-		};
-		sw11 {
-			gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;
-			label = "F3";
-			linux,code = <BTN_TRIGGER_HAPPY3>;
-		};
+		// sw9 thumbl not available
+		// sw10 thumbr not available
+//		sw11 { // UNUSED
+//			gpios = <&gpio2 RK_PA4 GPIO_ACTIVE_LOW>;
+//			label = "GPIO F5";
+//			linux,code = <BTN_TRIGGER_HAPPY6>;
+//		};
 		sw12 {
-			gpios = <&gpio2 RK_PA3 GPIO_ACTIVE_LOW>;
-			label = "F4";
-			linux,code = <BTN_TRIGGER_HAPPY4>;
-		};
-		sw13 {
-			gpios = <&gpio2 RK_PA4 GPIO_ACTIVE_LOW>;
-			label = "F5";
-			linux,code = <BTN_TRIGGER_HAPPY5>;
-		};
-		sw14 {
-			gpios = <&gpio2 RK_PA5 GPIO_ACTIVE_LOW>;
-			label = "F6";
-			linux,code = <BTN_TRIGGER_HAPPY6>;
-		};
-		sw15 {
+			reg = <10>;
 			gpios = <&gpio2 RK_PA6 GPIO_ACTIVE_LOW>;
 			label = "TOP-LEFT";
 			linux,code = <BTN_TL>;
 		};
-		sw16 {
+		sw13 {
+			reg = <11>;
 			gpios = <&gpio2 RK_PA7 GPIO_ACTIVE_LOW>;
 			label = "TOP-RIGHT";
 			linux,code = <BTN_TR>;
 		};
-		sw20 {
-		        gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
-		        label = "GPIO TOP-LEFT2";
-		        linux,code = <BTN_TL2>;
+		sw14 {
+			reg = <12>;
+			gpios = <&gpio2 RK_PA0 GPIO_ACTIVE_LOW>;
+			label = "SELECT";
+			linux,code = <BTN_SELECT>;
 		};
-		sw21 {
-		        gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_LOW>;
-		        label = "GPIO TOP-RIGHT2";
-		        linux,code = <BTN_TR2>;
+		sw15 {
+			reg = <13>;
+			gpios = <&gpio2 RK_PA5 GPIO_ACTIVE_LOW>;
+			label = "START";
+			linux,code = <BTN_START>;
+		};
+		sw16 {
+			reg = <14>;
+			gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_LOW>;
+			label = "TOP-RIGHT2";
+			linux,code = <BTN_TR2>;
+		};
+		sw17 {
+			reg = <15>;
+			gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+			label = "TOP-LEFT2";
+			linux,code = <BTN_TL2>;
 		};
 	};
 
@@ -148,31 +210,6 @@
 		};
 	};
 
-	rk817-sound {
-		compatible = "simple-audio-card";
-		simple-audio-card,name = "Analog";
-		simple-audio-card,format = "i2s";
-		simple-audio-card,mclk-fs = <256>;
-		simple-audio-card,widgets =
-			"Microphone", "Mic Jack",
-			"Headphone", "Headphones",
-			"Speaker", "Speaker";
-		simple-audio-card,routing =
-			"MICL", "Mic Jack",
-			"Headphones", "HPOL",
-			"Headphones", "HPOR",
-			"Speaker", "SPKO";
-		simple-audio-card,hp-det-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
-
-		simple-audio-card,cpu {
-			sound-dai = <&i2s1_2ch>;
-		};
-
-		simple-audio-card,codec {
-			sound-dai = <&rk817>;
-		};
-	};
-
 	vccsys: vccsys {
 		compatible = "regulator-fixed";
 		regulator-name = "vcc3v8_sys";
@@ -180,6 +217,32 @@
 		regulator-min-microvolt = <3800000>;
 		regulator-max-microvolt = <3800000>;
 	};
+
+        rk817-sound {
+                compatible = "simple-audio-card";
+                simple-audio-card,name = "Analog";
+                simple-audio-card,format = "i2s";
+                simple-audio-card,mclk-fs = <256>;
+                simple-audio-card,widgets =
+                        "Microphone", "Mic Jack",
+                        "Headphone", "Headphones",
+                        "Speaker", "Speaker";
+                simple-audio-card,routing =
+                        "MICL", "Mic Jack",
+                        "Headphones", "HPOL",
+                        "Headphones", "HPOR",
+                        "Speaker", "SPKO";
+                simple-audio-card,hp-det-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
+
+                simple-audio-card,cpu {
+                        sound-dai = <&i2s1_2ch>;
+                };
+
+                simple-audio-card,codec {
+                        sound-dai = <&rk817>;
+                };
+        };
+
 
 	vcc_host: vcc_host {
 		compatible = "regulator-fixed";
@@ -291,14 +354,15 @@
 		reg = <0x20>;
 		interrupt-parent = <&gpio0>;
 		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
-		clock-output-names = "rk808-clkout1", "xin32k";
-		clock-names = "mclk";
-		clocks = <&cru SCLK_I2S1_OUT>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&pmic_int>, <&i2s1_2ch_mclk>;
+		pinctrl-0 = <&pmic_int &i2s1_2ch_mclk>;
 		wakeup-source;
 		#clock-cells = <1>;
-		#sound-dai-cells = <0>;
+		clock-output-names = "rk808-clkout1", "xin32k";
+                clocks = <&cru SCLK_I2S1_OUT>;
+                clock-names = "mclk";
+                #sound-dai-cells = <0>;
+
 
 		vcc1-supply = <&vccsys>;
 		vcc2-supply = <&vccsys>;
@@ -308,11 +372,22 @@
 		vcc6-supply = <&vccsys>;
 		vcc7-supply = <&vccsys>;
 
+                battery {
+                        compatible = "rk817,battery";
+			monitored-battery = <&battery_cell>;
+                        bat_res = <180>;
+                        sample_res = <10>;
+                };
+
+                rk817_codec: codec {
+                        rockchip,mic-in-differential;
+                };
+
 		regulators {
 			vdd_logic: DCDC_REG1 {
 				regulator-name = "vdd_logic";
 				regulator-min-microvolt = <950000>;
-				regulator-max-microvolt = <1150000>;
+				regulator-max-microvolt = <1200000>;
 				regulator-ramp-delay = <6001>;
 				regulator-always-on;
 				regulator-boot-on;
@@ -459,10 +534,6 @@
 					regulator-suspend-microvolt = <3300000>;
 				};
 			};
-		};
-
-		rk817_codec: codec {
-			rockchip,mic-in-differential;
 		};
 	};
 };
