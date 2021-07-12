@@ -8,6 +8,9 @@ LIBRETRO_WATARA_VERSION = 7ffa0711c84f24b217a04d2be411132f385a8076
 LIBRETRO_WATARA_SITE = $(call github,libretro,potator,$(LIBRETRO_WATARA_VERSION))
 LIBRETRO_WATARA_LICENSE = GPLv2
 
+LIBRETRO_WATARA_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
+LIBRETRO_WATARA_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-watara
+
 LIBRETRO_WATARA_PLATFORM = $(LIBRETRO_PLATFORM)
 LIBRETRO_WATARA_EXTRA_ARGS =
 
@@ -42,9 +45,24 @@ define LIBRETRO_WATARA_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/platform/libretro -f Makefile platform="$(LIBRETRO_WATARA_PLATFORM)" $(LIBRETRO_WATARA_EXTRA_ARGS)
 endef
 
-define LIBRETRO_WATARA_INSTALL_TARGET_CMDS
+define LIBRETRO_WATARA_MAKEPKG
+	# Create directories
+	mkdir -p $(LIBRETRO_WATARA_PKG_DIR)$(LIBRETRO_WATARA_PKG_INSTALL_DIR)
+
+	# Copy package files
 	$(INSTALL) -D $(@D)/platform/libretro/potator_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/potator_libretro.so
+	$(LIBRETRO_WATARA_PKG_DIR)$(LIBRETRO_WATARA_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(LIBRETRO_WATARA_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-watara/PKGINFO \
+	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
+
+LIBRETRO_WATARA_POST_INSTALL_TARGET_HOOKS = LIBRETRO_WATARA_MAKEPKG
 
 $(eval $(generic-package))
