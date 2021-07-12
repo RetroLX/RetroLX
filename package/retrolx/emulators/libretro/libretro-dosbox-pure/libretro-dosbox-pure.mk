@@ -8,6 +8,9 @@ LIBRETRO_DOSBOX_PURE_VERSION = 0.13
 LIBRETRO_DOSBOX_PURE_SITE = $(call github,schellingb,dosbox-pure,$(LIBRETRO_DOSBOX_PURE_VERSION))
 LIBRETRO_DOSBOX_PURE_LICENSE = GPLv2
 
+LIBRETRO_DOSBOX_PURE_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
+LIBRETRO_DOSBOX_PURE_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-dosbox-pure
+
 # x86
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86),y)
 LIBRETRO_DOSBOX_PURE_EXTRA_ARGS = target=x86 WITH_FAKE_SDL=1
@@ -29,8 +32,26 @@ define LIBRETRO_DOSBOX_PURE_BUILD_CMDS
 endef
 
 define LIBRETRO_DOSBOX_PURE_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/dosbox_pure_libretro.so \
-	  $(TARGET_DIR)/usr/lib/libretro/dosbox_pure_libretro.so
 endef
+
+define LIBRETRO_DOSBOX_PURE_MAKEPKG
+	# Create directories
+	mkdir -p $(LIBRETRO_DOSBOX_PURE_PKG_DIR)$(LIBRETRO_DOSBOX_PURE_PKG_INSTALL_DIR)
+
+	# Copy package files
+	$(INSTALL) -D $(@D)/dosbox_pure_libretro.so \
+	$(LIBRETRO_DOSBOX_PURE_PKG_DIR)$(LIBRETRO_DOSBOX_PURE_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(LIBRETRO_DOSBOX_PURE_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-dosbox-pure/PKGINFO \
+	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
+endef
+
+LIBRETRO_DOSBOX_PURE_POST_INSTALL_TARGET_HOOKS = LIBRETRO_DOSBOX_PURE_MAKEPKG
 
 $(eval $(generic-package))
