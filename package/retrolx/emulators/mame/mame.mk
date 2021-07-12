@@ -17,7 +17,7 @@ MAME_PKG_DIR = $(TARGET_DIR)/opt/retrolx/mame
 MAME_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/mame
 
 # Limit number of jobs not to eat too much RAM....
-MAME_JOBS = 12
+MAME_JOBS = $(shell expr $(shell nproc) / 2)
 
 # x86_64 is desktop linux based on X11 and OpenGL
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64),y)
@@ -43,6 +43,10 @@ endif
 
 ifeq ($(BR2_cortex_a35),y)
 MAME_CFLAGS += -mcpu=cortex-a35 -mtune=cortex-a35
+endif
+
+ifeq ($(BR2_cortex_a53),y)
+MAME_CFLAGS += -mcpu=cortex-a53 -mtune=cortex-a53
 endif
 
 ifeq ($(BR2_cortex_a55),y)

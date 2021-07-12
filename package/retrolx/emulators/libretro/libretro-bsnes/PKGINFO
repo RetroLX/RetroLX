@@ -1,0 +1,6 @@
+pkgname = lr-bsnes
+pkgver = 20210712-1
+pkgdesc = bsnes (Super Nintendo) libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://www.libretro.com/index.php/category/bsnes/
