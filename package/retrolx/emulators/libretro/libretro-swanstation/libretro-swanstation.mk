@@ -32,7 +32,7 @@ define LIBRETRO_SWANSTATION_MAKEPKG
 
 	# Copy package files
 	$(INSTALL) -D $(@D)/buildroot-build/swanstation_libretro.so \
-	$(LIBRETRO_SWANSTATION_PKG_DIR)$(LIBRETRO_SWANSTATION_PKG_DIR)
+	$(LIBRETRO_SWANSTATION_PKG_DIR)$(LIBRETRO_SWANSTATION_PKG_INSTALL_DIR)
 
 	# Build Pacman package
 	cd $(LIBRETRO_SWANSTATION_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
