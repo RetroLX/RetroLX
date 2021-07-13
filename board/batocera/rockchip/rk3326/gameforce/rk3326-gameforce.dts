@@ -268,16 +268,17 @@
 		simple-audio-card,name = "rockchip,rk817-codec";
 		simple-audio-card,mclk-fs = <256>;
 		simple-audio-card,widgets =
-			"Microphone", "Mic Jack",
-			"Headphone", "Headphones";
+			"Speaker", "Speaker",
+			"Headphone", "Headphones",
+			"Microphone", "Mic Jack";
 		simple-audio-card,routing =
-			"MICL", "Mic Jack",
+			"Speaker", "SPKOL",
+			"Speaker", "SPKOR",
 			"Headphones", "HPOL",
-			"Headphones", "HPOR";
-		pinctrl-names = "default";
-		pinctrl-0 = <&phone_det>;
+			"Headphones", "HPOR",
+			"MICL", "Mic Jack";
 		simple-audio-card,hp-det-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
-		simple-audio-card,codec-hp-det = <1>;
+		//simple-audio-card,pin-switches = "Speaker", "Headphones";
 		simple-audio-card,cpu {
 			sound-dai = <&i2s1_2ch>;
 		};
@@ -468,18 +469,8 @@
 		};
 
 		rk817_codec: codec {
-			mic-in-differential;
-			#sound-dai-cells = <0>;
-			compatible = "rockchip,rk817-codec";
-			clocks = <&cru SCLK_I2S1_OUT>;
-			clock-names = "mclk";
-			pinctrl-names = "default";
-			pinctrl-0 = <&i2s1_2ch_mclk &spk_ctl>;
-			spk-ctl-gpios = <&gpio2 RK_PB5 GPIO_ACTIVE_HIGH>;
 			use-ext-amplifier;
-			hp-volume = <3>;//255-0
-			spk-volume = <3>;//255-0
-			status = "okay";
+			rockchip,mic-in-differential;
 		};
 
 		pwrkey {
@@ -733,6 +724,7 @@
 /* I2S 1 Channel Used */
 &i2s1_2ch {
 	status = "okay";
+	#sound-dai-cells = <0>;
 };
 
 &io_domains {
@@ -846,7 +838,7 @@
 
 	headphone {
 		//Low : HeadPhone remove, High : HeadPhone insert
-		phone_det: phone_det {
+		hp_det: hp-det {
 			rockchip,pins = <2 RK_PC6 RK_FUNC_GPIO &pcfg_pull_up>;
 		};
 	};
@@ -860,15 +852,10 @@
 		};
 	};
 	
-    speaker {
-        spk_ctl: spk_ctl {
-            rockchip,pins = <2 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
-        };
-    };
 	pmic {
 		/* ODROID-GO2 : PMIC_INT(GPIO0.PC1) */
 		pmic_int: pmic_int {
-			rockchip,pins = <0 RK_PC1 RK_FUNC_GPIO &pcfg_pull_up>;
+			rockchip,pins = <0 RK_PC1 RK_FUNC_GPIO &pcfg_pull_up>;					
 		};
 
 		/* ODROID-GO2 : PMIC_SLEEP(GPIO0.PA4) */
