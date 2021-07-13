@@ -10,4 +10,4 @@
 rm "${BINARIES_DIR}/modules"
 rm "${BINARIES_DIR}/rootfs.tar"
 "${HOST_DIR}/bin/mksquashfs" "${TARGET_DIR}/lib/modules/" "${BINARIES_DIR}/modules" -comp zstd
-(cd "${BINARIES_DIR}" && tar cf - * | gzip > "${BINARIES_DIR}/kernel.tar.gz")
+#(cd "${BINARIES_DIR}" && tar cf - * | gzip > "${BINARIES_DIR}/kernel.tar.gz")

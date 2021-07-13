@@ -1,0 +1,6514 @@
+diff --git a/Documentation/devicetree/bindings/mfd/rk808.txt b/Documentation/devicetree/bindings/mfd/rk808.txt
+index 04df07f..e27fb2c 100644
+--- a/Documentation/devicetree/bindings/mfd/rk808.txt
++++ b/Documentation/devicetree/bindings/mfd/rk808.txt
+@@ -14,6 +14,8 @@ Required properties:
+ - compatible: "rockchip,rk817"
+ - compatible: "rockchip,rk818"
+ - reg: I2C slave address
++- interrupt-parent: Should contain a phandle to the correct interrupt
++		    controller node.
+ - interrupts: the interrupt outputs of the controller.
+ - #clock-cells: from common clock binding; shall be set to 1 (multiple clock
+   outputs). See <dt-bindings/clock/rockchip,rk808.h> for clock IDs.
+@@ -23,6 +25,7 @@ Optional properties:
+   default output clock name
+ - rockchip,system-power-controller: Telling whether or not this pmic is controlling
+   the system power.
++- wakeup-source: Device can be used as a wakeup source.
+ 
+ Optional RK805 properties:
+ - vcc1-supply:  The input supply for DCDC_REG1
+@@ -63,8 +66,16 @@ Optional RK809 properties:
+ - vcc9-supply:  The input supply for DCDC_REG5, SWITCH_REG2
+ 
+ Optional RK817 properties:
++- clocks:	The input clock for the audio codec
++- clock-names:	The clock name for the codec clock. Should be "mclk".
++- #sound-dai-cells: Needed for the interpretation of sound dais. Should be 0.
++
+ - vcc8-supply:  The input supply for BOOST
+ - vcc9-supply:  The input supply for OTG_SWITCH
++- codec:	The child node for the codec to hold additional properties.
++
++- rockchip,mic-in-differential: Telling if the microphone uses differential
++				mode. Should be under the codec child node.
+ 
+ Optional RK818 properties:
+ - vcc1-supply:  The input supply for DCDC_REG1
+@@ -275,3 +286,180 @@ Example:
+ 			};
+ 		};
+ 	};
++
++	rk817: pmic@20 {
++		compatible = "rockchip,rk817";
++		reg = <0x20>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
++		clock-output-names = "rk808-clkout1", "xin32k";
++		clock-names = "mclk";
++		clocks = <&cru SCLK_I2S1_OUT>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pmic_int>, <&i2s1_2ch_mclk>;
++		wakeup-source;
++		#clock-cells = <1>;
++		#sound-dai-cells = <0>;
++
++		vcc1-supply = <&vccsys>;
++		vcc2-supply = <&vccsys>;
++		vcc3-supply = <&vccsys>;
++		vcc4-supply = <&vccsys>;
++		vcc5-supply = <&vccsys>;
++		vcc6-supply = <&vccsys>;
++		vcc7-supply = <&vccsys>;
++
++		regulators {
++			vdd_logic: DCDC_REG1 {
++				regulator-name = "vdd_logic";
++				regulator-min-microvolt = <950000>;
++				regulator-max-microvolt = <1150000>;
++				regulator-ramp-delay = <6001>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <950000>;
++				};
++			};
++
++			vdd_arm: DCDC_REG2 {
++				regulator-name = "vdd_arm";
++				regulator-min-microvolt = <950000>;
++				regulator-max-microvolt = <1350000>;
++				regulator-ramp-delay = <6001>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <950000>;
++				};
++			};
++
++			vcc_ddr: DCDC_REG3 {
++				regulator-name = "vcc_ddr";
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++				};
++			};
++
++			vcc_3v3: DCDC_REG4 {
++				regulator-name = "vcc_3v3";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_1v8: LDO_REG2 {
++				regulator-name = "vcc_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			vdd_1v0: LDO_REG3 {
++				regulator-name = "vdd_1v0";
++				regulator-min-microvolt = <1000000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1000000>;
++				};
++			};
++
++			vcc3v3_pmu: LDO_REG4 {
++				regulator-name = "vcc3v3_pmu";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vccio_sd: LDO_REG5 {
++				regulator-name = "vccio_sd";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_sd: LDO_REG6 {
++				regulator-name = "vcc_sd";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_bl: LDO_REG7 {
++				regulator-name = "vcc_bl";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_lcd: LDO_REG8 {
++				regulator-name = "vcc_lcd";
++				regulator-min-microvolt = <2800000>;
++				regulator-max-microvolt = <2800000>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <2800000>;
++				};
++			};
++
++			vcc_cam: LDO_REG9 {
++				regulator-name = "vcc_cam";
++				regulator-min-microvolt = <3000000>;
++				regulator-max-microvolt = <3000000>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <3000000>;
++				};
++			};
++		};
++
++		rk817_codec: codec {
++			rockchip,mic-in-differential;
++		};
++	};
+diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+index c3e00c0..5cd5380 100644
+--- a/arch/arm64/boot/dts/rockchip/Makefile
++++ b/arch/arm64/boot/dts/rockchip/Makefile
+@@ -7,6 +7,8 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-evb.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-roc-cc.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3318-a95x-z2.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go2.dtb
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go2-v11.dtb
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go3.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-a1.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s.dtb
+diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
+index 09baa8a..06500a3 100644
+--- a/arch/arm64/boot/dts/rockchip/px30.dtsi
++++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
+@@ -320,6 +320,53 @@
+ 		};
+ 	};
+ 
++	dfi: dfi@ff610000 {
++		reg = <0x00 0xff610000 0x00 0x400>;
++		compatible = "rockchip,px30-dfi";
++		rockchip,pmu = <&pmugrf>;
++		status = "okay";
++	};
++
++	dmc: dmc {
++		compatible = "rockchip,px30-dmc";
++		devfreq-events = <&dfi>;
++		clocks = <&cru SCLK_DDRCLK>;
++		clock-names = "dmc_clk";
++		operating-points-v2 = <&dmc_opp_table>;
++		uptreshold = <40>;
++		downdifferential = <20>;
++		status = "okay";
++	};
++
++	dmc_opp_table: dmc_opp_table {
++		compatible = "operating-points-v2";
++		opp-194000000 {
++			opp-hz = /bits/ 64 <194000000>;
++			opp-microvolt = <950000>;
++		};
++		opp-328000000 {
++			opp-hz = /bits/ 64 <328000000>;
++			opp-microvolt = <950000>;
++		};
++		opp-450000000 {
++			opp-hz = /bits/ 64 <450000000>;
++			opp-microvolt = <950000>;
++		};
++		opp-528000000 {
++			opp-hz = /bits/ 64 <528000000>;
++			opp-microvolt = <975000>;
++		};
++		opp-666000000 {
++			opp-hz = /bits/ 64 <666000000>;
++			opp-microvolt = <1050000>;
++		};
++		opp-786000000 {
++			opp-hz = /bits/ 64 <786000000>;
++			opp-microvolt = <1100000>;
++			status = "disabled"; // ???
++		};
++	};
++
+ 	pmugrf: syscon@ff010000 {
+ 		compatible = "rockchip,px30-pmugrf", "syscon", "simple-mfd";
+ 		reg = <0x0 0xff010000 0x0 0x1000>;
+@@ -599,6 +646,25 @@
+ 		status = "disabled";
+ 	};
+ 
++	spi2 {
++		compatible = "spi-gpio";
++		sck-gpios = <&gpio1 RK_PB1 0>;
++		miso-gpios = <&gpio1 RK_PA1 0>;
++		mosi-gpios = <&gpio1 RK_PA0 0>;
++		cs-gpios = <&gpio1 RK_PA4 0>;
++		num-chipselects = <1>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		status = "okay";
++		flash: XT25F128B@0 {
++			#address-cells = <1>;
++			#size-cells = <1>;
++			compatible = "XT25F128B","jedec,spi-nor";
++			reg = <0>;
++			spi-max-frequency = <500000>;
++		};
++	};
++
+ 	wdt: watchdog@ff1e0000 {
+ 		compatible = "rockchip,px30-wdt", "snps,dw-wdt";
+ 		reg = <0x0 0xff1e0000 0x0 0x100>;
+diff --git a/linux-go-next/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2-v11.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2-v11.dts
+new file mode 100644
+index 0000000..0de53a3
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2-v11.dts
+@@ -0,0 +1,670 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2019 Hardkernel Co., Ltd
++ * Copyright (c) 2020 Theobroma Systems Design und Consulting GmbH
++ */
++
++/dts-v1/;
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/pinctrl/rockchip.h>
++#include "rk3326.dtsi"
++
++/ {
++	model = "ODROID-GO Advance";
++	compatible = "hardkernel,rk3326-odroid-go2", "rockchip,rk3326";
++
++	chosen {
++		stdout-path = "serial2:115200n8";
++	};
++
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		power-supply = <&vcc_bl>;
++		pwms = <&pwm1 0 25000 0>;
++	};
++
++        battery_cell: battery-cell {
++                compatible = "simple-battery";
++                energy-full-design-microamp-hours = <3000000>;
++                voltage-min-design-microvolt = <3500000>;
++                voltage-max-design-microvolt = <4100000>;
++
++                ocv-capacity-celcius = <20>;
++                ocv-capacity-table-0 =  <3500 0>, <3625 5>, <3685 10>, <3697 15>,
++                                        <3718 20>, <3735 25>, <3748 30>, <3760 35>,
++                                        <3774 40>, <3788 45>, <3802 50>, <3816 55>,
++                                        <3834 60>, <3853 65>, <3877 70>, <3908 75>,
++                                        <3946 80>, <3975 85>, <4018 90>, <4071 95>,
++                                        <4106 100>;
++        };
++
++
++	utils {
++                        compatible = "gpio-keys";
++                        #address-cells = <1>;
++                        #size-cells = <0>;
++                        button@0 { // F4
++                                label = "GPIO BTN-VOLUP";
++                                linux,code = <KEY_VOLUMEUP>;
++                                gpios = <&gpio2 RK_PA3 GPIO_ACTIVE_LOW>;
++                        };
++                        button@1 { // F3
++                                label = "GPIO BTN-VOLDN";
++                                linux,code = <KEY_VOLUMEDOWN>;
++                                gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;
++                        };
++                        button@2 { // F2
++                                label = "Mod button";
++                                gpios = <&gpio2 RK_PA1 GPIO_ACTIVE_LOW>;
++                                linux,code = <KEY_LEFTMETA>; // 0x2c2
++                        };
++        };
++
++	joypad {
++		compatible = "gpio-keys-adc";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&btn_pins>;
++
++        	io-channels = <&saradc 1>,
++        	              <&saradc 2>;
++        	#address-cells = <1>;
++        	#size-cells = <0>;
++	
++	        axis@0 {
++	                reg = <0>;
++	                abs-flat = <10>;
++	                abs-fuzz = <10>;
++	                abs-range = <172 772>;
++	                linux,code = <ABS_X>;
++			analog;
++	        };
++
++	        axis@1 {
++	                reg = <1>;
++	                abs-flat = <10>;
++	                abs-fuzz = <10>;
++	                abs-range = <278 815>;
++	                linux,code = <ABS_Y>;
++			analog;
++	        };
++
++		/*
++		 *      *** ODROIDGO2-Advance Switch layout ***
++		 * |------------------------------------------------|
++		 * | sw15                                      sw16 |
++		 * |------------------------------------------------|
++		 * |     sw1      |-------------------|      sw8    |
++		 * |  sw3   sw4   |                   |   sw7   sw5 |
++		 * |     sw2      |    LCD Display    |      sw6    |
++		 * |              |                   |             |
++		 * |              |-------------------|             |
++		 * |         sw9 sw10   sw11 sw12   sw13 sw14       |
++		 * |------------------------------------------------|
++		 */
++
++		sw1 {
++			reg = <2>;
++			gpios = <&gpio1 RK_PB4 GPIO_ACTIVE_LOW>;
++			label = "GPIO DPAD-UP";
++			linux,code = <BTN_DPAD_UP>;
++		};
++		sw2 {
++			reg = <3>;
++			gpios = <&gpio1 RK_PB5 GPIO_ACTIVE_LOW>;
++			label = "GPIO DPAD-DOWN";
++			linux,code = <BTN_DPAD_DOWN>;
++		};
++		sw3 {
++			reg = <4>;
++			gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_LOW>;
++			label = "GPIO DPAD-LEFT";
++			linux,code = <BTN_DPAD_LEFT>;
++		};
++		sw4 {
++			reg = <5>;
++			gpios = <&gpio1 RK_PB7 GPIO_ACTIVE_LOW>;
++			label = "GPIO DPAD-RIGHT";
++			linux,code = <BTN_DPAD_RIGHT>;
++		};
++		sw5 {
++			reg = <6>;
++			gpios = <&gpio1 RK_PA2 GPIO_ACTIVE_LOW>;
++			label = "GPIO BTN-A";
++			linux,code = <BTN_EAST>;
++		};
++		sw6 {
++			reg = <7>;
++			gpios = <&gpio1 RK_PA5 GPIO_ACTIVE_LOW>;
++			label = "GPIO BTN-B";
++			linux,code = <BTN_SOUTH>;
++		};
++		sw7 {
++			reg = <8>;
++			gpios = <&gpio1 RK_PA6 GPIO_ACTIVE_LOW>;
++			label = "GPIO BTN-Y";
++			linux,code = <BTN_WEST>;
++		};
++		sw8 {
++			reg = <9>;
++			gpios = <&gpio1 RK_PA7 GPIO_ACTIVE_LOW>;
++			label = "GPIO BTN-X";
++			linux,code = <BTN_NORTH>;
++		};
++		// sw9 thumbl not available
++		// sw10 thumbr not available
++//		sw11 { // UNUSED
++//			gpios = <&gpio2 RK_PA4 GPIO_ACTIVE_LOW>;
++//			label = "GPIO F5";
++//			linux,code = <BTN_TRIGGER_HAPPY6>;
++//		};
++		sw12 {
++			reg = <10>;
++			gpios = <&gpio2 RK_PA6 GPIO_ACTIVE_LOW>;
++			label = "GPIO TOP-LEFT";
++			linux,code = <BTN_TL>;
++		};
++		sw13 {
++			reg = <11>;
++			gpios = <&gpio2 RK_PA7 GPIO_ACTIVE_LOW>;
++			label = "GPIO TOP-RIGHT";
++			linux,code = <BTN_TR>;
++		};
++		sw14 {
++			reg = <12>;
++			gpios = <&gpio2 RK_PA0 GPIO_ACTIVE_LOW>;
++			label = "GPIO SELECT";
++			linux,code = <BTN_SELECT>;
++		};
++		sw15 {
++			reg = <13>;
++			gpios = <&gpio2 RK_PA5 GPIO_ACTIVE_LOW>;
++			label = "GPIO START";
++			linux,code = <BTN_START>;
++		};
++		sw16 {
++			reg = <14>;
++			gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_LOW>;
++			label = "GPIO TOP-RIGHT2";
++			linux,code = <BTN_TR2>;
++		};
++		sw17 {
++			reg = <15>;
++			gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
++			label = "GPIO TOP-LEFT2";
++			linux,code = <BTN_TL2>;
++		};
++	};
++
++	leds: gpio-leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&blue_led_pin>;
++
++		blue_led: led-0 {
++			label = "blue:heartbeat";
++			gpios = <&gpio0 RK_PC1 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "heartbeat";
++		};
++	};
++
++	vccsys: vccsys {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v8_sys";
++		regulator-always-on;
++		regulator-min-microvolt = <3800000>;
++		regulator-max-microvolt = <3800000>;
++	};
++
++        rk817-sound {
++                compatible = "simple-audio-card";
++                simple-audio-card,name = "Analog";
++                simple-audio-card,format = "i2s";
++                simple-audio-card,mclk-fs = <256>;
++                simple-audio-card,widgets =
++                        "Microphone", "Mic Jack",
++                        "Headphone", "Headphones",
++                        "Speaker", "Speaker";
++                simple-audio-card,routing =
++                        "MICL", "Mic Jack",
++                        "Headphones", "HPOL",
++                        "Headphones", "HPOR",
++                        "Speaker", "SPKO";
++                simple-audio-card,hp-det-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
++
++                simple-audio-card,cpu {
++                        sound-dai = <&i2s1_2ch>;
++                };
++
++                simple-audio-card,codec {
++                        sound-dai = <&rk817>;
++                };
++        };
++
++
++	vcc_host: vcc_host {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_host";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++
++		gpio = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++		vin-supply = <&vccsys>;
++	};
++};
++
++&cpu0 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu1 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu2 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu3 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cru {
++	assigned-clocks = <&cru PLL_NPLL>,
++		<&cru ACLK_BUS_PRE>, <&cru ACLK_PERI_PRE>,
++		<&cru HCLK_BUS_PRE>, <&cru HCLK_PERI_PRE>,
++		<&cru PCLK_BUS_PRE>, <&cru SCLK_GPU>,
++		<&cru PLL_CPLL>;
++
++	assigned-clock-rates = <1188000000>,
++		<200000000>, <200000000>,
++		<150000000>, <150000000>,
++		<100000000>, <200000000>,
++		<17000000>;
++};
++
++&display_subsystem {
++	status = "okay";
++};
++
++&dsi {
++	status = "okay";
++
++	ports {
++		mipi_out: port@1 {
++			reg = <1>;
++
++			mipi_out_panel: endpoint {
++				remote-endpoint = <&mipi_in_panel>;
++			};
++		};
++	};
++
++	panel@0 {
++		compatible = "elida,kd35t133";
++		reg = <0>;
++		backlight = <&backlight>;
++		iovcc-supply = <&vcc_lcd>;
++		reset-gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&vcc_lcd>;
++
++		port {
++			mipi_in_panel: endpoint {
++				remote-endpoint = <&mipi_out_panel>;
++			};
++		};
++	};
++};
++
++&dsi_dphy {
++	status = "okay";
++};
++
++&gpu {
++	mali-supply = <&vdd_logic>;
++	status = "okay";
++};
++
++&i2c0 {
++	clock-frequency = <400000>;
++	i2c-scl-falling-time-ns = <16>;
++	i2c-scl-rising-time-ns = <280>;
++	status = "okay";
++
++	rk817: pmic@20 {
++		compatible = "rockchip,rk817";
++		reg = <0x20>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pmic_int &i2s1_2ch_mclk>;
++		wakeup-source;
++		#clock-cells = <1>;
++		clock-output-names = "rk808-clkout1", "xin32k";
++                clocks = <&cru SCLK_I2S1_OUT>;
++                clock-names = "mclk";
++                #sound-dai-cells = <0>;
++
++
++		vcc1-supply = <&vccsys>;
++		vcc2-supply = <&vccsys>;
++		vcc3-supply = <&vccsys>;
++		vcc4-supply = <&vccsys>;
++		vcc5-supply = <&vccsys>;
++		vcc6-supply = <&vccsys>;
++		vcc7-supply = <&vccsys>;
++
++                battery {
++                        compatible = "rk817,battery";
++			monitored-battery = <&battery_cell>;
++                        bat_res = <180>;
++                        sample_res = <10>;
++                };
++
++                rk817_codec: codec {
++                        rockchip,mic-in-differential;
++                };
++
++		regulators {
++			vdd_logic: DCDC_REG1 {
++				regulator-name = "vdd_logic";
++				regulator-min-microvolt = <950000>;
++				regulator-max-microvolt = <1200000>;
++				regulator-ramp-delay = <6001>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <950000>;
++				};
++			};
++
++			vdd_arm: DCDC_REG2 {
++				regulator-name = "vdd_arm";
++				regulator-min-microvolt = <950000>;
++				regulator-max-microvolt = <1350000>;
++				regulator-ramp-delay = <6001>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <950000>;
++				};
++			};
++
++			vcc_ddr: DCDC_REG3 {
++				regulator-name = "vcc_ddr";
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++				};
++			};
++
++			vcc_3v3: DCDC_REG4 {
++				regulator-name = "vcc_3v3";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_1v8: LDO_REG2 {
++				regulator-name = "vcc_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			vdd_1v0: LDO_REG3 {
++				regulator-name = "vdd_1v0";
++				regulator-min-microvolt = <1000000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1000000>;
++				};
++			};
++
++			vcc3v3_pmu: LDO_REG4 {
++				regulator-name = "vcc3v3_pmu";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vccio_sd: LDO_REG5 {
++				regulator-name = "vccio_sd";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_sd: LDO_REG6 {
++				regulator-name = "vcc_sd";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_bl: LDO_REG7 {
++				regulator-name = "vcc_bl";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_lcd: LDO_REG8 {
++				regulator-name = "vcc_lcd";
++				regulator-min-microvolt = <2800000>;
++				regulator-max-microvolt = <2800000>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <2800000>;
++				};
++			};
++
++			vcc_cam: LDO_REG9 {
++				regulator-name = "vcc_cam";
++				regulator-min-microvolt = <3000000>;
++				regulator-max-microvolt = <3000000>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <3000000>;
++				};
++			};
++		};
++	};
++};
++
++/* EXT Header(P2): 7(SCL:GPIO0.C2), 8(SDA:GPIO0.C3) */
++&i2c1 {
++	clock-frequency = <400000>;
++	status = "okay";
++};
++
++/* I2S 1 Channel Used */
++&i2s1_2ch {
++	status = "okay";
++};
++
++&io_domains {
++	vccio1-supply = <&vcc_3v3>;
++	vccio2-supply = <&vccio_sd>;
++	vccio3-supply = <&vcc_3v3>;
++	vccio4-supply = <&vcc_3v3>;
++	vccio5-supply = <&vcc_3v3>;
++	vccio6-supply = <&vcc_3v3>;
++	status = "okay";
++};
++
++&pmu_io_domains {
++	pmuio1-supply = <&vcc3v3_pmu>;
++	pmuio2-supply = <&vcc3v3_pmu>;
++	status = "okay";
++};
++
++&pwm1 {
++	status = "okay";
++};
++
++&saradc {
++	vref-supply = <&vcc_1v8>;
++	status = "okay";
++};
++
++&sdmmc {
++	cap-sd-highspeed;
++	card-detect-delay = <200>;
++	cd-gpios = <&gpio0 RK_PA3 GPIO_ACTIVE_LOW>; /*[> CD GPIO <]*/
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	vmmc-supply = <&vcc_sd>;
++	vqmmc-supply = <&vccio_sd>;
++	status = "okay";
++};
++
++&tsadc {
++	status = "okay";
++};
++
++&u2phy {
++	status = "okay";
++
++	u2phy_host: host-port {
++		status = "okay";
++	};
++
++	u2phy_otg: otg-port {
++		status = "disabled";
++	};
++};
++
++&usb20_otg {
++	status = "okay";
++};
++
++/* EXT Header(P2): 2(RXD:GPIO1.C0),3(TXD:.C1),4(CTS:.C2),5(RTS:.C3) */
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart1_xfer &uart1_cts>;
++	status = "okay";
++};
++
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart2m1_xfer>;
++	status = "okay";
++};
++
++&vopb {
++	status = "okay";
++};
++
++&vopb_mmu {
++	status = "okay";
++};
++
++&pinctrl {
++	btns {
++		btn_pins: btn-pins {
++			rockchip,pins = <1 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA1 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>,
++					<3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>,
++					<3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
++
++	headphone {
++		hp_det: hp-det {
++			rockchip,pins = <2 RK_PC6 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
++	};
++
++	leds {
++		blue_led_pin: blue-led-pin {
++			rockchip,pins = <0 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	pmic {
++		dc_det: dc-det {
++			rockchip,pins = <0 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		pmic_int: pmic-int {
++			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++
++		soc_slppin_gpio: soc_slppin_gpio {
++			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_output_low>;
++		};
++
++		soc_slppin_rst: soc_slppin_rst {
++			rockchip,pins = <0 RK_PA4 2 &pcfg_pull_none>;
++		};
++
++		soc_slppin_slp: soc_slppin_slp {
++			rockchip,pins = <0 RK_PA4 1 &pcfg_pull_none>;
++		};
++	};
++};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+index 49c97f7..e95e3c8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+@@ -52,6 +52,21 @@
+ 		pwms = <&pwm1 0 25000 0>;
+ 	};
+ 
++	battery_cell: battery-cell {
++		compatible = "simple-battery";
++		energy-full-design-microamp-hours = <3000000>;
++		voltage-min-design-microvolt = <3500000>;
++		voltage-max-design-microvolt = <4100000>;
++
++		ocv-capacity-celcius = <20>;
++		ocv-capacity-table-0 =  <3500 0>, <3625 5>, <3685 10>, <3697 15>,
++					<3718 20>, <3735 25>, <3748 30>, <3760 35>,
++					<3774 40>, <3788 45>, <3802 50>, <3816 55>,
++					<3834 60>, <3853 65>, <3877 70>, <3908 75>,
++					<3946 80>, <3975 85>, <4018 90>, <4071 95>,
++					<4106 100>;
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
+@@ -165,6 +180,31 @@
+ 		};
+ 	};
+ 
++	rk817-sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "Analog";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,mclk-fs = <256>;
++		simple-audio-card,widgets =
++			"Microphone", "Mic Jack",
++			"Headphone", "Headphones",
++			"Speaker", "Speaker";
++		simple-audio-card,routing =
++			"MICL", "Mic Jack",
++			"Headphones", "HPOL",
++			"Headphones", "HPOR",
++			"Speaker", "SPKO";
++		simple-audio-card,hp-det-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
++
++		simple-audio-card,cpu {
++			sound-dai = <&i2s1_2ch>;
++		};
++
++		simple-audio-card,codec {
++			sound-dai = <&rk817>;
++		};
++	};
++
+ 	vccsys: vccsys {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc3v8_sys";
+@@ -269,11 +309,14 @@
+ 		reg = <0x20>;
+ 		interrupt-parent = <&gpio0>;
+ 		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
++		clock-output-names = "rk808-clkout1", "xin32k";
++		clock-names = "mclk";
++		clocks = <&cru SCLK_I2S1_OUT>;
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&pmic_int>;
++		pinctrl-0 = <&pmic_int>, <&i2s1_2ch_mclk>;
+ 		wakeup-source;
+ 		#clock-cells = <1>;
+-		clock-output-names = "rk808-clkout1", "xin32k";
++		#sound-dai-cells = <0>;
+ 
+ 		vcc1-supply = <&vccsys>;
+ 		vcc2-supply = <&vccsys>;
+@@ -283,11 +326,18 @@
+ 		vcc6-supply = <&vccsys>;
+ 		vcc7-supply = <&vccsys>;
+ 
++                rk817_battery: battery {
++                        compatible = "rk817,battery";
++                        monitored-battery = <&battery_cell>;
++                        bat_res = <180>;
++                        sample_res = <10>;
++                };
++
+ 		regulators {
+ 			vdd_logic: DCDC_REG1 {
+ 				regulator-name = "vdd_logic";
+ 				regulator-min-microvolt = <950000>;
+-				regulator-max-microvolt = <1150000>;
++				regulator-max-microvolt = <1200000>;
+ 				regulator-ramp-delay = <6001>;
+ 				regulator-always-on;
+ 				regulator-boot-on;
+@@ -432,6 +482,10 @@
+ 				};
+ 			};
+ 		};
++
++		rk817_codec: codec {
++			rockchip,mic-in-differential;
++		};
+ 	};
+ };
+ 
+diff --git a/linux-go-next/arch/arm64/boot/dts/rockchip/rk3326-odroid-go3.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go3.dts
+new file mode 100644
+index 0000000..16283af
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go3.dts
+@@ -0,0 +1,726 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2019 Hardkernel Co., Ltd
++ * Copyright (c) 2020 Theobroma Systems Design und Consulting GmbH
++ */
++
++/dts-v1/;
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/pinctrl/rockchip.h>
++#include "rk3326.dtsi"
++
++/ {
++	model = "ODROID-GO Super";
++	compatible = "hardkernel,rk3326-odroid-go3", "rockchip,rk3326";
++
++	chosen {
++		stdout-path = "serial2:115200n8";
++	};
++
++	mux: mux-controller {
++		status = "okay";
++		compatible = "gpio-mux";
++		#mux-control-cells = <0>;
++
++		mux-gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>,
++			    <&gpio3 RK_PB0 GPIO_ACTIVE_LOW>;
++		mux-en-gpio = <&gpio3 RK_PB5 GPIO_ACTIVE_LOW>;
++	};
++
++	adcmux: adc-mux {
++		status = "okay";
++		compatible = "io-channel-mux";
++		io-channels = <&saradc 1>;
++		io-channel-names = "parent";
++		#io-channel-cells = <1>;
++
++		mux-controls = <&mux>;
++
++		channels = "0", "1", "2", "3";
++	};
++
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		power-supply = <&vcc_bl>;
++		pwms = <&pwm1 0 25000 0>;
++	};
++
++	battery_cell: battery-cell {
++		compatible = "simple-battery";
++		energy-full-design-microamp-hours = <4000000>;
++		voltage-min-design-microvolt = <3500000>;
++		voltage-max-design-microvolt = <4100000>;
++
++		ocv-capacity-celcius = <20>;
++		ocv-capacity-table-0 =  <3500 0>, <3625 5>, <3685 10>, <3697 15>,
++					<3718 20>, <3735 25>, <3748 30>, <3760 35>,
++					<3774 40>, <3788 45>, <3802 50>, <3816 55>,
++					<3834 60>, <3853 65>, <3877 70>, <3908 75>,
++					<3946 80>, <3975 85>, <4018 90>, <4071 95>,
++					<4106 100>;
++	};
++
++	utils {
++			compatible = "gpio-keys";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			button@0 {
++				label = "GPIO BTN-VOLUP";
++				linux,code = <KEY_VOLUMEUP>;
++				gpios = <&gpio2 RK_PA0 GPIO_ACTIVE_LOW>;
++			};
++			button@1 {
++				label = "GPIO BTN-VOLDN";
++				linux,code = <KEY_VOLUMEDOWN>;
++				gpios = <&gpio2 RK_PA1 GPIO_ACTIVE_LOW>;
++			};
++			button@2 {
++				label = "Mod button";
++				gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;
++				linux,code = <KEY_LEFTMETA>; // 0x2c2
++			};
++			button@3 {
++				label = "HP detection";
++				gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>;
++				linux,code = <KEY_SOUND>;
++			};
++	};
++
++	joypad {
++		compatible = "gpio-keys-adc";
++		pinctrl-names = "default";
++		pinctrl-0 = <&btn_pins>;
++
++		io-channels = <&adcmux 0>, <&adcmux 1>, <&adcmux 2>, <&adcmux 3>;
++
++		axis@0 {
++			reg = <0>;
++			abs-flat = <32>;
++			abs-fuzz = <10>;
++			abs-range = <180 800>;
++			linux,code = <ABS_X>;
++			analog;
++		};
++
++		axis@1 {
++			reg = <1>;
++			abs-flat = <32>;
++			abs-fuzz = <10>;
++			abs-range = <180 800>;
++			linux,code = <ABS_RX>;
++			analog;
++		};
++
++		axis@2 {
++			reg = <2>;
++			abs-flat = <32>;
++			abs-fuss = <10>;
++			abs-range = <180 800>;
++			linux,code = <ABS_Y>;
++			analog;
++		};
++
++		axis@3 {
++			reg = <3>;
++			abs-flat = <32>;
++			abs-fuss = <10>;
++			abs-range = <180 800>;
++			linux,code = <ABS_RY>;
++			analog;
++		};
++
++
++		/*
++		 *      *** ODROIDGO3 Switch layout ***
++		 * |------------------------------------------------|
++		 * | L1 L2	     vol-  vol+	     R2 R1 |
++		 * |------------------------------------------------|
++		 * |       select			  start    |
++		 * |     sw1      |-------------------|      sw8    |
++		 * |  sw3   sw4   |		   |   sw7   sw5 |
++		 * |     sw2      |    LCD Display    |      sw6    |
++		 * |	      |		   |	     |
++		 * |	      |-------------------|	     |
++		 * |  MOD start	 SD  SLOT	 sw13 sw14  |
++		 * |------------------------------------------------|
++		 */
++
++		sw1 {
++			reg = <4>;
++			gpios = <&gpio1 RK_PB4 GPIO_ACTIVE_LOW>;
++			label = "GPIO DPAD-UP";
++			linux,code = <BTN_DPAD_UP>; // 0x220
++		};
++		sw2 {
++			reg = <5>;
++			gpios = <&gpio1 RK_PB5 GPIO_ACTIVE_LOW>;
++			label = "GPIO DPAD-DOWN";
++			linux,code = <BTN_DPAD_DOWN>; // 0x221
++		};
++		sw3 {
++			reg = <6>;
++			gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_LOW>;
++			label = "GPIO DPAD-LEFT";
++			linux,code = <BTN_DPAD_LEFT>; // 0x222
++		};
++		sw4 {
++			reg = <7>;
++			gpios = <&gpio1 RK_PB7 GPIO_ACTIVE_LOW>;
++			label = "GPIO DPAD-RIGHT";
++			linux,code = <BTN_DPAD_RIGHT>; // 0x223
++		};
++		sw5 {
++			reg = <8>;
++			gpios = <&gpio1 RK_PA2 GPIO_ACTIVE_LOW>;
++			label = "GPIO BTN-A";
++			linux,code = <BTN_EAST>; // 0x131
++		};
++		sw6 {
++			reg = <9>;
++			gpios = <&gpio1 RK_PA5 GPIO_ACTIVE_LOW>;
++			label = "GPIO BTN-A";
++			linux,code = <BTN_SOUTH>; // 0x130
++		};
++		sw7 {
++			reg = <10>;
++			gpios = <&gpio1 RK_PA6 GPIO_ACTIVE_LOW>;
++			label = "GPIO BTN-Y";
++			linux,code = <BTN_WEST>; // 0x134
++		};
++		sw8 {
++			reg = <11>;
++			gpios = <&gpio1 RK_PA7 GPIO_ACTIVE_LOW>;
++			label = "GPIO BTN-X";
++			linux,code = <BTN_NORTH>; // 0x133
++		};
++		sw9 {
++			reg = <12>;
++			gpios = <&gpio2 RK_PA3 GPIO_ACTIVE_LOW>;
++			label = "GPIO F4";
++			linux,code = <BTN_THUMBL>; // 0x2c3
++		};
++		sw10 {
++			reg = <13>;
++			gpios = <&gpio2 RK_PA4 GPIO_ACTIVE_LOW>;
++			label = "GPIO F5";
++			linux,code = <BTN_THUMBR>; // 0x2c4
++		};
++		sw11 { // UNUSED
++			reg = <14>;
++			gpios = <&gpio2 RK_PA5 GPIO_ACTIVE_LOW>;
++			label = "GPIO F6";
++			linux,code = <BTN_TRIGGER_HAPPY6>; // 0x13c
++		};
++		sw12 {
++			reg = <15>;
++			gpios = <&gpio2 RK_PA6 GPIO_ACTIVE_LOW>;
++			label = "GPIO TOP-LEFT";
++			linux,code = <BTN_TL>; // 0x02
++		};
++		sw13 {
++			reg = <16>;
++			gpios = <&gpio2 RK_PA7 GPIO_ACTIVE_LOW>;
++			label = "GPIO TOP-RIGHT";
++			linux,code = <BTN_TR>; // 0x05
++		};
++		sw14 {
++			reg = <17>;
++			gpios = <&gpio3 RK_PB1 GPIO_ACTIVE_LOW>;
++			label = "GPIO SELECT";
++			linux,code = <BTN_SELECT>;
++		};
++		sw15 {
++			reg = <18>;
++			gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
++			label = "GPIO F2";
++			linux,code = <BTN_START>;
++		};
++		sw16 {
++			reg = <19>;
++			gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
++			label = "GPIO TOP-RIGHT2";
++			linux,code = <BTN_TR2>;
++		};
++		sw17 {
++			reg = <20>;
++			gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_LOW>;
++			label = "GPIO TOP-LEFT2";
++			linux,code = <BTN_TL2>;
++		};
++	};
++
++	leds: gpio-leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&blue_led_pin>;
++
++		blue_led: led-0 {
++			label = "blue:heartbeat";
++			gpios = <&gpio0 RK_PC1 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "heartbeat";
++		};
++	};
++
++	vccsys: vccsys {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v8_sys";
++		regulator-always-on;
++		regulator-min-microvolt = <3800000>;
++		regulator-max-microvolt = <3800000>;
++	};
++
++	rk817-sound {
++		status = "okay";
++		compatible = "simple-audio-card";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,name = "rockchip,rk817-codec";
++		simple-audio-card,mclk-fs = <256>;
++		simple-audio-card,widgets =
++			"Microphone", "Mic Jack",
++			"Headphone", "Headphones",
++			"Speaker", "Speaker";
++		simple-audio-card,routing =
++			"MICL", "Mic Jack",
++			"Headphones", "HPOL",
++			"Headphones", "HPOR",
++			"Speaker", "SPKO";
++		//simple-audio-card,hp-det-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
++		simple-audio-card,pin-switches = "Speaker", "Headphones";
++		simple-audio-card,cpu {
++			sound-dai = <&i2s1_2ch>;
++		};
++		simple-audio-card,codec {
++			sound-dai = <&rk817>;
++		};
++	};
++
++	vcc_host: vcc_host {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_host";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++
++		gpio = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++		vin-supply = <&vccsys>;
++	};
++};
++
++&dmc {
++	center-supply = <&vdd_logic>;
++};
++
++&cpu0 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu1 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu2 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu3 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cru {
++	assigned-clocks = <&cru PLL_NPLL>,
++		<&cru ACLK_BUS_PRE>, <&cru ACLK_PERI_PRE>,
++		<&cru HCLK_BUS_PRE>, <&cru HCLK_PERI_PRE>,
++		<&cru PCLK_BUS_PRE>, <&cru SCLK_GPU>,
++		<&cru PLL_CPLL>;
++
++	assigned-clock-rates = <1188000000>,
++		<200000000>, <200000000>,
++		<150000000>, <150000000>,
++		<100000000>, <200000000>,
++		<17000000>;
++};
++
++&display_subsystem {
++	status = "okay";
++};
++
++&dsi {
++	status = "okay";
++
++	ports {
++		mipi_out: port@1 {
++			reg = <1>;
++
++			mipi_out_panel: endpoint {
++				remote-endpoint = <&mipi_in_panel>;
++			};
++		};
++	};
++
++	panel@0 {
++		compatible = "elida,kd50t048a", "simple-panel-dsi";
++		reg = <0>;
++		backlight = <&backlight>;
++		reset-gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_LOW>;
++		VCC-supply = <&vcc_lcd>;
++
++		port {
++			mipi_in_panel: endpoint {
++				remote-endpoint = <&mipi_out_panel>;
++			};
++		}; 
++	};
++};
++
++
++
++&dsi_dphy {
++	status = "okay";
++};
++
++&gpu {
++	mali-supply = <&vdd_logic>;
++	status = "okay";
++};
++
++&i2c0 {
++	clock-frequency = <400000>;
++	i2c-scl-falling-time-ns = <16>;
++	i2c-scl-rising-time-ns = <280>;
++	status = "okay";
++
++	rk817: pmic@20 {
++		compatible = "rockchip,rk817";
++		reg = <0x20>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pmic_int &i2s1_2ch_mclk>;
++		wakeup-source;
++		#clock-cells = <1>;
++		clock-output-names = "rk808-clkout1", "xin32k";
++		clocks = <&cru SCLK_I2S1_OUT>;
++		clock-names = "mclk";
++		#sound-dai-cells = <0>;
++
++		vcc1-supply = <&vccsys>;
++		vcc2-supply = <&vccsys>;
++		vcc3-supply = <&vccsys>;
++		vcc4-supply = <&vccsys>;
++		vcc5-supply = <&vccsys>;
++		vcc6-supply = <&vccsys>;
++		vcc7-supply = <&vccsys>;
++
++		rk817_battery: battery {
++			compatible = "rk817,battery";
++			monitored-battery = <&battery_cell>;
++			bat_res = <180>;
++			sample_res = <10>;
++		};
++
++		rk817_codec: codec {
++			mic-in-differential;
++			status = "okay";
++		};
++
++		regulators {
++			vdd_logic: DCDC_REG1 {
++				regulator-name = "vdd_logic";
++				regulator-min-microvolt = <950000>;
++				regulator-max-microvolt = <1200000>;
++				regulator-ramp-delay = <6001>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <950000>;
++				};
++			};
++
++			vdd_arm: DCDC_REG2 {
++				regulator-name = "vdd_arm";
++				regulator-min-microvolt = <950000>;
++				regulator-max-microvolt = <1350000>;
++				regulator-ramp-delay = <6001>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <950000>;
++				};
++			};
++
++			vcc_ddr: DCDC_REG3 {
++				regulator-name = "vcc_ddr";
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++				};
++			};
++
++			vcc_3v3: DCDC_REG4 {
++				regulator-name = "vcc_3v3";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_1v8: LDO_REG2 {
++				regulator-name = "vcc_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			vdd_1v0: LDO_REG3 {
++				regulator-name = "vdd_1v0";
++				regulator-min-microvolt = <1000000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1000000>;
++				};
++			};
++
++			vcc3v3_pmu: LDO_REG4 {
++				regulator-name = "vcc3v3_pmu";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vccio_sd: LDO_REG5 {
++				regulator-name = "vccio_sd";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_sd: LDO_REG6 {
++				regulator-name = "vcc_sd";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_bl: LDO_REG7 {
++				regulator-name = "vcc_bl";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_lcd: LDO_REG8 {
++				regulator-name = "vcc_lcd";
++				regulator-min-microvolt = <2800000>;
++				regulator-max-microvolt = <2800000>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <2800000>;
++				};
++			};
++
++			vcc_cam: LDO_REG9 {
++				regulator-name = "vcc_cam";
++				regulator-min-microvolt = <3000000>;
++				regulator-max-microvolt = <3000000>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <3000000>;
++				};
++			};
++		};
++	};
++};
++
++// was used, no longer is
++&i2c1 {
++	status = "disabled";
++};
++
++/* I2S 1 Channel Used */
++&i2s1_2ch {
++	restes = <&cru SRST_I2S1>, <&cru SRST_I2S1_H>;
++	reset-names = "reset-m", "reset-h";
++	status = "okay";
++};
++
++&io_domains {
++	vccio1-supply = <&vcc_3v3>;
++	vccio2-supply = <&vccio_sd>;
++	vccio3-supply = <&vcc_3v3>;
++	vccio4-supply = <&vcc_3v3>;
++	vccio5-supply = <&vcc_3v3>;
++	vccio6-supply = <&vcc_3v3>;
++	status = "okay";
++};
++
++&pmu_io_domains {
++	pmuio1-supply = <&vcc3v3_pmu>;
++	pmuio2-supply = <&vcc3v3_pmu>;
++	status = "okay";
++};
++
++&pwm1 {
++	status = "okay";
++};
++
++&saradc {
++	vref-supply = <&vcc_1v8>;
++	status = "okay";
++};
++
++&sdmmc {
++	cap-sd-highspeed;
++	card-detect-delay = <200>;
++	cd-gpios = <&gpio0 RK_PA3 GPIO_ACTIVE_LOW>; /*[> CD GPIO <]*/
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	vmmc-supply = <&vcc_sd>;
++	vqmmc-supply = <&vccio_sd>;
++	status = "okay";
++};
++
++&tsadc {
++	status = "okay";
++};
++
++&u2phy {
++	status = "okay";
++
++	u2phy_host: host-port {
++		status = "okay";
++	};
++
++	u2phy_otg: otg-port {
++		status = "disabled";
++	};
++};
++
++&usb20_otg {
++	status = "okay";
++};
++
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart2m1_xfer>;
++	status = "okay";
++};
++
++&vopb {
++	status = "okay";
++};
++
++&vopb_mmu {
++	status = "okay";
++};
++
++&pinctrl {
++	btns {
++		btn_pins: btn-pins {
++			rockchip,pins = <1 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>,
++
++					<1 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
++					<1 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>,
++
++					<2 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA1 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
++					<2 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>,
++
++					<3 RK_PB1 RK_FUNC_GPIO &pcfg_pull_up>,
++					<3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>,
++					<3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>,
++					<3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
++
++	headphone {
++		hp_det: hp-det {
++			rockchip,pins = <2 RK_PC6 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
++	};
++
++	leds {
++		blue_led_pin: blue-led-pin {
++			rockchip,pins = <0 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	pmic {
++		dc_det: dc-det {
++			rockchip,pins = <0 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		pmic_int: pmic-int {
++			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++
++		soc_slppin_gpio: soc_slppin_gpio {
++			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_output_low>;
++		};
++
++		soc_slppin_rst: soc_slppin_rst {
++			rockchip,pins = <0 RK_PA4 2 &pcfg_pull_none>;
++		};
++
++		soc_slppin_slp: soc_slppin_slp {
++			rockchip,pins = <0 RK_PA4 1 &pcfg_pull_none>;
++		};
++	};
++};
+diff --git a/drivers/devfreq/Kconfig b/drivers/devfreq/Kconfig
+index 20373a8..a0204e5 100644
+--- a/drivers/devfreq/Kconfig
++++ b/drivers/devfreq/Kconfig
+@@ -120,6 +120,11 @@ config ARM_TEGRA_DEVFREQ
+ 	  This adds the DEVFREQ driver for the Tegra family of SoCs.
+ 	  It reads ACTMON counters of memory controllers and adjusts the
+ 	  operating frequencies and voltages with OPP support.
++config ARM_ROCKCHIP_BUS_DEVFREQ
++	tristate "rockchip bus"
++	depends on ARCH_ROCKCHIP || COMPILE_TEST
++	help
++	  rk bus driver lololool
+ 
+ config ARM_RK3399_DMC_DEVFREQ
+ 	tristate "ARM RK3399 DMC DEVFREQ Driver"
+diff --git a/drivers/devfreq/Makefile b/drivers/devfreq/Makefile
+index a16333e..8b96702 100644
+--- a/drivers/devfreq/Makefile
++++ b/drivers/devfreq/Makefile
+@@ -12,6 +12,7 @@ obj-$(CONFIG_ARM_EXYNOS_BUS_DEVFREQ)	+= exynos-bus.o
+ obj-$(CONFIG_ARM_IMX_BUS_DEVFREQ)	+= imx-bus.o
+ obj-$(CONFIG_ARM_IMX8M_DDRC_DEVFREQ)	+= imx8m-ddrc.o
+ obj-$(CONFIG_ARM_RK3399_DMC_DEVFREQ)	+= rk3399_dmc.o
++obj-$(CONFIG_ARM_ROCKCHIP_BUS_DEVFREQ)	+= rockchip_bus.o
+ obj-$(CONFIG_ARM_TEGRA_DEVFREQ)		+= tegra30-devfreq.o
+ 
+ # DEVFREQ Event Drivers
+diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
+index 9a88faa..e7694b3 100644
+--- a/drivers/devfreq/event/rockchip-dfi.c
++++ b/drivers/devfreq/event/rockchip-dfi.c
+@@ -1,7 +1,15 @@
+-// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * Copyright (c) 2016, Fuzhou Rockchip Electronics Co., Ltd
+  * Author: Lin Huang <hl@rock-chips.com>
++ *
++ * This program is free software; you can redistribute it and/or modify it
++ * under the terms and conditions of the GNU General Public License,
++ * version 2, as published by the Free Software Foundation.
++ *
++ * This program is distributed in the hope it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
++ * more details.
+  */
+ 
+ #include <linux/clk.h>
+@@ -18,25 +26,66 @@
+ #include <linux/list.h>
+ #include <linux/of.h>
+ 
+-#include <soc/rockchip/rk3399_grf.h>
+-
+-#define RK3399_DMC_NUM_CH	2
+-
++#define PX30_PMUGRF_OS_REG2		0x208
++
++#define RK3128_GRF_SOC_CON0		0x140
++#define RK3128_GRF_OS_REG1		0x1cc
++#define RK3128_GRF_DFI_WRNUM		0x220
++#define RK3128_GRF_DFI_RDNUM		0x224
++#define RK3128_GRF_DFI_TIMERVAL		0x22c
++#define RK3128_DDR_MONITOR_EN		((1 << (16 + 6)) + (1 << 6))
++#define RK3128_DDR_MONITOR_DISB		((1 << (16 + 6)) + (0 << 6))
++
++#define RK3288_PMU_SYS_REG2		0x9c
++#define RK3288_GRF_SOC_CON4		0x254
++#define RK3288_GRF_SOC_STATUS(n)	(0x280 + (n) * 4)
++#define RK3288_DFI_EN			(0x30003 << 14)
++#define RK3288_DFI_DIS			(0x30000 << 14)
++#define RK3288_LPDDR_SEL		(0x10001 << 13)
++#define RK3288_DDR3_SEL			(0x10000 << 13)
++
++#define RK3328_GRF_OS_REG2		0x5d0
++
++#define RK3368_GRF_DDRC0_CON0		0x600
++#define RK3368_GRF_SOC_STATUS5		0x494
++#define RK3368_GRF_SOC_STATUS6		0x498
++#define RK3368_GRF_SOC_STATUS8		0x4a0
++#define RK3368_GRF_SOC_STATUS9		0x4a4
++#define RK3368_GRF_SOC_STATUS10		0x4a8
++#define RK3368_DFI_EN			(0x30003 << 5)
++#define RK3368_DFI_DIS			(0x30000 << 5)
++
++#define MAX_DMC_NUM_CH			2
++#define READ_DRAMTYPE_INFO(n)		(((n) >> 13) & 0x7)
++#define READ_CH_INFO(n)			(((n) >> 28) & 0x3)
+ /* DDRMON_CTRL */
+-#define DDRMON_CTRL	0x04
+-#define CLR_DDRMON_CTRL	(0x1f0000 << 0)
+-#define LPDDR4_EN	(0x10001 << 4)
+-#define HARDWARE_EN	(0x10001 << 3)
+-#define LPDDR3_EN	(0x10001 << 2)
+-#define SOFTWARE_EN	(0x10001 << 1)
+-#define SOFTWARE_DIS	(0x10000 << 1)
+-#define TIME_CNT_EN	(0x10001 << 0)
++#define DDRMON_CTRL			0x04
++#define CLR_DDRMON_CTRL			(0x3f0000 << 0)
++#define DDR4_EN				(0x10001 << 5)
++#define LPDDR4_EN			(0x10001 << 4)
++#define HARDWARE_EN			(0x10001 << 3)
++#define LPDDR2_3_EN			(0x10001 << 2)
++#define SOFTWARE_EN			(0x10001 << 1)
++#define SOFTWARE_DIS			(0x10000 << 1)
++#define TIME_CNT_EN			(0x10001 << 0)
+ 
+ #define DDRMON_CH0_COUNT_NUM		0x28
+ #define DDRMON_CH0_DFI_ACCESS_NUM	0x2c
+ #define DDRMON_CH1_COUNT_NUM		0x3c
+ #define DDRMON_CH1_DFI_ACCESS_NUM	0x40
+ 
++/* pmu grf */
++#define PMUGRF_OS_REG2			0x308
++
++enum {
++	DDR4 = 0,
++	DDR3 = 3,
++	LPDDR2 = 5,
++	LPDDR3 = 6,
++	LPDDR4 = 7,
++	UNUSED = 0xFF
++};
++
+ struct dmc_usage {
+ 	u32 access;
+ 	u32 total;
+@@ -50,33 +99,261 @@ struct dmc_usage {
+ struct rockchip_dfi {
+ 	struct devfreq_event_dev *edev;
+ 	struct devfreq_event_desc *desc;
+-	struct dmc_usage ch_usage[RK3399_DMC_NUM_CH];
++	struct dmc_usage ch_usage[MAX_DMC_NUM_CH];
+ 	struct device *dev;
+ 	void __iomem *regs;
+ 	struct regmap *regmap_pmu;
++	struct regmap *regmap_grf;
++	struct regmap *regmap_pmugrf;
+ 	struct clk *clk;
++	u32 dram_type;
++	/*
++	 * available mask, 1: available, 0: not available
++	 * each bit represent a channel
++	 */
++	u32 ch_msk;
++};
++
++static void rk3128_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++
++	regmap_write(info->regmap_grf,
++		     RK3128_GRF_SOC_CON0,
++		     RK3128_DDR_MONITOR_EN);
++}
++
++static void rk3128_dfi_stop_hardware_counter(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++
++	regmap_write(info->regmap_grf,
++		     RK3128_GRF_SOC_CON0,
++		     RK3128_DDR_MONITOR_DISB);
++}
++
++static int rk3128_dfi_disable(struct devfreq_event_dev *edev)
++{
++	rk3128_dfi_stop_hardware_counter(edev);
++
++	return 0;
++}
++
++static int rk3128_dfi_enable(struct devfreq_event_dev *edev)
++{
++	rk3128_dfi_start_hardware_counter(edev);
++
++	return 0;
++}
++
++static int rk3128_dfi_set_event(struct devfreq_event_dev *edev)
++{
++	return 0;
++}
++
++static int rk3128_dfi_get_event(struct devfreq_event_dev *edev,
++				struct devfreq_event_data *edata)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++	unsigned long flags;
++	u32 dfi_wr, dfi_rd, dfi_timer;
++
++	local_irq_save(flags);
++
++	rk3128_dfi_stop_hardware_counter(edev);
++
++	regmap_read(info->regmap_grf, RK3128_GRF_DFI_WRNUM, &dfi_wr);
++	regmap_read(info->regmap_grf, RK3128_GRF_DFI_RDNUM, &dfi_rd);
++	regmap_read(info->regmap_grf, RK3128_GRF_DFI_TIMERVAL, &dfi_timer);
++
++	edata->load_count = (dfi_wr + dfi_rd) * 4;
++	edata->total_count = dfi_timer;
++
++	rk3128_dfi_start_hardware_counter(edev);
++
++	local_irq_restore(flags);
++
++	return 0;
++}
++
++static const struct devfreq_event_ops rk3128_dfi_ops = {
++	.disable = rk3128_dfi_disable,
++	.enable = rk3128_dfi_enable,
++	.get_event = rk3128_dfi_get_event,
++	.set_event = rk3128_dfi_set_event,
++};
++
++static void rk3288_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++
++	regmap_write(info->regmap_grf, RK3288_GRF_SOC_CON4, RK3288_DFI_EN);
++}
++
++static void rk3288_dfi_stop_hardware_counter(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++
++	regmap_write(info->regmap_grf, RK3288_GRF_SOC_CON4, RK3288_DFI_DIS);
++}
++
++static int rk3288_dfi_disable(struct devfreq_event_dev *edev)
++{
++	rk3288_dfi_stop_hardware_counter(edev);
++
++	return 0;
++}
++
++static int rk3288_dfi_enable(struct devfreq_event_dev *edev)
++{
++	rk3288_dfi_start_hardware_counter(edev);
++
++	return 0;
++}
++
++static int rk3288_dfi_set_event(struct devfreq_event_dev *edev)
++{
++	return 0;
++}
++
++static int rk3288_dfi_get_busier_ch(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++	u32 tmp, max = 0;
++	u32 i, busier_ch = 0;
++	u32 rd_count, wr_count, total_count;
++
++	rk3288_dfi_stop_hardware_counter(edev);
++
++	/* Find out which channel is busier */
++	for (i = 0; i < MAX_DMC_NUM_CH; i++) {
++		if (!(info->ch_msk & BIT(i)))
++			continue;
++		regmap_read(info->regmap_grf,
++			    RK3288_GRF_SOC_STATUS(11 + i * 4), &wr_count);
++		regmap_read(info->regmap_grf,
++			    RK3288_GRF_SOC_STATUS(12 + i * 4), &rd_count);
++		regmap_read(info->regmap_grf,
++			    RK3288_GRF_SOC_STATUS(14 + i * 4), &total_count);
++		info->ch_usage[i].access = (wr_count + rd_count) * 4;
++		info->ch_usage[i].total = total_count;
++		tmp = info->ch_usage[i].access;
++		if (tmp > max) {
++			busier_ch = i;
++			max = tmp;
++		}
++	}
++	rk3288_dfi_start_hardware_counter(edev);
++
++	return busier_ch;
++}
++
++static int rk3288_dfi_get_event(struct devfreq_event_dev *edev,
++				struct devfreq_event_data *edata)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++	int busier_ch;
++	unsigned long flags;
++
++	local_irq_save(flags);
++	busier_ch = rk3288_dfi_get_busier_ch(edev);
++	local_irq_restore(flags);
++
++	edata->load_count = info->ch_usage[busier_ch].access;
++	edata->total_count = info->ch_usage[busier_ch].total;
++
++	return 0;
++}
++
++static const struct devfreq_event_ops rk3288_dfi_ops = {
++	.disable = rk3288_dfi_disable,
++	.enable = rk3288_dfi_enable,
++	.get_event = rk3288_dfi_get_event,
++	.set_event = rk3288_dfi_set_event,
++};
++
++static void rk3368_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++
++	regmap_write(info->regmap_grf, RK3368_GRF_DDRC0_CON0, RK3368_DFI_EN);
++}
++
++static void rk3368_dfi_stop_hardware_counter(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++
++	regmap_write(info->regmap_grf, RK3368_GRF_DDRC0_CON0, RK3368_DFI_DIS);
++}
++
++static int rk3368_dfi_disable(struct devfreq_event_dev *edev)
++{
++	rk3368_dfi_stop_hardware_counter(edev);
++
++	return 0;
++}
++
++static int rk3368_dfi_enable(struct devfreq_event_dev *edev)
++{
++	rk3368_dfi_start_hardware_counter(edev);
++
++	return 0;
++}
++
++static int rk3368_dfi_set_event(struct devfreq_event_dev *edev)
++{
++	return 0;
++}
++
++static int rk3368_dfi_get_event(struct devfreq_event_dev *edev,
++				struct devfreq_event_data *edata)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++	unsigned long flags;
++	u32 dfi0_wr, dfi0_rd, dfi1_wr, dfi1_rd, dfi_timer;
++
++	local_irq_save(flags);
++
++	rk3368_dfi_stop_hardware_counter(edev);
++
++	regmap_read(info->regmap_grf, RK3368_GRF_SOC_STATUS5, &dfi0_wr);
++	regmap_read(info->regmap_grf, RK3368_GRF_SOC_STATUS6, &dfi0_rd);
++	regmap_read(info->regmap_grf, RK3368_GRF_SOC_STATUS9, &dfi1_wr);
++	regmap_read(info->regmap_grf, RK3368_GRF_SOC_STATUS10, &dfi1_rd);
++	regmap_read(info->regmap_grf, RK3368_GRF_SOC_STATUS8, &dfi_timer);
++
++	edata->load_count = (dfi0_wr + dfi0_rd + dfi1_wr + dfi1_rd) * 2;
++	edata->total_count = dfi_timer;
++
++	rk3368_dfi_start_hardware_counter(edev);
++
++	local_irq_restore(flags);
++
++	return 0;
++}
++
++static const struct devfreq_event_ops rk3368_dfi_ops = {
++	.disable = rk3368_dfi_disable,
++	.enable = rk3368_dfi_enable,
++	.get_event = rk3368_dfi_get_event,
++	.set_event = rk3368_dfi_set_event,
+ };
+ 
+ static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
+ {
+ 	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
+ 	void __iomem *dfi_regs = info->regs;
+-	u32 val;
+-	u32 ddr_type;
+-
+-	/* get ddr type */
+-	regmap_read(info->regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
+-	ddr_type = (val >> RK3399_PMUGRF_DDRTYPE_SHIFT) &
+-		    RK3399_PMUGRF_DDRTYPE_MASK;
+ 
+ 	/* clear DDRMON_CTRL setting */
+ 	writel_relaxed(CLR_DDRMON_CTRL, dfi_regs + DDRMON_CTRL);
+ 
+ 	/* set ddr type to dfi */
+-	if (ddr_type == RK3399_PMUGRF_DDRTYPE_LPDDR3)
+-		writel_relaxed(LPDDR3_EN, dfi_regs + DDRMON_CTRL);
+-	else if (ddr_type == RK3399_PMUGRF_DDRTYPE_LPDDR4)
++	if (info->dram_type == LPDDR3 || info->dram_type == LPDDR2)
++		writel_relaxed(LPDDR2_3_EN, dfi_regs + DDRMON_CTRL);
++	else if (info->dram_type == LPDDR4)
+ 		writel_relaxed(LPDDR4_EN, dfi_regs + DDRMON_CTRL);
++	else if (info->dram_type == DDR4)
++		writel_relaxed(DDR4_EN, dfi_regs + DDRMON_CTRL);
+ 
+ 	/* enable count, use software mode */
+ 	writel_relaxed(SOFTWARE_EN, dfi_regs + DDRMON_CTRL);
+@@ -100,12 +377,19 @@ static int rockchip_dfi_get_busier_ch(struct devfreq_event_dev *edev)
+ 	rockchip_dfi_stop_hardware_counter(edev);
+ 
+ 	/* Find out which channel is busier */
+-	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
+-		info->ch_usage[i].access = readl_relaxed(dfi_regs +
+-				DDRMON_CH0_DFI_ACCESS_NUM + i * 20) * 4;
++	for (i = 0; i < MAX_DMC_NUM_CH; i++) {
++		if (!(info->ch_msk & BIT(i)))
++			continue;
++
+ 		info->ch_usage[i].total = readl_relaxed(dfi_regs +
+ 				DDRMON_CH0_COUNT_NUM + i * 20);
+-		tmp = info->ch_usage[i].access;
++
++		/* LPDDR4 BL = 16,other DDR type BL = 8 */
++		tmp = readl_relaxed(dfi_regs +
++				DDRMON_CH0_DFI_ACCESS_NUM + i * 20);
++		tmp *= 8;
++		info->ch_usage[i].access = tmp;
++
+ 		if (tmp > max) {
+ 			busier_ch = i;
+ 			max = tmp;
+@@ -121,7 +405,8 @@ static int rockchip_dfi_disable(struct devfreq_event_dev *edev)
+ 	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
+ 
+ 	rockchip_dfi_stop_hardware_counter(edev);
+-	clk_disable_unprepare(info->clk);
++	if (info->clk)
++		clk_disable_unprepare(info->clk);
+ 
+ 	return 0;
+ }
+@@ -131,10 +416,13 @@ static int rockchip_dfi_enable(struct devfreq_event_dev *edev)
+ 	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
+ 	int ret;
+ 
+-	ret = clk_prepare_enable(info->clk);
+-	if (ret) {
+-		dev_err(&edev->dev, "failed to enable dfi clk: %d\n", ret);
+-		return ret;
++	if (info->clk) {
++		ret = clk_prepare_enable(info->clk);
++		if (ret) {
++			dev_err(&edev->dev, "failed to enable dfi clk: %d\n",
++				ret);
++			return ret;
++		}
+ 	}
+ 
+ 	rockchip_dfi_start_hardware_counter(edev);
+@@ -151,8 +439,11 @@ static int rockchip_dfi_get_event(struct devfreq_event_dev *edev,
+ {
+ 	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
+ 	int busier_ch;
++	unsigned long flags;
+ 
++	local_irq_save(flags);
+ 	busier_ch = rockchip_dfi_get_busier_ch(edev);
++	local_irq_restore(flags);
+ 
+ 	edata->load_count = info->ch_usage[busier_ch].access;
+ 	edata->total_count = info->ch_usage[busier_ch].total;
+@@ -167,24 +458,120 @@ static const struct devfreq_event_ops rockchip_dfi_ops = {
+ 	.set_event = rockchip_dfi_set_event,
+ };
+ 
+-static const struct of_device_id rockchip_dfi_id_match[] = {
+-	{ .compatible = "rockchip,rk3399-dfi" },
+-	{ },
+-};
+-MODULE_DEVICE_TABLE(of, rockchip_dfi_id_match);
++static __init int px30_dfi_init(struct platform_device *pdev,
++				  struct rockchip_dfi *data,
++				  struct devfreq_event_desc *desc)
++{
++	struct device_node *np = pdev->dev.of_node, *node;
++	struct resource *res;
++	u32 val;
+ 
+-static int rockchip_dfi_probe(struct platform_device *pdev)
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	data->regs = devm_ioremap_resource(&pdev->dev, res);
++	if (IS_ERR(data->regs))
++		return PTR_ERR(data->regs);
++
++	node = of_parse_phandle(np, "rockchip,pmu", 0);
++	if (node) {
++		data->regmap_pmugrf = syscon_node_to_regmap(node);
++		if (IS_ERR(data->regmap_pmugrf))
++			return PTR_ERR(data->regmap_pmugrf);
++	}
++
++	regmap_read(data->regmap_pmugrf, PX30_PMUGRF_OS_REG2, &val);
++	data->dram_type = DDR3;
++	data->ch_msk = 1;
++	data->clk = NULL;
++
++	desc->ops = &rockchip_dfi_ops;
++
++	return 0;
++}
++
++static __init int rk3128_dfi_init(struct platform_device *pdev,
++				  struct rockchip_dfi *data,
++				  struct devfreq_event_desc *desc)
+ {
+-	struct device *dev = &pdev->dev;
+-	struct rockchip_dfi *data;
+-	struct devfreq_event_desc *desc;
+ 	struct device_node *np = pdev->dev.of_node, *node;
+ 
+-	data = devm_kzalloc(dev, sizeof(struct rockchip_dfi), GFP_KERNEL);
+-	if (!data)
+-		return -ENOMEM;
++	node = of_parse_phandle(np, "rockchip,grf", 0);
++	if (node) {
++		data->regmap_grf = syscon_node_to_regmap(node);
++		if (IS_ERR(data->regmap_grf))
++			return PTR_ERR(data->regmap_grf);
++	}
++
++	desc->ops = &rk3128_dfi_ops;
++
++	return 0;
++}
++
++static __init int rk3288_dfi_init(struct platform_device *pdev,
++				  struct rockchip_dfi *data,
++				  struct devfreq_event_desc *desc)
++{
++	struct device_node *np = pdev->dev.of_node, *node;
++	u32 val;
++
++	node = of_parse_phandle(np, "rockchip,pmu", 0);
++	if (node) {
++		data->regmap_pmu = syscon_node_to_regmap(node);
++		if (IS_ERR(data->regmap_pmu))
++			return PTR_ERR(data->regmap_pmu);
++	}
++
++	node = of_parse_phandle(np, "rockchip,grf", 0);
++	if (node) {
++		data->regmap_grf = syscon_node_to_regmap(node);
++		if (IS_ERR(data->regmap_grf))
++			return PTR_ERR(data->regmap_grf);
++	}
+ 
+-	data->regs = devm_platform_ioremap_resource(pdev, 0);
++	regmap_read(data->regmap_pmu, RK3288_PMU_SYS_REG2, &val);
++	data->dram_type = READ_DRAMTYPE_INFO(val);
++	data->ch_msk = READ_CH_INFO(val);
++
++	if (data->dram_type == DDR3)
++		regmap_write(data->regmap_grf, RK3288_GRF_SOC_CON4,
++			     RK3288_DDR3_SEL);
++	else
++		regmap_write(data->regmap_grf, RK3288_GRF_SOC_CON4,
++			     RK3288_LPDDR_SEL);
++
++	desc->ops = &rk3288_dfi_ops;
++
++	return 0;
++}
++
++static __init int rk3368_dfi_init(struct platform_device *pdev,
++				  struct rockchip_dfi *data,
++				  struct devfreq_event_desc *desc)
++{
++	struct device *dev = &pdev->dev;
++
++	if (!dev->parent || !dev->parent->of_node)
++		return -EINVAL;
++
++	data->regmap_grf = syscon_node_to_regmap(dev->parent->of_node);
++	if (IS_ERR(data->regmap_grf))
++		return PTR_ERR(data->regmap_grf);
++
++	desc->ops = &rk3368_dfi_ops;
++
++	return 0;
++}
++
++static __init int rockchip_dfi_init(struct platform_device *pdev,
++				    struct rockchip_dfi *data,
++				    struct devfreq_event_desc *desc)
++{
++	struct device *dev = &pdev->dev;
++	struct resource *res;
++	struct device_node *np = pdev->dev.of_node, *node;
++	u32 val;
++
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	data->regs = devm_ioremap_resource(&pdev->dev, res);
+ 	if (IS_ERR(data->regs))
+ 		return PTR_ERR(data->regs);
+ 
+@@ -198,27 +585,103 @@ static int rockchip_dfi_probe(struct platform_device *pdev)
+ 	node = of_parse_phandle(np, "rockchip,pmu", 0);
+ 	if (node) {
+ 		data->regmap_pmu = syscon_node_to_regmap(node);
+-		of_node_put(node);
+ 		if (IS_ERR(data->regmap_pmu))
+ 			return PTR_ERR(data->regmap_pmu);
+ 	}
+-	data->dev = dev;
++
++	regmap_read(data->regmap_pmu, PMUGRF_OS_REG2, &val);
++	data->dram_type = READ_DRAMTYPE_INFO(val);
++	data->ch_msk = READ_CH_INFO(val);
++
++	desc->ops = &rockchip_dfi_ops;
++
++	return 0;
++}
++
++static __init int rk3328_dfi_init(struct platform_device *pdev,
++				  struct rockchip_dfi *data,
++				  struct devfreq_event_desc *desc)
++{
++	struct device_node *np = pdev->dev.of_node, *node;
++	struct resource *res;
++	u32 val;
++
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	data->regs = devm_ioremap_resource(&pdev->dev, res);
++	if (IS_ERR(data->regs))
++		return PTR_ERR(data->regs);
++
++	node = of_parse_phandle(np, "rockchip,grf", 0);
++	if (node) {
++		data->regmap_grf = syscon_node_to_regmap(node);
++		if (IS_ERR(data->regmap_grf))
++			return PTR_ERR(data->regmap_grf);
++	}
++
++	regmap_read(data->regmap_grf, RK3328_GRF_OS_REG2, &val);
++	data->dram_type = READ_DRAMTYPE_INFO(val);
++	data->ch_msk = 1;
++	data->clk = NULL;
++
++	desc->ops = &rockchip_dfi_ops;
++
++	return 0;
++}
++
++static const struct of_device_id rockchip_dfi_id_match[] = {
++	{ .compatible = "rockchip,px30-dfi", .data = px30_dfi_init },
++	{ .compatible = "rockchip,rk1808-dfi", .data = px30_dfi_init },
++	{ .compatible = "rockchip,rk3128-dfi", .data = rk3128_dfi_init },
++	{ .compatible = "rockchip,rk3288-dfi", .data = rk3288_dfi_init },
++	{ .compatible = "rockchip,rk3328-dfi", .data = rk3328_dfi_init },
++	{ .compatible = "rockchip,rk3368-dfi", .data = rk3368_dfi_init },
++	{ .compatible = "rockchip,rk3399-dfi", .data = rockchip_dfi_init },
++	{ .compatible = "rockchip,rk3568-dfi", .data = px30_dfi_init },
++	{ .compatible = "rockchip,rv1126-dfi", .data = px30_dfi_init },
++	{ },
++};
++
++static int rockchip_dfi_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct rockchip_dfi *data;
++	struct devfreq_event_desc *desc;
++	struct device_node *np = pdev->dev.of_node;
++	const struct of_device_id *match;
++	int (*init)(struct platform_device *pdev, struct rockchip_dfi *data,
++		    struct devfreq_event_desc *desc);
++
++	data = devm_kzalloc(dev, sizeof(struct rockchip_dfi), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
+ 
+ 	desc = devm_kzalloc(dev, sizeof(*desc), GFP_KERNEL);
+ 	if (!desc)
+ 		return -ENOMEM;
+ 
+-	desc->ops = &rockchip_dfi_ops;
++	match = of_match_node(rockchip_dfi_id_match, pdev->dev.of_node);
++	if (match) {
++		init = match->data;
++		if (init) {
++			if (init(pdev, data, desc))
++				return -EINVAL;
++		} else {
++			return 0;
++		}
++	} else {
++		return 0;
++	}
++
+ 	desc->driver_data = data;
+ 	desc->name = np->name;
+-	data->desc = desc;
+ 
+-	data->edev = devm_devfreq_event_add_edev(&pdev->dev, desc);
++	data->edev = devm_devfreq_event_add_edev(dev, desc);
+ 	if (IS_ERR(data->edev)) {
+-		dev_err(&pdev->dev,
+-			"failed to add devfreq-event device\n");
++		dev_err(dev, "failed to add devfreq-event device\n");
+ 		return PTR_ERR(data->edev);
+ 	}
++	data->desc = desc;
++	data->dev = &pdev->dev;
+ 
+ 	platform_set_drvdata(pdev, data);
+ 
+diff --git a/drivers/devfreq/rk3399_dmc.c b/drivers/devfreq/rk3399_dmc.c
+index 293857e..71291a9 100644
+--- a/drivers/devfreq/rk3399_dmc.c
++++ b/drivers/devfreq/rk3399_dmc.c
+@@ -64,13 +64,46 @@ struct rk3399_dmcfreq {
+ 	struct mutex lock;
+ 	struct dram_timing timing;
+ 	struct regulator *vdd_center;
+-	struct regmap *regmap_pmu;
+ 	unsigned long rate, target_rate;
+ 	unsigned long volt, target_volt;
+ 	unsigned int odt_dis_freq;
+ 	int odt_pd_arg0, odt_pd_arg1;
+ };
+ 
++static int rk3399_dmcfreq_target(struct device *dev, unsigned long *freq,
++				 u32 flags)
++{
++	struct rk3399_dmcfreq *dmcfreq = dev_get_drvdata(dev);
++	struct dev_pm_opp *opp;
++	unsigned long old_clk_rate = dmcfreq->rate;
++	unsigned long target_volt, target_rate;
++	struct arm_smccc_res res;
++	bool odt_enable = false;
++	int ret;
++
++	opp = devfreq_recommended_opp(dev, freq, flags);
++	if (IS_ERR(opp))
++		return PTR_ERR(opp);
++
++	target_rate = dev_pm_opp_get_freq(opp);
++	target_volt = dev_pm_opp_get_voltage(opp);
++
++	mutex_lock(&dmcfreq->lock);
++	
++	dev_pm_opp_put(opp);
++
++	ret = dev_pm_opp_set_rate(dev, *freq);
++	if (!ret)
++	{
++		dmcfreq->rate = target_rate;
++		dmcfreq->volt = target_volt;
++	}
++	
++	mutex_unlock(&dmcfreq->lock);
++	return ret;
++}
++
++/*
+ static int rk3399_dmcfreq_target(struct device *dev, unsigned long *freq,
+ 				 u32 flags)
+ {
+@@ -95,25 +128,10 @@ static int rk3399_dmcfreq_target(struct device *dev, unsigned long *freq,
+ 
+ 	mutex_lock(&dmcfreq->lock);
+ 
+-	if (dmcfreq->regmap_pmu) {
+-		if (target_rate >= dmcfreq->odt_dis_freq)
+-			odt_enable = true;
+-
+-		/*
+-		 * This makes a SMC call to the TF-A to set the DDR PD
+-		 * (power-down) timings and to enable or disable the
+-		 * ODT (on-die termination) resistors.
+-		 */
+-		arm_smccc_smc(ROCKCHIP_SIP_DRAM_FREQ, dmcfreq->odt_pd_arg0,
+-			      dmcfreq->odt_pd_arg1,
+-			      ROCKCHIP_SIP_CONFIG_DRAM_SET_ODT_PD,
+-			      odt_enable, 0, 0, 0, &res);
+-	}
+-
+-	/*
++	*
+ 	 * If frequency scaling from low to high, adjust voltage first.
+ 	 * If frequency scaling from high to low, adjust frequency first.
+-	 */
++	 *
+ 	if (old_clk_rate < target_rate) {
+ 		err = regulator_set_voltage(dmcfreq->vdd_center, target_volt,
+ 					    target_volt);
+@@ -133,15 +151,15 @@ static int rk3399_dmcfreq_target(struct device *dev, unsigned long *freq,
+ 		goto out;
+ 	}
+ 
+-	/*
++	*
+ 	 * Check the dpll rate,
+ 	 * There only two result we will get,
+ 	 * 1. Ddr frequency scaling fail, we still get the old rate.
+ 	 * 2. Ddr frequency scaling sucessful, we get the rate we set.
+-	 */
++	 *
+ 	dmcfreq->rate = clk_get_rate(dmcfreq->dmc_clk);
+ 
+-	/* If get the incorrect rate, set voltage to old value. */
++	* If get the incorrect rate, set voltage to old value. *
+ 	if (dmcfreq->rate != target_rate) {
+ 		dev_err(dev, "Got wrong frequency, Request %lu, Current %lu\n",
+ 			target_rate, dmcfreq->rate);
+@@ -160,7 +178,8 @@ static int rk3399_dmcfreq_target(struct device *dev, unsigned long *freq,
+ out:
+ 	mutex_unlock(&dmcfreq->lock);
+ 	return err;
+-}
++}*/
++
+ 
+ static int rk3399_dmcfreq_get_dev_status(struct device *dev,
+ 					 struct devfreq_dev_status *stat)
+@@ -238,73 +257,6 @@ static __maybe_unused int rk3399_dmcfreq_resume(struct device *dev)
+ static SIMPLE_DEV_PM_OPS(rk3399_dmcfreq_pm, rk3399_dmcfreq_suspend,
+ 			 rk3399_dmcfreq_resume);
+ 
+-static int of_get_ddr_timings(struct dram_timing *timing,
+-			      struct device_node *np)
+-{
+-	int ret = 0;
+-
+-	ret = of_property_read_u32(np, "rockchip,ddr3_speed_bin",
+-				   &timing->ddr3_speed_bin);
+-	ret |= of_property_read_u32(np, "rockchip,pd_idle",
+-				    &timing->pd_idle);
+-	ret |= of_property_read_u32(np, "rockchip,sr_idle",
+-				    &timing->sr_idle);
+-	ret |= of_property_read_u32(np, "rockchip,sr_mc_gate_idle",
+-				    &timing->sr_mc_gate_idle);
+-	ret |= of_property_read_u32(np, "rockchip,srpd_lite_idle",
+-				    &timing->srpd_lite_idle);
+-	ret |= of_property_read_u32(np, "rockchip,standby_idle",
+-				    &timing->standby_idle);
+-	ret |= of_property_read_u32(np, "rockchip,auto_pd_dis_freq",
+-				    &timing->auto_pd_dis_freq);
+-	ret |= of_property_read_u32(np, "rockchip,dram_dll_dis_freq",
+-				    &timing->dram_dll_dis_freq);
+-	ret |= of_property_read_u32(np, "rockchip,phy_dll_dis_freq",
+-				    &timing->phy_dll_dis_freq);
+-	ret |= of_property_read_u32(np, "rockchip,ddr3_odt_dis_freq",
+-				    &timing->ddr3_odt_dis_freq);
+-	ret |= of_property_read_u32(np, "rockchip,ddr3_drv",
+-				    &timing->ddr3_drv);
+-	ret |= of_property_read_u32(np, "rockchip,ddr3_odt",
+-				    &timing->ddr3_odt);
+-	ret |= of_property_read_u32(np, "rockchip,phy_ddr3_ca_drv",
+-				    &timing->phy_ddr3_ca_drv);
+-	ret |= of_property_read_u32(np, "rockchip,phy_ddr3_dq_drv",
+-				    &timing->phy_ddr3_dq_drv);
+-	ret |= of_property_read_u32(np, "rockchip,phy_ddr3_odt",
+-				    &timing->phy_ddr3_odt);
+-	ret |= of_property_read_u32(np, "rockchip,lpddr3_odt_dis_freq",
+-				    &timing->lpddr3_odt_dis_freq);
+-	ret |= of_property_read_u32(np, "rockchip,lpddr3_drv",
+-				    &timing->lpddr3_drv);
+-	ret |= of_property_read_u32(np, "rockchip,lpddr3_odt",
+-				    &timing->lpddr3_odt);
+-	ret |= of_property_read_u32(np, "rockchip,phy_lpddr3_ca_drv",
+-				    &timing->phy_lpddr3_ca_drv);
+-	ret |= of_property_read_u32(np, "rockchip,phy_lpddr3_dq_drv",
+-				    &timing->phy_lpddr3_dq_drv);
+-	ret |= of_property_read_u32(np, "rockchip,phy_lpddr3_odt",
+-				    &timing->phy_lpddr3_odt);
+-	ret |= of_property_read_u32(np, "rockchip,lpddr4_odt_dis_freq",
+-				    &timing->lpddr4_odt_dis_freq);
+-	ret |= of_property_read_u32(np, "rockchip,lpddr4_drv",
+-				    &timing->lpddr4_drv);
+-	ret |= of_property_read_u32(np, "rockchip,lpddr4_dq_odt",
+-				    &timing->lpddr4_dq_odt);
+-	ret |= of_property_read_u32(np, "rockchip,lpddr4_ca_odt",
+-				    &timing->lpddr4_ca_odt);
+-	ret |= of_property_read_u32(np, "rockchip,phy_lpddr4_ca_drv",
+-				    &timing->phy_lpddr4_ca_drv);
+-	ret |= of_property_read_u32(np, "rockchip,phy_lpddr4_ck_cs_drv",
+-				    &timing->phy_lpddr4_ck_cs_drv);
+-	ret |= of_property_read_u32(np, "rockchip,phy_lpddr4_dq_drv",
+-				    &timing->phy_lpddr4_dq_drv);
+-	ret |= of_property_read_u32(np, "rockchip,phy_lpddr4_odt",
+-				    &timing->phy_lpddr4_odt);
+-
+-	return ret;
+-}
+-
+ static int rk3399_dmcfreq_probe(struct platform_device *pdev)
+ {
+ 	struct arm_smccc_res res;
+@@ -304,83 +304,6 @@
+ 	}
+ 
+ 	/*
+-	 * Get dram timing and pass it to arm trust firmware,
+-	 * the dram driver in arm trust firmware will get these
+-	 * timing and to do dram initial.
+-	 */
+-	if (!of_get_ddr_timings(&data->timing, np)) {
+-		timing = &data->timing.ddr3_speed_bin;
+-		size = sizeof(struct dram_timing) / 4;
+-		for (index = 0; index < size; index++) {
+-			arm_smccc_smc(ROCKCHIP_SIP_DRAM_FREQ, *timing++, index,
+-				      ROCKCHIP_SIP_CONFIG_DRAM_SET_PARAM,
+-				      0, 0, 0, 0, &res);
+-			if (res.a0) {
+-				dev_err(dev, "Failed to set dram param: %ld\n",
+-					res.a0);
+-				ret = -EINVAL;
+-				goto err_edev;
+-			}
+-		}
+-	}
+-
+-	node = of_parse_phandle(np, "rockchip,pmu", 0);
+-	if (!node)
+-		goto no_pmu;
+-
+-	data->regmap_pmu = syscon_node_to_regmap(node);
+-	of_node_put(node);
+-	if (IS_ERR(data->regmap_pmu)) {
+-		ret = PTR_ERR(data->regmap_pmu);
+-		goto err_edev;
+-	}
+-
+-	regmap_read(data->regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
+-	ddr_type = (val >> RK3399_PMUGRF_DDRTYPE_SHIFT) &
+-		    RK3399_PMUGRF_DDRTYPE_MASK;
+-
+-	switch (ddr_type) {
+-	case RK3399_PMUGRF_DDRTYPE_DDR3:
+-		data->odt_dis_freq = data->timing.ddr3_odt_dis_freq;
+-		break;
+-	case RK3399_PMUGRF_DDRTYPE_LPDDR3:
+-		data->odt_dis_freq = data->timing.lpddr3_odt_dis_freq;
+-		break;
+-	case RK3399_PMUGRF_DDRTYPE_LPDDR4:
+-		data->odt_dis_freq = data->timing.lpddr4_odt_dis_freq;
+-		break;
+-	default:
+-		ret = -EINVAL;
+-		goto err_edev;
+-	};
+-
+-no_pmu:
+-	arm_smccc_smc(ROCKCHIP_SIP_DRAM_FREQ, 0, 0,
+-		      ROCKCHIP_SIP_CONFIG_DRAM_INIT,
+-		      0, 0, 0, 0, &res);
+-
+-	/*
+-	 * In TF-A there is a platform SIP call to set the PD (power-down)
+-	 * timings and to enable or disable the ODT (on-die termination).
+-	 * This call needs three arguments as follows:
+-	 *
+-	 * arg0:
+-	 *     bit[0-7]   : sr_idle
+-	 *     bit[8-15]  : sr_mc_gate_idle
+-	 *     bit[16-31] : standby idle
+-	 * arg1:
+-	 *     bit[0-11]  : pd_idle
+-	 *     bit[16-27] : srpd_lite_idle
+-	 * arg2:
+-	 *     bit[0]     : odt enable
+-	 */
+-	data->odt_pd_arg0 = (data->timing.sr_idle & 0xff) |
+-			    ((data->timing.sr_mc_gate_idle & 0xff) << 8) |
+-			    ((data->timing.standby_idle & 0xffff) << 16);
+-	data->odt_pd_arg1 = (data->timing.pd_idle & 0xfff) |
+-			    ((data->timing.srpd_lite_idle & 0xfff) << 16);
+-
+-	/*
+ 	 * We add a devfreq driver to our parent since it has a device tree node
+ 	 * with operating points.
+ 	 *
+/@@ -488,6 +363,7 @@ static int rk3399_dmcfreq_remove(struct platform_device *pdev)
+ 
+ static const struct of_device_id rk3399dmc_devfreq_of_match[] = {
+ 	{ .compatible = "rockchip,rk3399-dmc" },
++	{ .compatible = "rockchip,px30-dmc" },
+ 	{ },
+ };
+ MODULE_DEVICE_TABLE(of, rk3399dmc_devfreq_of_match);
+diff --git a/linux-go-next/drivers/devfreq/rockchip_bus.c b/drivers/devfreq/rockchip_bus.c
+new file mode 100644
+index 0000000..c1a2a6f
+--- /dev/null
++++ b/drivers/devfreq/rockchip_bus.c
+@@ -0,0 +1,258 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (c) 2018, Fuzhou Rockchip Electronics Co., Ltd.
++ * Author: Tony Xie <tony.xie@rock-chips.com>
++ */
++
++#include <linux/arm-smccc.h>
++#include <linux/clk.h>
++#include <linux/cpufreq.h>
++#include <linux/delay.h>
++#include <linux/devfreq.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/pm_opp.h>
++#include <linux/platform_device.h>
++#include <linux/regulator/consumer.h>
++#include <linux/slab.h>
++#include <linux/string.h>
++
++#define CLUSTER0	0
++#define CLUSTER1	1
++#define MAX_CLUSTERS	2
++
++#define to_rockchip_bus_clk_nb(nb) \
++	container_of(nb, struct rockchip_bus, clk_nb)
++#define to_rockchip_bus_cpufreq_nb(nb) \
++	container_of(nb, struct rockchip_bus, cpufreq_nb)
++
++struct busfreq_table {
++	unsigned long freq;
++	unsigned long volt;
++};
++
++struct rockchip_bus {
++	struct device *dev;
++	struct regulator *regulator;
++	struct clk *clk;
++	struct notifier_block clk_nb;
++	struct notifier_block cpufreq_nb;
++	struct busfreq_table *freq_table;
++
++	unsigned int max_state;
++
++	unsigned long cur_volt;
++	unsigned long cur_rate;
++
++	/*
++	 * Busfreq-policy-cpufreq:
++	 * If the cpu frequency of two clusters are both less than or equal to
++	 * cpu_high_freq, change bus rate to low_rate, otherwise change it to
++	 * high_rate.
++	 */
++	unsigned long high_rate;
++	unsigned long low_rate;
++	unsigned int cpu_high_freq;
++	unsigned int cpu_freq[MAX_CLUSTERS];
++};
++
++static int rockchip_bus_set_freq_table(struct rockchip_bus *bus)
++{
++	struct device *dev = bus->dev;
++	struct dev_pm_opp *opp;
++	unsigned long freq;
++	int i, count;
++
++	count = dev_pm_opp_get_opp_count(dev);
++	if (count <= 0)
++		return -EINVAL;
++
++	bus->max_state = count;
++	bus->freq_table = devm_kcalloc(dev,
++				       bus->max_state,
++				       sizeof(*bus->freq_table),
++				       GFP_KERNEL);
++	if (!bus->freq_table) {
++		bus->max_state = 0;
++		return -ENOMEM;
++	}
++
++	for (i = 0, freq = 0; i < bus->max_state; i++, freq++) {
++		opp = dev_pm_opp_find_freq_ceil(dev, &freq);
++		if (IS_ERR(opp)) {
++			devm_kfree(dev, bus->freq_table);
++			bus->max_state = 0;
++			return PTR_ERR(opp);
++		}
++		bus->freq_table[i].volt = dev_pm_opp_get_voltage(opp);
++		bus->freq_table[i].freq = freq;
++		dev_pm_opp_put(opp);
++	}
++
++	return 0;
++}
++
++static int rockchip_bus_power_control_init(struct rockchip_bus *bus)
++{
++	struct device *dev = bus->dev;
++	int ret = 0;
++
++	bus->clk = devm_clk_get(dev, "bus");
++	if (IS_ERR(bus->clk)) {
++		dev_err(dev, "failed to get bus clock\n");
++		return PTR_ERR(bus->clk);
++	}
++
++	bus->regulator = devm_regulator_get(dev, "bus");
++	if (IS_ERR(bus->regulator)) {
++		dev_err(dev, "failed to get bus regulator\n");
++		return PTR_ERR(bus->regulator);
++	}
++
++	ret = dev_pm_opp_of_add_table(dev);
++	if (ret < 0) {
++		dev_err(dev, "failed to get OPP table\n");
++		return ret;
++	}
++
++	ret = rockchip_bus_set_freq_table(bus);
++	if (ret < 0) {
++		dev_err(dev, "failed to set bus freq table\n");
++		return ret;
++	}
++
++	return 0;
++}
++
++static int rockchip_bus_clkfreq_target(struct device *dev, unsigned long freq)
++{
++	struct rockchip_bus *bus = dev_get_drvdata(dev);
++	unsigned long target_volt = bus->freq_table[bus->max_state - 1].volt;
++	int i;
++
++	for (i = 0; i < bus->max_state; i++) {
++		if (freq <= bus->freq_table[i].freq) {
++			target_volt = bus->freq_table[i].volt;
++			break;
++		}
++	}
++
++	printk("AAA target_volt: %lu\n", target_volt);
++
++	if (bus->cur_volt != target_volt) {
++		if (regulator_set_voltage(bus->regulator, target_volt,
++					  INT_MAX)) {
++			dev_err(dev, "failed to set voltage %lu uV\n",
++				target_volt);
++			return -EINVAL;
++		}
++		bus->cur_volt = target_volt;
++	}
++
++	return 0;
++}
++
++static int rockchip_bus_clk_notifier(struct notifier_block *nb,
++				     unsigned long event, void *data)
++{
++	struct clk_notifier_data *ndata = data;
++	struct rockchip_bus *bus = to_rockchip_bus_clk_nb(nb);
++	int ret = 0;
++
++	printk("AAA event %lu, old_rate %lu, new_rate: %lu\n",
++		event, ndata->old_rate, ndata->new_rate);
++
++	switch (event) {
++	case PRE_RATE_CHANGE:
++		if (ndata->new_rate > ndata->old_rate)
++			ret = rockchip_bus_clkfreq_target(bus->dev,
++							  ndata->new_rate);
++		break;
++	case POST_RATE_CHANGE:
++		if (ndata->new_rate < ndata->old_rate)
++			ret = rockchip_bus_clkfreq_target(bus->dev,
++							  ndata->new_rate);
++		break;
++	case ABORT_RATE_CHANGE:
++		if (ndata->new_rate > ndata->old_rate)
++			ret = rockchip_bus_clkfreq_target(bus->dev,
++							  ndata->old_rate);
++		break;
++	default:
++		break;
++	}
++
++	return notifier_from_errno(ret);
++}
++
++static int rockchip_bus_clkfreq(struct rockchip_bus *bus)
++{
++	struct device *dev = bus->dev;
++	unsigned long init_rate;
++	int ret = 0;
++
++	ret = rockchip_bus_power_control_init(bus);
++	if (ret) {
++		dev_err(dev, "failed to init power control\n");
++		return ret;
++	}
++
++	init_rate = clk_get_rate(bus->clk);
++	printk("init rate %d", init_rate);
++	ret = rockchip_bus_clkfreq_target(dev, init_rate);
++	if (ret)
++		return ret;
++
++	bus->clk_nb.notifier_call = rockchip_bus_clk_notifier;
++	ret = clk_notifier_register(bus->clk, &bus->clk_nb);
++	if (ret) {
++		dev_err(dev, "failed to register clock notifier\n");
++		return ret;
++	}
++
++	return 0;
++}
++
++static const struct of_device_id rockchip_busfreq_of_match[] = {
++	{ .compatible = "rockchip,px30-bus", },
++	{ .compatible = "rockchip,rk1808-bus", },
++	{ .compatible = "rockchip,rk3288-bus", },
++	{ .compatible = "rockchip,rk3368-bus", },
++	{ .compatible = "rockchip,rk3399-bus", },
++	{ .compatible = "rockchip,rv1126-bus", },
++	{ },
++};
++
++MODULE_DEVICE_TABLE(of, rockchip_busfreq_of_match);
++
++static int rockchip_busfreq_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct device_node *np = dev->of_node;
++	struct rockchip_bus *bus;
++	const char *policy_name;
++	int ret = 0;
++
++	bus = devm_kzalloc(dev, sizeof(*bus), GFP_KERNEL);
++	if (!bus)
++		return -ENOMEM;
++	bus->dev = dev;
++	platform_set_drvdata(pdev, bus);
++
++	printk("asdfsadfsadffasdafsdhjfsdakasdfjfjasdklsfadkljsdfajklfsadjklfasdjklhasfdhjklafsdhkjsfdajkhfasdk");
++	return rockchip_bus_clkfreq(bus);
++}
++
++static struct platform_driver rockchip_busfreq_driver = {
++	.probe	= rockchip_busfreq_probe,
++	.driver = {
++		.name	= "rockchip-busfreq",
++		.of_match_table = rockchip_busfreq_of_match,
++	},
++};
++
++module_platform_driver(rockchip_busfreq_driver);
++
++MODULE_LICENSE("GPL v2");
++MODULE_AUTHOR("Tony Xie <tony.xie@rock-chips.com>");
++MODULE_DESCRIPTION("rockchip busfreq driver with devfreq framework");
+diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
+index db0ea2d..25533c9 100644
+--- a/drivers/firmware/Kconfig
++++ b/drivers/firmware/Kconfig
+@@ -251,6 +251,13 @@ config QCOM_SCM_DOWNLOAD_MODE_DEFAULT
+ 
+ 	  Say Y here to enable "download mode" by default.
+ 
++config ROCKCHIP_SIP
++	tristate "Rockchip SIP interface"
++	depends on HAVE_ARM_SMCCC && ARCH_ROCKCHIP
++	help
++	  Say Y here if you want to enable SIP callbacks for Rockchip platforms
++	  This option enables support for communicating with the ATF.
++
+ config TI_SCI_PROTOCOL
+ 	tristate "TI System Control Interface (TISCI) Message Protocol"
+ 	depends on TI_MESSAGE_MANAGER
+diff --git a/drivers/firmware/Makefile b/drivers/firmware/Makefile
+index 5e013b6..850970f 100644
+--- a/drivers/firmware/Makefile
++++ b/drivers/firmware/Makefile
+@@ -16,6 +16,7 @@ obj-$(CONFIG_ISCSI_IBFT_FIND)	+= iscsi_ibft_find.o
+ obj-$(CONFIG_ISCSI_IBFT)	+= iscsi_ibft.o
+ obj-$(CONFIG_FIRMWARE_MEMMAP)	+= memmap.o
+ obj-$(CONFIG_RASPBERRYPI_FIRMWARE) += raspberrypi.o
++obj-$(CONFIG_ROCKCHIP_SIP)	+= rockchip_sip.o
+ obj-$(CONFIG_FW_CFG_SYSFS)	+= qemu_fw_cfg.o
+ obj-$(CONFIG_QCOM_SCM)		+= qcom_scm.o qcom_scm-smc.o qcom_scm-legacy.o
+ obj-$(CONFIG_TI_SCI_PROTOCOL)	+= ti_sci.o
+diff --git a/linux-go-next/drivers/firmware/rockchip_sip.c b/drivers/firmware/rockchip_sip.c
+new file mode 100644
+index 0000000..7f3931c
+--- /dev/null
++++ b/drivers/firmware/rockchip_sip.c
+@@ -0,0 +1,548 @@
++/*
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License version 2 as
++ * published by the Free Software Foundation.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * Copyright (C) 2016, Fuzhou Rockchip Electronics Co., Ltd
++ */
++
++#include <linux/arm-smccc.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/firmware/rockchip_sip.h>
++#include <asm/cputype.h>
++#ifdef CONFIG_ARM
++#include <asm/psci.h>
++#endif
++#include <asm/smp_plat.h>
++#include <uapi/linux/psci.h>
++#include <linux/ptrace.h>
++#include <linux/sched/clock.h>
++#include <linux/slab.h>
++
++#ifdef CONFIG_64BIT
++#define PSCI_FN_NATIVE(version, name)	PSCI_##version##_FN64_##name
++#else
++#define PSCI_FN_NATIVE(version, name)	PSCI_##version##_FN_##name
++#endif
++
++#define SIZE_PAGE(n)	((n) << 12)
++
++static struct arm_smccc_res __invoke_sip_fn_smc(unsigned long function_id,
++						unsigned long arg0,
++						unsigned long arg1,
++						unsigned long arg2)
++{
++	struct arm_smccc_res res;
++
++	arm_smccc_smc(function_id, arg0, arg1, arg2, 0, 0, 0, 0, &res);
++	return res;
++}
++
++struct arm_smccc_res sip_smc_dram(u32 arg0, u32 arg1, u32 arg2)
++{
++	return __invoke_sip_fn_smc(SIP_DRAM_CONFIG, arg0, arg1, arg2);
++}
++EXPORT_SYMBOL_GPL(sip_smc_dram);
++
++struct arm_smccc_res sip_smc_get_atf_version(void)
++{
++	return __invoke_sip_fn_smc(SIP_ATF_VERSION, 0, 0, 0);
++}
++EXPORT_SYMBOL_GPL(sip_smc_get_atf_version);
++
++struct arm_smccc_res sip_smc_get_sip_version(void)
++{
++	return __invoke_sip_fn_smc(SIP_SIP_VERSION, 0, 0, 0);
++}
++EXPORT_SYMBOL_GPL(sip_smc_get_sip_version);
++
++int sip_smc_set_suspend_mode(u32 ctrl, u32 config1, u32 config2)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(SIP_SUSPEND_MODE, ctrl, config1, config2);
++	return res.a0;
++}
++EXPORT_SYMBOL_GPL(sip_smc_set_suspend_mode);
++
++struct arm_smccc_res sip_smc_get_suspend_info(u32 info)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(SIP_SUSPEND_MODE, info, 0, 0);
++	return res;
++}
++EXPORT_SYMBOL_GPL(sip_smc_get_suspend_info);
++
++int sip_smc_virtual_poweroff(void)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(PSCI_FN_NATIVE(1_0, SYSTEM_SUSPEND), 0, 0, 0);
++	return res.a0;
++}
++EXPORT_SYMBOL_GPL(sip_smc_virtual_poweroff);
++
++int sip_smc_remotectl_config(u32 func, u32 data)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(SIP_REMOTECTL_CFG, func, data, 0);
++
++	return res.a0;
++}
++EXPORT_SYMBOL_GPL(sip_smc_remotectl_config);
++
++u32 sip_smc_secure_reg_read(u32 addr_phy)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(SIP_ACCESS_REG, 0, addr_phy, SECURE_REG_RD);
++	if (res.a0)
++		pr_err("%s error: %d, addr phy: 0x%x\n",
++		       __func__, (int)res.a0, addr_phy);
++
++	return res.a1;
++}
++EXPORT_SYMBOL_GPL(sip_smc_secure_reg_read);
++
++int sip_smc_secure_reg_write(u32 addr_phy, u32 val)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(SIP_ACCESS_REG, val, addr_phy, SECURE_REG_WR);
++	if (res.a0)
++		pr_err("%s error: %d, addr phy: 0x%x\n",
++		       __func__, (int)res.a0, addr_phy);
++
++	return res.a0;
++}
++EXPORT_SYMBOL_GPL(sip_smc_secure_reg_write);
++
++static void *sip_map(phys_addr_t start, size_t size)
++{
++	struct page **pages;
++	phys_addr_t page_start;
++	unsigned int page_count;
++	pgprot_t prot;
++	unsigned int i;
++	void *vaddr;
++
++	if (!pfn_valid(__phys_to_pfn(start)))
++		return ioremap(start, size);
++
++	page_start = start - offset_in_page(start);
++	page_count = DIV_ROUND_UP(size + offset_in_page(start), PAGE_SIZE);
++
++	prot = pgprot_noncached(PAGE_KERNEL);
++
++	pages = kmalloc_array(page_count, sizeof(struct page *), GFP_KERNEL);
++	if (!pages) {
++		pr_err("%s: Failed to allocate array for %u pages\n",
++		       __func__, page_count);
++		return NULL;
++	}
++
++	for (i = 0; i < page_count; i++)
++		pages[i] = phys_to_page(page_start + i * PAGE_SIZE);
++
++	vaddr = vmap(pages, page_count, VM_MAP, prot);
++	kfree(pages);
++
++	/*
++	 * Since vmap() uses page granularity, we must add the offset
++	 * into the page here, to get the byte granularity address
++	 * into the mapping to represent the actual "start" location.
++	 */
++	return vaddr + offset_in_page(start);
++}
++
++struct arm_smccc_res sip_smc_request_share_mem(u32 page_num,
++					       share_page_type_t page_type)
++{
++	struct arm_smccc_res res;
++	unsigned long share_mem_phy;
++
++	res = __invoke_sip_fn_smc(SIP_SHARE_MEM, page_num, page_type, 0);
++	if (IS_SIP_ERROR(res.a0))
++		goto error;
++
++	share_mem_phy = res.a1;
++	res.a1 = (unsigned long)sip_map(share_mem_phy, SIZE_PAGE(page_num));
++
++error:
++	return res;
++}
++EXPORT_SYMBOL_GPL(sip_smc_request_share_mem);
++
++struct arm_smccc_res sip_smc_mcu_el3fiq(u32 arg0, u32 arg1, u32 arg2)
++{
++	return __invoke_sip_fn_smc(SIP_MCU_EL3FIQ_CFG, arg0, arg1, arg2);
++}
++EXPORT_SYMBOL_GPL(sip_smc_mcu_el3fiq);
++
++struct arm_smccc_res sip_smc_vpu_reset(u32 arg0, u32 arg1, u32 arg2)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(PSCI_SIP_VPU_RESET, arg0, arg1, arg2);
++	return res;
++}
++EXPORT_SYMBOL_GPL(sip_smc_vpu_reset);
++
++struct arm_smccc_res sip_smc_bus_config(u32 arg0, u32 arg1, u32 arg2)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(SIP_BUS_CFG, arg0, arg1, arg2);
++	return res;
++}
++EXPORT_SYMBOL_GPL(sip_smc_bus_config);
++
++struct arm_smccc_res sip_smc_lastlog_request(void)
++{
++	struct arm_smccc_res res;
++	void __iomem *addr1, *addr2;
++
++	res = __invoke_sip_fn_smc(SIP_LAST_LOG, local_clock(), 0, 0);
++	if (IS_SIP_ERROR(res.a0))
++		return res;
++
++	addr1 = sip_map(res.a1, res.a3);
++	if (!addr1) {
++		pr_err("%s: share memory buffer0 ioremap failed\n", __func__);
++		res.a0 = SIP_RET_INVALID_ADDRESS;
++		return res;
++	}
++	addr2 = sip_map(res.a2, res.a3);
++	if (!addr2) {
++		pr_err("%s: share memory buffer1 ioremap failed\n", __func__);
++		res.a0 = SIP_RET_INVALID_ADDRESS;
++		return res;
++	}
++
++	res.a1 = (unsigned long)addr1;
++	res.a2 = (unsigned long)addr2;
++
++	return res;
++}
++EXPORT_SYMBOL_GPL(sip_smc_lastlog_request);
++
++/************************** fiq debugger **************************************/
++/*
++ * AArch32 is not allowed to call SMC64(ATF framework does not support), so we
++ * don't change SIP_UARTDBG_FN to SIP_UARTDBG_CFG64 even when cpu is AArch32
++ * mode. Let ATF support SIP_UARTDBG_CFG, and we just initialize SIP_UARTDBG_FN
++ * depends on compile option(CONFIG_ARM or CONFIG_ARM64).
++ */
++#ifdef CONFIG_ARM64
++#define SIP_UARTDBG_FN		SIP_UARTDBG_CFG64
++#else
++#define SIP_UARTDBG_FN		SIP_UARTDBG_CFG
++static int firmware_64_32bit;
++#endif
++
++static int fiq_sip_enabled;
++static int fiq_target_cpu;
++static phys_addr_t ft_fiq_mem_phy;
++static void __iomem *ft_fiq_mem_base;
++static void (*sip_fiq_debugger_uart_irq_tf)(struct pt_regs _pt_regs,
++					    unsigned long cpu);
++int sip_fiq_debugger_is_enabled(void)
++{
++	return fiq_sip_enabled;
++}
++EXPORT_SYMBOL_GPL(sip_fiq_debugger_is_enabled);
++
++static struct pt_regs sip_fiq_debugger_get_pt_regs(void *reg_base,
++						   unsigned long sp_el1)
++{
++	struct pt_regs fiq_pt_regs;
++	__maybe_unused struct sm_nsec_ctx *nsec_ctx = reg_base;
++	__maybe_unused struct gp_regs_ctx *gp_regs = reg_base;
++
++#ifdef CONFIG_ARM64
++	/*
++	 * 64-bit ATF + 64-bit kernel
++	 */
++	/* copy cpu context: x0 ~ spsr_el3 */
++	memcpy(&fiq_pt_regs, reg_base, 8 * 31);
++
++	/* copy pstate: spsr_el3 */
++	memcpy(&fiq_pt_regs.pstate, reg_base + 0x110, 8);
++	fiq_pt_regs.sp = sp_el1;
++
++	/* copy pc: elr_el3 */
++	memcpy(&fiq_pt_regs.pc, reg_base + 0x118, 8);
++#else
++	if (firmware_64_32bit == FIRMWARE_ATF_64BIT) {
++		/*
++		 * 64-bit ATF + 32-bit kernel
++		 */
++		fiq_pt_regs.ARM_r0 = gp_regs->x0;
++		fiq_pt_regs.ARM_r1 = gp_regs->x1;
++		fiq_pt_regs.ARM_r2 = gp_regs->x2;
++		fiq_pt_regs.ARM_r3 = gp_regs->x3;
++		fiq_pt_regs.ARM_r4 = gp_regs->x4;
++		fiq_pt_regs.ARM_r5 = gp_regs->x5;
++		fiq_pt_regs.ARM_r6 = gp_regs->x6;
++		fiq_pt_regs.ARM_r7 = gp_regs->x7;
++		fiq_pt_regs.ARM_r8 = gp_regs->x8;
++		fiq_pt_regs.ARM_r9 = gp_regs->x9;
++		fiq_pt_regs.ARM_r10 = gp_regs->x10;
++		fiq_pt_regs.ARM_fp = gp_regs->x11;
++		fiq_pt_regs.ARM_ip = gp_regs->x12;
++		fiq_pt_regs.ARM_sp = gp_regs->x19;	/* aarch32 svc_r13 */
++		fiq_pt_regs.ARM_lr = gp_regs->x18;	/* aarch32 svc_r14 */
++		fiq_pt_regs.ARM_cpsr = gp_regs->spsr_el3;
++		fiq_pt_regs.ARM_pc = gp_regs->elr_el3;
++	} else {
++		/*
++		 * 32-bit tee firmware + 32-bit kernel
++		 */
++		fiq_pt_regs.ARM_r0 = nsec_ctx->r0;
++		fiq_pt_regs.ARM_r1 = nsec_ctx->r1;
++		fiq_pt_regs.ARM_r2 = nsec_ctx->r2;
++		fiq_pt_regs.ARM_r3 = nsec_ctx->r3;
++		fiq_pt_regs.ARM_r4 = nsec_ctx->r4;
++		fiq_pt_regs.ARM_r5 = nsec_ctx->r5;
++		fiq_pt_regs.ARM_r6 = nsec_ctx->r6;
++		fiq_pt_regs.ARM_r7 = nsec_ctx->r7;
++		fiq_pt_regs.ARM_r8 = nsec_ctx->r8;
++		fiq_pt_regs.ARM_r9 = nsec_ctx->r9;
++		fiq_pt_regs.ARM_r10 = nsec_ctx->r10;
++		fiq_pt_regs.ARM_fp = nsec_ctx->r11;
++		fiq_pt_regs.ARM_ip = nsec_ctx->r12;
++		fiq_pt_regs.ARM_sp = nsec_ctx->svc_sp;
++		fiq_pt_regs.ARM_lr = nsec_ctx->svc_lr;
++		fiq_pt_regs.ARM_cpsr = nsec_ctx->mon_spsr;
++
++		/*
++		 * 'nsec_ctx->mon_lr' is not the fiq break point's PC, because it will
++		 * be override as 'psci_fiq_debugger_uart_irq_tf_cb' for optee-os to
++		 * jump to fiq_debugger handler.
++		 *
++		 * As 'nsec_ctx->und_lr' is not used for kernel, so optee-os uses it to
++		 * deliver fiq break point's PC.
++		 *
++		 */
++		fiq_pt_regs.ARM_pc = nsec_ctx->und_lr;
++	}
++#endif
++
++	return fiq_pt_regs;
++}
++
++static void sip_fiq_debugger_uart_irq_tf_cb(unsigned long sp_el1,
++					    unsigned long offset,
++					    unsigned long cpu)
++{
++	struct pt_regs fiq_pt_regs;
++	char *cpu_context;
++
++	/* calling fiq handler */
++	if (ft_fiq_mem_base) {
++		cpu_context = (char *)ft_fiq_mem_base + offset;
++		fiq_pt_regs = sip_fiq_debugger_get_pt_regs(cpu_context, sp_el1);
++		sip_fiq_debugger_uart_irq_tf(fiq_pt_regs, cpu);
++	}
++
++	/* fiq handler done, return to EL3(then EL3 return to EL1 entry) */
++	__invoke_sip_fn_smc(SIP_UARTDBG_FN, 0, 0, UARTDBG_CFG_OSHDL_TO_OS);
++}
++
++int sip_fiq_debugger_uart_irq_tf_init(u32 irq_id, void *callback_fn)
++{
++	struct arm_smccc_res res;
++
++	fiq_target_cpu = 0;
++
++	/* init fiq debugger callback */
++	sip_fiq_debugger_uart_irq_tf = callback_fn;
++	res = __invoke_sip_fn_smc(SIP_UARTDBG_FN, irq_id,
++				  (unsigned long)sip_fiq_debugger_uart_irq_tf_cb,
++				  UARTDBG_CFG_INIT);
++	if (IS_SIP_ERROR(res.a0)) {
++		pr_err("%s error: %d\n", __func__, (int)res.a0);
++		return res.a0;
++	}
++
++	/* share memory ioremap */
++	if (!ft_fiq_mem_base) {
++		ft_fiq_mem_phy = res.a1;
++		ft_fiq_mem_base = sip_map(ft_fiq_mem_phy,
++					  FIQ_UARTDBG_SHARE_MEM_SIZE);
++		if (!ft_fiq_mem_base) {
++			pr_err("%s: share memory ioremap failed\n", __func__);
++			return -ENOMEM;
++		}
++	}
++
++	fiq_sip_enabled = 1;
++
++	return SIP_RET_SUCCESS;
++}
++EXPORT_SYMBOL_GPL(sip_fiq_debugger_uart_irq_tf_init);
++
++static ulong cpu_logical_map_mpidr(u32 cpu)
++{
++#ifdef MODULE
++	/* Empirically, local "cpu_logical_map()" for rockchip platforms */
++	ulong mpidr = 0x00;
++
++	if (cpu < 4)
++		/* 0x00, 0x01, 0x02, 0x03 */
++		mpidr = cpu;
++	else if (cpu < 8)
++		/* 0x100, 0x101, 0x102, 0x103 */
++		mpidr = 0x100 | (cpu - 4);
++	else
++		pr_err("Unsupported map cpu: %d\n", cpu);
++
++	return mpidr;
++#else
++	return cpu_logical_map(cpu);
++#endif
++}
++
++int sip_fiq_debugger_switch_cpu(u32 cpu)
++{
++	struct arm_smccc_res res;
++
++	fiq_target_cpu = cpu;
++	res = __invoke_sip_fn_smc(SIP_UARTDBG_FN, cpu_logical_map_mpidr(cpu),
++				  0, UARTDBG_CFG_OSHDL_CPUSW);
++	return res.a0;
++}
++
++int sip_fiq_debugger_sdei_switch_cpu(u32 cur_cpu, u32 target_cpu, u32 flag)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(SIP_SDEI_FIQ_DBG_SWITCH_CPU,
++				  cur_cpu, target_cpu, flag);
++	return res.a0;
++}
++
++int sip_fiq_debugger_sdei_get_event_id(u32 *fiq, u32 *sw_cpu, u32 *flag)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(SIP_SDEI_FIQ_DBG_GET_EVENT_ID,
++				  0, 0, 0);
++	*fiq = res.a1;
++	*sw_cpu = res.a2;
++	if (flag)
++		*flag = res.a3;
++
++	return res.a0;
++}
++
++EXPORT_SYMBOL_GPL(sip_fiq_debugger_switch_cpu);
++
++void sip_fiq_debugger_enable_debug(bool enable)
++{
++	unsigned long val;
++
++	val = enable ? UARTDBG_CFG_OSHDL_DEBUG_ENABLE :
++		       UARTDBG_CFG_OSHDL_DEBUG_DISABLE;
++
++	__invoke_sip_fn_smc(SIP_UARTDBG_FN, 0, 0, val);
++}
++EXPORT_SYMBOL_GPL(sip_fiq_debugger_enable_debug);
++
++int sip_fiq_debugger_set_print_port(u32 port_phyaddr, u32 baudrate)
++{
++	struct arm_smccc_res res;
++
++	res = __invoke_sip_fn_smc(SIP_UARTDBG_FN, port_phyaddr, baudrate,
++				  UARTDBG_CFG_PRINT_PORT);
++	return res.a0;
++}
++EXPORT_SYMBOL_GPL(sip_fiq_debugger_set_print_port);
++
++int sip_fiq_debugger_request_share_memory(void)
++{
++	struct arm_smccc_res res;
++
++	/* request page share memory */
++	res = sip_smc_request_share_mem(FIQ_UARTDBG_PAGE_NUMS,
++					SHARE_PAGE_TYPE_UARTDBG);
++	if (IS_SIP_ERROR(res.a0))
++		return res.a0;
++
++	return SIP_RET_SUCCESS;
++}
++EXPORT_SYMBOL_GPL(sip_fiq_debugger_request_share_memory);
++
++int sip_fiq_debugger_get_target_cpu(void)
++{
++	return fiq_target_cpu;
++}
++EXPORT_SYMBOL_GPL(sip_fiq_debugger_get_target_cpu);
++
++void sip_fiq_debugger_enable_fiq(bool enable, uint32_t tgt_cpu)
++{
++	u32 en;
++
++	fiq_target_cpu = tgt_cpu;
++	en = enable ? UARTDBG_CFG_FIQ_ENABEL : UARTDBG_CFG_FIQ_DISABEL;
++	__invoke_sip_fn_smc(SIP_UARTDBG_FN, tgt_cpu, 0, en);
++}
++EXPORT_SYMBOL_GPL(sip_fiq_debugger_enable_fiq);
++
++/******************************************************************************/
++#ifdef CONFIG_ARM
++static __init int sip_firmware_init(void)
++{
++	struct arm_smccc_res res;
++
++	if (!psci_smp_available())
++		return 0;
++
++	/*
++	 * OP-TEE works on kernel 3.10 and 4.4 and we have different sip
++	 * implement. We should tell OP-TEE the current rockchip sip version.
++	 */
++	res = __invoke_sip_fn_smc(SIP_SIP_VERSION, SIP_IMPLEMENT_V2,
++				  SECURE_REG_WR, 0);
++	if (IS_SIP_ERROR(res.a0))
++		pr_err("%s: set rockchip sip version v2 failed\n", __func__);
++
++	/*
++	 * Currently, we support:
++	 *
++	 *	1. 64-bit ATF + 64-bit kernel;
++	 *	2. 64-bit ATF + 32-bit kernel;
++	 *	3. 32-bit TEE + 32-bit kernel;
++	 *
++	 * We need to detect which case of above and record in firmware_64_32bit
++	 * We get info from cpuid and compare with all supported ARMv7 cpu.
++	 */
++	switch (read_cpuid_part()) {
++	case ARM_CPU_PART_CORTEX_A7:
++	case ARM_CPU_PART_CORTEX_A8:
++	case ARM_CPU_PART_CORTEX_A9:
++	case ARM_CPU_PART_CORTEX_A12:
++	case ARM_CPU_PART_CORTEX_A15:
++	case ARM_CPU_PART_CORTEX_A17:
++		firmware_64_32bit = FIRMWARE_TEE_32BIT;
++		break;
++	default:
++		firmware_64_32bit = FIRMWARE_ATF_64BIT;
++		break;
++	}
++
++	return 0;
++}
++arch_initcall(sip_firmware_init);
++#endif
++
++MODULE_DESCRIPTION("Rockchip SIP Call");
++MODULE_LICENSE("GPL");
+diff --git a/drivers/input/joystick/Kconfig b/drivers/input/joystick/Kconfig
+index 5e38899..3c5eb90 100644
+--- a/drivers/input/joystick/Kconfig
++++ b/drivers/input/joystick/Kconfig
+@@ -15,6 +15,9 @@ menuconfig INPUT_JOYSTICK
+ 
+ if INPUT_JOYSTICK
+ 
++config JOYSTICK_ADC_GPIO
++	tristate "ADC Analog + GPIO keys. Polled."
++
+ config JOYSTICK_ANALOG
+ 	tristate "Classic PC analog joysticks and gamepads"
+ 	select GAMEPORT
+diff --git a/drivers/input/joystick/Makefile b/drivers/input/joystick/Makefile
+index 31d720c..1d55c42 100644
+--- a/drivers/input/joystick/Makefile
++++ b/drivers/input/joystick/Makefile
+@@ -37,4 +37,4 @@
+ obj-$(CONFIG_JOYSTICK_WALKERA0701)	+= walkera0701.o
+ obj-$(CONFIG_JOYSTICK_XPAD)		+= xpad.o
+ obj-$(CONFIG_JOYSTICK_ZHENHUA)		+= zhenhua.o
+-
++obj-$(CONFIG_JOYSTICK_ADC_GPIO)         += adc-gpio.o
+diff --git a/linux-go-next/drivers/input/joystick/adc-gpio.c b/drivers/input/joystick/adc-gpio.c
+new file mode 100644
+index 0000000..ee8dc1f
+--- /dev/null
++++ b/drivers/input/joystick/adc-gpio.c
+@@ -0,0 +1,157 @@
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/slab.h>
++#include <linux/input.h>
++#include <linux/ioport.h>
++#include <linux/platform_device.h>
++#include <linux/property.h>
++#include <linux/gpio.h>
++#include <linux/gpio/consumer.h>
++#include <linux/gpio_keys.h>
++#include <linux/iio/iio.h>
++#include <linux/iio/consumer.h>
++#include <linux/iio/driver.h>
++
++struct adc_joystick_polled_axis {
++	u32 code;
++	s32 range[2];
++	s32 fuzz;
++	s32 flat;
++	int is_analog;
++	struct gpio_desc *gpiod;
++	int prev_val;
++};
++
++struct adc_joystick_polled {
++	struct input_dev *input;
++	struct adc_joystick_polled_axis *axes;
++	struct iio_channel *chans;
++	int num_chans;
++};
++
++static int adc_joystick_set_axes(struct device *dev, struct adc_joystick_polled *joy)
++{
++	struct adc_joystick_polled_axis *axes;
++	struct fwnode_handle *child;
++	int num_axes, err, i;
++
++	num_axes = device_get_child_node_count(dev);
++	joy->num_chans = num_axes;
++
++	axes = devm_kmalloc_array(dev, num_axes, sizeof(*axes), GFP_KERNEL);
++
++	device_for_each_child_node(dev, child) {
++		fwnode_property_read_u32(child, "reg", &i);
++
++		fwnode_property_read_u32(child, "linux,code", &axes[i].code);
++
++		if (fwnode_property_present(child, "analog"))
++		{
++			axes[i].is_analog = 1;
++
++			fwnode_property_read_u32_array(child, "abs-range", axes[i].range, 2);
++			fwnode_property_read_u32(child, "abs-fuzz", &axes[i].fuzz);
++			fwnode_property_read_u32(child, "abs-flat", &axes[i].flat);
++			input_set_abs_params(joy->input, axes[i].code,
++					axes[i].range[0], axes[i].range[1],
++					axes[i].fuzz, axes[i].flat);
++			input_set_capability(joy->input, EV_ABS, axes[i].code);
++		}
++		else
++		{
++			axes[i].is_analog = 0;
++			axes[i].gpiod = devm_fwnode_gpiod_get(dev, child, NULL, GPIOD_IN, "btn");
++			input_set_capability(joy->input, EV_KEY, axes[i].code);
++		}
++
++	}
++
++	joy->axes = axes;
++	return 0;
++}
++
++static void adc_joystick_polled_poll(struct input_dev *input)
++{
++	struct adc_joystick_polled *bdev = input_get_drvdata(input);
++	int ret;
++	int i;
++
++	int raw;
++
++	for (i = 0; i < bdev->num_chans; i++) {
++		if (bdev->axes[i].is_analog == 1)
++		{
++			iio_read_channel_raw(&bdev->chans[i], &raw);
++			input_event(input, EV_ABS, bdev->axes[i].code, raw);
++		}
++		else
++		{
++			raw = gpiod_get_value_cansleep(bdev->axes[i].gpiod);
++			if (raw != bdev->axes[i].prev_val)
++			{
++				input_event(input, EV_KEY, bdev->axes[i].code, raw);
++				bdev->axes[i].prev_val = raw;
++			}
++		}
++	}
++
++	input_sync(input);
++}
++
++static int adc_joystick_polled_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct adc_joystick_polled *joy;
++	struct input_dev *input;
++	const struct gpio_keys_platform_data *pdata = dev_get_platdata(dev);
++	int err;
++
++	joy = devm_kzalloc(dev, sizeof(*joy), GFP_KERNEL);
++	if (!joy)
++		return -ENOMEM;
++
++	joy->chans = devm_iio_channel_get_all(dev);
++	if (IS_ERR(joy->chans)) {
++		err = PTR_ERR(joy->chans);
++		if (err != -EPROBE_DEFER)
++			dev_err(dev, "Unable to get IIO channels");
++		return err;
++	}
++
++	input = devm_input_allocate_device(dev);
++	if (!input)
++		return -ENOMEM;
++
++	joy->input = input;
++
++	input->name = pdev->name;
++	input->id.bustype = BUS_HOST;
++
++	input_setup_polling(input, adc_joystick_polled_poll);
++	input_set_poll_interval(input, 10);
++	
++	adc_joystick_set_axes(dev, joy);	
++
++	input_set_drvdata(input, joy);
++
++	input_register_device(input);
++
++	printk("adc-joystick-polled: Bound to device correctly!");
++	return 0;
++}
++
++static const struct of_device_id adc_joystick_polled_of_match[] = {
++	{ .compatible = "gpio-keys-adc", },
++	{ }
++};
++
++static struct platform_driver adc_joystick_polled_driver = {
++	.driver = {
++		.name = "adc-joystick-polled",
++		.of_match_table = adc_joystick_polled_of_match,
++	},
++	.probe = adc_joystick_polled_probe,
++};
++module_platform_driver(adc_joystick_polled_driver);
++
++
+diff --git a/drivers/input/misc/rk805-pwrkey.c b/drivers/input/misc/rk805-pwrkey.c
+index 3fb64db..1ac79c5 100644
+--- a/drivers/input/misc/rk805-pwrkey.c
++++ b/drivers/input/misc/rk805-pwrkey.c
+@@ -1,103 +1,146 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+- * Rockchip RK805 PMIC Power Key driver
++ * driver/input/misc/rk8xx-pwrkey.c
++ * Power Key driver for RK8xx PMIC Power Button.
+  *
+- * Copyright (c) 2017, Fuzhou Rockchip Electronics Co., Ltd
++ * Copyright (C) 2017, Rockchip Technology Co., Ltd.
++ * Author: Chen Jianhong <chenjh@rock-chips.com>
+  *
+- * Author: Joseph Chen <chenjh@rock-chips.com>
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License version 2 as
++ * published by the Free Software Foundation.
++ *
++ * This program is distributed "as is" WITHOUT ANY WARRANTY of any
++ * kind, whether express or implied; without even the implied warranty
++ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
+  */
+ 
+ #include <linux/errno.h>
+-#include <linux/init.h>
+ #include <linux/input.h>
++#include <linux/init.h>
+ #include <linux/interrupt.h>
+ #include <linux/kernel.h>
++#include <linux/mfd/rk808.h>
+ #include <linux/module.h>
++#include <linux/of.h>
+ #include <linux/platform_device.h>
++#include <linux/regmap.h>
++
++struct rk8xx_pwrkey {
++	struct rk808 *rk8xx;
++	struct input_dev *input_dev;
++	int report_key;
++};
+ 
+-static irqreturn_t pwrkey_fall_irq(int irq, void *_pwr)
++static irqreturn_t rk8xx_pwrkey_irq_falling(int irq, void *data)
+ {
+-	struct input_dev *pwr = _pwr;
++	struct rk8xx_pwrkey *pwr = data;
+ 
+-	input_report_key(pwr, KEY_POWER, 1);
+-	input_sync(pwr);
++	input_report_key(pwr->input_dev, pwr->report_key, 1);
++	input_sync(pwr->input_dev);
+ 
+ 	return IRQ_HANDLED;
+ }
+ 
+-static irqreturn_t pwrkey_rise_irq(int irq, void *_pwr)
++static irqreturn_t rk8xx_pwrkey_irq_rising(int irq, void *data)
+ {
+-	struct input_dev *pwr = _pwr;
++	struct rk8xx_pwrkey *pwr = data;
+ 
+-	input_report_key(pwr, KEY_POWER, 0);
+-	input_sync(pwr);
++	input_report_key(pwr->input_dev, pwr->report_key, 0);
++	input_sync(pwr->input_dev);
+ 
+ 	return IRQ_HANDLED;
+ }
+ 
+-static int rk805_pwrkey_probe(struct platform_device *pdev)
++static int rk8xx_pwrkey_probe(struct platform_device *pdev)
+ {
+-	struct input_dev *pwr;
+-	int fall_irq, rise_irq;
+-	int err;
++	struct rk808 *rk8xx = dev_get_drvdata(pdev->dev.parent);
++	struct rk8xx_pwrkey *pwrkey;
++	int fall_irq, rise_irq, err;
++	struct device_node *np;
++
++	np = of_get_child_by_name(pdev->dev.parent->of_node, "pwrkey");
++	if (np) {
++		if (!of_device_is_available(np)) {
++			dev_info(&pdev->dev, "device is disabled\n");
++			return -EINVAL;
++		}
++	}
++
++	pwrkey = devm_kzalloc(&pdev->dev,
++			      sizeof(struct rk8xx_pwrkey), GFP_KERNEL);
++	if (!pwrkey)
++		return -ENOMEM;
+ 
+-	pwr = devm_input_allocate_device(&pdev->dev);
+-	if (!pwr) {
++	pwrkey->input_dev = devm_input_allocate_device(&pdev->dev);
++	if (!pwrkey->input_dev) {
+ 		dev_err(&pdev->dev, "Can't allocate power button\n");
+ 		return -ENOMEM;
+ 	}
+ 
+-	pwr->name = "rk805 pwrkey";
+-	pwr->phys = "rk805_pwrkey/input0";
+-	pwr->id.bustype = BUS_HOST;
+-	input_set_capability(pwr, EV_KEY, KEY_POWER);
++	/* init struct input_dev */
++	pwrkey->rk8xx = rk8xx;
++	pwrkey->report_key = KEY_POWER;
++	pwrkey->input_dev->name = "rk8xx_pwrkey";
++	pwrkey->input_dev->phys = "rk8xx_pwrkey/input0";
++	pwrkey->input_dev->dev.parent = pdev->dev.parent;
++	pwrkey->input_dev->evbit[0] = BIT_MASK(EV_KEY);
++	pwrkey->input_dev->keybit[BIT_WORD(pwrkey->report_key)] =
++					BIT_MASK(pwrkey->report_key);
++	platform_set_drvdata(pdev, pwrkey);
++
++	/* requeset rise and fall irqs */
++	rise_irq = platform_get_irq(pdev, 0);
++	if (rise_irq < 0) {
++		dev_err(&pdev->dev, "no IRQ for rise: %d\n", rise_irq);
++		return rise_irq;
++	}
+ 
+-	fall_irq = platform_get_irq(pdev, 0);
+-	if (fall_irq < 0)
++	fall_irq = platform_get_irq(pdev, 1);
++	if (fall_irq < 0) {
++		dev_err(&pdev->dev, "no IRQ for fall: %d\n", fall_irq);
+ 		return fall_irq;
++	}
+ 
+-	rise_irq = platform_get_irq(pdev, 1);
+-	if (rise_irq < 0)
+-		return rise_irq;
+-
+-	err = devm_request_any_context_irq(&pwr->dev, fall_irq,
+-					   pwrkey_fall_irq,
+-					   IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+-					   "rk805_pwrkey_fall", pwr);
+-	if (err < 0) {
+-		dev_err(&pdev->dev, "Can't register fall irq: %d\n", err);
++	err = devm_request_threaded_irq(&pdev->dev, fall_irq,
++					NULL, rk8xx_pwrkey_irq_falling,
++					IRQF_TRIGGER_FALLING,
++					"rk8xx_pwrkey_fall", pwrkey);
++	if (err) {
++		dev_err(&pdev->dev, "Can't get fall irq for pwrkey: %d\n", err);
+ 		return err;
+ 	}
+-
+-	err = devm_request_any_context_irq(&pwr->dev, rise_irq,
+-					   pwrkey_rise_irq,
+-					   IRQF_TRIGGER_RISING | IRQF_ONESHOT,
+-					   "rk805_pwrkey_rise", pwr);
+-	if (err < 0) {
+-		dev_err(&pdev->dev, "Can't register rise irq: %d\n", err);
++	err = devm_request_threaded_irq(&pdev->dev, rise_irq,
++					NULL, rk8xx_pwrkey_irq_rising,
++					IRQF_TRIGGER_RISING,
++					"rk8xx_pwrkey_rise", pwrkey);
++	if (err) {
++		dev_err(&pdev->dev, "Can't get rise irq for pwrkey: %d\n", err);
+ 		return err;
+ 	}
+ 
+-	err = input_register_device(pwr);
++	/* register input device */
++	err = input_register_device(pwrkey->input_dev);
+ 	if (err) {
+ 		dev_err(&pdev->dev, "Can't register power button: %d\n", err);
+ 		return err;
+ 	}
+ 
+-	platform_set_drvdata(pdev, pwr);
+ 	device_init_wakeup(&pdev->dev, true);
+-
+ 	return 0;
+ }
+ 
+-static struct platform_driver rk805_pwrkey_driver = {
+-	.probe	= rk805_pwrkey_probe,
+-	.driver	= {
+-		.name = "rk805-pwrkey",
++static struct platform_driver rk8xx_pwrkey_driver = {
++	.probe = rk8xx_pwrkey_probe,
++	.driver		= {
++		.name	= "rk8xx-pwrkey",
++		.owner	= THIS_MODULE,
+ 	},
+ };
+-module_platform_driver(rk805_pwrkey_driver);
+ 
+-MODULE_AUTHOR("Joseph Chen <chenjh@rock-chips.com>");
+-MODULE_DESCRIPTION("RK805 PMIC Power Key driver");
+-MODULE_LICENSE("GPL");
++module_platform_driver(rk8xx_pwrkey_driver);
++
++MODULE_LICENSE("GPL v2");
++MODULE_DESCRIPTION("RK8xx Power Button");
++MODULE_AUTHOR("Chen Jianhong <chenjh@rock-chips.com>");
++
+diff --git a/drivers/mfd/rk808.c b/drivers/mfd/rk808.c
+index ad923dd..76e4c5f 100644
+--- a/drivers/mfd/rk808.c
++++ b/drivers/mfd/rk808.c
+@@ -65,6 +65,11 @@ static bool rk817_is_volatile_reg(struct device *dev, unsigned int reg)
+ 	switch (reg) {
+ 	case RK817_SECONDS_REG ... RK817_WEEKS_REG:
+ 	case RK817_RTC_STATUS_REG:
++	case RK817_CODEC_DTOP_LPT_SRST:
++	case RK817_GAS_GAUGE_ADC_CONFIG0 ... RK817_GAS_GAUGE_CUR_ADC_K0:
++	case RK817_PMIC_CHRG_STS:
++	case RK817_PMIC_CHRG_OUT:
++	case RK817_PMIC_CHRG_IN:
+ 	case RK817_INT_STS_REG0:
+ 	case RK817_INT_STS_REG1:
+ 	case RK817_INT_STS_REG2:
+@@ -126,8 +126,16 @@
+ };
+ 
+ static struct resource rk817_pwrkey_resources[] = {
+-	DEFINE_RES_IRQ(RK817_IRQ_PWRON_RISE),
+-	DEFINE_RES_IRQ(RK817_IRQ_PWRON_FALL),
++	{
++		.start  = RK817_IRQ_PWRON_RISE,
++		.end    = RK817_IRQ_PWRON_RISE,
++		.flags  = IORESOURCE_IRQ,
++	},
++	{
++		.start  = RK817_IRQ_PWRON_FALL,
++		.end    = RK817_IRQ_PWRON_FALL,
++		.flags  = IORESOURCE_IRQ,
++	},
+ };
+ 
+ static const struct mfd_cell rk805s[] = {
+@@ -154,7 +169,7 @@ static const struct mfd_cell rk817s[] = {
+ 	{ .name = "rk808-clkout",},
+ 	{ .name = "rk808-regulator",},
+ 	{
+-		.name = "rk805-pwrkey",
++		.name = "rk8xx-pwrkey",
+ 		.num_resources = ARRAY_SIZE(rk817_pwrkey_resources),
+ 		.resources = &rk817_pwrkey_resources[0],
+ 	},
+@@ -163,6 +178,17 @@ static const struct mfd_cell rk817s[] = {
+ 		.num_resources = ARRAY_SIZE(rk817_rtc_resources),
+ 		.resources = &rk817_rtc_resources[0],
+ 	},
++#ifdef CONFIG_SND_SOC_RK817
++	{
++		.name = "rk817-codec",
++	},
++#endif
++#ifdef CONFIG_BATTERY_RK817
++	{
++		.name = "rk817-battery",
++		.of_compatible = "rk817,battery",
++	},
++#endif
+ };
+ 
+ static const struct mfd_cell rk818s[] = {
+@@ -201,6 +227,85 @@ static const struct rk808_reg_data rk808_pre_init_reg[] = {
+ 
+ static const struct rk808_reg_data rk817_pre_init_reg[] = {
+ 	{RK817_RTC_CTRL_REG, RTC_STOP, RTC_STOP},
++	/* Codec specific registers */
++	{ RK817_CODEC_DTOP_VUCTL, MASK_ALL, 0x03 },
++	{ RK817_CODEC_DTOP_VUCTIME, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DTOP_LPT_SRST, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DTOP_DIGEN_CLKE, MASK_ALL, 0x00 },
++	/* from vendor driver, CODEC_AREF_RTCFG0 not defined in data sheet */
++	{ RK817_CODEC_AREF_RTCFG0, MASK_ALL, 0x00 },
++	{ RK817_CODEC_AREF_RTCFG1, MASK_ALL, 0x06 },
++	{ RK817_CODEC_AADC_CFG0, MASK_ALL, 0xc8 },
++	/* from vendor driver, CODEC_AADC_CFG1 not defined in data sheet */
++	{ RK817_CODEC_AADC_CFG1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DADC_VOLL, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DADC_VOLR, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DADC_SR_ACL0, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DADC_ALC1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DADC_ALC2, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DADC_NG, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DADC_HPF, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DADC_RVOLL, MASK_ALL, 0xff },
++	{ RK817_CODEC_DADC_RVOLR, MASK_ALL, 0xff },
++	{ RK817_CODEC_AMIC_CFG0, MASK_ALL, 0x70 },
++	{ RK817_CODEC_AMIC_CFG1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DMIC_PGA_GAIN, MASK_ALL, 0x66 },
++	{ RK817_CODEC_DMIC_LMT1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DMIC_LMT2, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DMIC_NG1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DMIC_NG2, MASK_ALL, 0x00 },
++	/* from vendor driver, CODEC_ADAC_CFG0 not defined in data sheet */
++	{ RK817_CODEC_ADAC_CFG0, MASK_ALL, 0x00 },
++	{ RK817_CODEC_ADAC_CFG1, MASK_ALL, 0x07 },
++	{ RK817_CODEC_DDAC_POPD_DACST, MASK_ALL, 0x82 },
++	{ RK817_CODEC_DDAC_VOLL, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DDAC_VOLR, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DDAC_SR_LMT0, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DDAC_LMT1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DDAC_LMT2, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DDAC_MUTE_MIXCTL, MASK_ALL, 0xa0 },
++	{ RK817_CODEC_DDAC_RVOLL, MASK_ALL, 0xff },
++	{ RK817_CODEC_DADC_RVOLR, MASK_ALL, 0xff },
++	{ RK817_CODEC_AMIC_CFG0, MASK_ALL, 0x70 },
++	{ RK817_CODEC_AMIC_CFG1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DMIC_PGA_GAIN, MASK_ALL, 0x66 },
++	{ RK817_CODEC_DMIC_LMT1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DMIC_LMT2, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DMIC_NG1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DMIC_NG2, MASK_ALL, 0x00 },
++	/* from vendor driver, CODEC_ADAC_CFG0 not defined in data sheet */
++	{ RK817_CODEC_ADAC_CFG0, MASK_ALL, 0x00 },
++	{ RK817_CODEC_ADAC_CFG1, MASK_ALL, 0x07 },
++	{ RK817_CODEC_DDAC_POPD_DACST, MASK_ALL, 0x82 },
++	{ RK817_CODEC_DDAC_VOLL, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DDAC_VOLR, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DDAC_SR_LMT0, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DDAC_LMT1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DDAC_LMT2, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DDAC_MUTE_MIXCTL, MASK_ALL, 0xa0 },
++	{ RK817_CODEC_DDAC_RVOLL, MASK_ALL, 0xff },
++	{ RK817_CODEC_DDAC_RVOLR, MASK_ALL, 0xff },
++	{ RK817_CODEC_AHP_ANTI0, MASK_ALL, 0x00 },
++	{ RK817_CODEC_AHP_ANTI1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_AHP_CFG0, MASK_ALL, 0xe0 },
++	{ RK817_CODEC_AHP_CFG1, MASK_ALL, 0x1f },
++	{ RK817_CODEC_AHP_CP, MASK_ALL, 0x09 },
++	{ RK817_CODEC_ACLASSD_CFG1, MASK_ALL, 0x69 },
++	{ RK817_CODEC_ACLASSD_CFG2, MASK_ALL, 0x44 },
++	{ RK817_CODEC_APLL_CFG0, MASK_ALL, 0x04 },
++	{ RK817_CODEC_APLL_CFG1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_APLL_CFG2, MASK_ALL, 0x30 },
++	{ RK817_CODEC_APLL_CFG3, MASK_ALL, 0x19 },
++	{ RK817_CODEC_APLL_CFG4, MASK_ALL, 0x65 },
++	{ RK817_CODEC_APLL_CFG5, MASK_ALL, 0x01 },
++	{ RK817_CODEC_DI2S_CKM, MASK_ALL, 0x01 },
++	{ RK817_CODEC_DI2S_RSD, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DI2S_RXCR1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DI2S_RXCR2, MASK_ALL, 0x17 },
++	{ RK817_CODEC_DI2S_RXCMD_TSD, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DI2S_TXCR1, MASK_ALL, 0x00 },
++	{ RK817_CODEC_DI2S_TXCR2, MASK_ALL, 0x17 },
++	{ RK817_CODEC_DI2S_TXCR3_TXCMD, MASK_ALL, 0x00 },
+ 	{RK817_GPIO_INT_CFG, RK817_INT_POL_MSK, RK817_INT_POL_L},
+ 	{RK817_SYS_CFG(1), RK817_HOTDIE_TEMP_MSK | RK817_TSD_TEMP_MSK,
+ 					   RK817_HOTDIE_105 | RK817_TSD_140},
+@@ -524,6 +629,7 @@ static int rk808_probe(struct i2c_client *client,
+ 	unsigned char pmic_id_msb, pmic_id_lsb;
+ 	int ret;
+ 	int i;
++	const struct regmap_irq_chip *irq_chip, *battery_irq_chip = NULL;
+ 
+ 	rk808 = devm_kzalloc(&client->dev, sizeof(*rk808), GFP_KERNEL);
+ 	if (!rk808)
+@@ -631,6 +737,19 @@ static int rk808_probe(struct i2c_client *client,
+ 		}
+ 	}
+ 
++        if (battery_irq_chip) {
++                ret = regmap_add_irq_chip(rk808->regmap, client->irq,
++                                          IRQF_ONESHOT | IRQF_SHARED, -1,
++                                          battery_irq_chip,
++                                          &rk808->battery_irq_data);
++                if (ret) {
++                        dev_err(&client->dev,
++                                "Failed to add batterry irq_chip %d\n", ret);
++                        regmap_del_irq_chip(client->irq, rk808->irq_data);
++                        return ret;
++                }
++        }
++
+ 	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_NONE,
+ 			      cells, nr_cells, NULL, 0,
+ 			      regmap_irq_get_domain(rk808->irq_data));
+@@ -644,6 +763,8 @@ static int rk808_probe(struct i2c_client *client,
+ 		pm_power_off = rk808_pm_power_off;
+ 	}
+ 
++	device_init_wakeup(&client->dev, true);
++
+ 	return 0;
+ 
+ err_irq:
+diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+index e696364..a128974 100644
+--- a/drivers/power/supply/Kconfig
++++ b/drivers/power/supply/Kconfig
+@@ -718,6 +718,13 @@ config BATTERY_RT5033
+ 	  The fuelgauge calculates and determines the battery state of charge
+ 	  according to battery open circuit voltage.
+ 
++config BATTERY_RK817
++	bool "RK817 Battery Driver"
++	depends on MFD_RK808
++	help
++	  This adds support for the battery for the Rockchip RK817 PMIC.
++	  The battery is an optional device for the RK817 PMIC.
++
+ config CHARGER_RT9455
+ 	tristate "Richtek RT9455 battery charger driver"
+ 	depends on I2C
+diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
+index a7309a3..52bbd30 100644
+--- a/drivers/power/supply/Makefile
++++ b/drivers/power/supply/Makefile
+@@ -53,6 +53,7 @@ obj-$(CONFIG_BATTERY_MAX17040)	+= max17040_battery.o
+ obj-$(CONFIG_BATTERY_MAX17042)	+= max17042_battery.o
+ obj-$(CONFIG_BATTERY_MAX1721X)	+= max1721x_battery.o
+ obj-$(CONFIG_BATTERY_Z2)	+= z2_battery.o
++obj-$(CONFIG_BATTERY_RK817)     += rk817_battery.o
+ obj-$(CONFIG_BATTERY_RT5033)	+= rt5033_battery.o
+ obj-$(CONFIG_CHARGER_RT9455)	+= rt9455_charger.o
+ obj-$(CONFIG_BATTERY_S3C_ADC)	+= s3c_adc_battery.o
+diff --git a/linux-go-next/drivers/power/supply/rk817_battery.c b/drivers/power/supply/rk817_battery.c
+new file mode 100644
+index 0000000..bb8c9c5
+--- /dev/null
++++ b/drivers/power/supply/rk817_battery.c
+@@ -0,0 +1,281 @@
++#include <linux/delay.h>
++#include <linux/extcon.h>
++#include <linux/fb.h>
++#include <linux/gpio.h>
++#include <linux/iio/consumer.h>
++#include <linux/iio/iio.h>
++#include <linux/irq.h>
++#include <linux/jiffies.h>
++#include <linux/mfd/rk808.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include <linux/of_gpio.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/rtc.h>
++#include <linux/timer.h>
++#include <linux/workqueue.h>
++#include <linux/power_supply.h>
++
++enum charge_status {
++	CHRG_OFF,
++	DEAD_CHRG,
++	TRICKLE_CHRG,
++	CC_OR_CV_CHRG,
++	CHARGE_FINISH,
++	USB_OVER_VOL,
++	BAT_TMP_ERR,
++	BAT_TIM_ERR,
++};
++
++struct rk817_bat {
++	struct platform_device *pdev;
++	struct device *dev;
++	struct i2c_client *client;
++	struct rk808 *rk808;
++
++	struct power_supply *bat_ps;
++	struct power_supply_battery_info info;
++
++	int voltage_k;
++	int voltage_b;
++	int res_div;
++	int sample_res;
++};
++
++static int rk817_get_reg_hl(struct rk817_bat *battery, int regH, int regL, uint32_t *val)
++{
++	int ret;
++	uint32_t tmp, out;
++	struct rk808 *rk808 = battery->rk808;
++
++	ret = regmap_read(rk808->regmap, regL, &tmp);
++	if (ret)
++		return ret;
++	out |= tmp;
++
++	ret = regmap_read(rk808->regmap, regH, &tmp);
++	if (ret)
++		return ret;
++	out |= tmp << 8;
++
++	*val = out;
++	return 0;
++}
++
++static void rk817_write_reg_hl(struct rk817_bat *battery, int regH, int regL, int val)
++{
++	uint8_t tmp;
++	struct rk808 *rk808 = battery->rk808;
++
++	tmp = val & 0xff;
++	regmap_write(rk808->regmap, regL, tmp);
++	tmp = (val >> 8) & 0xff;
++	regmap_write(rk808->regmap, regH, tmp);
++}
++
++static void rk817_bat_calib_vol(struct rk817_bat *battery)
++{
++	printk("rk817 calib vol");
++	uint32_t vcalib0 = 0;
++	uint32_t vcalib1 = 0;
++	int ret;
++
++	/* calibrate voltage */
++	ret = rk817_get_reg_hl(battery, RK817_GAS_GAUGE_VCALIB0_H, RK817_GAS_GAUGE_VCALIB0_L, &vcalib0);
++	if (ret)
++		printk("AAAAAAAA");
++
++	ret = rk817_get_reg_hl(battery, RK817_GAS_GAUGE_VCALIB1_H, RK817_GAS_GAUGE_VCALIB1_L, &vcalib1);
++	if (ret)
++		printk("AAAAAAAAAAAAAA");
++
++	printk("0 %d 1 %d", vcalib0, vcalib1);
++	/* values were taken from BSP kernel */
++	battery->voltage_k = (4025 - 2300) * 1000 / ((vcalib1 - vcalib0) ? (vcalib1 - vcalib0) : 1);
++	battery->voltage_b = 4025 - (battery->voltage_k * vcalib1) / 1000;
++
++}
++
++static void rk817_bat_calib_cur(struct rk817_bat *battery)
++{
++	printk("rk817 calib cur");
++	uint32_t ioffset = 0;
++	int ret;
++	/* calibrate current */
++	ret = rk817_get_reg_hl(battery, RK817_GAS_GAUGE_IOFFSET_H, RK817_GAS_GAUGE_IOFFSET_H, &ioffset);
++	if (ret)
++		printk("AAAAAAAAAAAAAAAAAAAAAAAAA");
++	rk817_write_reg_hl(battery, RK817_GAS_GAUGE_CAL_OFFSET_H, RK817_GAS_GAUGE_CAL_OFFSET_L, ioffset);
++}
++
++static int rk817_bat_get_prop(struct power_supply *ps,
++		enum power_supply_property prop,
++		union power_supply_propval *val)
++{
++	struct rk817_bat *battery = power_supply_get_drvdata(ps);
++	uint32_t tmp = 0;
++	int ret = 0;
++	int reg = 0;
++	struct rk808 *rk808 = battery->rk808;
++	printk("rk817 bat get prop");
++
++	/* recalibrate voltage and current readings if we need to */
++	/* BSP does both on CUR_CALIB_UPD, ignoring VOL_CALIB_UPD */
++	regmap_read(rk808->regmap, RK817_GAS_GAUGE_ADC_CONFIG1, &reg);
++	tmp = (reg >> 7) & RK817_CUR_CALIB_UPD;
++	if (tmp == 0)
++	{
++		rk817_bat_calib_vol(battery);
++		rk817_bat_calib_cur(battery);
++		regmap_update_bits(rk808->regmap, RK817_GAS_GAUGE_ADC_CONFIG1,  RK817_CUR_CALIB_UPD, 1);
++	}
++
++	switch (prop) {
++		case POWER_SUPPLY_PROP_STATUS:
++			ret = regmap_read(rk808->regmap, RK817_PMIC_CHRG_STS, &reg);
++			if (ret)
++				return ret;
++			tmp = (reg >> 4) & RK817_CHG_STS;
++			switch(tmp) {
++				case CHRG_OFF:
++					val->intval = POWER_SUPPLY_STATUS_DISCHARGING;
++					break;
++				case DEAD_CHRG:
++					val->intval = POWER_SUPPLY_STATUS_NOT_CHARGING;
++					break;
++				case TRICKLE_CHRG:
++				case CC_OR_CV_CHRG:
++					val->intval = POWER_SUPPLY_STATUS_CHARGING;
++					break;
++				case CHARGE_FINISH:
++					val->intval = POWER_SUPPLY_STATUS_FULL;
++					break;
++				default:
++					val->intval = POWER_SUPPLY_STATUS_UNKNOWN;
++					printk("Error getting battery value");
++					return -EINVAL;
++
++			}
++			break;
++		case POWER_SUPPLY_PROP_CHARGE_TYPE:
++			ret = regmap_read(rk808->regmap, RK817_PMIC_CHRG_STS, &reg);
++			if (ret)
++				return ret;
++			tmp = (reg >> 4) & RK817_CHG_STS;
++			switch(tmp) {
++				case CHRG_OFF:
++				case DEAD_CHRG:
++					val->intval = POWER_SUPPLY_CHARGE_TYPE_NONE;
++					break;
++				case TRICKLE_CHRG:
++					val->intval = POWER_SUPPLY_CHARGE_TYPE_TRICKLE;
++					break;
++				case CC_OR_CV_CHRG:
++					val->intval = POWER_SUPPLY_CHARGE_TYPE_FAST;
++					break;
++				default:
++					val->intval = POWER_SUPPLY_CHARGE_TYPE_UNKNOWN;
++					break;
++			}
++			break;
++		case POWER_SUPPLY_PROP_VOLTAGE_MIN_DESIGN:
++			val->intval = battery->info.voltage_min_design_uv;
++			break;
++		case POWER_SUPPLY_PROP_VOLTAGE_NOW:
++			ret = rk817_get_reg_hl(battery, RK817_GAS_GAUGE_BAT_VOL_H, RK817_GAS_GAUGE_BAT_VOL_L, &tmp);
++			if (ret)
++				return ret;
++			val->intval = 1000 * ((battery->voltage_k * tmp) / (1000 + battery->voltage_b));
++			break;
++		case POWER_SUPPLY_PROP_VOLTAGE_MAX_DESIGN:
++			val->intval = battery->info.voltage_max_design_uv;
++			break;
++		default:
++			return -EINVAL;
++	}
++	return 0;
++}
++
++
++
++static enum power_supply_property rk817_bat_props[] = {
++	POWER_SUPPLY_PROP_STATUS,
++	POWER_SUPPLY_PROP_CHARGE_TYPE,
++	POWER_SUPPLY_PROP_VOLTAGE_NOW,
++	POWER_SUPPLY_PROP_VOLTAGE_MIN_DESIGN,
++	POWER_SUPPLY_PROP_VOLTAGE_MAX_DESIGN,
++};
++
++static const struct power_supply_desc rk817_desc = {
++	.name = "rk817-battery",
++	.type = POWER_SUPPLY_TYPE_BATTERY,
++	.properties = rk817_bat_props,
++	.num_properties = ARRAY_SIZE(rk817_bat_props),
++	.get_property = rk817_bat_get_prop,
++};
++
++#ifdef CONFIG_OF
++static const struct of_device_id rk817_bat_of_match[] = {
++	{ .compatible = "rk817,battery", },
++	{ },
++};
++MODULE_DEVICE_TABLE(of, rk817_bat_of_match);
++#endif
++
++static int rk817_bat_probe(struct platform_device *pdev)
++{
++	struct rk808 *rk808 = dev_get_drvdata(pdev->dev.parent);
++	struct rk817_bat *battery;
++	struct device *dev = &pdev->dev;
++	struct power_supply_config pscfg = {};
++	int ret;
++
++	if (!of_device_is_available(pdev->dev.of_node))
++		return -ENODEV;
++
++	battery = devm_kzalloc(&pdev->dev, sizeof(*battery), GFP_KERNEL);
++	if (!battery)
++		return -ENOMEM;
++
++	battery->rk808 = rk808;
++
++	battery->dev = &pdev->dev;
++	platform_set_drvdata(pdev, battery);
++
++	//rk817_bat_calib_vol(battery);
++
++	pscfg.drv_data = battery;
++	pscfg.of_node = pdev->dev.of_node;
++
++	/* some boards may use different values for sample resistor */
++	ret = of_property_read_u32(pdev->dev.of_node, "sample_res", &battery->sample_res);
++	if (ret < 0)
++		dev_err(dev, "Error reading sample_res");
++	battery->res_div = (battery->sample_res == 20) ? 1 : 2;
++
++	battery->bat_ps = devm_power_supply_register(&pdev->dev, &rk817_desc, &pscfg);
++
++	ret = power_supply_get_battery_info(battery->bat_ps, &battery->info);
++	if (ret) {
++		dev_err(dev, "Unable to get battery info: %d\n", ret);
++		return ret;
++	}
++
++	return 0;
++}
++
++
++static struct platform_driver rk817_bat_driver = {
++	.probe    = rk817_bat_probe,
++	.driver   = {
++		.name  = "rk817-battery",
++		.of_match_table = rk817_bat_of_match,
++	},
++};
++module_platform_driver(rk817_bat_driver);
++
++MODULE_DESCRIPTION("Battery power supply driver for RK817 PMIC");
++MODULE_AUTHOR("Maciej Matuszczyk <maccraft123mc@gmail.com>");
++MODULE_LICENSE("GPL");
++
+diff --git a/linux-go-next/include/linux/firmware/rockchip_sip.h b/include/linux/firmware/rockchip_sip.h
+new file mode 100644
+index 0000000..e36ce9b
+--- /dev/null
++++ b/include/linux/firmware/rockchip_sip.h
+@@ -0,0 +1,331 @@
++/* Copyright (c) 2016, Fuzhou Rockchip Electronics Co., Ltd
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License version 2 and
++ * only version 2 as published by the Free Software Foundation.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ */
++#ifndef __ROCKCHIP_SIP_H
++#define __ROCKCHIP_SIP_H
++
++#include <linux/arm-smccc.h>
++#include <linux/io.h>
++
++/* SMC function IDs for SiP Service queries, compatible with kernel-3.10 */
++#define SIP_ATF_VERSION			0x82000001
++#define SIP_ACCESS_REG			0x82000002
++#define SIP_SUSPEND_MODE		0x82000003
++#define SIP_PENDING_CPUS		0x82000004
++#define SIP_UARTDBG_CFG			0x82000005
++#define SIP_UARTDBG_CFG64		0xc2000005
++#define SIP_MCU_EL3FIQ_CFG		0x82000006
++#define SIP_ACCESS_CHIP_STATE64		0xc2000006
++#define SIP_SECURE_MEM_CONFIG		0x82000007
++#define SIP_ACCESS_CHIP_EXTRA_STATE64	0xc2000007
++#define SIP_DRAM_CONFIG			0x82000008
++#define SIP_SHARE_MEM			0x82000009
++#define SIP_SIP_VERSION			0x8200000a
++#define SIP_REMOTECTL_CFG		0x8200000b
++#define PSCI_SIP_VPU_RESET		0x8200000c
++#define SIP_BUS_CFG			0x8200000d
++#define SIP_LAST_LOG			0x8200000e
++#define SIP_SCMI_AGENT0			0x82000010
++#define SIP_SCMI_AGENT1			0x82000011
++#define SIP_SCMI_AGENT2			0x82000012
++#define SIP_SCMI_AGENT3			0x82000013
++#define SIP_SCMI_AGENT4			0x82000014
++#define SIP_SCMI_AGENT5			0x82000015
++#define SIP_SCMI_AGENT6			0x82000016
++#define SIP_SCMI_AGENT7			0x82000017
++#define SIP_SCMI_AGENT8			0x82000018
++#define SIP_SCMI_AGENT9			0x82000019
++#define SIP_SCMI_AGENT10		0x8200001a
++#define SIP_SCMI_AGENT11		0x8200001b
++#define SIP_SCMI_AGENT12		0x8200001c
++#define SIP_SCMI_AGENT13		0x8200001d
++#define SIP_SCMI_AGENT14		0x8200001e
++#define SIP_SCMI_AGENT15		0x8200001f
++#define SIP_SDEI_FIQ_DBG_SWITCH_CPU	0x82000020
++#define SIP_SDEI_FIQ_DBG_GET_EVENT_ID	0x82000021
++
++/* Rockchip Sip version */
++#define SIP_IMPLEMENT_V1                (1)
++#define SIP_IMPLEMENT_V2                (2)
++
++/* Trust firmware version */
++#define ATF_VER_MAJOR(ver)		(((ver) >> 16) & 0xffff)
++#define ATF_VER_MINOR(ver)		(((ver) >> 0) & 0xffff)
++
++/* SIP_ACCESS_REG: read or write */
++#define SECURE_REG_RD			0x0
++#define SECURE_REG_WR			0x1
++
++/* Fiq debugger share memory: 8KB enough */
++#define FIQ_UARTDBG_PAGE_NUMS		2
++#define FIQ_UARTDBG_SHARE_MEM_SIZE	((FIQ_UARTDBG_PAGE_NUMS) * 4096)
++
++/* Error return code */
++#define IS_SIP_ERROR(x)			(!!(x))
++
++#define SIP_RET_SUCCESS			0
++#define SIP_RET_SMC_UNKNOWN		-1
++#define SIP_RET_NOT_SUPPORTED		-2
++#define SIP_RET_INVALID_PARAMS		-3
++#define SIP_RET_INVALID_ADDRESS		-4
++#define SIP_RET_DENIED			-5
++#define SIP_RET_SET_RATE_TIMEOUT	-6
++
++/* SIP_UARTDBG_CFG64 call types */
++#define UARTDBG_CFG_INIT		0xf0
++#define UARTDBG_CFG_OSHDL_TO_OS		0xf1
++#define UARTDBG_CFG_OSHDL_CPUSW		0xf3
++#define UARTDBG_CFG_OSHDL_DEBUG_ENABLE	0xf4
++#define UARTDBG_CFG_OSHDL_DEBUG_DISABLE	0xf5
++#define UARTDBG_CFG_PRINT_PORT		0xf7
++#define UARTDBG_CFG_FIQ_ENABEL		0xf8
++#define UARTDBG_CFG_FIQ_DISABEL		0xf9
++
++/* SIP_SUSPEND_MODE32 call types */
++#define SUSPEND_MODE_CONFIG		0x01
++#define WKUP_SOURCE_CONFIG		0x02
++#define PWM_REGULATOR_CONFIG		0x03
++#define GPIO_POWER_CONFIG		0x04
++#define SUSPEND_DEBUG_ENABLE		0x05
++#define APIOS_SUSPEND_CONFIG		0x06
++#define VIRTUAL_POWEROFF		0x07
++#define SUSPEND_WFI_TIME_MS		0x08
++
++/* SIP_REMOTECTL_CFG call types */
++#define	REMOTECTL_SET_IRQ		0xf0
++#define REMOTECTL_SET_PWM_CH		0xf1
++#define REMOTECTL_SET_PWRKEY		0xf2
++#define REMOTECTL_GET_WAKEUP_STATE	0xf3
++#define REMOTECTL_ENABLE		0xf4
++/* wakeup state */
++#define REMOTECTL_PWRKEY_WAKEUP		0xdeadbeaf
++
++enum {
++	FIRMWARE_NONE,
++	FIRMWARE_TEE_32BIT,
++	FIRMWARE_ATF_32BIT,
++	FIRMWARE_ATF_64BIT,
++	FIRMWARE_END,
++};
++
++/* Share mem page types */
++typedef enum {
++	SHARE_PAGE_TYPE_INVALID = 0,
++	SHARE_PAGE_TYPE_UARTDBG,
++	SHARE_PAGE_TYPE_DDR,
++	SHARE_PAGE_TYPE_DDRDBG,
++	SHARE_PAGE_TYPE_MAX,
++} share_page_type_t;
++
++/*
++ * Rules: struct arm_smccc_res contains result and data, details:
++ *
++ * a0: error code(0: success, !0: error);
++ * a1~a3: data
++ */
++#if IS_ENABLED(CONFIG_ROCKCHIP_SIP)
++struct arm_smccc_res sip_smc_get_atf_version(void);
++struct arm_smccc_res sip_smc_get_sip_version(void);
++struct arm_smccc_res sip_smc_dram(u32 arg0, u32 arg1, u32 arg2);
++struct arm_smccc_res sip_smc_request_share_mem(u32 page_num,
++					       share_page_type_t page_type);
++struct arm_smccc_res sip_smc_mcu_el3fiq(u32 arg0, u32 arg1, u32 arg2);
++struct arm_smccc_res sip_smc_vpu_reset(u32 arg0, u32 arg1, u32 arg2);
++struct arm_smccc_res sip_smc_get_suspend_info(u32 info);
++struct arm_smccc_res sip_smc_lastlog_request(void);
++
++int sip_smc_set_suspend_mode(u32 ctrl, u32 config1, u32 config2);
++int sip_smc_virtual_poweroff(void);
++int sip_smc_remotectl_config(u32 func, u32 data);
++
++int sip_smc_secure_reg_write(u32 addr_phy, u32 val);
++u32 sip_smc_secure_reg_read(u32 addr_phy);
++struct arm_smccc_res sip_smc_bus_config(u32 arg0, u32 arg1, u32 arg2);
++
++/***************************fiq debugger **************************************/
++void sip_fiq_debugger_enable_fiq(bool enable, uint32_t tgt_cpu);
++void sip_fiq_debugger_enable_debug(bool enable);
++int sip_fiq_debugger_uart_irq_tf_init(u32 irq_id, void *callback_fn);
++int sip_fiq_debugger_set_print_port(u32 port_phyaddr, u32 baudrate);
++int sip_fiq_debugger_request_share_memory(void);
++int sip_fiq_debugger_get_target_cpu(void);
++int sip_fiq_debugger_switch_cpu(u32 cpu);
++int sip_fiq_debugger_sdei_switch_cpu(u32 cur_cpu, u32 target_cpu, u32 flag);
++int sip_fiq_debugger_is_enabled(void);
++int sip_fiq_debugger_sdei_get_event_id(u32 *fiq, u32 *sw_cpu, u32 *flag);
++#else
++static inline struct arm_smccc_res sip_smc_get_atf_version(void)
++{
++	struct arm_smccc_res tmp = {0};
++	return tmp;
++}
++
++static inline struct arm_smccc_res sip_smc_get_sip_version(void)
++{
++	struct arm_smccc_res tmp = {0};
++	return tmp;
++}
++
++static inline struct arm_smccc_res sip_smc_dram(u32 arg0, u32 arg1, u32 arg2)
++{
++	struct arm_smccc_res tmp = {0};
++	return tmp;
++}
++
++static inline struct arm_smccc_res sip_smc_request_share_mem
++			(u32 page_num, share_page_type_t page_type)
++{
++	struct arm_smccc_res tmp = {0};
++	return tmp;
++}
++
++static inline struct arm_smccc_res sip_smc_mcu_el3fiq
++			(u32 arg0, u32 arg1, u32 arg2)
++{
++	struct arm_smccc_res tmp = {0};
++	return tmp;
++}
++
++static inline struct arm_smccc_res
++sip_smc_vpu_reset(u32 arg0, u32 arg1, u32 arg2)
++{
++	struct arm_smccc_res tmp = {0};
++	return tmp;
++}
++
++static inline struct arm_smccc_res sip_smc_lastlog_request(void)
++{
++	struct arm_smccc_res tmp = {0};
++	return tmp;
++}
++
++static inline int sip_smc_set_suspend_mode(u32 ctrl, u32 config1, u32 config2)
++{
++	return 0;
++}
++
++static inline int sip_smc_get_suspend_info(u32 info)
++{
++	return 0;
++}
++
++static inline int sip_smc_virtual_poweroff(void) { return 0; }
++static inline int sip_smc_remotectl_config(u32 func, u32 data) { return 0; }
++static inline u32 sip_smc_secure_reg_read(u32 addr_phy) { return 0; }
++static inline int sip_smc_secure_reg_write(u32 addr_phy, u32 val) { return 0; }
++static inline int sip_smc_soc_bus_div(u32 arg0, u32 arg1, u32 arg2)
++{
++	return 0;
++}
++
++/***************************fiq debugger **************************************/
++static inline void sip_fiq_debugger_enable_fiq
++			(bool enable, uint32_t tgt_cpu) { return; }
++
++static inline void sip_fiq_debugger_enable_debug(bool enable) { return; }
++static inline int sip_fiq_debugger_uart_irq_tf_init(u32 irq_id,
++						    void *callback_fn)
++{
++	return 0;
++}
++
++static inline int sip_fiq_debugger_set_print_port(u32 port_phyaddr,
++						  u32 baudrate)
++{
++	return 0;
++}
++
++static inline int sip_fiq_debugger_request_share_memory(void) { return 0; }
++static inline int sip_fiq_debugger_get_target_cpu(void) { return 0; }
++static inline int sip_fiq_debugger_switch_cpu(u32 cpu) { return 0; }
++static inline int sip_fiq_debugger_sdei_switch_cpu(u32 cur_cpu, u32 target_cpu,
++						   u32 flag) { return 0; }
++static inline int sip_fiq_debugger_is_enabled(void) { return 0; }
++#endif
++
++/* 32-bit OP-TEE context, never change order of members! */
++struct sm_nsec_ctx {
++	u32 usr_sp;
++	u32 usr_lr;
++	u32 irq_spsr;
++	u32 irq_sp;
++	u32 irq_lr;
++	u32 fiq_spsr;
++	u32 fiq_sp;
++	u32 fiq_lr;
++	u32 svc_spsr;
++	u32 svc_sp;
++	u32 svc_lr;
++	u32 abt_spsr;
++	u32 abt_sp;
++	u32 abt_lr;
++	u32 und_spsr;
++	u32 und_sp;
++	u32 und_lr;
++	u32 mon_lr;
++	u32 mon_spsr;
++	u32 r4;
++	u32 r5;
++	u32 r6;
++	u32 r7;
++	u32 r8;
++	u32 r9;
++	u32 r10;
++	u32 r11;
++	u32 r12;
++	u32 r0;
++	u32 r1;
++	u32 r2;
++	u32 r3;
++};
++
++/* 64-bit ATF context, never change order of members! */
++struct gp_regs_ctx {
++	u64 x0;
++	u64 x1;
++	u64 x2;
++	u64 x3;
++	u64 x4;
++	u64 x5;
++	u64 x6;
++	u64 x7;
++	u64 x8;
++	u64 x9;
++	u64 x10;
++	u64 x11;
++	u64 x12;
++	u64 x13;
++	u64 x14;
++	u64 x15;
++	u64 x16;
++	u64 x17;
++	u64 x18;
++	u64 x19;
++	u64 x20;
++	u64 x21;
++	u64 x22;
++	u64 x23;
++	u64 x24;
++	u64 x25;
++	u64 x26;
++	u64 x27;
++	u64 x28;
++	u64 x29;
++	u64 lr;
++	u64 sp_el0;
++	u64 scr_el3;
++	u64 runtime_sp;
++	u64 spsr_el3;
++	u64 elr_el3;
++};
++
++#endif
++
+diff --git a/include/linux/mfd/rk808.h b/include/linux/mfd/rk808.h
+index e07f6e6..6b60a5d 100644
+--- a/include/linux/mfd/rk808.h
++++ b/include/linux/mfd/rk808.h
+@@ -437,6 +437,196 @@ enum rk809_reg_id {
+ #define RK817_RTC_COMP_LSB_REG		0x10
+ #define RK817_RTC_COMP_MSB_REG		0x11
+ 
++/* RK817 Codec Registers */
++#define RK817_CODEC_DTOP_VUCTL		0x12
++#define RK817_CODEC_DTOP_VUCTIME	0x13
++#define RK817_CODEC_DTOP_LPT_SRST	0x14
++#define RK817_CODEC_DTOP_DIGEN_CLKE	0x15
++#define RK817_CODEC_AREF_RTCFG0		0x16
++#define RK817_CODEC_AREF_RTCFG1		0x17
++#define RK817_CODEC_AADC_CFG0		0x18
++#define RK817_CODEC_AADC_CFG1		0x19
++#define RK817_CODEC_DADC_VOLL		0x1a
++#define RK817_CODEC_DADC_VOLR		0x1b
++#define RK817_CODEC_DADC_SR_ACL0	0x1e
++#define RK817_CODEC_DADC_ALC1		0x1f
++#define RK817_CODEC_DADC_ALC2		0x20
++#define RK817_CODEC_DADC_NG		0x21
++#define RK817_CODEC_DADC_HPF		0x22
++#define RK817_CODEC_DADC_RVOLL		0x23
++#define RK817_CODEC_DADC_RVOLR		0x24
++#define RK817_CODEC_AMIC_CFG0		0x27
++#define RK817_CODEC_AMIC_CFG1		0x28
++#define RK817_CODEC_DMIC_PGA_GAIN	0x29
++#define RK817_CODEC_DMIC_LMT1		0x2a
++#define RK817_CODEC_DMIC_LMT2		0x2b
++#define RK817_CODEC_DMIC_NG1		0x2c
++#define RK817_CODEC_DMIC_NG2		0x2d
++#define RK817_CODEC_ADAC_CFG0		0x2e
++#define RK817_CODEC_ADAC_CFG1		0x2f
++#define RK817_CODEC_DDAC_POPD_DACST	0x30
++#define RK817_CODEC_DDAC_VOLL		0x31
++#define RK817_CODEC_DDAC_VOLR		0x32
++#define RK817_CODEC_DDAC_SR_LMT0	0x35
++#define RK817_CODEC_DDAC_LMT1		0x36
++#define RK817_CODEC_DDAC_LMT2		0x37
++#define RK817_CODEC_DDAC_MUTE_MIXCTL	0x38
++#define RK817_CODEC_DDAC_RVOLL		0x39
++#define RK817_CODEC_DDAC_RVOLR		0x3a
++#define RK817_CODEC_AHP_ANTI0		0x3b
++#define RK817_CODEC_AHP_ANTI1		0x3c
++#define RK817_CODEC_AHP_CFG0		0x3d
++#define RK817_CODEC_AHP_CFG1		0x3e
++#define RK817_CODEC_AHP_CP		0x3f
++#define RK817_CODEC_ACLASSD_CFG1	0x40
++#define RK817_CODEC_ACLASSD_CFG2	0x41
++#define RK817_CODEC_APLL_CFG0		0x42
++#define RK817_CODEC_APLL_CFG1		0x43
++#define RK817_CODEC_APLL_CFG2		0x44
++#define RK817_CODEC_APLL_CFG3		0x45
++#define RK817_CODEC_APLL_CFG4		0x46
++#define RK817_CODEC_APLL_CFG5		0x47
++#define RK817_CODEC_DI2S_CKM		0x48
++#define RK817_CODEC_DI2S_RSD		0x49
++#define RK817_CODEC_DI2S_RXCR1		0x4a
++#define RK817_CODEC_DI2S_RXCR2		0x4b
++#define RK817_CODEC_DI2S_RXCMD_TSD	0x4c
++#define RK817_CODEC_DI2S_TXCR1		0x4d
++#define RK817_CODEC_DI2S_TXCR2		0x4e
++#define RK817_CODEC_DI2S_TXCR3_TXCMD	0x4f
++
++/* RK817_CODEC_DI2S_CKM */
++#define RK817_I2S_MODE_MASK		(0x1 << 0)
++#define RK817_I2S_MODE_MST		(0x1 << 0)
++#define RK817_I2S_MODE_SLV		(0x0 << 0)
++
++/* RK817_CODEC_DDAC_MUTE_MIXCTL */
++#define DACMT_MASK			(0x1 << 0)
++#define DACMT_ENABLE			(0x1 << 0)
++#define DACMT_DISABLE			(0x0 << 0)
++
++/* RK817_CODEC_DI2S_RXCR2 */
++#define VDW_RX_24BITS			(0x17)
++#define VDW_RX_16BITS			(0x0f)
++
++/* RK817_CODEC_DI2S_TXCR2 */
++#define VDW_TX_24BITS			(0x17)
++#define VDW_TX_16BITS			(0x0f)
++
++/* RK817_CODEC_AMIC_CFG0 */
++#define MIC_DIFF_MASK			(0x1 << 7)
++#define MIC_DIFF_DIS			(0x0 << 7)
++#define MIC_DIFF_EN			(0x1 << 7)
++
++/* RK817 Codec Registers */
++#define RK817_CODEC_DTOP_VUCTL		0x12
++#define RK817_CODEC_DTOP_VUCTIME	0x13
++#define RK817_CODEC_DTOP_LPT_SRST	0x14
++#define RK817_CODEC_DTOP_DIGEN_CLKE	0x15
++#define RK817_CODEC_AREF_RTCFG0		0x16
++#define RK817_CODEC_AREF_RTCFG1		0x17
++#define RK817_CODEC_AADC_CFG0		0x18
++#define RK817_CODEC_AADC_CFG1		0x19
++#define RK817_CODEC_DADC_VOLL		0x1a
++#define RK817_CODEC_DADC_VOLR		0x1b
++#define RK817_CODEC_DADC_SR_ACL0	0x1e
++#define RK817_CODEC_DADC_ALC1		0x1f
++#define RK817_CODEC_DADC_ALC2		0x20
++#define RK817_CODEC_DADC_NG		0x21
++#define RK817_CODEC_DADC_HPF		0x22
++#define RK817_CODEC_DADC_RVOLL		0x23
++#define RK817_CODEC_DADC_RVOLR		0x24
++#define RK817_CODEC_AMIC_CFG0		0x27
++#define RK817_CODEC_AMIC_CFG1		0x28
++#define RK817_CODEC_DMIC_PGA_GAIN	0x29
++#define RK817_CODEC_DMIC_LMT1		0x2a
++#define RK817_CODEC_DMIC_LMT2		0x2b
++#define RK817_CODEC_DMIC_NG1		0x2c
++#define RK817_CODEC_DMIC_NG2		0x2d
++#define RK817_CODEC_ADAC_CFG0		0x2e
++#define RK817_CODEC_ADAC_CFG1		0x2f
++#define RK817_CODEC_DDAC_POPD_DACST	0x30
++#define RK817_CODEC_DDAC_VOLL		0x31
++#define RK817_CODEC_DDAC_VOLR		0x32
++#define RK817_CODEC_DDAC_SR_LMT0	0x35
++#define RK817_CODEC_DDAC_LMT1		0x36
++#define RK817_CODEC_DDAC_LMT2		0x37
++#define RK817_CODEC_DDAC_MUTE_MIXCTL	0x38
++#define RK817_CODEC_DDAC_RVOLL		0x39
++#define RK817_CODEC_DDAC_RVOLR		0x3a
++#define RK817_CODEC_AHP_ANTI0		0x3b
++#define RK817_CODEC_AHP_ANTI1		0x3c
++#define RK817_CODEC_AHP_CFG0		0x3d
++#define RK817_CODEC_AHP_CFG1		0x3e
++#define RK817_CODEC_AHP_CP		0x3f
++#define RK817_CODEC_ACLASSD_CFG1	0x40
++#define RK817_CODEC_ACLASSD_CFG2	0x41
++#define RK817_CODEC_APLL_CFG0		0x42
++#define RK817_CODEC_APLL_CFG1		0x43
++#define RK817_CODEC_APLL_CFG2		0x44
++#define RK817_CODEC_APLL_CFG3		0x45
++#define RK817_CODEC_APLL_CFG4		0x46
++#define RK817_CODEC_APLL_CFG5		0x47
++#define RK817_CODEC_DI2S_CKM		0x48
++#define RK817_CODEC_DI2S_RSD		0x49
++#define RK817_CODEC_DI2S_RXCR1		0x4a
++#define RK817_CODEC_DI2S_RXCR2		0x4b
++#define RK817_CODEC_DI2S_RXCMD_TSD	0x4c
++#define RK817_CODEC_DI2S_TXCR1		0x4d
++#define RK817_CODEC_DI2S_TXCR2		0x4e
++#define RK817_CODEC_DI2S_TXCR3_TXCMD	0x4f
++
++/* RK817 Battery Registers */
++#define RK817_GAS_GAUGE_ADC_CONFIG0	0x50
++#define RK817_GAS_GAUGE_ADC_CONFIG1	0x55
++
++#define RK817_CUR_CALIB_UPD		(0x1 << 7)
++#define RK817_VOL_CALIB_UPD		(0x1 << 6)
++
++#define RK817_GAS_GAUGE_OCV_THRE_VOL	0x62
++#define RK817_GAS_GAUGE_OCV_VOL_H	0x63
++#define RK817_GAS_GAUGE_OCV_VOL_L	0x64
++#define RK817_GAS_GAUGE_Q_PRES_H3	0x74
++#define RK817_GAS_GAUGE_Q_PRES_H2	0x75
++#define RK817_GAS_GAUGE_Q_PRES_L1	0x76
++#define RK817_GAS_GAUGE_Q_PRES_L0	0x77
++#define RK817_GAS_GAUGE_BAT_VOL_H	0x78
++#define RK817_GAS_GAUGE_BAT_VOL_L	0x79
++#define RK817_GAS_GAUGE_SYS_VOL_H	0x80
++#define RK817_GAS_GAUGE_SYS_VOL_L	0x81
++#define RK817_GAS_GAUGE_CAL_OFFSET_H	0x91
++#define RK817_GAS_GAUGE_CAL_OFFSET_L	0x92
++#define RK817_GAS_GAUGE_VCALIB0_H	0x93
++#define RK817_GAS_GAUGE_VCALIB0_L	0x94
++#define RK817_GAS_GAUGE_VCALIB1_H	0x95
++#define RK817_GAS_GAUGE_VCALIB1_L	0x96
++#define RK817_GAS_GAUGE_IOFFSET_H	0x97
++#define RK817_GAS_GAUGE_IOFFSET_L	0x98
++#define RK817_GAS_GAUGE_CUR_ADC_K0	0xb0
++
++/* RK817_CODEC_DI2S_CKM */
++#define RK817_I2S_MODE_MASK		(0x1 << 0)
++#define RK817_I2S_MODE_MST		(0x1 << 0)
++#define RK817_I2S_MODE_SLV		(0x0 << 0)
++
++/* RK817_CODEC_DDAC_MUTE_MIXCTL */
++#define DACMT_MASK			(0x1 << 0)
++#define DACMT_ENABLE			(0x1 << 0)
++#define DACMT_DISABLE			(0x0 << 0)
++
++/* RK817_CODEC_DI2S_RXCR2 */
++#define VDW_RX_24BITS			(0x17)
++#define VDW_RX_16BITS			(0x0f)
++
++/* RK817_CODEC_DI2S_TXCR2 */
++#define VDW_TX_24BITS			(0x17)
++#define VDW_TX_16BITS			(0x0f)
++
++/* RK817_CODEC_AMIC_CFG0 */
++#define MIC_DIFF_MASK			(0x1 << 7)
++#define MIC_DIFF_DIS			(0x0 << 7)
++#define MIC_DIFF_EN			(0x1 << 7)
++
+ #define RK817_POWER_EN_REG(i)		(0xb1 + (i))
+ #define RK817_POWER_SLP_EN_REG(i)	(0xb5 + (i))
+ 
+@@ -462,6 +652,12 @@ enum rk809_reg_id {
+ #define RK817_LDO_ON_VSEL_REG(idx)	(0xcc + (idx) * 2)
+ #define RK817_BOOST_OTG_CFG		(0xde)
+ 
++#define RK817_PMIC_CHRG_OUT		0xe4
++#define RK817_PMIC_CHRG_IN		0xe5
++#define RK817_PMIC_CHRG_STS		0xeb
++
++#define RK817_CHG_STS			(0x07 << 4)
++
+ #define RK817_ID_MSB			0xed
+ #define RK817_ID_LSB			0xee
+ 
+@@ -616,6 +812,7 @@ enum {
+ struct rk808 {
+ 	struct i2c_client		*i2c;
+ 	struct regmap_irq_chip_data	*irq_data;
++	struct regmap_irq_chip_data	*battery_irq_data;
+ 	struct regmap			*regmap;
+ 	long				variant;
+ 	const struct regmap_config	*regmap_cfg;
+diff --git a/linux-go-next/rk3399_dmc.c b/rk3399_dmc.c
+new file mode 100644
+index 0000000..4525082
+--- /dev/null
++++ b/rk3399_dmc.c
+@@ -0,0 +1,521 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (c) 2016, Fuzhou Rockchip Electronics Co., Ltd.
++ * Author: Lin Huang <hl@rock-chips.com>
++ */
++
++#include <linux/arm-smccc.h>
++#include <linux/clk.h>
++#include <linux/delay.h>
++#include <linux/devfreq.h>
++#include <linux/devfreq-event.h>
++#include <linux/interrupt.h>
++#include <linux/mfd/syscon.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/pm_opp.h>
++#include <linux/regmap.h>
++#include <linux/regulator/consumer.h>
++#include <linux/rwsem.h>
++#include <linux/suspend.h>
++
++#include <soc/rockchip/rk3399_grf.h>
++#include <soc/rockchip/rockchip_sip.h>
++
++struct dram_timing {
++	unsigned int ddr3_speed_bin;
++	unsigned int pd_idle;
++	unsigned int sr_idle;
++	unsigned int sr_mc_gate_idle;
++	unsigned int srpd_lite_idle;
++	unsigned int standby_idle;
++	unsigned int auto_pd_dis_freq;
++	unsigned int dram_dll_dis_freq;
++	unsigned int phy_dll_dis_freq;
++	unsigned int ddr3_odt_dis_freq;
++	unsigned int ddr3_drv;
++	unsigned int ddr3_odt;
++	unsigned int phy_ddr3_ca_drv;
++	unsigned int phy_ddr3_dq_drv;
++	unsigned int phy_ddr3_odt;
++	unsigned int lpddr3_odt_dis_freq;
++	unsigned int lpddr3_drv;
++	unsigned int lpddr3_odt;
++	unsigned int phy_lpddr3_ca_drv;
++	unsigned int phy_lpddr3_dq_drv;
++	unsigned int phy_lpddr3_odt;
++	unsigned int lpddr4_odt_dis_freq;
++	unsigned int lpddr4_drv;
++	unsigned int lpddr4_dq_odt;
++	unsigned int lpddr4_ca_odt;
++	unsigned int phy_lpddr4_ca_drv;
++	unsigned int phy_lpddr4_ck_cs_drv;
++	unsigned int phy_lpddr4_dq_drv;
++	unsigned int phy_lpddr4_odt;
++};
++
++struct rk3399_dmcfreq {
++	struct device *dev;
++	struct devfreq *devfreq;
++	struct devfreq_simple_ondemand_data ondemand_data;
++	struct clk *dmc_clk;
++	struct devfreq_event_dev *edev;
++	struct mutex lock;
++	struct dram_timing timing;
++	struct regulator *vdd_center;
++	struct regmap *regmap_pmu;
++	unsigned long rate, target_rate;
++	unsigned long volt, target_volt;
++	unsigned int odt_dis_freq;
++	int odt_pd_arg0, odt_pd_arg1;
++};
++
++static int rk3399_dmcfreq_target(struct device *dev, unsigned long *freq,
++				 u32 flags)
++{
++	struct rk3399_dmcfreq *dmcfreq = dev_get_drvdata(dev);
++	struct dev_pm_opp *opp;
++	unsigned long old_clk_rate = dmcfreq->rate;
++	unsigned long target_volt, target_rate;
++	struct arm_smccc_res res;
++	bool odt_enable = false;
++	int err;
++
++	opp = devfreq_recommended_opp(dev, freq, flags);
++	if (IS_ERR(opp))
++		return PTR_ERR(opp);
++
++	target_rate = dev_pm_opp_get_freq(opp);
++	target_volt = dev_pm_opp_get_voltage(opp);
++	dev_pm_opp_put(opp);
++
++	if (dmcfreq->rate == target_rate)
++		return 0;
++
++	mutex_lock(&dmcfreq->lock);
++
++	if (dmcfreq->regmap_pmu) {
++		if (target_rate >= dmcfreq->odt_dis_freq)
++			odt_enable = true;
++
++		/*
++		 * This makes a SMC call to the TF-A to set the DDR PD
++		 * (power-down) timings and to enable or disable the
++		 * ODT (on-die termination) resistors.
++		 */
++		arm_smccc_smc(ROCKCHIP_SIP_DRAM_FREQ, dmcfreq->odt_pd_arg0,
++			      dmcfreq->odt_pd_arg1,
++			      ROCKCHIP_SIP_CONFIG_DRAM_SET_ODT_PD,
++			      odt_enable, 0, 0, 0, &res);
++	}
++
++	/*
++	 * If frequency scaling from low to high, adjust voltage first.
++	 * If frequency scaling from high to low, adjust frequency first.
++	 */
++	if (old_clk_rate < target_rate) {
++		err = regulator_set_voltage(dmcfreq->vdd_center, target_volt,
++					    target_volt);
++		if (err) {
++			dev_err(dev, "Cannot set voltage %lu uV\n",
++				target_volt);
++			goto out;
++		}
++	}
++
++	err = clk_set_rate(dmcfreq->dmc_clk, target_rate);
++	if (err) {
++		dev_err(dev, "Cannot set frequency %lu (%d)\n", target_rate,
++			err);
++		regulator_set_voltage(dmcfreq->vdd_center, dmcfreq->volt,
++				      dmcfreq->volt);
++		goto out;
++	}
++
++	/*
++	 * Check the dpll rate,
++	 * There only two result we will get,
++	 * 1. Ddr frequency scaling fail, we still get the old rate.
++	 * 2. Ddr frequency scaling sucessful, we get the rate we set.
++	 */
++	dmcfreq->rate = clk_get_rate(dmcfreq->dmc_clk);
++
++	/* If get the incorrect rate, set voltage to old value. */
++	if (dmcfreq->rate != target_rate) {
++		dev_err(dev, "Got wrong frequency, Request %lu, Current %lu\n",
++			target_rate, dmcfreq->rate);
++		regulator_set_voltage(dmcfreq->vdd_center, dmcfreq->volt,
++				      dmcfreq->volt);
++		goto out;
++	} else if (old_clk_rate > target_rate)
++		err = regulator_set_voltage(dmcfreq->vdd_center, target_volt,
++					    target_volt);
++	if (err)
++		dev_err(dev, "Cannot set voltage %lu uV\n", target_volt);
++
++	dmcfreq->rate = target_rate;
++	dmcfreq->volt = target_volt;
++
++out:
++	mutex_unlock(&dmcfreq->lock);
++	return err;
++}
++
++static int rk3399_dmcfreq_get_dev_status(struct device *dev,
++					 struct devfreq_dev_status *stat)
++{
++	struct rk3399_dmcfreq *dmcfreq = dev_get_drvdata(dev);
++	struct devfreq_event_data edata;
++	int ret = 0;
++
++	ret = devfreq_event_get_event(dmcfreq->edev, &edata);
++	if (ret < 0)
++		return ret;
++
++	stat->current_frequency = dmcfreq->rate;
++	stat->busy_time = edata.load_count;
++	stat->total_time = edata.total_count;
++
++	return ret;
++}
++
++static int rk3399_dmcfreq_get_cur_freq(struct device *dev, unsigned long *freq)
++{
++	struct rk3399_dmcfreq *dmcfreq = dev_get_drvdata(dev);
++
++	*freq = dmcfreq->rate;
++
++	return 0;
++}
++
++static struct devfreq_dev_profile rk3399_devfreq_dmc_profile = {
++	.polling_ms	= 200,
++	.target		= rk3399_dmcfreq_target,
++	.get_dev_status	= rk3399_dmcfreq_get_dev_status,
++	.get_cur_freq	= rk3399_dmcfreq_get_cur_freq,
++};
++
++static __maybe_unused int rk3399_dmcfreq_suspend(struct device *dev)
++{
++	struct rk3399_dmcfreq *dmcfreq = dev_get_drvdata(dev);
++	int ret = 0;
++
++	ret = devfreq_event_disable_edev(dmcfreq->edev);
++	if (ret < 0) {
++		dev_err(dev, "failed to disable the devfreq-event devices\n");
++		return ret;
++	}
++
++	ret = devfreq_suspend_device(dmcfreq->devfreq);
++	if (ret < 0) {
++		dev_err(dev, "failed to suspend the devfreq devices\n");
++		return ret;
++	}
++
++	return 0;
++}
++
++static __maybe_unused int rk3399_dmcfreq_resume(struct device *dev)
++{
++	struct rk3399_dmcfreq *dmcfreq = dev_get_drvdata(dev);
++	int ret = 0;
++
++	ret = devfreq_event_enable_edev(dmcfreq->edev);
++	if (ret < 0) {
++		dev_err(dev, "failed to enable the devfreq-event devices\n");
++		return ret;
++	}
++
++	ret = devfreq_resume_device(dmcfreq->devfreq);
++	if (ret < 0) {
++		dev_err(dev, "failed to resume the devfreq devices\n");
++		return ret;
++	}
++	return ret;
++}
++
++static SIMPLE_DEV_PM_OPS(rk3399_dmcfreq_pm, rk3399_dmcfreq_suspend,
++			 rk3399_dmcfreq_resume);
++
++/*
++ * function: packaging de-skew setting to px30_ddr_dts_config_timing,
++ *           px30_ddr_dts_config_timing will pass to trust firmware, and
++ *           used direct to set register.
++ * input: de_skew
++ * output: tim
++ */
++static void px30_de_skew_set_2_reg(struct rk3328_ddr_de_skew_setting *de_skew,
++				   struct px30_ddr_dts_config_timing *tim)
++{
++	u32 n;
++	u32 offset;
++	u32 shift;
++
++	memset_io(tim->ca_skew, 0, sizeof(tim->ca_skew));
++	memset_io(tim->cs0_skew, 0, sizeof(tim->cs0_skew));
++	memset_io(tim->cs1_skew, 0, sizeof(tim->cs1_skew));
++
++	/* CA de-skew */
++	for (n = 0; n < ARRAY_SIZE(de_skew->ca_de_skew); n++) {
++		offset = n / 2;
++		shift = n % 2;
++		/* 0 => 4; 1 => 0 */
++		shift = (shift == 0) ? 4 : 0;
++		tim->ca_skew[offset] &= ~(0xf << shift);
++		tim->ca_skew[offset] |= (de_skew->ca_de_skew[n] << shift);
++	}
++
++	/* CS0 data de-skew */
++	for (n = 0; n < ARRAY_SIZE(de_skew->cs0_de_skew); n++) {
++		offset = ((n / 21) * 11) + ((n % 21) / 2);
++		shift = ((n % 21) % 2);
++		if ((n % 21) == 20)
++			shift = 0;
++		else
++			/* 0 => 4; 1 => 0 */
++			shift = (shift == 0) ? 4 : 0;
++		tim->cs0_skew[offset] &= ~(0xf << shift);
++		tim->cs0_skew[offset] |= (de_skew->cs0_de_skew[n] << shift);
++	}
++
++	/* CS1 data de-skew */
++	for (n = 0; n < ARRAY_SIZE(de_skew->cs1_de_skew); n++) {
++		offset = ((n / 21) * 11) + ((n % 21) / 2);
++		shift = ((n % 21) % 2);
++		if ((n % 21) == 20)
++			shift = 0;
++		else
++			/* 0 => 4; 1 => 0 */
++			shift = (shift == 0) ? 4 : 0;
++		tim->cs1_skew[offset] &= ~(0xf << shift);
++		tim->cs1_skew[offset] |= (de_skew->cs1_de_skew[n] << shift);
++	}
++}
++
++static void of_get_px30_timings(struct device *dev,
++				struct device_node *np, uint32_t *timing)
++{
++	struct device_node *np_tim;
++	u32 *p;
++	struct px30_ddr_dts_config_timing *dts_timing;
++	struct rk3328_ddr_de_skew_setting *de_skew;
++	int ret = 0;
++	u32 i;
++
++	dts_timing =
++		(struct px30_ddr_dts_config_timing *)(timing +
++							DTS_PAR_OFFSET / 4);
++
++	np_tim = of_parse_phandle(np, "ddr_timing", 0);
++	if (!np_tim) {
++		ret = -EINVAL;
++		goto end;
++	}
++	de_skew = kmalloc(sizeof(*de_skew), GFP_KERNEL);
++	if (!de_skew) {
++		ret = -ENOMEM;
++		goto end;
++	}
++	p = (u32 *)dts_timing;
++	for (i = 0; i < ARRAY_SIZE(px30_dts_timing); i++) {
++		ret |= of_property_read_u32(np_tim, px30_dts_timing[i],
++					p + i);
++	}
++	p = (u32 *)de_skew->ca_de_skew;
++	for (i = 0; i < ARRAY_SIZE(rk3328_dts_ca_timing); i++) {
++		ret |= of_property_read_u32(np_tim, rk3328_dts_ca_timing[i],
++					p + i);
++	}
++	p = (u32 *)de_skew->cs0_de_skew;
++	for (i = 0; i < ARRAY_SIZE(rk3328_dts_cs0_timing); i++) {
++		ret |= of_property_read_u32(np_tim, rk3328_dts_cs0_timing[i],
++					p + i);
++	}
++	p = (u32 *)de_skew->cs1_de_skew;
++	for (i = 0; i < ARRAY_SIZE(rk3328_dts_cs1_timing); i++) {
++		ret |= of_property_read_u32(np_tim, rk3328_dts_cs1_timing[i],
++					p + i);
++	}
++	if (!ret)
++		px30_de_skew_set_2_reg(de_skew, dts_timing);
++	kfree(de_skew);
++end:
++	if (!ret) {
++		dts_timing->available = 1;
++	} else {
++		dts_timing->available = 0;
++		dev_err(dev, "of_get_ddr_timings: fail\n");
++	}
++
++	of_node_put(np_tim);
++}
++
++static int rk3399_dmcfreq_probe(struct platform_device *pdev)
++{
++	struct arm_smccc_res res;
++	struct device *dev = &pdev->dev;
++	struct device_node *np = pdev->dev.of_node, *node;
++	struct rk3399_dmcfreq *data;
++	int ret, index, size;
++	uint32_t *timing;
++	struct dev_pm_opp *opp;
++	u32 ddr_type;
++	u32 val;
++
++	data = devm_kzalloc(dev, sizeof(struct rk3399_dmcfreq), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	printk("ASDFASDFFASDFASDAFSDSDFAFSADASDFAFSDASDFFASD DMC");
++	mutex_init(&data->lock);
++
++	data->vdd_center = devm_regulator_get(dev, "center");
++	if (IS_ERR(data->vdd_center))
++		return dev_err_probe(dev, PTR_ERR(data->vdd_center),
++				     "Cannot get the regulator \"center\"\n");
++
++	data->dmc_clk = devm_clk_get(dev, "dmc_clk");
++	if (IS_ERR(data->dmc_clk))
++		return dev_err_probe(dev, PTR_ERR(data->dmc_clk),
++				     "Cannot get the clk dmc_clk\n");
++
++	data->edev = devfreq_event_get_edev_by_phandle(dev, "devfreq-events", 0);
++	if (IS_ERR(data->edev))
++		return -EPROBE_DEFER;
++
++	ret = devfreq_event_enable_edev(data->edev);
++	if (ret < 0) {
++		dev_err(dev, "failed to enable devfreq-event devices\n");
++		return ret;
++	}
++
++	/*
++	 * Get dram timing and pass it to arm trust firmware,
++	 * the dram driver in arm trust firmware will get these
++	 * timing and to do dram initial.
++	 */
++	//if (!of_get_ddr_timings(&data->timing, np)) {
++	//	timing = &data->timing.ddr3_speed_bin;
++	//	size = sizeof(struct dram_timing) / 4;
++	//	for (index = 0; index < size; index++) {
++	//		arm_smccc_smc(ROCKCHIP_SIP_DRAM_FREQ, *timing++, index,
++	//			      ROCKCHIP_SIP_CONFIG_DRAM_SET_PARAM,
++	//			      0, 0, 0, 0, &res);
++	//		if (res.a0) {
++	//			dev_err(dev, "Failed to set dram param: %ld\n",
++	//				res.a0);
++	//			ret = -EINVAL;
++	//			goto err_edev;
++	//		}
++	//	}
++	//}
++
++	/*
++	 * In TF-A there is a platform SIP call to set the PD (power-down)
++	 * timings and to enable or disable the ODT (on-die termination).
++	 * This call needs three arguments as follows:
++	 *
++	 * arg0:
++	 *     bit[0-7]   : sr_idle
++	 *     bit[8-15]  : sr_mc_gate_idle
++	 *     bit[16-31] : standby idle
++	 * arg1:
++	 *     bit[0-11]  : pd_idle
++	 *     bit[16-27] : srpd_lite_idle
++	 * arg2:
++	 *     bit[0]     : odt enable
++	 */
++	data->odt_pd_arg0 = (data->timing.sr_idle & 0xff) |
++			    ((data->timing.sr_mc_gate_idle & 0xff) << 8) |
++			    ((data->timing.standby_idle & 0xffff) << 16);
++	data->odt_pd_arg1 = (data->timing.pd_idle & 0xfff) |
++			    ((data->timing.srpd_lite_idle & 0xfff) << 16);
++
++	/*
++	 * We add a devfreq driver to our parent since it has a device tree node
++	 * with operating points.
++	 */
++	if (dev_pm_opp_of_add_table(dev)) {
++		dev_err(dev, "Invalid operating-points in device tree.\n");
++		ret = -EINVAL;
++		goto err_edev;
++	}
++
++	of_property_read_u32(np, "upthreshold",
++			     &data->ondemand_data.upthreshold);
++	of_property_read_u32(np, "downdifferential",
++			     &data->ondemand_data.downdifferential);
++
++	data->rate = clk_get_rate(data->dmc_clk);
++
++	opp = devfreq_recommended_opp(dev, &data->rate, 0);
++	if (IS_ERR(opp)) {
++		ret = PTR_ERR(opp);
++		goto err_free_opp;
++	}
++
++	data->rate = dev_pm_opp_get_freq(opp);
++	data->volt = dev_pm_opp_get_voltage(opp);
++	dev_pm_opp_put(opp);
++
++	rk3399_devfreq_dmc_profile.initial_freq = data->rate;
++
++	data->devfreq = devm_devfreq_add_device(dev,
++					   &rk3399_devfreq_dmc_profile,
++					   DEVFREQ_GOV_SIMPLE_ONDEMAND,
++					   &data->ondemand_data);
++	if (IS_ERR(data->devfreq)) {
++		ret = PTR_ERR(data->devfreq);
++		goto err_free_opp;
++	}
++
++	devm_devfreq_register_opp_notifier(dev, data->devfreq);
++
++	data->dev = dev;
++	platform_set_drvdata(pdev, data);
++
++	return 0;
++
++err_free_opp:
++	dev_pm_opp_of_remove_table(&pdev->dev);
++err_edev:
++	devfreq_event_disable_edev(data->edev);
++
++	return ret;
++}
++
++static int rk3399_dmcfreq_remove(struct platform_device *pdev)
++{
++	struct rk3399_dmcfreq *dmcfreq = dev_get_drvdata(&pdev->dev);
++
++	/*
++	 * Before remove the opp table we need to unregister the opp notifier.
++	 */
++	devm_devfreq_unregister_opp_notifier(dmcfreq->dev, dmcfreq->devfreq);
++	dev_pm_opp_of_remove_table(dmcfreq->dev);
++
++	return 0;
++}
++
++static const struct of_device_id rk3399dmc_devfreq_of_match[] = {
++	{ .compatible = "rockchip,rk3399-dmc" },
++	{ .compatible = "rockchip,px30-dmc" },
++	{ },
++};
++MODULE_DEVICE_TABLE(of, rk3399dmc_devfreq_of_match);
++
++static struct platform_driver rk3399_dmcfreq_driver = {
++	.probe	= rk3399_dmcfreq_probe,
++	.remove = rk3399_dmcfreq_remove,
++	.driver = {
++		.name	= "rk3399-dmc-freq",
++		.pm	= &rk3399_dmcfreq_pm,
++		.of_match_table = rk3399dmc_devfreq_of_match,
++	},
++};
++module_platform_driver(rk3399_dmcfreq_driver);
++
++MODULE_LICENSE("GPL v2");
++MODULE_AUTHOR("Lin Huang <hl@rock-chips.com>");
++MODULE_DESCRIPTION("RK3399 dmcfreq driver with devfreq framework");
+diff --git a/linux-go-next/rockchip-dfi.c b/rockchip-dfi.c
+new file mode 100644
+index 0000000..b42b69c
+--- /dev/null
++++ b/rockchip-dfi.c
+@@ -0,0 +1,256 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (c) 2016, Fuzhou Rockchip Electronics Co., Ltd
++ * Author: Lin Huang <hl@rock-chips.com>
++ */
++
++#include <linux/clk.h>
++#include <linux/devfreq-event.h>
++#include <linux/kernel.h>
++#include <linux/err.h>
++#include <linux/init.h>
++#include <linux/io.h>
++#include <linux/mfd/syscon.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/slab.h>
++#include <linux/list.h>
++#include <linux/of.h>
++
++#include <soc/rockchip/rk3399_grf.h>
++
++#define RK3399_DMC_NUM_CH	2
++
++/* DDRMON_CTRL */
++#define DDRMON_CTRL	0x04
++#define CLR_DDRMON_CTRL	(0x1f0000 << 0)
++#define DDR4_EN		(0x10001 << 5)
++#define LPDDR4_EN	(0x10001 << 4)
++#define HARDWARE_EN	(0x10001 << 3)
++#define LPDDR2_3_EN	(0x10001 << 2)
++#define SOFTWARE_EN	(0x10001 << 1)
++#define SOFTWARE_DIS	(0x10000 << 1)
++#define TIME_CNT_EN	(0x10001 << 0)
++
++#define DDRMON_CH0_COUNT_NUM		0x28
++#define DDRMON_CH0_DFI_ACCESS_NUM	0x2c
++#define DDRMON_CH1_COUNT_NUM		0x3c
++#define DDRMON_CH1_DFI_ACCESS_NUM	0x40
++
++
++#define PX30_PMUGRF_OS_REG2		0x208
++
++
++enum {
++	DDR4 = 0,
++	DDR3 = 3,
++	LPDDR2 = 5,
++	LPDDR3 = 6,
++	LPDDR4 = 7,
++	UNUSED = 0xFF
++};
++
++struct dmc_usage {
++	u32 access;
++	u32 total;
++};
++
++/*
++ * The dfi controller can monitor DDR load. It has an upper and lower threshold
++ * for the operating points. Whenever the usage leaves these bounds an event is
++ * generated to indicate the DDR frequency should be changed.
++ */
++struct rockchip_dfi {
++	struct devfreq_event_dev *edev;
++	struct devfreq_event_desc *desc;
++	struct dmc_usage ch_usage[RK3399_DMC_NUM_CH];
++	struct device *dev;
++	void __iomem *regs;
++	struct regmap *regmap_pmu;
++	struct clk *clk;
++};
++
++static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++	void __iomem *dfi_regs = info->regs;
++	u32 val;
++	u32 ddr_type;
++
++	/* get ddr type */
++	regmap_read(info->regmap_pmu, PX30_PMUGRF_OS_REG2, &val);
++	ddr_type = ((val >> 13) & 0x7); // wtf
++
++	/* clear DDRMON_CTRL setting */
++	writel_relaxed(CLR_DDRMON_CTRL, dfi_regs + DDRMON_CTRL);
++
++	/* set ddr type to dfi */
++	if (ddr_type == 6 || ddr_type == 5)
++		writel_relaxed(LPDDR2_3_EN, dfi_regs + DDRMON_CTRL);
++	else if (ddr_type == 7)
++		writel_relaxed(LPDDR4_EN, dfi_regs + DDRMON_CTRL);
++	else if (ddr_type == 0)
++		writel_relaxed(DDR4_EN, dfi_regs + DDRMON_CTRL);
++
++	/* enable count, use software mode */
++	writel_relaxed(SOFTWARE_EN, dfi_regs + DDRMON_CTRL);
++}
++
++static void rockchip_dfi_stop_hardware_counter(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++	void __iomem *dfi_regs = info->regs;
++
++	writel_relaxed(SOFTWARE_DIS, dfi_regs + DDRMON_CTRL);
++}
++
++static int rockchip_dfi_get_busier_ch(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++	u32 tmp, max = 0;
++	u32 i, busier_ch = 0;
++	void __iomem *dfi_regs = info->regs;
++
++	rockchip_dfi_stop_hardware_counter(edev);
++
++	/* Find out which channel is busier */
++	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
++		info->ch_usage[i].access = readl_relaxed(dfi_regs +
++				DDRMON_CH0_DFI_ACCESS_NUM + i * 20) * 4;
++		info->ch_usage[i].total = readl_relaxed(dfi_regs +
++				DDRMON_CH0_COUNT_NUM + i * 20);
++		tmp = info->ch_usage[i].access;
++		if (tmp > max) {
++			busier_ch = i;
++			max = tmp;
++		}
++	}
++	rockchip_dfi_start_hardware_counter(edev);
++
++	return busier_ch;
++}
++
++static int rockchip_dfi_disable(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++
++	rockchip_dfi_stop_hardware_counter(edev);
++	//clk_disable_unprepare(info->clk);
++
++	return 0;
++}
++
++static int rockchip_dfi_enable(struct devfreq_event_dev *edev)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++	int ret;
++
++	//ret = clk_prepare_enable(info->clk);
++	//if (ret) {
++	//	dev_err(&edev->dev, "failed to enable dfi clk: %d\n", ret);
++	//	return ret;
++	//}
++
++	rockchip_dfi_start_hardware_counter(edev);
++	return 0;
++}
++
++static int rockchip_dfi_set_event(struct devfreq_event_dev *edev)
++{
++	return 0;
++}
++
++static int rockchip_dfi_get_event(struct devfreq_event_dev *edev,
++				  struct devfreq_event_data *edata)
++{
++	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
++	int busier_ch;
++
++	busier_ch = rockchip_dfi_get_busier_ch(edev);
++
++	edata->load_count = info->ch_usage[busier_ch].access;
++	edata->total_count = info->ch_usage[busier_ch].total;
++
++	return 0;
++}
++
++static const struct devfreq_event_ops rockchip_dfi_ops = {
++	.disable = rockchip_dfi_disable,
++	.enable = rockchip_dfi_enable,
++	.get_event = rockchip_dfi_get_event,
++	.set_event = rockchip_dfi_set_event,
++};
++
++static const struct of_device_id rockchip_dfi_id_match[] = {
++	{ .compatible = "rockchip,rk3399-dfi" },
++	{ .compatible = "rockchip,px30-dfi" },
++	{ },
++};
++MODULE_DEVICE_TABLE(of, rockchip_dfi_id_match);
++
++static int rockchip_dfi_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct rockchip_dfi *data;
++	struct devfreq_event_desc *desc;
++	struct device_node *np = pdev->dev.of_node, *node;
++
++	data = devm_kzalloc(dev, sizeof(struct rockchip_dfi), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	printk("asdfiuhfasdhsfadhjfasdhfasdjkfsadhjkfasdhjkfasdlk DFI");
++	data->regs = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(data->regs))
++		return PTR_ERR(data->regs);
++
++	//data->clk = devm_clk_get(dev, "pclk_ddr_mon");
++	//if (IS_ERR(data->clk)) {
++	//	dev_err(dev, "Cannot get the clk dmc_clk\n");
++	//	return PTR_ERR(data->clk);
++	//}
++
++	/* try to find the optional reference to the pmu syscon */
++	node = of_parse_phandle(np, "rockchip,pmu", 0);
++	if (node) {
++		data->regmap_pmu = syscon_node_to_regmap(node);
++		of_node_put(node);
++		if (IS_ERR(data->regmap_pmu))
++			return PTR_ERR(data->regmap_pmu);
++	}
++	data->dev = dev;
++
++	desc = devm_kzalloc(dev, sizeof(*desc), GFP_KERNEL);
++	if (!desc)
++		return -ENOMEM;
++
++	desc->ops = &rockchip_dfi_ops;
++	desc->driver_data = data;
++	desc->name = np->name;
++	data->desc = desc;
++
++	data->edev = devm_devfreq_event_add_edev(&pdev->dev, desc);
++	if (IS_ERR(data->edev)) {
++		dev_err(&pdev->dev,
++			"failed to add devfreq-event device\n");
++		return PTR_ERR(data->edev);
++	}
++
++	platform_set_drvdata(pdev, data);
++
++	return 0;
++}
++
++static struct platform_driver rockchip_dfi_driver = {
++	.probe	= rockchip_dfi_probe,
++	.driver = {
++		.name	= "rockchip-dfi",
++		.of_match_table = rockchip_dfi_id_match,
++	},
++};
++module_platform_driver(rockchip_dfi_driver);
++
++MODULE_LICENSE("GPL v2");
++MODULE_AUTHOR("Lin Huang <hl@rock-chips.com>");
++MODULE_DESCRIPTION("Rockchip DFI driver");
+diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
+index 2a7b3e3..4fbd404 100644
+--- a/sound/soc/codecs/Kconfig
++++ b/sound/soc/codecs/Kconfig
+@@ -155,6 +155,7 @@ config SND_SOC_ALL_CODECS
+ 	imply SND_SOC_PCM512x_I2C
+ 	imply SND_SOC_PCM512x_SPI
+ 	imply SND_SOC_RK3328
++	imply SND_SOC_RK817
+ 	imply SND_SOC_RT274
+ 	imply SND_SOC_RT286
+ 	imply SND_SOC_RT298
+@@ -1063,6 +1064,11 @@ config SND_SOC_RK3328
+ 	tristate "Rockchip RK3328 audio CODEC"
+ 	select REGMAP_MMIO
+ 
++config SND_SOC_RK817
++	tristate "Rockchip RK817 audio CODEC"
++	depends on MFD_RK808
++	select REGMAP_I2C
++
+ config SND_SOC_RL6231
+ 	tristate
+ 	default y if SND_SOC_RT5514=y
+diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
+index 0efdba6..d4a75ba 100644
+--- a/sound/soc/codecs/Makefile
++++ b/sound/soc/codecs/Makefile
+@@ -166,6 +166,7 @@ snd-soc-pcm512x-objs := pcm512x.o
+ snd-soc-pcm512x-i2c-objs := pcm512x-i2c.o
+ snd-soc-pcm512x-spi-objs := pcm512x-spi.o
+ snd-soc-rk3328-objs := rk3328_codec.o
++snd-soc-rk817-objs := rk817_codec.o
+ snd-soc-rl6231-objs := rl6231.o
+ snd-soc-rl6347a-objs := rl6347a.o
+ snd-soc-rt1011-objs := rt1011.o
+@@ -487,6 +488,7 @@ obj-$(CONFIG_SND_SOC_PCM512x)	+= snd-soc-pcm512x.o
+ obj-$(CONFIG_SND_SOC_PCM512x_I2C)	+= snd-soc-pcm512x-i2c.o
+ obj-$(CONFIG_SND_SOC_PCM512x_SPI)	+= snd-soc-pcm512x-spi.o
+ obj-$(CONFIG_SND_SOC_RK3328)	+= snd-soc-rk3328.o
++obj-$(CONFIG_SND_SOC_RK817)	+= snd-soc-rk817.o
+ obj-$(CONFIG_SND_SOC_RL6231)	+= snd-soc-rl6231.o
+ obj-$(CONFIG_SND_SOC_RL6347A)	+= snd-soc-rl6347a.o
+ obj-$(CONFIG_SND_SOC_RT1011)	+= snd-soc-rt1011.o
+diff --git a/linux-go-next/sound/soc/codecs/rk817_codec.c b/sound/soc/codecs/rk817_codec.c
+new file mode 100644
+index 0000000..86d19c2
+--- /dev/null
++++ b/sound/soc/codecs/rk817_codec.c
+@@ -0,0 +1,560 @@
++// SPDX-License-Identifier: GPL-2.0
++//
++// rk817 ALSA SoC Audio driver
++//
++// Copyright (c) 2018, Fuzhou Rockchip Electronics Co., Ltd All rights reserved.
++
++#include <linux/clk.h>
++#include <linux/device.h>
++#include <linux/delay.h>
++#include <linux/mfd/rk808.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_gpio.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <sound/core.h>
++#include <sound/pcm_params.h>
++#include <sound/soc.h>
++#include <sound/tlv.h>
++
++struct rk817_codec_priv {
++	struct snd_soc_component *component;
++	struct rk808 *rk808;
++	struct clk *mclk;
++	unsigned int stereo_sysclk;
++	bool mic_in_differential;
++};
++
++/*
++ * This sets the codec up with the values defined in the default implementation including the APLL
++ * from the Rockchip vendor kernel. I do not know if these values are universal despite differing
++ * from the default values defined above and taken from the datasheet, or implementation specific.
++ * I don't have another implementation to compare from the Rockchip sources. Hard-coding for now.
++ * Additionally, I do not know according to the documentation the units accepted for the clock
++ * values, so for the moment those are left unvalidated.
++ */
++
++static int rk817_init(struct snd_soc_component *component)
++{
++	struct rk817_codec_priv *rk817 = snd_soc_component_get_drvdata(component);
++
++	snd_soc_component_write(component, RK817_CODEC_DDAC_POPD_DACST, 0x02);
++	snd_soc_component_write(component, RK817_CODEC_DDAC_SR_LMT0, 0x02);
++	snd_soc_component_write(component, RK817_CODEC_DADC_SR_ACL0, 0x02);
++	snd_soc_component_write(component, RK817_CODEC_DTOP_VUCTIME, 0xf4);
++	if (rk817->mic_in_differential) {
++		snd_soc_component_update_bits(component, RK817_CODEC_AMIC_CFG0, MIC_DIFF_MASK,
++			MIC_DIFF_EN);
++	};
++	return 0;
++}
++
++static int rk817_set_component_pll(struct snd_soc_component *component,
++		int pll_id, int source, unsigned int freq_in,
++		unsigned int freq_out)
++{
++	/* Set resistor value and charge pump current for PLL. */
++	snd_soc_component_write(component, RK817_CODEC_APLL_CFG1, 0x58);
++	/* Set the PLL feedback clock divide value (values not documented). */
++	snd_soc_component_write(component, RK817_CODEC_APLL_CFG2, 0x2d);
++	/* Set the PLL pre-divide value (values not documented). */
++	snd_soc_component_write(component, RK817_CODEC_APLL_CFG3, 0x0c);
++	/* Set the PLL VCO output clock divide and PLL divided ratio of PLL High Clk (values not
++	 * documented).
++	 */
++	snd_soc_component_write(component, RK817_CODEC_APLL_CFG4, 0xa5);
++
++	return 0;
++}
++
++/*
++ * DDAC/DADC L/R volume setting
++ * 0db~-95db, 0.375db/step, for example:
++ * 0x00: 0dB
++ * 0xff: -95dB
++ */
++
++static const DECLARE_TLV_DB_MINMAX(rk817_vol_tlv, -9500, 0);
++
++/*
++ * PGA GAIN L/R volume setting
++ * 27db~-18db, 3db/step, for example:
++ * 0x0: -18dB
++ * 0xf: 27dB
++ */
++
++static const DECLARE_TLV_DB_MINMAX(rk817_gain_tlv, -1800, 2700);
++
++static const struct snd_kcontrol_new rk817_volume_controls[] = {
++	SOC_DOUBLE_R_RANGE_TLV("Master Playback Volume", RK817_CODEC_DDAC_VOLL,
++		RK817_CODEC_DDAC_VOLR, 0, 0x00, 0xff, 1, rk817_vol_tlv),
++	SOC_DOUBLE_R_RANGE_TLV("Master Capture Volume", RK817_CODEC_DADC_VOLL,
++		RK817_CODEC_DADC_VOLR, 0, 0x00, 0xff, 1, rk817_vol_tlv),
++	SOC_DOUBLE_TLV("Mic Capture Gain", RK817_CODEC_DMIC_PGA_GAIN, 4, 0, 0xf, 0,
++		rk817_gain_tlv),
++};
++
++/* Since the speaker output and L headphone pin are internally the same, make audio path mutually
++ * exclusive with a mux.
++ */
++
++static const char *dac_mux_text[] = {
++	"HP",
++	"SPK",
++};
++
++static SOC_ENUM_SINGLE_VIRT_DECL(dac_enum, dac_mux_text);
++
++static const struct snd_kcontrol_new dac_mux =
++	SOC_DAPM_ENUM("Playback Mux", dac_enum);
++
++static const struct snd_soc_dapm_widget rk817_dapm_widgets[] = {
++
++	/* capture/playback common */
++	SND_SOC_DAPM_SUPPLY("LDO Regulator", RK817_CODEC_AREF_RTCFG1, 6, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("IBIAS Block", RK817_CODEC_AREF_RTCFG1, 2, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("VAvg Buffer", RK817_CODEC_AREF_RTCFG1, 1, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("PLL Power", RK817_CODEC_APLL_CFG5, 0, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("I2S TX1 Transfer Start", RK817_CODEC_DI2S_RXCMD_TSD, 5, 0, NULL, 0),
++
++	/* capture path common */
++	SND_SOC_DAPM_SUPPLY("ADC Clock", RK817_CODEC_DTOP_DIGEN_CLKE, 7, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("I2S TX Clock", RK817_CODEC_DTOP_DIGEN_CLKE, 6, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("ADC Channel Enable", RK817_CODEC_DTOP_DIGEN_CLKE, 5, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("I2S TX Channel Enable", RK817_CODEC_DTOP_DIGEN_CLKE, 4, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("MIC Power On", RK817_CODEC_AMIC_CFG0, 6, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("I2S TX3 Transfer Start", RK817_CODEC_DI2S_TXCR3_TXCMD, 7, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("I2S TX3 Right Justified", RK817_CODEC_DI2S_TXCR3_TXCMD, 3, 0, NULL, 0),
++
++	/* capture path L */
++	SND_SOC_DAPM_ADC("ADC L", "Capture", RK817_CODEC_AADC_CFG0, 7, 1),
++	SND_SOC_DAPM_SUPPLY("PGA L Power On", RK817_CODEC_AMIC_CFG0, 5, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Mic Boost L1", RK817_CODEC_AMIC_CFG0, 3, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Mic Boost L2", RK817_CODEC_AMIC_CFG0, 2, 0, NULL, 0),
++
++	/* capture path R */
++	SND_SOC_DAPM_ADC("ADC R", "Capture", RK817_CODEC_AADC_CFG0, 6, 1),
++	SND_SOC_DAPM_SUPPLY("PGA R Power On", RK817_CODEC_AMIC_CFG0, 4, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Mic Boost R1", RK817_CODEC_AMIC_CFG0, 3, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Mic Boost R2", RK817_CODEC_AMIC_CFG0, 3, 0, NULL, 0),
++
++	/* playback path common */
++	SND_SOC_DAPM_SUPPLY("DAC Clock", RK817_CODEC_DTOP_DIGEN_CLKE, 3, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("I2S RX Clock", RK817_CODEC_DTOP_DIGEN_CLKE, 2, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("DAC Channel Enable", RK817_CODEC_DTOP_DIGEN_CLKE, 1, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("I2S RX Channel Enable", RK817_CODEC_DTOP_DIGEN_CLKE, 0, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("DAC Bias", RK817_CODEC_ADAC_CFG1, 3, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("DAC Mute Off", RK817_CODEC_DDAC_MUTE_MIXCTL, 0, 1, NULL, 0),
++
++	/* playback path speaker */
++	SND_SOC_DAPM_SUPPLY("Class D Mode", RK817_CODEC_DDAC_MUTE_MIXCTL, 4, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("High Pass Filter", RK817_CODEC_DDAC_MUTE_MIXCTL, 7, 0, NULL, 0),
++	SND_SOC_DAPM_DAC("SPK DAC", "Playback", RK817_CODEC_ADAC_CFG1, 2, 1),
++	SND_SOC_DAPM_SUPPLY("Enable Class D", RK817_CODEC_ACLASSD_CFG1, 7, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Disable Class D Mute Ramp", RK817_CODEC_ACLASSD_CFG1, 6, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Class D Mute Rate 1", RK817_CODEC_ACLASSD_CFG1, 3, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Class D Mute Rate 2", RK817_CODEC_ACLASSD_CFG1, 2, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Class D OCPP 2", RK817_CODEC_ACLASSD_CFG2, 5, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Class D OCPP 3", RK817_CODEC_ACLASSD_CFG2, 4, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Class D OCPN 2", RK817_CODEC_ACLASSD_CFG2, 1, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Class D OCPN 3", RK817_CODEC_ACLASSD_CFG2, 0, 0, NULL, 0),
++
++	/* playback path headphones */
++	SND_SOC_DAPM_SUPPLY("Headphone Charge Pump", RK817_CODEC_AHP_CP, 4, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Headphone CP Discharge LDO", RK817_CODEC_AHP_CP, 3, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Headphone OStage", RK817_CODEC_AHP_CFG0, 6, 1, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("Headphone Pre Amp", RK817_CODEC_AHP_CFG0, 5, 1, NULL, 0),
++	SND_SOC_DAPM_DAC("DAC L", "Playback", RK817_CODEC_ADAC_CFG1, 1, 1),
++	SND_SOC_DAPM_DAC("DAC R", "Playback", RK817_CODEC_ADAC_CFG1, 0, 1),
++
++	/* Mux for input/output path selection */
++	SND_SOC_DAPM_MUX("Playback Mux", SND_SOC_NOPM, 1, 0, &dac_mux),
++
++	/* Pins for Simple Card Bindings */
++	SND_SOC_DAPM_INPUT("MICL"),
++	SND_SOC_DAPM_INPUT("MICR"),
++	SND_SOC_DAPM_OUTPUT("HPOL"),
++	SND_SOC_DAPM_OUTPUT("HPOR"),
++	SND_SOC_DAPM_OUTPUT("SPKO"),
++};
++
++static const struct snd_soc_dapm_route rk817_dapm_routes[] = {
++
++	/* capture path */
++	/* left mic */
++	{"ADC L", NULL, "LDO Regulator"},
++	{"ADC L", NULL, "IBIAS Block"},
++	{"ADC L", NULL, "VAvg Buffer"},
++	{"ADC L", NULL, "PLL Power"},
++	{"ADC L", NULL, "ADC Clock"},
++	{"ADC L", NULL, "I2S TX Clock"},
++	{"ADC L", NULL, "ADC Channel Enable"},
++	{"ADC L", NULL, "I2S TX Channel Enable"},
++	{"ADC L", NULL, "I2S TX1 Transfer Start"},
++	{"MICL", NULL, "MIC Power On"},
++	{"MICL", NULL, "PGA L Power On"},
++	{"MICL", NULL, "Mic Boost L1"},
++	{"MICL", NULL, "Mic Boost L2"},
++	{"MICL", NULL, "I2S TX3 Transfer Start"},
++	{"MICL", NULL, "I2S TX3 Right Justified"},
++	{"ADC L", NULL, "MICL"},
++
++	/* right mic */
++	{"ADC R", NULL, "LDO Regulator"},
++	{"ADC R", NULL, "IBIAS Block"},
++	{"ADC R", NULL, "VAvg Buffer"},
++	{"ADC R", NULL, "PLL Power"},
++	{"ADC R", NULL, "ADC Clock"},
++	{"ADC R", NULL, "I2S TX Clock"},
++	{"ADC R", NULL, "ADC Channel Enable"},
++	{"ADC R", NULL, "I2S TX Channel Enable"},
++	{"ADC R", NULL, "I2S TX1 Transfer Start"},
++	{"MICR", NULL, "MIC Power On"},
++	{"MICR", NULL, "PGA R Power On"},
++	{"MICR", NULL, "Mic Boost R1"},
++	{"MICR", NULL, "Mic Boost R2"},
++	{"MICR", NULL, "I2S TX3 Transfer Start"},
++	{"MICR", NULL, "I2S TX3 Right Justified"},
++	{"ADC R", NULL, "MICR"},
++
++	/* playback path */
++	/* speaker path */
++	{"SPK DAC", NULL, "LDO Regulator"},
++	{"SPK DAC", NULL, "IBIAS Block"},
++	{"SPK DAC", NULL, "VAvg Buffer"},
++	{"SPK DAC", NULL, "PLL Power"},
++	{"SPK DAC", NULL, "I2S TX1 Transfer Start"},
++	{"SPK DAC", NULL, "DAC Clock"},
++	{"SPK DAC", NULL, "I2S RX Clock"},
++	{"SPK DAC", NULL, "DAC Channel Enable"},
++	{"SPK DAC", NULL, "I2S RX Channel Enable"},
++	{"SPK DAC", NULL, "Class D Mode"},
++	{"SPK DAC", NULL, "DAC Bias"},
++	{"SPK DAC", NULL, "DAC Mute Off"},
++	{"SPK DAC", NULL, "Enable Class D"},
++	{"SPK DAC", NULL, "Disable Class D Mute Ramp"},
++	{"SPK DAC", NULL, "Class D Mute Rate 1"},
++	{"SPK DAC", NULL, "Class D Mute Rate 2"},
++	{"SPK DAC", NULL, "Class D OCPP 2"},
++	{"SPK DAC", NULL, "Class D OCPP 3"},
++	{"SPK DAC", NULL, "Class D OCPN 2"},
++	{"SPK DAC", NULL, "Class D OCPN 3"},
++	{"SPK DAC", NULL, "High Pass Filter"},
++
++	/* headphone path L */
++	{"DAC L", NULL, "LDO Regulator"},
++	{"DAC L", NULL, "IBIAS Block"},
++	{"DAC L", NULL, "VAvg Buffer"},
++	{"DAC L", NULL, "PLL Power"},
++	{"DAC L", NULL, "I2S TX1 Transfer Start"},
++	{"DAC L", NULL, "DAC Clock"},
++	{"DAC L", NULL, "I2S RX Clock"},
++	{"DAC L", NULL, "DAC Channel Enable"},
++	{"DAC L", NULL, "I2S RX Channel Enable"},
++	{"DAC L", NULL, "DAC Bias"},
++	{"DAC L", NULL, "DAC Mute Off"},
++	{"DAC L", NULL, "Headphone Charge Pump"},
++	{"DAC L", NULL, "Headphone CP Discharge LDO"},
++	{"DAC L", NULL, "Headphone OStage"},
++	{"DAC L", NULL, "Headphone Pre Amp"},
++
++	/* headphone path R */
++	{"DAC R", NULL, "LDO Regulator"},
++	{"DAC R", NULL, "IBIAS Block"},
++	{"DAC R", NULL, "VAvg Buffer"},
++	{"DAC R", NULL, "PLL Power"},
++	{"DAC R", NULL, "I2S TX1 Transfer Start"},
++	{"DAC R", NULL, "DAC Clock"},
++	{"DAC R", NULL, "I2S RX Clock"},
++	{"DAC R", NULL, "DAC Channel Enable"},
++	{"DAC R", NULL, "I2S RX Channel Enable"},
++	{"DAC R", NULL, "DAC Bias"},
++	{"DAC R", NULL, "DAC Mute Off"},
++	{"DAC R", NULL, "Headphone Charge Pump"},
++	{"DAC R", NULL, "Headphone CP Discharge LDO"},
++	{"DAC R", NULL, "Headphone OStage"},
++	{"DAC R", NULL, "Headphone Pre Amp"},
++
++	/* mux path for output selection */
++	{"Playback Mux", "HP", "DAC L"},
++	{"Playback Mux", "HP", "DAC R"},
++	{"Playback Mux", "SPK", "SPK DAC"},
++	{"SPKO", NULL, "Playback Mux"},
++	{"HPOL", NULL, "Playback Mux"},
++	{"HPOR", NULL, "Playback Mux"},
++};
++
++static int rk817_set_dai_sysclk(struct snd_soc_dai *codec_dai,
++				int clk_id, unsigned int freq, int dir)
++{
++	struct snd_soc_component *component = codec_dai->component;
++	struct rk817_codec_priv *rk817 = snd_soc_component_get_drvdata(component);
++
++	rk817->stereo_sysclk = freq;
++
++	return 0;
++}
++
++static int rk817_set_dai_fmt(struct snd_soc_dai *codec_dai,
++			     unsigned int fmt)
++{
++	struct snd_soc_component *component = codec_dai->component;
++	unsigned int i2s_mst = 0;
++
++	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
++	case SND_SOC_DAIFMT_CBS_CFS:
++		i2s_mst |= RK817_I2S_MODE_SLV;
++		break;
++	case SND_SOC_DAIFMT_CBM_CFM:
++		i2s_mst |= RK817_I2S_MODE_MST;
++		break;
++	default:
++		dev_err(component->dev, "%s : set master mask failed!\n", __func__);
++		return -EINVAL;
++	}
++
++	snd_soc_component_update_bits(component, RK817_CODEC_DI2S_CKM,
++				      RK817_I2S_MODE_MASK, i2s_mst);
++
++	return 0;
++}
++
++static int rk817_hw_params(struct snd_pcm_substream *substream,
++			   struct snd_pcm_hw_params *params,
++			    struct snd_soc_dai *dai)
++{
++	struct snd_soc_component *component = dai->component;
++
++	switch (params_format(params)) {
++	case SNDRV_PCM_FORMAT_S16_LE:
++		snd_soc_component_write(component, RK817_CODEC_DI2S_RXCR2,
++					VDW_RX_16BITS);
++		snd_soc_component_write(component, RK817_CODEC_DI2S_TXCR2,
++					VDW_TX_16BITS);
++		break;
++	case SNDRV_PCM_FORMAT_S24_LE:
++	case SNDRV_PCM_FORMAT_S32_LE:
++		snd_soc_component_write(component, RK817_CODEC_DI2S_RXCR2,
++					VDW_RX_24BITS);
++		snd_soc_component_write(component, RK817_CODEC_DI2S_TXCR2,
++					VDW_TX_24BITS);
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++static int rk817_digital_mute(struct snd_soc_dai *dai, int mute, int stream)
++{
++	struct snd_soc_component *component = dai->component;
++
++	if (mute)
++		snd_soc_component_update_bits(component,
++					      RK817_CODEC_DDAC_MUTE_MIXCTL,
++					      DACMT_MASK, DACMT_ENABLE);
++	else
++		snd_soc_component_update_bits(component,
++					      RK817_CODEC_DDAC_MUTE_MIXCTL,
++					      DACMT_MASK, DACMT_DISABLE);
++
++	return 0;
++}
++
++#define RK817_PLAYBACK_RATES (SNDRV_PCM_RATE_8000 |\
++			      SNDRV_PCM_RATE_16000 |	\
++			      SNDRV_PCM_RATE_32000 |	\
++			      SNDRV_PCM_RATE_44100 |	\
++			      SNDRV_PCM_RATE_48000 |	\
++			      SNDRV_PCM_RATE_96000)
++
++#define RK817_CAPTURE_RATES (SNDRV_PCM_RATE_8000 |\
++			      SNDRV_PCM_RATE_16000 |	\
++			      SNDRV_PCM_RATE_32000 |	\
++			      SNDRV_PCM_RATE_44100 |	\
++			      SNDRV_PCM_RATE_48000 |	\
++			      SNDRV_PCM_RATE_96000)
++
++#define RK817_FORMATS (SNDRV_PCM_FMTBIT_S16_LE |\
++			SNDRV_PCM_FMTBIT_S20_3LE |\
++			SNDRV_PCM_FMTBIT_S24_LE |\
++			SNDRV_PCM_FMTBIT_S32_LE)
++
++static struct snd_soc_dai_ops rk817_dai_ops = {
++	.hw_params	= rk817_hw_params,
++	.set_fmt	= rk817_set_dai_fmt,
++	.set_sysclk	= rk817_set_dai_sysclk,
++	.mute_stream	= rk817_digital_mute,
++	.no_capture_mute	= 1,
++};
++
++static struct snd_soc_dai_driver rk817_dai[] = {
++	{
++		.name = "rk817-hifi",
++		.playback = {
++			.stream_name = "Playback",
++			.channels_min = 2,
++			.channels_max = 8,
++			.rates = RK817_PLAYBACK_RATES,
++			.formats = RK817_FORMATS,
++		},
++		.capture = {
++			.stream_name = "Capture",
++			.channels_min = 1,
++			.channels_max = 2,
++			.rates = RK817_CAPTURE_RATES,
++			.formats = RK817_FORMATS,
++		},
++		.ops = &rk817_dai_ops,
++	},
++};
++
++static int rk817_probe(struct snd_soc_component *component)
++{
++	struct rk817_codec_priv *rk817 = snd_soc_component_get_drvdata(component);
++	struct rk808 *rk808 = dev_get_drvdata(component->dev->parent);
++	int ret;
++
++	snd_soc_component_init_regmap(component, rk808->regmap);
++	rk817->component = component;
++
++	ret = snd_soc_component_write(component, RK817_CODEC_DTOP_LPT_SRST, 0x40);
++
++	rk817_init(component);
++
++	/* setting initial pll values so that we can continue to leverage simple-audio-card.
++	 * The values aren't important since no parameters are used.
++	 */
++
++	snd_soc_component_set_pll(component, 0, 0, 0, 0);
++
++	return 0;
++}
++
++static void rk817_remove(struct snd_soc_component *component)
++{
++	snd_soc_component_exit_regmap(component);
++}
++
++static const struct snd_soc_component_driver soc_codec_dev_rk817 = {
++	.probe = rk817_probe,
++	.remove = rk817_remove,
++	.idle_bias_on = 1,
++	.use_pmdown_time = 1,
++	.endianness = 1,
++	.non_legacy_dai_naming = 1,
++	.controls = rk817_volume_controls,
++	.num_controls = ARRAY_SIZE(rk817_volume_controls),
++	.dapm_routes = rk817_dapm_routes,
++	.num_dapm_routes = ARRAY_SIZE(rk817_dapm_routes),
++	.dapm_widgets = rk817_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(rk817_dapm_widgets),
++	.set_pll = rk817_set_component_pll,
++};
++
++static int rk817_codec_parse_dt_property(struct device *dev,
++					 struct rk817_codec_priv *rk817)
++{
++	struct device_node *node = dev->parent->of_node;
++
++	if (!node) {
++		dev_err(dev, "%s() dev->parent->of_node is NULL\n",
++			__func__);
++		return -ENODEV;
++	}
++
++	node = of_get_child_by_name(dev->parent->of_node, "codec");
++	if (!node) {
++		dev_err(dev, "%s() Can not get child: codec\n",
++			__func__);
++		return -ENODEV;
++	}
++
++	rk817->mic_in_differential =
++			of_property_read_bool(node, "rockchip,mic-in-differential");
++
++	return 0;
++}
++
++static int rk817_platform_probe(struct platform_device *pdev)
++{
++	struct rk808 *rk808 = dev_get_drvdata(pdev->dev.parent);
++	struct rk817_codec_priv *rk817_codec_data;
++	int ret;
++
++	if (!rk808) {
++		dev_err(&pdev->dev, "%s : rk817 is NULL\n", __func__);
++		return -EINVAL;
++	}
++
++	rk817_codec_data = devm_kzalloc(&pdev->dev,
++					sizeof(struct rk817_codec_priv),
++					GFP_KERNEL);
++	if (!rk817_codec_data)
++		return -ENOMEM;
++
++	platform_set_drvdata(pdev, rk817_codec_data);
++
++	rk817_codec_data->rk808 = rk808;
++
++	ret = rk817_codec_parse_dt_property(&pdev->dev, rk817_codec_data);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "%s() parse device tree property error %d\n",
++			__func__, ret);
++		goto err_;
++	}
++
++	rk817_codec_data->mclk = clk_get(pdev->dev.parent, "mclk");
++	if (IS_ERR(rk817_codec_data->mclk)) {
++		dev_err(&pdev->dev, "Unable to get mclk\n");
++		ret = -ENXIO;
++		goto err_;
++	}
++
++	ret = clk_prepare_enable(rk817_codec_data->mclk);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "%s() clock prepare error %d\n",
++			__func__, ret);
++		goto err_;
++	}
++
++	ret = devm_snd_soc_register_component(&pdev->dev, &soc_codec_dev_rk817,
++					      rk817_dai, ARRAY_SIZE(rk817_dai));
++	if (ret < 0) {
++		dev_err(&pdev->dev, "%s() register codec error %d\n",
++			__func__, ret);
++		goto err_;
++	}
++
++	return 0;
++err_:
++
++	return ret;
++}
++
++static int rk817_platform_remove(struct platform_device *pdev)
++{
++	struct rk817_codec_priv *rk817 = platform_get_drvdata(pdev);
++
++	clk_disable_unprepare(rk817->mclk);
++
++	return 0;
++}
++
++MODULE_DEVICE_TABLE(of, rk817_codec_dt_ids);
++
++static struct platform_driver rk817_codec_driver = {
++	.driver = {
++		   .name = "rk817-codec",
++		   },
++	.probe = rk817_platform_probe,
++	.remove = rk817_platform_remove,
++};
++
++module_platform_driver(rk817_codec_driver);
++
++MODULE_DESCRIPTION("ASoC RK817 codec driver");
++MODULE_AUTHOR("binyuan <kevan.lan@rock-chips.com>");
++MODULE_LICENSE("GPL v2");

@@ -11,19 +11,19 @@ index c45b0cfcae09..235338927a10 100644
 +
 +		opp-200000000 {
 +			opp-hz = /bits/ 64 <200000000>;
-+			opp-microvolt = <950000>;
++			opp-microvolt = <1150000>;
 +		};
 +		opp-300000000 {
 +			opp-hz = /bits/ 64 <300000000>;
-+			opp-microvolt = <975000>;
++			opp-microvolt = <1150000>;
 +		};
 +		opp-400000000 {
 +			opp-hz = /bits/ 64 <400000000>;
-+			opp-microvolt = <1050000>;
++			opp-microvolt = <1150000>;
 +		};
-+		opp-480000000 {
-+			opp-hz = /bits/ 64 <480000000>;
-+			opp-microvolt = <1125000>;
++		opp-520000000 {
++			opp-hz = /bits/ 64 <520000000>;
++			opp-microvolt = <1200000>;
 +		};
 +	};
 +

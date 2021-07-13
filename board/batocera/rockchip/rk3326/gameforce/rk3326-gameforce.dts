@@ -22,21 +22,36 @@
 		pwms = <&pwm1 0 25000 0>;
 	};
 
+	battery_cell: battery-cell {
+		compatible = "simple-battery";
+		energy-full-design-microamp-hours = <3000000>;
+		voltage-min-design-microvolt = <3400000>;
+		voltage-max-design-microvolt = <4100000>;
+
+		ocv-capacity-celcius = <20>;
+		ocv-capacity-table-0 =  <3400 0>, <3625 5>, <3685 10>, <3697 15>,
+					<3718 20>, <3735 25>, <3748 30>, <3760 35>,
+					<3774 40>, <3788 45>, <3802 50>, <3816 55>,
+					<3834 60>, <3853 65>, <3877 70>, <3908 75>,
+					<3946 80>, <3975 85>, <4018 90>, <4071 95>,
+					<4106 100>;
+	};
+
 	adc-keys {
-		compatible = "adc-keys";
+		compatible = "volume-keys";
 		//io-channels = <&saradc 2>;
 		//io-channel-names = "buttons";
 		//poll-interval = <100>;
 		keyup-threshold-microvolt = <1800000>;
 
-		vol-down-key {
-			linux,code = <KEY_VOLUMEDOWN>;
+		happy1-key {
+			linux,code = <BTN_TRIGGER_HAPPY1>;
 			label = "volume down";
-			press-threshold-microvolt = <17000>;
+			press-threshold-microvolt = <15000>;
 		};
 
-		vol-up-key {
-			linux,code = <KEY_VOLUMEUP>;
+		happy2-key {
+			linux,code = <BTN_TRIGGER_HAPPY2>;
 			label = "volume up";
 			press-threshold-microvolt = <300000>;
 		};
@@ -80,8 +95,8 @@
         };
 	};
 
-	gpio-keys {
-        compatible = "gpio-keys";
+	joypad: gameforce-gamepad {
+        compatible = "gameforce-gamepad";
         /*
            - gameforce-gamepad sysfs list -
 		   * for poll device interval(ms)
@@ -102,8 +117,8 @@
         pinctrl-0 = <&btn_pins>;
 
 		/* JOY_X, JOY_Y Channel define */
-		io-channel-names = "joy_x", "joy_y";
-		io-channels = <&saradc 0>, <&saradc 1>;
+		io-channel-names = "joy_x", "joy_y", "volume-buttons";
+		io-channels = <&saradc 0>, <&saradc 1>, <&saradc 2>;
 
 		/* adc channel count */
 		button-adc-count = <2>;
@@ -202,7 +217,7 @@
                 sw9 {
                         gpios = <&gpio2 RK_PA0 GPIO_ACTIVE_LOW>;
                         label = "GPIO BTN-HOME";
-                        linux,code = <BTN_TRIGGER_HAPPY1>; // 0x2c0
+                        linux,code = <BTN_TRIGGER_HAPPY3>; // 0x2c2
                 };
                 sw10 {
                         gpios = <&gpio2 RK_PA3 GPIO_ACTIVE_LOW>;
@@ -249,20 +264,21 @@
 	rk817-sound {
 		status = "okay";
 		compatible = "simple-audio-card";
-		simple-audio-card,name = "Analog";
 		simple-audio-card,format = "i2s";
+		simple-audio-card,name = "rockchip,rk817-codec";
 		simple-audio-card,mclk-fs = <256>;
 		simple-audio-card,widgets =
-			"Microphone", "Mic Jack",
+			"Speaker", "Speaker",
 			"Headphone", "Headphones",
-			"Speaker", "Speaker";
+			"Microphone", "Mic Jack";
 		simple-audio-card,routing =
-			"MICL", "Mic Jack",
+			"Speaker", "SPKOL",
+			"Speaker", "SPKOR",
 			"Headphones", "HPOL",
 			"Headphones", "HPOR",
-			"Speaker", "SPKO";
+			"MICL", "Mic Jack";
 		simple-audio-card,hp-det-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
-
+		//simple-audio-card,pin-switches = "Speaker", "Headphones";
 		simple-audio-card,cpu {
 			sound-dai = <&i2s1_2ch>;
 		};
@@ -271,14 +287,6 @@
 		};
 	};
 
-/*
-	rk_headset {
-		compatible = "rockchip_headset";
-		headset_gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&hp_det>;
-	};
-*/
 	sdio_pwrseq: sdio-pwrseq {
 		compatible = "mmc-pwrseq-simple";
 		/*clocks = <&rk817 1>;*/
@@ -340,6 +348,9 @@
 	};*/
 };
 
+&dmc {
+	center-supply = <&vdd_logic>;
+};
 &cpu0 {
 	cpu-supply = <&vdd_arm>;
 };
@@ -413,29 +424,28 @@
 };
 
 &i2c0 {
-	clock-frequency = <400000>;
-	i2c-scl-falling-time-ns = <16>;
-	i2c-scl-rising-time-ns = <280>;
 	status = "okay";
+	clock-frequency = <400000>;
+	i2c-scl-rising-time-ns = <280>;
+	i2c-scl-falling-time-ns = <16>;
 
 	rk817: pmic@20 {
 		compatible = "rockchip,rk817";
 		reg = <0x20>;
 		interrupt-parent = <&gpio0>;
-		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
-		clock-names = "mclk";
-		clocks = <&cru SCLK_I2S1_OUT>;
+		interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
 		pinctrl-names = "default", "pmic-sleep",
 				"pmic-power-off", "pmic-reset";
-		pinctrl-0 = <&pmic_int>, <&i2s1_2ch_mclk>;
-		pinctrl-1 = <&soc_slppin_slp>, <&rk817_slppin_slp>;
-		pinctrl-2 = <&soc_slppin_gpio>, <&rk817_slppin_pwrdn>;
-		pinctrl-3 = <&soc_slppin_rst>, <&rk817_slppin_rst>;
+		pinctrl-0 = <&pmic_int &i2s1_2ch_mclk>;
+		pinctrl-1 = <&soc_slppin_slp &rk817_slppin_slp>;
+		pinctrl-2 = <&soc_slppin_gpio &rk817_slppin_pwrdn>;
+		pinctrl-3 = <&soc_slppin_rst &rk817_slppin_rst>;
 		rockchip,system-power-controller;
 		wakeup-source;
 		#clock-cells = <1>;
-		clock-output-names = "rk808-clkout1", "rk808-clkout2";
-		//fb-inner-reg-idxs = <2>;
+		clock-output-names = "rk808-clkout1", "xin32k";
+		clocks = <&cru SCLK_I2S1_OUT>;
+		clock-names = "mclk";
 
 		/* 1: rst regs (default in codes), 0: rst the pmic */
 		pmic-reset-func = <1>;
@@ -451,6 +461,18 @@
 		vcc8-supply = <&vccsys>;
 		vcc9-supply = <&dcdc_boost>;
 
+		rk817_battery: battery {
+			compatible = "rk817,battery";
+			monitored-battery = <&battery_cell>;
+			bat_res = <150>;
+			sample_res = <10>;
+		};
+
+		rk817_codec: codec {
+			use-ext-amplifier;
+			rockchip,mic-in-differential;
+		};
+
 		pwrkey {
 			status = "okay";
 		};
@@ -462,8 +484,8 @@
 			rk817_ts_gpio1: rk817_ts_gpio1 {
 				pins = "gpio_ts";
 				function = "pin_fun1";
-				// output-low;
-				// input-enable;
+				/* output-low; */
+				/* input-enable; */
 			};
 
 			rk817_gt_gpio2: rk817_gt_gpio2 {
@@ -668,36 +690,6 @@
 			};
 		};
 
-		battery {
-			compatible = "rk817,battery";
-			ocv_table = <3400 3625 3685 3697 3718 3735 3748
-			3760 3774 3788 3802 3816 3834 3853
-			3877 3908 3946 3975 4018 4071 4106>;
-
-			/* KPL605475 Battery Spec */
-			/*
-				Capacity : 3.7V 3000mA
-				Normal Voltage = 3.7V
-				Cut-Off Voltage : 3.1V
-				Internal Impedance : 180 mOhm
-				Charging Voltage : 4.2V
-				Charging Voltage Max : 4.25V
-				Sample resister : 10 mohm
-			*/
-			design_capacity = <3000>;
-			design_qmax = <3300>;
-			bat_res = <150>;
-			sleep_enter_current = <300>;
-			sleep_exit_current = <300>;
-			sleep_filter_current = <100>;
-			power_off_thresd = <3400>;
-			zero_algorithm_vol = <3850>;
-			max_soc_offset = <60>;
-			monitor_sec = <5>;
-			virtual_power = <0>;
-			sample_res = <10>;
-		};
-
 		charger {
 			compatible = "rk817,charger";
 			min_input_voltage = <4500>;
@@ -716,19 +708,6 @@
 			extcon = <&u2phy>;
 		};
 
-		rk817_codec: codec {
-			rockchip,mic-in-differential;
-			/*compatible = "rockchip,rk817";
-			clocks = <&cru SCLK_I2S1_OUT>;
-			clock-names = "mclk";
-			pinctrl-names = "default";
-			pinctrl-0 = <&i2s1_2ch_mclk &spk_ctl>;
-			spk-ctl-gpios = <&gpio2 RK_PB5 GPIO_ACTIVE_HIGH>;
-			use-ext-amplifier;
-			hp-volume = <3>;//255-0
-			spk-volume = <3>;//255-0
-			status = "okay";*/
-		};
 	};
 };
 
@@ -764,7 +743,6 @@
 	status = "okay";
 };
 
-/* LCD Backlight PWM */
 &pwm1 {
 	status = "okay";
 };
@@ -775,15 +753,19 @@
 };
 
 &sdmmc {
+	bus-width = <4>;
+	cap-mmc-highspeed;
 	cap-sd-highspeed;
+	supports-sd;
 	card-detect-delay = <800>;
+	ignore-pm-notify;
 	cd-gpios = <&gpio0 RK_PA3 GPIO_ACTIVE_LOW>; /*[> CD GPIO <]*/
 	sd-uhs-sdr12;
 	sd-uhs-sdr25;
 	sd-uhs-sdr50;
 	sd-uhs-sdr104;
-	vmmc-supply = <&vcc_sd>;
 	vqmmc-supply = <&vccio_sd>;
+	vmmc-supply = <&vcc_sd>;
 	status = "okay";
 };
 
@@ -801,9 +783,12 @@
 	status = "okay";
 };
 
-&tsadc {
+/*&tsadc {
+	pinctrl-names = "gpio", "otpout";
+	pinctrl-0 = <&tsadc_otp_gpio>;
+	pinctrl-1 = <&tsadc_otp_out>;
 	status = "okay";
-};
+};*/
 
 &u2phy {
 	status = "okay";
@@ -813,8 +798,7 @@
 	};
 
 	u2phy_otg: otg-port {
-		//status = "okay";
-		status = "disabled";
+		status = "okay";
 	};
 };
 
@@ -822,7 +806,10 @@
 	status = "okay";
 };
 
-/* EXT Header(P2): 2(RXD:GPIO1.C0),3(TXD:.C1),4(CTS:.C2),5(RTS:.C3) */
+/*
+	EXT Header(P2) UART :
+	2(RXD:GPIO1.C0),3(TXD:GPIO1.C1),4(CTS:GPIO1.C2),5(RTS:GPIO1.C3)
+*/
 &uart1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart1_xfer &uart1_cts>;
@@ -848,6 +835,49 @@
 };
 
 &pinctrl {
+
+	headphone {
+		//Low : HeadPhone remove, High : HeadPhone insert
+		hp_det: hp-det {
+			rockchip,pins = <2 RK_PC6 RK_FUNC_GPIO &pcfg_pull_up>;
+		};
+	};
+	
+    leds {
+		led_pins: led-pins {
+			rockchip,pins = <3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>,
+			<3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>,
+			<3 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>,
+			<3 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+	
+	pmic {
+		/* ODROID-GO2 : PMIC_INT(GPIO0.PC1) */
+		pmic_int: pmic_int {
+			rockchip,pins = <0 RK_PC1 RK_FUNC_GPIO &pcfg_pull_up>;					
+		};
+
+		/* ODROID-GO2 : PMIC_SLEEP(GPIO0.PA4) */
+		soc_slppin_gpio: soc_slppin_gpio {
+			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_output_low>;
+		};
+
+		soc_slppin_slp: soc_slppin_slp {
+			rockchip,pins = <0 RK_PA4 1 &pcfg_pull_none>;
+		};
+
+		soc_slppin_rst: soc_slppin_rst {
+			rockchip,pins = <0 RK_PA4 2 &pcfg_pull_none>;
+		};
+	};
+
+	
+	sdio-pwrseq {
+		wifi_enable_h: wifi-enable-h {
+			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
 	btns {
 		btn_pins: btn-pins {
 			rockchip,pins = <1 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>,
@@ -866,56 +896,6 @@
 					<2 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>,
 					<2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
 					<2 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>;
-		};
-	};
-
-	headphone {
-		//Low : HeadPhone remove, High : HeadPhone insert
-		phone_det: phone_det {
-			rockchip,pins = <2 RK_PC6 RK_FUNC_GPIO &pcfg_pull_up>;
-		};
-	};
-	
-    leds {
-		led_pins: led-pins {
-			rockchip,pins = <3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>,
-			<3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>,
-			<3 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>,
-			<3 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-		};
-	};
-	
-    speaker {
-        spk_ctl: spk_ctl {
-            rockchip,pins = <2 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
-        };
-    };
-	pmic {
-		dc_det: dc-det {
-			rockchip,pins = <0 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
-		};
-
-		pmic_int: pmic-int {
-			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>;
-		};
-
-		soc_slppin_gpio: soc_slppin_gpio {
-			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_output_low>;
-		};
-
-		soc_slppin_rst: soc_slppin_rst {
-			rockchip,pins = <0 RK_PA4 2 &pcfg_pull_none>;
-		};
-
-		soc_slppin_slp: soc_slppin_slp {
-			rockchip,pins = <0 RK_PA4 1 &pcfg_pull_none>;
-		};
-	};
-
-	
-	sdio-pwrseq {
-		wifi_enable_h: wifi-enable-h {
-			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
 };

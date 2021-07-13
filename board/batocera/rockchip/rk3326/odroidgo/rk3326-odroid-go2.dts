@@ -24,6 +24,21 @@
 		pwms = <&pwm1 0 25000 0>;
 	};
 
+	battery_cell: battery-cell {
+		compatible = "simple-battery";
+		energy-full-design-microamp-hours = <3000000>;
+		voltage-min-design-microvolt = <3500000>;
+		voltage-max-design-microvolt = <4100000>;
+
+		ocv-capacity-celcius = <20>;
+		ocv-capacity-table-0 =  <3500 0>, <3625 5>, <3685 10>, <3697 15>,
+					<3718 20>, <3735 25>, <3748 30>, <3760 35>,
+					<3774 40>, <3788 45>, <3802 50>, <3816 55>,
+					<3834 60>, <3853 65>, <3877 70>, <3908 75>,
+					<3946 80>, <3975 85>, <4018 90>, <4071 95>,
+					<4106 100>;
+	};
+
 	gpio-keys {
 		compatible = "gpio-keys";
 		pinctrl-names = "default";
@@ -283,6 +298,13 @@
 		vcc5-supply = <&vccsys>;
 		vcc6-supply = <&vccsys>;
 		vcc7-supply = <&vccsys>;
+
+                rk817_battery: battery {
+                        compatible = "rk817,battery";
+                        monitored-battery = <&battery_cell>;
+                        bat_res = <180>;
+                        sample_res = <10>;
+                };
 
 		regulators {
 			vdd_logic: DCDC_REG1 {
