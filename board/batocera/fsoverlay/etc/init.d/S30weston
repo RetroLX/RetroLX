@@ -1,4 +1,4 @@
 #!/bin/bash
 
-XDG_RUNTIME_DIR=/userdata/system /usr/bin/weston --backend=drm-backend.so --tty 1 --shell=kiosk-shell.so &
+XDG_RUNTIME_DIR=/userdata/system /usr/bin/weston --backend=drm-backend.so --tty 1 --shell=desktop-shell.so --config=/etc/weston.ini &
 sleep 2
