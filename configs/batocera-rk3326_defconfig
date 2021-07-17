@@ -34,7 +34,7 @@ BR2_ROOTFS_POST_BUILD_SCRIPT="$(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/scrip
 BR2_ROOTFS_POST_IMAGE_SCRIPT="$(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/scripts/post-image-script.sh"
 
 # Kernel (built outside rootfs)
-BR2_PACKAGE_RETROLX_KERNEL=y
+BR2_PACKAGE_RETROLX_KERNELS=y
 BR2_KERNEL_HEADERS_5_10=y
 
 # System

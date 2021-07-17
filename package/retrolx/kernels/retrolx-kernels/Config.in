@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNELS
+        bool "retrolx-kernels"
+        help
+          Linux kernel for RetroLX
