@@ -1,17 +1,6 @@
-From b22476f67deae9b0daf69516e7b94f64e7acc895 Mon Sep 17 00:00:00 2001
-From: chewitt <christianshewitt@gmail.com>
-Date: Thu, 14 May 2020 13:32:26 +0000
-Subject: [PATCH 3/3] WIP: add Amlogic cards to aliases.conf
-
----
- src/conf/cards/aliases.conf | 48 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
-
-diff --git a/src/conf/cards/aliases.conf b/src/conf/cards/aliases.conf
-index 18a920f4..14dedb63 100644
---- a/src/conf/cards/aliases.conf
-+++ b/src/conf/cards/aliases.conf
-@@ -58,6 +58,54 @@ CMI8787 cards.CMI8788
+--- a/src/conf/cards/aliases.conf	2021-07-14 11:31:03.230136219 +0200
++++ b/src/conf/cards/aliases.conf	2021-07-14 11:31:40.810135660 +0200
+@@ -58,6 +58,54 @@
  pistachio cards.pistachio-card
  VC4-HDMI cards.vc4-hdmi
  
@@ -63,9 +52,6 @@ index 18a920f4..14dedb63 100644
 +MXIII cards.AMLOGIC-HDMI-SPDIF
 +WETEK-CORE cards.AMLOGIC-HDMI-SPDIF
 +
+ <confdir:ctl/default.conf>
  <confdir:pcm/default.conf>
  <confdir:pcm/dmix.conf>
- <confdir:pcm/dsnoop.conf>
--- 
-2.17.1
-
