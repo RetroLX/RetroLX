@@ -1,5 +1,5 @@
 pkgname = lr-mgba
-pkgver = 0.8.2-1
+pkgver = 0.9.2-1
 pkgdesc = mGBA libretro core
 group = emulator
 packager = https://retrolx.org 
