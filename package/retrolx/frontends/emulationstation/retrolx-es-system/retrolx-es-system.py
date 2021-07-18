@@ -9,8 +9,10 @@ import re
 import argparse
 import os
 import shutil
+import subprocess
 from collections import OrderedDict
 from operator import itemgetter
+from os import path
 
 def ordered_load(stream, Loader=yaml.Loader, object_pairs_hook=OrderedDict):
     class OrderedLoader(Loader):
@@ -33,6 +35,7 @@ class EsSystemConf:
     def generate(rulesYaml, featuresYaml, configFile, esSystemFile, esFeaturesFile, systemsConfigFile, archSystemsConfigFile, romsdirsource, romsdirtarget, arch):
         rules = yaml.safe_load(open(rulesYaml, "r"))
         config = EsSystemConf.loadConfig(configFile)
+        config = EsSystemConf.queryConfig(config)
         es_system = ""
 
         archSystemsConfig = yaml.safe_load(open(archSystemsConfigFile, "r"))
@@ -103,6 +106,17 @@ class EsSystemConf:
                 if m:
                     config[m.group(1)] = 1
                 line = fp.readline()
+        return config
+
+    # Adjust config by querying installed packages
+    @staticmethod
+    def queryConfig(config):
+        if path.exists('/usr/bin/retrolx-pacman'):
+            with subprocess.run(['/usr/bin/retrolx-pacman', 'query'], stdout=subprocess.PIPE) as result:
+                line = fp.readline()
+                while line:
+                    config[line] = 1
+                    line = fp.readline()
         return config
 
     # Generate emulator system

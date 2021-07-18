@@ -130,6 +130,15 @@ case "${ACTION}" in
 	fi
 	exit ${RET}
 	;;
+    "query")
+	if test ! -e /userdata/system/pacman/retrolx/db/sync/retrolx.db
+	then
+		${PACMAN_CMD} --noconfirm -Sy
+	fi
+		${PACMAN_CMD} --noconfirm -Qq
+		RET=$?
+	exit ${RET}
+	;;
     "refresh")
 	${PACMAN_CMD} --noconfirm -Sy
 	exit $?
