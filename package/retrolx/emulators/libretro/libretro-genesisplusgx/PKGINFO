@@ -1,0 +1,6 @@
+pkgname = lr-genesisplusgx
+pkgver = 20210716
+pkgdesc = Genesis Plus GX libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/genesis_plus_gx/

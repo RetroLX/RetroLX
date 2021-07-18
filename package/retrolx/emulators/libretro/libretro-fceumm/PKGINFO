@@ -1,0 +1,6 @@
+pkgname = lr-fceumm
+pkgver = 20210716
+pkgdesc = FCEUmm libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/fceumm/

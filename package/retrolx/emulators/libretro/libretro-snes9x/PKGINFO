@@ -1,0 +1,6 @@
+pkgname = lr-snes9x
+pkgver = 20210716
+pkgdesc = Snes9x libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/snes9x/
