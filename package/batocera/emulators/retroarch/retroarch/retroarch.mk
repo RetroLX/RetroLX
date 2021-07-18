@@ -105,11 +105,6 @@ else
 	RETROARCH_CONF_OPTS += --disable-freetype
 endif
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RK3326_ANY),y)
-	RETROARCH_CONF_OPTS += --enable-odroidgo2
-	RETROARCH_DEPENDENCIES += librga
-endif
-
 ifeq ($(BR2_PACKAGE_HAS_LIBGL),y)
 	RETROARCH_CONF_OPTS += --enable-opengl --disable-opengles
 	RETROARCH_DEPENDENCIES += libgl
