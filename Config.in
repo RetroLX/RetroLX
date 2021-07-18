@@ -86,9 +86,9 @@ menu "System"
 endmenu
 
 menu "Emulationstation"
-  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulationstation/batocera-es-system/Config.in"
-  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulationstation/es-theme-carbon/Config.in"
-  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulationstation/es-theme-minijawn/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/frontends/emulationstation/retrolx-es-system/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/frontends/emulationstation/es-theme-carbon/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/frontends/emulationstation/es-theme-minijawn/Config.in"
 endmenu
 
 menu "Controllers"
