@@ -1,6 +1,7 @@
 default:
   options:
     video_threaded: true
+    smooth: false
     retroarch.menu_driver: xmb
     retroarch.audio_driver: alsathread
 
@@ -37,6 +38,9 @@ pet:
 cplus4:
   emulator: vice
   core:     xplus4
+fbneo:
+  options:
+    frameskip: auto
 dos:
   emulator: dosbox
   core:     dosbox
