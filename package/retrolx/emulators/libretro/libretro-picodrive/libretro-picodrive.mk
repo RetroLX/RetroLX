@@ -11,6 +11,9 @@ LIBRETRO_PICODRIVE_GIT_SUBMODULES=YES
 LIBRETRO_PICODRIVE_DEPENDENCIES = libpng
 LIBRETRO_PICODRIVE_LICENSE = MAME
 
+LIBRETRO_PICODRIVE_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
+LIBRETRO_PICODRIVE_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-picodrive
+
 LIBRETRO_PICODRIVE_PLATFORM = $(LIBRETRO_PLATFORM)
 
 ifeq ($(BR2_arm),y)
@@ -29,9 +32,24 @@ define LIBRETRO_PICODRIVE_BUILD_CMDS
 	cd $(@D) && $(TARGET_CONFIGURE_OPTS) $(MAKE) -j 1 CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C  $(@D) -f Makefile.libretro platform="$(LIBRETRO_PICODRIVE_PLATFORM)"
 endef
 
-define LIBRETRO_PICODRIVE_INSTALL_TARGET_CMDS
+define LIBRETRO_PICODRIVE_MAKEPKG
+	# Create directories
+	mkdir -p $(LIBRETRO_PICODRIVE_PKG_DIR)$(LIBRETRO_PICODRIVE_PKG_INSTALL_DIR)
+
+	# Copy package files
 	$(INSTALL) -D $(@D)/picodrive_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/picodrive_libretro.so
+	$(LIBRETRO_PICODRIVE_PKG_DIR)$(LIBRETRO_PICODRIVE_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(LIBRETRO_PICODRIVE_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-picodrive/PKGINFO \
+	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
+
+LIBRETRO_PICODRIVE_POST_INSTALL_TARGET_HOOKS = LIBRETRO_PICODRIVE_MAKEPKG
 
 $(eval $(generic-package))
