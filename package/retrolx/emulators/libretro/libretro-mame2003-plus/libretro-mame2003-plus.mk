@@ -35,9 +35,6 @@ define LIBRETRO_MAME2003_PLUS_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/ -f Makefile platform="$(LIBRETRO_MAME2003_PLUS_PLATFORM)"
 endef
 
-define LIBRETRO_MAME2003_PLUS_INSTALL_TARGET_CMDS
-endef
-
 define LIBRETRO_MAME2003_PLUS_NAMCO_QUICK_FIX
 	$(SED) 's|O3|O2|g' $(@D)/Makefile
 	$(SED) 's|to continue|on Keyboard, or Left, Right on Joystick to continue|g' $(@D)/src/ui_text.c

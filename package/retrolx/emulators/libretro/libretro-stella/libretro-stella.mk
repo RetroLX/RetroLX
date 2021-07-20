@@ -15,11 +15,6 @@ define LIBRETRO_STELLA_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/src/libretro -f Makefile platform="$(LIBRETRO_PLATFORM)"
 endef
 
-define LIBRETRO_STELLA_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/src/libretro/stella_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/stella_libretro.so
-endef
-
 define LIBRETRO_STELLA_MAKEPKG
 	# Create directories
 	mkdir -p $(LIBRETRO_STELLA_PKG_DIR)$(LIBRETRO_STELLA_PKG_INSTALL_DIR)
