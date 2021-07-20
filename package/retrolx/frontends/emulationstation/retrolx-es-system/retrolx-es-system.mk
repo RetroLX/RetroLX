@@ -26,6 +26,8 @@ define RETROLX_ES_SYSTEM_INSTALL_TARGET_CMDS
         mkdir -p $(TARGET_DIR)/usr/share/batocera/datainit
 
 	# Install to target to be able to generate es files dynamically
+	$(INSTALL) -m 0755 -D $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/emulationstation/retrolx-es-system/retrolx-rebuild-es-systems.sh \
+	                      $(TARGET_DIR)/usr/bin/retrolx-rebuild-es-systems.sh
 	$(INSTALL) -m 0755 -D $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/emulationstation/retrolx-es-system/retrolx-es-system.py \
 	                      $(TARGET_DIR)/usr/share/emulationstation/retrolx-es-system.py
 	$(INSTALL) -m 0644 -D $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/emulationstation/retrolx-es-system/es_systems.yml \
