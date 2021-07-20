@@ -3,7 +3,7 @@
 # FBNEO
 #
 ################################################################################
-LIBRETRO_FBNEO_VERSION = a53e2c0dc04923ab5be2f6114e7f604e70a56661
+LIBRETRO_FBNEO_VERSION = c99628a0622c57837ea334ff0a8ec8be8a669b19
 LIBRETRO_FBNEO_SITE = $(call github,libretro,FBNeo,$(LIBRETRO_FBNEO_VERSION))
 LIBRETRO_FBNEO_LICENSE = Non-commercial
 

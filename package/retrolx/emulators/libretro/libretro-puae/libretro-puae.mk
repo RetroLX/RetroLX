@@ -3,7 +3,7 @@
 # PUAE
 #
 ################################################################################
-LIBRETRO_PUAE_VERSION = 9d79df0299bd81d91ce869fca21e2c4a7b64d339
+LIBRETRO_PUAE_VERSION = a411a3cb580506a21fba884cd60032b43b8428b8
 LIBRETRO_PUAE_SITE = $(call github,libretro,libretro-uae,$(LIBRETRO_PUAE_VERSION))
 LIBRETRO_PUAE_LICENSE = GPLv2
 
