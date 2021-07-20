@@ -1,4 +1,4 @@
-pkgname = lr-lynx
+pkgname = lr-beetle-lynx
 pkgver = 20210711-1
 pkgdesc = Beetle Lynx (Atari Lynx) libretro core
 group = emulator

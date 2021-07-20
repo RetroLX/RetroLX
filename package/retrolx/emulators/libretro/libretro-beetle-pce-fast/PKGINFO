@@ -1,0 +1,6 @@
+pkgname = lr-beetle-pce-fast
+pkgver = 20210711-1
+pkgdesc = Beetle PCE Fast (NEC PC Engine / CD) libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/beetle_pce_fast/
