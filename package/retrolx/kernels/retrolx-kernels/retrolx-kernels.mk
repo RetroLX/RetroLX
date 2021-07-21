@@ -5,7 +5,7 @@
 ################################################################################
 
 # Mainline kernel
-RETROLX_KERNELS_VERSION_VALUE = 5.10.51
+RETROLX_KERNELS_VERSION_VALUE = 5.10.52
 
 # Raspberry pi kernels
 ifeq ($(BATOCERA_SYSTEM_ARCH),rpi1)
