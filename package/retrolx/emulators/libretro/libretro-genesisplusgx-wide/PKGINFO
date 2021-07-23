@@ -1,0 +1,6 @@
+pkgname = lr-genesisplusgx-wide
+pkgver = 20210716-1
+pkgdesc = Genesis Plus GX Wide libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://github.com/libretro/Genesis-Plus-GX-Wide
