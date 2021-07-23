@@ -1,0 +1,6 @@
+pkgname = lr-pocketsnes
+pkgver = 20210312-1
+pkgdesc = PocketSNES libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/snes9x_2002/
