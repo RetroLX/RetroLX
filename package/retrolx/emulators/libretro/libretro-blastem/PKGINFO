@@ -1,0 +1,6 @@
+pkgname = lr-blastem
+pkgver = 20210309-1
+pkgdesc = BlastEm (Sega Genesis) libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://www.retrodev.com/blastem/
