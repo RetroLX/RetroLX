@@ -30,9 +30,6 @@ define LIBRETRO_FBNEO_BUILD_CMDS
 	GIT_VERSION=" $(shell echo $(LIBRETRO_FBNEO_VERSION) | cut -c 1-10)"
 endef
 
-define LIBRETRO_FBNEO_INSTALL_TARGET_CMDS
-endef
-
 define LIBRETRO_FBNEO_MAKEPKG
 	# Create directories
 	mkdir -p $(LIBRETRO_FBNEO_PKG_DIR)$(LIBRETRO_FBNEO_PKG_INSTALL_DIR)/bios/samples

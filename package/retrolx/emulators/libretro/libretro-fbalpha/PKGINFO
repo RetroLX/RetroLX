@@ -1,0 +1,6 @@
+pkgname = lr-fbalpha
+pkgver = 20210723-1
+pkgdesc = Final Burn Alpha libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://www.fbalpha.com/

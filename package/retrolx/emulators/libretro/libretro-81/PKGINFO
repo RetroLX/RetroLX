@@ -1,0 +1,6 @@
+pkgname = lr-81
+pkgver = 20210723-1
+pkgdesc = EightyOne (Sinclair ZX80/81) libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/eightyone/
