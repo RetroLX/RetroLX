@@ -23,7 +23,7 @@ define RETROLX_ES_SYSTEM_BUILD_CMDS
 endef
 
 define RETROLX_ES_SYSTEM_INSTALL_TARGET_CMDS
-        mkdir -p $(TARGET_DIR)/usr/share/batocera/datainit
+	mkdir -p $(TARGET_DIR)/usr/share/batocera/datainit
 
 	# Install to target to be able to generate es files dynamically
 	$(INSTALL) -m 0755 -D $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/emulationstation/retrolx-es-system/retrolx-rebuild-es-systems.sh \
