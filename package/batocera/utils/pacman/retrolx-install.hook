@@ -1,8 +1,8 @@
 [Trigger]
 Operation = Install
 Operation = Upgrade
-Type = Package 
-Target = *
+Type = Path
+Target = userdata/packages
 
 [Action]
 When = PostTransaction
