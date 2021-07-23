@@ -69,9 +69,9 @@ class EsSystemConf:
         EsSystemConf.createEsSystem(es_system, esSystemFile)
         EsSystemConf.createEsFeatures(featuresYaml, rules, esFeaturesFile, arch)
 
-        print("removing the " + romsdirtarget + " folder...")
-        if os.path.isdir(romsdirtarget):
-            shutil.rmtree(romsdirtarget)
+        # print("removing the " + romsdirtarget + " folder...")
+        # if os.path.isdir(romsdirtarget):
+        #   shutil.rmtree(romsdirtarget)
         print("generating the " + romsdirtarget + " folder...")
         for system in sortedRules:
             if rules[system]:
@@ -218,7 +218,7 @@ class EsSystemConf:
             os.makedirs(romsdirtarget + "/" + subdir)
             # copy from the template one, or just keep it empty
             if os.path.isdir(romsdirsource + "/" + subdir):
-                os.rmdir(romsdirtarget + "/" + subdir) # remove the last level
+                # os.rmdir(romsdirtarget + "/" + subdir) # remove the last level
                 shutil.copytree(romsdirsource + "/" + subdir, romsdirtarget + "/" + subdir)
 
     # Creates an _info.txt file inside the emulators folders in roms with the information of the supported extensions.
