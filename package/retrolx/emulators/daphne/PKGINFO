@@ -1,5 +1,5 @@
 pkgname = daphne
-pkgver = 2.6.1-1
+pkgver = 2.6.2-1
 pkgdesc = Daphne Laserdic Emulator
 group = emulator
 packager = https://retrolx.org 
