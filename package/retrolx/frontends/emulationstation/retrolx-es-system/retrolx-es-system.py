@@ -86,12 +86,14 @@ class EsSystemConf:
     def needFolder(system, data, config):
         # no emulator
         if "emulators" not in data:
+            print("needFolder emulators not in data")
             return False
 
         for emulator in sorted(data["emulators"]):
             emulatorData = data["emulators"][emulator]
             for core in sorted(emulatorData):
                 if EsSystemConf.isValidRequirements(config, emulatorData[core]["requireAnyOf"]):
+                    print("matched system " + system+ " with core " + core)
                     return True
         return False
 
@@ -99,24 +101,27 @@ class EsSystemConf:
     @staticmethod
     def loadConfig(configFile):
         config = {}
-        with open(configFile) as fp:
-            line = fp.readline()
-            while line:
-                m = re.search("^([^ ]+)=y$", line)
-                if m:
-                    config[m.group(1)] = 1
+        if path.exists(configFile):
+            with open(configFile) as fp:
                 line = fp.readline()
+                while line:
+                    m = re.search("^([^ ]+)=y$", line)
+                    if m:
+                        config[m.group(1)] = 1
+                    line = fp.readline()
         return config
 
     # Adjust config by querying installed packages
     @staticmethod
     def queryConfig(config):
         if path.exists('/usr/bin/retrolx-pacman'):
-            with subprocess.run(['/usr/bin/retrolx-pacman', 'query'], stdout=subprocess.PIPE) as result:
-                line = fp.readline()
-                while line:
-                    config[line] = 1
-                    line = fp.readline()
+            proc = subprocess.Popen(['/usr/bin/retrolx-pacman', 'query'], universal_newlines=True, stdout=subprocess.PIPE)
+            while True:
+                line = proc.stdout.readline()
+                if not line:
+                    break
+                line = line.rstrip()
+                config[line] = 1
         return config
 
     # Generate emulator system
