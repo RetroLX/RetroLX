@@ -1,7 +1,7 @@
 [Trigger]
 Operation = Remove
-Type = Package 
-Target = *
+Type = Path 
+Target = userdata/packages/*
 
 [Action]
 When = PostTransaction
