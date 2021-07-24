@@ -1,0 +1,6 @@
+pkgname = lr-neocd
+pkgver = 20210515-1
+pkgdesc = NeoCD (SNK Neo Geo CD) libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://github.com/libretro/neocd_libretro
