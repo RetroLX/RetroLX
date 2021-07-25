@@ -25,11 +25,6 @@ define LIBRETRO_GENESISPLUSGX_WIDE_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D) -f Makefile.libretro platform="$(LIBRETRO_GENESISPLUSGX_WIDE_PLATFORM)"
 endef
 
-define LIBRETRO_GENESISPLUSGX_WIDE_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/genesis_plus_gx_wide_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/genesisplusgx-wide_libretro.so
-endef
-
 define LIBRETRO_GENESISPLUSGX_WIDE_MAKEPKG
 	# Create directories
 	mkdir -p $(LIBRETRO_GENESISPLUSGX_WIDE_PKG_DIR)$(LIBRETRO_GENESISPLUSGX_WIDE_PKG_INSTALL_DIR)
