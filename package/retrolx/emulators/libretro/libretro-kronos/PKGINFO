@@ -1,0 +1,6 @@
+pkgname = lr-kronos
+pkgver = 20210114-1
+pkgdesc = Kronos (Sega Saturn) libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/yabause/
