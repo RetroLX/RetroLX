@@ -4,7 +4,7 @@
 #
 ################################################################################
 # Version.: Commits on Mar 6, 2021
-SDLPOP_VERSION = 431e024ead57d035e65af44152fbac6974f76d94
+SDLPOP_VERSION = 25a9e11f8373e3b2aaf7279a62099dffbbeddb46
 SDLPOP_SITE = $(call github,NagyD,SDLPoP,$(SDLPOP_VERSION))
 SDLPOP_SUBDIR = src
 SDLPOP_LICENSE = GPLv3

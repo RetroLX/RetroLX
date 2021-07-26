@@ -3,7 +3,7 @@
 # GPSP
 #
 ################################################################################
-LIBRETRO_GPSP_VERSION = d468f473e84a8fc36a68b6d1da9b422e52852820
+LIBRETRO_GPSP_VERSION = 1d8313cc14785491b1cfc8572da7acdbac5b56ae
 LIBRETRO_GPSP_SITE = $(call github,libretro,gpsp,$(LIBRETRO_GPSP_VERSION))
 LIBRETRO_GPSP_LICENSE = GPLv2
 
