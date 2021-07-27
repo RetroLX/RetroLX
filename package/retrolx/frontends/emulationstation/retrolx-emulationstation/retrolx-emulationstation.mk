@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-RETROLX_EMULATIONSTATION_VERSION = e1ad150517bbfd2a33f0fe20dbc7ba0c244134d0
+RETROLX_EMULATIONSTATION_VERSION = 1d0630276bc3dbada1b20a6e124cbb3e80fb7a24
 RETROLX_EMULATIONSTATION_SITE = https://github.com/RetroLX/retrolx-emulationstation
 RETROLX_EMULATIONSTATION_SITE_METHOD = git
 RETROLX_EMULATIONSTATION_LICENSE = MIT
