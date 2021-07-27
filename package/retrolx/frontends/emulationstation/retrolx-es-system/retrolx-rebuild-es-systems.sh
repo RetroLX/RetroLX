@@ -6,8 +6,8 @@
 /.config \
 /userdata/system/configs/emulationstation/es_systems.cfg \
 /userdata/system/configs/emulationstation/es_features.cfg \
-/usr/share/batocera/configgen/configgen-defaults.yml \
-/usr/share/batocera/configgen/configgen-defaults-arch.yml \
+/usr/share/retrolx/configgen/configgen-defaults.yml \
+/usr/share/retrolx/configgen/configgen-defaults-arch.yml \
 /usr/share/emulationstation/roms \
 /userdata/roms {BATOCERA_ARCHITECTURE}
 

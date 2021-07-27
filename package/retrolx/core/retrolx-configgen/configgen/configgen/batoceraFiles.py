@@ -17,6 +17,10 @@ esSettings = CONF + '/emulationstation/es_settings.cfg'
 batoceraConf = HOME + '/batocera.conf'
 logdir = HOME + '/logs/'
 
+from pathlib import Path
+arch = Path('/usr/share/batocera/batocera.arch').read_text()
+retrolxPackages = '/userdata/packages/' + arch
+
 # This dict is indexed on the emulator name, not on the system
 batoceraBins = {'dosbox'         : '/usr/bin/dosbox'
               , 'dosbox_staging' : '/usr/bin/dosbox-staging'

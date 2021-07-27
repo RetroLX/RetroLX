@@ -9,6 +9,22 @@ from generators.Generator import Generator
 import os.path
 from settings.unixSettings import UnixSettings
 from utils.logger import eslog
+import os
+import sys
+
+# Helper for package system
+# Find a core in the packages folder
+def findCore(core):
+    path = os.path.abspath(batoceraFiles.retrolxPackages)
+    file = core + batoceraFiles.libretroExt
+    for root, dirs, files in os.walk(path):
+        for filename in files:
+            if filename == file:
+                file_path = os.path.join(root, filename)
+                return file_path
+    return ""
+
+
 
 class LibretroGenerator(Generator):
 
@@ -40,7 +56,7 @@ class LibretroGenerator(Generator):
             retroconfig.write()
 
         # Retroarch core on the filesystem
-        retroarchCore = batoceraFiles.retroarchCores + system.config['core'] + batoceraFiles.libretroExt
+        retroarchCore = findCore(system.config['core'])
         romName = os.path.basename(rom)
 
 

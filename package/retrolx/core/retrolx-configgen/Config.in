@@ -1,0 +1,10 @@
+config BR2_PACKAGE_RETROLX_CONFIGGEN
+        bool "retrlx configgen"
+	select BR2_PACKAGE_PYTHON3
+	select BR2_PACKAGE_PYTHON_PYYAML
+	select BR2_PACKAGE_PYTHON_PILLOW
+        help
+          The configuration utility for RetroLX
+	  The purpose of the lib is to automatically configure emulators, using the environment variables available in RetroLX.
+          The main program is emulatorlauncher.py, taking 13 parameters, that are the system and 4 controllers configurations.
+
