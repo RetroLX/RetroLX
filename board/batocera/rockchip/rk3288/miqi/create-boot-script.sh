@@ -14,6 +14,10 @@ BINARIES_DIR=$4
 TARGET_DIR=$5
 BATOCERA_BINARIES_DIR=$6
 
+mkdir -p "${BATOCERA_BINARIES_DIR}/uboot"     || exit 1
+cp "${BOARD_DIR}/build-uboot.sh"          "${BATOCERA_BINARIES_DIR}/uboot/" || exit 1
+cd "${BATOCERA_BINARIES_DIR}/uboot/" && ./build-uboot.sh || exit 1
+
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/boot"     || exit 1
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/extlinux" || exit 1
 
@@ -24,9 +28,5 @@ cp "${BINARIES_DIR}/modules"         "${BATOCERA_BINARIES_DIR}/boot/boot/modules
 
 cp "${BINARIES_DIR}/rk3288-miqi.dtb" "${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf" "${BATOCERA_BINARIES_DIR}/boot/extlinux/" || exit 1
-
-# this part should be done in the uboot package (on in the genimage)
-"${HOST_DIR}/bin/mkimage" -n rk3288 -T rksd -d "${BINARIES_DIR}/miqi/u-boot-spl-dtb.bin" "${BINARIES_DIR}/miqi/u-boot-spl-dtb.img"
-cat "${BINARIES_DIR}/miqi/u-boot-dtb.bin" >> "${BINARIES_DIR}/miqi/u-boot-spl-dtb.img"
 
 exit 0
