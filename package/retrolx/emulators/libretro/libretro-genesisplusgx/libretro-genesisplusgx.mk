@@ -31,7 +31,7 @@ define LIBRETRO_GENESISPLUSGX_MAKEPKG
 
 	# Copy package files
 	$(INSTALL) -D $(@D)/genesis_plus_gx_libretro.so \
-	$(LIBRETRO_GENESISPLUSGX_PKG_DIR)$(LIBRETRO_GENESISPLUSGX_PKG_INSTALL_DIR)
+	$(LIBRETRO_GENESISPLUSGX_PKG_DIR)$(LIBRETRO_GENESISPLUSGX_PKG_INSTALL_DIR)/genesisplusgx_libretro.so
 
 	# Build Pacman package
 	cd $(LIBRETRO_GENESISPLUSGX_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
