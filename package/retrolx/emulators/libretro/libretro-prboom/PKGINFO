@@ -1,0 +1,6 @@
+pkgname = lr-prboom
+pkgver = 20210528-1
+pkgdesc = PrBoom (Doom) libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/prboom/
