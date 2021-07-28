@@ -8,6 +8,10 @@ LIBRETRO_VECX_VERSION = 0f3f04b0e5bbb484a84e3416d07f0ae8cdac386e
 LIBRETRO_VECX_SITE = $(call github,libretro,libretro-vecx,$(LIBRETRO_VECX_VERSION))
 LIBRETRO_VECX_LICENSE = GPLv2|LGPLv2.1
 
+LIBRETRO_VECX_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
+LIBRETRO_VECX_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-vecx
+
+
 ifeq ($(BR2_PACKAGE_HAS_LIBGL),y)
 LIBRETRO_VECX_DEPENDENCIES += libgl
 else
@@ -44,9 +48,24 @@ define LIBRETRO_VECX_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/ -f Makefile.libretro $(LIBRETRO_VECX_MAKE_OPTS)
 endef
 
-define LIBRETRO_VECX_INSTALL_TARGET_CMDS
+define LIBRETRO_VECX_MAKEPKG
+	# Create directories
+	mkdir -p $(LIBRETRO_VECX_PKG_DIR)$(LIBRETRO_VECX_PKG_INSTALL_DIR)
+
+	# Copy package files
 	$(INSTALL) -D $(@D)/vecx_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/vecx_libretro.so
+	$(LIBRETRO_VECX_PKG_DIR)$(LIBRETRO_VECX_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(LIBRETRO_VECX_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-vecx/PKGINFO \
+	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
+
+LIBRETRO_VECX_POST_INSTALL_TARGET_HOOKS = LIBRETRO_VECX_MAKEPKG
 
 $(eval $(generic-package))
