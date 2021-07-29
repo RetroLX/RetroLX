@@ -5,7 +5,11 @@
 ################################################################################
 
 # Mainline kernels
-RETROLX_KERNELS_VERSION_VALUE = 5.10.53
+ifeq ($(BR2_i686)$(BR2_x86_64),y)
+RETROLX_KERNELS_VERSION_VALUE = 5.13.6
+else
+RETROLX_KERNELS_VERSION_VALUE = 5.10.54
+endif
 
 # Raspberry pi kernels
 ifeq ($(BATOCERA_SYSTEM_ARCH),rpi1)

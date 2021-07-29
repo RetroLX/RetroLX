@@ -22,7 +22,7 @@ LIBRETRO_PICODRIVE_PLATFORM += armv neon hardfloat
 else ifeq ($(BR2_aarch64),y)
 LIBRETRO_PICODRIVE_PLATFORM = aarch64
 
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_ANY),y)
+else ifeq ($(BR2_PACKAGE_BATOCERA_IS_X86_ARCH),y)
 LIBRETRO_PICODRIVE_PLATFORM = unix
 endif
 

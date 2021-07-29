@@ -3,8 +3,8 @@
 # alllinuxfirmwares
 #
 ################################################################################
-# Version from 2021-05-11
-ALLLINUXFIRMWARES_VERSION = 20210511
+# Version from 2021-07-16
+ALLLINUXFIRMWARES_VERSION = 20210716
 ALLLINUXFIRMWARES_SITE = http://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 ALLLINUXFIRMWARES_SITE_METHOD = git
 
@@ -44,7 +44,7 @@ ifeq ($(BR2_PACKAGE_BATOCERA_RPI_ANY),y)
 ALLLINUXFIRMWARES_PRE_INSTALL_TARGET_HOOKS += ALLLINUXFIRMWARES_DELETE_BRCM
 endif
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_ANY),y)
+ifeq ($(BR2_PACKAGE_BATOCERA_IS_X86_ARCH),y)
 else
 ALLLINUXFIRMWARES_PRE_INSTALL_TARGET_HOOKS += ALLLINUXFIRMWARES_DELETE_X86_ONLY_FIRMWARE
 endif
