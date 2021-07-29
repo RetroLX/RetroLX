@@ -15,17 +15,12 @@ define LIBRETRO_FREEINTV_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D) -f Makefile platform="unix"
 endef
 
-define LIBRETRO_FREEINTV_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/freeintv_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/freeintv_libretro.so
-endef
-
 define LIBRETRO_FREEINTV_MAKEPKG
 	# Create directories
 	mkdir -p $(LIBRETRO_FREEINTV_PKG_DIR)$(LIBRETRO_FREEINTV_PKG_INSTALL_DIR)
 
 	# Copy package files
-	$(INSTALL) -D $(@D)/prboom_libretro.so \
+	$(INSTALL) -D $(@D)/freeintv_libretro.so \
 	$(LIBRETRO_FREEINTV_PKG_DIR)$(LIBRETRO_FREEINTV_PKG_INSTALL_DIR)
 
 	# Build Pacman package

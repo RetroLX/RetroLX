@@ -116,30 +116,6 @@ BATOCERA_NVIDIA_DRIVER_DEPENDENCIES += mesa3d-headers
 BATOCERA_NVIDIA_DRIVER_PROVIDES += libopencl
 endif
 
-# Build and install the kernel modules if needed
-ifeq ($(BR2_PACKAGE_BATOCERA_NVIDIA_DRIVER_MODULE),y)
-
-BATOCERA_NVIDIA_DRIVER_MODULES = nvidia nvidia-modeset nvidia-drm
-ifeq ($(BR2_x86_64),y)
-BATOCERA_NVIDIA_DRIVER_MODULES += nvidia-uvm
-endif
-
-# They can't do everything like everyone. They need those variables,
-# because they don't recognise the usual variables set by the kernel
-# build system. We also need to tell them what modules to build.
-BATOCERA_NVIDIA_DRIVER_MODULE_MAKE_OPTS = \
-	NV_KERNEL_SOURCES="$(LINUX_DIR)" \
-	NV_KERNEL_OUTPUT="$(LINUX_DIR)" \
-	NV_KERNEL_MODULES="$(BATOCERA_NVIDIA_DRIVER_MODULES)" \
-	IGNORE_CC_MISMATCH="1"
-
-
-BATOCERA_NVIDIA_DRIVER_MODULE_SUBDIRS = kernel
-
-$(eval $(kernel-module))
-
-endif # BR2_PACKAGE_BATOCERA_NVIDIA_DRIVER_MODULE == y
-
 # The downloaded archive is in fact an auto-extract script. So, it can run
 # virtually everywhere, and it is fine enough to provide useful options.
 # Except it can't extract into an existing (even empty) directory.
@@ -209,7 +185,6 @@ define BATOCERA_NVIDIA_DRIVER_INSTALL_TARGET_CMDS
 		$(INSTALL) -D -m 0755 $(@D)/$(p) \
 			$(TARGET_DIR)/usr/bin/$(p)
 	)
-	$(BATOCERA_NVIDIA_DRIVER_INSTALL_KERNEL_MODULE)
 
 # batocera install files needed by Vulkan
 	$(INSTALL) -D -m 0644 $(@D)/nvidia_layers.json \

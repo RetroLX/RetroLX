@@ -1,11 +1,10 @@
 #!/bin/bash
 
-git clone --depth 1 https://source.denx.de/u-boot/u-boot.git -b v2019.04
+git clone --depth 1 https://source.denx.de/u-boot/u-boot.git -b v2021.07
 cd u-boot
-make miqi-rk3288_defconfig
-ARCH=arm CROSS_COMPILE=/h3/host/bin/arm-buildroot-linux-gnueabihf- make -j$(nproc)
+ARCH=arm CROSS_COMPILE=/rk3288/host/bin/arm-buildroot-linux-gnueabihf- make -j$(nproc) miqi-rk3288_defconfig all
 mkdir -p ../../uboot-miqi
-cp u-boot-sunxi-with-spl.bin ../../uboot-miqi/
-"${HOST_DIR}/bin/mkimage" -n rk3288 -T rksd -d "${BINARIES_DIR}/miqi/u-boot-spl-dtb.bin" "${BINARIES_DIR}/miqi/u-boot-spl-dtb.img" || exit 1
-cat "$BINARIES_DIR/miqi/u-boot-dtb.bin" >> "${BINARIES_DIR}/miqi/u-boot-spl-dtb.img" || exit 1
+cp u-boot-dtb.img ../../uboot-miqi/
+"/rk3288/host/bin/mkimage" -n rk3288 -T rksd -d "tpl/u-boot-tpl.bin" "../../uboot-miqi/u-boot-tpl.img" || exit 1
+cat "spl/u-boot-spl-dtb.bin" >> "../../uboot-miqi/u-boot-tpl.img" || exit 1
 

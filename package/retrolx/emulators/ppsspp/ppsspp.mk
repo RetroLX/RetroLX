@@ -31,7 +31,7 @@ PPSSPP_TARGET_BINARY = PPSSPPSDL
 endif
 
 # make sure to select glvnd and depends on glew / glu because of X11 desktop GL
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_ANY),y)
+ifeq ($(BR2_PACKAGE_BATOCERA_IS_X86_ARCH),y)
 	PPSSPP_CONF_OPTS += -DOpenGL_GL_PREFERENCE=GLVND
 	PPSSPP_DEPENDENCIES += libglew libglu
 endif

@@ -30,17 +30,12 @@ define LIBRETRO_THEODORE_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/ -f Makefile platform="$(LIBRETRO_THEODORE_PLATFORM)"
 endef
 
-define LIBRETRO_THEODORE_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/theodore_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/theodore_libretro.so
-endef
-
 define LIBRETRO_THEODORE_MAKEPKG
 	# Create directories
 	mkdir -p $(LIBRETRO_THEODORE_PKG_DIR)$(LIBRETRO_THEODORE_PKG_INSTALL_DIR)
 
 	# Copy package files
-	$(INSTALL) -D $(@D)/prboom_libretro.so \
+	$(INSTALL) -D $(@D)/theodore_libretro.so \
 	$(LIBRETRO_THEODORE_PKG_DIR)$(LIBRETRO_THEODORE_PKG_INSTALL_DIR)
 
 	# Build Pacman package
