@@ -1,0 +1,6 @@
+pkgname = lr-easyrpg
+pkgver = 0.6.2.3-1
+pkgdesc = EasyRPG (RPG Maker) libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/easyrpg/
