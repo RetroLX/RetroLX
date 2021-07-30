@@ -6,7 +6,7 @@ if BR2_PACKAGE_BATOCERA_RPI_VCORE || BR2_PACKAGE_BATOCERA_RPI_MESA3D
 	default y
 endif
 
-if BR2_PACKAGE_BATOCERA_TARGET_X86 || BR2_PACKAGE_BATOCERA_TARGET_X86_64
+if BR2_i686 || BR2_x86_64
 	config BR2_PACKAGE_BATOCERA_IS_X86_ARCH
 	bool "any x86 or x86_64"
 	default y
@@ -209,7 +209,7 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_BATOCERA_XORG        if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
 
 	# mangohud
-	select BR2_PACKAGE_MANGOHUD             if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_MANGOHUD             if BR2_x86_64
 
 	# compression tools
 	select BR2_PACKAGE_UNZIP        # for /userdata/system/upgrade/share.zip
@@ -226,7 +226,7 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_FDUPES
 
 	# gpio controllers
-	# move to kernel select BR2_PACKAGE_DB9_GPIO_RPI             if BR2_PACKAGE_BATOCERA_RPI_ANY
+	#move to kernel select BR2_PACKAGE_DB9_GPIO_RPI             if BR2_PACKAGE_BATOCERA_RPI_ANY
 	#move to kernel select BR2_PACKAGE_GAMECON_GPIO_RPI         if BR2_PACKAGE_BATOCERA_RPI_ANY
 	#move to kernel select BR2_PACKAGE_MK_ARCADE_JOYSTICK_RPI   if BR2_PACKAGE_BATOCERA_RPI_ANY
 
@@ -279,9 +279,9 @@ config BR2_TARGET_BATOCERA_IMAGES_DEFINITIONS
 	default "rockchip/rk3326/odroidgo rockchip/rk3326/gameforce rockchip/rk3326/rg351v rockchip/rk3326/rg351pm" 	 if BR2_PACKAGE_BATOCERA_TARGET_RK3326
 	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"  			 				 if BR2_PACKAGE_BATOCERA_TARGET_RK3288
 	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/x99"  				 if BR2_PACKAGE_BATOCERA_TARGET_RK3399
-	default "tritium-h5"                                        			 				 if BR2_PACKAGE_BATOCERA_TARGET_TRITIUM_H5
-	default "orangepi-zero2"                                    							 if BR2_PACKAGE_BATOCERA_TARGET_ORANGEPI_ZERO2
 	default "allwinner/h3/orangepi-plus2e allwinner/h3/orangepi-pc allwinner/h3/orangepi-pc-plus allwinner/h3/cha"   if BR2_PACKAGE_BATOCERA_TARGET_H3
+	default "allwinner/h5/tritium-h5"                                        			 		 if BR2_PACKAGE_BATOCERA_TARGET_H5
+	default "allwinner/h616/orangepi-zero2"                                    					 if BR2_PACKAGE_BATOCERA_TARGET_H616
 	default "s812"                                              			 				 if BR2_PACKAGE_BATOCERA_TARGET_S812
 	default "odroidxu4"                                         			 				 if BR2_PACKAGE_BATOCERA_TARGET_EXYNOS5422
 	default "x86"                                               			 				 if BR2_PACKAGE_BATOCERA_TARGET_X86
@@ -335,14 +335,14 @@ config BR2_PACKAGE_BATOCERA_TARGET_RK3399
 config BR2_PACKAGE_BATOCERA_TARGET_RK3288
 	bool "rk3288"
 
-config BR2_PACKAGE_BATOCERA_TARGET_TRITIUM_H5
-	bool "tritium_h5"
-
-config BR2_PACKAGE_BATOCERA_TARGET_ORANGEPI_ZERO2
-	bool "orangepi_zero2"
-
 config BR2_PACKAGE_BATOCERA_TARGET_H3
 	bool "h3"
+
+config BR2_PACKAGE_BATOCERA_TARGET_H5
+	bool "h5"
+
+config BR2_PACKAGE_BATOCERA_TARGET_H616
+	bool "h616"
 
 config BR2_PACKAGE_BATOCERA_TARGET_S812
 	bool "s812"
@@ -401,7 +401,7 @@ config BR2_PACKAGE_RETROLX_PACKAGES
 
 	select BR2_PACKAGE_FLYCAST          if  !BR2_PACKAGE_BATOCERA_TARGET_RPI1       && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_RPI2       && \
-                                                !BR2_PACKAGE_BATOCERA_TARGET_X86
+                                                !BR2_i686
 
 
 	select BR2_PACKAGE_LIBRETRO_MGBA            # ALL
@@ -451,8 +451,8 @@ config BR2_PACKAGE_RETROLX_PACKAGES
 	select BR2_PACKAGE_LIBRETRO_BEETLE_PCFX         if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
 	# PSX
-	select BR2_PACKAGE_LIBRETRO_SWANSTATION         if  !BR2_PACKAGE_BATOCERA_TARGET_X86	    && \
-                                                        !BR2_PACKAGE_BATOCERA_TARGET_RPI1       && \
+	select BR2_PACKAGE_LIBRETRO_SWANSTATION         if  !BR2_i686                     && \
+                                                        !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && \
                                                         !BR2_PACKAGE_BATOCERA_TARGET_RPI2
 
 	# PSP
@@ -554,8 +554,8 @@ config BR2_PACKAGE_BATOCERA_SEGADC
 	# Dreamcast / Naomi / Atomiswave emulation
 	select BR2_PACKAGE_LIBRETRO_FLYCAST     if  !BR2_PACKAGE_BATOCERA_TARGET_RPI1       && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_RPI2       && \
-                                                !BR2_PACKAGE_BATOCERA_TARGET_X86
-	select BR2_PACKAGE_REDREAM              if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+                                                !BR2_i686
+	select BR2_PACKAGE_REDREAM              if BR2_x86_64
 
 	help
 		Sega Dreamcast and Naomi/Atomiswave emulation support
@@ -571,7 +571,7 @@ config BR2_PACKAGE_BATOCERA_ARCADE_SYSTEMS
 	select BR2_PACKAGE_BATOCERA_SEGADC
 
 	# Standalone Sega Model 3 emulator
-	select BR2_PACKAGE_SUPERMODEL           if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_SUPERMODEL           if BR2_x86_64
 
 	# RetroArch MAME derivatives
 	select BR2_PACKAGE_LIBRETRO_IMAME       if BR2_arm1176jzf_s || BR2_cortex_a7
@@ -593,17 +593,17 @@ config BR2_PACKAGE_BATOCERA_HANDHELD_SYSTEMS
 	# NDS
 	select BR2_PACKAGE_LIBRETRO_DESMUME         if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
 
-	#select BR2_PACKAGE_LIBRETRO_MELONDS         if  BR2_PACKAGE_BATOCERA_TARGET_X86_64      || \
+	#select BR2_PACKAGE_LIBRETRO_MELONDS         if  BR2_x86_64      || \
         #                                            BR2_PACKAGE_BATOCERA_TARGET_S905GEN3    || \
         #                                            BR2_PACKAGE_BATOCERA_TARGET_S922X       # no JIT on 32-bit x86/ARM
 
-	select BR2_PACKAGE_DRASTIC                  if  BR2_aarch64 && ( BR2_PACKAGE_BATOCERA_RPI_MESA3D || BR2_PACKAGE_BATOCERA_TARGET_S922X || BR2_PACKAGE_BATOCERA_TARGET_RK3326_ANY )
+	select BR2_PACKAGE_DRASTIC                  if  BR2_aarch64 && ( BR2_PACKAGE_BATOCERA_RPI_MESA3D || BR2_PACKAGE_BATOCERA_TARGET_S922X || BR2_PACKAGE_BATOCERA_TARGET_RK3326 )
 
-	select BR2_PACKAGE_MELONDS                  if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_MELONDS                  if BR2_x86_64
 
 	# 3DS
-	select BR2_PACKAGE_CITRA                    if BR2_PACKAGE_BATOCERA_TARGET_X86_64
-	select BR2_PACKAGE_LIBRETRO_CITRA           if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_CITRA                    if BR2_x86_64
+	select BR2_PACKAGE_LIBRETRO_CITRA           if BR2_x86_64
 
 	# Neo Geo Pocket
 	select BR2_PACKAGE_LIBRETRO_BEETLE_NGP      # ALL
@@ -622,7 +622,7 @@ config BR2_PACKAGE_BATOCERA_HANDHELD_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_GW              # ALL
 
 	# Nintendo Switch
-	select BR2_PACKAGE_YUZU                     if BR2_PACKAGE_BATOCERA_CORES_EXPERIMENTAL && BR2_PACKAGE_BATOCERA_TARGET_X86_64 
+	select BR2_PACKAGE_YUZU                     if BR2_PACKAGE_BATOCERA_CORES_EXPERIMENTAL && BR2_x86_64 
 
 	help
 		Handheld cores/emulators
@@ -712,7 +712,7 @@ config BR2_PACKAGE_BATOCERA_COMPUTER_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_XMIL        # ALL
 
 	# Fujistu FM-Towns computers range
-	select BR2_PACKAGE_TSUGARU              if BR2_PACKAGE_BATOCERA_TARGET_X86_64 # FMTowns
+	select BR2_PACKAGE_TSUGARU              if BR2_x86_64 # FMTowns
 
 	help
 		Old computers
@@ -732,7 +732,7 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 	select BR2_PACKAGE_BATOCERA_MUPEN64		if !BR2_arm1176jzf_s && !BR2_cortex_a7 
 	select BR2_PACKAGE_LIBRETRO_MUPEN64PLUS_NEXT	if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
-	select BR2_PACKAGE_LIBRETRO_PARALLEL_N64		if 	BR2_PACKAGE_BATOCERA_TARGET_X86_64  || \
+	select BR2_PACKAGE_LIBRETRO_PARALLEL_N64		if 	BR2_x86_64  || \
 														BR2_PACKAGE_BATOCERA_TARGET_RK3288	|| \
 														BR2_PACKAGE_BATOCERA_TARGET_S912	|| \
 														BR2_PACKAGE_BATOCERA_TARGET_S922X
@@ -767,25 +767,25 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
                                                         !BR2_PACKAGE_BATOCERA_TARGET_RK3288
 
 	# Gamecube / Wii
-	select BR2_PACKAGE_DOLPHIN_EMU                  if  BR2_PACKAGE_BATOCERA_TARGET_X86_64	|| \
+	select BR2_PACKAGE_DOLPHIN_EMU                  if  BR2_x86_64	|| \
                                                         BR2_PACKAGE_BATOCERA_TARGET_S922X
 
 	# Microsoft XBOX
-	select BR2_PACKAGE_XEMU                         if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_XEMU                         if BR2_x86_64
 
 	# Sony PS2
-	select BR2_PACKAGE_PCSX2                        if BR2_PACKAGE_BATOCERA_TARGET_X86_64
-	select BR2_PACKAGE_PCSX2_AVX2                   if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_PCSX2                        if BR2_x86_64
+	select BR2_PACKAGE_PCSX2_AVX2                   if BR2_x86_64
 
 	# Sony PS3
-	select BR2_PACKAGE_RPCS3                        if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_RPCS3                        if BR2_x86_64
 
 	# Wii U (requires Wine layer)
-	select BR2_PACKAGE_CEMU                         if  BR2_PACKAGE_BATOCERA_TARGET_X86_64 && \
+	select BR2_PACKAGE_CEMU                         if  BR2_x86_64 && \
                                                         BR2_PACKAGE_BATOCERA_WINE_SYSTEMS
 
 	# future pinball
-	select BR2_PACKAGE_FPINBALL                     if  BR2_PACKAGE_BATOCERA_TARGET_X86_64 && \
+	select BR2_PACKAGE_FPINBALL                     if  BR2_x86_64 && \
                                                         BR2_PACKAGE_BATOCERA_WINE_SYSTEMS
 
 	# SNK Neo Geo CD
