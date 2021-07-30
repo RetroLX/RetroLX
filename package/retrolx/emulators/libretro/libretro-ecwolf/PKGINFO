@@ -1,0 +1,6 @@
+pkgname = lr-ecwolf
+pkgver = 20210619-1
+pkgdesc = EcWolf (Wolfeinstein 3D) libretro core
+group = port
+packager = https://retrolx.org 
+url = https://maniacsvault.net/ecwolf/
