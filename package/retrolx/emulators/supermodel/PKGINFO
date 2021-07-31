@@ -1,0 +1,6 @@
+pkgname = supermodel
+pkgver = r862-1
+pkgdesc = Sega Model 3 emulator
+group = emulator
+packager = https://retrolx.org 
+url = https://www.supermodel3.com/
