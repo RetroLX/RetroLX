@@ -4,13 +4,16 @@
 #
 ################################################################################
 
-# Daily build
-XEMU_VERSION = build-202106171119
+# Version 0.6.0
+XEMU_VERSION = xemu-v0.6.0
 XEMU_SITE = https://github.com/mborgerson/xemu.git
 XEMU_SITE_METHOD=git
 XEMU_GIT_SUBMODULES=YES
 XEMU_LICENSE = GPLv2
 XEMU_DEPENDENCIES = sdl2
+
+XEMU_PKG_DIR = $(TARGET_DIR)/opt/retrolx/xemu
+XEMU_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/xemu
 
 XEMU_EXTRA_DOWNLOADS = https://github.com/mborgerson/xemu-hdd-image/releases/download/1.0/xbox_hdd.qcow2.zip
 
@@ -93,21 +96,26 @@ define XEMU_BUILD_CMDS
 		$(MAKE) -C $(@D) V=1
 endef
 
-define XEMU_INSTALL_TARGET_CMDS
-	# Binaries
-	cp $(@D)/build/qemu-system-i386 $(TARGET_DIR)/usr/bin/xemu
+define XEMU_MAKEPKG
+	# Create directories
+	mkdir -p $(XEMU_PKG_DIR)$(XEMU_PKG_INSTALL_DIR)/data
 
-	# XEmu app data
-	mkdir -p $(TARGET_DIR)/usr/share/xemu/data
-	cp $(@D)/data/* $(TARGET_DIR)/usr/share/xemu/data/
-	$(UNZIP) -ob $(XEMU_DL_DIR)/xbox_hdd.qcow2.zip xbox_hdd.qcow2 -d $(TARGET_DIR)/usr/share/xemu/data
+	# Copy package files
+	$(INSTALL) -D $(@D)/build/qemu-system-i386 $(XEMU_PKG_DIR)$(XEMU_PKG_INSTALL_DIR)/xemu
+	cp $(@D)/data/* $(XEMU_PKG_DIR)$(XEMU_PKG_INSTALL_DIR)/data/
+	$(UNZIP) -ob $(XEMU_DL_DIR)/xbox_hdd.qcow2.zip xbox_hdd.qcow2 -d $(XEMU_PKG_DIR)$(XEMU_PKG_INSTALL_DIR)/data
+	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/xemu/xbox.xemu.keys $(XEMU_PKG_DIR)$(XEMU_PKG_INSTALL_DIR)/
+
+	# Build Pacman package
+	cd $(XEMU_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/xemu/PKGINFO \
+	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
 
-define XEMU_EVMAPY
-	mkdir -p $(TARGET_DIR)/usr/share/evmapy
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/xemu/xbox.xemu.keys $(TARGET_DIR)/usr/share/evmapy
-endef
-
-XEMU_POST_INSTALL_TARGET_HOOKS += XEMU_EVMAPY
+XEMU_POST_INSTALL_TARGET_HOOKS = XEMU_MAKEPKG
 
 $(eval $(autotools-package))

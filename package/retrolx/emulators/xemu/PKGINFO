@@ -1,0 +1,6 @@
+pkgname = xemu
+pkgver = 0.6.0-1
+pkgdesc = xemu (Original Xbox emulator)
+group = emulator
+packager = https://retrolx.org 
+url = https://xemu.app/

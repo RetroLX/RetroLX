@@ -13,8 +13,8 @@ endmenu
 menu "System"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/core/retrolx-splash/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/core/retrolx-configgen/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/alllinuxfirmwares/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/core/batocera-system/Config.in"
-  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/alllinuxfirmwares/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/core/batocera-desktopapps/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/core/batocera-scripts/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/core/batocera-triggerhappy/Config.in"
@@ -161,6 +161,7 @@ menu "Emulators"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/emulators/mame/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/emulators/ppsspp/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/emulators/scummvm/Config.in"
+    source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/emulators/xemu/Config.in"
   endmenu
 
   menu "Libretro cores"
@@ -281,7 +282,6 @@ menu "Emulators"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/solarus-engine/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/redream/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/tsugaru/Config.in"
-  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/xemu/Config.in"
 endmenu
 
 menu "Looks"
