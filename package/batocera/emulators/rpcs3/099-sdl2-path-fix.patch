@@ -1,0 +1,11 @@
+--- a/3rdparty/FAudio/CMakeLists.txt	2021-06-30 21:14:13.000000000 +0200
++++ b/3rdparty/FAudio/CMakeLists.txt	2021-08-01 19:33:56.619616218 +0200
+@@ -165,6 +165,8 @@
+ endif()
+ 
+ # SDL2 Dependency
++set(SDL2_INCLUDE_DIRS "/x86_64/host/x86_64-buildroot-linux-gnu/sysroot/usr/include/SDL2")
++set(SDL2_LIBRARIES    "/x86_64/host/x86_64-buildroot-linux-gnu/sysroot/usr/lib/libSDL2-2.0.so.0")
+ if (DEFINED SDL2_INCLUDE_DIRS AND DEFINED SDL2_LIBRARIES)
+ 	message(STATUS "using pre-defined SDL2 variables SDL2_INCLUDE_DIRS and SDL2_LIBRARIES")
+ 	target_include_directories(FAudio PUBLIC "$<BUILD_INTERFACE:${SDL2_INCLUDE_DIRS}>")
