@@ -3,7 +3,7 @@
 # xow
 #
 ################################################################################
-XOW_VERSION = cd271644ead198dcbfeafd3c3411092850adfd3a
+XOW_VERSION = 700529b2517df7d17ad5a2fa0bd679143ac48666
 XOW_SITE = $(call github,medusalix,xow,$(XOW_VERSION))
 XOW_DEPENDENCIES = host-libcurl host-cabextract libusb
 
