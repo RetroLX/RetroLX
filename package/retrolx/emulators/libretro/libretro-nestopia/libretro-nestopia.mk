@@ -31,7 +31,7 @@ endef
 
 define LIBRETRO_NESTOPIA_MAKEPKG
 	# Create directories
-	mkdir -p $(LIBRETRO_BSNES_PKG_DIR)$(LIBRETRO_NESTOPIA_PKG_INSTALL_DIR)/bios
+	mkdir -p $(LIBRETRO_NESTOPIA_PKG_DIR)$(LIBRETRO_NESTOPIA_PKG_INSTALL_DIR)/bios
 
 	# Copy package files
 	$(INSTALL) -D $(@D)/libretro/nestopia_libretro.so \
@@ -41,7 +41,7 @@ define LIBRETRO_NESTOPIA_MAKEPKG
 
 	# Build Pacman package
 	cd $(LIBRETRO_NESTOPIA_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-bsnes/PKGINFO \
+	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-nestopia/PKGINFO \
 	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
 	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
 
