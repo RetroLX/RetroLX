@@ -4,13 +4,13 @@
 #
 ################################################################################
 
-RETROLX_EMULATIONSTATION_VERSION = 1d0630276bc3dbada1b20a6e124cbb3e80fb7a24
+RETROLX_EMULATIONSTATION_VERSION = 67f6f110b9ce408a9b1bdc299e7e7c657e1f82b8
 RETROLX_EMULATIONSTATION_SITE = https://github.com/RetroLX/retrolx-emulationstation
 RETROLX_EMULATIONSTATION_SITE_METHOD = git
 RETROLX_EMULATIONSTATION_LICENSE = MIT
 RETROLX_EMULATIONSTATION_GIT_SUBMODULES = YES
 RETROLX_EMULATIONSTATION_LICENSE = MIT, Apache-2.0
-RETROLX_EMULATIONSTATION_DEPENDENCIES = sdl2 sdl2_mixer libfreeimage freetype alsa-lib libcurl vlc rapidjson
+RETROLX_EMULATIONSTATION_DEPENDENCIES = sdl2 sdl2_mixer freetype alsa-lib libcurl vlc rapidjson
 # install in staging for debugging (gdb)
 RETROLX_EMULATIONSTATION_INSTALL_STAGING = YES
 # RETROLX_EMULATIONSTATION_OVERRIDE_SRCDIR = /sources/batocera-emulationstation
