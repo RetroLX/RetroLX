@@ -100,4 +100,4 @@ class Rpcs3Generator(Generator):
         if system.isOptSet("gui") and system.getOptBoolean("gui") == False:
             commandArray.append("--no-gui")
 
-        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":batoceraFiles.CONF, "XDG_CACHE_HOME":batoceraFiles.SAVES, "QT_QPA_PLATFORM":"xcb"})
+        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":batoceraFiles.CONF, "XDG_CACHE_HOME":batoceraFiles.SAVES, "QT_QPA_PLATFORM":batoceraFiles.qt_qpa_platform})

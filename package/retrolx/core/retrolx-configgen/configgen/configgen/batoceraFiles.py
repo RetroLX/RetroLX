@@ -21,28 +21,34 @@ from pathlib import Path
 arch = Path('/usr/share/batocera/batocera.arch').read_text()
 retrolxPackages = '/userdata/packages/' + arch
 
+# QT_QPA_PLATFORM should be set accordingly to platform
+qt_qpa_platform = 'wayland'
+if (arch=="x86_64"):
+  qt_qpa_platform = 'xcb'
+
 # This dict is indexed on the emulator name, not on the system
-batoceraBins = {'dosbox'         : '/usr/bin/dosbox'
-              , 'dosbox_staging' : '/usr/bin/dosbox-staging'
-              , 'dosboxx'        : '/usr/bin/dosbox-x'
+batoceraBins = {'dosbox'         : retrolxPackages+'/dosbox/dosbox'
+              , 'dosbox_staging' : retrolxPackages+'/dosbox-staging/dosbox-staging'
+              , 'dosboxx'        : retrolxPackages+'/dosbox-x/dosbox-x'
               , 'libretro'       : '/usr/bin/retroarch'
-              , 'linapple'       : '/usr/bin/linapple'
-              , 'moonlight'      : '/usr/bin/moonlight'
-              , 'mupen64plus'    : '/usr/bin/mupen64plus'
-              , 'flycast'        : '/usr/bin/flycast'
-              , 'scummvm'        : '/usr/bin/scummvm'
-              , 'vice'           : '/usr/bin/'
-              , 'fsuae'          : '/usr/bin/fs-uae'
-              , 'amiberry'       : '/usr/bin/amiberry'
-              , 'pcsx2'          : '/usr/PCSX/bin/PCSX2'
-              , 'pcsx2_avx2'     : '/usr/PCSX_AVX2/bin/PCSX2'
-              , 'daphne'         : '/usr/bin/hypseus'
-              , 'melonds'        : '/usr/bin/melonDS'
-              , 'rpcs3'          : '/usr/bin/rpcs3'
-              , 'hatari'         : '/usr/bin/hatari'
-              , 'supermodel'     : '/usr/bin/supermodel'
-              , 'tsugaru'        : '/usr/bin/Tsugaru_CUI'
-              , 'xemu'           : '/usr/bin/xemu'
+              , 'linapple'       : retrolxPackages+'/linapple/linapple'
+              , 'moonlight'      : retrolxPackages+'moonlight/moonlight'
+              , 'mupen64plus'    : retrolxPackages+'/mupen64plus/mupen64plus'
+              , 'flycast'        : retrolxPackages+'/flycast/flycast'
+              , 'scummvm'        : retrolxPackages+'/scummvm/scummvm'
+              , 'vice'           : retrolxPackages+'/vice'
+              , 'fsuae'          : retrolxPackages+'/fsuae/fs-uae'
+              , 'amiberry'       : retrolxPackages+'/amiberry/amiberry'
+              , 'pcsx2'          : retrolxPackages+'/pcsx2/PCSX2'
+              , 'pcsx2_avx2'     : retrolxPackages+'/pcsx2_avx2/PCSX2'
+              , 'daphne'         : retrolxPackages+'/daphne/hypseus'
+              , 'melonds'        : retrolxPackages+'/melonDS/melonDS'
+              , 'rpcs3'          : retrolxPackages+'/rpcs3/rpcs3'
+              , 'hatari'         : retrolxPackages+'/hatari/hatari'
+              , 'supermodel'     : retrolxPackages+'/supermodel/supermodel'
+              , 'tsugaru'        : retrolxPackages+'/tsugaru/Tsugaru_CUI'
+              , 'xemu'           : retrolxPackages+'/xemu/xemu'
+              , 'ppsspp'         : retrolxPackages+'/ppsspp/PPSSPP'
 }
 
 
@@ -78,8 +84,8 @@ dolphinIni     = dolphinConfig + '/Dolphin.ini'
 dolphinGfxIni  = dolphinConfig + '/GFX.ini'
 dolphinSYSCONF = dolphinData + "/Wii/shared2/sys/SYSCONF"
 
-pcsx2PluginsDir     = "/usr/PCSX/bin/plugins"
-pcsx2Avx2PluginsDir = "/usr/PCSX_AVX2/bin/plugins"
+pcsx2PluginsDir     = retrolxPackages+'/pcsx2/plugins'
+pcsx2Avx2PluginsDir = retrolxPackages+'/pcsx2_avx2/plugins'
 pcsx2ConfigDir      = "/userdata/system/configs/PCSX2"
 
 dosboxCustom = CONF + '/dosbox'
