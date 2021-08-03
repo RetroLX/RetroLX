@@ -1,0 +1,6 @@
+pkgname = lr-snes9x2005
+pkgver = 20210607-1
+pkgdesc = Snes9x 2005 libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/snes9x_2005/

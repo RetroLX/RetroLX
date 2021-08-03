@@ -1,5 +1,5 @@
-config BR2_PACKAGE_LIBRETRO_POCKETSNES
-        bool "libretro-pocketsnes"
+config BR2_PACKAGE_LIBRETRO_SNES9X2002
+        bool "libretro-snes9x2002"
 	depends on BR2_PACKAGE_RETROARCH
 	depends on BR2_INSTALL_LIBSTDCPP
         help
@@ -7,5 +7,5 @@ config BR2_PACKAGE_LIBRETRO_POCKETSNES
 
 	  http://www.libretro.com
 
-comment "LIBRETRO_POCKETSNES needs a toolchain w/ C++"
+comment "LIBRETRO_SNES9X2002 needs a toolchain w/ C++"
 	depends on !BR2_INSTALL_LIBSTDCPP

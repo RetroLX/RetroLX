@@ -1,0 +1,6 @@
+pkgname = melonds
+pkgver = 0.9.2-1
+pkgdesc = melonDS Nintendo DS emulator
+group = emulator
+packager = https://retrolx.org 
+url = http://melonds.kuribo64.net/
