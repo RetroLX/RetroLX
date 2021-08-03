@@ -30,7 +30,7 @@ n64dd:
     videomode: DMT 4 HDMI
 snes:
   emulator: libretro
-  core:     snes9x_next
+  core:     snes9x2010
 c64:
   emulator: vice
   core:     x64

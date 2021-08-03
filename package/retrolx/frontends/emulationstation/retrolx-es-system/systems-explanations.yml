@@ -90,9 +90,9 @@ default:
 rpi1:
   snes:
     libretro:
-      pocketsnes:
+      snes9x2002:
         explanation: |
-          pocketsnes is the best emulator for rpi1. However it is not perfect. Some games, like Mario Kart, have glitches.
+          snes9x2002 is the best emulator for rpi1. However it is not perfect. Some games, like Mario Kart, have glitches.
   gba:
     libretro:
       gpsp:

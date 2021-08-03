@@ -972,7 +972,7 @@ def generateCoreSettings(coreSettings, system, rom):
         else:
             coreSettings.save('snes9x_hires_blend', '"disabled"')
 
-    if (system.config['core'] == 'snes9x_next'):
+    if (system.config['core'] == 'snes9x2010'):
         # Reduce sprite flickering (Hack, Unsafe)
         if system.isOptSet('2010_reduce_sprite_flicker'):
             coreSettings.save('snes9x_2010_reduce_sprite_flicker', system.config['2010_reduce_sprite_flicker'])

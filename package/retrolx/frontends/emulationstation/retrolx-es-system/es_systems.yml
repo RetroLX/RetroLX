@@ -7,9 +7,10 @@ snes:
   group:      snes
   emulators:
     libretro:
-      pocketsnes:  { requireAnyOf: [lr-pocketsnes] }
-      snes9x_next: { requireAnyOf: [lr-snes9x-next] }
-      snes9x:      { requireAnyOf: [lr-snes] }
+      snes9x2002:  { requireAnyOf: [lr-snes9x2002] }
+      snes9x2005:  { requireAnyOf: [lr-snes9x2005] }
+      snes9x2010:  { requireAnyOf: [lr-snes9x2010] }
+      snes9x:      { requireAnyOf: [lr-snes9x] }
       bsnes:       { requireAnyOf: [lr-bnes] }
       bsnes_hd:    { requireAnyOf: [lr-bsnes-hd] }
 

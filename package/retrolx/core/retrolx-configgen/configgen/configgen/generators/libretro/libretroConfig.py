@@ -155,19 +155,19 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
             retroarchConfig['input_libretro_device_p1'] = systemToP1Device[system.name]
             retroarchConfig['input_libretro_device_p2'] = systemToP2Device[system.name]
 
-    ## SNES9x and SNES9x_next (2010) controller
-    if system.config['core'] == 'snes9x' or system.config['core'] == 'snes9x_next':
+    ## SNES9x and SNES9x2010 controller
+    if system.config['core'] == 'snes9x' or system.config['core'] == 'snes9x2010':
         if system.isOptSet('controller1_snes9x'):
             retroarchConfig['input_libretro_device_p1'] = system.config['controller1_snes9x']
-        elif system.isOptSet('controller1_snes9x_next'):
-            retroarchConfig['input_libretro_device_p1'] = system.config['controller1_snes9x_next']
+        elif system.isOptSet('controller1_snes9x2010'):
+            retroarchConfig['input_libretro_device_p1'] = system.config['controller1_snes9x2010']
         else:
             retroarchConfig['input_libretro_device_p1'] = '1'
         # Player 2
         if system.isOptSet('controller2_snes9x'):
             retroarchConfig['input_libretro_device_p2'] = system.config['controller2_snes9x']
-        elif system.isOptSet('controller2_snes9x_next'):
-            retroarchConfig['input_libretro_device_p2'] = system.config['controller2_snes9x_next']
+        elif system.isOptSet('controller2_snes9x2010'):
+            retroarchConfig['input_libretro_device_p2'] = system.config['controller2_snes9x2010']
         elif len(controllers) > 2:                              # More than 2 controller connected
             retroarchConfig['input_libretro_device_p2'] = '257'
         else:

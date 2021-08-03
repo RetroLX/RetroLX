@@ -36,7 +36,7 @@ n64dd:
   core:     gliden64
 snes:
   emulator: libretro
-  core:     pocketsnes
+  core:     snes9x2002
 c64:
   emulator: vice
   core:     x64

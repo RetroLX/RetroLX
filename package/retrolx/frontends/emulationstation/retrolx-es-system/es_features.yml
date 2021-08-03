@@ -1965,7 +1965,7 @@ libretro:
                 choices:
                     "Joypad 3 Button": 3 button pad
                     "Joypad 6 Button": 6 button pad
-    pocketsnes:
+    snes9x2002:
       features: [netplay, rewind, autosave, latency_reduction]
     pokemini:
       features: [rewind, autosave, latency_reduction, cheevos]
@@ -2432,7 +2432,7 @@ libretro:
                 choices:
                     "SNES Gamepad":          1
                     "Konami Justifier (P2)": 772
-    snes9x_next:
+    snes9x2010:
       features: [netplay, rewind, autosave, latency_reduction, cheevos]
       cfeatures:
             2010_reduce_sprite_flicker:
@@ -2465,13 +2465,13 @@ libretro:
                     "20 MHz":               20 MHz
                     "30 MHz":               30 MHz
                     "40 MHz":               40 MHz
-            controller1_snes9x_next:
+            controller1_snes9x2010:
                 prompt:      CONTROLLER 1 TYPE
                 description: Select SNES Gamepad or Mouse
                 choices:
                     "SNES Gamepad":           1
                     "SNES Mouse":             2
-            controller2_snes9x_next:
+            controller2_snes9x2010:
                 prompt:      CONTROLLER 2 TYPE
                 description: Select SNES Gamepad, Mouse, Multitap or Guns
                 choices:
