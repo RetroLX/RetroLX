@@ -8,6 +8,7 @@ menu "Frontends"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/frontends/emulationstation/retrolx-emulationstation/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/frontends/emulationstation/es-background-musics/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/frontends/retrofe/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/frontends/pegasus/Config.in"
 endmenu
 
 menu "System"

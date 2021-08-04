@@ -1,0 +1,6 @@
+pkgname = pegasus
+pkgver = 20210802-1
+pkgdesc = Pegasus frontend
+group = frontend
+packager = https://retrolx.org 
+url = https://pegasus-frontend.org/

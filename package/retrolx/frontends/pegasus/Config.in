@@ -1,0 +1,14 @@
+config BR2_PACKAGE_PEGASUS
+    bool "pegasus"
+
+    depends on BR2_PACKAGE_SDL2
+    depends on BR2_PACKAGE_QT5BASE
+    depends on BR2_PACKAGE_QT5GAMEPAD
+    depends on BR2_PACKAGE_QT5SVG
+
+    help
+      Pegasus frontend
+
+      https://github.com/mmatyas/pegasus-frontend
+
+
