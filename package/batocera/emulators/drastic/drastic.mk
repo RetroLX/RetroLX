@@ -12,10 +12,10 @@ define DRASTIC_EXTRACT_CMDS
 	mkdir -p $(@D)/target && cd $(@D)/target && tar xf $(DL_DIR)/$(DRASTIC_DL_SUBDIR)/$(DRASTIC_SOURCE)
 endef
 
-ifeq ($(BR2_PACKAGE_BATOCERA_RPI_MESA3D)$(BR2_PACKAGE_BATOCERA_TARGET_S922X),y)
-DRASTIC_BINARYFILE=drastic_n2
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RK3326_ANY),y)
+ifeq ($(BR2_cortex_a35),y)
 DRASTIC_BINARYFILE=drastic_oga
+else ifeq ($(BR2_aarch64),y)
+DRASTIC_BINARYFILE=drastic_n2
 endif
 
 define DRASTIC_INSTALL_TARGET_CMDS
