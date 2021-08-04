@@ -12,6 +12,7 @@ menu "Frontends"
 endmenu
 
 menu "System"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/core/retrolx-splash/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/core/retrolx-configgen/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/alllinuxfirmwares/Config.in"

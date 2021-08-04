@@ -21,7 +21,7 @@ define LIBRETRO_BEETLE_PCE_MAKEPKG
 
 	# Copy package files
 	$(INSTALL) -D $(@D)/mednafen_pce_libretro.so \
-	$(LIBRETRO_BEETLE_PCE_PKG_DIR)$(LIBRETRO_BEETLE_PCE_PKG_INSTALL_DIR)
+	$(LIBRETRO_BEETLE_PCE_PKG_DIR)$(LIBRETRO_BEETLE_PCE_PKG_INSTALL_DIR)/pce_libretro.so
 
 	# Build Pacman package
 	cd $(LIBRETRO_BEETLE_PCE_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
