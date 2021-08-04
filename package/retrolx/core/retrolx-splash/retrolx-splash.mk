@@ -25,12 +25,8 @@ else ifeq ($(BR2_PACKAGE_RETROLX_SPLASH_MPV),y)
 	RETROLX_SPLASH_SCRIPT=S03splash-mpv.template
 	RETROLX_SPLASH_MEDIA=video
 else ifeq ($(BR2_PACKAGE_RETROLX_SPLASH_ROTATE_IMAGE),y)
-    RETROLX_SPLASH_SCRIPT=S03splash-image
-    ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RK3326_ANY),y)
-        RETROLX_SPLASH_MEDIA=rotate-rk3326-image
-    else
+	RETROLX_SPLASH_SCRIPT=S03splash-image
         RETROLX_SPLASH_MEDIA=rotate-image
-    endif
 else
 	RETROLX_SPLASH_SCRIPT=S03splash-image
 	RETROLX_SPLASH_MEDIA=image
