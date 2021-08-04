@@ -1,0 +1,10 @@
+--- a/src/backend/providers/es2/Es2Provider.cpp	2021-08-04 21:41:23.000903242 +0200
++++ b/src/backend/providers/es2/Es2Provider.cpp	2021-08-04 21:41:09.087570082 +0200
+@@ -32,6 +32,7 @@
+ {
+     return {
+         paths::homePath() % QStringLiteral("/.emulationstation/"),
++        QStringLiteral("/userdata/system/configs/emulationstation/"),
+         QStringLiteral("/etc/emulationstation/"),
+     };
+ }
