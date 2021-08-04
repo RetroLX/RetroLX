@@ -1,9 +1,9 @@
 [Trigger]
-Operation = Remove
-Type = Path 
-Target = userdata/packages/*
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = *
 
 [Action]
 When = PostTransaction
 Exec = /usr/bin/retrolx-rebuild-es-systems.sh
-
