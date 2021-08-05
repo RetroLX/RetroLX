@@ -102,7 +102,7 @@ config BR2_PACKAGE_RETROLX_PACKAGES
 
 	# alternative frontends
 	select BR2_PACKAGE_RETROFE
-	select BR2_PACKAGE_PEGASUS
+	select BR2_PACKAGE_PEGASUS		if BR2_PACKAGE_RETROLX_QT
 
 	help
 		RetroLX supported packages
