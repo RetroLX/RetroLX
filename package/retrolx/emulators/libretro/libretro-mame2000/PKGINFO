@@ -1,0 +1,6 @@
+pkgname = lr-mame2000
+pkgver = 20210529-1
+pkgdesc = MAME2000 / iMAME (Arcade) libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://docs.libretro.com/library/mame2000/
