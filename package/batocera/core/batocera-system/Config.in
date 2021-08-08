@@ -309,7 +309,6 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_NTFS_3G                              # ntfs
 	select BR2_PACKAGE_NTFS_3G_NTFSPROGS                    # ntfs
 	select BR2_PACKAGE_BTRFS_PROGS                          # btrfs
-	select BR2_PACKAGE_WINBTRFS                             # btrfs
 	select BR2_PACKAGE_CONNMAN                              # network manager
 	select BR2_PACKAGE_CONNMAN_WIFI                         # network manager
 	select BR2_PACKAGE_CONNMAN_CLIENT                       # network manager
