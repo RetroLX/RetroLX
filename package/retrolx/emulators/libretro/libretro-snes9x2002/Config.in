@@ -1,6 +1,5 @@
 config BR2_PACKAGE_LIBRETRO_SNES9X2002
         bool "libretro-snes9x2002"
-	depends on BR2_PACKAGE_RETROARCH
 	depends on BR2_INSTALL_LIBSTDCPP
         help
           A libretro SNES emulator core for ARM.
