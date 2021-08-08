@@ -1,0 +1,44 @@
+diff -u pkgconfig/egl.pc.cmake pkgconfig2/egl.pc.cmake
+--- a/pkgconfig/egl.pc.cmake	2019-11-13 08:29:22.000000000 +0100
++++ b/pkgconfig/egl.pc.cmake	2021-08-05 16:19:02.483306939 +0200
+@@ -1,6 +1,6 @@
+ prefix=/usr
+ exec_prefix=${prefix}
+-libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
++libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+ includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
+ 
+ Name: egl
+diff -u pkgconfig/gbm.pc.cmake pkgconfig2/gbm.pc.cmake
+--- a/pkgconfig/gbm.pc.cmake	2019-11-13 08:29:22.000000000 +0100
++++ b/pkgconfig/gbm.pc.cmake	2021-08-05 16:19:06.543306878 +0200
+@@ -1,6 +1,6 @@
+ prefix=/usr
+ exec_prefix=${prefix}
+-libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
++libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+ includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
+ 
+ Name: gbm
+diff -u pkgconfig/glesv1_cm.pc.cmake pkgconfig2/glesv1_cm.pc.cmake
+--- a/pkgconfig/glesv1_cm.pc.cmake	2019-11-13 08:29:22.000000000 +0100
++++ b/pkgconfig/glesv1_cm.pc.cmake	2021-08-05 16:19:11.763306800 +0200
+@@ -1,6 +1,6 @@
+ prefix=/usr
+ exec_prefix=${prefix}
+-libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
++libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+ includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
+ 
+ Name: glesv1_cm
+diff -u pkgconfig/glesv2.pc.cmake pkgconfig2/glesv2.pc.cmake
+--- a/pkgconfig/glesv2.pc.cmake	2019-11-13 08:29:22.000000000 +0100
++++ b/pkgconfig/glesv2.pc.cmake	2021-08-05 16:19:16.456640065 +0200
+@@ -1,6 +1,6 @@
+ prefix=/usr
+ exec_prefix=${prefix}
+-libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
++libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+ includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
+ 
+ Name: glesv2
