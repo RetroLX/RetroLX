@@ -284,6 +284,33 @@ config BR2_PACKAGE_RETROLX_QT
 	select BR2_PACKAGE_QT5BASE_XCB 	  if BR2_PACKAGE_XORG7
 
 
+# RetroLX networking stack
+config BR2_PACKAGE_RETROLX_NETWORKING
+	bool "RetroLX networking components"
+
+	select BR2_PACKAGE_AVAHI                                # service discovery on local network
+	select BR2_PACKAGE_AVAHI_DAEMON                         # ping batocera.local
+	select BR2_PACKAGE_AVAHI_LIBDNSSD_COMPATIBILITY         # bonjour
+	select BR2_PACKAGE_CA_CERTIFICATES                      # ssl certificates
+	select BR2_PACKAGE_CONNMAN                              # network manager
+	select BR2_PACKAGE_CONNMAN_WIFI                         # network manager
+	select BR2_PACKAGE_CONNMAN_CLIENT                       # network manager
+	select BR2_PACKAGE_LIBCURL_CURL                         # download tools
+	select BR2_PACKAGE_WPA_SUPPLICANT                       # wifi
+	select BR2_PACKAGE_WPA_SUPPLICANT_CLI                   # wifi
+	select BR2_PACKAGE_WPA_SUPPLICANT_DBUS_INTROSPECTION    # wifi
+	select BR2_PACKAGE_WPA_SUPPLICANT_WIRED                 # wpa_supplicant driver
+	select BR2_PACKAGE_WPA_SUPPLICANT_WPA3                  # wifi
+	select BR2_PACKAGE_WPA_SUPPLICANT_NL80211               # wpa_supplicant driver
+	select BR2_PACKAGE_WPA_SUPPLICANT_WEXT                  # wpa_supplicant driver
+	select BR2_PACKAGE_DROPBEAR                             # ssh server
+	select BR2_PACKAGE_NTP
+	select BR2_PACKAGE_RSYNC
+	select BR2_PACKAGE_SAMBA4                               # samba
+	select BR2_PACKAGE_LIBOPENSSL_BIN                       # required to encode the wifi password
+	select BR2_PACKAGE_WGET                                 # download tools
+
+
 config BR2_PACKAGE_BATOCERA_SYSTEM
 	bool "batocera.linux minimal"
 
@@ -310,17 +337,6 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_NTFS_3G                              # ntfs
 	select BR2_PACKAGE_NTFS_3G_NTFSPROGS                    # ntfs
 	select BR2_PACKAGE_BTRFS_PROGS                          # btrfs
-	select BR2_PACKAGE_CONNMAN                              # network manager
-	select BR2_PACKAGE_CONNMAN_WIFI                         # network manager
-	select BR2_PACKAGE_CONNMAN_CLIENT                       # network manager
-	select BR2_PACKAGE_WPA_SUPPLICANT                       # wifi
-	select BR2_PACKAGE_WPA_SUPPLICANT_CLI                   # wifi
-	select BR2_PACKAGE_WPA_SUPPLICANT_DBUS_INTROSPECTION    # wifi
-	select BR2_PACKAGE_WPA_SUPPLICANT_WIRED                 # wpa_supplicant driver
-	select BR2_PACKAGE_WPA_SUPPLICANT_WPA3                  # wifi
-	select BR2_PACKAGE_WPA_SUPPLICANT_NL80211               # wpa_supplicant driver
-	select BR2_PACKAGE_WPA_SUPPLICANT_WEXT                  # wpa_supplicant driver
-	select BR2_PACKAGE_DROPBEAR                             # ssh server
 	select BR2_PACKAGE_PM_UTILS                             # suspend
 	select BR2_PACKAGE_QTSIXA_SHANWAN                       # ps3 pad
 	select BR2_PACKAGE_XARCADE2JSTICK                       # keyboard events of the Xarcade Tankstick
@@ -342,9 +358,6 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_BATOCERA_AUDIO                       # batocera audio
 	select BR2_PACKAGE_BATOCERA_BLUETOOTH                   # batocera bluetooth
 	select BR2_PACKAGE_BATOCERA_NOTICE                      # boot pdf notice
-	select BR2_PACKAGE_WGET                                 # download tools
-	select BR2_PACKAGE_LIBCURL_CURL                         # download tools
-	select BR2_PACKAGE_CA_CERTIFICATES                      # ssl certificates
 
 	select BR2_PACKAGE_LIBDRM                               if !BR2_PACKAGE_BATOCERA_RPI_VCORE
     select BR2_PACKAGE_LIBDRM_EXYNOS                        if BR2_PACKAGE_LIBDRM && BR2_PACKAGE_BATOCERA_TARGET_EXYNOS5422
@@ -356,13 +369,6 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_WII_U_GC_ADAPTER                     # wii-u-gc-adapter
 	select BR2_SYSTEM_ENABLE_NLS                            # locales
 	select BR2_PACKAGE_ACPID                                if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
-	select BR2_PACKAGE_AVAHI                                # service discovery on local network
-	select BR2_PACKAGE_AVAHI_DAEMON                         # ping batocera.local
-	select BR2_PACKAGE_AVAHI_LIBDNSSD_COMPATIBILITY         # bonjour
-	select BR2_PACKAGE_NTP
-	select BR2_PACKAGE_RSYNC
-	select BR2_PACKAGE_SAMBA4                               # samba
-	select BR2_PACKAGE_LIBOPENSSL_BIN                       # required to encode the wifi password
 	select BR2_PACKAGE_KBD                                  # loadkeys
 	select BR2_PACKAGE_LIBXKKBCOMMON			# requirement for xkb to work, xkb is used by kodi, even without x for the keyboard
 	select BR2_PACKAGE_XKEYBOARD_CONFIG                     if BR2_PACKAGE_LIBXKBCOMMON # requirement for xkb to work, xkb is used by kodi, even without x for the keyboard
@@ -391,6 +397,9 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 
 	# RetroLX Boost
 	select BR2_PACKAGE_RETROLX_BOOST
+
+	# RetroLX networking stack
+	select BR2_PACKAGE_RETROLX_NETWORKING
 
 	# RetroLX Wayland where possible
 	select BR2_PACKAGE_RETROLX_WAYLAND	if !BR2_PACKAGE_BATOCERA_IS_X86_ARCH && \
