@@ -41,7 +41,7 @@ fi
 mkdir -p "${BATOCERA_BINARIES_DIR}/images" || exit 1
 
 ##### build images #############
-SUFFIXVERSION=$(cat "${TARGET_DIR}/usr/share/batocera/batocera.version" | sed -e s+'^\([0-9\.]*\).*$'+'\1'+) # xx.yy version
+SUFFIXVERSION=$(cat "${TARGET_DIR}/usr/share/retrolx/retrolx.version" | sed -e s+'^\([0-9\.]*\).*$'+'\1'+) # xx.yy version
 SUFFIXDATE=$(date +%Y%m%d)
 
 #### build the images ###########
@@ -103,7 +103,7 @@ do
     mv "${BATOCERA_BINARIES_DIR}/boot" "${BOOTNAMEDDIR}" || exit 1
 
     # copy the version file needed for version check
-    cp "${TARGET_DIR}/usr/share/batocera/batocera.version" "${BATOCERA_BINARIES_DIR}/images/${BATOCERA_SUBTARGET}" || exit 1
+    cp "${TARGET_DIR}/usr/share/retrolx/retrolx.version" "${BATOCERA_BINARIES_DIR}/images/${BATOCERA_SUBTARGET}" || exit 1
 done
 
 #### md5 #######################
@@ -116,4 +116,4 @@ do
 done
 
 #### update the target dir with some information files
-cp "${TARGET_DIR}/usr/share/batocera/batocera.version" "${BATOCERA_BINARIES_DIR}" || exit 1
+cp "${TARGET_DIR}/usr/share/retrolx/retrolx.version" "${BATOCERA_BINARIES_DIR}" || exit 1

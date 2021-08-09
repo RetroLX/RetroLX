@@ -1,5 +1,5 @@
 pkgname = lr-atari800
-pkgver = 20210803-1
+pkgver = 20210805-1
 pkgdesc = Atari800 (8-bit computers and Atari 5200) libretro core
 group = emulator
 packager = https://retrolx.org 

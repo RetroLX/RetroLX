@@ -1,5 +1,5 @@
 pkgname = lr-kronos
-pkgver = 20210728-1
+pkgver = 20210808-1
 pkgdesc = Kronos (Sega Saturn) libretro core
 group = emulator
 packager = https://retrolx.org 

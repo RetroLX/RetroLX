@@ -55,5 +55,4 @@ endef
 
 LIBRETRO_MGBA_POST_INSTALL_TARGET_HOOKS = LIBRETRO_MGBA_MAKEPKG
 
-
 $(eval $(cmake-package))
