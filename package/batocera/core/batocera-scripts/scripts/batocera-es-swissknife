@@ -108,8 +108,8 @@ case ${1,,} in
 
     --version|--arch|--update)
         [[ ${2,,} == "beta" ]] && BRANCH=beta || BRANCH=stable
-        if [[ -f /usr/share/batocera/batocera.version ]]; then
-            VER=$(cat /usr/share/batocera/batocera.version)
+        if [[ -f /usr/share/retrolx/retrolx.version ]]; then
+            VER=$(cat /usr/share/retrolx/retrolx.version)
             ret=$?
         else
             VER="UNKNOWN"
@@ -126,7 +126,7 @@ case ${1,,} in
         fi
 
         if [[ "${1,,}" == "--update" && $ret -eq 0 ]]; then
-            URL="https://updates.batocera.org/$BOARD/$BRANCH/last/batocera.version"
+            URL="https://updates.batocera.org/$BOARD/$BRANCH/last/retrolx.version"
             NET_VERSION=$(wget -q -O - "$URL")
             [[ $? -eq 0 ]] || NET_VERSION="Connection failed!"
             NET_VER=$(echo "$NET_VER" | head -n1)

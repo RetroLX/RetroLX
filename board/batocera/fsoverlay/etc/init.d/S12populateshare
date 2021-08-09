@@ -97,7 +97,7 @@ rm -rf /run/udev/rules.d
 ln -s /userdata/system/udev/rules.d/ /run/udev/
 
 # save to avoid to redo that all the times
-cp /usr/share/batocera/batocera.version /userdata/system/data.version || exit 1
+cp /usr/share/retrolx/retrolx.version /userdata/system/data.version || exit 1
 
 exit 0
 # END
