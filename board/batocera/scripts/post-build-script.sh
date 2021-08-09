@@ -109,5 +109,10 @@ if ! [[ -z "${SYSTEM_GETTY_PORT}" ]]; then
         ${TARGET_DIR}/etc/inittab
 fi
 
+# fix XU4 weston dynamic libraries
+"${HOST_DIR}/bin/patchelf" --replace-needed "/odroidxu4/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libEGL.so" "libEGL.so" "${TARGET_DIR}/usr/lib/libweston-9/gl-renderer.so"
+"${HOST_DIR}/bin/patchelf" --replace-needed "/odroidxu4/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libgbm.so" "libgbm.so" "${TARGET_DIR}/usr/lib/libweston-9/drm-backend.so"
+"${HOST_DIR}/bin/patchelf" --replace-needed "/odroidxu4/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libwayland-egl.so" "libwayland-egl.so" "${TARGET_DIR}/usr/lib/libweston-9/wayland-backend.so"
+
 # rebuild package db
 cd "${BR2_EXTERNAL_BATOCERA_PATH}/repo/${BATOCERA_TARGET,,}" && "${BR2_EXTERNAL_BATOCERA_PATH}/board/batocera/scripts/retrolx-makedb" "${HOST_DIR}"
