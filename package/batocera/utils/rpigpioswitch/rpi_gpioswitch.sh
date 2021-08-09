@@ -304,7 +304,7 @@ function pin56_stop()
 function retroflag_start()
 {
     #Check if dtooverlay is setted in /boot/config -- Do this arch related!
-    case $(cat /usr/share/batocera/batocera.arch) in
+    case $(cat /usr/share/retrolx/retrolx.arch) in
         rpi4)
             if ! grep -q "^dtoverlay=gpio-poweroff,gpiopin=4,active_low=1,input=1" "/boot/config.txt"; then
                 mount -o remount, rw /boot

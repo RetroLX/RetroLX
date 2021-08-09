@@ -48,7 +48,7 @@ class Pcsx2Generator(Generator):
         
         # Arch
         arch = "x86"
-        with open('/usr/share/batocera/batocera.arch', 'r') as content_file:
+        with open('/usr/share/retrolx/retrolx.arch', 'r') as content_file:
             arch = content_file.read()
 
         env = {}

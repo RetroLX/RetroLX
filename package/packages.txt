@@ -17,8 +17,8 @@ batocera/gpu/batocera-nvidia-driver/Config.in:	select BR2_PACKAGE_HAS_LIBOPENCL
 batocera/gpu/mali-t620-wayland/Config.in:	select BR2_PACKAGE_WAYLAND
 batocera/gpu/vulkan/vulkan-headers/Config.in:  select BR2_PACKAGE_VULKAN_LOADER
 batocera/gpu/vulkan/vulkan-tools/Config.in:  select BR2_PACKAGE_HOST_GLSLANG
-batocera/emulators/dolphin-emu/Config.in:	select BR2_PACKAGE_XORG7 		if BR2_PACKAGE_BATOCERA_TARGET_X86_64
-batocera/emulators/dolphin-emu/Config.in:	select BR2_PACKAGE_LIBDRM 		if BR2_PACKAGE_BATOCERA_TARGET_S922X
+batocera/emulators/dolphin-emu/Config.in:	select BR2_PACKAGE_XORG7
+batocera/emulators/dolphin-emu/Config.in:	select BR2_PACKAGE_LIBDRM
 batocera/emulators/dolphin-emu/Config.in:	select BR2_PACKAGE_HIDAPI
 batocera/emulators/pcsx2/Config.in:	select BR2_PACKAGE_WXWIDGETS
 batocera/emulators/pcsx2/Config.in:	select BR2_PACKAGE_YAML_CPP

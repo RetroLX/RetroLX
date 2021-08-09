@@ -18,7 +18,7 @@ batoceraConf = HOME + '/batocera.conf'
 logdir = HOME + '/logs/'
 
 from pathlib import Path
-arch = Path('/usr/share/batocera/batocera.arch').read_text()
+arch = Path('/usr/share/retrolx/retrolx.arch').read_text()
 retrolxPackages = '/userdata/packages/' + arch
 
 # QT_QPA_PLATFORM should be set accordingly to platform

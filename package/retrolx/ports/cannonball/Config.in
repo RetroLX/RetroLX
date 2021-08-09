@@ -1,8 +1,8 @@
 config BR2_PACKAGE_CANNONBALL
 	bool "cannonball"
 	depends on BR2_INSTALL_LIBSTDCPP
-	select BR2_PACKAGE_SDL2
-	select BR2_PACKAGE_BOOST
+	depends on BR2_PACKAGE_SDL2
+	depends on BR2_PACKAGE_BOOST
 	help
 	  Cannonball - OutRun Engine
 

@@ -33,7 +33,7 @@ splash_default_rpi ()
 INIT_SERVICE=/etc/init.d/S03splash
 SPLASHBOOT=/boot/splash/
 SPLASHUSER=/userdata/splash/
-ARCH=$(cat /usr/share/batocera/batocera.arch)
+ARCH=$(cat /usr/share/retrolx/retrolx.arch)
 
 case $1 in
     start)

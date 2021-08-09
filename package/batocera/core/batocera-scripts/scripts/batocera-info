@@ -34,7 +34,7 @@ getCpu() {
     cat "${CPU}/cpufreq/scaling_max_freq"
 }
 
-V_BOARD=$(cat /boot/boot/batocera.board)
+V_BOARD=$(cat /boot/boot/retrolx.board)
 V_CPUNB=$(grep -E $'^processor\t:' /proc/cpuinfo | wc -l)
 V_CPUMODEL1=$(grep -E $'^model name\t:' /proc/cpuinfo | head -1 | sed -e s+'^model name\t: '++)
 V_SYSTEM=$(uname -rs)

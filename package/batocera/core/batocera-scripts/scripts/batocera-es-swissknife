@@ -116,8 +116,8 @@ case ${1,,} in
             ret=1
         fi
 
-        if [[ -f /boot/boot/batocera.board ]]; then
-            BOARD=$(cat /boot/boot/batocera.board)
+        if [[ -f /boot/boot/retrolx.board ]]; then
+            BOARD=$(cat /boot/boot/retrolx.board)
             ret=$?
             test "${BOARD}" = "rpi4" && BOARD=rpi464 # "temporarily" download on rpi464 for rpi4
         else

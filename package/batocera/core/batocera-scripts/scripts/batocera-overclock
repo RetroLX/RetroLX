@@ -5,7 +5,7 @@ f_usage() {
 	echo "$0 set <VALUE>" >&2
 }
 
-ARCH="$(cat /usr/share/batocera/batocera.arch)"
+ARCH="$(cat /usr/share/retrolx/retrolx.arch)"
 GRPICONFFILE="/boot/config.txt"
 GODROIDCONFFILE="/boot/config.ini"
 

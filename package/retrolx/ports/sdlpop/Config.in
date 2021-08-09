@@ -1,8 +1,8 @@
 config BR2_PACKAGE_SDLPOP
 	bool "sdlpop"
 	depends on BR2_INSTALL_LIBSTDCPP
-	select BR2_PACKAGE_SDL2
-	select BR2_PACKAGE_SDL2_IMAGE
+	depends on BR2_PACKAGE_SDL2
+	depends on BR2_PACKAGE_SDL2_IMAGE
 	help
 	  SDLPoP
 	  An open-source port of Prince of Persia, based on the disassembly of the DOS version.
