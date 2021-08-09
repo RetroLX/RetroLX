@@ -14,6 +14,10 @@ BINARIES_DIR=$4
 TARGET_DIR=$5
 BATOCERA_BINARIES_DIR=$6
 
+mkdir -p "${BATOCERA_BINARIES_DIR}/uboot"     || exit 1
+cp "${BOARD_DIR}/build-uboot.sh"          "${BATOCERA_BINARIES_DIR}/uboot/" || exit 1
+cd "${BATOCERA_BINARIES_DIR}/uboot/" && ./build-uboot.sh || exit 1
+
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/boot"     || exit 1
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/extlinux" || exit 1
 
