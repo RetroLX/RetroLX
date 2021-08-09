@@ -73,8 +73,8 @@ endif
 define BATOCERA_SYSTEM_INSTALL_TARGET_CMDS
 
 	# version/arch
-	mkdir -p $(TARGET_DIR)/usr/share/batocera
-	echo -n "$(BATOCERA_SYSTEM_ARCH)" > $(TARGET_DIR)/usr/share/batocera/batocera.arch
+	mkdir -p $(TARGET_DIR)/usr/share/retrolx
+	echo -n "$(BATOCERA_SYSTEM_ARCH)" > $(TARGET_DIR)/usr/share/retrolx/retrolx.arch
 	echo $(BATOCERA_SYSTEM_VERSION) $(BATOCERA_SYSTEM_DATE_TIME) > $(TARGET_DIR)/usr/share/retrolx/retrolx.version
 
 	# datainit
