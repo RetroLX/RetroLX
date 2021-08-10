@@ -1,0 +1,6 @@
+pkgname = openbor
+pkgver = 20210810-1
+pkgdesc = OpenBOR homebrew engine
+group = emulator
+packager = https://retrolx.org 
+url = https://github.com/DCurrent/openbor

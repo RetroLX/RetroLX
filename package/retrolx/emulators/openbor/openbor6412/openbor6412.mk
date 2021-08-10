@@ -28,7 +28,8 @@ define OPENBOR6412_BUILD_CMDS
 endef
 
 define OPENBOR6412_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/engine/OpenBOR $(TARGET_DIR)/usr/bin/OpenBOR6412
+	mkdir -p $(OPENBOR_PKG_DIR)$(OPENBOR_PKG_INSTALL_DIR)
+	$(INSTALL) -D $(@D)/engine/OpenBOR $(OPENBOR_PKG_DIR)$(OPENBOR_PKG_INSTALL_DIR)/OpenBOR6412
 endef
 
 $(eval $(generic-package))

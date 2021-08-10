@@ -1,0 +1,8 @@
+config BR2_PACKAGE_OPENBOR6510
+        bool "openbor6510"
+	depends on BR2_PACKAGE_LIBVPX
+	depends on BR2_PACKAGE_SDL2
+	depends on BR2_PACKAGE_SDL2_GFX
+	depends on BR2_PACKAGE_LIBPNG
+	depends on BR2_PACKAGE_LIBOGG
+	depends on BR2_PACKAGE_LIBVORBIS
