@@ -1,0 +1,6 @@
+pkgname = fheroes2
+pkgver = 0.9.6-1
+pkgdesc = (Free) Heroes of Might & Magic 2
+group = port
+packager = https://retrolx.org 
+url = https://github.com/ihhub/fheroes2
