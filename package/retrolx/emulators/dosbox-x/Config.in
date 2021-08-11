@@ -1,16 +1,16 @@
 config BR2_PACKAGE_DOSBOX_X
 	bool "dosbox-x"
         depends on BR2_INSTALL_LIBSTDCPP
-        select BR2_PACKAGE_SDL2
-        select BR2_PACKAGE_SDL2_NET
-        select BR2_PACKAGE_SDL_SOUND
-        select BR2_PACKAGE_ZLIB
-        select BR2_PACKAGE_LIBPNG
-        select BR2_PACKAGE_LIBOGG
-        select BR2_PACKAGE_LIBVORBIS      
-        select BR2_PACKAGE_FFMPEG
-        select BR2_PACKAGE_FFMPEG_AVRESAMPLE
-        select BR2_PACKAGE_FFMPEG_SWSCALE
+        depends on BR2_PACKAGE_SDL2
+        depends on BR2_PACKAGE_SDL2_NET
+        depends on BR2_PACKAGE_SDL_SOUND
+        depends on BR2_PACKAGE_ZLIB
+        depends on BR2_PACKAGE_LIBPNG
+        depends on BR2_PACKAGE_LIBOGG
+        depends on BR2_PACKAGE_LIBVORBIS      
+        depends on BR2_PACKAGE_FFMPEG
+        depends on BR2_PACKAGE_FFMPEG_AVRESAMPLE
+        depends on BR2_PACKAGE_FFMPEG_SWSCALE
 
 	help
 	  DOSBox is a DOS-emulator that uses the SDL-library 

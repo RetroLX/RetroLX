@@ -6,19 +6,18 @@ config BR2_PACKAGE_SOLARUS_ENGINE
 	depends on BR2_TOOLCHAIN_GCC_AT_LEAST_4_9 # openal
 	depends on BR2_TOOLCHAIN_HAS_THREADS_NPTL # openal
 	depends on !BR2_STATIC_LIBS # SDL2
-	# batocera
 	depends on BR2_PACKAGE_HAS_LIBGL || BR2_PACKAGE_HAS_LIBGLES
 	
-	select BR2_PACKAGE_GLM
-	select BR2_PACKAGE_LIBMODPLUG
-	select BR2_PACKAGE_LIBOGG
-	select BR2_PACKAGE_LIBPNG # runtime
-	select BR2_PACKAGE_LIBVORBIS
-	select BR2_PACKAGE_OPENAL
-	select BR2_PACKAGE_PHYSFS
-	select BR2_PACKAGE_SDL2
-	select BR2_PACKAGE_SDL2_IMAGE
-	select BR2_PACKAGE_SDL2_TTF
+	depends on BR2_PACKAGE_GLM
+	depends on BR2_PACKAGE_LIBMODPLUG
+	depends on BR2_PACKAGE_LIBOGG
+	depends on BR2_PACKAGE_LIBPNG # runtime
+	depends on BR2_PACKAGE_LIBVORBIS
+	depends on BR2_PACKAGE_OPENAL
+	depends on BR2_PACKAGE_PHYSFS
+	depends on BR2_PACKAGE_SDL2
+	depends on BR2_PACKAGE_SDL2_IMAGE
+	depends on BR2_PACKAGE_SDL2_TTF
 	help
 	  Solarus is an open-source Zelda-like 2D game engine written
 	  in C++. It can run games scripted in Lua. This engine is used

@@ -9,96 +9,10 @@ config BR2_PACKAGE_RETROLX_PACKAGES
 	select BR2_PACKAGE_BATOCERA_COMPUTER_SYSTEMS
 	select BR2_PACKAGE_BATOCERA_MSDOS_SYSTEMS
 	select BR2_PACKAGE_BATOCERA_HOMEBREW_SYSTEMS
-	select BR2_PACKAGE_BATOCERA_WINE_SYSTEMS
 	select BR2_PACKAGE_BATOCERA_GAMESTREAM_SYSTEMS
 	select BR2_PACKAGE_BATOCERA_PORTS_SYSTEMS
-	select BR2_PACKAGE_BATOCERA_FLASH_SYSTEMS
-
-	# Commodore Amiga computers emulator (only for ARM / AArch64 devices)
-	select BR2_PACKAGE_AMIBERRY             if !BR2_PACKAGE_BATOCERA_IS_X86_ARCH
-
-	select BR2_PACKAGE_LIBRETRO_PUAE        # ALL
-
-	select BR2_PACKAGE_HATARI               # ALL
-
-	# Diablo 1 engine
-	select BR2_PACKAGE_DEVILUTIONX
-
-	# Commander Genius (Commander Keen series)
-	select BR2_PACKAGE_CGENIUS
-
-	select BR2_PACKAGE_DOSBOX_X                 if !BR2_PACKAGE_BATOCERA_TARGET_RPI1	&& \
-                                                    !BR2_PACKAGE_BATOCERA_TARGET_RPI2		&& \
-                                                    !BR2_PACKAGE_BATOCERA_TARGET_RPI3
-
-	select BR2_PACKAGE_DOSBOX_STAGING           # ALL 
-
-	select BR2_PACKAGE_LIBRETRO_DOSBOX_PURE     # ALL
-
-	select BR2_PACKAGE_DUCKSTATION          if !BR2_arm1176jzf_s && !BR2_cortex_a7
-
-	select BR2_PACKAGE_FLYCAST          if  !BR2_PACKAGE_BATOCERA_TARGET_RPI1       && \
-                                                !BR2_PACKAGE_BATOCERA_TARGET_RPI2       && \
-                                                !BR2_i686
-
-
-	select BR2_PACKAGE_LIBRETRO_MGBA            # ALL
-
-	# Atari 2600
-	select BR2_PACKAGE_LIBRETRO_STELLA              # ALL
-
-	# Panasonic 3DO
-	select BR2_PACKAGE_LIBRETRO_OPERA               if !BR2_arm1176jzf_s && !BR2_cortex_a7
-
-	#select BR2_PACKAGE_MAME     if BR2_PACKAGE_BATOCERA_TARGET_X86_64 || BR2_PACKAGE_RETROLX_WAYLAND
-
-	select BR2_PACKAGE_LIBRETRO_MAME2003_PLUS   # ALL
-	select BR2_PACKAGE_LIBRETRO_MAME2010        if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 # MAME2010
-	select BR2_PACKAGE_LIBRETRO_FBNEO       # ALL
-
-	# Super Nintendo / Super Famicom
-	select BR2_PACKAGE_LIBRETRO_SNES9X              # ALL
-	select BR2_PACKAGE_LIBRETRO_SNES9X2010          # ALL
-	select BR2_PACKAGE_LIBRETRO_SNES9X2005          if BR2_arm1176jzf_s || BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_SNES9X2002          if BR2_arm1176jzf_s || BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_BSNES               if BR2_x86_64
-	select BR2_PACKAGE_LIBRETRO_BSNES_HD            if BR2_x86_64
-
-	# Laserdic emulation
-	select BR2_PACKAGE_DAPHNE               if !BR2_arm1176jzf_s && !BR2_cortex_a7
-
-	select BR2_PACKAGE_LIBRETRO_GAMBATTE        # ALL
-
-	# Watara
-	select BR2_PACKAGE_LIBRETRO_WATARA          # ALL
-
-	# Nintendo NES / Famicom
-	select BR2_PACKAGE_LIBRETRO_FCEUMM              # ALL
-	select BR2_PACKAGE_LIBRETRO_NESTOPIA            # ALL
-
-	# Sega 8-bit/16-range (Mark III / Master System, Game Gear, Genesis / Megadrive, SegaCD / MegaCD, 32X)
-	select BR2_PACKAGE_LIBRETRO_PICODRIVE           # ALL
-	select BR2_PACKAGE_LIBRETRO_GENESISPLUSGX       # ALL
-	select BR2_PACKAGE_LIBRETRO_GENESISPLUSGX_WIDE  # ALL
-	select BR2_PACKAGE_LIBRETRO_BLASTEM             if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
-
-	# Atari Jaguar
-	select BR2_PACKAGE_LIBRETRO_VIRTUALJAGUAR       if  BR2_PACKAGE_BATOCERA_IS_X86_ARCH || \
-                                                        BR2_PACKAGE_BATOCERA_TARGET_S922X
-	# NEC PC-FX
-	select BR2_PACKAGE_LIBRETRO_BEETLE_PCFX         if !BR2_arm1176jzf_s && !BR2_cortex_a7
-
-	# PSX
-	select BR2_PACKAGE_LIBRETRO_SWANSTATION         if  !BR2_i686                     && \
-                                                        !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && \
-                                                        !BR2_PACKAGE_BATOCERA_TARGET_RPI2
-
-	# PSP
-	select BR2_PACKAGE_PPSSPP                   if !BR2_arm1176jzf_s && !BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_PPSSPP          if !BR2_arm1176jzf_s && !BR2_cortex_a7
-
-	select BR2_PACKAGE_SCUMMVM              # ALL
-	select BR2_PACKAGE_LIBRETRO_SCUMMVM     # ALL
+	select BR2_PACKAGE_BATOCERA_WINE_SYSTEMS        if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
+	select BR2_PACKAGE_BATOCERA_FLASH_SYSTEMS       if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
 
 	# alternative frontends
 	select BR2_PACKAGE_RETROFE
@@ -146,6 +60,8 @@ config BR2_PACKAGE_BATOCERA_SCUMMVM_SYSTEMS
 	bool "batocera.linux ScummVM emulators/cores"
 
 	# ScummVM
+	select BR2_PACKAGE_SCUMMVM              # ALL
+	select BR2_PACKAGE_LIBRETRO_SCUMMVM     # ALL
 
 #### Homebrew ####
 config BR2_PACKAGE_BATOCERA_HOMEBREW_SYSTEMS
@@ -176,9 +92,14 @@ config BR2_PACKAGE_BATOCERA_SEGADC
 	bool "batocera.linux dreamcast/naomi/atomiswave emulators/cores"
 
 	# Dreamcast / Naomi / Atomiswave emulation
+	select BR2_PACKAGE_FLYCAST          if  !BR2_PACKAGE_BATOCERA_TARGET_RPI1       && \
+                                                !BR2_PACKAGE_BATOCERA_TARGET_RPI2       && \
+                                                !BR2_i686
+
 	select BR2_PACKAGE_LIBRETRO_FLYCAST     if  !BR2_PACKAGE_BATOCERA_TARGET_RPI1       && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_RPI2       && \
                                                 !BR2_i686
+
 	select BR2_PACKAGE_REDREAM              if BR2_x86_64
 
 	help
@@ -191,6 +112,15 @@ config BR2_PACKAGE_BATOCERA_ARCADE_SYSTEMS
     # Final Burn Alpha
     select BR2_PACKAGE_LIBRETRO_FBALPHA     if BR2_arm1176jzf_s || BR2_cortex_a7
 
+	#select BR2_PACKAGE_MAME     if BR2_PACKAGE_BATOCERA_TARGET_X86_64 || BR2_PACKAGE_RETROLX_WAYLAND
+	select BR2_PACKAGE_LIBRETRO_MAME2003_PLUS   # ALL
+	select BR2_PACKAGE_LIBRETRO_MAME2010        if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 # MAME2010
+	select BR2_PACKAGE_LIBRETRO_FBNEO       # ALL
+
+	# Laserdic emulation
+	select BR2_PACKAGE_DAPHNE               if !BR2_arm1176jzf_s && !BR2_cortex_a7
+
+
 	# Naomi and Atomiswave
 	select BR2_PACKAGE_BATOCERA_SEGADC
 
@@ -198,7 +128,7 @@ config BR2_PACKAGE_BATOCERA_ARCADE_SYSTEMS
 	select BR2_PACKAGE_SUPERMODEL           if BR2_x86_64
 
 	# RetroArch MAME derivatives
-	select BR2_PACKAGE_LIBRETRO_IMAME       if BR2_arm1176jzf_s || BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_MAME2000       if BR2_arm1176jzf_s || BR2_cortex_a7
 
 	help
 		Arcade cores/emulators
@@ -208,9 +138,14 @@ config BR2_PACKAGE_BATOCERA_HANDHELD_SYSTEMS
 	bool "batocera.linux handheld emulation packages"
 
 	# Gameboy / Gameboy Color
+	select BR2_PACKAGE_LIBRETRO_GAMBATTE        # ALL
 	select BR2_PACKAGE_LIBRETRO_TGBDUAL         # ALL
 
+	# Watara
+	select BR2_PACKAGE_LIBRETRO_WATARA          # ALL
+
 	# GBA
+	select BR2_PACKAGE_LIBRETRO_MGBA            # ALL
 	select BR2_PACKAGE_LIBRETRO_VBA_M           # ALL
 	select BR2_PACKAGE_LIBRETRO_GPSP            if BR2_arm1176jzf_s || BR2_cortex_a7
 
@@ -242,6 +177,10 @@ config BR2_PACKAGE_BATOCERA_HANDHELD_SYSTEMS
 	# Game and Watch
 	select BR2_PACKAGE_LIBRETRO_GW              # ALL
 
+	# PSP
+	select BR2_PACKAGE_PPSSPP                   if !BR2_arm1176jzf_s && !BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_PPSSPP          if !BR2_arm1176jzf_s && !BR2_cortex_a7
+
 	# Nintendo Switch
 	select BR2_PACKAGE_YUZU                     if BR2_PACKAGE_BATOCERA_CORES_EXPERIMENTAL && BR2_x86_64 
 
@@ -254,6 +193,14 @@ config BR2_PACKAGE_BATOCERA_MSDOS_SYSTEMS
 
 	select BR2_PACKAGE_DOSBOX                   if  !BR2_PACKAGE_BATOCERA_TARGET_H3 && !BR2_PACKAGE_BATOCERA_TARGET_RK3326
 
+	select BR2_PACKAGE_DOSBOX_X                 if !BR2_PACKAGE_BATOCERA_TARGET_RPI1	&& \
+                                                    !BR2_PACKAGE_BATOCERA_TARGET_RPI2		&& \
+                                                    !BR2_PACKAGE_BATOCERA_TARGET_RPI3
+
+	select BR2_PACKAGE_DOSBOX_STAGING           # ALL 
+
+	select BR2_PACKAGE_LIBRETRO_DOSBOX_PURE     # ALL
+
 	help
 		MS/DOS cores/emulators
 
@@ -263,6 +210,16 @@ config BR2_PACKAGE_BATOCERA_PORTS_SYSTEMS
 
 	# Cannonball (OutRun)
 	select BR2_PACKAGE_CANNONBALL               # ALL
+
+	# Commander Genius (Commander Keen series)
+	select BR2_PACKAGE_CGENIUS		    # ALL
+
+	# Diablo 1 engine
+	select BR2_PACKAGE_DEVILUTIONX		    # ALL
+
+	# Wolfeinstein 3D / Spear of Destiny ports
+	select BR2_PACKAGE_LIBRETRO_ECWOLF          # ALL
+	select BR2_PACKAGE_ECWOLF                   if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 
 	# PrBoom (Doom)
 	select BR2_PACKAGE_LIBRETRO_PRBOOM          # ALL
@@ -301,6 +258,8 @@ config BR2_PACKAGE_BATOCERA_COMPUTER_SYSTEMS
 
 	# Commodore Amiga
 	select BR2_PACKAGE_FSUAE                if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
+	select BR2_PACKAGE_AMIBERRY             if !BR2_PACKAGE_BATOCERA_IS_X86_ARCH
+	select BR2_PACKAGE_LIBRETRO_PUAE        # ALL
 
 	# Atari 800 computers
 	select BR2_PACKAGE_LIBRETRO_ATARI800    # ALL
@@ -313,6 +272,7 @@ config BR2_PACKAGE_BATOCERA_COMPUTER_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_81          # ALL
 
 	# Atari ST/TT/Falcon
+	select BR2_PACKAGE_HATARI               # ALL
 	select BR2_PACKAGE_LIBRETRO_HATARI      # ALL
 
 	# MSX range
@@ -349,6 +309,24 @@ config BR2_PACKAGE_BATOCERA_RETROARCH
 config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 	bool "batocera.linux console emulators/cores"
 
+	# Nintendo NES / Famicom
+	select BR2_PACKAGE_LIBRETRO_FCEUMM              # ALL
+	select BR2_PACKAGE_LIBRETRO_NESTOPIA            # ALL
+
+	# Sega 8-bit/16-range (Mark III / Master System, Game Gear, Genesis / Megadrive, SegaCD / MegaCD, 32X)
+	select BR2_PACKAGE_LIBRETRO_PICODRIVE           # ALL
+	select BR2_PACKAGE_LIBRETRO_GENESISPLUSGX       # ALL
+	select BR2_PACKAGE_LIBRETRO_GENESISPLUSGX_WIDE  # ALL
+	select BR2_PACKAGE_LIBRETRO_BLASTEM             if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
+
+	# Super Nintendo / Super Famicom
+	select BR2_PACKAGE_LIBRETRO_SNES9X              # ALL
+	select BR2_PACKAGE_LIBRETRO_SNES9X2010          # ALL
+	select BR2_PACKAGE_LIBRETRO_SNES9X2005          if BR2_arm1176jzf_s || BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_SNES9X2002          if BR2_arm1176jzf_s || BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_BSNES               if BR2_x86_64
+	select BR2_PACKAGE_LIBRETRO_BSNES_HD            if BR2_x86_64
+
 	# Nintendo 64
 	select BR2_PACKAGE_BATOCERA_MUPEN64		if !BR2_arm1176jzf_s && !BR2_cortex_a7 
 	select BR2_PACKAGE_LIBRETRO_MUPEN64PLUS_NEXT	if !BR2_arm1176jzf_s && !BR2_cortex_a7
@@ -357,6 +335,14 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 														BR2_PACKAGE_BATOCERA_TARGET_RK3288	|| \
 														BR2_PACKAGE_BATOCERA_TARGET_S912	|| \
 														BR2_PACKAGE_BATOCERA_TARGET_S922X
+	# Atari Jaguar
+	select BR2_PACKAGE_LIBRETRO_VIRTUALJAGUAR       if  BR2_PACKAGE_BATOCERA_IS_X86_ARCH || \
+                                                        BR2_PACKAGE_BATOCERA_TARGET_S922X
+	# NEC PC-FX
+	select BR2_PACKAGE_LIBRETRO_BEETLE_PCFX         if !BR2_arm1176jzf_s && !BR2_cortex_a7
+
+	# Panasonic 3DO
+	select BR2_PACKAGE_LIBRETRO_OPERA               if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
 	# Dreamcast
 	select BR2_PACKAGE_BATOCERA_SEGADC
@@ -382,6 +368,12 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 
 	# Microsoft XBOX
 	select BR2_PACKAGE_XEMU                         if BR2_x86_64
+
+	# Sony PS1
+	select BR2_PACKAGE_DUCKSTATION                  if !BR2_arm1176jzf_s && !BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_SWANSTATION         if  !BR2_i686                     && \
+                                                        !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && \
+                                                        !BR2_PACKAGE_BATOCERA_TARGET_RPI2
 
 	# Sony PS2
 	select BR2_PACKAGE_PCSX2                        if BR2_x86_64
@@ -418,15 +410,14 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 	# Intellivision
 	select BR2_PACKAGE_LIBRETRO_FREEINTV            # ALL
 
+	# Atari 2600
+	select BR2_PACKAGE_LIBRETRO_STELLA              # ALL
+
 	# Atari 7800
 	select BR2_PACKAGE_LIBRETRO_PROSYSTEM           # ALL
 
 	# Fairchild Channel F
 	select BR2_PACKAGE_LIBRETRO_FREECHAF            # ALL
-
-	# ECWolf
-	select BR2_PACKAGE_LIBRETRO_ECWOLF              # ALL
-	select BR2_PACKAGE_ECWOLF                       if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 
 	help
 		All avaible systems for the selected architecture

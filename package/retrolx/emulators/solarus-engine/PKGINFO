@@ -1,0 +1,6 @@
+pkgname = solarus
+pkgver = 1.6.5-1
+pkgdesc = Solarus engine
+group = emulator
+packager = https://retrolx.org 
+url = http://www.solarus-games.org

@@ -1,18 +1,18 @@
 config BR2_PACKAGE_SCUMMVM
         bool "Scummvm"
 	depends on BR2_INSTALL_LIBSTDCPP
-	select BR2_PACKAGE_SDL2
-	select BR2_PACKAGE_LIBMPEG2
-	select BR2_PACKAGE_JPEG
-	select BR2_PACKAGE_LIBOGG
-        select BR2_PACKAGE_LIBVORBIS
-        select BR2_PACKAGE_FLAC
-        select BR2_PACKAGE_LIBMAD
-        select BR2_PACKAGE_LIBPNG
-        select BR2_PACKAGE_LIBTHEORA
-        select BR2_PACKAGE_FAAD2
-        select BR2_PACKAGE_FREETYPE
-	select BR2_PACKAGE_ZLIB  
+	depends on BR2_PACKAGE_SDL2
+	depends on BR2_PACKAGE_LIBMPEG2
+	depends on BR2_PACKAGE_JPEG
+	depends on BR2_PACKAGE_LIBOGG
+        depends on BR2_PACKAGE_LIBVORBIS
+        depends on BR2_PACKAGE_FLAC
+        depends on BR2_PACKAGE_LIBMAD
+        depends on BR2_PACKAGE_LIBPNG
+        depends on BR2_PACKAGE_LIBTHEORA
+        depends on BR2_PACKAGE_FAAD2
+        depends on BR2_PACKAGE_FREETYPE
+	depends on BR2_PACKAGE_ZLIB  
 	depends on BR2_PACKAGE_FLUIDSYNTH
 
         help

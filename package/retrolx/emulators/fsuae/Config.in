@@ -1,0 +1,12 @@
+config BR2_PACKAGE_FSUAE
+        bool "fs-uae"
+	depends on BR2_PACKAGE_LIBGLIB2
+	depends on BR2_PACKAGE_XORG7
+	depends on BR2_PACKAGE_OPENAL
+	depends on BR2_PACKAGE_LIBPNG
+	depends on BR2_PACKAGE_SDL2
+	depends on BR2_PACKAGE_ZLIB
+	depends on BR2_PACKAGE_LIBMPEG2
+	depends on BR2_PACKAGE_LIBCAPSIMAGE
+        help
+          A crossplatform amiga emulator
