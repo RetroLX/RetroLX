@@ -1,6 +1,7 @@
 PROJECT_DIR    := $(shell pwd)
 DL_DIR         ?= $(PROJECT_DIR)/dl
 OUTPUT_DIR     ?= $(PROJECT_DIR)/output
+REPO_DIR       ?= $(PROJECT_DIR)/repo
 CCACHE_DIR     ?= $(PROJECT_DIR)/buildroot-ccache
 LOCAL_MK       ?= $(PROJECT_DIR)/batocera.mk
 EXTRA_PKGS     ?=
@@ -24,12 +25,14 @@ vars:
 	@echo "Project directory:  $(PROJECT_DIR)"
 	@echo "Download directory: $(DL_DIR)"
 	@echo "Build directory:    $(OUTPUT_DIR)"
+	@echo "Pacman directory:   $(REPO_DIR)"
 	@echo "ccache directory:   $(CCACHE_DIR)"
 	@echo "Extra options:      $(EXTRA_OPTS)"
 	@echo "Make options:       $(MAKE_OPTS)"
 
 output-dir-%: %-supported
 	mkdir -p $(OUTPUT_DIR)/$*
+	mkdir -p $(REPO_DIR)/$*
 
 ccache-dir:
 	mkdir -p $(CCACHE_DIR)
