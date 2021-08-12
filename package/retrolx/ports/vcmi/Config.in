@@ -1,0 +1,13 @@
+config BR2_PACKAGE_VCMI
+	bool "vcmi"
+	depends on BR2_PACKAGE_SDL2
+	depends on BR2_PACKAGE_SDL2_IMAGE
+	depends on BR2_PACKAGE_SDL2_MIXER
+	depends on BR2_PACKAGE_SDL2_TTF
+	depends on BR2_PACKAGE_FFMPEG
+	depends on BR2_PACKAGE_TBB
+
+	help
+	  Heroes of Might and Magic 3 engine.
+
+	  https://vcmi.eu

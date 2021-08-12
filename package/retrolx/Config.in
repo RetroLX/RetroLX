@@ -220,6 +220,9 @@ config BR2_PACKAGE_BATOCERA_PORTS_SYSTEMS
 	# Heroes of Might and Magic 2 engine
 	select BR2_PACKAGE_FHEROES2		    # ALL
 
+	# Heroes of Might and Magic 3 engine
+	select BR2_PACKAGE_VCMI		            # ALL
+
 	# Wolfeinstein 3D / Spear of Destiny ports
 	select BR2_PACKAGE_LIBRETRO_ECWOLF          # ALL
 	select BR2_PACKAGE_ECWOLF                   if BR2_PACKAGE_BATOCERA_TARGET_X86_64

@@ -1,0 +1,8 @@
+config BR2_PACKAGE_TBB
+	bool "tbb"
+	help
+	  oneAPI Threading Building Blocks (oneTBB) lets you easily write parallel C++ programs 
+	  that take full advantage of multicore performance, that are portable, composable and 
+	  have future-proof scalability.
+
+	  https://github.com/oneapi-src/oneTBB
