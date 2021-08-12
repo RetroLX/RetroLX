@@ -11,11 +11,16 @@ menu "Frontends"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/frontends/pegasus/Config.in"
 endmenu
 
+menu "Firmware"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/firmware/alllinuxfirmwares/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/firmware/firmware-rockpro64/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/firmware/firmware-wlan-aml/Config.in"
+endmenu
+
 menu "System"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/core/retrolx-splash/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/core/retrolx-configgen/Config.in"
-  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/alllinuxfirmwares/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/core/batocera-system/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/core/batocera-desktopapps/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/core/batocera-scripts/Config.in"
@@ -52,11 +57,6 @@ menu "System"
 
   menu "Fonts"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/fonts/nanum-font/Config.in"
-  endmenu
-
-  menu "Arch"
-    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/arch/firmware-rockpro64/Config.in"
-    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/arch/firmware-wlan-aml/Config.in"
   endmenu
 
   menu "Gpu"
