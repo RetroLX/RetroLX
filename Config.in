@@ -62,7 +62,6 @@ menu "System"
   menu "Gpu"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/gpu/libmali/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/gpu/mali-t620-wayland/Config.in"
-    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/gpu/mali-midgard-module/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/gpu/batocera-nvidia-driver/Config.in"
   endmenu
 
@@ -86,9 +85,6 @@ menu "Emulationstation"
 endmenu
 
 menu "Controllers"
-  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/db9_gpio_rpi/Config.in"
-  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/gamecon_gpio_rpi/Config.in"
-  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/mk_arcade_joystick_rpi/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/qtsixa/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/qtsixa-shanwan/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/xarcade2jstick/Config.in"
