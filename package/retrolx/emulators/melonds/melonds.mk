@@ -23,7 +23,6 @@ MELONDS_CONF_ENV += LDFLAGS=-lpthread
 
 define MELONDS_INSTALL_TARGET_CMDS
 	echo "melonDS built as pacman package, no rootfs install"
-
 endef
 
 define MELONDS_MAKEPKG
