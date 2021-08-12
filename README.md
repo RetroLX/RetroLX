@@ -4,6 +4,6 @@ RetroLX is built on the following main components :
 - Wayland for ARM / AArch64 devices, Xorg for Intel/AMD x86_64 based computers
 - Pacman package manager
 
-### [website](https://retrolx.org/) | [forum](https://retrolx.org/) | [wiki](https://retrolx.org/)
+### [website](https://retrolx.org/) | [forum](https://retrolx.org/) | [wiki](https://retrolx.org/wiki/)
 
 ### Join our [Discord Server](https://retrolx.org/)!
