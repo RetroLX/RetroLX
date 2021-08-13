@@ -308,6 +308,7 @@ menu "Utils"
 endmenu
 
 menu "Libraries"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/libraries/ecm/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/libraries/libcapsimage/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/libraries/libxmp/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/retrolx/libraries/tbb/Config.in"
