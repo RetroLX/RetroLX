@@ -14,6 +14,9 @@ config BR2_PACKAGE_RETROLX_PACKAGES
 	select BR2_PACKAGE_RETROLX_WINE_SYSTEMS        if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	select BR2_PACKAGE_RETROLX_FLASH_SYSTEMS       if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 
+	# RetroArch frontend
+	select BR2_PACKAGE_RETROLX_RETROARCH
+
 	# alternative frontends
 	select BR2_PACKAGE_RETROFE
 	select BR2_PACKAGE_PEGASUS		if BR2_PACKAGE_RETROLX_QT
@@ -21,20 +24,20 @@ config BR2_PACKAGE_RETROLX_PACKAGES
 	help
 		RetroLX supported packages
 
-#### systems ####
-config BR2_PACKAGE_RETROLX_ALL_SYSTEMS
-	bool "batocera.linux all emulators packages selection"
+#### RetroArch ####
+config BR2_PACKAGE_RETROLX_RETROARCH
+	bool "RetroLX RetroArch system"
 
 	# RetroArch frontend and core data
 	select BR2_PACKAGE_RETROLX_RETROARCH
 	select BR2_PACKAGE_RETROLX_RETROACHIEVEMENTS_SOUNDS
 
 	help
-		batocera.linux all supported emulation systems
+		RetroLX RetroArch system
 
 #### Wine Layer ####
 config BR2_PACKAGE_RETROLX_WINE_SYSTEMS
-	bool "batocera.linux Wine support"
+	bool "RetroLX Wine support"
 
 	# Wine (windows) layer
 	select BR2_PACKAGE_RETROLX_WINE    if BR2_PACKAGE_RETROLX_IS_X86_ARCH
@@ -42,7 +45,7 @@ config BR2_PACKAGE_RETROLX_WINE_SYSTEMS
 
 #### Flash Player ####
 config BR2_PACKAGE_RETROLX_FLASH_SYSTEMS
-	bool "batocera.linux Flash support"
+	bool "RetroLX Flash support"
 
 	# Flash Player Emulator
 	select BR2_PACKAGE_RUFFLE           if BR2_PACKAGE_RETROLX_TARGET_X86_64 # depends on X11
@@ -50,14 +53,14 @@ config BR2_PACKAGE_RETROLX_FLASH_SYSTEMS
 
 #### Moonlight / Gamestream ####
 config BR2_PACKAGE_RETROLX_GAMESTREAM_SYSTEMS
-	bool "batocera.linux game streaming support"
+	bool "RetroLX game streaming support"
 
 	# Game streaming
 	select BR2_PACKAGE_MOONLIGHT_EMBEDDED if !BR2_PACKAGE_RETROLX_ROCKCHIP_ANY
 
 #### ScummVM ####
 config BR2_PACKAGE_RETROLX_SCUMMVM_SYSTEMS
-	bool "batocera.linux ScummVM emulators/cores"
+	bool "RetroLX ScummVM emulators/cores"
 
 	# ScummVM
 	select BR2_PACKAGE_SCUMMVM              # ALL
@@ -65,7 +68,7 @@ config BR2_PACKAGE_RETROLX_SCUMMVM_SYSTEMS
 
 #### Homebrew ####
 config BR2_PACKAGE_RETROLX_HOMEBREW_SYSTEMS
-	bool "batocera.linux homebrew systems"
+	bool "RetroLX homebrew systems"
 
 	# OpenBOR
 	select BR2_PACKAGE_OPENBOR # ALL
@@ -89,7 +92,7 @@ config BR2_PACKAGE_RETROLX_HOMEBREW_SYSTEMS
 
 #### Sega Dreamcast, Naomi and Atomiswave ####
 config BR2_PACKAGE_RETROLX_SEGADC
-	bool "batocera.linux dreamcast/naomi/atomiswave emulators/cores"
+	bool "RetroLX dreamcast/naomi/atomiswave emulators/cores"
 
 	# Dreamcast / Naomi / Atomiswave emulation
 	select BR2_PACKAGE_FLYCAST          if  !BR2_PACKAGE_RETROLX_TARGET_RPI1       && \
@@ -107,7 +110,7 @@ config BR2_PACKAGE_RETROLX_SEGADC
 
 #### Arcade cores ####
 config BR2_PACKAGE_RETROLX_ARCADE_SYSTEMS
-	bool "batocera.linux arcade emulators packages selection"
+	bool "RetroLX arcade emulators packages selection"
 
     # Final Burn Alpha
     select BR2_PACKAGE_LIBRETRO_FBALPHA     if BR2_arm1176jzf_s || BR2_cortex_a7
@@ -135,7 +138,7 @@ config BR2_PACKAGE_RETROLX_ARCADE_SYSTEMS
 
 #### Handheld consoles ####
 config BR2_PACKAGE_RETROLX_HANDHELD_SYSTEMS
-	bool "batocera.linux handheld emulation packages"
+	bool "RetroLX handheld emulation packages"
 
 	# Gameboy / Gameboy Color
 	select BR2_PACKAGE_LIBRETRO_GAMBATTE        # ALL
@@ -189,7 +192,7 @@ config BR2_PACKAGE_RETROLX_HANDHELD_SYSTEMS
 
 #### MSDOS emulation ####
 config BR2_PACKAGE_RETROLX_MSDOS_SYSTEMS
-	bool "batocera.linux MS/DOS emulation packages"
+	bool "RetroLX MS/DOS emulation packages"
 
 	select BR2_PACKAGE_DOSBOX                   if  !BR2_PACKAGE_RETROLX_TARGET_H3 && !BR2_PACKAGE_RETROLX_TARGET_RK3326
 
@@ -206,7 +209,7 @@ config BR2_PACKAGE_RETROLX_MSDOS_SYSTEMS
 
 #### Linux / Libretro ports ####
 config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
-	bool "batocera.linux ports packages"
+	bool "RetroLX ports packages"
 
 	# Cannonball (OutRun)
 	select BR2_PACKAGE_CANNONBALL               # ALL
@@ -250,7 +253,7 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 
 #### Vintage computer systems ####
 config BR2_PACKAGE_RETROLX_COMPUTER_SYSTEMS
-	bool "batocera.linux vintage computers emulation packages"
+	bool "RetroLX vintage computers emulation packages"
 
 	# CAPS image support (IPF)
 	select BR2_PACKAGE_LIBCAPSIMAGE         # ALL
@@ -305,7 +308,7 @@ config BR2_PACKAGE_RETROLX_COMPUTER_SYSTEMS
 		Old computers
 
 config BR2_PACKAGE_RETROLX_RETROARCH
-	bool "batocera.linux RetroArch frontend and integration"
+	bool "RetroLX RetroArch frontend and integration"
 
 	# RetroArch frontend and core data
 	select BR2_PACKAGE_RETROARCH
@@ -313,7 +316,7 @@ config BR2_PACKAGE_RETROLX_RETROARCH
 	select BR2_PACKAGE_RETROLX_SHADERS
 
 config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
-	bool "batocera.linux console emulators/cores"
+	bool "RetroLX console emulators/cores"
 
 	# Nintendo NES / Famicom
 	select BR2_PACKAGE_LIBRETRO_FCEUMM              # ALL
@@ -429,7 +432,7 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 		All avaible systems for the selected architecture
 
 config BR2_PACKAGE_RETROLX_MUPEN64
-	bool "batocera.linux Mupen64 packages selection"
+	bool "RetroLX Mupen64 packages selection"
 
 	# Core module
 	select BR2_PACKAGE_MUPEN64PLUS_CORE
