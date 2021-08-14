@@ -11,7 +11,7 @@ VCMI_GIT_SUBMODULES=YES
 VCMI_DEPENDENCIES = sdl2 sdl2_image sdl2_mixer sdl2_ttf ffmpeg tbb
 
 VCMI_PKG_DIR = $(TARGET_DIR)/opt/retrolx/vcmi
-VCMI_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/vcmi
+VCMI_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/vcmi
 
 VCMI_CONF_OPTS += -DENABLE_TEST=OFF -DENABLE_MONOLITHIC_INSTALL=ON
 
@@ -28,10 +28,10 @@ VCMI_INSTALL_TARGET_OPTS = DESTDIR="$(VCMI_PKG_DIR)$(VCMI_PKG_INSTALL_DIR)" inst
 
 define VCMI_MAKEPKG
 	# Build Pacman package
-	cd $(VCMI_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/ports/vcmi/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(VCMI_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/vcmi/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

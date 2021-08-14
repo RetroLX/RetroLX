@@ -12,7 +12,7 @@ PEGASUS_LICENSE = GPLv3
 PEGASUS_DEPENDENCIES = qt5base qt5svg qt5gamepad sdl2 
 
 PEGASUS_PKG_DIR = $(TARGET_DIR)/opt/retrolx/pegasus
-PEGASUS_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/pegasus
+PEGASUS_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/pegasus
 
 #PEGASUS_CONF_OPTS = PREFIX=$(PEGASUS_PKG_DIR)
 #PEGASUS_MAKE_OPTS = PREFIX=$(PEGASUS_PKG_DIR)
@@ -29,10 +29,10 @@ define PEGASUS_MAKEPKG
 	cp -R $(@D)/tmp-target-install/opt/pegasus-frontend/pegasus-fe $(PEGASUS_PKG_DIR)$(PEGASUS_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(PEGASUS_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/pegasus/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(PEGASUS_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/pegasus/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

@@ -11,7 +11,7 @@ SDLPOP_LICENSE = GPLv3
 SDLPOP_DEPENDENCIES = sdl2 sdl2_image
 
 SDLPOP_PKG_DIR = $(TARGET_DIR)/opt/retrolx/sdlpop
-SDLPOP_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/sdlpop
+SDLPOP_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/sdlpop
 
 define SDLPOP_INSTALL_TARGET_CMDS
 	echo "SDLPoP built as pacman package, no rootfs install"
@@ -26,13 +26,13 @@ define SDLPOP_MAKEPKG
 	ln -sf /userdata/system/configs/sdlpop/SDLPoP.ini $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)/configs/SDLPoP.ini
 	ln -sf /userdata/system/configs/sdlpop/SDLPoP.cfg $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)/configs/SDLPoP.cfg
 	ln -sf /userdata/screenshots $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)/screenshots
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/ports/sdlpop/sdlpop.keys $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/sdlpop/sdlpop.keys $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(SDLPOP_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/ports/sdlpop/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(SDLPOP_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/sdlpop/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

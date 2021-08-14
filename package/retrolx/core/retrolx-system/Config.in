@@ -1,19 +1,19 @@
 
 ##### define variables to use in this file
-if BR2_PACKAGE_BATOCERA_RPI_VCORE || BR2_PACKAGE_BATOCERA_RPI_MESA3D
-	config BR2_PACKAGE_BATOCERA_RPI_ANY
+if BR2_PACKAGE_RETROLX_RPI_VCORE || BR2_PACKAGE_RETROLX_RPI_MESA3D
+	config BR2_PACKAGE_RETROLX_RPI_ANY
 	bool "any rpi"
 	default y
 endif
 
 if BR2_i686 || BR2_x86_64
-	config BR2_PACKAGE_BATOCERA_IS_X86_ARCH
+	config BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	bool "any x86 or x86_64"
 	default y
 endif
 
-if BR2_PACKAGE_BATOCERA_TARGET_RK3399 || BR2_PACKAGE_BATOCERA_TARGET_RK3288 || BR2_PACKAGE_BATOCERA_TARGET_RK3326
-	config BR2_PACKAGE_BATOCERA_ROCKCHIP_ANY
+if BR2_PACKAGE_RETROLX_TARGET_RK3399 || BR2_PACKAGE_RETROLX_TARGET_RK3288 || BR2_PACKAGE_RETROLX_TARGET_RK3326
+	config BR2_PACKAGE_RETROLX_ROCKCHIP_ANY
 	bool "rockchip_targets"
 	default y
 	help
@@ -23,12 +23,12 @@ endif
 config BR2_PACKAGE_LIBCEC_EXYNOS_API
     bool "Exynos API in libcec"
 
-config BR2_PACKAGE_BATOCERA_CORES_EXPERIMENTAL
+config BR2_PACKAGE_RETROLX_CORES_EXPERIMENTAL
     bool "add experimental cores"
 
 ##########################################
-config BR2_PACKAGE_BATOCERA_VULKAN
-	bool "batocera.linux Vulkan support"
+config BR2_PACKAGE_RETROLX_VULKAN
+	bool "RetroLX Vulkan support"
 
 	# Wayland is required as a dependency by buildroot
 	select BR2_PACKAGE_WAYLAND
@@ -44,12 +44,12 @@ config BR2_PACKAGE_BATOCERA_VULKAN
 	select BR2_PACKAGE_SLANG_SHADERS if BR2_PACKAGE_RETROARCH
 
 	# Vulkan mesa drivers
-	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER_INTEL       if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
-	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER_AMD         if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
-	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER_BROADCOM    if BR2_PACKAGE_BATOCERA_TARGET_RPI4
+	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER_INTEL       if BR2_PACKAGE_RETROLX_IS_X86_ARCH
+	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER_AMD         if BR2_PACKAGE_RETROLX_IS_X86_ARCH
+	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER_BROADCOM    if BR2_PACKAGE_RETROLX_TARGET_RPI4
 
 	help
-		Vulkan support for batocera.linux
+		Vulkan support for RetroLX
 
 
 # RetroLX SDL2
@@ -63,8 +63,8 @@ config BR2_PACKAGE_RETROLX_SDL2
 	select BR2_PACKAGE_SDL2_TTF
 	select BR2_PACKAGE_SDL_SOUND
 	select BR2_PACKAGE_SDL2_OPENGLES
-	select BR2_PACKAGE_SDL2_KMSDRM	  if !BR2_PACKAGE_BATOCERA_RPI_VCORE
-	select BR2_PACKAGE_SDL2_WAYLAND	  if !BR2_PACKAGE_BATOCERA_RPI_VCORE
+	select BR2_PACKAGE_SDL2_KMSDRM	  if !BR2_PACKAGE_RETROLX_RPI_VCORE
+	select BR2_PACKAGE_SDL2_WAYLAND	  if !BR2_PACKAGE_RETROLX_RPI_VCORE
 
 # RetroLX Boost libraries
 config BR2_PACKAGE_RETROLX_BOOST
@@ -122,7 +122,7 @@ config BR2_PACKAGE_RETROLX_VIDEO
 	select BR2_PACKAGE_LIBMPEG2
 	select BR2_PACKAGE_LIBOPENH264
 	select BR2_PACKAGE_LIBTHEORA
-	select BR2_PACKAGE_LIBVA	    if BR2_PACKAGE_XORG7 #!BR2_PACKAGE_BATOCERA_RPI_VCORE
+	select BR2_PACKAGE_LIBVA	    if BR2_PACKAGE_XORG7 #!BR2_PACKAGE_RETROLX_RPI_VCORE
 	select BR2_PACKAGE_LIBVDPAU         if BR2_PACKAGE_XORG7
 	select BR2_PACKAGE_LIBVPX
 	select BR2_PACKAGE_MPV
@@ -284,7 +284,7 @@ config BR2_PACKAGE_RETROLX_QT
 	select BR2_PACKAGE_QT5TOOLS
 	select BR2_PACKAGE_QT5TOOLS_LINGUIST_TOOLS
 	# Qt5 platform specific packages
-	select BR2_PACKAGE_QT5BASE_EGLFS  if BR2_PACKAGE_BATOCERA_RPI_VCORE
+	select BR2_PACKAGE_QT5BASE_EGLFS  if BR2_PACKAGE_RETROLX_RPI_VCORE
 	select BR2_PACKAGE_QT5WAYLAND     if BR2_PACKAGE_RETROLX_WAYLAND
 	select BR2_PACKAGE_QT5BASE_XCB 	  if BR2_PACKAGE_XORG7
 
@@ -294,7 +294,7 @@ config BR2_PACKAGE_RETROLX_NETWORKING
 	bool "RetroLX networking components"
 
 	select BR2_PACKAGE_AVAHI                                # service discovery on local network
-	select BR2_PACKAGE_AVAHI_DAEMON                         # ping batocera.local
+	select BR2_PACKAGE_AVAHI_DAEMON                         # ping <hostname>
 	select BR2_PACKAGE_AVAHI_LIBDNSSD_COMPATIBILITY         # bonjour
 	select BR2_PACKAGE_CA_CERTIFICATES                      # ssl certificates
 	select BR2_PACKAGE_CONNMAN                              # network manager
@@ -316,22 +316,22 @@ config BR2_PACKAGE_RETROLX_NETWORKING
 	select BR2_PACKAGE_WGET                                 # download tools
 
 
-config BR2_PACKAGE_BATOCERA_SYSTEM
-	bool "batocera.linux minimal"
+config BR2_PACKAGE_RETROLX_SYSTEM
+	bool "RetroLX minimal"
 
 	# minimal system required packages
-	select BR2_TARGET_BATOCERA_IMAGES_DEFINITIONS
-	select BR2_PACKAGE_BATOCERA_INITRAMFS                   # initramfs to boot the system
+	select BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
+	select BR2_PACKAGE_RETROLX_INITRAMFS                   # initramfs to boot the system
 	select BR2_PACKAGE_BASH                                 # bash shell, used as the interactive shell
 	select BR2_PACKAGE_RNG_TOOLS                            # system entropy
 	select BR2_PACKAGE_RETROLX_EMULATIONSTATION             # emulationstation
 	select BR2_PACKAGE_ES_THEME_CARBON                      # emulationstation theme
 	select BR2_PACKAGE_ES_BACKGROUND_MUSICS                 # emulationstation musics
 	select BR2_PACKAGE_RETROLX_ES_SYSTEM                    # emulation station es_systems.cfg generator + default roms
-	select BR2_PACKAGE_BATOCERA_CONFIGGEN                   # emulation station external command launcher
-	select BR2_PACKAGE_BATOCERA_TRIGGERHAPPY                # multimedia/power buttons
+	select BR2_PACKAGE_RETROLX_CONFIGGEN                   # emulation station external command launcher
+	select BR2_PACKAGE_RETROLX_TRIGGERHAPPY                # multimedia/power buttons
 	select BR2_PACKAGE_CIFS_UTILS                           # required for boot mounts
-	select BR2_PACKAGE_BATOCERA_IMAGE                       # tools to generate batocera image
+	select BR2_PACKAGE_RETROLX_IMAGE                       # tools to generate RETROLX image
 	select BR2_TARGET_ROOTFS_SQUASHFS                       # tool to generate the target image
 	select BR2_PACKAGE_DOSFSTOOLS                           # fat
 	select BR2_PACKAGE_DOSFSTOOLS_FSCK_FAT                  # fat
@@ -358,22 +358,22 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_USBMOUNT                             # usb key/sd card mounter
 	select BR2_PACKAGE_USBUTILS                             # usb key/sd card tools
 	select BR2_PACKAGE_RETROLX_SPLASH                       # boot splash
-	select BR2_PACKAGE_BATOCERA_SCRIPTS                     # batocera scripts
-	select BR2_PACKAGE_BATOCERA_SETTINGS                    # batocera-settings-get/set
-	select BR2_PACKAGE_BATOCERA_AUDIO                       # batocera audio
-	select BR2_PACKAGE_BATOCERA_BLUETOOTH                   # batocera bluetooth
-	select BR2_PACKAGE_BATOCERA_NOTICE                      # boot pdf notice
+	select BR2_PACKAGE_RETROLX_SCRIPTS                     # RETROLX scripts
+	select BR2_PACKAGE_RETROLX_SETTINGS                    # RETROLX-settings-get/set
+	select BR2_PACKAGE_RETROLX_AUDIO                       # RETROLX audio
+	select BR2_PACKAGE_RETROLX_BLUETOOTH                   # RETROLX bluetooth
+	select BR2_PACKAGE_RETROLX_NOTICE                      # boot pdf notice
 
-	select BR2_PACKAGE_LIBDRM                               if !BR2_PACKAGE_BATOCERA_RPI_VCORE
-    select BR2_PACKAGE_LIBDRM_EXYNOS                        if BR2_PACKAGE_LIBDRM && BR2_PACKAGE_BATOCERA_TARGET_EXYNOS5422
-	select BR2_PACKAGE_BATOCERA_DRMINFO                     if BR2_PACKAGE_LIBDRM
+	select BR2_PACKAGE_LIBDRM                               if !BR2_PACKAGE_RETROLX_RPI_VCORE
+    select BR2_PACKAGE_LIBDRM_EXYNOS                        if BR2_PACKAGE_LIBDRM && BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
+	select BR2_PACKAGE_RETROLX_DRMINFO                     if BR2_PACKAGE_LIBDRM
 	select BR2_PACKAGE_LIBCEC                               # libcec
 	select BR2_PACKAGE_EDID_DECODE                          # edid monitor/tv support
 	select BR2_PACKAGE_READ_EDID                            # edid monitor/tv support
 	select BR2_PACKAGE_XOW                                  # xbox receiver
 	select BR2_PACKAGE_WII_U_GC_ADAPTER                     # wii-u-gc-adapter
 	select BR2_SYSTEM_ENABLE_NLS                            # locales
-	select BR2_PACKAGE_ACPID                                if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
+	select BR2_PACKAGE_ACPID                                if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	select BR2_PACKAGE_KBD                                  # loadkeys
 	select BR2_PACKAGE_LIBXKKBCOMMON			# requirement for xkb to work, xkb is used by kodi, even without x for the keyboard
 	select BR2_PACKAGE_XKEYBOARD_CONFIG                     if BR2_PACKAGE_LIBXKBCOMMON # requirement for xkb to work, xkb is used by kodi, even without x for the keyboard
@@ -381,18 +381,18 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_GPTFDISK_SGDISK                      # fs resize
 	select BR2_PACKAGE_E2FSPROGS                            # fs resize
 	select BR2_PACKAGE_E2FSPROGS_RESIZE2FS                  # fs resize
-	select BR2_PACKAGE_FLATPAK                              if BR2_PACKAGE_BATOCERA_IS_X86_ARCH # flatpak app packaging system
+	select BR2_PACKAGE_FLATPAK                              if BR2_PACKAGE_RETROLX_IS_X86_ARCH # flatpak app packaging system
 
 	# RaspberryPi Firmwares
-	select BR2_PACKAGE_RPI_FIRMWARE             if BR2_PACKAGE_BATOCERA_RPI_ANY # rpi firmwares
-	select BR2_PACKAGE_RPI_WIFI_FIRMWARE        if BR2_PACKAGE_BATOCERA_RPI_ANY # rpi wifi firmware
-	select BR2_PACKAGE_RPI_BT_FIRMWARE          if BR2_PACKAGE_BATOCERA_RPI_ANY # rpi bluetooth firmware
+	select BR2_PACKAGE_RPI_FIRMWARE             if BR2_PACKAGE_RETROLX_RPI_ANY # rpi firmwares
+	select BR2_PACKAGE_RPI_WIFI_FIRMWARE        if BR2_PACKAGE_RETROLX_RPI_ANY # rpi wifi firmware
+	select BR2_PACKAGE_RPI_BT_FIRMWARE          if BR2_PACKAGE_RETROLX_RPI_ANY # rpi bluetooth firmware
 
 	# Case
-	select BR2_PACKAGE_GPICASE              if BR2_PACKAGE_BATOCERA_TARGET_RPI1 # retroflag gpicase
-	select BR2_PACKAGE_ROSHAMBO_CASE        if BR2_PACKAGE_BATOCERA_TARGET_RK3399 # roshambo case
-	select BR2_PACKAGE_RPIGPIOSWITCH        if BR2_PACKAGE_BATOCERA_RPI_ANY # gpio switchs
-	select BR2_PACKAGE_RETROGAME            if BR2_PACKAGE_BATOCERA_RPI_ANY # gpio pads
+	select BR2_PACKAGE_GPICASE              if BR2_PACKAGE_RETROLX_TARGET_RPI1 # retroflag gpicase
+	select BR2_PACKAGE_ROSHAMBO_CASE        if BR2_PACKAGE_RETROLX_TARGET_RK3399 # roshambo case
+	select BR2_PACKAGE_RPIGPIOSWITCH        if BR2_PACKAGE_RETROLX_RPI_ANY # gpio switchs
+	select BR2_PACKAGE_RETROGAME            if BR2_PACKAGE_RETROLX_RPI_ANY # gpio pads
 
 	# irq balancing
 	select BR2_PACKAGE_IRQBALANCE
@@ -413,10 +413,10 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_RETROLX_NETWORKING
 
 	# RetroLX Wayland where possible
-	select BR2_PACKAGE_RETROLX_WAYLAND	if !BR2_PACKAGE_BATOCERA_IS_X86_ARCH && \
-						   !BR2_PACKAGE_BATOCERA_RPI_VCORE
+	select BR2_PACKAGE_RETROLX_WAYLAND	if !BR2_PACKAGE_RETROLX_IS_X86_ARCH && \
+						   !BR2_PACKAGE_RETROLX_RPI_VCORE
 	# RetroLX Qt everywhere
-	select BR2_PACKAGE_RETROLX_QT		if !BR2_PACKAGE_BATOCERA_RPI_VCORE
+	select BR2_PACKAGE_RETROLX_QT		if !BR2_PACKAGE_RETROLX_RPI_VCORE
 
 	# RetroLX SDL2
 	select BR2_PACKAGE_RETROLX_SDL2
@@ -434,18 +434,18 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_RETROLX_BLUETOOTH
 
 	# Vulkan
-	select BR2_PACKAGE_BATOCERA_VULKAN      if  BR2_PACKAGE_BATOCERA_IS_X86_ARCH     || \
-                                                BR2_PACKAGE_BATOCERA_TARGET_RPI4
+	select BR2_PACKAGE_RETROLX_VULKAN      if  BR2_PACKAGE_RETROLX_IS_X86_ARCH     || \
+                                                BR2_PACKAGE_RETROLX_TARGET_RPI4
 
 	# s905 tv-box firmwares
-	select BR2_PACKAGE_FIRMWARE_WLAN_AML    if BR2_PACKAGE_BATOCERA_TARGET_S905GEN3
+	select BR2_PACKAGE_FIRMWARE_WLAN_AML    if BR2_PACKAGE_RETROLX_TARGET_S905GEN3
 
 	# gpu drivers
-	select BR2_PACKAGE_BATOCERA_GPU_X86     if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
+	select BR2_PACKAGE_RETROLX_GPU_X86     if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 
 
 	# xorg
-	select BR2_PACKAGE_BATOCERA_XORG        if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
+	select BR2_PACKAGE_RETROLX_XORG        if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 
 	# mangohud
 	select BR2_PACKAGE_MANGOHUD             if BR2_x86_64
@@ -473,19 +473,19 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_GCC_ENABLE_OPENMP
 
 	help
-    	Install the batocera.linux system files
+    	Install the RetroLX system files
 
-config BR2_PACKAGE_BATOCERA_DEV
+config BR2_PACKAGE_RETROLX_DEV
 	bool "add dev options"
 
 	select BR2_PACKAGE_TMUX
-	select BR2_PACKAGE_X11VNC   if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
+	select BR2_PACKAGE_X11VNC   if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	select BR2_PACKAGE_KMSCUBE	if BR2_PACKAGE_MESA3D
 
 	help
-		Install dev packages for batocera.linux
+		Install dev packages for RetroLX
 
-config BR2_PACKAGE_BATOCERA_DEBUG
+config BR2_PACKAGE_RETROLX_DEBUG
 	bool "add debug options"
 
 	select BR2_PACKAGE_STRACE
@@ -493,104 +493,104 @@ config BR2_PACKAGE_BATOCERA_DEBUG
 	select BR2_PACKAGE_GDB_DEBUGGER
 	select BR2_PACKAGE_LINUX_TOOLS_PERF
 	select BR2_PACKAGE_LINUX_TOOLS_PERF_TUI
-	select BR2_PACKAGE_VULKAN_SAMPLES       if BR2_PACKAGE_BATOCERA_VULKAN
+	select BR2_PACKAGE_VULKAN_SAMPLES       if BR2_PACKAGE_RETROLX_VULKAN
 
 	help
-		Install debug packages for batocera.linux
+		Install debug packages for RetroLX
 
-config BR2_TARGET_BATOCERA_IMAGES_DEFINITIONS
+config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	bool "target images definitions"
-	config BR2_TARGET_BATOCERA_IMAGES
+	config BR2_TARGET_RETROLX_IMAGES
 	string "target images"
-	default "amlogic/s922x/odroidn2 amlogic/s922x/vim3"         			 				 if BR2_PACKAGE_BATOCERA_TARGET_S922X
-	default "amlogic/s905/odroidc2 amlogic/s905/tvbox"          			 				 if BR2_PACKAGE_BATOCERA_TARGET_S905
-	default "amlogic/s905gen3/odroidc4 amlogic/s905gen3/tvbox"  			 				 if BR2_PACKAGE_BATOCERA_TARGET_S905GEN3
-	default "amlogic/s912"                                      			 				 if BR2_PACKAGE_BATOCERA_TARGET_S912
-	default "raspberrypi/rpi"                                   			 				 if BR2_PACKAGE_BATOCERA_TARGET_RPI1
-	default "raspberrypi/rpi"                                   			 				 if BR2_PACKAGE_BATOCERA_TARGET_RPI2
-	default "raspberrypi/rpi3"                                  			 				 if BR2_PACKAGE_BATOCERA_TARGET_RPI3
-	default "raspberrypi/rpi4"                                  			 				 if BR2_PACKAGE_BATOCERA_TARGET_RPI4
-	default "rockchip/rk3326/odroidgo rockchip/rk3326/gameforce rockchip/rk3326/rg351v rockchip/rk3326/rg351pm" 	 if BR2_PACKAGE_BATOCERA_TARGET_RK3326
-	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"  			 				 if BR2_PACKAGE_BATOCERA_TARGET_RK3288
-	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/x99"  				 if BR2_PACKAGE_BATOCERA_TARGET_RK3399
-	default "allwinner/h3/orangepi-plus2e allwinner/h3/orangepi-pc allwinner/h3/orangepi-pc-plus allwinner/h3/cha"   if BR2_PACKAGE_BATOCERA_TARGET_H3
-	default "allwinner/h5/tritium-h5"                                        			 		 if BR2_PACKAGE_BATOCERA_TARGET_H5
-	default "allwinner/h616/orangepi-zero2"                                    					 if BR2_PACKAGE_BATOCERA_TARGET_H616
-	default "s812"                                              			 				 if BR2_PACKAGE_BATOCERA_TARGET_S812
-	default "odroidxu4"                                         			 				 if BR2_PACKAGE_BATOCERA_TARGET_EXYNOS5422
-	default "x86"                                               			 				 if BR2_PACKAGE_BATOCERA_TARGET_X86
-	default "x86_64"                                            			 				 if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	default "amlogic/s922x/odroidn2 amlogic/s922x/vim3"         			 				 if BR2_PACKAGE_RETROLX_TARGET_S922X
+	default "amlogic/s905/odroidc2 amlogic/s905/tvbox"          			 				 if BR2_PACKAGE_RETROLX_TARGET_S905
+	default "amlogic/s905gen3/odroidc4 amlogic/s905gen3/tvbox"  			 				 if BR2_PACKAGE_RETROLX_TARGET_S905GEN3
+	default "amlogic/s912"                                      			 				 if BR2_PACKAGE_RETROLX_TARGET_S912
+	default "raspberrypi/rpi"                                   			 				 if BR2_PACKAGE_RETROLX_TARGET_RPI1
+	default "raspberrypi/rpi"                                   			 				 if BR2_PACKAGE_RETROLX_TARGET_RPI2
+	default "raspberrypi/rpi3"                                  			 				 if BR2_PACKAGE_RETROLX_TARGET_RPI3
+	default "raspberrypi/rpi4"                                  			 				 if BR2_PACKAGE_RETROLX_TARGET_RPI4
+	default "rockchip/rk3326/odroidgo rockchip/rk3326/gameforce rockchip/rk3326/rg351v rockchip/rk3326/rg351pm" 	 if BR2_PACKAGE_RETROLX_TARGET_RK3326
+	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"  			 				 if BR2_PACKAGE_RETROLX_TARGET_RK3288
+	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/x99"  				 if BR2_PACKAGE_RETROLX_TARGET_RK3399
+	default "allwinner/h3/orangepi-plus2e allwinner/h3/orangepi-pc allwinner/h3/orangepi-pc-plus allwinner/h3/cha"   if BR2_PACKAGE_RETROLX_TARGET_H3
+	default "allwinner/h5/tritium-h5"                                        			 		 if BR2_PACKAGE_RETROLX_TARGET_H5
+	default "allwinner/h616/orangepi-zero2"                                    					 if BR2_PACKAGE_RETROLX_TARGET_H616
+	default "s812"                                              			 				 if BR2_PACKAGE_RETROLX_TARGET_S812
+	default "odroidxu4"                                         			 				 if BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
+	default "x86"                                               			 				 if BR2_PACKAGE_RETROLX_TARGET_X86
+	default "x86_64"                                            			 				 if BR2_PACKAGE_RETROLX_TARGET_X86_64
 
 choice
-	prompt "batocera.linux target"
-	default BR2_PACKAGE_BATOCERA_TARGET_RPI2
+	prompt "RetroLX target"
+	default BR2_PACKAGE_RETROLX_TARGET_RPI2
 	help
-		Select batocera.linux target hardware
+		Select RetroLX target hardware
 
-config BR2_PACKAGE_BATOCERA_TARGET_RPI1
+config BR2_PACKAGE_RETROLX_TARGET_RPI1
 	bool "rpi1"
 
-config BR2_PACKAGE_BATOCERA_TARGET_RPI2
+config BR2_PACKAGE_RETROLX_TARGET_RPI2
 	bool "rpi2"
 
-config BR2_PACKAGE_BATOCERA_TARGET_RPI3
+config BR2_PACKAGE_RETROLX_TARGET_RPI3
 	bool "rpi3"
 
-config BR2_PACKAGE_BATOCERA_TARGET_RPI4
+config BR2_PACKAGE_RETROLX_TARGET_RPI4
 	bool "rpi4"
 
-config BR2_PACKAGE_BATOCERA_TARGET_EXYNOS5422
+config BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
 	bool "xu4"
 
-config BR2_PACKAGE_BATOCERA_TARGET_S922X
+config BR2_PACKAGE_RETROLX_TARGET_S922X
 	bool "s922x"
 
-config BR2_PACKAGE_BATOCERA_TARGET_RK3326
+config BR2_PACKAGE_RETROLX_TARGET_RK3326
 	bool "rk3326"
 
-config BR2_PACKAGE_BATOCERA_TARGET_S905
+config BR2_PACKAGE_RETROLX_TARGET_S905
 	bool "s905"
 
-config BR2_PACKAGE_BATOCERA_TARGET_S905GEN3
+config BR2_PACKAGE_RETROLX_TARGET_S905GEN3
 	bool "s905gen3"
 
-config BR2_PACKAGE_BATOCERA_TARGET_S912
+config BR2_PACKAGE_RETROLX_TARGET_S912
 	bool "s912"
 
-config BR2_PACKAGE_BATOCERA_TARGET_X86
+config BR2_PACKAGE_RETROLX_TARGET_X86
 	bool "x86"
 
-config BR2_PACKAGE_BATOCERA_TARGET_X86_64
+config BR2_PACKAGE_RETROLX_TARGET_X86_64
 	bool "x86_64"
 
-config BR2_PACKAGE_BATOCERA_TARGET_RK3399
+config BR2_PACKAGE_RETROLX_TARGET_RK3399
 	bool "rk3399"
 
-config BR2_PACKAGE_BATOCERA_TARGET_RK3288
+config BR2_PACKAGE_RETROLX_TARGET_RK3288
 	bool "rk3288"
 
-config BR2_PACKAGE_BATOCERA_TARGET_H3
+config BR2_PACKAGE_RETROLX_TARGET_H3
 	bool "h3"
 
-config BR2_PACKAGE_BATOCERA_TARGET_H5
+config BR2_PACKAGE_RETROLX_TARGET_H5
 	bool "h5"
 
-config BR2_PACKAGE_BATOCERA_TARGET_H616
+config BR2_PACKAGE_RETROLX_TARGET_H616
 	bool "h616"
 
-config BR2_PACKAGE_BATOCERA_TARGET_S812
+config BR2_PACKAGE_RETROLX_TARGET_S812
 	bool "s812"
 
 endchoice
 
-config BR2_PACKAGE_BATOCERA_EXTRAS
-	bool "batocera.linux tools packages selection"
+config BR2_PACKAGE_RETROLX_EXTRAS
+	bool "RetroLX tools packages selection"
 
 	help
-		Tools to extends the batocera system (but not required)
+		Tools to extends the RETROLX system (but not required)
 
-config BR2_PACKAGE_BATOCERA_TOOLS
-	bool "batocera.linux system tools packages selection"
+config BR2_PACKAGE_RETROLX_TOOLS
+	bool "RetroLX system tools packages selection"
 
 	select BR2_PACKAGE_JSTEST2          # joysticks tester
 	select BR2_PACKAGE_EVTEST           # joysticks tester
@@ -606,14 +606,14 @@ config BR2_PACKAGE_BATOCERA_TOOLS
 	help
 		System tools
 
-config BR2_PACKAGE_BATOCERA_RPI_VCORE
-	bool "batocera.linux support vcore RPI"
+config BR2_PACKAGE_RETROLX_RPI_VCORE
+	bool "RetroLX support vcore RPI"
 
 	select BR2_PACKAGE_RPI_USERLAND
 	select BR2_PACKAGE_RASPI2PNG # screenshots
 
-config BR2_PACKAGE_BATOCERA_RPI_MESA3D
-	bool "batocera.linux driver mesa RPI"
+config BR2_PACKAGE_RETROLX_RPI_MESA3D
+	bool "RetroLX driver mesa RPI"
 
 	select BR2_PACKAGE_MESA3D
     select BR2_PACKAGE_MESA3D_OPENGL_ES
@@ -622,8 +622,8 @@ config BR2_PACKAGE_BATOCERA_RPI_MESA3D
 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_V3D
     select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_KMSRO
 
-config BR2_PACKAGE_BATOCERA_LIMA_MESA3D
-	bool "batocera.linux driver mesa LIMA"
+config BR2_PACKAGE_RETROLX_LIMA_MESA3D
+	bool "RetroLX driver mesa LIMA"
 
     select BR2_PACKAGE_MESA3D
     select BR2_PACKAGE_MESA3D_OPENGL_ES
@@ -631,8 +631,8 @@ config BR2_PACKAGE_BATOCERA_LIMA_MESA3D
     select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_LIMA
     select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_KMSRO
 
-config BR2_PACKAGE_BATOCERA_PANFROST_MESA3D
-	bool "batocera.linux driver mesa PANFROST"
+config BR2_PACKAGE_RETROLX_PANFROST_MESA3D
+	bool "RetroLX driver mesa PANFROST"
 
     select BR2_PACKAGE_MESA3D
     select BR2_PACKAGE_MESA3D_OPENGL_ES
@@ -640,8 +640,8 @@ config BR2_PACKAGE_BATOCERA_PANFROST_MESA3D
     select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_PANFROST
     select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_KMSRO
 
-config BR2_PACKAGE_BATOCERA_LINUX_FIRMWARES
-	bool "batocera.linux Firmwares packages selection"
+config BR2_PACKAGE_RETROLX_LINUX_FIRMWARES
+	bool "RetroLX Firmwares packages selection"
 
 	select BR2_PACKAGE_ALLLINUXFIRMWARES
 
@@ -652,10 +652,10 @@ config BR2_PACKAGE_BATOCERA_LINUX_FIRMWARES
 	select BR2_PACKAGE_B43_FIRMWARE
 
 	# x86 (maybe some firmware could be for all, to be checked)
-	select BR2_PACKAGE_WILINK_BT_FIRMWARE   if BR2_PACKAGE_BATOCERA_IS_X86_ARCH
+	select BR2_PACKAGE_WILINK_BT_FIRMWARE   if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 
-config BR2_PACKAGE_BATOCERA_XORG
-	bool "batocera.linux xorgs packages selection"
+config BR2_PACKAGE_RETROLX_XORG
+	bool "RetroLX xorgs packages selection"
 
 	select BR2_PACKAGE_XORG7
 	select BR2_PACKAGE_XSERVER_XORG_SERVER
@@ -675,7 +675,7 @@ config BR2_PACKAGE_BATOCERA_XORG
 	select BR2_PACKAGE_XDRIVER_XF86_VIDEO_ATI
 	select BR2_PACKAGE_XDRIVER_XF86_VIDEO_NOUVEAU
 	select BR2_PACKAGE_XDRIVER_XF86_INTEL
-	select BR2_PACKAGE_BATOCERA_NVIDIA_DRIVER_XORG	if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_RETROLX_NVIDIA_DRIVER_XORG	if BR2_PACKAGE_RETROLX_TARGET_X86_64
 
 	# tools
 	select BR2_PACKAGE_XOSD                         # osd information display
@@ -688,7 +688,7 @@ config BR2_PACKAGE_BATOCERA_XORG
 	select BR2_PACKAGE_XAPP_XRANDR                  # required for resolution manipulation
 	select BR2_PACKAGE_XAPP_XSET                    # X11 Xset command
 
-	select BR2_PACKAGE_BATOCERA_DESKTOPAPPS         # batocera applications config and scripts
+	select BR2_PACKAGE_RETROLX_DESKTOPAPPS         # RETROLX applications config and scripts
 	select BR2_PACKAGE_LIBGTK3                      # gtk3 library
 	select BR2_PACKAGE_L3AFPAD                      # gtk3 text editor
 	select BR2_PACKAGE_PCMANFM                      # file manager
@@ -699,13 +699,13 @@ config BR2_PACKAGE_BATOCERA_XORG
 	select BR2_PACKAGE_UNCLUTTER                    # hide mouse
 
 
-config BR2_PACKAGE_BATOCERA_GPU_X86
-	bool "batocera.linux GPU support for x86 platform"
+config BR2_PACKAGE_RETROLX_GPU_X86
+	bool "RetroLX GPU support for x86 platform"
 
 	# nvidia
-	select BR2_PACKAGE_LIBGLVND                             if BR2_PACKAGE_BATOCERA_TARGET_X86    # already set by nvidia for x86_64, but required on x86 for pcsx2
-	select BR2_PACKAGE_BATOCERA_NVIDIA_DRIVER               if BR2_PACKAGE_BATOCERA_TARGET_X86_64
-	select BR2_PACKAGE_BATOCERA_NVIDIA_DRIVER_MODULE        if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_LIBGLVND                             if BR2_PACKAGE_RETROLX_TARGET_X86    # already set by nvidia for x86_64, but required on x86 for pcsx2
+	select BR2_PACKAGE_RETROLX_NVIDIA_DRIVER               if BR2_PACKAGE_RETROLX_TARGET_X86_64
+	select BR2_PACKAGE_RETROLX_NVIDIA_DRIVER_MODULE        if BR2_PACKAGE_RETROLX_TARGET_X86_64
 
 	# mesa
 	select BR2_PACKAGE_MESA3D

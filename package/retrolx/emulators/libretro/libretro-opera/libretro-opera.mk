@@ -9,13 +9,13 @@ LIBRETRO_OPERA_SITE = $(call github,libretro,opera-libretro,$(LIBRETRO_OPERA_VER
 LIBRETRO_OPERA_LICENSE = LGPL/Non-commercial
 
 LIBRETRO_OPERA_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_OPERA_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-opera
+LIBRETRO_OPERA_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-opera
 
 LIBRETRO_OPERA_PLATFORM=$(LIBRETRO_PLATFORM)
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_EXYNOS5422),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422),y)
 	LIBRETRO_OPERA_PLATFORM=unix-odroidxu
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S922X),y)
+else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S922X),y)
 	LIBRETRO_OPERA_PLATFORM=unix-CortexA73_G12B
 endif
 
@@ -32,10 +32,10 @@ define LIBRETRO_OPERA_MAKEPKG
 	$(LIBRETRO_OPERA_PKG_DIR)$(LIBRETRO_OPERA_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(LIBRETRO_OPERA_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-opera/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_OPERA_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-opera/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

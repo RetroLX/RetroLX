@@ -1,4 +1,4 @@
-config BR2_PACKAGE_BATOCERA_BEZEL
+config BR2_PACKAGE_RETROLX_BEZEL
         bool "batocera bezel"
         help
           Batocera bezel

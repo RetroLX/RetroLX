@@ -9,7 +9,7 @@ LIBRETRO_CAP32_SITE = $(call github,libretro,libretro-cap32,$(LIBRETRO_CAP32_VER
 LIBRETRO_CAP32_LICENSE = GPLv2
 
 LIBRETRO_CAP32_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_CAP32_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-cap32
+LIBRETRO_CAP32_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-cap32
 
 LIBRETRO_CAP32_PLATFORM = $(LIBRETRO_PLATFORM)
 
@@ -31,10 +31,10 @@ define LIBRETRO_CAP32_MAKEPKG
 	$(LIBRETRO_CAP32_PKG_DIR)$(LIBRETRO_CAP32_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(LIBRETRO_CAP32_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-cap32/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_CAP32_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-cap32/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

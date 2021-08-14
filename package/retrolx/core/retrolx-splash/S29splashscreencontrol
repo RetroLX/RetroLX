@@ -51,7 +51,7 @@ case $1 in
 
         case $splash_setting in
             rpi1)
-                # Standard BATOCERA setting, for Pi platform
+                # Standard RETROLX setting, for Pi platform
                 # A video splash will be displayed ~16s on Pi3 platform you'll smoothly boot into ES
                 #
                 splash_default_rpi &

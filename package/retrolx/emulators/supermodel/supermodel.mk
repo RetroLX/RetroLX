@@ -11,7 +11,7 @@ SUPERMODEL_DEPENDENCIES = sdl2 zlib libglew libzip sdl2_net
 SUPERMODEL_LICENSE = GPLv3
 
 SUPERMODEL_PKG_DIR = $(TARGET_DIR)/opt/retrolx/supermodel
-SUPERMODEL_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/supermodel
+SUPERMODEL_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/supermodel
 
 define SUPERMODEL_BUILD_CMDS
 	cp $(@D)/Makefiles/Makefile.UNIX $(@D)/Makefile
@@ -40,14 +40,14 @@ define SUPERMODEL_MAKEPKG
 	$(INSTALL) -D -m 0755 $(@D)/bin/supermodel $(SUPERMODEL_PKG_DIR)$(SUPERMODEL_PKG_INSTALL_DIR)/supermodel
 	$(INSTALL) -D -m 0644 $(@D)/Config/Games.xml $(SUPERMODEL_PKG_DIR)$(SUPERMODEL_PKG_INSTALL_DIR)/Games.xml
 	$(INSTALL) -D -m 0644 $(@D)/Config/Supermodel.ini $(SUPERMODEL_PKG_DIR)$(SUPERMODEL_PKG_INSTALL_DIR)/Supermodel.ini.template
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/supermodel/model3.supermodel.keys $(SUPERMODEL_PKG_DIR)$(SUPERMODEL_PKG_INSTALL_DIR)
-	cp -pr $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/supermodel/NVRAM $(SUPERMODEL_PKG_DIR)$(SUPERMODEL_PKG_INSTALL_DIR)
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/supermodel/model3.supermodel.keys $(SUPERMODEL_PKG_DIR)$(SUPERMODEL_PKG_INSTALL_DIR)
+	cp -pr $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/supermodel/NVRAM $(SUPERMODEL_PKG_DIR)$(SUPERMODEL_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(SUPERMODEL_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/supermodel/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(SUPERMODEL_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/supermodel/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

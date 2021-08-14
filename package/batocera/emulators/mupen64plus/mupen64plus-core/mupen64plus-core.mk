@@ -57,15 +57,15 @@ ifeq ($(BR2_arm)$(BR2_ARM_CPU_HAS_NEON),yy)
 	MUPEN64PLUS_PARAMS += NEON=1 CPUFLAGS="$(MUPEN64PLUS_CORE_CPUFLAGS)"
 endif
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86),y)
 	MUPEN64PLUS_HOST_CPU = i586
 endif
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86_64),y)
 	MUPEN64PLUS_HOST_CPU = x86_64
 endif
 
-ifeq ($(BR2_PACKAGE_BATOCERA_ROCKCHIP_ANY),y)
+ifeq ($(BR2_PACKAGE_RETROLX_ROCKCHIP_ANY),y)
 	MUPEN64PLUS_PARAMS += ARCH=arm NEW_DYNAREC=1 VFP=1 CRC_OPT=1 TRIBUFFER_OPT=1 NO_SSE=1 PIC=1 USE_FRAMESKIPPER=1
 	MUPEN64PLUS_GL_CFLAGS += -I$(STAGING_DIR)/usr/include/libdrm -ldrm -fpermissive -DEGL_NO_X11=1 -DMESA_EGL_NO_X11_HEADERS=1
 endif
@@ -101,7 +101,7 @@ define MUPEN64PLUS_CORE_INSTALL_TARGET_CMDS
 
 	# input.xml
 	mkdir -p $(TARGET_DIR)/usr/share/batocera/datainit/system/configs/mupen64
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/mupen64plus/mupen64plus-core/controllers/input.xml \
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/emulators/mupen64plus/mupen64plus-core/controllers/input.xml \
 		$(TARGET_DIR)/usr/share/batocera/datainit/system/configs/mupen64
 endef
 

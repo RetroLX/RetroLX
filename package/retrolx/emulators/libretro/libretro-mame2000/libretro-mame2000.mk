@@ -9,7 +9,7 @@ LIBRETRO_MAME2000_SITE = $(call github,libretro,mame2000-libretro,$(LIBRETRO_MAM
 LIBRETRO_MAME2000_LICENSE = MAME
 
 LIBRETRO_MAME2000_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_MAME2000_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-mame2000
+LIBRETRO_MAME2000_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-mame2000
 
 define LIBRETRO_MAME2000_BUILD_CMDS
 	mkdir -p $(@D)/obj_libretro_libretro/cpu
@@ -25,10 +25,10 @@ define LIBRETRO_MAME2000_MAKEPKG
 	cp -pr $(@D)/metadata/* $(LIBRETRO_MAME2000_PKG_DIR)$(LIBRETRO_MAME2000_PKG_INSTALL_DIR)/bios/
 
 	# Build Pacman package
-	cd $(LIBRETRO_MAME2000_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-mame2000/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_MAME2000_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-mame2000/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

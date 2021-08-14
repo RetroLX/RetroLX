@@ -1,26 +1,26 @@
 ################################################################################
 #
-# BATOCERA AUDIO
+# RETROLX AUDIO
 #
 ################################################################################
 
-BATOCERA_AUDIO_VERSION = 5
-BATOCERA_AUDIO_LICENSE = GPL
-BATOCERA_AUDIO_DEPENDENCIES = alsa-lib
-BATOCERA_AUDIO_SOURCE=
-BATOCERA_AUDIO_DEPENDENCIES += alsa-plugins
+RETROLX_AUDIO_VERSION = 5
+RETROLX_AUDIO_LICENSE = GPL
+RETROLX_AUDIO_DEPENDENCIES = alsa-lib
+RETROLX_AUDIO_SOURCE=
+RETROLX_AUDIO_DEPENDENCIES += alsa-plugins
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RK3326_ANY),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RK3326_ANY),y)
 ALSA_SUFFIX = "-rk3326"
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RK3399),y)
+else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RK3399),y)
 ALSA_SUFFIX = "-rk3399"
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S922X),y)
+else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S922X),y)
 ALSA_SUFFIX = "-s922x"
 else
 ALSA_SUFFIX =
 endif
 
-define BATOCERA_AUDIO_INSTALL_TARGET_CMDS
+define RETROLX_AUDIO_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/usr/lib/python3.9 \
 		$(TARGET_DIR)/usr/bin \
 		$(TARGET_DIR)/usr/share/sounds \
@@ -28,19 +28,19 @@ define BATOCERA_AUDIO_INSTALL_TARGET_CMDS
 		$(TARGET_DIR)/etc/init.d \
 		$(TARGET_DIR)/etc/udev/rules.d
 	# default alsa configurations
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/core/batocera-audio/alsa/asoundrc-* \
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/alsa/asoundrc-* \
 		$(TARGET_DIR)/usr/share/batocera/alsa/
 	# sample audio files
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/core/batocera-audio/*.wav $(TARGET_DIR)/usr/share/sounds
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/*.wav $(TARGET_DIR)/usr/share/sounds
 	# init script
-	install -m 0755 $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/core/batocera-audio/S01audio \
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/S01audio \
 		$(TARGET_DIR)/etc/init.d/S01audio
 	# udev script to unmute audio devices
-	install -m 0644 $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/core/batocera-audio/90-alsa-setup.rules \
+	install -m 0644 $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/90-alsa-setup.rules \
 		$(TARGET_DIR)/etc/udev/rules.d/90-alsa-setup.rules
-	install -m 0755 $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/core/batocera-audio/soundconfig \
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/soundconfig \
 		$(TARGET_DIR)/usr/bin/soundconfig
-	install -m 0755 $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/core/batocera-audio/alsa/batocera-audio$(ALSA_SUFFIX) \
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/alsa/batocera-audio$(ALSA_SUFFIX) \
 		$(TARGET_DIR)/usr/bin/batocera-audio
 endef
 

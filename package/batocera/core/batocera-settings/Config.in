@@ -1,4 +1,4 @@
-config BR2_PACKAGE_BATOCERA_SETTINGS
+config BR2_PACKAGE_RETROLX_SETTINGS
 	bool "batocera-settings"
 
 	help

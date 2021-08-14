@@ -15,7 +15,7 @@ RETROLX_EMULATIONSTATION_DEPENDENCIES = sdl2 sdl2_mixer freetype alsa-lib libcur
 RETROLX_EMULATIONSTATION_INSTALL_STAGING = YES
 # RETROLX_EMULATIONSTATION_OVERRIDE_SRCDIR = /sources/batocera-emulationstation
 
-RETROLX_EMULATIONSTATION_CONF_OPTS += -DCMAKE_CXX_FLAGS=-D$(call UPPERCASE,$(BATOCERA_SYSTEM_ARCH)) -DCMAKE_BUILD_TYPE=Debug
+RETROLX_EMULATIONSTATION_CONF_OPTS += -DCMAKE_CXX_FLAGS=-D$(call UPPERCASE,$(RETROLX_SYSTEM_ARCH)) -DCMAKE_BUILD_TYPE=Debug
 
 ifeq ($(BR2_PACKAGE_HAS_LIBMALI),y)
 RETROLX_EMULATIONSTATION_CONF_OPTS += -DCMAKE_EXE_LINKER_FLAGS=-lmali -DCMAKE_SHARED_LINKER_FLAGS=-lmali
@@ -46,9 +46,9 @@ else
 RETROLX_EMULATIONSTATION_CONF_OPTS += -DENABLE_FILEMANAGER=0
 endif
 
-RETROLX_EMULATIONSTATION_KEY_SCREENSCRAPER_DEV_LOGIN=$(shell grep -E '^SCREENSCRAPER_DEV_LOGIN=' $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/keys.txt | cut -d = -f 2-)
-RETROLX_EMULATIONSTATION_KEY_GAMESDB_APIKEY=$(shell grep -E '^GAMESDB_APIKEY=' $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/keys.txt | cut -d = -f 2-)
-RETROLX_EMULATIONSTATION_KEY_CHEEVOS_DEV_LOGIN=$(shell grep -E '^CHEEVOS_DEV_LOGIN=' $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/keys.txt | cut -d = -f 2-)
+RETROLX_EMULATIONSTATION_KEY_SCREENSCRAPER_DEV_LOGIN=$(shell grep -E '^SCREENSCRAPER_DEV_LOGIN=' $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/keys.txt | cut -d = -f 2-)
+RETROLX_EMULATIONSTATION_KEY_GAMESDB_APIKEY=$(shell grep -E '^GAMESDB_APIKEY=' $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/keys.txt | cut -d = -f 2-)
+RETROLX_EMULATIONSTATION_KEY_CHEEVOS_DEV_LOGIN=$(shell grep -E '^CHEEVOS_DEV_LOGIN=' $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/keys.txt | cut -d = -f 2-)
 
 ifneq ($(RETROLX_EMULATIONSTATION_KEY_SCREENSCRAPER_DEV_LOGIN),)
 RETROLX_EMULATIONSTATION_CONF_OPTS += "-DSCREENSCRAPER_DEV_LOGIN=$(RETROLX_EMULATIONSTATION_KEY_SCREENSCRAPER_DEV_LOGIN)"
@@ -78,7 +78,7 @@ define RETROLX_EMULATIONSTATION_RESOURCES
 
 	# es_input.cfg
 	mkdir -p $(TARGET_DIR)/usr/share/batocera/datainit/system/configs/emulationstation
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/controllers/es_input.cfg \
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/controllers/es_input.cfg \
 		$(TARGET_DIR)/usr/share/batocera/datainit/system/configs/emulationstation
 endef
 
@@ -91,7 +91,7 @@ RETROLX_EMULATIONSTATION_POSTFIX = \&
 RETROLX_EMULATIONSTATION_CONF_OPTS += -DCEC=OFF
 
 # on rpi1: dont load ES in background
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI1),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI1),y)
 RETROLX_EMULATIONSTATION_POSTFIX = \& sleep 5
 endif
 
@@ -118,7 +118,7 @@ RETROLX_EMULATIONSTATION_PREFIX = SDL_NOMOUSE=1 SDL_VIDEODRIVER=wayland XDG_RUNT
 endif
 
 define RETROLX_EMULATIONSTATION_BOOT
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/S31emulationstation $(TARGET_DIR)/etc/init.d/S31emulationstation
+	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/S31emulationstation $(TARGET_DIR)/etc/init.d/S31emulationstation
 	sed -i -e 's;%RETROLX_EMULATIONSTATION_PREFIX%;${RETROLX_EMULATIONSTATION_PREFIX};g' \
 		-e 's;%RETROLX_EMULATIONSTATION_CMD%;${RETROLX_EMULATIONSTATION_CMD};g' \
 		-e 's;%RETROLX_EMULATIONSTATION_ARGS%;${RETROLX_EMULATIONSTATION_ARGS};g' \

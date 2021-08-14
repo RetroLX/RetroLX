@@ -1,4 +1,4 @@
-config BR2_PACKAGE_BATOCERA_NOTICE
+config BR2_PACKAGE_RETROLX_NOTICE
     bool "batocera-notice"
     help
       Batocera pdf notice

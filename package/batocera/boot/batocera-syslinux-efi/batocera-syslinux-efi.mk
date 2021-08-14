@@ -4,15 +4,15 @@
 #
 ################################################################################
 
-BATOCERA_SYSLINUX_EFI_VERSION = 6.04.pre2.r11.gbf6db5b4-2
-BATOCERA_SYSLINUX_EFI_SOURCE =
-BATOCERA_SYSLINUX_EFI_SITE = binaries
+RETROLX_SYSLINUX_EFI_VERSION = 6.04.pre2.r11.gbf6db5b4-2
+RETROLX_SYSLINUX_EFI_SOURCE =
+RETROLX_SYSLINUX_EFI_SITE = binaries
 
-define BATOCERA_SYSLINUX_EFI_EXTRACT_CMDS
-	cp -R $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/boot/batocera-syslinux-efi/binaries/* $(@D)
+define RETROLX_SYSLINUX_EFI_EXTRACT_CMDS
+	cp -R $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/boot/batocera-syslinux-efi/binaries/* $(@D)
 endef
 
-define BATOCERA_SYSLINUX_EFI_INSTALL_TARGET_CMDS
+define RETROLX_SYSLINUX_EFI_INSTALL_TARGET_CMDS
 	mkdir -p $(BINARIES_DIR)/syslinux/efi64
 	cp $(@D)/bootx64.efi  $(BINARIES_DIR)/syslinux/
 	cp $(@D)/ldlinux.e64  $(BINARIES_DIR)/syslinux/

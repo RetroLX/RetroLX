@@ -11,7 +11,7 @@ CITRA_GIT_SUBMODULES=YES
 CITRA_LICENSE = GPLv2
 
 # Use citra-android for AArch64 (SDL2 only)
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S922X),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S922X),y)
 CITRA_VERSION = dad2146e4e65980deb7d273bf1e9c58334847c19
 CITRA_SITE = https://github.com/citra-emu/citra-android.git
 CITRA_CONF_OPTS += -DENABLE_QT=OFF
@@ -36,7 +36,7 @@ CITRA_CONF_OPTS += -DBUILD_SHARED_LIBS=FALSE
 
 CITRA_CONF_ENV += LDFLAGS=-lpthread
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86_64),y)
 define CITRA_INSTALL_TARGET_CMDS
        	mkdir -p $(TARGET_DIR)/usr/bin
         mkdir -p $(TARGET_DIR)/usr/lib
@@ -56,7 +56,7 @@ endif
 define CITRA_EVMAP
 	mkdir -p $(TARGET_DIR)/usr/share/evmapy
 	
-	cp -prn $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/citra/3ds.citra.keys \
+	cp -prn $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/emulators/citra/3ds.citra.keys \
 		$(TARGET_DIR)/usr/share/evmapy
 endef
 

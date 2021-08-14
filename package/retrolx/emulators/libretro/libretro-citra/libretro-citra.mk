@@ -12,7 +12,7 @@ LIBRETRO_CITRA_DEPENDENCIES = boost
 LIBRETRO_CITRA_LICENSE = GPLv2+
 
 LIBRETRO_CITRA_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_CITRA_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-citra
+LIBRETRO_CITRA_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-citra
 
 # Should be set when the package cannot be built inside the source tree but needs a separate build directory.
 LIBRETRO_CITRA_SUPPORTS_IN_SOURCE_BUILD = NO
@@ -38,10 +38,10 @@ define LIBRETRO_CITRA_MAKEPKG
 	$(LIBRETRO_CITRA_PKG_DIR)$(LIBRETRO_CITRA_PKG_INSTALL_DIR)/citra_libretro.so
 
 	# Build Pacman package
-	cd $(LIBRETRO_CITRA_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-citra/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_CITRA_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-citra/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

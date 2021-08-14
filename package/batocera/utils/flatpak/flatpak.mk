@@ -22,7 +22,7 @@ FLATPAK_CONF_ENV += LDFLAGS=-lpthread
 
 
 define FLATPAK_INSTALL_SCRIPTS
-	install -m 0755 $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/utils/flatpak/batocera-flatpak-update $(TARGET_DIR)/usr/bin/
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/utils/flatpak/batocera-flatpak-update $(TARGET_DIR)/usr/bin/
 endef
 
 FLATPAK_POST_INSTALL_TARGET_HOOKS += FLATPAK_INSTALL_SCRIPTS

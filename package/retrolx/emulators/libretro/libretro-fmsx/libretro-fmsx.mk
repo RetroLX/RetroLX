@@ -9,12 +9,12 @@ LIBRETRO_FMSX_SITE = $(call github,libretro,fmsx-libretro,$(LIBRETRO_FMSX_VERSIO
 LIBRETRO_FMSX_LICENSE = GPLv2
 
 LIBRETRO_FMSX_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_FMSX_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-fmsx
+LIBRETRO_FMSX_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-fmsx
 
 LIBRETRO_FMSX_PLATFORM = $(LIBRETRO_PLATFORM)
 LIBRETRO_FMSX_EXTRA_ARGS =
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S812),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S812),y)
 LIBRETRO_FMSX_PLATFORM = armv cortexa9 neon hardfloat
 
 else ifeq ($(BR2_aarch64),y)
@@ -38,10 +38,10 @@ define LIBRETRO_FMSX_MAKEPKG
 	$(LIBRETRO_FMSX_PKG_DIR)$(LIBRETRO_FMSX_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(LIBRETRO_FMSX_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-fmsx/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_FMSX_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-fmsx/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Script for BATOCERA to terminate every emulator instance
+# Script for RETROLX to terminate every emulator instance
 # or to give feedback about state of EmulationStation and active EMULATORS
 # or to give some basic info about your build
 # by cyperghost aka crcerror // 18.03.2019
@@ -195,7 +195,7 @@ case ${1,,} in
     ;;
     *)
         cat <<-_EOF_
-		BATOCERA SWISS KNIFE FOR EmulationStation
+		RETROLX SWISS KNIFE FOR EmulationStation
 		  Please parse parameters to this script!
 		  --restart  will RESTART EmulationStation only
 		  --reboot   will REBOOT whole system
@@ -209,7 +209,7 @@ case ${1,,} in
 		      If output is 0 then there is no emulator active!
 
 		  --arch     Shows current architecture running
-		  --version  Shows current version of BATOCERA running
+		  --version  Shows current version of RETROLX running
 		  --update   Shows possible update for your install
 		      default: stable, you can type --update beta
 

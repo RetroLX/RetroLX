@@ -11,7 +11,7 @@ LIBRETRO_PPSSPP_GIT_SUBMODULES=YES
 LIBRETRO_PPSSPP_LICENSE = GPLv2
 
 LIBRETRO_PPSSPP_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_PPSSPP_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-ppsspp
+LIBRETRO_PPSSPP_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-ppsspp
 
 LIBRETRO_PPSSPP_CONF_OPTS = \
 	-DUSE_FFMPEG=ON -DUSE_SYSTEM_FFMPEG=OFF -DUSING_FBDEV=OFF -DUSE_WAYLAND_WSI=OFF \
@@ -51,12 +51,12 @@ ifeq ($(BR2_aarch64),y)
 endif
 
 # x86
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86),y)
 	LIBRETRO_PPSSPP_CONF_OPTS += -DX86=ON
 endif
 
 # x86_64
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86_64),y)
 	LIBRETRO_PPSSPP_CONF_OPTS += -DX86_64=ON
 endif
 
@@ -78,7 +78,7 @@ LIBRETRO_PPSSPP_CONF_OPTS += \
 endif
 
 # rockchip
-ifeq ($(BR2_PACKAGE_BATOCERA_ROCKCHIP_ANY),y)
+ifeq ($(BR2_PACKAGE_RETROLX_ROCKCHIP_ANY),y)
 ifeq ($(BR2_arm),y)
 LIBRETRO_PPSSPP_CONF_OPTS += -DUSING_EGL=OFF
 endif
@@ -104,7 +104,7 @@ endif
 LIBRETRO_PPSSPP_CONF_OPTS += -DCMAKE_C_FLAGS="$(LIBRETRO_PPSSPP_TARGET_CFLAGS)" -DCMAKE_CXX_FLAGS="$(LIBRETRO_PPSSPP_TARGET_CFLAGS)"
 
 define LIBRETRO_PPSSPP_FIX_FFMPEG_LINUX_AARCH64
-	cd $(@D)/ffmpeg/linux/aarch64/lib && tar xzvf $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-ppsspp/ppsspp_ffmpeg_linux_aarch64_lib_fPIC.tar.gz
+	cd $(@D)/ffmpeg/linux/aarch64/lib && tar xzvf $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-ppsspp/ppsspp_ffmpeg_linux_aarch64_lib_fPIC.tar.gz
 endef
 
 define LIBRETRO_PPSSPP_INSTALL_TARGET_CMDS
@@ -120,10 +120,10 @@ define LIBRETRO_PPSSPP_MAKEPKG
 	$(LIBRETRO_PPSSPP_PKG_DIR)$(LIBRETRO_PPSSPP_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(LIBRETRO_PPSSPP_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-ppsspp/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_PPSSPP_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-ppsspp/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

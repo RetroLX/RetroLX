@@ -9,7 +9,7 @@ LIBRETRO_BLUEMSX_SITE = $(call github,libretro,blueMSX-libretro,$(LIBRETRO_BLUEM
 LIBRETRO_BLUEMSX_LICENSE = GPLv2
 
 LIBRETRO_BLUEMSX_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_BLUEMSX_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-bluemsx
+LIBRETRO_BLUEMSX_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-bluemsx
 
 
 define LIBRETRO_BLUEMSX_BUILD_CMDS
@@ -27,10 +27,10 @@ define LIBRETRO_BLUEMSX_MAKEPKG
 	$(LIBRETRO_BLUEMSX_PKG_DIR)$(LIBRETRO_BLUEMSX_PKG_INSTALL_DIR)/bios
 
 	# Build Pacman package
-	cd $(LIBRETRO_BLUEMSX_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-bluemsx/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_BLUEMSX_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-bluemsx/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

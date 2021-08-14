@@ -12,7 +12,7 @@ PPSSPP_LICENSE = GPLv2
 PPSSPP_DEPENDENCIES = sdl2 libzip
 
 PPSSPP_PKG_DIR = $(TARGET_DIR)/opt/retrolx/ppsspp
-PPSSPP_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/ppsspp
+PPSSPP_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/ppsspp
 
 PPSSPP_CONF_OPTS = \
 	-DUSE_FFMPEG=ON -DUSE_SYSTEM_FFMPEG=OFF -DUSING_FBDEV=ON -DUSE_WAYLAND_WSI=OFF \
@@ -31,7 +31,7 @@ PPSSPP_TARGET_BINARY = PPSSPPSDL
 endif
 
 # make sure to select glvnd and depends on glew / glu because of X11 desktop GL
-ifeq ($(BR2_PACKAGE_BATOCERA_IS_X86_ARCH),y)
+ifeq ($(BR2_PACKAGE_RETROLX_IS_X86_ARCH),y)
 	PPSSPP_CONF_OPTS += -DOpenGL_GL_PREFERENCE=GLVND
 	PPSSPP_DEPENDENCIES += libglew libglu
 endif
@@ -52,17 +52,17 @@ else
 endif
 
 # x86
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86),y)
 	PPSSPP_CONF_OPTS += -DX86=ON
 endif
 
 # x86_64
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86_64),y)
 	PPSSPP_CONF_OPTS += -DX86_64=ON
 endif
 
 # rpi4 vulkan support
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI4),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI4),y)
 	PPSSPP_CONF_OPTS += -DARM_NO_VULKAN=OFF
 else
 	PPSSPP_CONF_OPTS += -DARM_NO_VULKAN=ON
@@ -85,7 +85,7 @@ PPSSPP_CONF_OPTS += \
 endif
 
 # rockchip
-ifeq ($(BR2_PACKAGE_BATOCERA_ROCKCHIP_ANY),y)
+ifeq ($(BR2_PACKAGE_RETROLX_ROCKCHIP_ANY),y)
 ifeq ($(BR2_arm),y)
 PPSSPP_CONF_OPTS += -DUSING_EGL=OFF
 endif
@@ -130,10 +130,10 @@ define PPSSPP_MAKEPKG
 	cp -R $(@D)/assets $(PPSSPP_PKG_DIR)$(PPSSPP_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(PPSSPP_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/ppsspp/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(PPSSPP_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/ppsspp/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

@@ -1,4 +1,4 @@
-config BR2_PACKAGE_BATOCERA_SCRIPTS
+config BR2_PACKAGE_RETROLX_SCRIPTS
 	bool "batocera-scripts"
 
 	select BR2_PACKAGE_BASH

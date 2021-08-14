@@ -16,7 +16,7 @@ index f692376..1931d61 100644
     snprintf(frontend_architecture,
           sizeof(frontend_architecture),
 -         "%s %s",
-+         "%s %s @BATOCERA",
++         "%s %s @RETROLX",
           frontend_drv->ident,
           frontend_architecture_tmp);
 
