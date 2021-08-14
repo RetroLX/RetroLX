@@ -9,7 +9,7 @@ LIBRETRO_VECX_SITE = $(call github,libretro,libretro-vecx,$(LIBRETRO_VECX_VERSIO
 LIBRETRO_VECX_LICENSE = GPLv2|LGPLv2.1
 
 LIBRETRO_VECX_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_VECX_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-vecx
+LIBRETRO_VECX_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-vecx
 
 
 ifeq ($(BR2_PACKAGE_HAS_LIBGL),y)
@@ -29,13 +29,13 @@ LIBRETRO_VECX_PLATFORM = $(LIBRETRO_PLATFORM)
 ifeq ($(BR2_aarch64),y)
 LIBRETRO_VECX_PLATFORM = unix
 
-else ifeq ($(BR2_PACKAGE_BATOCERA_RPI_VCORE),y)
+else ifeq ($(BR2_PACKAGE_RETROLX_RPI_VCORE),y)
 LIBRETRO_VECX_PLATFORM = rpi
 
-else ifeq ($(BR2_PACKAGE_BATOCERA_RPI_MESA3D),y)
+else ifeq ($(BR2_PACKAGE_RETROLX_RPI_MESA3D),y)
 LIBRETRO_VECX_PLATFORM = rpi-mesa
 
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S812),y)
+else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S812),y)
 LIBRETRO_VECX_PLATFORM = armv
 
 else ifeq ($(BR2_PACKAGE_HAS_LIBMALI),y)
@@ -57,10 +57,10 @@ define LIBRETRO_VECX_MAKEPKG
 	$(LIBRETRO_VECX_PKG_DIR)$(LIBRETRO_VECX_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(LIBRETRO_VECX_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-vecx/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_VECX_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-vecx/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

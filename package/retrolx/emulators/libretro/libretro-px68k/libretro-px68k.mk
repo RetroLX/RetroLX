@@ -8,7 +8,7 @@ LIBRETRO_PX68K_SITE = $(call github,libretro,px68k-libretro,$(LIBRETRO_PX68K_VER
 LIBRETRO_PX68K_LICENSE = Unknown
 
 LIBRETRO_PX68K_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_PX68K_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-px68k
+LIBRETRO_PX68K_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-px68k
 
 define LIBRETRO_PX68K_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/ -f Makefile.libretro platform="$(LIBRETRO_PLATFORM)"
@@ -27,10 +27,10 @@ define LIBRETRO_PX68K_MAKEPKG
 	echo "StartDir=/userdata/roms/x68000/" >> $(LIBRETRO_PX68K_PKG_DIR)$(LIBRETRO_PX68K_PKG_INSTALL_DIR)/bios/keropi/config
 
 	# Build Pacman package
-	cd $(LIBRETRO_PX68K_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-px68k/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_PX68K_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-px68k/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

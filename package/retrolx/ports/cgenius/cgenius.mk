@@ -10,10 +10,10 @@ CGENIUS_SITE = $(call github,gerstrong,Commander-Genius,$(CGENIUS_VERSION))
 CGENIUS_DEPENDENCIES = sdl2 sdl2_mixer sdl2_image sdl2_ttf boost libcurl
 
 CGENIUS_PKG_DIR = $(TARGET_DIR)/opt/retrolx/cgenius
-CGENIUS_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/cgenius
+CGENIUS_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/cgenius
 
 # No OpenGL ES support
-ifeq ($(BR2_PACKAGE_BATOCERA_IS_X86_ARCH),y)
+ifeq ($(BR2_PACKAGE_RETROLX_IS_X86_ARCH),y)
 CGENIUS_CONF_OPTS += -DUSE_OPENGL=ON
 else
 CGENIUS_CONF_OPTS += -DUSE_OPENGL=OFF
@@ -39,10 +39,10 @@ define CGENIUS_MAKEPKG
 	cp $(@D)/GsKit/libGsKit.so $(CGENIUS_PKG_DIR)$(CGENIUS_PKG_INSTALL_DIR)/usr/lib
 
 	# Build Pacman package
-	cd $(CGENIUS_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/ports/cgenius/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(CGENIUS_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/cgenius/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

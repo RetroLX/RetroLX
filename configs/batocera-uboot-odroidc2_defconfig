@@ -14,8 +14,8 @@ BR2_TOOLCHAIN_BUILDROOT_GLIBC=y
 BR2_TOOLCHAIN_GLIBC_GCONV_LIBS_COPY=y
 BR2_TOOLCHAIN_BUILDROOT_CXX=y
 
-BR2_GLOBAL_PATCH_DIR="$(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/patches $(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/amlogic/patches $(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/amlogic/s905/patches"
-BR2_ROOTFS_POST_IMAGE_SCRIPT="$(BR2_EXTERNAL_BATOCERA_PATH)/board/batocera/amlogic/s905/odroidc2/create-uboot.sh"
+BR2_GLOBAL_PATCH_DIR="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/patches $(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/patches $(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/s905/patches"
+BR2_ROOTFS_POST_IMAGE_SCRIPT="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/s905/odroidc2/create-uboot.sh"
 
 # Firmware
 BR2_PACKAGE_ODROIDC2_FIRMWARE=y

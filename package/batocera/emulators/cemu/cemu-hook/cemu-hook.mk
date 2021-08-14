@@ -16,7 +16,7 @@ define CEMU_HOOK_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/usr/cemu/
 	cp $(@D)/keystone.dll $(TARGET_DIR)/usr/cemu/
 	cp $(@D)/dbghelp.dll  $(TARGET_DIR)/usr/cemu/
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/cemu/cemu-hook/cemuhook.ini $(TARGET_DIR)/usr/cemu/
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/emulators/cemu/cemu-hook/cemuhook.ini $(TARGET_DIR)/usr/cemu/
 endef
 
 $(eval $(generic-package))

@@ -11,7 +11,7 @@ RETROFE_LICENSE = GPLv3
 RETROFE_DEPENDENCIES = sdl2 sdl2_image sdl2_mixer sdl2_ttf gstreamer1 gst1-plugins-base
 
 RETROFE_PKG_DIR = $(TARGET_DIR)/opt/retrolx/retrofe
-RETROFE_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/retrofe
+RETROFE_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/retrofe
 
 RETROFE_SUBDIR = RetroFE/Source
 #RETROFE_CONF_OPTS = 
@@ -29,10 +29,10 @@ define RETROFE_MAKEPKG
 	cp -R $(@D)/Artifacts/linux/RetroFE/* $(RETROFE_PKG_DIR)$(RETROFE_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(RETROFE_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/frontends/retrofe/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(RETROFE_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/retrofe/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

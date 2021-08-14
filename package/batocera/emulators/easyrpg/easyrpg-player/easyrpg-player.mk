@@ -19,7 +19,7 @@ EASYRPG_PLAYER_SUPPORTS_IN_SOURCE_BUILD = NO
 
 define EASYRPG_PLAYER_EVMAPY
 	mkdir -p $(TARGET_DIR)/usr/share/evmapy
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/easyrpg/easyrpg-player/easyrpg.easyrpg.keys $(TARGET_DIR)/usr/share/evmapy
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/emulators/easyrpg/easyrpg-player/easyrpg.easyrpg.keys $(TARGET_DIR)/usr/share/evmapy
 endef
 
 EASYRPG_PLAYER_POST_INSTALL_TARGET_HOOKS += EASYRPG_PLAYER_EVMAPY

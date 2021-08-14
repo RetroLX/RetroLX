@@ -9,5 +9,5 @@
 /usr/share/retrolx/configgen/configgen-defaults.yml \
 /usr/share/retrolx/configgen/configgen-defaults-arch.yml \
 /usr/share/emulationstation/roms \
-/userdata/roms {BATOCERA_ARCHITECTURE}
+/userdata/roms {RETROLX_ARCHITECTURE}
 

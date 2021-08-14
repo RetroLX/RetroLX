@@ -13,7 +13,7 @@ XEMU_LICENSE = GPLv2
 XEMU_DEPENDENCIES = sdl2
 
 XEMU_PKG_DIR = $(TARGET_DIR)/opt/retrolx/xemu
-XEMU_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/xemu
+XEMU_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/xemu
 
 XEMU_EXTRA_DOWNLOADS = https://github.com/mborgerson/xemu-hdd-image/releases/download/1.0/xbox_hdd.qcow2.zip
 
@@ -104,13 +104,13 @@ define XEMU_MAKEPKG
 	$(INSTALL) -D $(@D)/build/qemu-system-i386 $(XEMU_PKG_DIR)$(XEMU_PKG_INSTALL_DIR)/xemu
 	cp $(@D)/data/* $(XEMU_PKG_DIR)$(XEMU_PKG_INSTALL_DIR)/data/
 	$(UNZIP) -ob $(XEMU_DL_DIR)/xbox_hdd.qcow2.zip xbox_hdd.qcow2 -d $(XEMU_PKG_DIR)$(XEMU_PKG_INSTALL_DIR)/data
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/xemu/xbox.xemu.keys $(XEMU_PKG_DIR)$(XEMU_PKG_INSTALL_DIR)/
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/xemu/xbox.xemu.keys $(XEMU_PKG_DIR)$(XEMU_PKG_INSTALL_DIR)/
 
 	# Build Pacman package
-	cd $(XEMU_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/xemu/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(XEMU_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/xemu/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

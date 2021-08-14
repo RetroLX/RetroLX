@@ -9,14 +9,14 @@ LIBRETRO_BEETLE_VB_SITE = $(call github,libretro,beetle-vb-libretro,$(LIBRETRO_B
 LIBRETRO_BEETLE_VB_LICENSE = GPLv2
 
 LIBRETRO_BEETLE_VB_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_BEETLE_VB_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-beetle-vb
+LIBRETRO_BEETLE_VB_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-beetle-vb
 
 LIBRETRO_BEETLE_VB_PLATFORM = $(LIBRETRO_PLATFORM)
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI3),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI3),y)
 LIBRETRO_BEETLE_VB_PLATFORM = rpi3_64
 
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI4),y)
+else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI4),y)
 LIBRETRO_BEETLE_VB_PLATFORM = rpi4_64
 
 else ifeq ($(BR2_aarch64),y)
@@ -36,10 +36,10 @@ define LIBRETRO_BEETLE_VB_MAKEPKG
 	$(LIBRETRO_BEETLE_VB_PKG_DIR)$(LIBRETRO_BEETLE_VB_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(LIBRETRO_BEETLE_VB_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-beetle-vb/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_BEETLE_VB_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-beetle-vb/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

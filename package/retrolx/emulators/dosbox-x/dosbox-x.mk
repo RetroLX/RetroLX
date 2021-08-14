@@ -10,7 +10,7 @@ DOSBOX_X_DEPENDENCIES = sdl2 sdl2_net sdl_sound zlib libpng libogg libvorbis ffm
 DOSBOX_X_LICENSE = GPLv2
 
 DOSBOX_X_PKG_DIR = $(TARGET_DIR)/opt/retrolx/dosbox-x
-DOSBOX_X_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/dosbox-x
+DOSBOX_X_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/dosbox-x
 
 define DOSBOX_X_CONFIGURE_CMDS
 	# Create directories
@@ -41,10 +41,10 @@ define DOSBOX_X_MAKE_PKG
 	mkdir -p $(DOSBOX_X_PKG_DIR)$(DOSBOX_X_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(DOSBOX_X_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/dosbox-x/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(DOSBOX_X_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/dosbox-x/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

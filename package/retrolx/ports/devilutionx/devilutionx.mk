@@ -9,7 +9,7 @@ DEVILUTIONX_SITE = $(call github,diasurgical,devilutionx,$(DEVILUTIONX_VERSION))
 DEVILUTIONX_DEPENDENCIES = sdl2 sdl2_mixer sdl2_image sdl2_ttf libsodium
 
 DEVILUTIONX_PKG_DIR = $(TARGET_DIR)/opt/retrolx/devilutionx
-DEVILUTIONX_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/devilutionx
+DEVILUTIONX_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/devilutionx
 
 # Prefill the player name when creating a new character, in case the device does
 # not have a keyboard.
@@ -32,10 +32,10 @@ DEVILUTIONX_INSTALL_TARGET_OPTS = DESTDIR="$(DEVILUTIONX_PKG_DIR)$(DEVILUTIONX_P
 
 define DEVILUTIONX_MAKEPKG
 	# Build Pacman package
-	cd $(DEVILUTIONX_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/ports/devilutionx/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(DEVILUTIONX_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/devilutionx/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

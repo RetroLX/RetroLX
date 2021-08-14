@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #Copyright 2017 Michael Kirsch
 #https://github.com/MichaelKirsch
-#Added to BATOCERA 12.05.2020
+#Added to RETROLX 12.05.2020
 
 try:
     import time

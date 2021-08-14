@@ -9,11 +9,11 @@ LIBRETRO_SNES9X_SITE = $(call github,libretro,snes9x,$(LIBRETRO_SNES9X_VERSION))
 LIBRETRO_SNES9X_LICENSE = Non-commercial
 
 LIBRETRO_SNES9X_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
-LIBRETRO_SNES9X_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/lr-snes9x
+LIBRETRO_SNES9X_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-snes9x
 
 LIBRETRO_SNES9X_PLATFORM = $(LIBRETRO_PLATFORM)
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S922X),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S922X),y)
 LIBRETRO_SNES9X_PLATFORM = CortexA73_G12B
 else ifeq ($(BR2_aarch64),y)
 LIBRETRO_SNES9X_PLATFORM = unix
@@ -32,10 +32,10 @@ define LIBRETRO_SNES9X_MAKEPKG
 	$(LIBRETRO_SNES9X_PKG_DIR)$(LIBRETRO_SNES9X_PKG_INSTALL_DIR)
 
 	# Build Pacman package
-	cd $(LIBRETRO_SNES9X_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/libretro/libretro-snes9x/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(LIBRETRO_SNES9X_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-snes9x/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

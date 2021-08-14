@@ -16,7 +16,7 @@
 #
 
 readonly VERSION="20210130"
-readonly TITLE="the BezelProject for BATOCERA"
+readonly TITLE="the BezelProject for RETROLX"
 readonly LOGS_DIR="/userdata/system/logs"
 readonly DECORATION_DIR="/userdata/decorations"
 readonly ROMS_DIR="/userdata/roms"
@@ -484,7 +484,7 @@ function install() {
 				fi
 		fi
 
-		# install default bezel (i.e default bezel from BATOCERA website)
+		# install default bezel (i.e default bezel from RETROLX website)
 		record "[$system_to_install] Installing default bezel" "1"
 		if [ -d "$DECORATION_DIR/$BEZELPROJECT_DIR" ]; then
 				url2="$DEFAULT_BEZEL_URL/default.png"

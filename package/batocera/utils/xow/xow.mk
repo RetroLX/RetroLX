@@ -13,8 +13,8 @@ endef
 
 define XOW_INSTALL_TARGET_CMDS
 	$(INSTALL) -m 0755 -D $(@D)/xow $(TARGET_DIR)/usr/bin/xow
-	$(INSTALL) -m 0755 -D $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/utils/xow/xow-daemon $(TARGET_DIR)/usr/bin/xow-daemon
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/utils/xow/99-xow.rules $(TARGET_DIR)/etc/udev/rules.d
+	$(INSTALL) -m 0755 -D $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/utils/xow/xow-daemon $(TARGET_DIR)/usr/bin/xow-daemon
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/utils/xow/99-xow.rules $(TARGET_DIR)/etc/udev/rules.d
 endef
 
 $(eval $(generic-package))

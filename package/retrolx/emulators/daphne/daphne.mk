@@ -11,7 +11,7 @@ DAPHNE_LICENSE = GPLv3
 DAPHNE_DEPENDENCIES = sdl2 sdl2_image sdl2_ttf zlib libogg libvorbis libmpeg2
 
 DAPHNE_PKG_DIR = $(TARGET_DIR)/opt/retrolx/daphne
-DAPHNE_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/daphne
+DAPHNE_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/daphne
 
 # Should be set when the package cannot be built inside the source tree but needs a separate build directory.
 DAPHNE_SUBDIR = build
@@ -37,10 +37,10 @@ define DAPHNE_MAKEPKG
 	ln -fs /userdata/system/configs/daphne/hypinput.ini $(DAPHNE_PKG_DIR)$(DAPHNE_PKG_INSTALL_DIR)/hypinput.ini
 
 	# Build Pacman package
-	cd $(DAPHNE_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/daphne/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(DAPHNE_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/daphne/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

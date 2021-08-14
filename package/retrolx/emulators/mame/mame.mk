@@ -14,13 +14,13 @@ MAME_CROSS_OPTS =
 MAME_CFLAGS =
 
 MAME_PKG_DIR = $(TARGET_DIR)/opt/retrolx/mame
-MAME_PKG_INSTALL_DIR = /userdata/packages/$(BATOCERA_SYSTEM_ARCH)/mame
+MAME_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/mame
 
 # Limit number of jobs not to eat too much RAM....
 MAME_JOBS = $(shell expr $(shell nproc) / 2)
 
 # x86_64 is desktop linux based on X11 and OpenGL
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86_64),y)
 MAME_CROSS_ARCH = x86_64
 MAME_CROSS_OPTS += PTR64=1 NO_USE_PULSEAUDIO=1
 # other archs are embedded, no X11, no OpenGL (only ES)
@@ -187,13 +187,13 @@ define MAME_INSTALL_TARGET_CMDS
 	rm -Rf $(MAME_PKG_DIR)$(MAME_PKG_INSTALL_DIR)/bgfx/shaders/dx9/
 
 	# Evmapy mapper file
-	cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/mame/mame.mame.keys $(MAME_PKG_DIR)$(MAME_PKG_INSTALL_DIR)/
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/mame/mame.mame.keys $(MAME_PKG_DIR)$(MAME_PKG_INSTALL_DIR)/
 	
 	# Build Pacman package
-	cd $(MAME_PKG_DIR) && $(BR2_EXTERNAL_BATOCERA_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_BATOCERA_PATH)/package/retrolx/emulators/mame/PKGINFO \
-	$(BATOCERA_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_BATOCERA_PATH)/repo/$(BATOCERA_SYSTEM_ARCH)/
+	cd $(MAME_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/mame/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

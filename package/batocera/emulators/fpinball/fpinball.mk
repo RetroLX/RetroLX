@@ -18,7 +18,7 @@ define FPINBALL_INSTALL_TARGET_CMDS
 
 	#evmap config
 	mkdir -p $(TARGET_DIR)/usr/share/evmapy
-	cp -prn $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/fpinball/fpinball.keys $(TARGET_DIR)/usr/share/evmapy
+	cp -prn $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/emulators/fpinball/fpinball.keys $(TARGET_DIR)/usr/share/evmapy
 
 endef
 

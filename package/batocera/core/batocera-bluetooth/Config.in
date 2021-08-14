@@ -1,4 +1,4 @@
-config BR2_PACKAGE_BATOCERA_BLUETOOTH
+config BR2_PACKAGE_RETROLX_BLUETOOTH
 	bool "batocera-bluetooth"
 
     	select BR2_PACKAGE_BLUEZ5_UTILS
