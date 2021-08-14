@@ -400,6 +400,12 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	# RetroLX common base software
 	select BR2_PACKAGE_RETROLX_COMMON
 
+	# RetroLX ALSA stack
+	select BR2_PACKAGE_RETROLX_ALSA
+
+	# RetroLX libarchive (for pacman)
+	select BR2_PACKAGE_RETROLX_LIBARCHIVE
+
 	# RetroLX Boost
 	select BR2_PACKAGE_RETROLX_BOOST
 
