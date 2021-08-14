@@ -1,5 +1,5 @@
 pkgname = lr-cap32
-pkgver = 20210327-1
+pkgver = 20210812-1
 pkgdesc = Caprice32 (Amstrad CPC) libretro core
 group = emulator
 packager = https://retrolx.org 
