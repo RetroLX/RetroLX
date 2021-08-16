@@ -7,7 +7,7 @@
 # BINARIES_DIR = images dir
 # TARGET_DIR = target dir
 
-BATOCERA_TARGET=$(grep -E "^BR2_PACKAGE_BATOCERA_TARGET_[A-Z_0-9]*=y$" "${BR2_CONFIG}" | sed -e s+'^BR2_PACKAGE_BATOCERA_TARGET_\([A-Z_0-9]*\)=y$'+'\1'+)
+RETROLX_TARGET=$(grep -E "^BR2_PACKAGE_RETROLX_TARGET_[A-Z_0-9]*=y$" "${BR2_CONFIG}" | sed -e s+'^BR2_PACKAGE_RETROLX_TARGET_\([A-Z_0-9]*\)=y$'+'\1'+)
 
 # For the root user:
 # 1. Use Bash instead of Dash for interactive use.
@@ -17,6 +17,7 @@ sed -i "s|^root:x:.*$|root:x:0:0:root:/userdata/system:/bin/bash|g" "${TARGET_DI
 rm -rf "${TARGET_DIR}/etc/dropbear" || exit 1
 ln -sf "/userdata/system/ssh" "${TARGET_DIR}/etc/dropbear" || exit 1
 
+rm -rf "${TARGET_DIR}/etc/emulationstation" || exit 1
 mkdir -p ${TARGET_DIR}/etc/emulationstation || exit 1
 ln -sf "/usr/share/emulationstation/es_systems.cfg" "${TARGET_DIR}/etc/emulationstation/es_systems.cfg" || exit 1
 ln -sf "/usr/share/emulationstation/themes"         "${TARGET_DIR}/etc/emulationstation/themes"         || exit 1
@@ -82,7 +83,7 @@ touch "${TARGET_DIR}/run/batocera.shadow"
 
 # fix pixbuf : Unable to load image-loading module: /lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-png.so
 # this fix is to be removed once fixed. i've not found the exact source in buildroot. it prevents to display icons in filemanager and some others
-if test "${BATOCERA_TARGET}" = "X86" -o "${BATOCERA_TARGET}" = X86_64
+if test "${RETROLX_TARGET}" = "X86" -o "${RETROLX_TARGET}" = X86_64
 then
     ln -sf "/usr/lib/gdk-pixbuf-2.0" "${TARGET_DIR}/lib/gdk-pixbuf-2.0" || exit 1
 fi
@@ -99,7 +100,7 @@ sed -i -e s+'defaults.pcm.ipc_gid .*$'+'defaults.pcm.ipc_gid '"${AUDIOGROUP}"+ "
 
 # bios file
 mkdir -p "${TARGET_DIR}/usr/share/batocera/datainit/bios" || exit 1
-python "${BR2_EXTERNAL_BATOCERA_PATH}/package/batocera/core/batocera-scripts/scripts/batocera-systems" --createReadme > "${TARGET_DIR}/usr/share/batocera/datainit/bios/readme.txt" || exit 1
+python "${BR2_EXTERNAL_RETROLX_PATH}/package/batocera/core/batocera-scripts/scripts/batocera-systems" --createReadme > "${TARGET_DIR}/usr/share/batocera/datainit/bios/readme.txt" || exit 1
 
 # enable serial console
 SYSTEM_GETTY_PORT=$(grep "BR2_TARGET_GENERIC_GETTY_PORT" "${BR2_CONFIG}" | sed 's/.*\"\(.*\)\"/\1/')
@@ -110,7 +111,7 @@ if ! [[ -z "${SYSTEM_GETTY_PORT}" ]]; then
 fi
 
 # fix XU4 weston dynamic libraries
-if test "${BATOCERA_TARGET}" = "EXYNOS5422"
+if test "${RETROLX_TARGET}" = "EXYNOS5422"
 then
     "${HOST_DIR}/bin/patchelf" --replace-needed "/odroidxu4/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libEGL.so" "libEGL.so" "${TARGET_DIR}/usr/lib/libweston-9/gl-renderer.so"
     "${HOST_DIR}/bin/patchelf" --replace-needed "/odroidxu4/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libgbm.so" "libgbm.so" "${TARGET_DIR}/usr/lib/libweston-9/drm-backend.so"
@@ -118,4 +119,4 @@ then
 fi
 
 # rebuild package db
-cd "${BR2_EXTERNAL_BATOCERA_PATH}/repo/${BATOCERA_TARGET,,}" && "${BR2_EXTERNAL_BATOCERA_PATH}/board/batocera/scripts/retrolx-makedb" "${HOST_DIR}"
+cd "${BR2_EXTERNAL_RETROLX_PATH}/repo/${RETROLX_TARGET,,}" && "${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/scripts/retrolx-makedb" "${HOST_DIR}"

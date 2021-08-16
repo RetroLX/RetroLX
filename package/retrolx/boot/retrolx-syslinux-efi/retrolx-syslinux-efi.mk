@@ -9,7 +9,7 @@ RETROLX_SYSLINUX_EFI_SOURCE =
 RETROLX_SYSLINUX_EFI_SITE = binaries
 
 define RETROLX_SYSLINUX_EFI_EXTRACT_CMDS
-	cp -R $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/boot/batocera-syslinux-efi/binaries/* $(@D)
+	cp -R $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/boot/retrolx-syslinux-efi/binaries/* $(@D)
 endef
 
 define RETROLX_SYSLINUX_EFI_INSTALL_TARGET_CMDS

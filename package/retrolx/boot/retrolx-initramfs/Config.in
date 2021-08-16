@@ -1,5 +1,5 @@
 config BR2_PACKAGE_RETROLX_INITRAMFS
-	bool "Batocera initramfs"
+	bool "RetroLX initramfs"
 	select BR2_PACKAGE_HOST_UBOOT_TOOLS
 	default n
 	help

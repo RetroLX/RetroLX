@@ -13,7 +13,7 @@ RETROLX_INITRAMFS_LICENSE_FILES = LICENSE
 RETROLX_INITRAMFS_CFLAGS = $(TARGET_CFLAGS)
 RETROLX_INITRAMFS_LDFLAGS = $(TARGET_LDFLAGS)
 
-RETROLX_INITRAMFS_KCONFIG_FILE = $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/boot/batocera-initramfs/busybox.config
+RETROLX_INITRAMFS_KCONFIG_FILE = $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/boot/retrolx-initramfs/busybox.config
 
 INITRAMFS_DIR=$(BINARIES_DIR)/initramfs
 
@@ -44,10 +44,10 @@ endif
 
 define RETROLX_INITRAMFS_INSTALL_TARGET_CMDS
 	mkdir -p $(INITRAMFS_DIR)
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/boot/batocera-initramfs/init $(INITRAMFS_DIR)/init
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/boot/retrolx-initramfs/init $(INITRAMFS_DIR)/init
 	$(RETROLX_INITRAMFS_MAKE_ENV) $(MAKE) $(RETROLX_INITRAMFS_MAKE_OPTS) -C $(@D) install
 	(cd $(INITRAMFS_DIR) && find . | cpio -H newc -o > $(BINARIES_DIR)/initrd)
-	(cd $(BINARIES_DIR) && mkimage -A $(RETROLX_INITRAMFS_INITRDA) -O linux -T ramdisk -C none -a 0 -e 0 -n initrd -d ./initrd ./uInitrd)
+	(cd $(BINARIES_DIR) && $(HOST_DIR)/bin/mkimage -A $(RETROLX_INITRAMFS_INITRDA) -O linux -T ramdisk -C none -a 0 -e 0 -n initrd -d ./initrd ./uInitrd)
 	(cd $(INITRAMFS_DIR) && find . | cpio -H newc -o | gzip -9 > $(BINARIES_DIR)/initrd.gz)
 endef
 

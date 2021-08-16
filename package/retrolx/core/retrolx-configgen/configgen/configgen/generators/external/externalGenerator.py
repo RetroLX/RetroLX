@@ -13,7 +13,7 @@ from utils.logger import eslog
 
 class ExternalGenerator(Generator):
 
-    def importExternalGenerator(package, emulator)
+    def importExternalGenerator(package, emulator):
         externalGeneratorFilePath = retrolxPackages + '/' + package + '/' + emulator + '.py'
         externalGeneratorModuleName = emulator + 'Generator'
         if not os.path.exists(generatorFile):

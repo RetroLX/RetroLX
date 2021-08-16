@@ -1,5 +1,5 @@
 config BR2_PACKAGE_RETROLX_SYSLINUX_EFI
-    bool "batocera-syslinux-efi"
+    bool "retrolx-syslinux-efi"
     help
       Precompiled syslinux EFI binaries from Archlinux
 
