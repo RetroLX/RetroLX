@@ -10,7 +10,7 @@ RETROLX_DRMINFO_LICENSE = GPLv3+
 RETROLX_DRMINFO_DEPENDENCIES = libdrm
 
 define RETROLX_DRMINFO_BUILD_CMDS
-	$(TARGET_CONFIGURE_OPTS) $(TARGET_CC) -I$(STAGING_DIR)/usr/include/drm -ldrm $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-drminfo/batocera-drminfo.c -o $(@D)/batocera-drminfo
+	$(TARGET_CONFIGURE_OPTS) $(TARGET_CC) -I$(STAGING_DIR)/usr/include/drm -ldrm $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-drminfo/batocera-drminfo.c -o $(@D)/batocera-drminfo
 endef
 
 define RETROLX_DRMINFO_INSTALL_TARGET_CMDS

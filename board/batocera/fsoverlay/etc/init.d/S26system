@@ -57,7 +57,7 @@ case "$1" in
   start)
     printf "Starting system: "
     # Remove carriage return characters from Windows files
-    dos2unix /userdata/system/batocera.conf
+    dos2unix /userdata/system/retrolx.conf
 
     # configure
     ba_keyboard_lang &

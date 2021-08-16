@@ -5,7 +5,7 @@ if [ ! "$1" ];then
 	exit 1
 fi
 configFile="/boot/config.txt"
-storageFile="/boot/batocera-boot.conf"
+storageFile="/boot/retrolx-boot.conf"
 command="$1"
 mode="$2"
 extra1="$3"

@@ -50,7 +50,7 @@ xrandr -r 60
 
 # set user desired resolution
 # nice workaround for displays which tell X11 to use strange resolutions
-settings_output="$(/usr/bin/batocera-settings-get -f /boot/batocera-boot.conf es.resolution)"
+settings_output="$(/usr/bin/batocera-settings-get -f /boot/retrolx-boot.conf es.resolution)"
 if [ -z "${settings_output}" ]
 then
     batocera-resolution minTomaxResolution-secure
@@ -72,10 +72,10 @@ test -n "${display_rotate}" && EXTRA_OPTS="--screenrotate ${display_rotate}"
 
 # nvidia
 # these are 3 variables used only by nvidia to take nvidia gpu over intel cards when such hybrid cards are available
-nvidia_driver="$(/usr/bin/batocera-settings-get -f /boot/batocera-boot.conf nvidia-driver)"
+nvidia_driver="$(/usr/bin/batocera-settings-get -f /boot/retrolx-boot.conf nvidia-driver)"
 if test "${nvidia_driver}" = "true"
 then
-    nvidia_prime="$(/usr/bin/batocera-settings-get -f /boot/batocera-boot.conf nvidia-prime)"
+    nvidia_prime="$(/usr/bin/batocera-settings-get -f /boot/retrolx-boot.conf nvidia-prime)"
     if test "${nvidia_prime}" = "true"
     then
 	export __NV_PRIME_RENDER_OFFLOAD=1

@@ -315,6 +315,27 @@ config BR2_PACKAGE_RETROLX_NETWORKING
 	select BR2_PACKAGE_WGET                                 # download tools
 
 
+config BR2_PACKAGE_RETROLX_FS_TOOLS
+	bool "RetroLX filesystem and partioning packages"
+
+	select BR2_PACKAGE_CIFS_UTILS                           # required for boot mounts
+        select BR2_PACKAGE_HOST_GENIMAGE
+        select BR2_PACKAGE_HOST_GENEXT2FS
+	select BR2_PACKAGE_DOSFSTOOLS                           # fat
+	select BR2_PACKAGE_DOSFSTOOLS_FSCK_FAT                  # fat
+	select BR2_PACKAGE_DOSFSTOOLS_MKFS_FAT                  # fat
+	select BR2_PACKAGE_EXFAT                                # exfat
+	select BR2_PACKAGE_EXFAT_UTILS                          # exfat
+	select BR2_PACKAGE_E2FSPROGS                            # ext4
+	select BR2_PACKAGE_NTFS_3G                              # ntfs
+	select BR2_PACKAGE_NTFS_3G_NTFSPROGS                    # ntfs
+	select BR2_PACKAGE_BTRFS_PROGS                          # btrfs
+	select BR2_PACKAGE_PARTED                               # partition management (for the first boot)
+	select BR2_PACKAGE_GPTFDISK                             # fs resize
+	select BR2_PACKAGE_GPTFDISK_SGDISK                      # fs resize
+	select BR2_PACKAGE_E2FSPROGS                            # fs resize
+	select BR2_PACKAGE_E2FSPROGS_RESIZE2FS                  # fs resize
+
 config BR2_PACKAGE_RETROLX_SYSTEM
 	bool "RetroLX minimal"
 
@@ -329,18 +350,7 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_RETROLX_ES_SYSTEM                    # emulation station es_systems.cfg generator + default roms
 	select BR2_PACKAGE_RETROLX_CONFIGGEN                   # emulation station external command launcher
 	select BR2_PACKAGE_RETROLX_TRIGGERHAPPY                # multimedia/power buttons
-	select BR2_PACKAGE_CIFS_UTILS                           # required for boot mounts
-	select BR2_PACKAGE_RETROLX_IMAGE                       # tools to generate RETROLX image
 	select BR2_TARGET_ROOTFS_SQUASHFS                       # tool to generate the target image
-	select BR2_PACKAGE_DOSFSTOOLS                           # fat
-	select BR2_PACKAGE_DOSFSTOOLS_FSCK_FAT                  # fat
-	select BR2_PACKAGE_DOSFSTOOLS_MKFS_FAT                  # fat
-	select BR2_PACKAGE_EXFAT                                # exfat
-	select BR2_PACKAGE_EXFAT_UTILS                          # exfat
-	select BR2_PACKAGE_E2FSPROGS                            # ext4
-	select BR2_PACKAGE_NTFS_3G                              # ntfs
-	select BR2_PACKAGE_NTFS_3G_NTFSPROGS                    # ntfs
-	select BR2_PACKAGE_BTRFS_PROGS                          # btrfs
 	select BR2_PACKAGE_PM_UTILS                             # suspend
 	select BR2_PACKAGE_QTSIXA_SHANWAN                       # ps3 pad
 	select BR2_PACKAGE_XARCADE2JSTICK                       # keyboard events of the Xarcade Tankstick
@@ -353,7 +363,6 @@ config BR2_PACKAGE_RETROLX_SYSTEM
     select BR2_PACKAGE_UTIL_LINUX_LIBSMARTCOLS              # library is used for smart adaptive formatting of tabular data
     select BR2_PACKAGE_UTIL_LINUX_SETTERM                   # Set terminal attributes
 
-	select BR2_PACKAGE_PARTED                               # partition management (for the first boot)
 	select BR2_PACKAGE_USBMOUNT                             # usb key/sd card mounter
 	select BR2_PACKAGE_USBUTILS                             # usb key/sd card tools
 	select BR2_PACKAGE_RETROLX_SPLASH                       # boot splash
@@ -376,10 +385,6 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_KBD                                  # loadkeys
 	select BR2_PACKAGE_LIBXKKBCOMMON			# requirement for xkb to work, xkb is used by kodi, even without x for the keyboard
 	select BR2_PACKAGE_XKEYBOARD_CONFIG                     if BR2_PACKAGE_LIBXKBCOMMON # requirement for xkb to work, xkb is used by kodi, even without x for the keyboard
-	select BR2_PACKAGE_GPTFDISK                             # fs resize
-	select BR2_PACKAGE_GPTFDISK_SGDISK                      # fs resize
-	select BR2_PACKAGE_E2FSPROGS                            # fs resize
-	select BR2_PACKAGE_E2FSPROGS_RESIZE2FS                  # fs resize
 	select BR2_PACKAGE_FLATPAK                              if BR2_PACKAGE_RETROLX_IS_X86_ARCH # flatpak app packaging system
 
 	# RaspberryPi Firmwares
@@ -398,6 +403,9 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 
 	# RetroLX common base software
 	select BR2_PACKAGE_RETROLX_COMMON
+
+	# RetroLX  filesystem / partitioning required packages
+	select BR2_PACKAGE_RETROLX_FS_TOOLS
 
 	# RetroLX ALSA stack
 	select BR2_PACKAGE_RETROLX_ALSA

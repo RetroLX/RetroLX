@@ -25,7 +25,7 @@ printf "Starting share: "
 # DEV [FSUUID] => a device having the FSUID uuid
 ###
 
-SHARECONFFILE="/boot/batocera-boot.conf"
+SHARECONFFILE="/boot/retrolx-boot.conf"
 INTERNALDEVICE=$(batocera-part "share_internal")
 INTERNALDEVICETYPE=$(blkid "${INTERNALDEVICE}" | sed -e s+'^.* TYPE="\([^"]*\)\".*'+'\1'+)
 
@@ -84,11 +84,12 @@ mountDeviceOrFallback() {
 }
 
 fixbatoceraconfname() {
-    [ -e "/userdata/system/recalbox.conf" ] && mv /userdata/system/recalbox.conf /userdata/system/batocera.conf
+    [ -e "/userdata/system/recalbox.conf" ] && mv /userdata/system/recalbox.conf /userdata/system/retrolx.conf
+    [ -e "/userdata/system/batocera.conf" ] && mv /userdata/system/batocera.conf /userdata/system/retrolx.conf
 }
 
 mountNetwork() {
-    # /boot/batocera-boot.conf examples :
+    # /boot/retrolx-boot.conf examples :
     # sharedevice=NETWORK
     #
     # Basic commands : sharenetwork_<nfs|smb><[0-9]>=<DIR>@<host>:<remote directory>:<mount options>
@@ -109,7 +110,7 @@ mountNetwork() {
     # or
     # sharenetwork_cmd1=mount.cifs //192.168.0.1/batocera /userdata -o guest
 
-    # execute all commands in /boot/batocera-boot.conf which are like : sharenetwork_cmd1=my command
+    # execute all commands in /boot/retrolx-boot.conf which are like : sharenetwork_cmd1=my command
     if ! grep -E '^[ ]*sharenetwork_[a-z]*[0-9][ ]*=' "${SHARECONFFILE}" |
         sed -e s+'^[ ]*sharenetwork_\([a-z]*\)[0-9][ ]*='+'\1 '+ |
         while read -r CTYPE CMD

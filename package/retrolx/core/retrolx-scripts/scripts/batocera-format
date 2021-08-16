@@ -154,7 +154,7 @@ do_format() {
 
 do_format_internal() {
     PARTTYPE=$1
-    CONFIGBOOT="/boot/batocera-boot.conf"
+    CONFIGBOOT="/boot/retrolx-boot.conf"
 
     if test "${PARTTYPE}" != "btrfs" -a "${PARTTYPE}" != "ext4" -a "${PARTTYPE}" != "exfat"
     then

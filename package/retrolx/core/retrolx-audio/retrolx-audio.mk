@@ -28,19 +28,19 @@ define RETROLX_AUDIO_INSTALL_TARGET_CMDS
 		$(TARGET_DIR)/etc/init.d \
 		$(TARGET_DIR)/etc/udev/rules.d
 	# default alsa configurations
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/alsa/asoundrc-* \
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-audio/alsa/asoundrc-* \
 		$(TARGET_DIR)/usr/share/batocera/alsa/
 	# sample audio files
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/*.wav $(TARGET_DIR)/usr/share/sounds
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-audio/*.wav $(TARGET_DIR)/usr/share/sounds
 	# init script
-	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/S01audio \
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-audio/S01audio \
 		$(TARGET_DIR)/etc/init.d/S01audio
 	# udev script to unmute audio devices
-	install -m 0644 $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/90-alsa-setup.rules \
+	install -m 0644 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-audio/90-alsa-setup.rules \
 		$(TARGET_DIR)/etc/udev/rules.d/90-alsa-setup.rules
-	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/soundconfig \
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-audio/soundconfig \
 		$(TARGET_DIR)/usr/bin/soundconfig
-	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/core/batocera-audio/alsa/batocera-audio$(ALSA_SUFFIX) \
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-audio/alsa/batocera-audio$(ALSA_SUFFIX) \
 		$(TARGET_DIR)/usr/bin/batocera-audio
 endef
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BOOTCONF="/boot/batocera-boot.conf"
+BOOTCONF="/boot/retrolx-boot.conf"
 
 # only at start
 test "$1" != "start" && exit 0

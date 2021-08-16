@@ -118,7 +118,7 @@ def createPPSSPPConfig(iniConfig, system):
     else:
         iniConfig.set("General", "EnableCheats", "False")
 
-    # Custom : allow the user to configure directly PPSSPP via batocera.conf via lines like : ppsspp.section.option=value
+    # Custom : allow the user to configure directly PPSSPP via retrolx.conf via lines like : ppsspp.section.option=value
     for user_config in system.config:
         if user_config[:7] == "ppsspp.":
             section_option = user_config[7:]

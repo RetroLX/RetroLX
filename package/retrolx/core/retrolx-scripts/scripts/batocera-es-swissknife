@@ -184,11 +184,11 @@ case ${1,,} in
             rm -rf $HOME/.config/retroarch
             echo "Deleted: dir $HOME/.config/retroarch"
         fi
-        read -p "Do you want to reset RetroArch parameters for 'batocera.conf' file (y/n)? " yn
+        read -p "Do you want to reset RetroArch parameters for 'retrolx.conf' file (y/n)? " yn
         case ${yn:0:1} in
             y|Y)
-                echo "Reseting RetroArch parameter in 'batocera.conf'"
-                sed -i '/^global.retroarch.*/d' $HOME/batocera.conf
+                echo "Reseting RetroArch parameter in 'retrolx.conf'"
+                sed -i '/^global.retroarch.*/d' $HOME/retrolx.conf
             ;;
         esac
         echo "All done! -- Please reboot"

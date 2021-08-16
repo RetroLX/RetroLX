@@ -14,7 +14,7 @@ ROMS = '/userdata/roms'
 
 esInputs = CONF + '/emulationstation/es_input.cfg'
 esSettings = CONF + '/emulationstation/es_settings.cfg'
-batoceraConf = HOME + '/batocera.conf'
+batoceraConf = HOME + '/retrolx.conf'
 logdir = HOME + '/logs/'
 
 from pathlib import Path

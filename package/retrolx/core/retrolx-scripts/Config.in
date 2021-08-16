@@ -1,5 +1,5 @@
 config BR2_PACKAGE_RETROLX_SCRIPTS
-	bool "batocera-scripts"
+	bool "retrolx-scripts"
 
 	select BR2_PACKAGE_BASH
 	select BR2_PACKAGE_PCIUTILS

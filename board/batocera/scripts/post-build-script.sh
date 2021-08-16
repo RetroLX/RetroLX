@@ -75,7 +75,7 @@ fi
 rm -rf "${TARGET_DIR}/"{var,run,sys,tmp} || exit 1
 mkdir "${TARGET_DIR}/"{var,run,sys,tmp}  || exit 1
 
-# make /etc/shadow a file generated from /boot/batocera-boot.conf for security
+# make /etc/shadow a file generated from /boot/retrolx-boot.conf for security
 rm -f "${TARGET_DIR}/etc/shadow" || exit 1
 touch "${TARGET_DIR}/run/batocera.shadow"
 (cd "${TARGET_DIR}/etc" && ln -sf "../run/batocera.shadow" "shadow") || exit 1
@@ -100,7 +100,7 @@ sed -i -e s+'defaults.pcm.ipc_gid .*$'+'defaults.pcm.ipc_gid '"${AUDIOGROUP}"+ "
 
 # bios file
 mkdir -p "${TARGET_DIR}/usr/share/batocera/datainit/bios" || exit 1
-python "${BR2_EXTERNAL_RETROLX_PATH}/package/batocera/core/batocera-scripts/scripts/batocera-systems" --createReadme > "${TARGET_DIR}/usr/share/batocera/datainit/bios/readme.txt" || exit 1
+python "${BR2_EXTERNAL_RETROLX_PATH}/package/retrolx/core/retrolx-scripts/scripts/batocera-systems" --createReadme > "${TARGET_DIR}/usr/share/batocera/datainit/bios/readme.txt" || exit 1
 
 # enable serial console
 SYSTEM_GETTY_PORT=$(grep "BR2_TARGET_GENERIC_GETTY_PORT" "${BR2_CONFIG}" | sed 's/.*\"\(.*\)\"/\1/')

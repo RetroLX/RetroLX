@@ -38,7 +38,7 @@ mkdir -p /var/log
 mkdir -p /var/tmp
 
 # nvidia-driver
-if grep -qE "^[ ]*nvidia-driver[ ]*=[ ]*true[ ]*$" /boot/batocera-boot.conf
+if grep -qE "^[ ]*nvidia-driver[ ]*=[ ]*true[ ]*$" /boot/retrolx-boot.conf
 then
 	echo "blacklist nouveau" > /etc/modprobe.d/blacklist-nouveau.conf
 	echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia-drm.conf
