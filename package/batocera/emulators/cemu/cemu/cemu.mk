@@ -18,8 +18,8 @@ define CEMU_INSTALL_TARGET_CMDS
 	cp -prn $(@D)/cemu_$(CEMU_VERSION)/{Cemu.exe,gameProfiles,resources} $(TARGET_DIR)/usr/cemu/
 
 	# keys.txt
-	mkdir -p $(TARGET_DIR)/usr/share/batocera/datainit/bios/cemu
-	touch $(TARGET_DIR)/usr/share/batocera/datainit/bios/cemu/keys.txt
+	mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/bios/cemu
+	touch $(TARGET_DIR)/usr/share/retrolx/datainit/bios/cemu/keys.txt
 
 	#evmap config
 	mkdir -p $(TARGET_DIR)/usr/share/evmapy

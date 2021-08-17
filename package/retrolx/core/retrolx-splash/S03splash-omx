@@ -13,7 +13,7 @@ do_start ()
     then
         do_imagestart "$(ls /boot/splash/*.{jpg,png} | sed -e "$((RANDOM%$(ls -1 /boot/splash/*.{jpg,png} | wc -l)+1))!d")"
     else
-        do_videostart "/usr/share/batocera/splash/splash.mp4"
+        do_videostart "/usr/share/retrolx/splash/splash.mp4"
     fi
 }
 
@@ -38,7 +38,7 @@ do_videostart ()
     # Launch the video
     omx_fnt="--font=/usr/share/fonts/dejavu/DejaVuSans-BoldOblique.ttf"
     omx_opt="--no-keys --layer=10000 --aspect-mode=fill"
-    omx_srt="--no-ghost-box --lines=1 --align=left $omx_fnt --font-size=20 --subtitles=/usr/share/batocera/splash/splash.srt"
+    omx_srt="--no-ghost-box --lines=1 --align=left $omx_fnt --font-size=20 --subtitles=/usr/share/retrolx/splash/splash.srt"
 
     omx_nosound=
     if soundDisabled

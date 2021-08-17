@@ -1,5 +1,5 @@
 config BR2_PACKAGE_RETROLX_BEZEL
-        bool "batocera bezel"
+        bool "retrolx bezel"
         help
           Batocera bezel
 

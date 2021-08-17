@@ -37,7 +37,7 @@ do_select_audiodevice() {
 		;;
 
 		*)
-			sed -e "s;%CARDNO%;${cardnb};g" -e "s;%DEVICENO%;${devicenb};g" /usr/share/batocera/alsa/asoundrc-dmix+softvol > /userdata/system/.asoundrc
+			sed -e "s;%CARDNO%;${cardnb};g" -e "s;%DEVICENO%;${devicenb};g" /usr/share/retrolx/alsa/asoundrc-dmix+softvol > /userdata/system/.asoundrc
 	esac
 }
 

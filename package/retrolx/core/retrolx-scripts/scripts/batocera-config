@@ -278,7 +278,7 @@ fi
 if [ "$command" = "tz" ];then
     if test "$mode" = ""
     then
-	cat /usr/share/batocera/tz
+	cat /usr/share/retrolx/tz
     else
 	if test -f "/usr/share/zoneinfo/${mode}"
 	then

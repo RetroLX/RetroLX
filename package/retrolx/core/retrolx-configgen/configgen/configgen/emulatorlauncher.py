@@ -63,8 +63,13 @@ def main(args, maxnbplayers):
         if "emulator" in system.config:
             eslog.log("emulator: {}".format(system.config["emulator"]))
 
+    # Use external generator by default, if not builtin (only libretro and flatpak so far)
+    generator = generators['external']
+    if system.config['emulator'] in generators:
+        generator = generators[system.config['emulator']]
+
     # the resolution must be changed before configuration while the configuration may depend on it (ie bezels)
-    wantedGameMode = generators[system.config['emulator']].getResolutionMode(system.config)
+    wantedGameMode = generator.getResolutionMode(system.config)
     systemMode = videoMode.getCurrentMode()
 
     resolutionChanged = False
@@ -125,7 +130,7 @@ def main(args, maxnbplayers):
         if args.autosave is not None:
             system.config["autosave"] = args.autosave
 
-        if generators[system.config['emulator']].getMouseMode(system.config):
+        if generator.getMouseMode(system.config):
             mouseChanged = True
             videoMode.changeMouse(True)
 
@@ -137,11 +142,11 @@ def main(args, maxnbplayers):
         try:
             Evmapy.start(systemName, system.config['emulator'], effectiveCore, effectiveRom, playersControllers)
             # change directory if wanted
-            executionDirectory = generators[system.config['emulator']].executionDirectory(system.config, effectiveRom)
+            executionDirectory = generator.executionDirectory(system.config, effectiveRom)
             if executionDirectory is not None:
                 os.chdir(executionDirectory)
 
-            exitCode = runCommand(generators[system.config['emulator']].generate(system, args.rom, playersControllers, gameResolution))
+            exitCode = runCommand(generator.generate(system, args.rom, playersControllers, gameResolution))
         finally:
             Evmapy.stop()
 

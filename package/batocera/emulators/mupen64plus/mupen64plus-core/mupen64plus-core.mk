@@ -100,9 +100,9 @@ define MUPEN64PLUS_CORE_INSTALL_TARGET_CMDS
 	cp $(@D)/data/mupencheat.txt "$(TARGET_DIR)/usr/share/mupen64plus/mupencheat.txt"
 
 	# input.xml
-	mkdir -p $(TARGET_DIR)/usr/share/batocera/datainit/system/configs/mupen64
+	mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/mupen64
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/emulators/mupen64plus/mupen64plus-core/controllers/input.xml \
-		$(TARGET_DIR)/usr/share/batocera/datainit/system/configs/mupen64
+		$(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/mupen64
 endef
 
 define MUPEN64PLUS_CORE_CROSS_FIXUP

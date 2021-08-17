@@ -1,5 +1,5 @@
 config BR2_PACKAGE_RETROLX_SETTINGS
-	bool "batocera-settings"
+	bool "retrolx-settings"
 
 	help
 	  batocera-settings-get/set binaries

@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-RETROLX_EMULATIONSTATION_VERSION = 52c18e8ce182975935f74015b7ed0348c87188ce
+RETROLX_EMULATIONSTATION_VERSION = c220720557ab4cd2a6ec100bc2b9bdf10c73a1cc
 RETROLX_EMULATIONSTATION_SITE = https://github.com/RetroLX/retrolx-emulationstation
 RETROLX_EMULATIONSTATION_SITE_METHOD = git
 RETROLX_EMULATIONSTATION_LICENSE = MIT
@@ -77,9 +77,9 @@ define RETROLX_EMULATIONSTATION_RESOURCES
 	$(INSTALL) -m 0644 -D $(@D)/resources/services/*.* $(TARGET_DIR)/usr/share/emulationstation/resources/services
 
 	# es_input.cfg
-	mkdir -p $(TARGET_DIR)/usr/share/batocera/datainit/system/configs/emulationstation
+	mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/emulationstation
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/controllers/es_input.cfg \
-		$(TARGET_DIR)/usr/share/batocera/datainit/system/configs/emulationstation
+		$(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/emulationstation
 endef
 
 ### S31emulationstation

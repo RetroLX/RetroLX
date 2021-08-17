@@ -16,12 +16,12 @@ case "${ACTION}" in
 		case "${MODE}" in
 			auto | hdmi)
 				# card 2: HDMI [HDMI], device 0: ff8a0000.i2s-i2s-hifi i2s-hifi-0 [ff8a0000.i2s-i2s-hifi i2s-hifi-0]
-				sed -e "s;%CARDNO%;2;g" -e "s;%DEVICENO%;0;g" /usr/share/batocera/alsa/asoundrc-dmix+softvol > /userdata/system/.asoundrc
+				sed -e "s;%CARDNO%;2;g" -e "s;%DEVICENO%;0;g" /usr/share/retrolx/alsa/asoundrc-dmix+softvol > /userdata/system/.asoundrc
 			;;
 
 			headphones)
 				# card 0: ES8316 [ES8316], device 0: ff890000.i2s-ES8316 HiFi ES8316 HiFi-0 [ff890000.i2s-ES8316 HiFi ES8316 HiFi-0]
-				sed -e "s;%CARDNO%;0;g" -e "s;%DEVICENO%;0;g" /usr/share/batocera/alsa/asoundrc-dmix+softvol > /userdata/system/.asoundrc
+				sed -e "s;%CARDNO%;0;g" -e "s;%DEVICENO%;0;g" /usr/share/retrolx/alsa/asoundrc-dmix+softvol > /userdata/system/.asoundrc
 			;;
 
 			custom)

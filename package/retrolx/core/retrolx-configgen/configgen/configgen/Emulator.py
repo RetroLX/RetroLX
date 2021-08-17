@@ -51,9 +51,9 @@ class Emulator():
         # update renderconfig
         self.renderconfig = {}
         if "shaderset" in self.config and self.config["shaderset"] != "none":
-            self.renderconfig = Emulator.get_generic_config(self.name, "/usr/share/batocera/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults.yml", "/usr/share/batocera/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults-arch.yml")
+            self.renderconfig = Emulator.get_generic_config(self.name, "/usr/share/retrolx/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults.yml", "/usr/share/retrolx/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults-arch.yml")
         if "shaderset" not in self.config: # auto
-            self.renderconfig = Emulator.get_generic_config(self.name, "/usr/share/batocera/shaders/configs/rendering-defaults.yml", "/usr/share/batocera/shaders/configs/rendering-defaults-arch.yml")
+            self.renderconfig = Emulator.get_generic_config(self.name, "/usr/share/retrolx/shaders/configs/rendering-defaults.yml", "/usr/share/retrolx/shaders/configs/rendering-defaults-arch.yml")
 
         # for compatibility with earlier Batocera versions, let's keep -renderer
         # but it should be reviewed when we refactor configgen (to Python3?)

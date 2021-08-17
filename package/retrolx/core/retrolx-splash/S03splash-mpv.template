@@ -21,7 +21,7 @@ do_start ()
     then
         do_imagestart "$(ls /boot/splash/*.{jpg,png} | sed -e "$((RANDOM%$(ls -1 /boot/splash/*.{jpg,png} | wc -l)+1))!d")"
     else
-        do_videostart "/usr/share/batocera/splash/splash.mp4"
+        do_videostart "/usr/share/retrolx/splash/splash.mp4"
     fi
 }
 

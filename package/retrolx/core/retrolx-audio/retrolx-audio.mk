@@ -24,12 +24,12 @@ define RETROLX_AUDIO_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/usr/lib/python3.9 \
 		$(TARGET_DIR)/usr/bin \
 		$(TARGET_DIR)/usr/share/sounds \
-		$(TARGET_DIR)/usr/share/batocera/alsa \
+		$(TARGET_DIR)/usr/share/retrolx/alsa \
 		$(TARGET_DIR)/etc/init.d \
 		$(TARGET_DIR)/etc/udev/rules.d
 	# default alsa configurations
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-audio/alsa/asoundrc-* \
-		$(TARGET_DIR)/usr/share/batocera/alsa/
+		$(TARGET_DIR)/usr/share/retrolx/alsa/
 	# sample audio files
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-audio/*.wav $(TARGET_DIR)/usr/share/sounds
 	# init script

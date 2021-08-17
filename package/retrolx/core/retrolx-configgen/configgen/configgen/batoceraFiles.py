@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-HOME_INIT = '/usr/share/batocera/datainit/system/'
+HOME_INIT = '/usr/share/retrolx/datainit/system/'
 HOME = '/userdata/system'
 CONF_INIT = HOME_INIT + '/configs'
 CONF = HOME + '/configs'
@@ -67,7 +67,7 @@ mupenCustom = mupenConf + "mupen64plus.cfg"
 mupenInput = mupenConf + "InputAutoCfg.ini"
 mupenSaves = SAVES + "/n64"
 mupenMappingUser    = mupenConf + 'input.xml'
-mupenMappingSystem  = '/usr/share/batocera/datainit/system/configs/mupen64/input.xml'
+mupenMappingSystem  = '/usr/share/retrolx/datainit/system/configs/mupen64/input.xml'
 
 moonlightCustom = CONF+'/moonlight'
 moonlightConfigFile = moonlightCustom + '/moonlight.conf'
@@ -107,7 +107,7 @@ solarusSaves = SAVES + '/solarus'
 
 viceConfig = CONF + "/vice"
 
-overlaySystem = "/usr/share/batocera/datainit/decorations"
+overlaySystem = "/usr/share/retrolx/datainit/decorations"
 overlayUser = "/userdata/decorations"
 overlayConfigFile = "/userdata/system/configs/retroarch/overlay.cfg"
 
