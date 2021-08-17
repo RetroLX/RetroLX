@@ -1,5 +1,5 @@
 config BR2_PACKAGE_RETROLX_SHADERS
-        bool "batocera shaders"
+        bool "retrolx shaders"
 	depends on BR2_PACKAGE_RETROARCH
         select BR2_PACKAGE_GLSL_SHADERS
         help

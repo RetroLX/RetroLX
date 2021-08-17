@@ -38,7 +38,7 @@ else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_H3),y)
 	RETROLX_SHADERS_SYSTEM=h3
 endif
 
-RETROLX_SHADERS_DIRIN=$(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/emulators/retroarch/shaders/batocera-shaders/configs
+RETROLX_SHADERS_DIRIN=$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/retroarch/shaders/retrolx-shaders/configs
 
 define RETROLX_SHADERS_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/usr/share/batocera/shaders/configs
