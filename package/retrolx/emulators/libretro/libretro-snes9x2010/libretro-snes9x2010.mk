@@ -3,8 +3,8 @@
 # SNES9X2010
 #
 ################################################################################
-# Version.: Commits on Aug 9, 2021
-LIBRETRO_SNES9X2010_VERSION = 91826e15065e00f43e2d7bbe54e7795e4cfbb556
+# Version.: Commits on Aug 17, 2021
+LIBRETRO_SNES9X2010_VERSION = d0c0e763753c4c9574c83eaffb369f96deac8279
 LIBRETRO_SNES9X2010_SITE = $(call github,libretro,snes9x2010,$(LIBRETRO_SNES9X2010_VERSION))
 LIBRETRO_SNES9X2010_LICENSE = Non-commercial
 
