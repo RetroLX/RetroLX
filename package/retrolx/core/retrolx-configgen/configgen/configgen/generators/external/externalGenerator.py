@@ -34,7 +34,7 @@ class ExternalGenerator(Generator):
         generatorName = getattr(module,'getGeneratorName')()
         generator = getattr(module,generatorName)();
         # Call it as a regular configgen module
-       return generator.generate(system, rom, playersControllers, gameResolution)
+        return generator.generate(system, rom, playersControllers, gameResolution)
 
     def getResolutionMode(self, config):
         # Try to load external generator module
