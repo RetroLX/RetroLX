@@ -1,5 +1,5 @@
 pkgname = lr-opera
-pkgver = 20210712-1
+pkgver = 20210816-1
 pkgdesc = Opera (3DO) libretro core
 group = emulator
 packager = https://retrolx.org 

@@ -1,5 +1,5 @@
 pkgname = lr-melonds
-pkgver = 20210817-1
+pkgver = 20210818-1
 pkgdesc = melonDS libretro core
 group = emulator
 packager = https://retrolx.org 

@@ -1,0 +1,35 @@
+################################################################################
+#
+# MEDNAFEN
+#
+################################################################################
+# Version.: Release on Jun 16, 2021
+MEDNAFEN_VERSION = 1.27.1
+MEDNAFEN_SOURCE = mednafen-$(MEDNAFEN_VERSION).tar.xz
+MEDNAFEN_SITE = https://mednafen.github.io/releases/files
+MEDNAFEN_LICENSE = GPLv3
+MEDNAFEN_DEPENDENCIES = sdl2 zlib libpng
+
+MEDNAFEN_PKG_DIR = $(TARGET_DIR)/opt/retrolx/mednafen
+MEDNAFEN_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/mednafen
+
+define MEDNAFEN_MAKEPKG
+	# Create directories
+	mkdir -p $(MEDNAFEN_PKG_DIR)$(MEDNAFEN_PKG_INSTALL_DIR)
+
+	# Copy package files
+	$(INSTALL) -D $(@D)/src/mednafen $(MEDNAFEN_PKG_DIR)$(MEDNAFEN_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(MEDNAFEN_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/mednafen/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
+endef
+
+MEDNAFEN_POST_INSTALL_TARGET_HOOKS = MEDNAFEN_MAKEPKG
+
+$(eval $(autotools-package))
