@@ -1,8 +1,8 @@
 config BR2_PACKAGE_MEDNAFEN
     bool "mednafen"
-    select BR2_PACKAGE_SDL2
-    select BR2_PACKAGE_ZLIB
-    select BR2_PACKAGE_LIBPNG
+    depends on BR2_PACKAGE_SDL2
+    depends on BR2_PACKAGE_ZLIB
+    depends on BR2_PACKAGE_LIBPNG
 
     help
         Mednafen is a portable, utilizing OpenGL and SDL, argument(command-line)-driven multi-system emulator.
