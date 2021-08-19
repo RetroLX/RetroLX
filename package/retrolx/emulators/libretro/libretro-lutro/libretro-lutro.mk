@@ -7,6 +7,9 @@ LIBRETRO_LUTRO_VERSION = 1de21d04160d8aa6e1dba76e38f669772ef98c3e
 LIBRETRO_LUTRO_SITE = $(call github,libretro,libretro-lutro,$(LIBRETRO_LUTRO_VERSION))
 LIBRETRO_LUTRO_LICENSE = MIT
 
+LIBRETRO_LUTRO_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
+LIBRETRO_LUTRO_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-lutro
+
 LIBRETRO_LUTRO_PLATFORM = $(LIBRETRO_PLATFORM)
 
 ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S812),y)
@@ -26,9 +29,24 @@ define LIBRETRO_LUTRO_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/ -f Makefile platform="$(LIBRETRO_LUTRO_PLATFORM)"
 endef
 
-define LIBRETRO_LUTRO_INSTALL_TARGET_CMDS
+define LIBRETRO_LUTRO_MAKEPKG
+	# Create directories
+	mkdir -p $(LIBRETRO_LUTRO_PKG_DIR)$(LIBRETRO_LUTRO_PKG_INSTALL_DIR)
+
+	# Copy package files
 	$(INSTALL) -D $(@D)/lutro_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/lutro_libretro.so
+	$(LIBRETRO_LUTRO_PKG_DIR)$(LIBRETRO_LUTRO_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(LIBRETRO_LUTRO_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-lutro/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
+
+LIBRETRO_LUTRO_POST_INSTALL_TARGET_HOOKS = LIBRETRO_LUTRO_MAKEPKG
 
 $(eval $(generic-package))
