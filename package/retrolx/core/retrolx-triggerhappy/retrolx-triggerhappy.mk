@@ -24,7 +24,6 @@ define RETROLX_TRIGGERHAPPY_INSTALL_RK3326_CONFIG
 
 	# erase because some models are missing
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-triggerhappy/conf/multimedia_keys_odroidgoadvance.conf       $(TARGET_DIR)/etc/triggerhappy/triggers.d/multimedia_keys.conf
-
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-triggerhappy/conf/multimedia_keys_gameforce.conf       $(TARGET_DIR)/etc/triggerhappy/triggers.d/multimedia_keys.conf
 endef
 
