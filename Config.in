@@ -256,7 +256,6 @@ menu "Emulators"
   endmenu
 
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/pcsx2/Config.in"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/pcsx2_avx2/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/rpcs3/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/vice/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/citra/Config.in"

@@ -32,7 +32,7 @@ class ExternalGenerator(Generator):
 
     def generate(self, system, rom, playersControllers, gameResolution):
         # Try to load external generator module
-        generator = importExternalGenerator(config['emulator'])
+        generator = importExternalGenerator(system.config['emulator'])
         # Call it as a regular configgen module
         return generator.generate(system, rom, playersControllers, gameResolution)
 
@@ -46,7 +46,7 @@ class ExternalGenerator(Generator):
         # Try to load external generator module
         generator = importExternalGenerator(config['emulator'])
         # Call it as a regular configgen module
-        return generator.getMouseMose(config)
+        return generator.getMouseMode(config)
 
     def executionDirectory(self, config, rom):
         # Try to load external generator module

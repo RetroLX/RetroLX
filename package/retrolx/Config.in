@@ -384,7 +384,6 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 
 	# Sony PS2
 	select BR2_PACKAGE_PCSX2                        if BR2_x86_64
-	select BR2_PACKAGE_PCSX2_AVX2                   if BR2_x86_64
 
 	# Sony PS3
 	#select BR2_PACKAGE_RPCS3                        if BR2_x86_64

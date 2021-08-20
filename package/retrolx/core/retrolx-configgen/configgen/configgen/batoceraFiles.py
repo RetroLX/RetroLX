@@ -28,7 +28,6 @@ if (arch=="x86_64"):
 
 # This dict is indexed on the emulator name, not on the system
 batoceraBins = {'dosbox'         : retrolxPackages+'/dosbox/dosbox'
-              , 'dosbox_staging' : retrolxPackages+'/dosbox-staging/dosbox-staging'
               , 'dosboxx'        : retrolxPackages+'/dosbox-x/dosbox-x'
               , 'libretro'       : '/usr/bin/retroarch'
               , 'linapple'       : retrolxPackages+'/linapple/linapple'
@@ -90,9 +89,6 @@ pcsx2ConfigDir      = "/userdata/system/configs/PCSX2"
 
 dosboxCustom = CONF + '/dosbox'
 dosboxConfig = dosboxCustom + '/dosbox.conf'
-
-dosboxStagingCustom = CONF + '/dosbox'
-dosboxStagingConfig = dosboxStagingCustom + '/dosbox.conf'
 
 dosboxxCustom = CONF + '/dosbox'
 dosboxxConfig = dosboxxCustom + '/dosboxx.conf'
