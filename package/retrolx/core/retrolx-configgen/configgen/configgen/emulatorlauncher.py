@@ -7,50 +7,9 @@ from sys import exit
 from Emulator import Emulator
 from Evmapy import Evmapy
 import generators
-from generators.linapple.linappleGenerator import LinappleGenerator
 from generators.libretro.libretroGenerator import LibretroGenerator
-from generators.moonlight.moonlightGenerator import MoonlightGenerator
-from generators.mupen.mupenGenerator import MupenGenerator
-from generators.ppsspp.ppssppGenerator import PPSSPPGenerator
-from generators.flycast.flycastGenerator import FlycastGenerator
-from generators.dolphin.dolphinGenerator import DolphinGenerator
-from generators.pcsx2.pcsx2Generator import Pcsx2Generator
-from generators.scummvm.scummvmGenerator import ScummVMGenerator
-from generators.dosbox.dosboxGenerator import DosBoxGenerator
-from generators.dosboxstaging.dosboxstagingGenerator import DosBoxStagingGenerator
-from generators.dosboxx.dosboxxGenerator import DosBoxxGenerator
-from generators.vice.viceGenerator import ViceGenerator
-from generators.fsuae.fsuaeGenerator import FsuaeGenerator
-from generators.amiberry.amiberryGenerator import AmiberryGenerator
-from generators.citra.citraGenerator import CitraGenerator
-from generators.daphne.daphneGenerator import DaphneGenerator
-from generators.cannonball.cannonballGenerator import CannonballGenerator
-from generators.sdlpop.sdlpopGenerator import SdlPopGenerator
-from generators.openbor.openborGenerator import OpenborGenerator
-from generators.wine.wineGenerator import WineGenerator
-from generators.cemu.cemuGenerator import CemuGenerator
-from generators.melonds.melondsGenerator import MelonDSGenerator
-from generators.rpcs3.rpcs3Generator import Rpcs3Generator
-from generators.mame.mameGenerator import MameGenerator
-from generators.devilutionx.devilutionxGenerator import DevilutionXGenerator
-from generators.hatari.hatariGenerator import HatariGenerator
-from generators.solarus.solarusGenerator import SolarusGenerator
-from generators.easyrpg.easyrpgGenerator import EasyRPGGenerator
-from generators.redream.redreamGenerator import RedreamGenerator
-from generators.supermodel.supermodelGenerator import SupermodelGenerator
-from generators.xash3d_fwgs.xash3dFwgsGenerator import Xash3dFwgsGenerator
-from generators.tsugaru.tsugaruGenerator import TsugaruGenerator
-from generators.mugen.mugenGenerator import MugenGenerator
-from generators.fpinball.fpinballGenerator import FpinballGenerator
-from generators.lightspark.lightsparkGenerator import LightsparkGenerator
-from generators.ruffle.ruffleGenerator import RuffleGenerator
-from generators.duckstation.duckstationGenerator import DuckstationGenerator
-from generators.drastic.drasticGenerator import DrasticGenerator
-from generators.xemu.xemuGenerator import XemuGenerator
-from generators.cgenius.cgeniusGenerator import CGeniusGenerator
+from generators.external.externalGenerator import ExternalGenerator
 from generators.flatpak.flatpakGenerator import FlatpakGenerator
-from generators.ecwolf.ecwolfGenerator import ECWolfGenerator
-from generators.lexaloffle.lexaloffleGenerator import LexaloffleGenerator
 
 import controllersConfig as controllers
 import signal
@@ -61,50 +20,9 @@ import utils.videoMode as videoMode
 from utils.logger import eslog
 
 generators = {
-    'linapple': LinappleGenerator(),
     'libretro': LibretroGenerator(),
-    'moonlight': MoonlightGenerator(),
-    'scummvm': ScummVMGenerator(),
-    'dosbox': DosBoxGenerator(),
-    'dosbox_staging': DosBoxStagingGenerator(),
-    'dosboxx': DosBoxxGenerator(),
-    'mupen64plus': MupenGenerator(),
-    'vice': ViceGenerator(),
-    'fsuae': FsuaeGenerator(),
-    'amiberry': AmiberryGenerator(),
-    'flycast': FlycastGenerator(),
-    'dolphin': DolphinGenerator(),
-    'pcsx2': Pcsx2Generator(),
-    'ppsspp': PPSSPPGenerator(),
-    'citra' : CitraGenerator(),
-    'daphne' : DaphneGenerator(),
-    'cannonball' : CannonballGenerator(),
-    'sdlpop' : SdlPopGenerator(),
-    'openbor' : OpenborGenerator(),
-    'wine' : WineGenerator(),
-    'cemu' : CemuGenerator(),
-    'melonds' : MelonDSGenerator(),
-    'rpcs3' : Rpcs3Generator(),
-    'mame' : MameGenerator(),
-    'devilutionx': DevilutionXGenerator(),
-    'hatari': HatariGenerator(),
-    'solarus': SolarusGenerator(),
-    'easyrpg': EasyRPGGenerator(),
-    'redream': RedreamGenerator(),
-    'supermodel': SupermodelGenerator(),
-    'xash3d_fwgs': Xash3dFwgsGenerator(),
-    'tsugaru': TsugaruGenerator(),
-    'mugen': MugenGenerator(),
-    'fpinball': FpinballGenerator(),
-    'lightspark': LightsparkGenerator(),
-    'ruffle': RuffleGenerator(),
-    'duckstation': DuckstationGenerator(),
-    'drastic': DrasticGenerator(),
-    'xemu': XemuGenerator(),
-    'cgenius': CGeniusGenerator(),
+    'external': ExternalGenerator(),
     'flatpak': FlatpakGenerator(),
-    'ecwolf': ECWolfGenerator(),
-    'lexaloffle': LexaloffleGenerator(),
 }
 
 def main(args, maxnbplayers):
@@ -145,8 +63,13 @@ def main(args, maxnbplayers):
         if "emulator" in system.config:
             eslog.log("emulator: {}".format(system.config["emulator"]))
 
+    # Use external generator by default, if not builtin (only libretro and flatpak so far)
+    generator = generators['external']
+    if system.config['emulator'] in generators:
+        generator = generators[system.config['emulator']]
+
     # the resolution must be changed before configuration while the configuration may depend on it (ie bezels)
-    wantedGameMode = generators[system.config['emulator']].getResolutionMode(system.config)
+    wantedGameMode = generator.getResolutionMode(system.config)
     systemMode = videoMode.getCurrentMode()
 
     resolutionChanged = False
@@ -207,7 +130,7 @@ def main(args, maxnbplayers):
         if args.autosave is not None:
             system.config["autosave"] = args.autosave
 
-        if generators[system.config['emulator']].getMouseMode(system.config):
+        if generator.getMouseMode(system.config):
             mouseChanged = True
             videoMode.changeMouse(True)
 
@@ -219,11 +142,11 @@ def main(args, maxnbplayers):
         try:
             Evmapy.start(systemName, system.config['emulator'], effectiveCore, effectiveRom, playersControllers)
             # change directory if wanted
-            executionDirectory = generators[system.config['emulator']].executionDirectory(system.config, effectiveRom)
+            executionDirectory = generator.executionDirectory(system.config, effectiveRom)
             if executionDirectory is not None:
                 os.chdir(executionDirectory)
 
-            exitCode = runCommand(generators[system.config['emulator']].generate(system, args.rom, playersControllers, gameResolution))
+            exitCode = runCommand(generator.generate(system, args.rom, playersControllers, gameResolution))
         finally:
             Evmapy.stop()
 
@@ -325,6 +248,92 @@ if __name__ == '__main__':
     time.sleep(1) # this seems to be required so that the gpu memory is restituated and available for es
     eslog.log("Exiting configgen with status {}".format(str(exitcode)))
     exit(exitcode)
+
+#from generators.linapple.linappleGenerator import LinappleGenerator
+#from generators.moonlight.moonlightGenerator import MoonlightGenerator
+#from generators.mupen.mupenGenerator import MupenGenerator
+#from generators.ppsspp.ppssppGenerator import PPSSPPGenerator
+#from generators.flycast.flycastGenerator import FlycastGenerator
+#from generators.dolphin.dolphinGenerator import DolphinGenerator
+#from generators.pcsx2.pcsx2Generator import Pcsx2Generator
+#from generators.scummvm.scummvmGenerator import ScummVMGenerator
+#from generators.dosbox.dosboxGenerator import DosBoxGenerator
+#from generators.dosboxstaging.dosboxstagingGenerator import DosBoxStagingGenerator
+#from generators.dosboxx.dosboxxGenerator import DosBoxxGenerator
+#from generators.vice.viceGenerator import ViceGenerator
+#from generators.fsuae.fsuaeGenerator import FsuaeGenerator
+#from generators.amiberry.amiberryGenerator import AmiberryGenerator
+#from generators.citra.citraGenerator import CitraGenerator
+#from generators.daphne.daphneGenerator import DaphneGenerator
+#from generators.cannonball.cannonballGenerator import CannonballGenerator
+#from generators.sdlpop.sdlpopGenerator import SdlPopGenerator
+#from generators.openbor.openborGenerator import OpenborGenerator
+#from generators.wine.wineGenerator import WineGenerator
+#from generators.cemu.cemuGenerator import CemuGenerator
+#from generators.melonds.melondsGenerator import MelonDSGenerator
+#from generators.rpcs3.rpcs3Generator import Rpcs3Generator
+#from generators.mame.mameGenerator import MameGenerator
+#from generators.devilutionx.devilutionxGenerator import DevilutionXGenerator
+#from generators.hatari.hatariGenerator import HatariGenerator
+#from generators.solarus.solarusGenerator import SolarusGenerator
+#from generators.easyrpg.easyrpgGenerator import EasyRPGGenerator
+#from generators.redream.redreamGenerator import RedreamGenerator
+#from generators.supermodel.supermodelGenerator import SupermodelGenerator
+#from generators.xash3d_fwgs.xash3dFwgsGenerator import Xash3dFwgsGenerator
+#from generators.tsugaru.tsugaruGenerator import TsugaruGenerator
+#from generators.mugen.mugenGenerator import MugenGenerator
+#from generators.fpinball.fpinballGenerator import FpinballGenerator
+#from generators.lightspark.lightsparkGenerator import LightsparkGenerator
+#from generators.ruffle.ruffleGenerator import RuffleGenerator
+#from generators.duckstation.duckstationGenerator import DuckstationGenerator
+#from generators.drastic.drasticGenerator import DrasticGenerator
+#from generators.xemu.xemuGenerator import XemuGenerator
+#from generators.cgenius.cgeniusGenerator import CGeniusGenerator
+#from generators.ecwolf.ecwolfGenerator import ECWolfGenerator
+#from generators.lexaloffle.lexaloffleGenerator import LexaloffleGenerator
+
+#    'linapple': LinappleGenerator(),
+#    'moonlight': MoonlightGenerator(),
+#    'scummvm': ScummVMGenerator(),
+#    'dosbox': DosBoxGenerator(),
+#    'dosbox_staging': DosBoxStagingGenerator(),
+#    'dosboxx': DosBoxxGenerator(),
+#    'mupen64plus': MupenGenerator(),
+#    'vice': ViceGenerator(),
+#    'fsuae': FsuaeGenerator(),
+#    'amiberry': AmiberryGenerator(),
+#    'flycast': FlycastGenerator(),
+#    'dolphin': DolphinGenerator(),
+#    'pcsx2': Pcsx2Generator(),
+#    'ppsspp': PPSSPPGenerator(),
+#    'citra' : CitraGenerator(),
+#    'daphne' : DaphneGenerator(),
+#    'cannonball' : CannonballGenerator(),
+#    'sdlpop' : SdlPopGenerator(),
+#    'openbor' : OpenborGenerator(),
+#    'wine' : WineGenerator(),
+#    'cemu' : CemuGenerator(),
+#    'melonds' : MelonDSGenerator(),
+#    'rpcs3' : Rpcs3Generator(),
+#    'mame' : MameGenerator(),
+#    'devilutionx': DevilutionXGenerator(),
+#    'hatari': HatariGenerator(),
+#    'solarus': SolarusGenerator(),
+#    'easyrpg': EasyRPGGenerator(),
+#    'redream': RedreamGenerator(),
+#    'supermodel': SupermodelGenerator(),
+#    'xash3d_fwgs': Xash3dFwgsGenerator(),
+#    'tsugaru': TsugaruGenerator(),
+#    'mugen': MugenGenerator(),
+#    'fpinball': FpinballGenerator(),
+#    'lightspark': LightsparkGenerator(),
+#    'ruffle': RuffleGenerator(),
+#    'duckstation': DuckstationGenerator(),
+#    'drastic': DrasticGenerator(),
+#    'xemu': XemuGenerator(),
+#    'cgenius': CGeniusGenerator(),
+#    'ecwolf': ECWolfGenerator(),
+#    'lexaloffle': LexaloffleGenerator(),
 
 # Local Variables:
 # tab-width:4

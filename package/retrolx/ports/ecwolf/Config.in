@@ -2,7 +2,7 @@ config BR2_PACKAGE_ECWOLF
     depends on BR2_PACKAGE_SDL2
     depends on BR2_PACKAGE_SDL2_NET
     depends on BR2_PACKAGE_SDL2_MIXER
-    depends on BR2_PACKAGE_LIBJPEG
+    depends on BR2_PACKAGE_JPEG
     depends on BR2_PACKAGE_FLUIDSYNTH
     depends on BR2_PACKAGE_LIBMODPLUG
     depends on BR2_PACKAGE_OPUSFILE

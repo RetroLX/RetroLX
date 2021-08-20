@@ -3,7 +3,7 @@
 DAEMON="splash"
 
 soundDisabled() {
-    grep -qE "^[ ]*splash.screen.sound[ ]*=[ ]*0[ ]*$" /boot/batocera-boot.conf
+    grep -qE "^[ ]*splash.screen.sound[ ]*=[ ]*0[ ]*$" /boot/retrolx-boot.conf
 }
 
 do_angels_conversion ()
@@ -21,7 +21,7 @@ do_start ()
     then
         do_imagestart "$(ls /boot/splash/*.{jpg,png} | sed -e "$((RANDOM%$(ls -1 /boot/splash/*.{jpg,png} | wc -l)+1))!d")"
     else
-        do_videostart "/usr/share/batocera/splash/splash.mp4"
+        do_videostart "/usr/share/retrolx/splash/splash.mp4"
     fi
 }
 
@@ -50,7 +50,7 @@ do_videostart ()
     fi
 
     mpv_video=
-    video_rotation=$(batocera-settings-get -f /boot/batocera-boot.conf splash.video.rotation)
+    video_rotation=$(batocera-settings-get -f /boot/retrolx-boot.conf splash.video.rotation)
     if [[ $? -eq 0 ]]; then
         video_rotation=$(do_angels_conversion $video_rotation)
         [[ $? -eq 0 ]] && mpv_video=--video-rotate=${video_rotation}
@@ -64,7 +64,7 @@ do_videostart ()
 case "$1" in
     start)
         printf 'Starting %s: ' "$DAEMON"
-        grep -qE '^[ ]*splash.screen.enabled[ ]*=[ ]*0[ ]*$' "/boot/batocera-boot.conf" && exit 0
+        grep -qE '^[ ]*splash.screen.enabled[ ]*=[ ]*0[ ]*$' "/boot/retrolx-boot.conf" && exit 0
         do_start &
         echo "OK"
         ;;

@@ -7,7 +7,7 @@
 SUPERMODEL_VERSION = r862
 SUPERMODEL_SITE = https://svn.code.sf.net/p/model3emu/code/trunk
 SUPERMODEL_SITE_METHOD=svn
-SUPERMODEL_DEPENDENCIES = sdl2 zlib libglew libzip sdl2_net
+SUPERMODEL_DEPENDENCIES = sdl2 libglew libzip sdl2_net
 SUPERMODEL_LICENSE = GPLv3
 
 SUPERMODEL_PKG_DIR = $(TARGET_DIR)/opt/retrolx/supermodel

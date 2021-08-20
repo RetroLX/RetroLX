@@ -1,8 +1,8 @@
 #!/bin/sh
 
 ### choose configuration file
-BATOCONF="/userdata/system/batocera.conf"
-BOOTCONF="/boot/batocera-boot.conf"
+BATOCONF="/userdata/system/retrolx.conf"
+BOOTCONF="/boot/retrolx-boot.conf"
 
 # if /userdata is not yet available
 if ! [ -f "$BATOCONF" ]; then

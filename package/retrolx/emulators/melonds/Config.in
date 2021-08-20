@@ -1,10 +1,9 @@
 config BR2_PACKAGE_MELONDS
+    bool "melonDS"
     depends on BR2_PACKAGE_SDL2
     depends on BR2_PACKAGE_SLIRP
     depends on BR2_PACKAGE_RETROLX_QT
-    select BR2_PACKAGE_QT5BASE_OPENGL
-    bool "melonDS"
+    select BR2_PACKAGE_QT5BASE_OPENGL if BR2_PACKAGE_RETROLX_TARGET_X86_64
     help
       Ninteno DS emulator, sorta
-
-	    http://melonds.kuribo64.net/
+      http://melonds.kuribo64.net/

@@ -40,7 +40,7 @@ ba_xarcade2jstick() {
         if [ $? -ne "0" ]
         then
             # the user must have a keyboard encoder then
-            for dev in /usr/share/batocera/datainit/system/configs/xarcade2jstick/*
+            for dev in /usr/share/retrolx/datainit/system/configs/xarcade2jstick/*
             do
                 dev=$(basename "$dev")
                 [ -h "/dev/input/by-id/$dev" ] && /usr/bin/xarcade2jstick -d -e "/dev/input/by-id/$dev" >/dev/null 2>&1 && break
@@ -57,7 +57,7 @@ case "$1" in
   start)
     printf "Starting system: "
     # Remove carriage return characters from Windows files
-    dos2unix /userdata/system/batocera.conf
+    dos2unix /userdata/system/retrolx.conf
 
     # configure
     ba_keyboard_lang &

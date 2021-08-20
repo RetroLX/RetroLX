@@ -17,9 +17,9 @@ define XARCADE2JSTICK_INSTALL_TARGET_CMDS
     $(INSTALL) -D -m 0755 $(@D)/src/xarcade2jstick $(TARGET_DIR)/usr/bin/xarcade2jstick
 
     # config
-	mkdir -p $(TARGET_DIR)/usr/share/batocera/datainit/system/configs/xarcade2jstick
+	mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/xarcade2jstick
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/controllers/xarcade2jstick/config/* \
-		$(TARGET_DIR)/usr/share/batocera/datainit/system/configs/xarcade2jstick
+		$(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/xarcade2jstick
 endef
 
 $(eval $(generic-package))

@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_TRIGGERHAPPY
+	bool "retrolx-triggerhappy"
+
+	select BR2_PACKAGE_TRIGGERHAPPY

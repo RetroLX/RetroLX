@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-HOME_INIT = '/usr/share/batocera/datainit/system/'
+HOME_INIT = '/usr/share/retrolx/datainit/system/'
 HOME = '/userdata/system'
 CONF_INIT = HOME_INIT + '/configs'
 CONF = HOME + '/configs'
@@ -14,7 +14,7 @@ ROMS = '/userdata/roms'
 
 esInputs = CONF + '/emulationstation/es_input.cfg'
 esSettings = CONF + '/emulationstation/es_settings.cfg'
-batoceraConf = HOME + '/batocera.conf'
+batoceraConf = HOME + '/retrolx.conf'
 logdir = HOME + '/logs/'
 
 from pathlib import Path
@@ -28,7 +28,6 @@ if (arch=="x86_64"):
 
 # This dict is indexed on the emulator name, not on the system
 batoceraBins = {'dosbox'         : retrolxPackages+'/dosbox/dosbox'
-              , 'dosbox_staging' : retrolxPackages+'/dosbox-staging/dosbox-staging'
               , 'dosboxx'        : retrolxPackages+'/dosbox-x/dosbox-x'
               , 'libretro'       : '/usr/bin/retroarch'
               , 'linapple'       : retrolxPackages+'/linapple/linapple'
@@ -67,7 +66,7 @@ mupenCustom = mupenConf + "mupen64plus.cfg"
 mupenInput = mupenConf + "InputAutoCfg.ini"
 mupenSaves = SAVES + "/n64"
 mupenMappingUser    = mupenConf + 'input.xml'
-mupenMappingSystem  = '/usr/share/batocera/datainit/system/configs/mupen64/input.xml'
+mupenMappingSystem  = '/usr/share/retrolx/datainit/system/configs/mupen64/input.xml'
 
 moonlightCustom = CONF+'/moonlight'
 moonlightConfigFile = moonlightCustom + '/moonlight.conf'
@@ -91,9 +90,6 @@ pcsx2ConfigDir      = "/userdata/system/configs/PCSX2"
 dosboxCustom = CONF + '/dosbox'
 dosboxConfig = dosboxCustom + '/dosbox.conf'
 
-dosboxStagingCustom = CONF + '/dosbox'
-dosboxStagingConfig = dosboxStagingCustom + '/dosbox.conf'
-
 dosboxxCustom = CONF + '/dosbox'
 dosboxxConfig = dosboxxCustom + '/dosboxx.conf'
 
@@ -107,7 +103,7 @@ solarusSaves = SAVES + '/solarus'
 
 viceConfig = CONF + "/vice"
 
-overlaySystem = "/usr/share/batocera/datainit/decorations"
+overlaySystem = "/usr/share/retrolx/datainit/decorations"
 overlayUser = "/userdata/decorations"
 overlayConfigFile = "/userdata/system/configs/retroarch/overlay.cfg"
 

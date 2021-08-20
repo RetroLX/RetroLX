@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_NOTICE
+    bool "retrolx-notice"
+    help
+      Batocera pdf notice

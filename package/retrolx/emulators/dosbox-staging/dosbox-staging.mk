@@ -80,6 +80,10 @@ define DOSBOX_STAGING_MAKE_PKG
 	# Copy package files
         #$(INSTALL) -D $(@D)/build/dosbox $(DOSBOX_STAGING_PKG_DIR)/$(DOSBOX_STAGING_PKG_INSTALL_DIR)/dosbox-staging
 
+	# Copy configgen
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/dosbox-staging/*.py \
+	$(DOSBOX_STAGING_PKG_DIR)$(DOSBOX_STAGING_PKG_INSTALL_DIR)
+
 	# Build Pacman package
 	cd $(DOSBOX_STAGING_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
 	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/dosbox-staging/PKGINFO \

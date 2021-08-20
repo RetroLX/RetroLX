@@ -64,7 +64,7 @@ config BR2_PACKAGE_RETROLX_SDL2
 	select BR2_PACKAGE_SDL_SOUND
 	select BR2_PACKAGE_SDL2_OPENGLES
 	select BR2_PACKAGE_SDL2_KMSDRM	  if !BR2_PACKAGE_RETROLX_RPI_VCORE
-	select BR2_PACKAGE_SDL2_WAYLAND	  if !BR2_PACKAGE_RETROLX_RPI_VCORE
+	select BR2_PACKAGE_SDL2_WAYLAND	  if !BR2_PACKAGE_RETROLX_RPI_VCORE && !BR2_PACKAGE_RETROLX_IS_X86_ARCH
 
 # RetroLX Boost libraries
 config BR2_PACKAGE_RETROLX_BOOST
@@ -122,8 +122,8 @@ config BR2_PACKAGE_RETROLX_VIDEO
 	select BR2_PACKAGE_LIBMPEG2
 	select BR2_PACKAGE_LIBOPENH264
 	select BR2_PACKAGE_LIBTHEORA
-	select BR2_PACKAGE_LIBVA	    if BR2_PACKAGE_XORG7 #!BR2_PACKAGE_RETROLX_RPI_VCORE
-	select BR2_PACKAGE_LIBVDPAU         if BR2_PACKAGE_XORG7
+	select BR2_PACKAGE_LIBVA	    if BR2_PACKAGE_XORG7 && !BR2_PACKAGE_RETROLX_WAYLAND
+	select BR2_PACKAGE_LIBVDPAU         if BR2_PACKAGE_XORG7 && !BR2_PACKAGE_RETROLX_WAYLAND
 	select BR2_PACKAGE_LIBVPX
 	select BR2_PACKAGE_MPV
 	select BR2_PACKAGE_VLC
@@ -153,7 +153,6 @@ config BR2_PACKAGE_RETROLX_COMMON
 	select BR2_PACKAGE_LIBCURL
 	select BR2_PACKAGE_LIBENET
 	select BR2_PACKAGE_LIBEVDEV
-	select BR2_PACKAGE_LIBJPEG       # warning is it overriding jpegturbo ?
 	select BR2_PACKAGE_LIBOPENSSL
 	select BR2_PACKAGE_LIBPCAP
 	select BR2_PACKAGE_LIBPNG
@@ -251,13 +250,15 @@ config BR2_PACKAGE_RETROLX_BLUETOOTH
 # RetroLX Wayland support
 config BR2_PACKAGE_RETROLX_WAYLAND
 	bool "RetroLX Wayland subsystem"
+	select BR2_PACKAGE_LIBEPOXY
 	select BR2_PACKAGE_LINUX_PAM
 	select BR2_PACKAGE_WAYLAND
 	select BR2_PACKAGE_WAYLANDPP
 	select BR2_PACKAGE_WAYLAND_PROTOCOLS
 	select BR2_PACKAGE_WESTON
 	select BR2_PACKAGE_WESTON_DRM
-	select BR2_PACKAGE_LIBEPOXY
+	#select BR2_PACKAGE_WESTON_XWAYLAND
+	#select BR2_PACKAGE_XORG7
 
 
 # RetroLX QT support
@@ -286,7 +287,7 @@ config BR2_PACKAGE_RETROLX_QT
 	# Qt5 platform specific packages
 	select BR2_PACKAGE_QT5BASE_EGLFS  if BR2_PACKAGE_RETROLX_RPI_VCORE
 	select BR2_PACKAGE_QT5WAYLAND     if BR2_PACKAGE_RETROLX_WAYLAND
-	select BR2_PACKAGE_QT5BASE_XCB 	  if BR2_PACKAGE_XORG7
+	select BR2_PACKAGE_QT5BASE_XCB    if BR2_PACKAGE_XORG7 && !BR2_PACKAGE_RETROLX_WAYLAND
 
 
 # RetroLX networking stack
@@ -316,6 +317,27 @@ config BR2_PACKAGE_RETROLX_NETWORKING
 	select BR2_PACKAGE_WGET                                 # download tools
 
 
+config BR2_PACKAGE_RETROLX_FS_TOOLS
+	bool "RetroLX filesystem and partioning packages"
+
+	select BR2_PACKAGE_CIFS_UTILS                           # required for boot mounts
+        select BR2_PACKAGE_HOST_GENIMAGE
+        select BR2_PACKAGE_HOST_GENEXT2FS
+	select BR2_PACKAGE_DOSFSTOOLS                           # fat
+	select BR2_PACKAGE_DOSFSTOOLS_FSCK_FAT                  # fat
+	select BR2_PACKAGE_DOSFSTOOLS_MKFS_FAT                  # fat
+	select BR2_PACKAGE_EXFAT                                # exfat
+	select BR2_PACKAGE_EXFAT_UTILS                          # exfat
+	select BR2_PACKAGE_E2FSPROGS                            # ext4
+	select BR2_PACKAGE_NTFS_3G                              # ntfs
+	select BR2_PACKAGE_NTFS_3G_NTFSPROGS                    # ntfs
+	select BR2_PACKAGE_BTRFS_PROGS                          # btrfs
+	select BR2_PACKAGE_PARTED                               # partition management (for the first boot)
+	select BR2_PACKAGE_GPTFDISK                             # fs resize
+	select BR2_PACKAGE_GPTFDISK_SGDISK                      # fs resize
+	select BR2_PACKAGE_E2FSPROGS                            # fs resize
+	select BR2_PACKAGE_E2FSPROGS_RESIZE2FS                  # fs resize
+
 config BR2_PACKAGE_RETROLX_SYSTEM
 	bool "RetroLX minimal"
 
@@ -330,18 +352,7 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_RETROLX_ES_SYSTEM                    # emulation station es_systems.cfg generator + default roms
 	select BR2_PACKAGE_RETROLX_CONFIGGEN                   # emulation station external command launcher
 	select BR2_PACKAGE_RETROLX_TRIGGERHAPPY                # multimedia/power buttons
-	select BR2_PACKAGE_CIFS_UTILS                           # required for boot mounts
-	select BR2_PACKAGE_RETROLX_IMAGE                       # tools to generate RETROLX image
 	select BR2_TARGET_ROOTFS_SQUASHFS                       # tool to generate the target image
-	select BR2_PACKAGE_DOSFSTOOLS                           # fat
-	select BR2_PACKAGE_DOSFSTOOLS_FSCK_FAT                  # fat
-	select BR2_PACKAGE_DOSFSTOOLS_MKFS_FAT                  # fat
-	select BR2_PACKAGE_EXFAT                                # exfat
-	select BR2_PACKAGE_EXFAT_UTILS                          # exfat
-	select BR2_PACKAGE_E2FSPROGS                            # ext4
-	select BR2_PACKAGE_NTFS_3G                              # ntfs
-	select BR2_PACKAGE_NTFS_3G_NTFSPROGS                    # ntfs
-	select BR2_PACKAGE_BTRFS_PROGS                          # btrfs
 	select BR2_PACKAGE_PM_UTILS                             # suspend
 	select BR2_PACKAGE_QTSIXA_SHANWAN                       # ps3 pad
 	select BR2_PACKAGE_XARCADE2JSTICK                       # keyboard events of the Xarcade Tankstick
@@ -354,7 +365,6 @@ config BR2_PACKAGE_RETROLX_SYSTEM
     select BR2_PACKAGE_UTIL_LINUX_LIBSMARTCOLS              # library is used for smart adaptive formatting of tabular data
     select BR2_PACKAGE_UTIL_LINUX_SETTERM                   # Set terminal attributes
 
-	select BR2_PACKAGE_PARTED                               # partition management (for the first boot)
 	select BR2_PACKAGE_USBMOUNT                             # usb key/sd card mounter
 	select BR2_PACKAGE_USBUTILS                             # usb key/sd card tools
 	select BR2_PACKAGE_RETROLX_SPLASH                       # boot splash
@@ -377,10 +387,6 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_KBD                                  # loadkeys
 	select BR2_PACKAGE_LIBXKKBCOMMON			# requirement for xkb to work, xkb is used by kodi, even without x for the keyboard
 	select BR2_PACKAGE_XKEYBOARD_CONFIG                     if BR2_PACKAGE_LIBXKBCOMMON # requirement for xkb to work, xkb is used by kodi, even without x for the keyboard
-	select BR2_PACKAGE_GPTFDISK                             # fs resize
-	select BR2_PACKAGE_GPTFDISK_SGDISK                      # fs resize
-	select BR2_PACKAGE_E2FSPROGS                            # fs resize
-	select BR2_PACKAGE_E2FSPROGS_RESIZE2FS                  # fs resize
 	select BR2_PACKAGE_FLATPAK                              if BR2_PACKAGE_RETROLX_IS_X86_ARCH # flatpak app packaging system
 
 	# RaspberryPi Firmwares
@@ -399,6 +405,9 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 
 	# RetroLX common base software
 	select BR2_PACKAGE_RETROLX_COMMON
+
+	# RetroLX  filesystem / partitioning required packages
+	select BR2_PACKAGE_RETROLX_FS_TOOLS
 
 	# RetroLX ALSA stack
 	select BR2_PACKAGE_RETROLX_ALSA
@@ -601,7 +610,7 @@ config BR2_PACKAGE_RETROLX_TOOLS
 	select BR2_PACKAGE_HTOP             # multi-cpus usage
 	select BR2_PACKAGE_NCDU             # Disk Usage
 	select BR2_PACKAGE_FFMPEG_XCBGRAB   if BR2_PACKAGE_XORG7
-	select BR2_PACKAGE_SWITCHRES        if BR2_PACKAGE_XORG7 # switchres 15kHz
+	select BR2_PACKAGE_SWITCHRES        if BR2_PACKAGE_XORG7 && !BR2_PACKAGE_RETROLX_WAYLAND # switchres 15kHz
 
 	help
 		System tools
@@ -711,14 +720,15 @@ config BR2_PACKAGE_RETROLX_GPU_X86
 	select BR2_PACKAGE_MESA3D
 	select BR2_PACKAGE_MESA3D_DRI_DRIVER_I915
 	select BR2_PACKAGE_MESA3D_DRI_DRIVER_I965
-	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_SWRAST
-	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_SVGA
+	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_CROCUS
 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_IRIS
 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_NOUVEAU
-	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_R600
-	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_RADEONSI
+	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_SWRAST
+	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_SVGA
 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_VIRGL
 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_R300
+	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_R600
+	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_RADEONSI
 	select BR2_PACKAGE_MESA3D_OPENGL_ES
 	select BR2_PACKAGE_MESA3D_OPENGL_EGL
 	select BR2_PACKAGE_MESA3D_OPENGL_GLX
