@@ -25,7 +25,7 @@ do
 done
 
 # mount logs directory as tmpfs
-mount -t tmpfs tmpfs "$OUT""/""systems/logs"
+mount -t tmpfs tmpfs "$OUT""/""system/logs"
 
 # directories / files to copy when initializing the user data
 #
