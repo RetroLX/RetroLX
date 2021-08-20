@@ -296,7 +296,6 @@ if __name__ == '__main__':
 #    'moonlight': MoonlightGenerator(),
 #    'scummvm': ScummVMGenerator(),
 #    'dosbox': DosBoxGenerator(),
-#    'dosbox_staging': DosBoxStagingGenerator(),
 #    'dosboxx': DosBoxxGenerator(),
 #    'mupen64plus': MupenGenerator(),
 #    'vice': ViceGenerator(),

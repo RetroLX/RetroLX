@@ -3135,7 +3135,7 @@ dolphin:
 dosbox:
   features: [ratio, padtokeyboard]
 
-dosbox_staging:
+dosbox-staging:
   features: [ratio, padtokeyboard]
 
 dosbox-x:
