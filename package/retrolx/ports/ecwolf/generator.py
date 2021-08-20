@@ -10,6 +10,9 @@ from os import path
 ecwolfConfig  = batoceraFiles.CONF + "/ecwolf"
 ecwolfSaves   = batoceraFiles.SAVES + "/ecwolf"
 
+def getGeneratorClass():
+    return 'ECWolfGenerator'
+
 class ECWolfGenerator(Generator):
 
     def generate(self, system, rom, playersControllers, gameResolution):

@@ -4,6 +4,9 @@ from generators.Generator import Generator
 import Command
 import controllersConfig
 
+def getGeneratorClass():
+    return 'SdlPopGenerator'
+
 class SdlPopGenerator(Generator):
 
     def generate(self, system, rom, playersControllers, gameResolution):

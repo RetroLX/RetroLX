@@ -4,6 +4,8 @@ import Command
 from generators.Generator import Generator
 import controllersConfig
 
+def getGeneratorClass():
+    return 'DevilutionXGenerator'
 
 class DevilutionXGenerator(Generator):
 

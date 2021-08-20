@@ -9,6 +9,9 @@ import Command
 from utils.logger import eslog
 from . import cannonballControllers
 
+def getGeneratorClass():
+    return 'CannonballGenerator'
+
 class CannonballGenerator(Generator):
 
     def generate(self, system, rom, playersControllers, gameResolution):

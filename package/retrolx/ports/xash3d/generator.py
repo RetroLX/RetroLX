@@ -9,6 +9,9 @@ import Command
 from generators.Generator import Generator
 import controllersConfig
 
+def getGeneratorClass():
+    return 'Xash3dFwgsGenerator'
+
 _ROMS_DIR = '/userdata/roms/xash3d_fwgs'
 
 _HLSDK_LIBS_DIR = '/usr/lib/xash3d/hlsdk'

@@ -7,6 +7,9 @@ import batoceraFiles
 import codecs
 import os
 
+def getGeneratorClass():
+    return 'CGeniusGenerator'
+
 class CGeniusGenerator(Generator):
 
     def generate(self, system, rom, playersControllers, gameResolution):
