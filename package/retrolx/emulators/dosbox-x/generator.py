@@ -8,13 +8,14 @@ from os.path import isdir
 from os.path import isfile
 import glob
 import configparser
+from pathlib import Path
 
 def getGeneratorClass():
     return 'DosBoxXGenerator'
 
 arch = Path('/usr/share/retrolx/retrolx.arch').read_text()
 retrolxPackages = '/userdata/packages/' + arch
-emulatorPath = retrolxPackages + '/dosbox-x/bin/dosbox'
+emulatorPath = retrolxPackages + '/dosbox-x/bin/dosbox-x'
 dosboxxCustom = batoceraFiles.CONF + '/dosbox-x'
 dosboxxConfig = dosboxxCustom + '/dosbox-x.conf'
 

@@ -26,9 +26,6 @@ define DOSBOX_MAKE_PKG
 	# Create directories
 	mkdir -p $(DOSBOX_PKG_DIR)$(DOSBOX_PKG_INSTALL_DIR)
 
-	# Copy package files
-        $(INSTALL) -D $(@D)/src/dosbox $(DOSBOX_PKG_DIR)/$(DOSBOX_PKG_INSTALL_DIR)/dosbox-staging
-
 	# Copy configgen
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/dosbox/*.py \
 	$(DOSBOX_PKG_DIR)$(DOSBOX_PKG_INSTALL_DIR)

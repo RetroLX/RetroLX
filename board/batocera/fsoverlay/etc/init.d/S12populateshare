@@ -24,6 +24,9 @@ do
     fi
 done
 
+# mount logs directory as tmpfs
+mount -t tmpfs tmpfs "$OUT""/""systems/logs"
+
 # directories / files to copy when initializing the user data
 #
 # NO UPDATE IS POSSIBLE ON THESE DIRECTORIES WHEN batocera.linux IS UPDATED

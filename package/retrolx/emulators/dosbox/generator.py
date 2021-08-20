@@ -13,7 +13,7 @@ arch = Path('/usr/share/retrolx/retrolx.arch').read_text()
 retrolxPackages = '/userdata/packages/' + arch
 emulatorPath = retrolxPackages + '/dosbox/bin/dosbox'
 dosboxCustom = batoceraFiles.CONF + '/dosbox'
-dosboxConfig = dosboxStagingCustom + '/dosbox.conf'
+dosboxConfig = dosboxCustom + '/dosbox.conf'
 
 class DosBoxGenerator(Generator):
 

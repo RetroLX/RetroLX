@@ -28,10 +28,10 @@ define DOSBOX_X_CONFIGURE_CMDS
 endef
 
 define DOSBOX_X_CONFIGURE_CONFIG
-    mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/dosbox
-    
+    mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/dosbox-x
+
     cp -rf $(@D)/dosbox-x.reference.conf \
-        $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/dosbox/dosbox-x.conf
+        $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/dosbox-x/dosbox-x.conf
 endef
 
 DOSBOX_X_POST_INSTALL_TARGET_HOOKS += DOSBOX_X_CONFIGURE_CONFIG
