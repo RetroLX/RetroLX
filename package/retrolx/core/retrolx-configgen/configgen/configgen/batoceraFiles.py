@@ -27,10 +27,8 @@ if (arch=="x86_64"):
   qt_qpa_platform = 'xcb'
 
 # This dict is indexed on the emulator name, not on the system
-batoceraBins = {'dosbox'         : retrolxPackages+'/dosbox/dosbox'
-              , 'dosboxx'        : retrolxPackages+'/dosbox-x/dosbox-x'
-              , 'libretro'       : '/usr/bin/retroarch'
-              , 'linapple'       : retrolxPackages+'/linapple/linapple'
+batoceraBins = {
+                'libretro'       : '/usr/bin/retroarch'
               , 'moonlight'      : retrolxPackages+'moonlight/moonlight'
               , 'mupen64plus'    : retrolxPackages+'/mupen64plus/mupen64plus'
               , 'flycast'        : retrolxPackages+'/flycast/flycast'
@@ -87,12 +85,6 @@ pcsx2PluginsDir     = retrolxPackages+'/pcsx2/plugins'
 pcsx2Avx2PluginsDir = retrolxPackages+'/pcsx2_avx2/plugins'
 pcsx2ConfigDir      = "/userdata/system/configs/PCSX2"
 
-dosboxCustom = CONF + '/dosbox'
-dosboxConfig = dosboxCustom + '/dosbox.conf'
-
-dosboxxCustom = CONF + '/dosbox'
-dosboxxConfig = dosboxxCustom + '/dosboxx.conf'
-
 fsuaeBios = BIOS
 fsuaeConfig = CONF + "/fs-uae"
 fsuaeSaves = SAVES + "/amiga"
@@ -117,11 +109,6 @@ daphneConfig = CONF + '/daphne/hypinput.ini'
 daphneHomedir = ROMS + '/daphne'
 daphneDatadir = '/usr/share/daphne'
 daphneSaves = SAVES + '/daphne'
-
-linappleConfigFile = CONF + '/linapple/linapple.conf'
-linappleMasterDSKFile = CONF + '/linapple/Master.dsk'
-linapplaSaves = SAVES + '/apple2'
-linappleMasterDSK = '/usr/lib/python3.9/site-packages/configgen/datainit/linapple/Master.dsk'
 
 flycastCustom = CONF + '/flycast'
 flycastMapping = flycastCustom + '/mappings'

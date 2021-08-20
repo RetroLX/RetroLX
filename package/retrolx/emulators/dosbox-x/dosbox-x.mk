@@ -31,7 +31,7 @@ define DOSBOX_X_CONFIGURE_CONFIG
     mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/dosbox
     
     cp -rf $(@D)/dosbox-x.reference.conf \
-        $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/dosbox/dosboxx.conf
+        $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/dosbox/dosbox-x.conf
 endef
 
 DOSBOX_X_POST_INSTALL_TARGET_HOOKS += DOSBOX_X_CONFIGURE_CONFIG
@@ -39,6 +39,10 @@ DOSBOX_X_POST_INSTALL_TARGET_HOOKS += DOSBOX_X_CONFIGURE_CONFIG
 define DOSBOX_X_MAKE_PKG
 	# Create directories
 	mkdir -p $(DOSBOX_X_PKG_DIR)$(DOSBOX_X_PKG_INSTALL_DIR)
+
+	# Copy configgen
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/dosbox-x/*.py \
+	$(DOSBOX_X_PKG_DIR)$(DOSBOX_X_PKG_INSTALL_DIR)
 
 	# Build Pacman package
 	cd $(DOSBOX_X_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \

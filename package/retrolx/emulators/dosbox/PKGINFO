@@ -1,0 +1,6 @@
+pkgname = dosbox
+pkgver = 0.74.0-1
+pkgdesc = DosBox emulator
+group = emulator
+packager = https://retrolx.org 
+url = https://dosbox.com

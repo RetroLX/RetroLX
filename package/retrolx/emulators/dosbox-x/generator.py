@@ -10,9 +10,15 @@ import glob
 import configparser
 
 def getGeneratorClass():
-    return 'DosBoxxGenerator'
+    return 'DosBoxXGenerator'
 
-class DosBoxxGenerator(Generator):
+arch = Path('/usr/share/retrolx/retrolx.arch').read_text()
+retrolxPackages = '/userdata/packages/' + arch
+emulatorPath = retrolxPackages + '/dosbox-x/bin/dosbox'
+dosboxxCustom = batoceraFiles.CONF + '/dosbox-x'
+dosboxxConfig = dosboxxCustom + '/dosbox-x.conf'
+
+class DosBoxXGenerator(Generator):
 
     def generate(self, system, rom, playersControllers, gameResolution):
         # Find rom path
@@ -20,7 +26,7 @@ class DosBoxxGenerator(Generator):
         batFile = gameDir + "/dosbox.bat"
         gameConfFile = gameDir + "/dosbox.cfg"
 
-        configFile = batoceraFiles.dosboxxConfig
+        configFile = dosboxxConfig
         if os.path.isfile(gameConfFile):
             configFile = gameConfFile
 
@@ -30,7 +36,7 @@ class DosBoxxGenerator(Generator):
         iniSettings.optionxform = str
 
         # copy config file to custom config file to avoid overwritting by dosbox-x
-        customConfFile = os.path.join(batoceraFiles.dosboxxCustom,'dosboxx-custom.conf')
+        customConfFile = os.path.join(dosboxxCustom,'dosbox-x-custom.conf')
 
         if os.path.exists(configFile):
             shutil.copy2(configFile, customConfFile)
@@ -45,8 +51,9 @@ class DosBoxxGenerator(Generator):
         with open(customConfFile, 'w') as config:
             iniSettings.write(config)
 
-        # -fullscreen removed as it crashes on N2
-        commandArray = [batoceraFiles.batoceraBins[system.config['emulator']],
+        # -fullscreen removed as it crashes on N2 (still valid on Wayland ?)
+        commandArray = [emulatorPath,
+			"-fullscreen",
 			"-exit", 
 			"-c", """mount c {}""".format(gameDir),
                         "-c", "c:",
