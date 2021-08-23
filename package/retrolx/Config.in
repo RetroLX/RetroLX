@@ -110,26 +110,30 @@ config BR2_PACKAGE_RETROLX_ARCADE_SYSTEMS
 	bool "RetroLX arcade emulators packages selection"
 
 	# Final Burn Alpha
-	select BR2_PACKAGE_LIBRETRO_FBALPHA         if BR2_arm1176jzf_s || BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_FBALPHA2012     if BR2_arm1176jzf_s || BR2_cortex_a7 || BR2_cortex_a35
+	select BR2_PACKAGE_LIBRETRO_FBALPHA                if BR2_arm1176jzf_s || BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_FBALPHA2012            if BR2_arm1176jzf_s || BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS1       if BR2_arm1176jzf_s || BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS2       if BR2_arm1176jzf_s || BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS3       if BR2_arm1176jzf_s || BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_FBALPHA2012_NEOGEO     if BR2_arm1176jzf_s || BR2_cortex_a7
+
+	# RetroArch MAME derivatives
+	select BR2_PACKAGE_LIBRETRO_MAME2000       if BR2_arm1176jzf_s || BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_MAME2003_PLUS
+	select BR2_PACKAGE_LIBRETRO_MAME2010       if !BR2_arm1176jzf_s
 
 	#select BR2_PACKAGE_MAME     if BR2_PACKAGE_RETROLX_TARGET_X86_64 || BR2_PACKAGE_RETROLX_WAYLAND
-	select BR2_PACKAGE_LIBRETRO_MAME2003_PLUS   # ALL
-	select BR2_PACKAGE_LIBRETRO_MAME2010        if !BR2_PACKAGE_RETROLX_TARGET_RPI1 # MAME2010
-	select BR2_PACKAGE_LIBRETRO_FBNEO       # ALL
+
+	select BR2_PACKAGE_LIBRETRO_FBNEO
 
 	# Laserdic emulation
 	select BR2_PACKAGE_DAPHNE               if !BR2_arm1176jzf_s && !BR2_cortex_a7
-
 
 	# Naomi and Atomiswave
 	select BR2_PACKAGE_RETROLX_SEGADC
 
 	# Standalone Sega Model 3 emulator
 	select BR2_PACKAGE_SUPERMODEL           if BR2_x86_64
-
-	# RetroArch MAME derivatives
-	select BR2_PACKAGE_LIBRETRO_MAME2000       if BR2_arm1176jzf_s || BR2_cortex_a7
 
 	help
 		Arcade cores/emulators
@@ -152,9 +156,7 @@ config BR2_PACKAGE_RETROLX_HANDHELD_SYSTEMS
 
 	# NDS
 	select BR2_PACKAGE_LIBRETRO_DESMUME         if BR2_PACKAGE_RETROLX_IS_X86_ARCH
-
 	select BR2_PACKAGE_DRASTIC                  if BR2_aarch64 && BR2_PACKAGE_RETROLX_PANFROST_MESA3D
-
 	select BR2_PACKAGE_MELONDS                  if BR2_x86_64
 	#select BR2_PACKAGE_LIBRETRO_MELONDS         if BR2_x86_64 || (BR2_aarch64 && BR2_PACKAGE_RETROLX_PANFROST_MESA3D) || BR2_PACKAGE_RETROLX_TARGET_RPI4
 

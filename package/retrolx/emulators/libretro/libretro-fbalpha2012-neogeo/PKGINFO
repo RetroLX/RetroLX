@@ -1,0 +1,6 @@
+pkgname = lr-fbalpha2012-neogeo
+pkgver = 0.2.97.24-1
+pkgdesc = SNK NEOGEO (FBAlpha 0.2.97.24) libretro core
+group = emulator
+packager = https://retrolx.org 
+url = https://www.fbalpha.com/
