@@ -55,7 +55,7 @@ menu "System"
   endmenu
 
   menu "Fonts"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/fonts/nanum-font/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/fonts/nanum-font/Config.in"
   endmenu
 
   menu "Gpu"
