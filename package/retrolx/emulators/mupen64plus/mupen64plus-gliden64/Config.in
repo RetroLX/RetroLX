@@ -1,5 +1,5 @@
 config BR2_PACKAGE_MUPEN64PLUS_GLIDEN64
-        bool "mupen 64 plus GLideN64 plugin"
+        bool "mupen64plus-gliden64"
 	select BR2_INSTALL_LIBSTDCPP
 	select BR2_PACKAGE_SDL2
 	select BR2_PACKAGE_ALSA_LIB

@@ -25,7 +25,7 @@ endef
 define MUPEN64PLUS_GLES2_INSTALL_TARGET_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" \
 		CROSS_COMPILE="$(STAGING_DIR)/usr/bin/" \
-		PREFIX="$(TARGET_DIR)/usr/" \
+		PREFIX="$(MUPEN64PLUS_PKG_DIR)" \
 		PKG_CONFIG="$(HOST_DIR)/usr/bin/pkg-config" \
 		HOST_CPU="$(MUPEN64PLUS_HOST_CPU)" \
 		APIDIR="$(STAGING_DIR)/usr/include/mupen64plus" \
@@ -35,8 +35,8 @@ define MUPEN64PLUS_GLES2_INSTALL_TARGET_CMDS
 		INSTALL_STRIP_FLAG="" \
 		-C $(@D)/projects/unix all $(MUPEN64PLUS_PARAMS) OPTFLAGS="$(TARGET_CXXFLAGS)" install
 		
-		cp $(@D)/data/gles2n64.conf    "$(TARGET_DIR)/usr/share/mupen64plus/"
-		cp $(@D)/data/gles2n64rom.conf "$(TARGET_DIR)/usr/share/mupen64plus/"
+		cp $(@D)/data/gles2n64.conf    "$(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)"
+		cp $(@D)/data/gles2n64rom.conf "$(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)"
 endef
 
 define MUPEN64PLUS_GLES2_CROSS_FIXUP

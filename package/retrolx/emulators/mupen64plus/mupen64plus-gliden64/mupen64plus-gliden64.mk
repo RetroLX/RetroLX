@@ -46,11 +46,12 @@ else
 endif
 
 define MUPEN64PLUS_GLIDEN64_INSTALL_TARGET_CMDS
-	mkdir -p $(TARGET_DIR)/usr/share/mupen64plus/
+	mkdir -p $(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)/lib/mupen64plus/
 	$(INSTALL) -D $(@D)/src/plugin/$(MUPEN64PLUS_GLIDEN64_RELTYPE)/mupen64plus-video-GLideN64.so \
-		$(TARGET_DIR)/usr/lib/mupen64plus/mupen64plus-video-gliden64.so
+		$(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)/lib/mupen64plus/mupen64plus-video-gliden64.so
+	mkdir -p $(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)/share/mupen64plus/
 	$(INSTALL) -D $(@D)/ini/* \
-		$(TARGET_DIR)/usr/share/mupen64plus/
+		$(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)
 endef
 
 define MUPEN64PLUS_GLIDEN64_PRE_CONFIGURE_FIXUP

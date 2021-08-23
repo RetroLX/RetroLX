@@ -45,7 +45,7 @@ config BR2_PACKAGE_RETROLX_FLASH_SYSTEMS
 	bool "RetroLX Flash support"
 
 	# Flash Player Emulator
-	# broken select BR2_PACKAGE_RUFFLE           if BR2_PACKAGE_RETROLX_TARGET_X86_64 # depends on X11
+	#select BR2_PACKAGE_RUFFLE           if BR2_PACKAGE_RETROLX_TARGET_X86_64 # depends on X11
 	select BR2_PACKAGE_LIGHTSPARK       if BR2_PACKAGE_RETROLX_TARGET_X86_64 # depends on X11
 
 #### Moonlight / Gamestream ####
@@ -182,7 +182,7 @@ config BR2_PACKAGE_RETROLX_HANDHELD_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_PPSSPP          if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
 	# Nintendo Switch
-	select BR2_PACKAGE_YUZU                     if BR2_PACKAGE_RETROLX_CORES_EXPERIMENTAL && BR2_x86_64 
+	#select BR2_PACKAGE_YUZU                     if BR2_x86_64
 
 	help
 		Handheld cores/emulators
@@ -335,13 +335,12 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_BSNES_HD            if BR2_x86_64
 
 	# Nintendo 64
-	select BR2_PACKAGE_RETROLX_MUPEN64		if !BR2_arm1176jzf_s && !BR2_cortex_a7 
+	select BR2_PACKAGE_MUPEN64PLUS		        if !BR2_arm1176jzf_s && !BR2_cortex_a7 
 	select BR2_PACKAGE_LIBRETRO_MUPEN64PLUS_NEXT	if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
-	select BR2_PACKAGE_LIBRETRO_PARALLEL_N64		if 	BR2_x86_64  || \
-														BR2_PACKAGE_RETROLX_TARGET_RK3288	|| \
-														BR2_PACKAGE_RETROLX_TARGET_S912	|| \
-														BR2_PACKAGE_RETROLX_TARGET_S922X
+	select BR2_PACKAGE_LIBRETRO_PARALLEL_N64	if BR2_x86_64  || \
+							   (BR2_PACKAGE_RETROLX_PANFROST_MESA3D && !BR2_cortex_a35) || \
+							   BR2_PACKAGE_RETROLX_TARGET_RPI4
 	# Atari Jaguar
 	select BR2_PACKAGE_LIBRETRO_VIRTUALJAGUAR       if  BR2_PACKAGE_RETROLX_IS_X86_ARCH || \
                                                         BR2_PACKAGE_RETROLX_TARGET_S922X
@@ -353,15 +352,6 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 
 	# Dreamcast
 	select BR2_PACKAGE_RETROLX_SEGADC
-
-	select BR2_PACKAGE_LIBRETRO_PCSX                if  !BR2_PACKAGE_RETROLX_TARGET_RPI1       && \
-                                                        !BR2_PACKAGE_RETROLX_TARGET_RPI3       && \
-                                                        !BR2_PACKAGE_RETROLX_TARGET_RK3326
-
-	select BR2_PACKAGE_LIBRETRO_BEETLE_PSX          if  !BR2_PACKAGE_RETROLX_RPI_ANY           && \
-                                                        !BR2_PACKAGE_RETROLX_TARGET_H3        && \
-                                                        !BR2_PACKAGE_RETROLX_TARGET_RK3326
-
 
 	# Saturn
 	select BR2_PACKAGE_LIBRETRO_BEETLE_SATURN       if BR2_PACKAGE_RETROLX_IS_X86_ARCH
@@ -378,9 +368,14 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 
 	# Sony PS1
 	select BR2_PACKAGE_DUCKSTATION                  if !BR2_arm1176jzf_s && !BR2_cortex_a7
+
 	select BR2_PACKAGE_LIBRETRO_SWANSTATION         if  !BR2_i686                     && \
                                                         !BR2_PACKAGE_RETROLX_TARGET_RPI1 && \
                                                         !BR2_PACKAGE_RETROLX_TARGET_RPI2
+
+	select BR2_PACKAGE_LIBRETRO_PCSX                if !BR2_arm1176jzf_s && !BR2_cortex_a35
+
+	select BR2_PACKAGE_LIBRETRO_BEETLE_PSX          if !BR2_arm1176jzf_s && !BR2_cortex_a7 && !BR2_cortex_a35
 
 	# Sony PS2
 	select BR2_PACKAGE_PCSX2                        if BR2_x86_64

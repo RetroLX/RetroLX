@@ -1,0 +1,6 @@
+pkgname = mupen64plus
+pkgver = 20210822-1
+pkgdesc = Mupen64Plus (Nintendo 64) emulator
+group = emulator
+packager = https://retrolx.org 
+url = https://mupen64plus.org/

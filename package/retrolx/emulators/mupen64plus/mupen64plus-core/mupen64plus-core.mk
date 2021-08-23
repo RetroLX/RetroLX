@@ -92,12 +92,12 @@ define MUPEN64PLUS_CORE_INSTALL_STAGING_CMDS
 endef
 
 define MUPEN64PLUS_CORE_INSTALL_TARGET_CMDS
-	mkdir -p $(TARGET_DIR)/usr/lib
-	$(INSTALL) -m 0644 $(@D)/projects/unix/libmupen64plus.so.2.0.0 $(TARGET_DIR)/usr/lib
-	mkdir -p $(TARGET_DIR)/usr/share/mupen64plus
-	ln -sf /usr/share/fonts/dejavu/DejaVuSans.ttf $(TARGET_DIR)/usr/share/mupen64plus/font.ttf
-	cp $(@D)/data/mupen64plus.ini $(TARGET_DIR)/usr/share/mupen64plus/mupen64plus.ini
-	cp $(@D)/data/mupencheat.txt "$(TARGET_DIR)/usr/share/mupen64plus/mupencheat.txt"
+	mkdir -p $(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)/lib
+	$(INSTALL) -m 0644 $(@D)/projects/unix/libmupen64plus.so.2.0.0 $(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)/lib
+	mkdir -p $(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)/share/mupen64plus
+	ln -sf /usr/share/fonts/dejavu/DejaVuSans.ttf $(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)//share/mupen64plus/font.ttf
+	cp $(@D)/data/mupen64plus.ini $(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)/share/mupen64plus/mupen64plus.ini
+	cp $(@D)/data/mupencheat.txt "$(MUPEN64PLUS_PKG_DIR)$(MUPEN64PLUS_PKG_INSTALL_DIR)/share/mupen64plus//mupencheat.txt"
 
 	# input.xml
 	mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/system/configs/mupen64
