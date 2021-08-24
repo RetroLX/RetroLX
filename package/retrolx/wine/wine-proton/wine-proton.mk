@@ -62,7 +62,7 @@ ifeq ($(BR2_PACKAGE_FAUDIO),y)
 WINE_PROTON_CONF_OPTS += --with-faudio
 WINE_PROTON_DEPENDENCIES += faudio
 else
-WINE_PROTON_CONF_OPTS += --without-vulkan
+WINE_PROTON_CONF_OPTS += --without-faudio
 endif
 # Add Vulkan if available
 ifeq ($(BR2_PACKAGE_VULKAN_HEADERS)$(BR2_PACKAGE_VULKAN_LOADER),yy)

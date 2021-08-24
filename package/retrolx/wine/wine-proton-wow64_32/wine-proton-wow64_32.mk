@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-WINE_PROTON_WOW64_32_VERSION = proton-wine-6.3-4
+WINE_PROTON_WOW64_32_VERSION = proton-wine-6.3-6
 WINE_PROTON_WOW64_32_SITE = $(call github,ValveSoftware,wine,$(WINE_PROTON_WOW64_32_VERSION))
 WINE_PROTON_WOW64_32_LICENSE = LGPL-2.1+
 WINE_PROTON_WOW64_32_DEPENDENCIES = host-bison host-flex host-wine-proton
@@ -376,14 +376,14 @@ endif
 # Wine only needs the host tools to be built, so cut-down the
 # build time by building just what we need.
 define HOST_WINE_PROTON_WOW64_32_BUILD_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) \
-	  tools \
-	  tools/sfnt2fon \
-	  tools/widl \
-	  tools/winebuild \
-	  tools/winegcc \
-	  tools/wmc \
-	  tools/wrc
+        $(HOST_MAKE_ENV) $(MAKE) -C $(@D)
+        $(HOST_MAKE_ENV) $(MAKE) -C $(@D)/tools
+        $(HOST_MAKE_ENV) $(MAKE) -C $(@D)/tools/sfnt2fon
+        $(HOST_MAKE_ENV) $(MAKE) -C $(@D)/tools/widl
+        $(HOST_MAKE_ENV) $(MAKE) -C $(@D)/tools/winebuild
+        $(HOST_MAKE_ENV) $(MAKE) -C $(@D)/tools/winegcc
+        $(HOST_MAKE_ENV) $(MAKE) -C $(@D)/tools/wmc
+        $(HOST_MAKE_ENV) $(MAKE) -C $(@D)/tools/wrc
 endef
 
 # Wine only needs its host variant to be built, not that it is
