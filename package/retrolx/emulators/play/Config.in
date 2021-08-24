@@ -1,0 +1,9 @@
+config BR2_PACKAGE_PLAY
+        bool "play"
+	depends on BR2_PACKAGE_XORG7
+	depends on BR2_PACKAGE_QT5BASE
+	depends on BR2_PACKAGE_QT5X11EXTRAS
+	depends on BR2_PACKAGE_LIBGLEW
+
+        help
+          A PS2 portable emulator

@@ -372,9 +372,7 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 	# Sony PS1
 	select BR2_PACKAGE_DUCKSTATION                  if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
-	select BR2_PACKAGE_LIBRETRO_SWANSTATION         if  !BR2_i686                     && \
-                                                        !BR2_PACKAGE_RETROLX_TARGET_RPI1 && \
-                                                        !BR2_PACKAGE_RETROLX_TARGET_RPI2
+	select BR2_PACKAGE_LIBRETRO_SWANSTATION         if  !BR2_i686 && !BR2_arm1176jzf_s && !BR2_PACKAGE_RETROLX_TARGET_RPI2
 
 	select BR2_PACKAGE_LIBRETRO_PCSX                if !BR2_arm1176jzf_s && !BR2_cortex_a35
 
@@ -382,17 +380,17 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 
 	# Sony PS2
 	select BR2_PACKAGE_PCSX2                        if BR2_x86_64
+	select BR2_PACKAGE_PLAY                         if BR2_x86_64 && BR2_PACKAGE_XORG7
+	select BR2_PACKAGE_LIBRETRO_PLAY		if BR2_i686 || BR2_x86_64 || BR2_PACKAGE_RETROLX_TARGET_RPI4 || BR2_PACKAGE_RETROLX_PANFROST_MESA3D
 
 	# Sony PS3
 	#select BR2_PACKAGE_RPCS3                        if BR2_x86_64
 
 	# Wii U (requires Wine layer)
-	select BR2_PACKAGE_CEMU                         if  BR2_x86_64 && \
-                                                        BR2_PACKAGE_RETROLX_WINE_SYSTEMS
+	select BR2_PACKAGE_CEMU                         if  BR2_x86_64 && BR2_PACKAGE_RETROLX_WINE_SYSTEMS
 
 	# future pinball
-	select BR2_PACKAGE_FPINBALL                     if  BR2_x86_64 && \
-                                                        BR2_PACKAGE_RETROLX_WINE_SYSTEMS
+	select BR2_PACKAGE_FPINBALL                     if  BR2_x86_64 && BR2_PACKAGE_RETROLX_WINE_SYSTEMS
 
 	# SNK Neo Geo CD
 	select BR2_PACKAGE_LIBRETRO_NEOCD               # ALL

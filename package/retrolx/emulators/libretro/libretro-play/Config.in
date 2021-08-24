@@ -1,0 +1,5 @@
+config BR2_PACKAGE_LIBRETRO_PLAY
+        bool "libretro-play"
+
+        help
+          A PS2 portable emulator
