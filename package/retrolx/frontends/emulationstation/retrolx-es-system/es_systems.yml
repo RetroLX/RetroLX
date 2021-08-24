@@ -660,13 +660,16 @@ neogeo:
   platform:   neogeo, arcade
   emulators:
     libretro:
-      fbneo:        { requireAnyOf: [lr-fbneo]          }
-      imame4all:    { requireAnyOf: [lr-Imame]          }
-      mame078plus:  { requireAnyOf: [lr-mame2003-plus]  }
-      mame0139:     { requireAnyOf: [lr-mame2010]       }
-      mame:         { requireAnyOf: [lr-mame]           }
+      fbalpha2012-neogeo:  { requireAnyOf: [lr-fbalpha2012-neogeo] }
+      fbalpha2012:         { requireAnyOf: [lr-fbalpha2012]        }
+      fbalpha:             { requireAnyOf: [lr-fbalpha]            }
+      fbneo:               { requireAnyOf: [lr-fbneo]              }
+      imame4all:           { requireAnyOf: [lr-Imame]              }
+      mame078plus:         { requireAnyOf: [lr-mame2003-plus]      }
+      mame0139:            { requireAnyOf: [lr-mame2010]           }
+      mame:                { requireAnyOf: [lr-mame]               }
     mame:
-      mame:         { requireAnyOf: [mame]              }
+      mame:                { requireAnyOf: [mame]                  }
 
 neogeocd:
   name:       Neo-Geo CD
