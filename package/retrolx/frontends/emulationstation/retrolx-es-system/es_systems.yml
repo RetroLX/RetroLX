@@ -520,8 +520,6 @@ dos:
   theme:      pc
   platform:   pc
   emulators:
-    dosbox:
-      dosbox:           { requireAnyOf: [dosbox], incompatible_extensions: [zip] }
     dosbox-staging:
       dosbox-staging:   { requireAnyOf: [dosbox-staging], incompatible_extensions: [zip] }
     dosbox-x:

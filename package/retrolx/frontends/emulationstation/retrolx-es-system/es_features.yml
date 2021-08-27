@@ -3132,8 +3132,6 @@ dolphin:
                     "Wiimote Sideway + Swing":   is
                     "Wiimote Sideway + Tilt":    it
                     "Wiimote Sideway + Nunchuk": in
-dosbox:
-  features: [ratio, padtokeyboard]
 
 dosbox-staging:
   features: [ratio, padtokeyboard]
