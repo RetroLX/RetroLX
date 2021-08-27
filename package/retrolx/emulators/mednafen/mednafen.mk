@@ -13,6 +13,8 @@ MEDNAFEN_DEPENDENCIES = sdl2 zlib libpng
 MEDNAFEN_PKG_DIR = $(TARGET_DIR)/opt/retrolx/mednafen
 MEDNAFEN_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/mednafen
 
+MEDNAFEN_CONF_OPTS = --disable-ssfplay
+
 define MEDNAFEN_MAKEPKG
 	# Create directories
 	mkdir -p $(MEDNAFEN_PKG_DIR)$(MEDNAFEN_PKG_INSTALL_DIR)
