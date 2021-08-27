@@ -286,6 +286,7 @@ menu "Emulators"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/wine/wine-proton/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/wine/wine-proton-wow64_32/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/wine/wine-x86/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/wine/winetricks/Config.in"
   endmenu
 
 endmenu
@@ -303,7 +304,6 @@ menu "Utils"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/unclutter/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/roshambo-case/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/fdupes/Config.in"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/winetricks/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/cabextract/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/pacman/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/xow/Config.in"
