@@ -17,7 +17,7 @@ XEMU_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/xemu
 
 XEMU_EXTRA_DOWNLOADS = https://github.com/mborgerson/xemu-hdd-image/releases/download/1.0/xbox_hdd.qcow2.zip
 
-XEMU_CONF_ENV += PATH="/x86_64/host/x86_64-buildroot-linux-gnu/sysroot/usr/bin:$$PATH"
+XEMU_CONF_ENV += PATH="$(STAGING_DIR)/usr/bin:$$PATH"
 
 XEMU_CONF_OPTS += --target-list=i386-softmmu
 XEMU_CONF_OPTS += --cross-prefix="$(STAGING_DIR)"
@@ -91,8 +91,8 @@ define XEMU_BUILD_CMDS
 		CC_FOR_BUILD="$(TARGET_CC)" GCC_FOR_BUILD="$(TARGET_CC)" \
 		CXX_FOR_BUILD="$(TARGET_CXX)" LD_FOR_BUILD="$(TARGET_LD)" \
                 CROSS_COMPILE="$(STAGING_DIR)/usr/bin/" \
-                PREFIX="/x86_64/host/x86_64-buildroot-linux-gnu/sysroot/" \
-                PKG_CONFIG="/x86_64/host/x86_64-buildroot-linux-gnu/sysroot/usr/bin/pkg-config" \
+                PREFIX="$(STAGING_DIR)" \
+                PKG_CONFIG="$(STAGING_DIR)/usr/bin/pkg-config" \
 		$(MAKE) -C $(@D) V=1
 endef
 
