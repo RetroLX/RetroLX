@@ -45,7 +45,7 @@ config BR2_PACKAGE_RETROLX_FLASH_SYSTEMS
 	bool "RetroLX Flash support"
 
 	# Flash Player Emulator
-	#select BR2_PACKAGE_RUFFLE           if BR2_PACKAGE_RETROLX_TARGET_X86_64 # depends on X11
+	select BR2_PACKAGE_RUFFLE           if BR2_PACKAGE_RETROLX_TARGET_X86_64 # depends on X11
 	select BR2_PACKAGE_LIGHTSPARK       if BR2_PACKAGE_RETROLX_TARGET_X86_64 # depends on X11
 
 #### Moonlight / Gamestream ####
@@ -185,7 +185,7 @@ config BR2_PACKAGE_RETROLX_HANDHELD_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_PPSSPP          if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
 	# Nintendo Switch
-	#select BR2_PACKAGE_YUZU                     if BR2_x86_64
+	select BR2_PACKAGE_YUZU                     if BR2_x86_64
 
 	help
 		Handheld cores/emulators
@@ -194,11 +194,7 @@ config BR2_PACKAGE_RETROLX_HANDHELD_SYSTEMS
 config BR2_PACKAGE_RETROLX_MSDOS_SYSTEMS
 	bool "RetroLX MS/DOS emulation packages"
 
-	select BR2_PACKAGE_DOSBOX                   if  !BR2_PACKAGE_RETROLX_TARGET_H3 && !BR2_PACKAGE_RETROLX_TARGET_RK3326
-
-	select BR2_PACKAGE_DOSBOX_X                 if !BR2_PACKAGE_RETROLX_TARGET_RPI1	&& \
-                                                    !BR2_PACKAGE_RETROLX_TARGET_RPI2		&& \
-                                                    !BR2_PACKAGE_RETROLX_TARGET_RPI3
+	select BR2_PACKAGE_DOSBOX_X                 if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
 	select BR2_PACKAGE_DOSBOX_STAGING           # ALL 
 
@@ -384,7 +380,7 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_PLAY		if BR2_i686 || BR2_x86_64 || BR2_PACKAGE_RETROLX_TARGET_RPI4 || BR2_PACKAGE_RETROLX_PANFROST_MESA3D
 
 	# Sony PS3
-	#select BR2_PACKAGE_RPCS3                        if BR2_x86_64
+	select BR2_PACKAGE_RPCS3                        if BR2_x86_64
 
 	# Wii U (requires Wine layer)
 	select BR2_PACKAGE_CEMU                         if  BR2_x86_64 && BR2_PACKAGE_RETROLX_WINE_SYSTEMS

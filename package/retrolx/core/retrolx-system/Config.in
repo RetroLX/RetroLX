@@ -143,6 +143,7 @@ config BR2_PACKAGE_RETROLX_COMMON
 	select BR2_PACKAGE_GLM
 	select BR2_PACKAGE_GNUTLS
         select BR2_PACKAGE_HOST_PACMAN
+        select BR2_PACKAGE_HOST_RUSTC
 	select BR2_PACKAGE_ICU
 	select BR2_PACKAGE_INOTIFY_TOOLS # required to wait that evmapy is ready
 	select BR2_PACKAGE_JPEG
@@ -524,6 +525,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/x99"  				 if BR2_PACKAGE_RETROLX_TARGET_RK3399
 	default "allwinner/h3/orangepi-plus2e allwinner/h3/orangepi-pc allwinner/h3/orangepi-pc-plus allwinner/h3/cha"   if BR2_PACKAGE_RETROLX_TARGET_H3
 	default "allwinner/h5/tritium-h5"                                        			 		 if BR2_PACKAGE_RETROLX_TARGET_H5
+	default "allwinner/h6/orangepi-one-plus"                                        			         if BR2_PACKAGE_RETROLX_TARGET_H6
 	default "allwinner/h616/orangepi-zero2"                                    					 if BR2_PACKAGE_RETROLX_TARGET_H616
 	default "s812"                                              			 				 if BR2_PACKAGE_RETROLX_TARGET_S812
 	default "odroidxu4"                                         			 				 if BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
@@ -583,6 +585,9 @@ config BR2_PACKAGE_RETROLX_TARGET_H3
 
 config BR2_PACKAGE_RETROLX_TARGET_H5
 	bool "h5"
+
+config BR2_PACKAGE_RETROLX_TARGET_H6
+	bool "h6"
 
 config BR2_PACKAGE_RETROLX_TARGET_H616
 	bool "h616"
