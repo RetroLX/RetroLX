@@ -17,7 +17,7 @@ function dialogoutput()
     local percent="$1"
     local text="Do not switch off your device!"
 
-    dialog --backtitle "batocera.linux" --title " Resizing Partition " \
+    dialog --backtitle "RetroLX" --title " Resizing Partition " \
            --mixedgauge "$text" 18 50 "$percent" "${arr[@]}" &>/dev/tty1
 }
 
