@@ -117,14 +117,15 @@ config BR2_PACKAGE_RETROLX_ARCADE_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS3       if BR2_arm1176jzf_s || BR2_cortex_a7
 	select BR2_PACKAGE_LIBRETRO_FBALPHA2012_NEOGEO     if BR2_arm1176jzf_s || BR2_cortex_a7
 
+	# Final Burn Neo
+	select BR2_PACKAGE_LIBRETRO_FBNEO
+
 	# RetroArch MAME derivatives
 	select BR2_PACKAGE_LIBRETRO_MAME2000       if BR2_arm1176jzf_s || BR2_cortex_a7
 	select BR2_PACKAGE_LIBRETRO_MAME2003_PLUS
 	select BR2_PACKAGE_LIBRETRO_MAME2010       if !BR2_arm1176jzf_s
 
 	#select BR2_PACKAGE_MAME     if BR2_PACKAGE_RETROLX_TARGET_X86_64 || BR2_PACKAGE_RETROLX_WAYLAND
-
-	select BR2_PACKAGE_LIBRETRO_FBNEO
 
 	# Laserdic emulation
 	select BR2_PACKAGE_DAPHNE               if !BR2_arm1176jzf_s && !BR2_cortex_a7
