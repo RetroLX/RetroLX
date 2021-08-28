@@ -1,7 +1,8 @@
 #!/bin/bash
 
 HOST_DIR=$1
-IMAGES_DIR=$2
+BOARD_DIR=$2
+IMAGES_DIR=$3
 
 # ARM Trusted Firmware BL31
 export BL31="${IMAGES_DIR}/bl31.bin"
@@ -11,6 +12,15 @@ export SCP="/dev/null"
 # Clone U-Boot mainline
 git clone --depth 1 https://source.denx.de/u-boot/u-boot.git -b v2021.07
 cd u-boot
+
+# Apply patches
+PATCHES="${BOARD_DIR}/patches/uboot/*.patch"
+for patch in $PATCHES
+do
+  echo "Applying patch: $patch"
+  # take action on each file. $f store current file name
+  patch -p1 < $patch
+done
 
 # Make config
 make orangepi_one_plus_defconfig
