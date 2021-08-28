@@ -12,7 +12,9 @@ MUPEN64PLUS_DEPENDENCIES += mupen64plus-audio-sdl
 endif
 
 ifeq ($(BR2_PACKAGE_RETROLX_RPI_VCORE)$(BR2_PACKAGE_RETROLX_LIMA_MESA3D),y)
+ifeq ($(BR2_arm),y)
 MUPEN64PLUS_DEPENDENCIES += mupen64plus-gles2
+endif
 else
 MUPEN64PLUS_DEPENDENCIES += mupen64plus-gliden64
 MUPEN64PLUS_DEPENDENCIES += mupen64plus-video-glide64mk2
