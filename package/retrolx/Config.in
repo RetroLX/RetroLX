@@ -222,7 +222,7 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	select BR2_PACKAGE_FHEROES2		    # ALL
 
 	# Heroes of Might and Magic 3 engine
-	select BR2_PACKAGE_VCMI		            # ALL
+	select BR2_PACKAGE_VCMI		            if !BR2_arm
 
 	# Wolfeinstein 3D / Spear of Destiny ports
 	select BR2_PACKAGE_LIBRETRO_ECWOLF          # ALL
