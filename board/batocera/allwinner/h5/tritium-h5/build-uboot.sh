@@ -1,7 +1,10 @@
 #!/bin/bash
 
+HOST_DIR=$1
+IMAGES_DIR=$2
+
 # ARM Trusted Firmware BL31
-export BL31="/h5/images/bl31.bin"
+export BL31="${IMAGES_DIR}/bl31.bin"
 # Crust firmware (optional)
 export SCP="/dev/null"
 
@@ -13,7 +16,7 @@ cd u-boot
 make libretech_all_h3_cc_h5_defconfig
 
 # Build it
-ARCH=aarch64 CROSS_COMPILE=/h5/host/bin/aarch64-buildroot-linux-gnu- make -j$(nproc)
+ARCH=aarch64 CROSS_COMPILE="${HOST_DIR}/bin/aarch64-buildroot-linux-gnu-" make -j$(nproc)
 mkdir -p ../../uboot-tritium-h5
 
 # Copy to appropriate place
