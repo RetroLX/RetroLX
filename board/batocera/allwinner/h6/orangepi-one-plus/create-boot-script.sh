@@ -15,10 +15,10 @@ TARGET_DIR=$5
 BATOCERA_BINARIES_DIR=$6
 
 # Build Crust SCP firmware
-mkdir -p "${BATOCERA_BINARIES_DIR}/crust" || exit 1
-cp "${BOARD_DIR}/build-crust.sh" "${BATOCERA_BINARIES_DIR}/crust/" || exit 1
-cp "${BOARD_DIR}/crust/orangepi_one_plus_defconfig" "${BATOCERA_BINARIES_DIR}/crust/" || exit 1
-cd "${BATOCERA_BINARIES_DIR}/crust/" && ./build-crust.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
+#mkdir -p "${BATOCERA_BINARIES_DIR}/crust" || exit 1
+#cp "${BOARD_DIR}/build-crust.sh" "${BATOCERA_BINARIES_DIR}/crust/" || exit 1
+#cp "${BOARD_DIR}/crust/orangepi_one_plus_defconfig" "${BATOCERA_BINARIES_DIR}/crust/" || exit 1
+#cd "${BATOCERA_BINARIES_DIR}/crust/" && ./build-crust.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
 
 # Build U-Boot
 mkdir -p "${BATOCERA_BINARIES_DIR}/uboot" || exit 1

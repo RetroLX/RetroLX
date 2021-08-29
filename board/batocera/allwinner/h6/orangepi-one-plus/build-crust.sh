@@ -4,36 +4,30 @@ HOST_DIR=$1
 BOARD_DIR=$2
 IMAGES_DIR=$3
 
-# ARM Trusted Firmware BL31
-#export BL31="${IMAGES_DIR}/bl31.bin"
-
-# Crust firmware (optional)
-#export SCP="/dev/null"
-
 # Crust firmware version
 export CRUST_VERSION="v0.4"
 
-# Clone U-Boot specified version
+# Clone Crust specified version, copy board config
 git clone --depth 1 https://github.com/crust-firmware/crust -b "${CRUST_VERSION}"
 cp orangepi_one_plus_defconfig crust/configs
 cd crust
 
 # AArch64 toolchain
 wget "https://musl.cc/aarch64-linux-musl-cross.tgz"
-tar xjf aarch64-linux-musl-cross.tgz
+tar xzf aarch64-linux-musl-cross.tgz
+export CROSS_aarch64="${IMAGES_DIR}/retrolx/crust/crust/aarch64-linux-musl-cross/bin/aarch64-linux-musl-"
 
-# OR1k toolchain
+# or1k toolchain
 wget "https://musl.cc/or1k-linux-musl-cross.tgz"
-tar xzvf or1k-linux-musl-cross.tgz
+tar xzf or1k-linux-musl-cross.tgz
+export CROSS_or1k="${IMAGES_DIR}/retrolx/crust/crust/or1k-linux-musl-cross/bin/or1k-linux-musl-";
 
 # Make config
 make orangepi_one_plus_defconfig
 
 # Build it
 ARCH=aarch64 \
-CROSS_aarch64="${IMAGES_DIR}/retrolx/crust/crust/aarch64-linux-musl-cross/aarch64-linux-musl-" \
-CROSS_or1k="${IMAGES_DIR}/retrolx/crust/crust/or1k-linux-musl-cross/or1k-linux-musl-" \
-CROSS_COMPILE="${IMAGES_DIR}/retrolx/crust/crust/or1k-linux-musl-cross/or1k-linux-musl-" \
+CROSS_COMPILE="${CROSS_or1k}" \
 make -j$(nproc) scp
 #mkdir -p ../../uboot-orangepi-one-plus
 
