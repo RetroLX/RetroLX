@@ -15,17 +15,6 @@ index 3269005..a215089 100644
  endif
  
  # system platform
-@@ -150,6 +156,10 @@ ifneq (,$(findstring unix,$(platform)))
-          CPUFLAGS += -DNO_ASM -DARM -D__arm__ -DARM_ASM -D__NEON_OPT -DNOSSE
-          CPUFLAGS += -mcpu=cortex-a53 -mfpu=neon-fp-armv8 -mfloat-abi=hard
-          HAVE_NEON = 1
-+      else ifneq (,$(findstring rpi4,$(platform)))
-+         CPUFLAGS += -DNO_ASM -DARM -D__arm__ -DARM_ASM -D__NEON_OPT -DNOSSE
-+         CPUFLAGS += -mcpu=cortex-a72 -mfpu=neon-fp-armv8 -mfloat-abi=hard
-+         HAVE_NEON = 1
-       # Raspberry pi 4 in 64bit mode with VULKAN
-       else ifneq (,$(findstring rpi4_64,$(platform)))
-          CPUFLAGS += -DNO_ASM -DARM -DARM_ASM -DDONT_WANT_ARM_OPTIMIZATIONS -DARM_FIX -DCLASSIC -DARM64
 @@ -166,6 +176,37 @@ ifneq (,$(findstring unix,$(platform)))
  
     endif
