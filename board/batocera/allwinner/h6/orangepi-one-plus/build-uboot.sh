@@ -6,11 +6,15 @@ IMAGES_DIR=$3
 
 # ARM Trusted Firmware BL31
 export BL31="${IMAGES_DIR}/bl31.bin"
+
 # Crust firmware (optional)
 export SCP="/dev/null"
 
-# Clone U-Boot mainline
-git clone --depth 1 https://source.denx.de/u-boot/u-boot.git -b v2021.07
+# U-Boot versiono
+export UBOOT_VERSION="v2021.01"
+
+# Clone U-Boot specified version
+git clone --depth 1 https://source.denx.de/u-boot/u-boot.git -b "${UBOOT_VERSION}"
 cd u-boot
 
 # Apply patches
