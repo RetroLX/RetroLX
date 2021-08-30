@@ -3,8 +3,8 @@
 # FLYCAST
 #
 ################################################################################
-# Version.: Release on May 29, 2021
-FLYCAST_VERSION = v1.0
+# Version.: Release on Aug 30, 2021
+FLYCAST_VERSION = v1.1
 FLYCAST_SITE = https://github.com/flyinghead/flycast.git
 FLYCAST_SITE_METHOD=git
 FLYCAST_GIT_SUBMODULES=YES

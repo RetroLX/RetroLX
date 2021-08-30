@@ -1,0 +1,46 @@
+--- a/shell/linux/Makefile	2021-08-30 21:34:05.416651141 +0200
++++ b/shell/linux/Makefile	2021-08-30 21:34:42.057335015 +0200
+@@ -149,8 +149,8 @@
+ 
+ # Generic 32 bit ARMhf (a.k.a. ARMv7h)
+ else ifneq (,$(findstring armv7h,$(platform)))
+-    MFLAGS += -marm -mfloat-abi=hard -march=armv7-a -funroll-loops
+-    ASFLAGS += -mfloat-abi=hard -march=armv7-a
++    MFLAGS += -marm -mfloat-abi=hard -march=armv7ve -funroll-loops
++    ASFLAGS += -mfloat-abi=hard -march=armv7ve
+     ifneq (,$(findstring neon,$(platform)))
+         MFLAGS += -mfpu=neon
+         ASFLAGS += -mfpu=neon
+@@ -218,8 +218,8 @@
+ # BeagleBone Black
+ else ifneq (,$(findstring beagle,$(platform)))
+     CC_PREFIX ?= arm-none-linux-gnueabi-
+-    MFLAGS += -marm -march=armv7-a -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp -funroll-loops
+-    ASFLAGS := -march=armv7-a -mfpu=neon -mfloat-abi=softfp
++    MFLAGS += -marm -march=armv7ve -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp -funroll-loops
++    ASFLAGS := -march=armv7ve -mfpu=neon -mfloat-abi=softfp
+     USE_GLES := 1
+ 
+ # Pandora
+@@ -228,8 +228,8 @@
+     USE_SDL := 1
+     PGO_USE := 1
+     USE_GLES := 1
+-    MFLAGS += -marm -march=armv7-a -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp -funroll-loops -ftree-vectorize -fomit-frame-pointer
+-    ASFLAGS += -march=armv7-a -mfpu=neon -mfloat-abi=softfp
++    MFLAGS += -marm -march=armv7ve -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp -funroll-loops -ftree-vectorize -fomit-frame-pointer
++    ASFLAGS += -march=armv7ve -mfpu=neon -mfloat-abi=softfp
+     CFLAGS += -D TARGET_PANDORA -DPANDORA
+ 
+ # ODROID c2 aarch64
+@@ -297,8 +297,8 @@
+ 		CFLAGS += -DGLES3
+     # Other ODROIDs
+     else
+-        MFLAGS += -march=armv7-a
+-        ASFLAGS += -march=armv7-a
++        MFLAGS += -march=armv7ve
++        ASFLAGS += -march=armv7ve
+ 
+         # ODROID-C1 & -C1+
+         ifneq (,$(findstring odroidc1,$(platform)))
