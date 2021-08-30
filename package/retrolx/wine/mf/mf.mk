@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-MF_VERSION = d363dce66f9731611efe71a8f78d01f99630874d
+MF_VERSION = bd62c2c0d96b82f69707671d459c8802e1afa27c
 MF_SITE = $(call github,z0z0z,mf-install,$(MF_VERSION))
 MF_LICENSE = zlib/libpng
 
