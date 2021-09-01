@@ -90,6 +90,10 @@ define RETROLX_SYSTEM_INSTALL_TARGET_CMDS
 	# retrolx-boot.conf
 	$(INSTALL) -D -m 0644 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-system/retrolx-boot.conf $(BINARIES_DIR)/retrolx-boot.conf
 
+	# install scripts
+	mkdir -p $(TARGET_DIR)/usr/share/retrolx/scripts
+	cp -R $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-system/scripts/* $(TARGET_DIR)/usr/share/retrolx/scripts/
+
 	# mounts
 	mkdir -p $(TARGET_DIR)/boot $(TARGET_DIR)/overlay $(TARGET_DIR)/userdata
 endef
