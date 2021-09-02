@@ -18,5 +18,6 @@ lr-snes9x2010
 lr-stella
 )
 
+/usr/bin/retrolx-pacman list
 for package in "${packages[@]}" ; do /usr/bin/retrolx-pacman install "${package}" ; done
 
