@@ -10,7 +10,7 @@ export BL31="${IMAGES_DIR}/bl31.bin"
 # Crust firmware (optional)
 export SCP="/dev/null"
 
-# U-Boot versiono
+# U-Boot version
 export UBOOT_VERSION="v2021.01"
 
 # Clone U-Boot specified version
@@ -22,7 +22,6 @@ PATCHES="${BOARD_DIR}/patches/uboot/*.patch"
 for patch in $PATCHES
 do
   echo "Applying patch: $patch"
-  # take action on each file. $f store current file name
   patch -p1 < $patch
 done
 

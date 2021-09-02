@@ -3,8 +3,8 @@
 # MELONDS
 #
 ################################################################################
-# Version.: Relase on April 26th, 2020
-MELONDS_VERSION = 0.9.2
+# Version.: Relase on September 2, 2021
+MELONDS_VERSION = 0.9.3
 MELONDS_SITE = https://github.com/Arisotura/melonDS.git
 MELONDS_SITE_METHOD=git
 MELONDS_GIT_SUBMODULES=YES
@@ -16,6 +16,13 @@ MELONDS_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/melonds
 
 # Should be set when the package cannot be built inside the source tree but needs a separate build directory.
 MELONDS_SUPPORTS_IN_SOURCE_BUILD = NO
+
+# melonDS is OpenGL desktop only so far
+ifeq ($(BR2_x86_64), y)
+MELONDS_CONF_OPTS += -DENABLE_OGLRENDERER=ON
+else
+MELONDS_CONF_OPTS += -DENABLE_OGLRENDERER=OFF
+endif
 
 MELONDS_CONF_OPTS += -DCMAKE_BUILD_TYPE=Release
 
