@@ -172,13 +172,13 @@ n64:
   extensions: [z64, n64, v64, zip, 7z]
   emulators:
     mupen64plus:
-      gliden64:   { requireAnyOf: [MUPEN64PLUS_GLIDEN64] }
-      glide64mk2: { requireAnyOf: [MUPEN64PLUS_VIDEO_GLIDE64MK2]  }
-      rice:       { requireAnyOf: [MUPEN64PLUS_VIDEO_RICE]        }
-      n64:        { requireAnyOf: [MUPEN64PLUS_GLES2]             }
+      gliden64:   { requireAnyOf: [mupen64plus] }
+      glide64mk2: { requireAnyOf: [mupen64plus] }
+      rice:       { requireAnyOf: [mupen64plus] }
+      n64:        { requireAnyOf: [mupen64plus] }
     libretro:
-      mupen64plus-next: { requireAnyOf: [lr-MUPEN64PLUS_NEXT] }
-      parallel_n64:     { requireAnyOf: [lr-PARALLEL_N64] }
+      mupen64plus-next: { requireAnyOf: [lr-mupen64plus-next] }
+      parallel_n64:     { requireAnyOf: [lr-parallel-n64] }
 
 n64dd:
   name:       Nintendo 64 Disk Drive
@@ -206,7 +206,7 @@ gba:
     libretro:
       mgba:   { requireAnyOf: [lr-mgba] }
       vba-m:  { requireAnyOf: [lr-vba-m] }
-      gpsp:   { requireAnyOf: [lr-GPSP] }
+      gpsp:   { requireAnyOf: [lr-gpsp] }
 
 gbc:
   name:       Game Boy Color
@@ -313,7 +313,7 @@ dreamcast:
     flycast:
       flycast:        { requireAnyOf: [flycast]          }
     redream:
-      redream:        { requireAnyOf: [REDREAM]          }
+      redream:        { requireAnyOf: [redream]          }
 
 naomi:
   name:       Sega Naomi
@@ -352,9 +352,9 @@ megadrive:
   emulators:
     libretro:
       genesisplusgx: { requireAnyOf: [lr-genesisplusgx] }
-      genesisplusgx-wide: { requireAnyOf: [lr-GENESISPLUSGX_WIDE] }
+      genesisplusgx-wide: { requireAnyOf: [lr-genesisplusgx-wide] }
       picodrive:     { requireAnyOf: [lr-picodrive] }
-      blastem:       { requireAnyOf: [lr-BLASTEM] }
+      blastem:       { requireAnyOf: [lr-blastem] }
 
 segacd:
   name:       Sega CD
@@ -432,6 +432,7 @@ psx:
   emulators:
     libretro:
       pcsx_rearmed: { requireAnyOf: [lr-pcsx] }
+      duckstation:  { requireAnyOf: [lr-duckstation] }
       swanstation:  { requireAnyOf: [lr-swanstation] }
       mednafen_psx: { requireAnyOf: [lr-beetle-psx] }
     duckstation:
@@ -619,7 +620,7 @@ mame:
   platform:   arcade
   emulators:
     libretro:
-      imame4all:    { requireAnyOf: [lr-imame]          }
+      imame4all:    { requireAnyOf: [lr-mame2000]       }
       mame078plus:  { requireAnyOf: [lr-mame2003-plus]  }
       mame0139:     { requireAnyOf: [lr-mame2010]       }
       mame:         { requireAnyOf: [lr-mame]           }
@@ -869,7 +870,7 @@ mrboom:
   group: ports
   emulators:
     libretro:
-      mrboom: { requireAnyOf: [lr-MRBOOM] }
+      mrboom: { requireAnyOf: [lr-mrboom] }
 
 tic80:
   name:       TIC-80
@@ -879,7 +880,7 @@ tic80:
   extensions: [tic]
   emulators:
     libretro:
-      tic80: { requireAnyOf: [lr-TIC80] }
+      tic80: { requireAnyOf: [lr-tic80] }
   comment_en: |
     Find the documentation here: https://wiki.batocera.org/emulators:tic-80
   comment_fr: |
@@ -893,7 +894,7 @@ pico8:
   extensions: [p8, png]
   emulators:
     libretro:
-      retro8: { requireAnyOf: [lr-RETRO8] }
+      retro8: { requireAnyOf: [lr-retro8] }
   comment_en: |
     Find the documentation here: https://wiki.batocera.org/emulators:pico-8
   comment_fr: |
@@ -907,7 +908,7 @@ channelf:
   extensions: [zip, rom, bin, chf]
   emulators:
     libretro:
-      freechaf: { requireAnyOf: [lr-FREECHAF] }
+      freechaf: { requireAnyOf: [lr-freechaf] }
 
 cannonball:
   name:       Cannonball
@@ -947,7 +948,7 @@ vectrex:
   extensions: [bin, gam, vec, zip, 7z]
   emulators:
     libretro:
-      vecx: { requireAnyOf: [lr-VECX] }
+      vecx: { requireAnyOf: [lr-vecx] }
 
 lutro:
   name:       Lutro
@@ -958,7 +959,7 @@ lutro:
   group: ports
   emulators:
     libretro:
-      lutro: { requireAnyOf: [lr-LUTRO] }
+      lutro: { requireAnyOf: [lr-lutro] }
   comment_en: |
     LUA demo games on github:
     https://github.com/libretro/lutro-platformer
@@ -980,7 +981,7 @@ cavestory:
   group: ports
   emulators:
     libretro:
-      nxengine: { requireAnyOf: [lr-NXENGINE] }
+      nxengine: { requireAnyOf: [lr-nxengine] }
   comment_en: |
     Download the game from the following URL and uncompress it in this folder.
     http://www.cavestory.org/downloads/cavestoryen.zip
@@ -1274,7 +1275,7 @@ odyssey2:
   path:       o2em
   emulators:
     libretro:
-      o2em: { requireAnyOf: [lr-O2EM] }
+      o2em: { requireAnyOf: [lr-o2em] }
 
 zx81:
   name:       ZX81
@@ -1300,7 +1301,7 @@ zxspectrum:
   extensions: [tzx, tap, z80, rzx, scl, trd, zip, 7z]
   emulators:
     libretro:
-      fuse: { requireAnyOf: [lr-FUSE] }
+      fuse: { requireAnyOf: [lr-fuse] }
   comment_en: |
     ## Input Devices ##
 
@@ -1335,7 +1336,7 @@ moonlight:
   extensions: [moonlight]
   emulators:
     moonlight:
-      moonlight: { requireAnyOf: [MOONLIGHT_EMBEDDED] }
+      moonlight: { requireAnyOf: [moonlight-embedded] }
   comment_en: |
     Find the documentation here: https://wiki.batocera.org/emulators:moonlight
   comment_fr: |
@@ -1384,9 +1385,9 @@ gamecube:
   theme:      gc
   emulators:
     dolphin:
-      dolphin:  { requireAnyOf: [DOLPHIN_EMU]       }
+      dolphin:  { requireAnyOf: [dolphin-emu]       }
     libretro:
-      dolphin: { requireAnyOf: [lr-DOLPHIN] }
+      dolphin: { requireAnyOf: [lr-dolphin }
 
 wii:
   name:       Nintendo Wii
@@ -1396,9 +1397,9 @@ wii:
   extensions: [gcm, iso, gcz, ciso, wbfs, wad, rvz, elf, dol]
   emulators:
     dolphin:
-      dolphin:  { requireAnyOf: [DOLPHIN_EMU]       }
+      dolphin:  { requireAnyOf: [dolphin-emu]       }
     libretro:
-      dolphin: { requireAnyOf: [lr-DOLPHIN] }
+      dolphin: { requireAnyOf: [lr-dolphin] }
   comment_en: |
     To use a virtual horizontal wiimote, include ".side." in the filename (for example ".side.iso").
     You can choose the axis controls among i(nfrared), s(wing), t(ilt) or n(unchuk) :
@@ -1512,10 +1513,10 @@ openbor:
   extensions: [pak]
   emulators:
     openbor:
-      openbor4432: { requireAnyOf: [OPENBOR4432] }
-      openbor6330: { requireAnyOf: [OPENBOR6330] }
-      openbor6412: { requireAnyOf: [OPENBOR6412] }
-      openbor6510: { requireAnyOf: [OPENBOR6510] }
+      openbor4432: { requireAnyOf: [openbor] }
+      openbor6330: { requireAnyOf: [openbor] }
+      openbor6412: { requireAnyOf: [openbor] }
+      openbor6510: { requireAnyOf: [openbor] }
 
 satellaview:
   name:       Satellaview
