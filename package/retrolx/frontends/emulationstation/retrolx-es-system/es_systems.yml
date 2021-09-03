@@ -1387,7 +1387,7 @@ gamecube:
     dolphin:
       dolphin:  { requireAnyOf: [dolphin-emu]       }
     libretro:
-      dolphin: { requireAnyOf: [lr-dolphin }
+      dolphin: { requireAnyOf: [lr-dolphin] }
 
 wii:
   name:       Nintendo Wii
