@@ -1,5 +1,5 @@
 pkgname = lr-puae
-pkgver = 20210829-1
+pkgver = 20210903-1
 pkgdesc = PUAE (Commodore Amiga) libretro core
 group = emulator
 packager = https://retrolx.org 
