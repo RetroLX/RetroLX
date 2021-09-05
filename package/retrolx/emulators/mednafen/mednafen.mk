@@ -12,16 +12,11 @@ MEDNAFEN_DEPENDENCIES = sdl2 zlib libpng
 
 MEDNAFEN_PKG_DIR = $(TARGET_DIR)/opt/retrolx/mednafen
 MEDNAFEN_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/mednafen
+MEDNAFEN_PREFIX_DIR = /opt/retrolx/mednafen$(MEDNAFEN_PKG_INSTALL_DIR)
 
-MEDNAFEN_CONF_OPTS = --disable-ssfplay
+MEDNAFEN_CONF_OPTS = --disable-ssfplay --prefix=$(MEDNAFEN_PREFIX_DIR) --exec-prefix=$(MEDNAFEN_PREFIX_DIR)
 
 define MEDNAFEN_MAKEPKG
-	# Create directories
-	mkdir -p $(MEDNAFEN_PKG_DIR)$(MEDNAFEN_PKG_INSTALL_DIR)
-
-	# Copy package files
-	$(INSTALL) -D $(@D)/src/mednafen $(MEDNAFEN_PKG_DIR)$(MEDNAFEN_PKG_INSTALL_DIR)
-
 	# Build Pacman package
 	cd $(MEDNAFEN_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
 	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/mednafen/PKGINFO \
