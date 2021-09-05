@@ -13,6 +13,14 @@ wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.07.tar.bz2"
 tar xf u-boot-2021.07.tar.bz2
 cd u-boot-2021.07
 
+# Apply patches
+PATCHES="${BOARD_DIR}/patches/uboot/*.patch"
+for patch in $PATCHES
+do
+  echo "Applying patch: $patch"
+  patch -p1 < $patch
+done
+
 # Make config
 make libretech_all_h3_cc_h5_defconfig
 
