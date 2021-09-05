@@ -9,8 +9,9 @@ export BL31="${IMAGES_DIR}/bl31.bin"
 export SCP="/dev/null"
 
 # Clone U-Boot mainline
-git clone --depth 1 https://source.denx.de/u-boot/u-boot.git -b v2021.07
-cd u-boot
+wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.07.tar.bz2"
+tar xf u-boot-2021.07.tar.bz2
+cd u-boot-2021.07
 
 # Make config
 make libretech_all_h3_cc_h5_defconfig

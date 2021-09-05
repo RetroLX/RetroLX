@@ -4,8 +4,9 @@ HOST_DIR=$1
 IMAGES_DIR=$2
 
 # Clone U-Boot mainline
-git clone --depth 1 https://source.denx.de/u-boot/u-boot.git -b v2021.07
-cd u-boot
+wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.07.tar.bz2"
+tar xf u-boot-2021.07.tar.bz2
+cd u-boot-2021.07
 
 # Make config
 make tinker-rk3288_defconfig
