@@ -1,0 +1,6 @@
+pkgname = vice
+pkgver = 3.5-1
+pkgdesc = VICE - Versatile Commodore Emulator
+group = emulator
+packager = https://retrolx.org 
+url = https://vice-emu.sourceforge.io/
