@@ -19,5 +19,5 @@ lr-stella
 )
 
 /usr/bin/retrolx-pacman list
-for package in "${packages[@]}" ; do /usr/bin/retrolx-pacman install "${package}" ; done
+/usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Sy ${packages[*]} --overwrite 'userdata/*'
 

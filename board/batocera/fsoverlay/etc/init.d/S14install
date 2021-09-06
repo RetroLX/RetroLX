@@ -47,22 +47,17 @@ then
 	"Starting install...................." "Pending"
 	"Installing base packages............" "Pending"
 	"Installing base content............." "Pending"
-	"Finishing install..................." "Pending"
-	"Rebuilding systems.................." "Pending"
 	"Syncing filesystem.................." "Pending"
     )
 
     # --- BEGIN INSTALL ---
-    # textoutput "Message" "percentage" "command call"
-    for i in 1 3 5 7 9 11 13; do
+    for i in 1 3 5 7 9; do
 	case $i in
 	    1) textoutput $i 01 "sleep 0.1";;
 	    3) textoutput $i 10 "sync";;
 	    5) textoutput $i 30 "/usr/share/retrolx/scripts/install-packages.sh";;
 	    7) textoutput $i 60 "/usr/share/retrolx/scripts/install-content.sh";;
-	    9) textoutput $i 65 "sync";;
-	    11) textoutput $i 70 "/usr/bin/retrolx-rebuild-es-systems.sh";;
-	    13) textoutput $i 95 "sync";;
+	    9) textoutput $i 90 "sync";;
 	esac
     done
     # --- END INSTALL ---

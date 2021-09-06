@@ -7,6 +7,15 @@
 
 HOST_DIR="$1"
 
-#PATH="${HOST_DIR}/usr/bin:${PATH}" rm retrolx*
+# Generate pacman repository database
 PATH="${HOST_DIR}/usr/bin:${PATH}" repo-add "retrolx.db.tar.gz" *.pkg.tar.zst
 
+# Workaround for local packages on FAT (no symlinks)
+rm retrolx.db
+rm retrolx.files
+cp retrolx.db.tar.gz retrolx.db
+cp retrolx.files.tar.gz retrolx.files
+
+# Cleanup old files
+rm retrolx.db.tar.gz.old
+rm retrolx.files.tar.gz.old

@@ -15,6 +15,9 @@ BINARIES_DIR=$4
 TARGET_DIR=$5
 BATOCERA_BINARIES_DIR=$6
 
+mkdir -p "${BATOCERA_BINARIES_DIR}/boot/packages" || exit 1
+cp -r "${BUILD_DIR}"/repo/* "${BATOCERA_BINARIES_DIR}/boot/packages/" || exit 1
+
 mkdir -p "${BATOCERA_BINARIES_DIR}/build-uboot-nanopi-k2"     || exit 1
 cp "${BOARD_DIR}/build-uboot.sh"          "${BATOCERA_BINARIES_DIR}/build-uboot-nanopi-k2/" || exit 1
 cd "${BATOCERA_BINARIES_DIR}/build-uboot-nanopi-k2/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1

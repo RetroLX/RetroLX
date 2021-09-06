@@ -4,5 +4,5 @@ Type = Package
 Target = *
 
 [Action]
-When = PreTransaction
+When = PostTransaction
 Exec = /usr/bin/retrolx-rebuild-es-systems.sh

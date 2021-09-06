@@ -14,6 +14,9 @@ BINARIES_DIR=$4
 TARGET_DIR=$5
 BATOCERA_BINARIES_DIR=$6
 
+mkdir -p "${BATOCERA_BINARIES_DIR}/boot/packages" || exit 1
+cp -r "${BUILD_DIR}"/repo/* "${BATOCERA_BINARIES_DIR}/boot/packages/" || exit 1
+
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/boot" || exit 1
 
 cp -pr "${BINARIES_DIR}/rpi-firmware/"* "${BATOCERA_BINARIES_DIR}/boot/" || exit 1
