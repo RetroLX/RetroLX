@@ -33,14 +33,14 @@ diff -ur ./3rdparty/minimp3/minimp3.h /home/romain/batocera.linux/output/odroidn
 diff -ur ./makefile /home/romain/batocera.linux/output/odroidn2/build/mame-mame0226/makefile
 --- a/makefile	2020-10-27 02:00:36.000000000 +0100
 +++ b/makefile	2020-11-09 18:56:15.179960037 +0100
-@@ -33,6 +33,7 @@
+@@ -32,6 +32,7 @@
  # SDL2_MULTIAPI = 1
  # NO_USE_MIDI = 1
  # NO_USE_PORTAUDIO = 1
-+# NO_USE_BGFX_KHRONOS =
++# NO_USE_BGFX_KHRONOS = 1
+ # NO_USE_PULSEAUDIO = 1
  # USE_TAPTUN = 1
  # USE_PCAP = 1
- # USE_QTDEBUG = 1
 @@ -87,11 +87,13 @@
  # BUILDDIR = build
  # TARGETOS = windows
@@ -252,18 +252,3 @@ diff -ur ./scripts/toolchain.lua /home/romain/batocera.linux/output/odroidn2/bui
  
  	configuration { "mingw*", "x64" }
  		postbuildcommands {
-diff -ur ./src/osd/modules/render/drawbgfx.cpp /home/romain/batocera.linux/output/odroidn2/build/mame-mame0226/src/osd/modules/render/drawbgfx.cpp
---- a/src/osd/modules/render/drawbgfx.cpp	2020-10-27 02:00:36.000000000 +0100
-+++ b/src/osd/modules/render/drawbgfx.cpp	2020-11-09 18:45:54.759139263 +0100
-@@ -169,7 +169,11 @@
- 	}
- 
- #   if BX_PLATFORM_LINUX || BX_PLATFORM_BSD || BX_PLATFORM_RPI
-+#ifdef SDLMAME_NO_X11
-+	return nullptr;
-+#else
- 	return (void*)wmi.info.x11.window;
-+#endif
- #   elif BX_PLATFORM_OSX
- 	return wmi.info.cocoa.window;
- #   elif BX_PLATFORM_WINDOWS
