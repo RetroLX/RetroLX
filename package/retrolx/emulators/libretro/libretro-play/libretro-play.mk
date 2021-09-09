@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBRETRO_PLAY_VERSION = 3555a1385f754222e34d4f661ebd47347e6f357d
+LIBRETRO_PLAY_VERSION = 0.44-1
 LIBRETRO_PLAY_SITE = https://github.com/jpd002/Play-.git
 LIBRETRO_PLAY_LICENSE = BSD
 LIBRETRO_PLAY_DEPENDENCIES = 
