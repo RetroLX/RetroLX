@@ -1,5 +1,5 @@
 pkgname = lr-vice
-pkgver = 20210831-1
+pkgver = 20210909-1
 pkgdesc = VICE (Commodore 64 and 8-bit computers) libretro core
 group = emulator
 packager = https://retrolx.org 

@@ -3,8 +3,8 @@
 # FBALPHA2012_NEOGEO
 #
 ################################################################################
-# Version.: Commits on Avr 30, 2021
-LIBRETRO_FBALPHA2012_NEOGEO_VERSION = 06261f376504ca988aea6093a0999e8b081ff715
+# Version.: Commits on Sep 9, 2021
+LIBRETRO_FBALPHA2012_NEOGEO_VERSION = 91ec91524482b18c8fc76d6707c4ba2830b6b21f
 LIBRETRO_FBALPHA2012_NEOGEO_SITE = $(call github,libretro,fbalpha2012_neogeo,$(LIBRETRO_FBALPHA2012_NEOGEO_VERSION))
 LIBRETRO_FBALPHA2012_NEOGEO_LICENSE = Non-commercial
 
