@@ -265,6 +265,7 @@ menu "Emulators"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/tsugaru/Config.in"
 
   menu "Wine"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/utils/evsieve/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/utils/retrolx-wine/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/wine/dxvk/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/wine/faudio/Config.in"

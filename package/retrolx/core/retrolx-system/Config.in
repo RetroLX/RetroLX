@@ -139,6 +139,8 @@ config BR2_PACKAGE_RETROLX_COMMON
 	select BR2_PACKAGE_DEJAVU
 	select BR2_PACKAGE_ECM
 	select BR2_PACKAGE_EXPAT
+	select BR2_PACKAGE_EVSIEVE
+	select BR2_PACKAGE_EVMAPY	# to be replaced by evsieve
 	select BR2_PACKAGE_GIFLIB
 	select BR2_PACKAGE_GLM
 	select BR2_PACKAGE_GNUTLS
@@ -476,7 +478,6 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_FDUPES
 
 	# joy 2 pad
-	select BR2_PACKAGE_EVMAPY
 	select BR2_PACKAGE_EVMAPY_SYSTEM_CONFIG
 
 	# required gcc flags
