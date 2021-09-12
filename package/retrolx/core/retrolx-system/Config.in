@@ -140,14 +140,12 @@ config BR2_PACKAGE_RETROLX_COMMON
 	select BR2_PACKAGE_ECM
 	select BR2_PACKAGE_EXPAT
 	select BR2_PACKAGE_EVSIEVE
-	select BR2_PACKAGE_EVMAPY	# to be replaced by evsieve
 	select BR2_PACKAGE_GIFLIB
 	select BR2_PACKAGE_GLM
 	select BR2_PACKAGE_GNUTLS
         select BR2_PACKAGE_HOST_PACMAN
         select BR2_PACKAGE_HOST_RUSTC
 	select BR2_PACKAGE_ICU
-	select BR2_PACKAGE_INOTIFY_TOOLS # required to wait that evmapy is ready
 	select BR2_PACKAGE_JPEG
 	select BR2_PACKAGE_FMT
 	select BR2_PACKAGE_FREETYPE
@@ -195,7 +193,6 @@ config BR2_PACKAGE_RETROLX_PYTHON3
 	select BR2_PACKAGE_PYTHON3_SSL
 	select BR2_PACKAGE_PYTHON3_UNICODEDATA
 	select BR2_PACKAGE_DBUS_PYTHON    # required for bluetooth scripts
-	select BR2_PACKAGE_PYTHON_EVDEV
 	select BR2_PACKAGE_PYTHON_HTTPLIB2 # needed for batocera-pacman-batoexec
 	select BR2_PACKAGE_PYTHON_GOBJECT # for bluetooth agent
 	select BR2_PACKAGE_PYTHON_PILLOW
