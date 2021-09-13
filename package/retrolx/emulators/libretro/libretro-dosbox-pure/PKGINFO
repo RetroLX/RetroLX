@@ -1,5 +1,5 @@
 pkgname = lr-dosbox-pure
-pkgver = 0.16-1
+pkgver = 0.17-1
 pkgdesc = Dosbox Pure libretro core
 group = emulator
 packager = https://retrolx.org 
