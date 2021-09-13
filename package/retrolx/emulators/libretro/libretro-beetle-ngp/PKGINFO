@@ -1,5 +1,5 @@
 pkgname = lr-beetle-ngp
-pkgver = 20210711-1
+pkgver = 20210911-1
 pkgdesc = Beetle NeoPop (SNK Neo Geo Pocket / Color) libretro core
 group = emulator
 packager = https://retrolx.org 

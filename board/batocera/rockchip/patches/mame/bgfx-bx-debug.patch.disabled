@@ -1,0 +1,19 @@
+--- a/scripts/src/3rdparty.lua	2021-09-08 13:06:41.427211190 +0200
++++ b/scripts/src/3rdparty.lua	2021-09-08 13:59:36.390784085 +0200
+@@ -1149,6 +1149,7 @@
+ 		"__STDC_LIMIT_MACROS",
+ 		"__STDC_FORMAT_MACROS",
+ 		"__STDC_CONSTANT_MACROS",
++		"BX_CONFIG_DEBUG=1"
+ 	}
+ 
+ 	configuration { "vs*" }
+@@ -1418,6 +1419,8 @@
+ 		"__STDC_FORMAT_MACROS",
+ 		"__STDC_CONSTANT_MACROS",
+ 		"BGFX_CONFIG_MAX_FRAME_BUFFERS=128",
++		"BX_CONFIG_DEBUG=1",
++		"BGFX_CONFIG_DEBUG=1"
+ 	}
+ 
+ 	if _OPTIONS["targetos"]=="linux" or _OPTIONS["targetos"]=="netbsd" or _OPTIONS["targetos"]=="openbsd" then

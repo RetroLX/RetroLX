@@ -192,14 +192,6 @@ ifeq ($(BR2_arm),y)
 	ifeq ($(BR2_cortex_a17),y)
 		LIBRETRO_PLATFORM += armv7
 	endif
-
-	ifeq ($(BR2_cortex_a72_a53),y)
-		LIBRETRO_PLATFORM += armv7
-	endif
-
-	ifeq ($(BR2_cortex_a72),y)
-		LIBRETRO_PLATFORM += armv7
-	endif
 endif
 
 ifeq ($(BR2_ARM_CPU_HAS_NEON),y)
@@ -215,11 +207,11 @@ ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI2),y)
 endif
 
 ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI3),y)
-	LIBRETRO_PLATFORM += rpi3
+	LIBRETRO_PLATFORM += rpi3 rpi3_64
 endif
 
 ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI4),y)
-	LIBRETRO_PLATFORM += rpi4
+	LIBRETRO_PLATFORM += rpi4 rpi4_64
 endif
 
 ifeq ($(BR2_aarch64),y)
