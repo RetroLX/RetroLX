@@ -518,6 +518,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "allwinner/h616/orangepi-zero2"                                                                                                  if BR2_PACKAGE_RETROLX_TARGET_H616
 	default "s812"                                                                                                                           if BR2_PACKAGE_RETROLX_TARGET_S812
 	default "amlogic/s905/odroid-c2 amlogic/s905/nanopi-k2 amlogic/s905/tvbox"                                                               if BR2_PACKAGE_RETROLX_TARGET_S905
+	default "amlogic/s905gen2/tvbox"                                                                                                         if BR2_PACKAGE_RETROLX_TARGET_S905GEN2
 	default "amlogic/s905gen3/odroid-c4 amlogic/s905gen3/tvbox"                                                                              if BR2_PACKAGE_RETROLX_TARGET_S905GEN3
 	default "amlogic/s912"                                                                                                                   if BR2_PACKAGE_RETROLX_TARGET_S912
 	default "amlogic/s922x/odroid-n2 amlogic/s922x/odroid-n2-plus amlogic/s922x/khadas-vim3"                                                 if BR2_PACKAGE_RETROLX_TARGET_S922X
@@ -562,6 +563,9 @@ config BR2_PACKAGE_RETROLX_TARGET_RK3326
 
 config BR2_PACKAGE_RETROLX_TARGET_S905
 	bool "s905"
+
+config BR2_PACKAGE_RETROLX_TARGET_S905GEN2
+	bool "s905gen2"
 
 config BR2_PACKAGE_RETROLX_TARGET_S905GEN3
 	bool "s905gen3"
