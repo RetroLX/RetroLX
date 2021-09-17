@@ -5,7 +5,8 @@ import json
 import re
 import os
 from utils.logger import eslog
-import evdev
+
+# This will be rewritten to use evsieve
 
 class Evmapy():
     # evmapy is a process that map pads to keyboards (for pygame for example)
