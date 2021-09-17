@@ -1,5 +1,5 @@
 pkgname = lr-prosystem
-pkgver = 20210912-1
+pkgver = 20210916-1
 pkgdesc = ProSystem (Atari 7800) libretro core
 group = emulator
 packager = https://retrolx.org 

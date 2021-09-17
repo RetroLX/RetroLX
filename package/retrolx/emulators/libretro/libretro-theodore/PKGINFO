@@ -1,5 +1,5 @@
 pkgname = lr-theodore
-pkgver = 20210912-1
+pkgver = 20210914-1
 pkgdesc = Theodore (Thomson MO/TO computers) libretro core
 group = emulator
 packager = https://retrolx.org 

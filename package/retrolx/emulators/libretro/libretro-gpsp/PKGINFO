@@ -1,5 +1,5 @@
 pkgname = lr-gpsp
-pkgver = 20210909-1
+pkgver = 20210915-1
 pkgdesc = gpSP (GameBoy Advance) libretro core
 group = emulator
 packager = https://retrolx.org 
