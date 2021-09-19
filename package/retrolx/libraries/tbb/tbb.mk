@@ -10,4 +10,8 @@ TBB_INSTALL_STAGING = YES
 
 TBB_CONF_OPTS = -DTBB_TEST=OFF -DTBB_STRICT=OFF
 
+ifeq ($(BR2_arm),y)
+TBB_CONF_OPTS += -DCMAKE_C_FLAGS=-D__aarch32__ -DCMAKE_CXX_FLAGS=-D__aarch32__
+endif
+
 $(eval $(cmake-package))
