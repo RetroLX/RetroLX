@@ -56,6 +56,8 @@ define DUCKSTATION_MAKEPKG
 	cp -R $(@D)/buildroot-build/bin/* $(DUCKSTATION_PKG_DIR)$(DUCKSTATION_PKG_INSTALL_DIR)
 	mv $(DUCKSTATION_PKG_DIR)$(DUCKSTATION_PKG_INSTALL_DIR)/$(DUCKSTATION_BINARY) $(DUCKSTATION_PKG_DIR)/$(DUCKSTATION_PKG_INSTALL_DIR)/duckstation
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/duckstation/psx.duckstation.keys $(DUCKSTATION_PKG_DIR)$(DUCKSTATION_PKG_INSTALL_DIR)
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/duckstation/__init__.py $(DUCKSTATION_PKG_DIR)$(DUCKSTATION_PKG_INSTALL_DIR)
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/duckstation/generator.py $(DUCKSTATION_PKG_DIR)$(DUCKSTATION_PKG_INSTALL_DIR)
 
 	# Build Pacman package
 	cd $(DUCKSTATION_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
