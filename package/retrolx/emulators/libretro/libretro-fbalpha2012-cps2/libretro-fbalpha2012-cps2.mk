@@ -26,7 +26,7 @@ define LIBRETRO_FBALPHA2012_CPS2_MAKEPKG
 
 	# Build Pacman package
 	cd $(LIBRETRO_FBALPHA2012_CPS2_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-fbalpha2012/PKGINFO \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-fbalpha2012-cps2/PKGINFO \
 	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
 	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
