@@ -8,6 +8,7 @@ config BR2_PACKAGE_DUCKSTATION
     depends on BR2_PACKAGE_SDL2
     depends on BR2_PACKAGE_LIBEVDEV
     depends on BR2_PACKAGE_LIBDRM
+    depends on BR2_PACKAGE_ECM
     help
       DuckStation - PlayStation 1, aka. PSX Emulator
 
