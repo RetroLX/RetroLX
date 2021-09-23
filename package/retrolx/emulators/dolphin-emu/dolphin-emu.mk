@@ -3,8 +3,8 @@
 # DOLPHIN EMU
 #
 ################################################################################
-# Version: Commits on Jul 31, 2021 - 5.0-14790
-DOLPHIN_EMU_VERSION = 3cc274880f47d340bd508dba91aaf37c48acd367
+# Version: Commits on Sep 03, 2021 - 5.0-15015
+DOLPHIN_EMU_VERSION = 4b8b53ac732645f6c0fd3f4b11733cb3d86c9c41
 DOLPHIN_EMU_SITE = $(call github,dolphin-emu,dolphin,$(DOLPHIN_EMU_VERSION))
 DOLPHIN_EMU_LICENSE = GPLv2+
 DOLPHIN_EMU_DEPENDENCIES = libevdev ffmpeg zlib libpng lzo libusb libcurl bluez5_utils hidapi xz host-xz
