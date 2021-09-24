@@ -17,6 +17,11 @@ BATOCERA_BINARIES_DIR=$6
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/packages" || exit 1
 cp -r "${BUILD_DIR}"/repo/* "${BATOCERA_BINARIES_DIR}/boot/packages/" || exit 1
 
+mkdir -p "${BATOCERA_BINARIES_DIR}/build-uboot-odroid-c4"     || exit 1
+cp "${BOARD_DIR}/build-uboot.sh"          "${BATOCERA_BINARIES_DIR}/build-uboot-odroid-c4/" || exit 1
+cd "${BATOCERA_BINARIES_DIR}/build-uboot-odroid-c4/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
+
+# Create boot directories, copy boot files
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/boot"     || exit 1
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/extlinux" || exit 1
 
@@ -29,7 +34,7 @@ cp "${BOARD_DIR}/boot/boot-logo.bmp.gz"                "${BATOCERA_BINARIES_DIR}
 cp "${BINARIES_DIR}/meson-sm1-odroid-c4.dtb"           "${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf"                   "${BATOCERA_BINARIES_DIR}/boot/extlinux/" || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf"                   "${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
-cp "${BOARD_DIR}/boot/boot.ini"                        "${BATOCERA_BINARIES_DIR}/boot/"          || exit 1
-cp "${BOARD_DIR}/boot/config.ini"                      "${BATOCERA_BINARIES_DIR}/boot/"          || exit 1
+#cp "${BOARD_DIR}/boot/boot.ini"                        "${BATOCERA_BINARIES_DIR}/boot/"          || exit 1
+#cp "${BOARD_DIR}/boot/config.ini"                      "${BATOCERA_BINARIES_DIR}/boot/"          || exit 1
 
 exit 0

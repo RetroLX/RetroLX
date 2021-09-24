@@ -4,7 +4,7 @@ HOST_DIR=$1
 BOARD_DIR=$2
 IMAGES_DIR=$3
 
-# Clone U-Boot mainline
+# Download U-Boot mainline
 wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.07.tar.bz2"
 tar xf u-boot-2021.07.tar.bz2
 cd u-boot-2021.07

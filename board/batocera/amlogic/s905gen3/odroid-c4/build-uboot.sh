@@ -18,17 +18,17 @@ do
 done
 
 # Make config
-make sei510_defconfig
+make odroid-c4_defconfig
 
 # Build it
 ARCH=aarch64 CROSS_COMPILE="${HOST_DIR}/bin/aarch64-buildroot-linux-gnu-" make -j$(nproc)
-mkdir -p ../../uboot-x96-max
+mkdir -p ../../uboot-odroid-c4
 
 # Clone LibreElec Amlogic FIP
 git clone --depth 1 https://github.com/LibreELEC/amlogic-boot-fip
 
 # Sign U-Boot build with Amlogic process
-AMLOGIC_FIP_DIR="amlogic-boot-fip/sei510"
+AMLOGIC_FIP_DIR="amlogic-boot-fip/odroid-c4"
 AMLOGIC_ENCRYPT_BIN="aml_encrypt_g12a"
 cp u-boot.bin ${AMLOGIC_FIP_DIR}/bl33.bin
 ${AMLOGIC_FIP_DIR}/blx_fix.sh ${AMLOGIC_FIP_DIR}/bl30.bin \
@@ -80,5 +80,5 @@ ${AMLOGIC_FIP_DIR}/${AMLOGIC_ENCRYPT_BIN} --bootmk \
    --level v3
 
 # Copy to appropriate place
-cp ${AMLOGIC_FIP_DIR}/u-boot.bin.sd.bin ../../uboot-x96-max/
+cp ${AMLOGIC_FIP_DIR}/u-boot.bin.sd.bin ../../uboot-odroid-c4/
 
