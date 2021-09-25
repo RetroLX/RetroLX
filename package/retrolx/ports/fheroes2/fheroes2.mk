@@ -7,7 +7,6 @@
 FHEROES2_VERSION = 0.9.7
 FHEROES2_SITE = $(call github,ihhub,fheroes2,$(FHEROES2_VERSION))
 FHEROES2_DEPENDENCIES = sdl2 sdl2_image
-#sdl2_mixer sdl2_image sdl2_ttf libsodium
 
 FHEROES2_PKG_DIR = $(TARGET_DIR)/opt/retrolx/fheroes2
 FHEROES2_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/fheroes2
