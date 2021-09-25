@@ -1,5 +1,5 @@
 pkgname = cgenius
-pkgver = 3.0.3-1
+pkgver = 3.0.4-1
 pkgdesc = Commander Genius (Commander Keen series engine)
 group = port
 packager = https://retrolx.org 
