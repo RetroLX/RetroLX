@@ -59,9 +59,6 @@ BR2_PACKAGE_LUA_5_1=y
 # GPU
 BR2_PACKAGE_RETROLX_PANFROST_MESA3D=y
 
-# Firmware
-#BR2_PACKAGE_UBOOT_AMLOGIC=y
-
 # Bootloader
 # needed ? BR2_TARGET_UBOOT_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/s912/uboot-defconfig-fragment.config"
 #deprecated BR2_TARGET_UBOOT_BOOT_SCRIPT=y
