@@ -1,5 +1,5 @@
 pkgname = lr-virtualjaguar
-pkgver = 20210712-1
+pkgver = 20210920-1
 pkgdesc = Virtual Jaguar (Atari Jaguar) libretro core
 group = emulator
 packager = https://retrolx.org 

@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CGENIUS_VERSION = v3.0.4
+CGENIUS_VERSION = v3.0.5
 CGENIUS_SITE = $(call github,gerstrong,Commander-Genius,$(CGENIUS_VERSION))
 
 CGENIUS_DEPENDENCIES = sdl2 sdl2_mixer sdl2_image sdl2_ttf boost libcurl
