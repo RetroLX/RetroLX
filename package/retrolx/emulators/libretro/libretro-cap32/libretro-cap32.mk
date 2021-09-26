@@ -13,9 +13,12 @@ LIBRETRO_CAP32_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-ca
 
 LIBRETRO_CAP32_PLATFORM = $(LIBRETRO_PLATFORM)
 
-# retrolx this code needs to be revised, it is not suitable anymore
-ifeq ($(BR2_cortex_a35)$(BR2_cortex_a53)$(BR2_arm),yy)
+ifeq ($(BR2_arm1176jzf_s),y)
+LIBRETRO_CAP32_PLATFORM = armv
+else ifeq ($(BR2_arm),y)
 LIBRETRO_CAP32_PLATFORM = armv neon
+else
+LIBRETRO_CAP32_PLATFORM = unix
 endif
 
 define LIBRETRO_CAP32_BUILD_CMDS
