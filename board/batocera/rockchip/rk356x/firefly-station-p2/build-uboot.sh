@@ -42,7 +42,10 @@ done
 
 # Build it
 ./make.sh firefly-rk3568
+./make.sh uboot
+./make.sh trust
+./make.sh loader
 
 # Copy generated files
-cp "rk356x_spl_loader_v1.09.111.bin" "../idbloader.img"
+dd if="rk356x_spl_loader_v1.09.111.bin" of="../idbloader.img" bs=1 skip=444
 cp "uboot.img" "../uboot.img"

@@ -24,7 +24,9 @@ mkdir -p "${BATOCERA_BINARIES_DIR}/uboot-firefly-station-m2"     || exit 1
 cp "${BOARD_DIR}/build-uboot.sh"          "${BATOCERA_BINARIES_DIR}/uboot-firefly-station-m2/" || exit 1
 cd "${BATOCERA_BINARIES_DIR}/uboot-firefly-station-m2/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
 
-"${HOST_DIR}/bin/mkimage" -A arm64 -O linux -T kernel -C none -a 0x1080000 -e 0x1080000 -n 5.x -d "${BINARIES_DIR}/Image" "${BATOCERA_BINARIES_DIR}/boot/boot/linux" || exit 1
+#cp "${BINARIES_DIR}/Image"                 "${BATOCERA_BINARIES_DIR}/boot/boot/Image"                 || exit 1
+#"${HOST_DIR}/bin/mkimage" -A arm64 -O linux -T kernel -C none -a 0x1080000 -e 0x1080000 -n 5.x -d "${BINARIES_DIR}/Image" "${BATOCERA_BINARIES_DIR}/boot/boot/linux" || exit 1
+cp "${BINARIES_DIR}/Image"                 "${BATOCERA_BINARIES_DIR}/boot/boot/linux"                 || exit 1
 cp "${BINARIES_DIR}/initrd.gz"             "${BATOCERA_BINARIES_DIR}/boot/boot/initrd.gz"             || exit 1
 cp "${BINARIES_DIR}/rootfs.squashfs"       "${BATOCERA_BINARIES_DIR}/boot/boot/batocera.update"       || exit 1
 cp "${BINARIES_DIR}/modules"               "${BATOCERA_BINARIES_DIR}/boot/boot/modules"               || exit 1
