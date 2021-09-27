@@ -1,0 +1,6 @@
+pkgname = ecwolf
+pkgver = 20210216-1
+pkgdesc = Wolfeinstein 3D / Spear of Destiny engine
+group = port
+packager = https://retrolx.org 
+url = https://bitbucket.org/ecwolf/ecwolf/
