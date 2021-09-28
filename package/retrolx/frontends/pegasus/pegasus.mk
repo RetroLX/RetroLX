@@ -3,13 +3,13 @@
 # Pegasus frontend
 #
 ################################################################################
-# Version.: Commits on Aug 02, 2021
-PEGASUS_VERSION = 29ca7047018a2f45b42743b1facdaf21ab537e08
+# Version.: Commits on Sep 25, 2021
+PEGASUS_VERSION = weekly_2021w37
 PEGASUS_SITE = https://github.com/mmatyas/pegasus-frontend
 PEGASUS_SITE_METHOD=git
 PEGASUS_GIT_SUBMODULES=YES
 PEGASUS_LICENSE = GPLv3
-PEGASUS_DEPENDENCIES = qt5base qt5svg qt5gamepad sdl2 
+PEGASUS_DEPENDENCIES = qt5base qt5svg qt5gamepad sdl2
 
 PEGASUS_PKG_DIR = $(TARGET_DIR)/opt/retrolx/pegasus
 PEGASUS_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/pegasus
