@@ -9,6 +9,9 @@ DOLPHIN_EMU_SITE = $(call github,dolphin-emu,dolphin,$(DOLPHIN_EMU_VERSION))
 DOLPHIN_EMU_LICENSE = GPLv2+
 DOLPHIN_EMU_DEPENDENCIES = libevdev ffmpeg zlib libpng lzo libusb libcurl bluez5_utils hidapi xz host-xz
 
+DOLPHIN_EMU_PKG_DIR = $(TARGET_DIR)/opt/retrolx/dolphin
+DOLPHIN_EMU_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/dolphin
+
 DOLPHIN_EMU_SUPPORTS_IN_SOURCE_BUILD = NO
 
 DOLPHIN_EMU_CONF_OPTS  = -DTHREADS_PTHREAD_ARG=OFF
@@ -29,5 +32,22 @@ DOLPHIN_EMU_CONF_OPTS += -DENABLE_QT=ON
 DOLPHIN_EMU_CONF_OPTS += -DENABLE_EGL=ON
 DOLPHIN_EMU_CONF_OPTS += -DENABLE_LTO=ON
 endif
+
+# Install into package prefix
+DOLPHIN_EMU_MAKE_OPTS += DESTDIR="$(DOLPHIN_EMU_PKG_DIR)"
+DOLPHIN_EMU_INSTALL_TARGET_OPTS = DESTDIR="$(DOLPHIN_EMU_PKG_DIR)$(DOLPHIN_EMU_PKG_INSTALL_DIR)" install
+
+define DOLPHIN_EMU_MAKEPKG
+	# Build Pacman package
+	cd $(DOLPHIN_EMU_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/dolphin-emu/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
+endef
+
+DOLPHIN_EMU_POST_INSTALL_TARGET_HOOKS = DOLPHIN_EMU_MAKEPKG
 
 $(eval $(cmake-package))
