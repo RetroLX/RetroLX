@@ -37,8 +37,20 @@ endif
 ifeq ($(BR2_arm),y)
 MAME_CROSS_ARCH = arm
 MAME_CROSS_OPTS += PTR64=0
-# Always enable NEON on 32-bit arm
+# Always enable NEON on 32-bit arm.. except on S812
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S812),y)
+MAME_CFLAGS += -DEGL_NO_X11=1
+else
 MAME_CFLAGS += -D__ARM_NEON__ -D__ARM_NEON -DEGL_NO_X11=1
+endif
+endif
+
+ifeq ($(BR2_cortex_a7),y)
+MAME_CFLAGS += -mcpu=cortex-a7 -mtune=cortex-a7
+endif
+
+ifeq ($(BR2_cortex_a9),y)
+MAME_CFLAGS += -mcpu=cortex-a9 -mtune=cortex-a9
 endif
 
 ifeq ($(BR2_cortex_a35),y)
@@ -51,6 +63,10 @@ endif
 
 ifeq ($(BR2_cortex_a55),y)
 MAME_CFLAGS += -mcpu=cortex-a55 -mtune=cortex-a55
+endif
+
+ifeq ($(BR2_cortex_a72),y)
+MAME_CFLAGS += -mcpu=cortex-a72 -mtune=cortex-a72
 endif
 
 ifeq ($(BR2_cortex_a73_a53),y)

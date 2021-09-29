@@ -61,6 +61,20 @@ do_videostart ()
     wait $!
 }
 
+BOOTCONF="/boot/retrolx-boot.conf"
+if grep -qE '^[ ]*autoresize[ ]*=[ ]*true[ ]*$' "${BOOTCONF}"
+then
+    exit 0
+fi
+if grep -qE '^[ ]*format-internal[ ]*=' "${BOOTCONF}"
+then
+    exit 0
+fi
+if grep -qE '^[ ]*install[ ]*=[ ]*true[ ]*$' "${BOOTCONF}"
+then
+    exit 0
+fi
+
 case "$1" in
     start)
         printf 'Starting %s: ' "$DAEMON"

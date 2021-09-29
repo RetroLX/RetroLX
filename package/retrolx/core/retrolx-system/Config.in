@@ -521,8 +521,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	bool "target images definitions"
 	config BR2_TARGET_RETROLX_IMAGES
 	string "target images"
-	default "allwinner/a20/cubieboard2"                                                                                                      if BR2_PACKAGE_RETROLX_TARGET_A20
-	default "allwinner/h3/orangepi-one allwinner/h3/orangepi-plus2e allwinner/h3/orangepi-pc allwinner/h3/orangepi-pc-plus allwinner/h3/cha" if BR2_PACKAGE_RETROLX_TARGET_H3
+	default "allwinner/aw32/cubieboard2 allwinner/aw32/orangepi-one allwinner/aw32/orangepi-plus2e allwinner/aw32/orangepi-pc allwinner/aw32/orangepi-pc-plus allwinner/aw32/cha" if BR2_PACKAGE_RETROLX_TARGET_AW32
 	default "allwinner/h5/tritium-h5"                                                                                                        if BR2_PACKAGE_RETROLX_TARGET_H5
 	default "allwinner/h6/orangepi-one-plus"                                                                                                 if BR2_PACKAGE_RETROLX_TARGET_H6
 	default "allwinner/h616/orangepi-zero2"                                                                                                  if BR2_PACKAGE_RETROLX_TARGET_H616
@@ -598,11 +597,8 @@ config BR2_PACKAGE_RETROLX_TARGET_RK356X
 config BR2_PACKAGE_RETROLX_TARGET_RK3288
 	bool "rk3288"
 
-config BR2_PACKAGE_RETROLX_TARGET_A20
-	bool "a20"
-
-config BR2_PACKAGE_RETROLX_TARGET_H3
-	bool "h3"
+config BR2_PACKAGE_RETROLX_TARGET_AW32
+	bool "aw32"
 
 config BR2_PACKAGE_RETROLX_TARGET_H5
 	bool "h5"

@@ -15,8 +15,8 @@ fi
 function dialogoutput()
 {
     local percent="$1"
-    local text="Do not switch off your device!"
-
+    local text="Do not switch off your device !"
+    local text2="System will reboot when done."
     dialog --backtitle "RetroLX" --title " Resizing Partition " \
            --mixedgauge "$text" 18 50 "$percent" "${arr[@]}" &>/dev/tty1
 }
@@ -113,4 +113,7 @@ fi
 #Cleanup, restore screen, set progress of last item to 100%
 dialogoutput 100
 clear > /dev/tty1
+sync
+reboot
+sleep infinity
 exit 0

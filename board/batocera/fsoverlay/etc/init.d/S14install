@@ -69,4 +69,7 @@ fi
 #Cleanup, restore screen, set progress of last item to 100%
 dialogoutput 100
 clear > /dev/tty1
+sync
+reboot
+sleep infinity
 exit 0
