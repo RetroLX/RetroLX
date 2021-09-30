@@ -175,21 +175,13 @@ LIBRETRO_PLATFORM = unix
 ifeq ($(BR2_arm),y)
 	ifeq ($(BR2_cortex_a7),y)
 		LIBRETRO_PLATFORM += armv7
-	endif
-
-	ifeq ($(BR2_cortex_a9),y)
+	else ifeq ($(BR2_cortex_a9),y)
 		LIBRETRO_PLATFORM += armv7
-	endif
-
-	ifeq ($(BR2_cortex_a15),y)
+	else ifeq ($(BR2_cortex_a15),y)
 		LIBRETRO_PLATFORM += armv7
-	endif
-
-	ifeq ($(BR2_cortex_a15_a7),y)
+	else ifeq ($(BR2_cortex_a15_a7),y)
 		LIBRETRO_PLATFORM += armv7
-	endif
-
-	ifeq ($(BR2_cortex_a17),y)
+	else ifeq ($(BR2_cortex_a17),y)
 		LIBRETRO_PLATFORM += armv7
 	endif
 endif
@@ -207,11 +199,11 @@ ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI2),y)
 endif
 
 ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI3),y)
-	LIBRETRO_PLATFORM += rpi3 rpi3_64
+	LIBRETRO_PLATFORM += rpi3_64
 endif
 
 ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI4),y)
-	LIBRETRO_PLATFORM += rpi4 rpi4_64
+	LIBRETRO_PLATFORM += rpi4_64
 endif
 
 ifeq ($(BR2_aarch64),y)
@@ -220,4 +212,8 @@ endif
 
 ifeq ($(BR2_cortex_a35)$(BR2_arm),yy)
 LIBRETRO_PLATFORM += classic_armv8_a35
+endif
+
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_AW32),y)
+	LIBRETRO_PLATFORM += classic_armv7_a7
 endif

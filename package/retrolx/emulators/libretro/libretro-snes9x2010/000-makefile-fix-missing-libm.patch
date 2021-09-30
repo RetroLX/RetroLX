@@ -1,0 +1,11 @@
+--- a/Makefile.libretro	2021-09-27 17:49:06.000000000 +0200
++++ b/Makefile.libretro	2021-09-30 21:50:44.654612272 +0200
+@@ -596,7 +596,7 @@
+ ifeq ($(STATIC_LINKING), 1)
+ 	$(AR) rcs $@ $(OBJECTS)
+ else
+-	$(LD) $(LINKOUT)$@ $(SHARED) $(OBJECTS) $(LDFLAGS) $(LIBS)
++	$(LD) $(LINKOUT)$@ $(SHARED) $(OBJECTS) $(LDFLAGS) $(LIBS) $(LIBM)
+ endif
+ 
+ %.o: %.c
