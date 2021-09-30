@@ -9,10 +9,3 @@
  
  ifndef DEBUG
  	CFLAGS += -Ofast
-@@ -498,4 +498,4 @@
- guisan:
- 	$(MAKE) -C external/libguisan
- 	
---include $(DEPS)
-\ Pas de fin de ligne à la fin du fichier
-+-include $(DEPS)
