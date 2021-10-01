@@ -12,7 +12,7 @@ if BR2_i686 || BR2_x86_64
 	default y
 endif
 
-if BR2_PACKAGE_RETROLX_TARGET_RK356X || BR2_PACKAGE_RETROLX_TARGET_RK3399 || BR2_PACKAGE_RETROLX_TARGET_RK3288 || BR2_PACKAGE_RETROLX_TARGET_RK3326
+if BR2_PACKAGE_RETROLX_TARGET_RK356X || BR2_PACKAGE_RETROLX_TARGET_RK3399 || BR2_PACKAGE_RETROLX_TARGET_RK3288 || BR2_PACKAGE_RETROLX_TARGET_RK3326 || BR2_PACKAGE_RETROLX_TARGET_RK3328
 	config BR2_PACKAGE_RETROLX_ROCKCHIP_ANY
 	bool "rockchip_targets"
 	default y
@@ -123,7 +123,8 @@ config BR2_PACKAGE_RETROLX_VIDEO
 	select BR2_PACKAGE_LIBMPEG2
 	select BR2_PACKAGE_LIBOPENH264
 	select BR2_PACKAGE_LIBTHEORA
-	select BR2_PACKAGE_LIBVA	    if BR2_PACKAGE_XORG7 && !BR2_PACKAGE_RETROLX_WAYLAND
+	select BR2_PACKAGE_LIBV4L           if !BR2_PACKAGE_RETROLX_RPI_VCORE
+	select BR2_PACKAGE_LIBVA	    if !BR2_PACKAGE_RETROLX_RPI_VCORE
 	select BR2_PACKAGE_LIBVDPAU         if BR2_PACKAGE_XORG7 && !BR2_PACKAGE_RETROLX_WAYLAND
 	select BR2_PACKAGE_LIBVPX
 	select BR2_PACKAGE_MPV
@@ -537,6 +538,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "raspberrypi/rpi4"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI4
 	default "rockchip/rk3326/odroidgo rockchip/rk3326/gameforce rockchip/rk3326/rg351v rockchip/rk3326/rg351pm rockchip/rk3326/rg351mp"      if BR2_PACKAGE_RETROLX_TARGET_RK3326
 	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"                                                                               if BR2_PACKAGE_RETROLX_TARGET_RK3288
+	default "rockchip/rk3328/rock64"				                                 					 if BR2_PACKAGE_RETROLX_TARGET_RK3328
 	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/x99"				                                 if BR2_PACKAGE_RETROLX_TARGET_RK3399
 	default "rockchip/rk356x/firefly-station-m2 rockchip/rk356x/firefly-station-p2"				                                 if BR2_PACKAGE_RETROLX_TARGET_RK356X
 	default "odroidxu4"                                                                                                                      if BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
@@ -587,6 +589,9 @@ config BR2_PACKAGE_RETROLX_TARGET_X86
 
 config BR2_PACKAGE_RETROLX_TARGET_X86_64
 	bool "x86_64"
+
+config BR2_PACKAGE_RETROLX_TARGET_RK3328
+	bool "rk3328"
 
 config BR2_PACKAGE_RETROLX_TARGET_RK3399
 	bool "rk3399"
