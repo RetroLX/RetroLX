@@ -1,5 +1,5 @@
 pkgname = amiberry
-pkgver = 4.1.5-2
+pkgver = 4.1.6-1
 pkgdesc = Amiberry Amiga Emulator
 group = emulator
 packager = https://retrolx.org 
