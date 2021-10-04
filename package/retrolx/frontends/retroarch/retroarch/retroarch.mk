@@ -82,10 +82,10 @@ ifeq ($(BR2_PACKAGE_RETROLX_PANFROST_MESA3D)$(BR2_PACKAGE_RETROLX_TARGET_RPI4)$(
 endif
 
 # Enable pipewire if built (future)
-ifeq ($(BR2_PACKAGE_PIPEWIRE),y)
-    RETROARCH_CONF_OPTS += --enable-pipewire
-    RETROARCH_DEPENDENCIES += pipewire
-endif
+#ifeq ($(BR2_PACKAGE_PIPEWIRE),y)
+#    RETROARCH_CONF_OPTS += --enable-pipewire
+#    RETROARCH_DEPENDENCIES += pipewire
+#endif
 
 ifeq ($(BR2_PACKAGE_HAS_LIBEGL),y)
 	RETROARCH_CONF_OPTS += --enable-egl
