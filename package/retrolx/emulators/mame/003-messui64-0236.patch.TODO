@@ -1,101 +1,101 @@
-diff -u -r mame-mame0235/3rdparty/lua-zlib/lua_zlib.c messui-tag235/3rdparty/lua-zlib/lua_zlib.c
---- mame-mame0235/3rdparty/lua-zlib/lua_zlib.c	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/3rdparty/lua-zlib/lua_zlib.c	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/3rdparty/lua-zlib/lua_zlib.c b/3rdparty/lua-zlib/lua_zlib.c
+--- a/3rdparty/lua-zlib/lua_zlib.c	2021-09-28 04:48:17.000000000 +0200
++++ b/3rdparty/lua-zlib/lua_zlib.c	2021-09-29 07:03:49.000000000 +0200
 @@ -392,7 +392,7 @@
  
      SETLITERAL("_COPYRIGHT", "Copyright (c) 2009-2010 Brian Maher");
      SETLITERAL("_DESCRIPTION", "Yet another binding to the zlib library");
--    SETLITERAL("_VERSION", "lua-zlib $Id: b619258c75f480717fad20c113c3b1a35f888ce0 $  (tag: mame0235)");
-+    SETLITERAL("_VERSION", "lua-zlib $Id: b619258c75f480717fad20c113c3b1a35f888ce0 $  (tag: tag235)");
+-    SETLITERAL("_VERSION", "lua-zlib $Id: b619258c75f480717fad20c113c3b1a35f888ce0 $  (tag: mame0236)");
++    SETLITERAL("_VERSION", "lua-zlib $Id: b619258c75f480717fad20c113c3b1a35f888ce0 $  (tag: tag236)");
  
      /* Expose this to lua so we can do a test: */
      SETINT("_TEST_BUFSIZ", LUAL_BUFFERSIZE);
-diff -u -r mame-mame0235/android-project/app/src/main/AndroidManifest.xml messui-tag235/android-project/app/src/main/AndroidManifest.xml
---- mame-mame0235/android-project/app/src/main/AndroidManifest.xml	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/android-project/app/src/main/AndroidManifest.xml	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/android-project/app/src/main/AndroidManifest.xml b/android-project/app/src/main/AndroidManifest.xml
+--- a/android-project/app/src/main/AndroidManifest.xml	2021-09-28 04:48:17.000000000 +0200
++++ b/android-project/app/src/main/AndroidManifest.xml	2021-09-29 07:03:49.000000000 +0200
 @@ -4,8 +4,8 @@
  -->
  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
        package="org.mamedev.mame"
--      android:versionCode="235"
--      android:versionName="0.235"
-+      android:versionCode="234"
-+      android:versionName="0.234"
+-      android:versionCode="236"
+-      android:versionName="0.236"
++      android:versionCode="235"
++      android:versionName="0.235"
        android:installLocation="auto">
  
      <!-- OpenGL ES 2.0 -->
-Seulement dans messui-tag235/docs: BSD3Clause.txt
-Seulement dans messui-tag235/docs: release
-Seulement dans messui-tag235/docs: winui_license.txt
-Seulement dans messui-tag235/hash: oric_cass.xml
-Seulement dans messui-tag235/hash: vis.xml
-Seulement dans messui-tag235/hlsl: 2xBRZ_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: 2xBRZ.vsh
-Seulement dans messui-tag235/hlsl: 3xBRZ_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: 3xBRZ.vsh
-Seulement dans messui-tag235/hlsl: 4xBRZ_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: 4xBRZ.vsh
-Seulement dans messui-tag235/hlsl: 5xBRZ_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: 5xBRZ.vsh
-Seulement dans messui-tag235/hlsl: 6xBRZ_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: 6xBRZ.vsh
-Seulement dans messui-tag235/hlsl: CRT Geom Bloom_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT Geom Bloom Vertical_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT Geom Bloom Vertical.vsh
-Seulement dans messui-tag235/hlsl: CRT Geom Bloom.vsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation-alt_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation-alt.vsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_overlay_fix_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_overlay_fix.vsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_PSone_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_PSone.vsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_Vertical_overlay_fix_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_Vertical_overlay_fix.vsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_Vertical_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_Vertical.vsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation.vsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_x68000_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT-geom-halation_x68000.vsh
-Seulement dans messui-tag235/hlsl: CRT Geom HQ_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT Geom HQ Vertical_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT Geom HQ Vertical.vsh
-Seulement dans messui-tag235/hlsl: CRT Geom HQ.vsh
-Seulement dans messui-tag235/hlsl: CRT-geom_idx16_lut.fsh
-Seulement dans messui-tag235/hlsl: CRT Geom LQ_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT Geom LQ Vertical_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT Geom LQ Vertical.vsh
-Seulement dans messui-tag235/hlsl: CRT Geom LQ.vsh
-Seulement dans messui-tag235/hlsl: CRT Geom MQ_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT Geom MQ Vertical_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT Geom MQ Vertical.vsh
-Seulement dans messui-tag235/hlsl: CRT Geom MQ.vsh
-Seulement dans messui-tag235/hlsl: CRT-geom_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: CRT-geom_rgb32_lut.fsh
-Seulement dans messui-tag235/hlsl: CRT-geom.vsh
-Seulement dans messui-tag235/hlsl: Gaussian x_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: Gaussian x.vsh
-Seulement dans messui-tag235/hlsl: Gaussian y_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: Gaussian y.vsh
-Seulement dans messui-tag235/hlsl: gaussx_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: gaussx.vsh
-Seulement dans messui-tag235/hlsl: gaussy_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: gaussy.vsh
-Seulement dans messui-tag235/hlsl: Lottes CRT_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: Lottes_CRT_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: Lottes CRT Vertical_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: Lottes CRT Vertical.vsh
-Seulement dans messui-tag235/hlsl: Lottes_CRT_VERT_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: Lottes_CRT_VERT.vsh
-Seulement dans messui-tag235/hlsl: Lottes CRT.vsh
-Seulement dans messui-tag235/hlsl: Lottes_CRT.vsh
-Seulement dans messui-tag235/hlsl: NTSC_chain_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: NTSC_chain.vsh
-Seulement dans messui-tag235/hlsl: NTSC_rgb32_dir.fsh
-Seulement dans messui-tag235/hlsl: NTSC.vsh
-diff -u -r mame-mame0235/makefile messui-tag235/makefile
---- mame-mame0235/makefile	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/makefile	2021-08-27 05:45:31.000000000 +0200
+Seulement dans b/docs: BSD3Clause.txt
+Seulement dans b/docs: release
+Seulement dans b/docs: winui_license.txt
+Seulement dans b/hash: oric_cass.xml
+Seulement dans b/hash: vis.xml
+Seulement dans b/hlsl: 2xBRZ_rgb32_dir.fsh
+Seulement dans b/hlsl: 2xBRZ.vsh
+Seulement dans b/hlsl: 3xBRZ_rgb32_dir.fsh
+Seulement dans b/hlsl: 3xBRZ.vsh
+Seulement dans b/hlsl: 4xBRZ_rgb32_dir.fsh
+Seulement dans b/hlsl: 4xBRZ.vsh
+Seulement dans b/hlsl: 5xBRZ_rgb32_dir.fsh
+Seulement dans b/hlsl: 5xBRZ.vsh
+Seulement dans b/hlsl: 6xBRZ_rgb32_dir.fsh
+Seulement dans b/hlsl: 6xBRZ.vsh
+Seulement dans b/hlsl: CRT Geom Bloom_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT Geom Bloom Vertical_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT Geom Bloom Vertical.vsh
+Seulement dans b/hlsl: CRT Geom Bloom.vsh
+Seulement dans b/hlsl: CRT-geom-halation-alt_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT-geom-halation-alt.vsh
+Seulement dans b/hlsl: CRT-geom-halation_overlay_fix_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT-geom-halation_overlay_fix.vsh
+Seulement dans b/hlsl: CRT-geom-halation_PSone_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT-geom-halation_PSone.vsh
+Seulement dans b/hlsl: CRT-geom-halation_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT-geom-halation_Vertical_overlay_fix_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT-geom-halation_Vertical_overlay_fix.vsh
+Seulement dans b/hlsl: CRT-geom-halation_Vertical_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT-geom-halation_Vertical.vsh
+Seulement dans b/hlsl: CRT-geom-halation.vsh
+Seulement dans b/hlsl: CRT-geom-halation_x68000_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT-geom-halation_x68000.vsh
+Seulement dans b/hlsl: CRT Geom HQ_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT Geom HQ Vertical_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT Geom HQ Vertical.vsh
+Seulement dans b/hlsl: CRT Geom HQ.vsh
+Seulement dans b/hlsl: CRT-geom_idx16_lut.fsh
+Seulement dans b/hlsl: CRT Geom LQ_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT Geom LQ Vertical_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT Geom LQ Vertical.vsh
+Seulement dans b/hlsl: CRT Geom LQ.vsh
+Seulement dans b/hlsl: CRT Geom MQ_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT Geom MQ Vertical_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT Geom MQ Vertical.vsh
+Seulement dans b/hlsl: CRT Geom MQ.vsh
+Seulement dans b/hlsl: CRT-geom_rgb32_dir.fsh
+Seulement dans b/hlsl: CRT-geom_rgb32_lut.fsh
+Seulement dans b/hlsl: CRT-geom.vsh
+Seulement dans b/hlsl: Gaussian x_rgb32_dir.fsh
+Seulement dans b/hlsl: Gaussian x.vsh
+Seulement dans b/hlsl: Gaussian y_rgb32_dir.fsh
+Seulement dans b/hlsl: Gaussian y.vsh
+Seulement dans b/hlsl: gaussx_rgb32_dir.fsh
+Seulement dans b/hlsl: gaussx.vsh
+Seulement dans b/hlsl: gaussy_rgb32_dir.fsh
+Seulement dans b/hlsl: gaussy.vsh
+Seulement dans b/hlsl: Lottes CRT_rgb32_dir.fsh
+Seulement dans b/hlsl: Lottes_CRT_rgb32_dir.fsh
+Seulement dans b/hlsl: Lottes CRT Vertical_rgb32_dir.fsh
+Seulement dans b/hlsl: Lottes CRT Vertical.vsh
+Seulement dans b/hlsl: Lottes_CRT_VERT_rgb32_dir.fsh
+Seulement dans b/hlsl: Lottes_CRT_VERT.vsh
+Seulement dans b/hlsl: Lottes CRT.vsh
+Seulement dans b/hlsl: Lottes_CRT.vsh
+Seulement dans b/hlsl: NTSC_chain_rgb32_dir.fsh
+Seulement dans b/hlsl: NTSC_chain.vsh
+Seulement dans b/hlsl: NTSC_rgb32_dir.fsh
+Seulement dans b/hlsl: NTSC.vsh
+diff -u -r a/makefile b/makefile
+--- a/makefile	2021-09-28 04:48:17.000000000 +0200
++++ b/makefile	2021-09-29 07:03:49.000000000 +0200
 @@ -34,7 +34,7 @@
  # NO_USE_PORTAUDIO = 1
  # NO_USE_PULSEAUDIO = 1
@@ -105,9 +105,9 @@ diff -u -r mame-mame0235/makefile messui-tag235/makefile
  # USE_QTDEBUG = 1
  # NO_X11 = 1
  # NO_USE_XINPUT = 1
-diff -u -r mame-mame0235/README.md messui-tag235/README.md
---- mame-mame0235/README.md	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/README.md	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/README.md b/README.md
+--- a/README.md	2021-09-28 04:48:17.000000000 +0200
++++ b/README.md	2021-09-29 07:03:49.000000000 +0200
 @@ -1,115 +1,53 @@
  
 -# **MAME** #
@@ -245,9 +245,9 @@ diff -u -r mame-mame0235/README.md messui-tag235/README.md
 +Information about the WINUI portion can be found at https://github.com/Robbbert/mameui/blob/master/docs/winui_license.txt
  
 -Please see COPYING for more details.
-diff -u -r mame-mame0235/scripts/src/main.lua messui-tag235/scripts/src/main.lua
---- mame-mame0235/scripts/src/main.lua	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/scripts/src/main.lua	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/scripts/src/main.lua b/scripts/src/main.lua
+--- a/scripts/src/main.lua	2021-09-28 04:48:17.000000000 +0200
++++ b/scripts/src/main.lua	2021-09-29 07:03:49.000000000 +0200
 @@ -98,18 +98,30 @@
  		configuration "**/*"
  			flags { "DeploymentContent" }
@@ -300,14 +300,14 @@ diff -u -r mame-mame0235/scripts/src/main.lua messui-tag235/scripts/src/main.lua
  		}
  
  	configuration { "vs20*" }
-Seulement dans messui-tag235/scripts/src/osd: messui.lua
-Seulement dans messui-tag235/scripts/src/osd: newui.lua
-Seulement dans messui-tag235/scripts/src/osd: winui_cfg.lua
-Seulement dans messui-tag235/scripts/src/osd: winui.lua
-diff -u -r mame-mame0235/src/devices/bus/nes/nes_ines.hxx messui-tag235/src/devices/bus/nes/nes_ines.hxx
---- mame-mame0235/src/devices/bus/nes/nes_ines.hxx	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/devices/bus/nes/nes_ines.hxx	2021-08-27 05:45:31.000000000 +0200
-@@ -557,7 +557,10 @@
+Seulement dans b/scripts/src/osd: messui.lua
+Seulement dans b/scripts/src/osd: newui.lua
+Seulement dans b/scripts/src/osd: winui_cfg.lua
+Seulement dans b/scripts/src/osd: winui.lua
+diff -u -r a/src/devices/bus/nes/nes_ines.hxx b/src/devices/bus/nes/nes_ines.hxx
+--- a/src/devices/bus/nes/nes_ines.hxx	2021-09-28 04:48:17.000000000 +0200
++++ b/src/devices/bus/nes/nes_ines.hxx	2021-09-29 07:03:49.000000000 +0200
+@@ -559,7 +559,10 @@
  {
  	const nes_mmc *mmc = nes_mapper_lookup(mapper);
  	if (mmc == nullptr)
@@ -319,7 +319,7 @@ diff -u -r mame-mame0235/src/devices/bus/nes/nes_ines.hxx messui-tag235/src/devi
  
  	*pcb_id = mmc->pcb_id;
  }
-@@ -645,6 +648,11 @@
+@@ -647,6 +650,11 @@
  		vrom_size += ((header[9] & 0xf0) << 4) * 0x2000;
  	}
  	ines_mapr_setup(mapper, &pcb_id);
@@ -331,7 +331,7 @@ diff -u -r mame-mame0235/src/devices/bus/nes/nes_ines.hxx messui-tag235/src/devi
  
  	// handle submappers
  	if (submapper)
-@@ -1144,6 +1152,11 @@
+@@ -1159,6 +1167,11 @@
  	}
  
  	ines_mapr_setup(mapper, &pcb_id);
@@ -343,10 +343,10 @@ diff -u -r mame-mame0235/src/devices/bus/nes/nes_ines.hxx messui-tag235/src/devi
  
  	// handle submappers
  	if (submapper)
-diff -u -r mame-mame0235/src/devices/bus/nes/nes_slot.cpp messui-tag235/src/devices/bus/nes/nes_slot.cpp
---- mame-mame0235/src/devices/bus/nes/nes_slot.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/devices/bus/nes/nes_slot.cpp	2021-08-27 05:45:31.000000000 +0200
-@@ -942,7 +942,10 @@
+diff -u -r a/src/devices/bus/nes/nes_slot.cpp b/src/devices/bus/nes/nes_slot.cpp
+--- a/src/devices/bus/nes/nes_slot.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/devices/bus/nes/nes_slot.cpp	2021-09-29 07:03:49.000000000 +0200
+@@ -956,7 +956,10 @@
  		if ((rom[0] == 'U') && (rom[1] == 'N') && (rom[2] == 'I') && (rom[3] == 'F'))
  			slot_string = get_default_card_unif(&rom[0], len);
  
@@ -358,9 +358,9 @@ diff -u -r mame-mame0235/src/devices/bus/nes/nes_slot.cpp messui-tag235/src/devi
  	}
  	else
  		return software_get_default_slot("nrom");
-diff -u -r mame-mame0235/src/devices/bus/nes/nes_unif.hxx messui-tag235/src/devices/bus/nes/nes_unif.hxx
---- mame-mame0235/src/devices/bus/nes/nes_unif.hxx	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/devices/bus/nes/nes_unif.hxx	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/devices/bus/nes/nes_unif.hxx b/src/devices/bus/nes/nes_unif.hxx
+--- a/src/devices/bus/nes/nes_unif.hxx	2021-09-28 04:48:17.000000000 +0200
++++ b/src/devices/bus/nes/nes_unif.hxx	2021-09-29 07:03:49.000000000 +0200
 @@ -178,7 +178,10 @@
  {
  	const unif *unif_board = nes_unif_lookup(board);
@@ -373,9 +373,9 @@ diff -u -r mame-mame0235/src/devices/bus/nes/nes_unif.hxx messui-tag235/src/devi
  
  	*pcb_id = unif_board->board_idx;
  	*battery = unif_board->nvwram;  // we should implement battery banks based on the size of this...
-diff -u -r mame-mame0235/src/devices/bus/snes/snes_slot.cpp messui-tag235/src/devices/bus/snes/snes_slot.cpp
---- mame-mame0235/src/devices/bus/snes/snes_slot.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/devices/bus/snes/snes_slot.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/devices/bus/snes/snes_slot.cpp b/src/devices/bus/snes/snes_slot.cpp
+--- a/src/devices/bus/snes/snes_slot.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/devices/bus/snes/snes_slot.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -239,6 +239,8 @@
  	m_cart = dynamic_cast<device_sns_cart_interface *>(get_card_device());
  	if (m_cart != nullptr)
@@ -385,9 +385,9 @@ diff -u -r mame-mame0235/src/devices/bus/snes/snes_slot.cpp messui-tag235/src/de
  
  	m_irq_callback.resolve_safe();
  	m_open_bus_callback.resolve_safe(0xff);
-diff -u -r mame-mame0235/src/devices/bus/snes/snes_slot.h messui-tag235/src/devices/bus/snes/snes_slot.h
---- mame-mame0235/src/devices/bus/snes/snes_slot.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/devices/bus/snes/snes_slot.h	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/devices/bus/snes/snes_slot.h b/src/devices/bus/snes/snes_slot.h
+--- a/src/devices/bus/snes/snes_slot.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/devices/bus/snes/snes_slot.h	2021-09-29 07:03:49.000000000 +0200
 @@ -257,7 +257,7 @@
  	}
  	sns_cart_slot_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
@@ -397,9 +397,9 @@ diff -u -r mame-mame0235/src/devices/bus/snes/snes_slot.h messui-tag235/src/devi
  };
  
  // ======================> sns_sufami_cart_slot_device
-diff -u -r mame-mame0235/src/devices/cpu/gigatron/gigatron.cpp messui-tag235/src/devices/cpu/gigatron/gigatron.cpp
---- mame-mame0235/src/devices/cpu/gigatron/gigatron.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/devices/cpu/gigatron/gigatron.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/devices/cpu/gigatron/gigatron.cpp b/src/devices/cpu/gigatron/gigatron.cpp
+--- a/src/devices/cpu/gigatron/gigatron.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/devices/cpu/gigatron/gigatron.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -91,7 +91,7 @@
  	m_out = 0;
  
@@ -409,10 +409,10 @@ diff -u -r mame-mame0235/src/devices/cpu/gigatron/gigatron.cpp messui-tag235/src
  
  	for(uint16_t i = 0; i < m_ramMask; i++)
  		gigatron_writemem8(i, floor(machine().rand() & 0xff));
-diff -u -r mame-mame0235/src/devices/imagedev/floppy.cpp messui-tag235/src/devices/imagedev/floppy.cpp
---- mame-mame0235/src/devices/imagedev/floppy.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/devices/imagedev/floppy.cpp	2021-08-27 05:45:31.000000000 +0200
-@@ -208,7 +208,7 @@
+diff -u -r a/src/devices/imagedev/floppy.cpp b/src/devices/imagedev/floppy.cpp
+--- a/src/devices/imagedev/floppy.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/devices/imagedev/floppy.cpp	2021-09-29 07:03:49.000000000 +0200
+@@ -211,7 +211,7 @@
  	device_t(mconfig, FLOPPY_CONNECTOR, tag, owner, clock),
  	device_slot_interface(mconfig, *this),
  	formats(nullptr),
@@ -421,7 +421,7 @@ diff -u -r mame-mame0235/src/devices/imagedev/floppy.cpp messui-tag235/src/devic
  {
  }
  
-@@ -268,7 +268,7 @@
+@@ -271,7 +271,7 @@
  		image_dirty(false),
  		track_dirty(false),
  		ready_counter(0),
@@ -430,9 +430,9 @@ diff -u -r mame-mame0235/src/devices/imagedev/floppy.cpp messui-tag235/src/devic
  		m_sound_out(nullptr),
  		m_flux_screen(*this, "flux")
  {
-diff -u -r mame-mame0235/src/emu/debug/dvmemory.cpp messui-tag235/src/emu/debug/dvmemory.cpp
---- mame-mame0235/src/emu/debug/dvmemory.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/debug/dvmemory.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/debug/dvmemory.cpp b/src/emu/debug/dvmemory.cpp
+--- a/src/emu/debug/dvmemory.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/debug/dvmemory.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -313,7 +313,7 @@
  			for (int i = 0; i < m_bytes_per_chunk; i++)
  			{
@@ -451,10 +451,10 @@ diff -u -r mame-mame0235/src/emu/debug/dvmemory.cpp messui-tag235/src/emu/debug/
  			}
  		}
  	}
-diff -u -r mame-mame0235/src/emu/device.h messui-tag235/src/emu/device.h
---- mame-mame0235/src/emu/device.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/device.h	2021-08-27 05:45:31.000000000 +0200
-@@ -205,7 +205,8 @@
+diff -u -r a/src/emu/device.h b/src/emu/device.h
+--- a/src/emu/device.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/device.h	2021-09-29 07:03:49.000000000 +0200
+@@ -201,7 +201,8 @@
  	template <typename DeviceClass>
  	static std::unique_ptr<device_t> create_device(device_type_impl_base const &type, machine_config const &mconfig, char const *tag, device_t *owner, u32 clock)
  	{
@@ -464,7 +464,7 @@ diff -u -r mame-mame0235/src/emu/device.h messui-tag235/src/emu/device.h
  	}
  
  	template <typename DriverClass>
-@@ -298,7 +299,8 @@
+@@ -299,7 +300,8 @@
  	template <typename... Params>
  	std::unique_ptr<DeviceClass> create(machine_config &mconfig, char const *tag, device_t *owner, Params &&... args) const
  	{
@@ -474,10 +474,10 @@ diff -u -r mame-mame0235/src/emu/device.h messui-tag235/src/emu/device.h
  	}
  
  	template <typename... Params> DeviceClass &operator()(machine_config &mconfig, char const *tag, Params &&... args) const;
-diff -u -r mame-mame0235/src/emu/diimage.cpp messui-tag235/src/emu/diimage.cpp
---- mame-mame0235/src/emu/diimage.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/diimage.cpp	2021-08-27 05:45:31.000000000 +0200
-@@ -802,9 +802,9 @@
+diff -u -r a/src/emu/diimage.cpp b/src/emu/diimage.cpp
+--- a/src/emu/diimage.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/diimage.cpp	2021-09-29 07:03:49.000000000 +0200
+@@ -786,9 +786,9 @@
  					return false;
  
  				if (swinfo->supported() == software_support::PARTIALLY_SUPPORTED)
@@ -489,9 +489,9 @@ diff -u -r mame-mame0235/src/emu/diimage.cpp messui-tag235/src/emu/diimage.cpp
  
  				u32 crc = 0;
  				const bool has_crc = util::hash_collection(romp->hashdata()).crc(crc);
-diff -u -r mame-mame0235/src/emu/emuopts.cpp messui-tag235/src/emu/emuopts.cpp
---- mame-mame0235/src/emu/emuopts.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/emuopts.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/emuopts.cpp b/src/emu/emuopts.cpp
+--- a/src/emu/emuopts.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/emuopts.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -32,7 +32,7 @@
  	// config options
  	{ nullptr,                                           nullptr,     OPTION_HEADER,     "CORE CONFIGURATION OPTIONS" },
@@ -501,7 +501,7 @@ diff -u -r mame-mame0235/src/emu/emuopts.cpp messui-tag235/src/emu/emuopts.cpp
  
  	// search path options
  	{ nullptr,                                           nullptr,     OPTION_HEADER,     "CORE SEARCH PATH OPTIONS" },
-@@ -698,18 +698,21 @@
+@@ -699,18 +699,21 @@
  	}
  
  	// at this point we need to purge stray image options that may no longer be pertinent
@@ -530,14 +530,14 @@ diff -u -r mame-mame0235/src/emu/emuopts.cpp messui-tag235/src/emu/emuopts.cpp
  	}
  
  	return changed;
-@@ -1297,3 +1300,4 @@
+@@ -1298,3 +1301,4 @@
  	m_entry = entry;
  	return entry;
  }
 +
-diff -u -r mame-mame0235/src/emu/image.cpp messui-tag235/src/emu/image.cpp
---- mame-mame0235/src/emu/image.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/image.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/image.cpp b/src/emu/image.cpp
+--- a/src/emu/image.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/image.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -206,7 +206,7 @@
  			|| (!image.exists() && !image.is_reset_and_loading()
  				&& machine().options().has_image_option(image.instance_name()) && !machine().options().image_option(image.instance_name()).value().empty()))
@@ -558,9 +558,9 @@ diff -u -r mame-mame0235/src/emu/image.cpp messui-tag235/src/emu/image.cpp
  			// and set the option (provided that it hasn't been removed out from under us)
  			if (machine().options().exists(image.instance_name()) && machine().options().has_image_option(image.instance_name()))
  				machine().options().image_option(image.instance_name()).specify(std::move(image_opt));
-diff -u -r mame-mame0235/src/emu/inpttype.ipp messui-tag235/src/emu/inpttype.ipp
---- mame-mame0235/src/emu/inpttype.ipp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/inpttype.ipp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/inpttype.ipp b/src/emu/inpttype.ipp
+--- a/src/emu/inpttype.ipp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/inpttype.ipp	2021-09-29 07:03:49.000000000 +0200
 @@ -806,8 +806,8 @@
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_ON_SCREEN_DISPLAY,"On Screen Display",      input_seq(KEYCODE_TILDE, input_seq::not_code, KEYCODE_LSHIFT, input_seq::not_code, KEYCODE_RSHIFT) ) \
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_DEBUG_BREAK,      "Break in Debugger",      input_seq(KEYCODE_TILDE, input_seq::not_code, KEYCODE_LSHIFT, input_seq::not_code, KEYCODE_RSHIFT) ) \
@@ -572,7 +572,7 @@ diff -u -r mame-mame0235/src/emu/inpttype.ipp messui-tag235/src/emu/inpttype.ipp
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_REWIND_SINGLE,    "Rewind - Single Step",   input_seq(KEYCODE_TILDE, KEYCODE_LSHIFT) ) \
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_RESET_MACHINE,    "Reset Machine",          input_seq(KEYCODE_F3, KEYCODE_LSHIFT, input_seq::or_code, KEYCODE_F3, KEYCODE_RSHIFT) ) \
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_SOFT_RESET,       "Soft Reset",             input_seq(KEYCODE_F3, input_seq::not_code, KEYCODE_LSHIFT, input_seq::not_code, KEYCODE_RSHIFT) ) \
-@@ -844,7 +844,7 @@
+@@ -845,7 +845,7 @@
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_SHOW_PROFILER,    "Show Profiler",          input_seq(KEYCODE_F11, KEYCODE_LSHIFT) ) \
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_TOGGLE_UI,        "UI Toggle",              input_seq(KEYCODE_SCRLOCK, input_seq::not_code, KEYCODE_LSHIFT) ) \
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_RELEASE_POINTER,  "UI Release Pointer",     input_seq(KEYCODE_RCONTROL, KEYCODE_RALT) ) \
@@ -581,9 +581,9 @@ diff -u -r mame-mame0235/src/emu/inpttype.ipp messui-tag235/src/emu/inpttype.ipp
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_TOGGLE_DEBUG,     "Toggle Debugger",        input_seq(KEYCODE_F5) ) \
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_SAVE_STATE,       "Save State",             input_seq(KEYCODE_F7, KEYCODE_LSHIFT) ) \
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_LOAD_STATE,       "Load State",             input_seq(KEYCODE_F7, input_seq::not_code, KEYCODE_LSHIFT) ) \
-diff -u -r mame-mame0235/src/emu/machine.cpp messui-tag235/src/emu/machine.cpp
---- mame-mame0235/src/emu/machine.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/machine.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/machine.cpp b/src/emu/machine.cpp
+--- a/src/emu/machine.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/machine.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -187,23 +187,23 @@
  void running_machine::start()
  {
@@ -659,24 +659,6 @@ diff -u -r mame-mame0235/src/emu/machine.cpp messui-tag235/src/emu/machine.cpp
  	}
  
  	manager().create_custom(*this);
-@@ -312,7 +312,7 @@
- 		// if we have a logfile, set up the callback
- 		if (options().log() && !quiet)
- 		{
--			m_logfile = std::make_unique<emu_file>(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
-+			m_logfile = make_unique_clear<emu_file>(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
- 			osd_file::error filerr = m_logfile->open("error.log");
- 			if (filerr != osd_file::error::NONE)
- 				throw emu_fatalerror("running_machine::run: unable to open error.log file");
-@@ -323,7 +323,7 @@
- 
- 		if (options().debug() && options().debuglog())
- 		{
--			m_debuglogfile = std::make_unique<emu_file>(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
-+			m_debuglogfile = make_unique_clear<emu_file>(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
- 			osd_file::error filerr = m_debuglogfile->open("debug.log");
- 			if (filerr != osd_file::error::NONE)
- 				throw emu_fatalerror("running_machine::run: unable to open debug.log file");
 @@ -788,15 +788,15 @@
  		throw emu_fatalerror("Can only call running_machine::add_notifier at init time!");
  
@@ -705,9 +687,9 @@ diff -u -r mame-mame0235/src/emu/machine.cpp messui-tag235/src/emu/machine.cpp
  }
  
  
-diff -u -r mame-mame0235/src/emu/mconfig.cpp messui-tag235/src/emu/mconfig.cpp
---- mame-mame0235/src/emu/mconfig.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/mconfig.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/mconfig.cpp b/src/emu/mconfig.cpp
+--- a/src/emu/mconfig.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/mconfig.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -99,7 +99,8 @@
  					new_dev->set_input_default(input_device_defaults);
  			}
@@ -718,9 +700,9 @@ diff -u -r mame-mame0235/src/emu/mconfig.cpp messui-tag235/src/emu/mconfig.cpp
  		}
  	}
  
-diff -u -r mame-mame0235/src/emu/romload.cpp messui-tag235/src/emu/romload.cpp
---- mame-mame0235/src/emu/romload.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/romload.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/romload.cpp b/src/emu/romload.cpp
+--- a/src/emu/romload.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/romload.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -385,7 +385,7 @@
  		}
  
@@ -730,10 +712,10 @@ diff -u -r mame-mame0235/src/emu/romload.cpp messui-tag235/src/emu/romload.cpp
  		{
  			m_errorstring.append(util::string_format("%s: invalid BIOS \"%s\", reverting to default\n", device.tag(), specbios));
  			m_warnings++;
-diff -u -r mame-mame0235/src/emu/romload.h messui-tag235/src/emu/romload.h
---- mame-mame0235/src/emu/romload.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/romload.h	2021-08-27 05:45:31.000000000 +0200
-@@ -411,7 +411,7 @@
+diff -u -r a/src/emu/romload.h b/src/emu/romload.h
+--- a/src/emu/romload.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/romload.h	2021-09-29 07:03:49.000000000 +0200
+@@ -412,7 +412,7 @@
  	std::string& software_load_warnings_message() { return m_softwarningstring; }
  
  	/* return the number of BAD_DUMP/NO_DUMP warnings we generated */
@@ -742,9 +724,9 @@ diff -u -r mame-mame0235/src/emu/romload.h messui-tag235/src/emu/romload.h
  
  	/* ----- disk handling ----- */
  
-diff -u -r mame-mame0235/src/emu/softlist.cpp messui-tag235/src/emu/softlist.cpp
---- mame-mame0235/src/emu/softlist.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/softlist.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/softlist.cpp b/src/emu/softlist.cpp
+--- a/src/emu/softlist.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/softlist.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -5,6 +5,7 @@
      softlist.cpp
  
@@ -814,9 +796,9 @@ diff -u -r mame-mame0235/src/emu/softlist.cpp messui-tag235/src/emu/softlist.cpp
  		std::string &listname,
  		std::string &description,
  		std::list<software_info> &infolist,
-diff -u -r mame-mame0235/src/emu/softlist_dev.cpp messui-tag235/src/emu/softlist_dev.cpp
---- mame-mame0235/src/emu/softlist_dev.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/softlist_dev.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/softlist_dev.cpp b/src/emu/softlist_dev.cpp
+--- a/src/emu/softlist_dev.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/softlist_dev.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -5,6 +5,7 @@
      softlist_dev.cpp
  
@@ -833,16 +815,21 @@ diff -u -r mame-mame0235/src/emu/softlist_dev.cpp messui-tag235/src/emu/softlist
  	m_description("")
  {
  }
-@@ -287,15 +289,14 @@
+@@ -287,15 +289,19 @@
  	m_errors.clear();
  
  	// attempt to open the file
 -	emu_file file(mconfig().options().hash_path(), OPEN_FLAG_READ);
--	const osd_file::error filerr = file.open(m_list_name + ".xml");
+-	const std::error_condition filerr = file.open(m_list_name + ".xml");
 -	m_filename = file.filename();
-+	const osd_file::error filerr = m_file.open(m_list_name + ".xml");
++
++	const std::error_condition filerr = m_file.open(m_list_name + ".xml");
 +	m_filename = m_file.filename();
- 	if (filerr == osd_file::error::NONE)
++// old code
++//	emu_file file(mconfig().options().hash_path(), OPEN_FLAG_READ);
++//	const std::error_condition filerr = file.open(m_list_name + ".xml");
++//	m_filename = file.filename();
+ 	if (!filerr)
  	{
  		// parse if no error
  		std::ostringstream errs;
@@ -852,10 +839,10 @@ diff -u -r mame-mame0235/src/emu/softlist_dev.cpp messui-tag235/src/emu/softlist
 +		m_file.close();
  		m_errors = errs.str();
  	}
- 	else if (filerr == osd_file::error::NOT_FOUND)
-diff -u -r mame-mame0235/src/emu/softlist_dev.h messui-tag235/src/emu/softlist_dev.h
---- mame-mame0235/src/emu/softlist_dev.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/softlist_dev.h	2021-08-27 05:45:31.000000000 +0200
+ 	else if (std::errc::no_such_file_or_directory == filerr)
+diff -u -r a/src/emu/softlist_dev.h b/src/emu/softlist_dev.h
+--- a/src/emu/softlist_dev.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/softlist_dev.h	2021-09-29 07:03:49.000000000 +0200
 @@ -151,6 +151,7 @@
  
  	// internal state
@@ -864,9 +851,9 @@ diff -u -r mame-mame0235/src/emu/softlist_dev.h messui-tag235/src/emu/softlist_d
  	std::string                 m_filename;
  	std::string                 m_shortname;
  	std::string                 m_description;
-diff -u -r mame-mame0235/src/emu/softlist.h messui-tag235/src/emu/softlist.h
---- mame-mame0235/src/emu/softlist.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/softlist.h	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/softlist.h b/src/emu/softlist.h
+--- a/src/emu/softlist.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/softlist.h	2021-09-29 07:03:49.000000000 +0200
 @@ -89,7 +89,7 @@
  
  	// helpers
@@ -903,9 +890,9 @@ diff -u -r mame-mame0235/src/emu/softlist.h messui-tag235/src/emu/softlist.h
  		std::string &listname,
  		std::string &description,
  		std::list<software_info> &infolist,
-diff -u -r mame-mame0235/src/emu/video.cpp messui-tag235/src/emu/video.cpp
---- mame-mame0235/src/emu/video.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/video.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/emu/video.cpp b/src/emu/video.cpp
+--- a/src/emu/video.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/video.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -1003,7 +1003,7 @@
  	}
  
@@ -915,10 +902,10 @@ diff -u -r mame-mame0235/src/emu/video.cpp messui-tag235/src/emu/video.cpp
  	{
  		// create a final screenshot
  		emu_file file(machine().options().snapshot_directory(), OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
-diff -u -r mame-mame0235/src/emu/video.h messui-tag235/src/emu/video.h
---- mame-mame0235/src/emu/video.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/emu/video.h	2021-08-27 05:45:31.000000000 +0200
-@@ -53,6 +53,7 @@
+diff -u -r a/src/emu/video.h b/src/emu/video.h
+--- a/src/emu/video.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/video.h	2021-09-29 07:03:49.000000000 +0200
+@@ -55,6 +55,7 @@
  	bool fastforward() const { return m_fastforward; }
  
  	// setters
@@ -926,9 +913,9 @@ diff -u -r mame-mame0235/src/emu/video.h messui-tag235/src/emu/video.h
  	void set_frameskip(int frameskip);
  	void set_throttled(bool throttled) { m_throttled = throttled; }
  	void set_throttle_rate(float throttle_rate) { m_throttle_rate = throttle_rate; }
-diff -u -r mame-mame0235/src/frontend/mame/audit.cpp messui-tag235/src/frontend/mame/audit.cpp
---- mame-mame0235/src/frontend/mame/audit.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/audit.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/audit.cpp b/src/frontend/mame/audit.cpp
+--- a/src/frontend/mame/audit.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/audit.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -700,3 +700,81 @@
  	, m_shared_device(nullptr)
  {
@@ -1011,9 +998,9 @@ diff -u -r mame-mame0235/src/frontend/mame/audit.cpp messui-tag235/src/frontend/
 +	}
 +	return overall_status;
 +}
-diff -u -r mame-mame0235/src/frontend/mame/audit.h messui-tag235/src/frontend/mame/audit.h
---- mame-mame0235/src/frontend/mame/audit.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/audit.h	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/audit.h b/src/frontend/mame/audit.h
+--- a/src/frontend/mame/audit.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/audit.h	2021-09-29 07:03:49.000000000 +0200
 @@ -159,6 +159,7 @@
  	summary audit_software(software_list_device &swlist, const software_info &swinfo, const char *validation = AUDIT_VALIDATE_FULL);
  	summary audit_samples();
@@ -1022,9 +1009,9 @@ diff -u -r mame-mame0235/src/frontend/mame/audit.h messui-tag235/src/frontend/ma
  
  private:
  	// internal helpers
-diff -u -r mame-mame0235/src/frontend/mame/language.cpp messui-tag235/src/frontend/mame/language.cpp
---- mame-mame0235/src/frontend/mame/language.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/language.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/language.cpp b/src/frontend/mame/language.cpp
+--- a/src/frontend/mame/language.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/language.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -69,11 +69,18 @@
  	strreplace(name, " ", "_");
  	strreplace(name, "(", "");
@@ -1032,13 +1019,13 @@ diff -u -r mame-mame0235/src/frontend/mame/language.cpp messui-tag235/src/fronte
 +
 +	// MESSUI: See if language file exists. If not, try English, see if that exists. If not, use inbuilt default.
  	emu_file file(m_options.language_path(), OPEN_FLAG_READ);
- 	if (file.open(name + PATH_SEPARATOR "strings.mo") != osd_file::error::NONE)
+ 	if (file.open(name + PATH_SEPARATOR "strings.mo"))
  	{
 -		osd_printf_error("Error opening translation file %s\n", name);
 -		return;
 +		osd_printf_verbose("Error opening translation file %s\n", name);
 +		name = "English";
-+		if (file.open(name + PATH_SEPARATOR "strings.mo") != osd_file::error::NONE)
++		if (file.open(name + PATH_SEPARATOR "strings.mo"))
 +		{
 +			osd_printf_verbose("Error opening translation file %s\n", name);
 +			return;
@@ -1046,10 +1033,10 @@ diff -u -r mame-mame0235/src/frontend/mame/language.cpp messui-tag235/src/fronte
  	}
  
  	u64 const size = file.size();
-diff -u -r mame-mame0235/src/frontend/mame/luaengine.cpp messui-tag235/src/frontend/mame/luaengine.cpp
---- mame-mame0235/src/frontend/mame/luaengine.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/luaengine.cpp	2021-08-27 05:45:31.000000000 +0200
-@@ -460,7 +460,7 @@
+diff -u -r a/src/frontend/mame/luaengine.cpp b/src/frontend/mame/luaengine.cpp
+--- a/src/frontend/mame/luaengine.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/luaengine.cpp	2021-09-29 07:03:49.000000000 +0200
+@@ -424,7 +424,7 @@
  		if(!res.valid())
  		{
  			sol::error err = res;
@@ -1058,7 +1045,7 @@ diff -u -r mame-mame0235/src/frontend/mame/luaengine.cpp messui-tag235/src/front
  		}
  		else
  			return res.get<sol::object>();
-@@ -478,7 +478,7 @@
+@@ -442,7 +442,7 @@
  		if(!res.valid())
  		{
  			sol::error err = res;
@@ -1067,7 +1054,7 @@ diff -u -r mame-mame0235/src/frontend/mame/luaengine.cpp messui-tag235/src/front
  		}
  		else
  		{
-@@ -506,7 +506,7 @@
+@@ -470,7 +470,7 @@
  		if(!res.valid())
  		{
  			sol::error err = res;
@@ -1076,7 +1063,7 @@ diff -u -r mame-mame0235/src/frontend/mame/luaengine.cpp messui-tag235/src/front
  		}
  		else
  			ret = res;
-@@ -548,7 +548,7 @@
+@@ -512,7 +512,7 @@
  		if(!ret.valid())
  		{
  			sol::error err = ret;
@@ -1085,7 +1072,7 @@ diff -u -r mame-mame0235/src/frontend/mame/luaengine.cpp messui-tag235/src/front
  		}
  		return true;
  	});
-@@ -624,7 +624,7 @@
+@@ -588,7 +588,7 @@
  		if(!ret.valid())
  		{
  			sol::error err = ret;
@@ -1094,7 +1081,7 @@ diff -u -r mame-mame0235/src/frontend/mame/luaengine.cpp messui-tag235/src/front
  		}
  		else if (ret.get<bool>())
  		{
-@@ -1899,7 +1899,7 @@
+@@ -1863,7 +1863,7 @@
  	int stat = lua_resume(L, nullptr, 0);
  	if((stat != LUA_OK) && (stat != LUA_YIELD))
  	{
@@ -1103,7 +1090,7 @@ diff -u -r mame-mame0235/src/frontend/mame/luaengine.cpp messui-tag235/src/front
  		lua_pop(L, 1);
  	}
  	luaL_unref(m_lua_state, LUA_REGISTRYINDEX, nparam);
-@@ -1913,11 +1913,11 @@
+@@ -1877,11 +1877,11 @@
  		if(!ret.valid())
  		{
  			sol::error err = ret;
@@ -1117,9 +1104,9 @@ diff -u -r mame-mame0235/src/frontend/mame/luaengine.cpp messui-tag235/src/front
  }
  
  //-------------------------------------------------
-diff -u -r mame-mame0235/src/frontend/mame/mame.cpp messui-tag235/src/frontend/mame/mame.cpp
---- mame-mame0235/src/frontend/mame/mame.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/mame.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/mame.cpp b/src/frontend/mame/mame.cpp
+--- a/src/frontend/mame/mame.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/mame.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -170,8 +170,9 @@
  		{
  			plugin_options::plugin *p = m_plugins->find(incl);
@@ -1157,9 +1144,9 @@ diff -u -r mame-mame0235/src/frontend/mame/mame.cpp messui-tag235/src/frontend/m
  	}
  
  	m_lua->initialize();
-diff -u -r mame-mame0235/src/frontend/mame/mameopts.cpp messui-tag235/src/frontend/mame/mameopts.cpp
---- mame-mame0235/src/frontend/mame/mameopts.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/mameopts.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/mameopts.cpp b/src/frontend/mame/mameopts.cpp
+--- a/src/frontend/mame/mameopts.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/mameopts.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -31,12 +31,12 @@
  {
  	// parse the INI file defined by the platform (e.g., "mame.ini")
@@ -1270,8 +1257,8 @@ diff -u -r mame-mame0235/src/frontend/mame/mameopts.cpp messui-tag235/src/fronte
 +	// open the file; if we fail, that's ok
 +	emu_file file(options.ini_path(), OPEN_FLAG_READ);
 +	osd_printf_verbose("Attempting load of %s.ini\n", basename);
-+	osd_file::error filerr = file.open(std::string(basename) + ".ini");
-+	if (filerr != osd_file::error::NONE)
++	std::error_condition filerr = file.open(std::string(basename) + ".ini");
++	if (filerr)
 +		return;
 +
 +	// parse the file
@@ -1287,9 +1274,9 @@ diff -u -r mame-mame0235/src/frontend/mame/mameopts.cpp messui-tag235/src/fronte
 +		return;
 +	}
 +}
-diff -u -r mame-mame0235/src/frontend/mame/mameopts.h messui-tag235/src/frontend/mame/mameopts.h
---- mame-mame0235/src/frontend/mame/mameopts.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/mameopts.h	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/mameopts.h b/src/frontend/mame/mameopts.h
+--- a/src/frontend/mame/mameopts.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/mameopts.h	2021-09-29 07:03:49.000000000 +0200
 @@ -59,6 +59,7 @@
  private:
  	// INI parsing helper
@@ -1298,9 +1285,9 @@ diff -u -r mame-mame0235/src/frontend/mame/mameopts.h messui-tag235/src/frontend
  };
  
  #endif  // MAME_FRONTEND_MAMEOPTS_H
-diff -u -r mame-mame0235/src/frontend/mame/pluginopts.cpp messui-tag235/src/frontend/mame/pluginopts.cpp
---- mame-mame0235/src/frontend/mame/pluginopts.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/pluginopts.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/pluginopts.cpp b/src/frontend/mame/pluginopts.cpp
+--- a/src/frontend/mame/pluginopts.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/pluginopts.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -74,13 +74,13 @@
  	if (document.HasParseError())
  	{
@@ -1317,9 +1304,9 @@ diff -u -r mame-mame0235/src/frontend/mame/pluginopts.cpp messui-tag235/src/fron
  		return false;
  	}
  
-diff -u -r mame-mame0235/src/frontend/mame/ui/info.cpp messui-tag235/src/frontend/mame/ui/info.cpp
---- mame-mame0235/src/frontend/mame/ui/info.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/ui/info.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/ui/info.cpp b/src/frontend/mame/ui/info.cpp
+--- a/src/frontend/mame/ui/info.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/info.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -85,7 +85,7 @@
  	for (device_t &device : device_enumerator(config.root_device()))
  	{
@@ -1329,9 +1316,9 @@ diff -u -r mame-mame0235/src/frontend/mame/ui/info.cpp messui-tag235/src/fronten
  			m_flags &= ~::machine_flags::NO_SOUND_HW;
  
  		// build overall emulation status
-diff -u -r mame-mame0235/src/frontend/mame/ui/inifile.cpp messui-tag235/src/frontend/mame/ui/inifile.cpp
---- mame-mame0235/src/frontend/mame/ui/inifile.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/ui/inifile.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/ui/inifile.cpp b/src/frontend/mame/ui/inifile.cpp
+--- a/src/frontend/mame/ui/inifile.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/inifile.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -59,26 +59,27 @@
  //  load and indexing ini files
  //-------------------------------------------------
@@ -1341,7 +1328,7 @@ diff -u -r mame-mame0235/src/frontend/mame/ui/inifile.cpp messui-tag235/src/fron
  {
  	std::string const &filename(m_ini_index[file].first);
 -	emu_file fp(m_options.categoryini_path(), OPEN_FLAG_READ);
--	if (fp.open(filename) != osd_file::error::NONE)
+-	if (fp.open(filename))
 +	FILE *fp = fopen(filename.c_str(), "r");
 +	if (!fp)
  	{
@@ -1409,9 +1396,9 @@ diff -u -r mame-mame0235/src/frontend/mame/ui/inifile.cpp messui-tag235/src/fron
  }
  
  
-diff -u -r mame-mame0235/src/frontend/mame/ui/ui.cpp messui-tag235/src/frontend/mame/ui/ui.cpp
---- mame-mame0235/src/frontend/mame/ui/ui.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/ui/ui.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/ui/ui.cpp b/src/frontend/mame/ui/ui.cpp
+--- a/src/frontend/mame/ui/ui.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/ui.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -558,7 +558,7 @@
  						[&warning](const std::reference_wrapper<const std::string> &img)    { warning << "\"" << img.get() << "\""; },
  						[&warning]()                                                        { warning << ","; });
@@ -1421,7 +1408,7 @@ diff -u -r mame-mame0235/src/frontend/mame/ui/ui.cpp messui-tag235/src/frontend/
  			}
  			break;
  		}
-@@ -657,7 +657,8 @@
+@@ -671,7 +671,8 @@
  		m_popup_text_end = 0;
  
  	// display the internal mouse cursor
@@ -1431,7 +1418,7 @@ diff -u -r mame-mame0235/src/frontend/mame/ui/ui.cpp messui-tag235/src/frontend/
  	{
  		int32_t mouse_target_x, mouse_target_y;
  		bool mouse_button;
-@@ -1516,7 +1517,7 @@
+@@ -1530,7 +1531,7 @@
  	}
  
  	// add CPU overclocking (cheat only)
@@ -1440,7 +1427,7 @@ diff -u -r mame-mame0235/src/frontend/mame/ui/ui.cpp messui-tag235/src/frontend/
  	{
  		for (device_execute_interface &exec : execute_interface_enumerator(machine.root_device()))
  		{
-@@ -1545,7 +1546,7 @@
+@@ -1559,7 +1560,7 @@
  		std::string screen_desc = machine_info().get_screen_desc(screen);
  
  		// add refresh rate tweaker
@@ -1449,9 +1436,9 @@ diff -u -r mame-mame0235/src/frontend/mame/ui/ui.cpp messui-tag235/src/frontend/
  		{
  			std::string str = string_format(_("%1$s Refresh Rate"), screen_desc);
  			slider_alloc(std::move(str), -10000, 0, 10000, 1000, std::bind(&mame_ui_manager::slider_refresh, this, std::ref(screen), _1, _2));
-diff -u -r mame-mame0235/src/frontend/mame/ui/ui.h messui-tag235/src/frontend/mame/ui/ui.h
---- mame-mame0235/src/frontend/mame/ui/ui.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/frontend/mame/ui/ui.h	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/frontend/mame/ui/ui.h b/src/frontend/mame/ui/ui.h
+--- a/src/frontend/mame/ui/ui.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/ui.h	2021-09-29 07:03:49.000000000 +0200
 @@ -191,6 +191,11 @@
  	void start_save_state();
  	void start_load_state();
@@ -1472,10 +1459,10 @@ diff -u -r mame-mame0235/src/frontend/mame/ui/ui.h messui-tag235/src/frontend/ma
  };
  
  
-diff -u -r mame-mame0235/src/lib/formats/ccvf_dsk.cpp messui-tag235/src/lib/formats/ccvf_dsk.cpp
---- mame-mame0235/src/lib/formats/ccvf_dsk.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/lib/formats/ccvf_dsk.cpp	2021-08-27 05:45:31.000000000 +0200
-@@ -118,7 +118,7 @@
+diff -u -r a/src/lib/formats/ccvf_dsk.cpp b/src/lib/formats/ccvf_dsk.cpp
+--- a/src/lib/formats/ccvf_dsk.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/lib/formats/ccvf_dsk.cpp	2021-09-29 07:03:49.000000000 +0200
+@@ -123,7 +123,7 @@
  	} while (start > 0 && end != -1);
  
  	uint64_t pos = 0;
@@ -1484,10 +1471,10 @@ diff -u -r mame-mame0235/src/lib/formats/ccvf_dsk.cpp messui-tag235/src/lib/form
  
  	for(int track=0; track < f.track_count; track++) {
  		std::vector<uint32_t> buffer;
-diff -u -r mame-mame0235/src/lib/util/chdcd.cpp messui-tag235/src/lib/util/chdcd.cpp
---- mame-mame0235/src/lib/util/chdcd.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/lib/util/chdcd.cpp	2021-08-27 05:45:31.000000000 +0200
-@@ -886,7 +886,7 @@
+diff -u -r a/src/lib/util/chdcd.cpp b/src/lib/util/chdcd.cpp
+--- a/src/lib/util/chdcd.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/lib/util/chdcd.cpp	2021-09-29 07:03:49.000000000 +0200
+@@ -887,7 +887,7 @@
  	while (!feof(infile))
  	{
  		/* get the next line */
@@ -1496,19 +1483,24 @@ diff -u -r mame-mame0235/src/lib/util/chdcd.cpp messui-tag235/src/lib/util/chdcd
  
  		/* if EOF didn't hit, keep going */
  		if (!feof(infile))
-@@ -926,9 +926,8 @@
+@@ -927,9 +927,13 @@
  				}
  				else
  				{
 -					fclose(infile);
 -					printf("ERROR: Unhandled track type %s\n", token);
--					return CHDERR_UNSUPPORTED_FORMAT;
+-					return chd_file::error::UNSUPPORTED_FORMAT;
 +					printf("ERROR: Track %02d: Unhandled track type %s\n", trknum+2,token);   // MESSUI
 +					goto nextpart;   // MESSUI
++// old code
++//					fclose(infile);
++//					printf("ERROR: Unhandled track type %s\n", token);
++//					return chd_file::error::UNSUPPORTED_FORMAT;
++
  				}
  			}
  			else if (!strcmp(token, "TRACK"))
-@@ -1052,6 +1051,7 @@
+@@ -1053,6 +1057,7 @@
  			}
  		}
  	}
@@ -1516,9 +1508,9 @@ diff -u -r mame-mame0235/src/lib/util/chdcd.cpp messui-tag235/src/lib/util/chdcd
  
  	/* close the input CUE */
  	fclose(infile);
-diff -u -r mame-mame0235/src/lib/util/options.cpp messui-tag235/src/lib/util/options.cpp
---- mame-mame0235/src/lib/util/options.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/lib/util/options.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/lib/util/options.cpp b/src/lib/util/options.cpp
+--- a/src/lib/util/options.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/lib/util/options.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -281,7 +281,8 @@
  	case OPTION_HEADER:
  	default:
@@ -1611,9 +1603,9 @@ diff -u -r mame-mame0235/src/lib/util/options.cpp messui-tag235/src/lib/util/opt
 +	throw_options_exception_if_appropriate(condition, error_stream);
 +}
 +
-diff -u -r mame-mame0235/src/lib/util/options.h messui-tag235/src/lib/util/options.h
---- mame-mame0235/src/lib/util/options.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/lib/util/options.h	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/lib/util/options.h b/src/lib/util/options.h
+--- a/src/lib/util/options.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/lib/util/options.h	2021-09-29 07:03:49.000000000 +0200
 @@ -190,6 +190,7 @@
  
  	// parsing/input
@@ -1622,9 +1614,9 @@ diff -u -r mame-mame0235/src/lib/util/options.h messui-tag235/src/lib/util/optio
  	void parse_ini_file(util::core_file &inifile, int priority, bool ignore_unknown_options, bool always_override);
  	void copy_from(const core_options &that);
  
-diff -u -r mame-mame0235/src/mame/drivers/a2600.cpp messui-tag235/src/mame/drivers/a2600.cpp
---- mame-mame0235/src/mame/drivers/a2600.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/mame/drivers/a2600.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/mame/drivers/a2600.cpp b/src/mame/drivers/a2600.cpp
+--- a/src/mame/drivers/a2600.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/a2600.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -425,7 +425,7 @@
  	m_tia->vsync_callback().set(FUNC(a2600_state::a2600_tia_vsync_callback));
  
@@ -1643,9 +1635,9 @@ diff -u -r mame-mame0235/src/mame/drivers/a2600.cpp messui-tag235/src/mame/drive
  	m_screen->set_screen_update("tia_video", FUNC(tia_video_device::screen_update));
  
  	/* sound hardware */
-diff -u -r mame-mame0235/src/mame/drivers/gamecom.cpp messui-tag235/src/mame/drivers/gamecom.cpp
---- mame-mame0235/src/mame/drivers/gamecom.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/mame/drivers/gamecom.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/mame/drivers/gamecom.cpp b/src/mame/drivers/gamecom.cpp
+--- a/src/mame/drivers/gamecom.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/gamecom.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -296,6 +296,7 @@
  
  	ROM_REGION( 0x40000, "kernel", 0 )
@@ -1654,9 +1646,9 @@ diff -u -r mame-mame0235/src/mame/drivers/gamecom.cpp messui-tag235/src/mame/dri
  ROM_END
  
  //    YEAR  NAME     PARENT  COMPAT  MACHINE  INPUT    CLASS          INIT          COMPANY  FULLNAME    FLAGS
-diff -u -r mame-mame0235/src/mame/drivers/snes.cpp messui-tag235/src/mame/drivers/snes.cpp
---- mame-mame0235/src/mame/drivers/snes.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/mame/drivers/snes.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/mame/drivers/snes.cpp b/src/mame/drivers/snes.cpp
+--- a/src/mame/drivers/snes.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/snes.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -1183,7 +1183,7 @@
  {
  	snes_state::machine_start();
@@ -1666,12 +1658,12 @@ diff -u -r mame-mame0235/src/mame/drivers/snes.cpp messui-tag235/src/mame/driver
  	{
  		m_maincpu->space(AS_PROGRAM).install_readwrite_handler(0x000000, 0x7dffff, read8m_delegate(*this, FUNC(snes_console_state::snes20_lo_r)), write8m_delegate(*this, FUNC(snes_console_state::snes20_lo_w)));
  		m_maincpu->space(AS_PROGRAM).install_readwrite_handler(0x800000, 0xffffff, read8m_delegate(*this, FUNC(snes_console_state::snes20_hi_r)), write8m_delegate(*this, FUNC(snes_console_state::snes20_hi_w)));
-Seulement dans messui-tag235/src/mame: mess.bak
-Seulement dans messui-tag235/src/mame: messui.txt
-Seulement dans messui-tag235/src/mame: old
-diff -u -r mame-mame0235/src/osd/modules/lib/osdobj_common.cpp messui-tag235/src/osd/modules/lib/osdobj_common.cpp
---- mame-mame0235/src/osd/modules/lib/osdobj_common.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/osd/modules/lib/osdobj_common.cpp	2021-08-27 05:45:31.000000000 +0200
+Seulement dans b/src/mame: mess.bak
+Seulement dans b/src/mame: messui.txt
+Seulement dans b/src/mame: old
+diff -u -r a/src/osd/modules/lib/osdobj_common.cpp b/src/osd/modules/lib/osdobj_common.cpp
+--- a/src/osd/modules/lib/osdobj_common.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/modules/lib/osdobj_common.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -56,7 +56,7 @@
  // OS X can be trusted to have working hardware OpenGL, so default to it on for the best user experience
  	{ OSDOPTION_VIDEO,                        OSDOPTVAL_AUTO,   OPTION_STRING,    "video output method: " },
@@ -1690,9 +1682,9 @@ diff -u -r mame-mame0235/src/osd/modules/lib/osdobj_common.cpp messui-tag235/src
  	{ OSDOPTION_PRESCALE "(1-8)",             "1",              OPTION_INTEGER,   "scale emulated video by this factor before applying filters/shaders" },
  
  #if USE_OPENGL
-diff -u -r mame-mame0235/src/osd/modules/render/drawd3d.cpp messui-tag235/src/osd/modules/render/drawd3d.cpp
---- mame-mame0235/src/osd/modules/render/drawd3d.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/osd/modules/render/drawd3d.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/osd/modules/render/drawd3d.cpp b/src/osd/modules/render/drawd3d.cpp
+--- a/src/osd/modules/render/drawd3d.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/modules/render/drawd3d.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -1059,39 +1059,40 @@
  	// verify device capabilities
  	if (!(caps.DevCaps & D3DDEVCAPS_CANRENDERAFTERFLIP))
@@ -1764,9 +1756,9 @@ diff -u -r mame-mame0235/src/osd/modules/render/drawd3d.cpp messui-tag235/src/os
  	}
  
  	m_gamma_supported = ((caps.Caps2 & D3DCAPS2_FULLSCREENGAMMA) != 0);
-diff -u -r mame-mame0235/src/osd/modules/sound/pa_sound.cpp messui-tag235/src/osd/modules/sound/pa_sound.cpp
---- mame-mame0235/src/osd/modules/sound/pa_sound.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/osd/modules/sound/pa_sound.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/osd/modules/sound/pa_sound.cpp b/src/osd/modules/sound/pa_sound.cpp
+--- a/src/osd/modules/sound/pa_sound.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/modules/sound/pa_sound.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -215,6 +215,11 @@
  
  	// 0 = use default
@@ -1777,11 +1769,11 @@ diff -u -r mame-mame0235/src/osd/modules/sound/pa_sound.cpp messui-tag235/src/os
 +	if (stream_params.suggestedLatency > 0.25)
 +		stream_params.suggestedLatency = 0.25;
  
- #ifdef WIN32
+ #ifdef _WIN32
  	PaWasapiStreamInfo wasapi_stream_info;
-diff -u -r mame-mame0235/src/osd/windows/window.cpp messui-tag235/src/osd/windows/window.cpp
---- mame-mame0235/src/osd/windows/window.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/osd/windows/window.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/osd/windows/window.cpp b/src/osd/windows/window.cpp
+--- a/src/osd/windows/window.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/windows/window.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -720,7 +720,7 @@
  		window->hide_pointer();
  
@@ -1791,9 +1783,9 @@ diff -u -r mame-mame0235/src/osd/windows/window.cpp messui-tag235/src/osd/window
  	}
  	else
  	{
-diff -u -r mame-mame0235/src/osd/windows/winmain.cpp messui-tag235/src/osd/windows/winmain.cpp
---- mame-mame0235/src/osd/windows/winmain.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/osd/windows/winmain.cpp	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/osd/windows/winmain.cpp b/src/osd/windows/winmain.cpp
+--- a/src/osd/windows/winmain.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/windows/winmain.cpp	2021-09-29 07:03:49.000000000 +0200
 @@ -163,7 +163,7 @@
  
  	// video options
@@ -1854,9 +1846,9 @@ diff -u -r mame-mame0235/src/osd/windows/winmain.cpp messui-tag235/src/osd/windo
  int main(int argc, char *argv[])
  {
  	std::vector<std::string> args = osd_get_command_line(argc, argv);
-diff -u -r mame-mame0235/src/osd/windows/winmain.h messui-tag235/src/osd/windows/winmain.h
---- mame-mame0235/src/osd/windows/winmain.h	2021-08-26 08:44:17.000000000 +0200
-+++ messui-tag235/src/osd/windows/winmain.h	2021-08-27 05:45:31.000000000 +0200
+diff -u -r a/src/osd/windows/winmain.h b/src/osd/windows/winmain.h
+--- a/src/osd/windows/winmain.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/windows/winmain.h	2021-09-29 07:03:49.000000000 +0200
 @@ -270,6 +270,7 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  	// Access to exception filter static method
@@ -1865,5 +1857,5 @@ diff -u -r mame-mame0235/src/osd/windows/winmain.h messui-tag235/src/osd/windows
  #endif
  
  public:
-Seulement dans messui-tag235/src/osd: winui
-Seulement dans messui-tag235/src: version.cpp
+Seulement dans b/src/osd: winui
+Seulement dans b/src: version.cpp
