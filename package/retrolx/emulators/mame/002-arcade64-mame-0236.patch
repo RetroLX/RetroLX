@@ -1,26 +1,26 @@
 diff -u -r a/3rdparty/lua-zlib/lua_zlib.c b/3rdparty/lua-zlib/lua_zlib.c
---- a/3rdparty/lua-zlib/lua_zlib.c	2021-08-26 08:44:17.000000000 +0200
-+++ b/3rdparty/lua-zlib/lua_zlib.c	2021-08-27 05:18:52.000000000 +0200
+--- a/3rdparty/lua-zlib/lua_zlib.c	2021-09-28 04:48:17.000000000 +0200
++++ b/3rdparty/lua-zlib/lua_zlib.c	2021-09-29 07:17:52.000000000 +0200
 @@ -392,7 +392,7 @@
  
      SETLITERAL("_COPYRIGHT", "Copyright (c) 2009-2010 Brian Maher");
      SETLITERAL("_DESCRIPTION", "Yet another binding to the zlib library");
--    SETLITERAL("_VERSION", "lua-zlib $Id: b619258c75f480717fad20c113c3b1a35f888ce0 $  (tag: mame0235)");
-+    SETLITERAL("_VERSION", "lua-zlib $Id: b619258c75f480717fad20c113c3b1a35f888ce0 $  (tag: tag235)");
+-    SETLITERAL("_VERSION", "lua-zlib $Id: b619258c75f480717fad20c113c3b1a35f888ce0 $  (tag: mame0236)");
++    SETLITERAL("_VERSION", "lua-zlib $Id: b619258c75f480717fad20c113c3b1a35f888ce0 $  (HEAD -> master, tag: tag236)");
  
      /* Expose this to lua so we can do a test: */
      SETINT("_TEST_BUFSIZ", LUAL_BUFFERSIZE);
 diff -u -r a/android-project/app/src/main/AndroidManifest.xml b/android-project/app/src/main/AndroidManifest.xml
---- a/android-project/app/src/main/AndroidManifest.xml	2021-08-26 08:44:17.000000000 +0200
-+++ b/android-project/app/src/main/AndroidManifest.xml	2021-08-27 05:18:52.000000000 +0200
+--- a/android-project/app/src/main/AndroidManifest.xml	2021-09-28 04:48:17.000000000 +0200
++++ b/android-project/app/src/main/AndroidManifest.xml	2021-09-29 07:17:52.000000000 +0200
 @@ -4,8 +4,8 @@
  -->
  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
        package="org.mamedev.mame"
--      android:versionCode="235"
--      android:versionName="0.235"
-+      android:versionCode="234"
-+      android:versionName="0.234"
+-      android:versionCode="236"
+-      android:versionName="0.236"
++      android:versionCode="235"
++      android:versionName="0.235"
        android:installLocation="auto">
  
      <!-- OpenGL ES 2.0 -->
@@ -92,8 +92,8 @@ Seulement dans b/hlsl: NTSC_chain.vsh
 Seulement dans b/hlsl: NTSC_rgb32_dir.fsh
 Seulement dans b/hlsl: NTSC.vsh
 diff -u -r a/README.md b/README.md
---- a/README.md	2021-08-26 08:44:17.000000000 +0200
-+++ b/README.md	2021-08-27 05:18:52.000000000 +0200
+--- a/README.md	2021-09-28 04:48:17.000000000 +0200
++++ b/README.md	2021-09-29 07:17:52.000000000 +0200
 @@ -1,115 +1,35 @@
 +What is ARCADE64?
 +=================
@@ -227,9 +227,9 @@ diff -u -r a/README.md b/README.md
  
 -Please see COPYING for more details.
 diff -u -r a/scripts/genie.lua b/scripts/genie.lua
---- a/scripts/genie.lua	2021-08-26 08:44:17.000000000 +0200
-+++ b/scripts/genie.lua	2021-08-27 05:18:52.000000000 +0200
-@@ -607,7 +607,7 @@
+--- a/scripts/genie.lua	2021-09-28 04:48:17.000000000 +0200
++++ b/scripts/genie.lua	2021-09-29 07:17:52.000000000 +0200
+@@ -610,7 +610,7 @@
  
  dofile ("toolchain.lua")
  
@@ -238,7 +238,7 @@ diff -u -r a/scripts/genie.lua b/scripts/genie.lua
  	configuration { "x64" }
  		defines {
  			"X64_WINDOWS_ABI",
-@@ -646,7 +646,7 @@
+@@ -649,7 +649,7 @@
  configuration { }
  
  -- CR/LF setup: use on win32, CR only on everything else
@@ -248,8 +248,8 @@ diff -u -r a/scripts/genie.lua b/scripts/genie.lua
  		"CRLF=3",
  	}
 diff -u -r a/scripts/src/3rdparty.lua b/scripts/src/3rdparty.lua
---- a/scripts/src/3rdparty.lua	2021-08-26 08:44:17.000000000 +0200
-+++ b/scripts/src/3rdparty.lua	2021-08-27 05:18:52.000000000 +0200
+--- a/scripts/src/3rdparty.lua	2021-09-28 04:48:17.000000000 +0200
++++ b/scripts/src/3rdparty.lua	2021-09-29 07:17:52.000000000 +0200
 @@ -878,7 +878,7 @@
  			"LUA_COMPAT_5_1",
  			"LUA_COMPAT_5_2",
@@ -278,8 +278,8 @@ diff -u -r a/scripts/src/3rdparty.lua b/scripts/src/3rdparty.lua
  			buildoptions {
  				"-Wno-unknown-attributes",
 diff -u -r a/scripts/src/main.lua b/scripts/src/main.lua
---- a/scripts/src/main.lua	2021-08-26 08:44:17.000000000 +0200
-+++ b/scripts/src/main.lua	2021-08-27 05:18:52.000000000 +0200
+--- a/scripts/src/main.lua	2021-09-28 04:48:17.000000000 +0200
++++ b/scripts/src/main.lua	2021-09-29 07:17:52.000000000 +0200
 @@ -339,7 +339,7 @@
  		}
  
@@ -290,8 +290,8 @@ diff -u -r a/scripts/src/main.lua b/scripts/src/main.lua
  	if _OPTIONS["targetos"]=="windows" and (not override_resources) then
  		rcfile = MAME_DIR .. "scripts/resources/windows/" .. _subtarget .. "/" .. rctarget ..".rc"
 diff -u -r a/scripts/src/mame/frontend.lua b/scripts/src/mame/frontend.lua
---- a/scripts/src/mame/frontend.lua	2021-08-26 08:44:17.000000000 +0200
-+++ b/scripts/src/mame/frontend.lua	2021-08-27 05:18:52.000000000 +0200
+--- a/scripts/src/mame/frontend.lua	2021-09-28 04:48:17.000000000 +0200
++++ b/scripts/src/mame/frontend.lua	2021-09-29 07:17:52.000000000 +0200
 @@ -45,7 +45,7 @@
  }
  
@@ -302,8 +302,8 @@ diff -u -r a/scripts/src/mame/frontend.lua b/scripts/src/mame/frontend.lua
  		"UI_WINDOWS",
  	}
 diff -u -r a/scripts/src/osd/modules.lua b/scripts/src/osd/modules.lua
---- a/scripts/src/osd/modules.lua	2021-08-26 08:44:17.000000000 +0200
-+++ b/scripts/src/osd/modules.lua	2021-08-27 05:18:52.000000000 +0200
+--- a/scripts/src/osd/modules.lua	2021-09-28 04:48:17.000000000 +0200
++++ b/scripts/src/osd/modules.lua	2021-09-29 07:17:52.000000000 +0200
 @@ -123,9 +123,8 @@
  		ext_includedir("asio"),
  	}
@@ -352,9 +352,9 @@ diff -u -r a/scripts/src/osd/modules.lua b/scripts/src/osd/modules.lua
  	else
  		_OPTIONS["USE_QTDEBUG"] = "1"
 diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
---- a/scripts/target/mame/arcade.lua	2021-08-26 08:44:17.000000000 +0200
-+++ b/scripts/target/mame/arcade.lua	2021-08-27 05:18:52.000000000 +0200
-@@ -881,7 +881,7 @@
+--- a/scripts/target/mame/arcade.lua	2021-09-28 04:48:17.000000000 +0200
++++ b/scripts/target/mame/arcade.lua	2021-09-29 07:17:52.000000000 +0200
+@@ -884,7 +884,7 @@
  		"ascii",
  		"atari",
  		"atlus",
@@ -363,7 +363,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  		"bfm",
  		"bmc",
  		"capcom",
-@@ -908,16 +908,14 @@
+@@ -911,16 +911,14 @@
  		"gottlieb",
  		"ibmpc",
  		"igs",
@@ -381,7 +381,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  		"meadows",
  		"merit",
  		"metro",
-@@ -955,6 +953,7 @@
+@@ -958,6 +956,7 @@
  		"subsino",
  		"suna",
  		"sunelect",
@@ -389,7 +389,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  		"taito",
  		"tatsumi",
  		"tch",
-@@ -964,6 +963,7 @@
+@@ -967,6 +966,7 @@
  		"terminal",
  		"thepit",
  		"toaplan",
@@ -397,7 +397,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  		"unico",
  		"univers",
  		"upl",
-@@ -1053,7 +1053,7 @@
+@@ -1056,7 +1056,7 @@
  
  createMAMEProjects(_target, _subtarget, "adp")
  files {
@@ -406,7 +406,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/manohman.cpp",
  	MAME_DIR .. "src/mame/drivers/stellafr.cpp",
  }
-@@ -1061,7 +1061,7 @@
+@@ -1064,7 +1064,7 @@
  createMAMEProjects(_target, _subtarget, "alba")
  files {
  	MAME_DIR .. "src/mame/drivers/albazc.cpp",
@@ -415,7 +415,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/rmhaihai.cpp",
  	MAME_DIR .. "src/mame/drivers/vsmjtria.cpp",
  }
-@@ -1100,7 +1100,7 @@
+@@ -1103,7 +1103,7 @@
  
  createMAMEProjects(_target, _subtarget, "amiga")
  files {
@@ -424,7 +424,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/amiga.cpp",
  	MAME_DIR .. "src/mame/machine/amiga.cpp",
  	MAME_DIR .. "src/mame/video/amiga.cpp",
-@@ -1445,59 +1445,58 @@
+@@ -1448,59 +1448,58 @@
  createMAMEProjects(_target, _subtarget, "barcrest")
  files {
  	MAME_DIR .. "src/mame/drivers/mpu2.cpp",
@@ -530,7 +530,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/video/bfm_dm01.cpp",
  }
  
-@@ -1519,7 +1518,7 @@
+@@ -1522,7 +1521,7 @@
  	MAME_DIR .. "src/mame/drivers/1943.cpp",
  	MAME_DIR .. "src/mame/includes/1943.h",
  	MAME_DIR .. "src/mame/video/1943.cpp",
@@ -539,7 +539,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/bionicc.cpp",
  	MAME_DIR .. "src/mame/drivers/supduck.cpp",
  	MAME_DIR .. "src/mame/video/tigeroad_spr.cpp",
-@@ -1654,11 +1653,11 @@
+@@ -1653,11 +1652,11 @@
  
  createMAMEProjects(_target, _subtarget, "cirsa")
  files {
@@ -553,7 +553,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  }
  
  createMAMEProjects(_target, _subtarget, "comad")
-@@ -1771,7 +1770,7 @@
+@@ -1770,7 +1769,7 @@
  	MAME_DIR .. "src/mame/drivers/exprraid.cpp",
  	MAME_DIR .. "src/mame/includes/exprraid.h",
  	MAME_DIR .. "src/mame/video/exprraid.cpp",
@@ -562,7 +562,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/firetrap.cpp",
  	MAME_DIR .. "src/mame/includes/firetrap.h",
  	MAME_DIR .. "src/mame/video/firetrap.cpp",
-@@ -2021,9 +2020,9 @@
+@@ -2016,9 +2015,9 @@
  	MAME_DIR .. "src/mame/drivers/funworld.cpp",
  	MAME_DIR .. "src/mame/includes/funworld.h",
  	MAME_DIR .. "src/mame/video/funworld.cpp",
@@ -575,7 +575,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/snookr10.cpp",
  	MAME_DIR .. "src/mame/includes/snookr10.h",
  	MAME_DIR .. "src/mame/video/snookr10.cpp",
-@@ -2201,15 +2200,6 @@
+@@ -2196,15 +2195,6 @@
  	MAME_DIR .. "src/mame/machine/igs028.h",
  }
  
@@ -591,7 +591,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  createMAMEProjects(_target, _subtarget, "irem")
  files {
  	MAME_DIR .. "src/mame/drivers/m10.cpp",
-@@ -2410,15 +2400,6 @@
+@@ -2406,15 +2396,6 @@
  	MAME_DIR .. "src/mame/video/sknsspr.h",
  }
  
@@ -607,17 +607,19 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  createMAMEProjects(_target, _subtarget, "konami")
  files {
  	MAME_DIR .. "src/mame/drivers/88games.cpp",
-@@ -2542,13 +2523,13 @@
+@@ -2538,14 +2519,14 @@
  	MAME_DIR .. "src/mame/machine/3dom2.h",
  	MAME_DIR .. "src/mame/video/3dom2_te.cpp",
  	MAME_DIR .. "src/mame/video/3dom2_te.h",
 -	MAME_DIR .. "src/mame/drivers/konblands.cpp",
 -	MAME_DIR .. "src/mame/drivers/kongs470.cpp",
 -	MAME_DIR .. "src/mame/drivers/konmedal.cpp",
+-	MAME_DIR .. "src/mame/drivers/konmedal020.cpp",
 -	MAME_DIR .. "src/mame/drivers/konmedal68k.cpp",
 +--	MAME_DIR .. "src/mame/drivers/konblands.cpp",
 +--	MAME_DIR .. "src/mame/drivers/kongs470.cpp",
 +--	MAME_DIR .. "src/mame/drivers/konmedal.cpp",
++--	MAME_DIR .. "src/mame/drivers/konmedal020.cpp",
 +--	MAME_DIR .. "src/mame/drivers/konmedal68k.cpp",
  	MAME_DIR .. "src/mame/drivers/kontest.cpp",
 -	MAME_DIR .. "src/mame/drivers/konendev.cpp",
@@ -627,7 +629,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/kpython.cpp",
  	MAME_DIR .. "src/mame/drivers/ksys573.cpp",
  	MAME_DIR .. "src/mame/machine/k573cass.cpp",
-@@ -2609,9 +2590,9 @@
+@@ -2606,9 +2587,9 @@
  	MAME_DIR .. "src/mame/includes/pingpong.h",
  	MAME_DIR .. "src/mame/video/pingpong.cpp",
  	MAME_DIR .. "src/mame/drivers/piratesh.cpp",
@@ -640,7 +642,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/pooyan.cpp",
  	MAME_DIR .. "src/mame/includes/pooyan.h",
  	MAME_DIR .. "src/mame/video/pooyan.cpp",
-@@ -2762,13 +2743,13 @@
+@@ -2759,13 +2740,13 @@
  
  createMAMEProjects(_target, _subtarget, "maygay")
  files {
@@ -661,7 +663,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  }
  
  createMAMEProjects(_target, _subtarget, "meadows")
-@@ -2889,7 +2870,7 @@
+@@ -2886,7 +2867,7 @@
  	MAME_DIR .. "src/mame/drivers/mw18w.cpp",
  	MAME_DIR .. "src/mame/drivers/mwsub.cpp",
  	MAME_DIR .. "src/mame/drivers/omegrace.cpp",
@@ -670,7 +672,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/seattle.cpp",
  	MAME_DIR .. "src/mame/drivers/sspeedr.cpp",
  	MAME_DIR .. "src/mame/includes/sspeedr.h",
-@@ -2922,7 +2903,7 @@
+@@ -2919,7 +2900,7 @@
  	MAME_DIR .. "src/mame/includes/dribling.h",
  	MAME_DIR .. "src/mame/video/dribling.cpp",
  	MAME_DIR .. "src/mame/drivers/sshot.cpp",
@@ -679,7 +681,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  }
  
  createMAMEProjects(_target, _subtarget, "namco")
-@@ -3483,7 +3464,7 @@
+@@ -3480,7 +3461,7 @@
  	MAME_DIR .. "src/mame/includes/deniam.h",
  	MAME_DIR .. "src/mame/video/deniam.cpp",
  	MAME_DIR .. "src/mame/drivers/dotrikun.cpp",
@@ -688,7 +690,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/gpworld.cpp",
  	MAME_DIR .. "src/mame/drivers/hikaru.cpp",
  	MAME_DIR .. "src/mame/drivers/hshavoc.cpp",
-@@ -3735,8 +3716,8 @@
+@@ -3732,8 +3713,8 @@
  
  createMAMEProjects(_target, _subtarget, "seibu")
  files {
@@ -699,7 +701,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/bloodbro.cpp",
  	MAME_DIR .. "src/mame/includes/bloodbro.h",
  	MAME_DIR .. "src/mame/video/bloodbro.cpp",
-@@ -3871,9 +3852,9 @@
+@@ -3866,9 +3847,9 @@
  files {
  	MAME_DIR .. "src/mame/drivers/nyny.cpp",
  	MAME_DIR .. "src/mame/drivers/r2dtank.cpp",
@@ -712,7 +714,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/sigmab98.cpp",
  	MAME_DIR .. "src/mame/drivers/spiders.cpp",
  	MAME_DIR .. "src/mame/includes/spiders.h",
-@@ -3997,6 +3978,12 @@
+@@ -3992,6 +3973,12 @@
  	MAME_DIR .. "src/mame/drivers/tonton.cpp",
  }
  
@@ -725,7 +727,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  createMAMEProjects(_target, _subtarget, "taito")
  files {
  	MAME_DIR .. "src/mame/drivers/2mindril.cpp",
-@@ -4461,6 +4448,11 @@
+@@ -4456,6 +4443,11 @@
  	MAME_DIR .. "src/mame/video/toaplan_scu.h",
  }
  
@@ -737,7 +739,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  createMAMEProjects(_target, _subtarget, "unico")
  files {
  	MAME_DIR .. "src/mame/drivers/drgnmst.cpp",
-@@ -4650,128 +4642,131 @@
+@@ -4645,129 +4637,131 @@
  
  createMAMEProjects(_target, _subtarget, "pinball")
  files {
@@ -798,6 +800,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
 -	MAME_DIR .. "src/mame/drivers/play_1.cpp",
 -	MAME_DIR .. "src/mame/drivers/play_2.cpp",
 -	MAME_DIR .. "src/mame/drivers/play_3.cpp",
+-	MAME_DIR .. "src/mame/drivers/recel.cpp",
 -	MAME_DIR .. "src/mame/drivers/rowamet.cpp",
 -	MAME_DIR .. "src/mame/drivers/s11.cpp",
 -	MAME_DIR .. "src/mame/includes/s11.h",
@@ -989,7 +992,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  }
  
  --------------------------------------------------
-@@ -4781,66 +4776,66 @@
+@@ -4777,68 +4771,67 @@
  createMAMEProjects(_target, _subtarget, "misc")
  files {
  	MAME_DIR .. "src/mame/drivers/39in1.cpp",
@@ -1009,6 +1012,8 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
 -	MAME_DIR .. "src/mame/drivers/acefruit.cpp",
 -	MAME_DIR .. "src/mame/drivers/aces1.cpp",
 -	MAME_DIR .. "src/mame/drivers/acesp.cpp",
+-	MAME_DIR .. "src/mame/machine/ace_sp_reelctrl.cpp",
+-	MAME_DIR .. "src/mame/machine/ace_sp_reelctrl.h",
 -	MAME_DIR .. "src/mame/drivers/age_candy.cpp",
 +--	MAME_DIR .. "src/mame/drivers/4enlinea.cpp",
 +--	MAME_DIR .. "src/mame/drivers/5clown.cpp",
@@ -1016,6 +1021,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
 +--	MAME_DIR .. "src/mame/drivers/acefruit.cpp",
 +--	MAME_DIR .. "src/mame/drivers/aces1.cpp",
 +--	MAME_DIR .. "src/mame/drivers/acesp.cpp",
++--	MAME_DIR .. "src/mame/machine/ace_sp_reelctrl.cpp",
 +--	MAME_DIR .. "src/mame/drivers/age_candy.cpp",
  	MAME_DIR .. "src/mame/drivers/alinvade.cpp",
 -	MAME_DIR .. "src/mame/drivers/amaticmg.cpp",
@@ -1092,7 +1098,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/cdi.cpp",
  	MAME_DIR .. "src/mame/includes/cdi.h",
  	MAME_DIR .. "src/mame/video/mcd212.cpp",
-@@ -4851,23 +4846,23 @@
+@@ -4849,23 +4842,23 @@
  	MAME_DIR .. "src/mame/machine/cdicdic.h",
  	MAME_DIR .. "src/mame/drivers/chameleonrx1.cpp",
  	MAME_DIR .. "src/mame/drivers/chance32.cpp",
@@ -1128,7 +1134,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/bntyhunt.cpp",
  	MAME_DIR .. "src/mame/drivers/coolpool.cpp",
  	MAME_DIR .. "src/mame/includes/coolpool.h",
-@@ -4899,56 +4894,58 @@
+@@ -4897,56 +4890,58 @@
  	MAME_DIR .. "src/mame/drivers/dorachan.cpp",
  	MAME_DIR .. "src/mame/drivers/drdmania.cpp",
  	MAME_DIR .. "src/mame/drivers/dreamwld.cpp",
@@ -1210,7 +1216,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/good.cpp",
  	MAME_DIR .. "src/mame/drivers/gotcha.cpp",
  	MAME_DIR .. "src/mame/includes/gotcha.h",
-@@ -4958,35 +4955,37 @@
+@@ -4956,35 +4951,37 @@
  	MAME_DIR .. "src/mame/includes/gumbo.h",
  	MAME_DIR .. "src/mame/video/gumbo.cpp",
  	MAME_DIR .. "src/mame/drivers/gunpey.cpp",
@@ -1244,6 +1250,8 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
 -	MAME_DIR .. "src/mame/drivers/itgamble.cpp",
 -	MAME_DIR .. "src/mame/drivers/jackpool.cpp",
 -	MAME_DIR .. "src/mame/drivers/jackpot.cpp",
+-	MAME_DIR .. "src/mame/drivers/jankenmn.cpp",
+-	MAME_DIR .. "src/mame/drivers/jokrwild.cpp",
 +--	MAME_DIR .. "src/mame/drivers/intrscti.cpp",
 +--	MAME_DIR .. "src/mame/drivers/island.cpp",
 +--	MAME_DIR .. "src/mame/drivers/istellar.cpp",
@@ -1252,21 +1260,22 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
 +--	MAME_DIR .. "src/mame/drivers/itgamble.cpp",
 +--	MAME_DIR .. "src/mame/drivers/jackpool.cpp",
 +--	MAME_DIR .. "src/mame/drivers/jackpot.cpp",
- 	MAME_DIR .. "src/mame/drivers/jankenmn.cpp",
--	MAME_DIR .. "src/mame/drivers/jokrwild.cpp",
++--	MAME_DIR .. "src/mame/drivers/jankenmn.cpp",
 +--	MAME_DIR .. "src/mame/drivers/jokrwild.cpp",
-+	MAME_DIR .. "src/mame/drivers/jongkyo.cpp",
++--	MAME_DIR .. "src/mame/drivers/jongkyo.cpp",
  	MAME_DIR .. "src/mame/drivers/joystand.cpp",
- 	MAME_DIR .. "src/mame/drivers/jubilee.cpp",
+-	MAME_DIR .. "src/mame/drivers/jubilee.cpp",
 -	MAME_DIR .. "src/mame/drivers/jungleyo.cpp",
+-	MAME_DIR .. "src/mame/drivers/kas89.cpp",
++--	MAME_DIR .. "src/mame/drivers/jubilee.cpp",
 +--	MAME_DIR .. "src/mame/drivers/jungleyo.cpp",
- 	MAME_DIR .. "src/mame/drivers/kas89.cpp",
++--	MAME_DIR .. "src/mame/drivers/kas89.cpp",
  	MAME_DIR .. "src/mame/drivers/kingpin.cpp",
 +	MAME_DIR .. "src/mame/drivers/koikoi.cpp",
  	MAME_DIR .. "src/mame/drivers/kurukuru.cpp",
  	MAME_DIR .. "src/mame/drivers/kyugo.cpp",
  	MAME_DIR .. "src/mame/includes/kyugo.h",
-@@ -4995,41 +4994,40 @@
+@@ -4993,41 +4990,40 @@
  	MAME_DIR .. "src/mame/includes/ladyfrog.h",
  	MAME_DIR .. "src/mame/video/ladyfrog.cpp",
  	MAME_DIR .. "src/mame/drivers/laserbas.cpp",
@@ -1322,7 +1331,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/miniboy7.cpp",
  	MAME_DIR .. "src/mame/drivers/minivideo.cpp",
  	MAME_DIR .. "src/mame/drivers/mirax.cpp",
-@@ -5038,24 +5036,27 @@
+@@ -5036,24 +5032,27 @@
  	MAME_DIR .. "src/mame/drivers/mosaic.cpp",
  	MAME_DIR .. "src/mame/includes/mosaic.h",
  	MAME_DIR .. "src/mame/video/mosaic.cpp",
@@ -1364,7 +1373,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/odyssey.cpp",
  	MAME_DIR .. "src/mame/drivers/oneshot.cpp",
  	MAME_DIR .. "src/mame/includes/oneshot.h",
-@@ -5068,14 +5069,15 @@
+@@ -5066,14 +5065,15 @@
  	MAME_DIR .. "src/mame/drivers/pass.cpp",
  	MAME_DIR .. "src/mame/includes/pass.h",
  	MAME_DIR .. "src/mame/video/pass.cpp",
@@ -1383,7 +1392,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/pntnpuzl.cpp",
  	MAME_DIR .. "src/mame/drivers/policetr.cpp",
  	MAME_DIR .. "src/mame/includes/policetr.h",
-@@ -5084,37 +5086,36 @@
+@@ -5082,37 +5082,36 @@
  	MAME_DIR .. "src/mame/includes/polyplay.h",
  	MAME_DIR .. "src/mame/audio/polyplay.cpp",
  	MAME_DIR .. "src/mame/video/polyplay.cpp",
@@ -1439,7 +1448,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/skimaxx.cpp",
  	MAME_DIR .. "src/mame/drivers/skopro.cpp",
  	MAME_DIR .. "src/mame/drivers/skyarmy.cpp",
-@@ -5123,7 +5124,8 @@
+@@ -5121,7 +5120,8 @@
  	MAME_DIR .. "src/mame/drivers/smotor.cpp",
  	MAME_DIR .. "src/mame/drivers/smsmcorp.cpp",
  	MAME_DIR .. "src/mame/drivers/sothello.cpp",
@@ -1449,7 +1458,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/audio/special.cpp",
  	MAME_DIR .. "src/mame/audio/special.h",
  	MAME_DIR .. "src/mame/drivers/spool99.cpp",
-@@ -5135,24 +5137,24 @@
+@@ -5133,22 +5133,22 @@
  	MAME_DIR .. "src/mame/drivers/strkzn.cpp",
  	MAME_DIR .. "src/mame/drivers/stuntair.cpp",
  	MAME_DIR .. "src/mame/drivers/su2000.cpp",
@@ -1464,8 +1473,6 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/tapatune.cpp",
  	MAME_DIR .. "src/mame/drivers/tattack.cpp",
  	MAME_DIR .. "src/mame/drivers/taxidriv.cpp",
- 	MAME_DIR .. "src/mame/includes/taxidriv.h",
- 	MAME_DIR .. "src/mame/video/taxidriv.cpp",
 -	MAME_DIR .. "src/mame/drivers/teamjocs.cpp",
 -	MAME_DIR .. "src/mame/drivers/tecnodar.cpp",
 -	MAME_DIR .. "src/mame/drivers/thayers.cpp",
@@ -1482,7 +1489,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/truco.cpp",
  	MAME_DIR .. "src/mame/includes/truco.h",
  	MAME_DIR .. "src/mame/video/truco.cpp",
-@@ -5164,14 +5166,14 @@
+@@ -5160,14 +5160,14 @@
  	MAME_DIR .. "src/mame/drivers/ttchamp.cpp",
  	MAME_DIR .. "src/mame/drivers/tugboat.cpp",
  	MAME_DIR .. "src/mame/drivers/tvg01.cpp",
@@ -1503,7 +1510,7 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  	MAME_DIR .. "src/mame/drivers/usgames.cpp",
  	MAME_DIR .. "src/mame/includes/usgames.h",
  	MAME_DIR .. "src/mame/video/usgames.cpp",
-@@ -5181,19 +5183,19 @@
+@@ -5177,19 +5177,19 @@
  	MAME_DIR .. "src/mame/includes/vectrex.h",
  	MAME_DIR .. "src/mame/video/vectrex.cpp",
  	MAME_DIR .. "src/mame/machine/vectrex.cpp",
@@ -1534,8 +1541,8 @@ diff -u -r a/scripts/target/mame/arcade.lua b/scripts/target/mame/arcade.lua
  }
  end
 diff -u -r a/src/devices/bus/ata/idehd.cpp b/src/devices/bus/ata/idehd.cpp
---- a/src/devices/bus/ata/idehd.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/devices/bus/ata/idehd.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/devices/bus/ata/idehd.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/devices/bus/ata/idehd.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -13,6 +13,7 @@
  
  #define LOGPRINT(x) do { if (VERBOSE) logerror x; if (PRINTF_IDE_COMMANDS) osd_printf_debug x; } while (0)
@@ -1555,8 +1562,8 @@ diff -u -r a/src/devices/bus/ata/idehd.cpp b/src/devices/bus/ata/idehd.cpp
  				start_busy(TIME_BETWEEN_SECTORS + m_dma_transfer_time, PARAM_COMMAND);
  			else
 diff -u -r a/src/devices/cpu/psx/irq.cpp b/src/devices/cpu/psx/irq.cpp
---- a/src/devices/cpu/psx/irq.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/devices/cpu/psx/irq.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/devices/cpu/psx/irq.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/devices/cpu/psx/irq.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -66,16 +66,34 @@
  
  void psxirq_device::psx_irq_update( void )
@@ -1598,8 +1605,8 @@ diff -u -r a/src/devices/cpu/psx/irq.cpp b/src/devices/cpu/psx/irq.cpp
  
  void psxirq_device::write(offs_t offset, uint32_t data, uint32_t mem_mask)
 diff -u -r a/src/devices/sound/qs1000.cpp b/src/devices/sound/qs1000.cpp
---- a/src/devices/sound/qs1000.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/devices/sound/qs1000.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/devices/sound/qs1000.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/devices/sound/qs1000.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -529,8 +529,8 @@
  					chan.m_addr = (chan.m_addr + (chan.m_acc >> 18)) & QS1000_ADDRESS_MASK;
  					chan.m_acc &= ((1 << 18) - 1);
@@ -1623,9 +1630,9 @@ diff -u -r a/src/devices/sound/qs1000.cpp b/src/devices/sound/qs1000.cpp
  			}
  		}
 diff -u -r a/src/emu/device.h b/src/emu/device.h
---- a/src/emu/device.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/emu/device.h	2021-08-27 05:18:52.000000000 +0200
-@@ -205,7 +205,8 @@
+--- a/src/emu/device.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/device.h	2021-09-29 07:17:52.000000000 +0200
+@@ -201,7 +201,8 @@
  	template <typename DeviceClass>
  	static std::unique_ptr<device_t> create_device(device_type_impl_base const &type, machine_config const &mconfig, char const *tag, device_t *owner, u32 clock)
  	{
@@ -1635,7 +1642,7 @@ diff -u -r a/src/emu/device.h b/src/emu/device.h
  	}
  
  	template <typename DriverClass>
-@@ -298,7 +299,8 @@
+@@ -299,7 +300,8 @@
  	template <typename... Params>
  	std::unique_ptr<DeviceClass> create(machine_config &mconfig, char const *tag, device_t *owner, Params &&... args) const
  	{
@@ -1646,8 +1653,8 @@ diff -u -r a/src/emu/device.h b/src/emu/device.h
  
  	template <typename... Params> DeviceClass &operator()(machine_config &mconfig, char const *tag, Params &&... args) const;
 diff -u -r a/src/emu/emuopts.cpp b/src/emu/emuopts.cpp
---- a/src/emu/emuopts.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/emu/emuopts.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/emu/emuopts.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/emuopts.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -59,6 +59,7 @@
  	{ OPTION_SNAPSHOT_DIRECTORY,                         "snap",      OPTION_STRING,     "directory to save/load screenshots" },
  	{ OPTION_DIFF_DIRECTORY,                             "diff",      OPTION_STRING,     "directory to save hard drive image difference files" },
@@ -1673,8 +1680,8 @@ diff -u -r a/src/emu/emuopts.cpp b/src/emu/emuopts.cpp
  	// vector options
  	{ nullptr,                                           nullptr,     OPTION_HEADER,     "CORE VECTOR OPTIONS" },
 diff -u -r a/src/emu/emuopts.h b/src/emu/emuopts.h
---- a/src/emu/emuopts.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/emu/emuopts.h	2021-08-27 05:18:52.000000000 +0200
+--- a/src/emu/emuopts.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/emuopts.h	2021-09-29 07:17:52.000000000 +0200
 @@ -47,6 +47,7 @@
  #define OPTION_SNAPSHOT_DIRECTORY   "snapshot_directory"
  #define OPTION_DIFF_DIRECTORY       "diff_directory"
@@ -1699,7 +1706,7 @@ diff -u -r a/src/emu/emuopts.h b/src/emu/emuopts.h
  
  // core vector options
  #define OPTION_BEAM_WIDTH_MIN       "beam_width_min"
-@@ -332,6 +335,7 @@
+@@ -333,6 +336,7 @@
  	const char *snapshot_directory() const { return value(OPTION_SNAPSHOT_DIRECTORY); }
  	const char *diff_directory() const { return value(OPTION_DIFF_DIRECTORY); }
  	const char *comment_directory() const { return value(OPTION_COMMENT_DIRECTORY); }
@@ -1707,7 +1714,7 @@ diff -u -r a/src/emu/emuopts.h b/src/emu/emuopts.h
  	const char *share_directory() const { return value(OPTION_SHARE_DIRECTORY); }
  
  	// core state/playback options
-@@ -358,6 +362,7 @@
+@@ -359,6 +363,7 @@
  	int frameskip() const { return int_value(OPTION_FRAMESKIP); }
  	int seconds_to_run() const { return int_value(OPTION_SECONDS_TO_RUN); }
  	bool throttle() const { return bool_value(OPTION_THROTTLE); }
@@ -1715,7 +1722,7 @@ diff -u -r a/src/emu/emuopts.h b/src/emu/emuopts.h
  	bool sleep() const { return m_sleep; }
  	float speed() const { return float_value(OPTION_SPEED); }
  	bool refresh_speed() const { return m_refresh_speed; }
-@@ -393,6 +398,7 @@
+@@ -394,6 +399,7 @@
  	float gamma() const { return float_value(OPTION_GAMMA); }
  	float pause_brightness() const { return float_value(OPTION_PAUSE_BRIGHTNESS); }
  	const char *effect() const { return value(OPTION_EFFECT); }
@@ -1724,9 +1731,9 @@ diff -u -r a/src/emu/emuopts.h b/src/emu/emuopts.h
  	// core vector options
  	float beam_width_min() const { return float_value(OPTION_BEAM_WIDTH_MIN); }
 diff -u -r a/src/emu/inpttype.ipp b/src/emu/inpttype.ipp
---- a/src/emu/inpttype.ipp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/emu/inpttype.ipp	2021-08-27 05:18:52.000000000 +0200
-@@ -855,7 +855,9 @@
+--- a/src/emu/inpttype.ipp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/inpttype.ipp	2021-09-29 07:17:52.000000000 +0200
+@@ -856,7 +856,9 @@
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_EXPORT,           "UI Export list",         input_seq(KEYCODE_LALT, KEYCODE_E) ) \
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_AUDIT_FAST,       "UI Audit Unavailable",   input_seq(KEYCODE_F1, input_seq::not_code, KEYCODE_LSHIFT) ) \
  		INPUT_PORT_DIGITAL_TYPE( 0, UI,      UI_AUDIT_ALL,        "UI Audit All",           input_seq(KEYCODE_F1, KEYCODE_LSHIFT) ) \
@@ -1737,9 +1744,9 @@ diff -u -r a/src/emu/inpttype.ipp b/src/emu/inpttype.ipp
  #define CORE_INPUT_TYPES_OSD \
  		CORE_INPUT_TYPES_BEGIN(osd) \
 diff -u -r a/src/emu/ioport.h b/src/emu/ioport.h
---- a/src/emu/ioport.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/emu/ioport.h	2021-08-27 05:18:52.000000000 +0200
-@@ -371,6 +371,7 @@
+--- a/src/emu/ioport.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/ioport.h	2021-09-29 07:17:52.000000000 +0200
+@@ -375,6 +375,7 @@
  		IPT_UI_EXPORT,
  		IPT_UI_AUDIT_FAST,
  		IPT_UI_AUDIT_ALL,
@@ -1748,8 +1755,8 @@ diff -u -r a/src/emu/ioport.h b/src/emu/ioport.h
  		// additional OSD-specified UI port types (up to 16)
  		IPT_OSD_1,
 diff -u -r a/src/emu/machine.cpp b/src/emu/machine.cpp
---- a/src/emu/machine.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/emu/machine.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/emu/machine.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/machine.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -187,23 +187,23 @@
  void running_machine::start()
  {
@@ -1825,24 +1832,6 @@ diff -u -r a/src/emu/machine.cpp b/src/emu/machine.cpp
  	}
  
  	manager().create_custom(*this);
-@@ -312,7 +312,7 @@
- 		// if we have a logfile, set up the callback
- 		if (options().log() && !quiet)
- 		{
--			m_logfile = std::make_unique<emu_file>(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
-+			m_logfile = make_unique_clear<emu_file>(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
- 			osd_file::error filerr = m_logfile->open("error.log");
- 			if (filerr != osd_file::error::NONE)
- 				throw emu_fatalerror("running_machine::run: unable to open error.log file");
-@@ -323,7 +323,7 @@
- 
- 		if (options().debug() && options().debuglog())
- 		{
--			m_debuglogfile = std::make_unique<emu_file>(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
-+			m_debuglogfile = make_unique_clear<emu_file>(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
- 			osd_file::error filerr = m_debuglogfile->open("debug.log");
- 			if (filerr != osd_file::error::NONE)
- 				throw emu_fatalerror("running_machine::run: unable to open debug.log file");
 @@ -788,15 +788,15 @@
  		throw emu_fatalerror("Can only call running_machine::add_notifier at init time!");
  
@@ -1872,9 +1861,9 @@ diff -u -r a/src/emu/machine.cpp b/src/emu/machine.cpp
  
  
 diff -u -r a/src/emu/romload.h b/src/emu/romload.h
---- a/src/emu/romload.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/emu/romload.h	2021-08-27 05:18:52.000000000 +0200
-@@ -411,7 +411,7 @@
+--- a/src/emu/romload.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/romload.h	2021-09-29 07:17:52.000000000 +0200
+@@ -412,7 +412,7 @@
  	std::string& software_load_warnings_message() { return m_softwarningstring; }
  
  	/* return the number of BAD_DUMP/NO_DUMP warnings we generated */
@@ -1884,8 +1873,8 @@ diff -u -r a/src/emu/romload.h b/src/emu/romload.h
  	/* ----- disk handling ----- */
  
 diff -u -r a/src/emu/video.cpp b/src/emu/video.cpp
---- a/src/emu/video.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/emu/video.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/emu/video.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/video.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -87,6 +87,7 @@
  	, m_overall_valid_counter(0)
  	, m_throttled(true)
@@ -1904,7 +1893,7 @@ diff -u -r a/src/emu/video.cpp b/src/emu/video.cpp
 +		OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
  
  	// and open the actual file
- 	osd_file::error filerr = filename.empty()
+ 	std::error_condition filerr = filename.empty()
 @@ -712,6 +713,12 @@
  
  */
@@ -1940,9 +1929,9 @@ diff -u -r a/src/emu/video.cpp b/src/emu/video.cpp
  		// create a final screenshot
  		emu_file file(machine().options().snapshot_directory(), OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
 diff -u -r a/src/emu/video.h b/src/emu/video.h
---- a/src/emu/video.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/emu/video.h	2021-08-27 05:18:52.000000000 +0200
-@@ -49,6 +49,7 @@
+--- a/src/emu/video.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/emu/video.h	2021-09-29 07:17:52.000000000 +0200
+@@ -51,6 +51,7 @@
  	int speed_factor() const { return m_speed; }
  	int frameskip() const { return m_auto_frameskip ? -1 : m_frameskip_level; }
  	bool throttled() const { return m_throttled; }
@@ -1950,7 +1939,7 @@ diff -u -r a/src/emu/video.h b/src/emu/video.h
  	float throttle_rate() const { return m_throttle_rate; }
  	bool fastforward() const { return m_fastforward; }
  
-@@ -149,6 +150,7 @@
+@@ -151,6 +152,7 @@
  	// configuration
  	bool                m_throttled;                // flag: true if we're currently throttled
  	float               m_throttle_rate;            // target rate for throttling
@@ -1959,8 +1948,8 @@ diff -u -r a/src/emu/video.h b/src/emu/video.h
  	u32                 m_seconds_to_run;           // number of seconds to run before quitting
  	bool                m_auto_frameskip;           // flag: true if we're automatically frameskipping
 diff -u -r a/src/frontend/mame/audit.cpp b/src/frontend/mame/audit.cpp
---- a/src/frontend/mame/audit.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/audit.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/audit.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/audit.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -475,9 +475,25 @@
  		if (output)
  		{
@@ -2081,8 +2070,8 @@ diff -u -r a/src/frontend/mame/audit.cpp b/src/frontend/mame/audit.cpp
  //-------------------------------------------------
  //  audit_regions - validate/count for regions
 diff -u -r a/src/frontend/mame/audit.h b/src/frontend/mame/audit.h
---- a/src/frontend/mame/audit.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/audit.h	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/audit.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/audit.h	2021-09-29 07:17:52.000000000 +0200
 @@ -159,6 +159,7 @@
  	summary audit_software(software_list_device &swlist, const software_info &swinfo, const char *validation = AUDIT_VALIDATE_FULL);
  	summary audit_samples();
@@ -2092,8 +2081,8 @@ diff -u -r a/src/frontend/mame/audit.h b/src/frontend/mame/audit.h
  private:
  	// internal helpers
 diff -u -r a/src/frontend/mame/language.cpp b/src/frontend/mame/language.cpp
---- a/src/frontend/mame/language.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/language.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/language.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/language.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -69,11 +69,18 @@
  	strreplace(name, " ", "_");
  	strreplace(name, "(", "");
@@ -2101,13 +2090,13 @@ diff -u -r a/src/frontend/mame/language.cpp b/src/frontend/mame/language.cpp
 +
 +	// MESSUI: See if language file exists. If not, try English, see if that exists. If not, use inbuilt default.
  	emu_file file(m_options.language_path(), OPEN_FLAG_READ);
- 	if (file.open(name + PATH_SEPARATOR "strings.mo") != osd_file::error::NONE)
+ 	if (file.open(name + PATH_SEPARATOR "strings.mo"))
  	{
 -		osd_printf_error("Error opening translation file %s\n", name);
 -		return;
 +		osd_printf_verbose("Error opening translation file %s\n", name);
 +		name = "English";
-+		if (file.open(name + PATH_SEPARATOR "strings.mo") != osd_file::error::NONE)
++		if (file.open(name + PATH_SEPARATOR "strings.mo"))
 +		{
 +			osd_printf_verbose("Error opening translation file %s\n", name);
 +			return;
@@ -2116,8 +2105,8 @@ diff -u -r a/src/frontend/mame/language.cpp b/src/frontend/mame/language.cpp
  
  	u64 const size = file.size();
 diff -u -r a/src/frontend/mame/ui/datmenu.cpp b/src/frontend/mame/ui/datmenu.cpp
---- a/src/frontend/mame/ui/datmenu.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/ui/datmenu.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/ui/datmenu.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/datmenu.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -310,7 +310,7 @@
  	float y2 = origy1 - 2.0f * ui().box_tb_border() - ui().get_line_height();
  
@@ -2137,8 +2126,8 @@ diff -u -r a/src/frontend/mame/ui/datmenu.cpp b/src/frontend/mame/ui/datmenu.cpp
  	// take off the borders
  	x1 += lr_border;
 diff -u -r a/src/frontend/mame/ui/info.cpp b/src/frontend/mame/ui/info.cpp
---- a/src/frontend/mame/ui/info.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/ui/info.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/ui/info.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/info.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -85,7 +85,7 @@
  	for (device_t &device : device_enumerator(config.root_device()))
  	{
@@ -2149,8 +2138,8 @@ diff -u -r a/src/frontend/mame/ui/info.cpp b/src/frontend/mame/ui/info.cpp
  
  		// build overall emulation status
 diff -u -r a/src/frontend/mame/ui/mainmenu.cpp b/src/frontend/mame/ui/mainmenu.cpp
---- a/src/frontend/mame/ui/mainmenu.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/ui/mainmenu.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/ui/mainmenu.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/mainmenu.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -128,22 +128,26 @@
  	if (mame_machine_manager::instance()->lua()->call_plugin_check<const char *>("data_list", "", true))
  		item_append(_("External DAT View"), 0, (void *)EXTERNAL_DATS);
@@ -2186,8 +2175,8 @@ diff -u -r a/src/frontend/mame/ui/mainmenu.cpp b/src/frontend/mame/ui/mainmenu.c
  
  menu_main::~menu_main()
 diff -u -r a/src/frontend/mame/ui/moptions.cpp b/src/frontend/mame/ui/moptions.cpp
---- a/src/frontend/mame/ui/moptions.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/ui/moptions.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/ui/moptions.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/moptions.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -63,22 +63,22 @@
  	{ OPTION_INFOS_SIZE "(0.05-1.00)",      "0.75",         OPTION_FLOAT,       "UI right panel infos text size (0.05 - 1.00)" },
  	{ OPTION_FONT_ROWS "(25-40)",           "30",           OPTION_INTEGER,     "UI font lines per screen (25 - 40)" },
@@ -2228,8 +2217,8 @@ diff -u -r a/src/frontend/mame/ui/moptions.cpp b/src/frontend/mame/ui/moptions.c
  };
  
 diff -u -r a/src/frontend/mame/ui/submenu.cpp b/src/frontend/mame/ui/submenu.cpp
---- a/src/frontend/mame/ui/submenu.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/ui/submenu.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/ui/submenu.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/submenu.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -124,7 +124,7 @@
  			{ option_type::OSD,  __("Window Mode"),                             OSDOPTION_WINDOW },
  			{ option_type::EMU,  __("Enforce Aspect Ratio"),                    OPTION_KEEPASPECT },
@@ -2240,8 +2229,8 @@ diff -u -r a/src/frontend/mame/ui/submenu.cpp b/src/frontend/mame/ui/submenu.cpp
  }
  
 diff -u -r a/src/frontend/mame/ui/text.h b/src/frontend/mame/ui/text.h
---- a/src/frontend/mame/ui/text.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/ui/text.h	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/ui/text.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/text.h	2021-09-29 07:17:52.000000000 +0200
 @@ -64,7 +64,8 @@
  	void restyle(size_t start, size_t span, rgb_t *fgcolor, rgb_t *bgcolor);
  	int get_wrap_info(std::vector<int> &xstart, std::vector<int> &xend) const;
@@ -2253,8 +2242,8 @@ diff -u -r a/src/frontend/mame/ui/text.h b/src/frontend/mame/ui/text.h
  		// create the style
  		char_style style = { 0, };
 diff -u -r a/src/frontend/mame/ui/ui.cpp b/src/frontend/mame/ui/ui.cpp
---- a/src/frontend/mame/ui/ui.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/ui/ui.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/ui/ui.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/ui.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -176,6 +176,7 @@
  	, m_mouse_bitmap(32, 32)
  	, m_mouse_arrow_texture(nullptr)
@@ -2263,7 +2252,7 @@ diff -u -r a/src/frontend/mame/ui/ui.cpp b/src/frontend/mame/ui/ui.cpp
  	, m_target_font_height(0)
  	, m_has_warnings(false)
  	, m_unthrottle_mute(false)
-@@ -669,7 +670,7 @@
+@@ -683,7 +684,7 @@
  			if (mouse_target->map_point_container(mouse_target_x, mouse_target_y, container, mouse_x, mouse_y))
  			{
  				const float cursor_size = 0.6 * get_line_height();
@@ -2272,7 +2261,7 @@ diff -u -r a/src/frontend/mame/ui/ui.cpp b/src/frontend/mame/ui/ui.cpp
  			}
  		}
  	}
-@@ -1221,6 +1222,22 @@
+@@ -1235,6 +1236,22 @@
  	if (show_profiler())
  		draw_profiler(container);
  
@@ -2295,7 +2284,7 @@ diff -u -r a/src/frontend/mame/ui/ui.cpp b/src/frontend/mame/ui/ui.cpp
  	// if we're single-stepping, pause now
  	if (single_step())
  	{
-@@ -1396,6 +1413,11 @@
+@@ -1410,6 +1427,11 @@
  			machine().sound().ui_mute(!new_throttle_state);
  	}
  
@@ -2307,7 +2296,7 @@ diff -u -r a/src/frontend/mame/ui/ui.cpp b/src/frontend/mame/ui/ui.cpp
  	// check for fast forward
  	if (machine().ioport().type_pressed(IPT_UI_FAST_FORWARD))
  	{
-@@ -1445,7 +1467,8 @@
+@@ -1459,7 +1481,8 @@
  			ui_select_text,
  			ui_cancel_text);
  
@@ -2317,7 +2306,7 @@ diff -u -r a/src/frontend/mame/ui/ui.cpp b/src/frontend/mame/ui/ui.cpp
  	machine().pause();
  
  	// if the user press ENTER, quit the game
-@@ -1516,12 +1539,12 @@
+@@ -1530,12 +1553,12 @@
  	}
  
  	// add CPU overclocking (cheat only)
@@ -2332,7 +2321,7 @@ diff -u -r a/src/frontend/mame/ui/ui.cpp b/src/frontend/mame/ui/ui.cpp
  		}
  		for (device_sound_interface &snd : sound_interface_enumerator(machine.root_device()))
  		{
-@@ -1545,7 +1568,7 @@
+@@ -1559,7 +1582,7 @@
  		std::string screen_desc = machine_info().get_screen_desc(screen);
  
  		// add refresh rate tweaker
@@ -2341,14 +2330,14 @@ diff -u -r a/src/frontend/mame/ui/ui.cpp b/src/frontend/mame/ui/ui.cpp
  		{
  			std::string str = string_format(_("%1$s Refresh Rate"), screen_desc);
  			slider_alloc(std::move(str), -10000, 0, 10000, 1000, std::bind(&mame_ui_manager::slider_refresh, this, std::ref(screen), _1, _2));
-@@ -2253,3 +2276,4 @@
+@@ -2268,3 +2291,4 @@
  	m_dipsw_color = options.dipsw_color();
  	m_slider_color = options.slider_color();
  }
 +
 diff -u -r a/src/frontend/mame/ui/ui.h b/src/frontend/mame/ui/ui.h
---- a/src/frontend/mame/ui/ui.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/frontend/mame/ui/ui.h	2021-08-27 05:18:52.000000000 +0200
+--- a/src/frontend/mame/ui/ui.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/frontend/mame/ui/ui.h	2021-09-29 07:17:52.000000000 +0200
 @@ -49,9 +49,9 @@
  #define UI_LINE_WIDTH           (1.0f / 500.0f)
  
@@ -2400,8 +2389,8 @@ diff -u -r a/src/frontend/mame/ui/ui.h b/src/frontend/mame/ui/ui.h
  
  
 diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
---- a/src/mame/arcade.flt	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/arcade.flt	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/arcade.flt	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/arcade.flt	2021-09-29 07:17:52.000000000 +0200
 @@ -1,65 +1,65 @@
 -1942.cpp
 -1943.cpp
@@ -3016,7 +3005,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  guab.cpp
  gumbo.cpp
  gunbustr.cpp
-@@ -533,74 +535,74 @@
+@@ -533,107 +535,107 @@
  gyruss.cpp
  halleys.cpp
  hanaawas.cpp
@@ -3124,7 +3113,10 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  jaguar.cpp
  jailbrek.cpp
  jalmah.cpp
-@@ -610,26 +612,26 @@
+ jangou.cpp
+-jankenmn.cpp
++//jankenmn.cpp
+ jantotsu.cpp
  jchan.cpp
  jclub2.cpp
  jedi.cpp
@@ -3135,7 +3127,8 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
 +//joctronic.cpp    // mechanical
 +//jokrwild.cpp     // poker
  jollyjgr.cpp
- jongkyo.cpp
+-jongkyo.cpp
++//jongkyo.cpp
  joystand.cpp
 -jp.cpp
 -jpmimpct.cpp
@@ -3156,8 +3149,9 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
 +//jpmsys5sw.cpp    // fruit
 +//jpmsys7.cpp      // fruit
  jrpacman.cpp
- jubilee.cpp
+-jubilee.cpp
 -jungleyo.cpp
++//jubilee.cpp
 +//jungleyo.cpp     // check
  junofrst.cpp
 -jvh.cpp
@@ -3165,6 +3159,11 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  kaneko16.cpp
  kangaroo.cpp
  karnov.cpp
+-kas89.cpp
++//kas89.cpp
+ kchamp.cpp
+ kenseim.cpp
+ kickgoal.cpp
 @@ -642,7 +644,7 @@
  kingobox.cpp
  kingpin.cpp
@@ -3174,7 +3173,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  klax.cpp
  kncljoe.cpp
  koftball.cpp
-@@ -652,14 +654,14 @@
+@@ -652,15 +654,15 @@
  konamigv.cpp
  konamigx.cpp
  konamim2.cpp
@@ -3182,11 +3181,13 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
 -konendev.cpp
 -kongs470.cpp
 -konmedal.cpp
+-konmedal020.cpp
 -konmedal68k.cpp
 +//konblands.cpp    // not working; check back later
 +//konendev.cpp     // fruit
 +//kongs470.cpp                   // skel
 +//konmedal.cpp     // check
++//konmedal020.cpp
 +//konmedal68k.cpp  // check
  kontest.cpp
  kopunch.cpp
@@ -3195,7 +3196,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  kpython.cpp
  ksayakyu.cpp
  ksys573.cpp
-@@ -676,33 +678,33 @@
+@@ -677,33 +679,33 @@
  lastduel.cpp
  lastfght.cpp
  lazercmd.cpp
@@ -3241,7 +3242,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  lwings.cpp
  m10.cpp
  m107.cpp
-@@ -716,15 +718,15 @@
+@@ -717,15 +719,15 @@
  m79amb.cpp
  m90.cpp
  m92.cpp
@@ -3262,7 +3263,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  magmax.cpp
  magreel.cpp
  magtouch.cpp
-@@ -732,30 +734,30 @@
+@@ -733,30 +735,30 @@
  mainsnk.cpp
  majorpkr.cpp
  malzak.cpp
@@ -3302,7 +3303,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  mediagx.cpp
  megadriv_acbl.cpp
  megaphx.cpp
-@@ -764,27 +766,27 @@
+@@ -765,27 +767,27 @@
  megatech.cpp
  megazone.cpp
  meijinsn.cpp
@@ -3339,7 +3340,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  midas.cpp
  midqslvr.cpp
  midtunit.cpp
-@@ -794,14 +796,14 @@
+@@ -795,14 +797,14 @@
  midyunit.cpp
  midzeus.cpp
  mikie.cpp
@@ -3356,7 +3357,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  missb2.cpp
  missbamby.cpp
  missile.cpp
-@@ -811,57 +813,57 @@
+@@ -812,57 +814,57 @@
  mjsister.cpp
  mlanding.cpp
  mmagic.cpp
@@ -3443,7 +3444,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  mystston.cpp
  mystwarr.cpp
  n8080.cpp
-@@ -869,9 +871,9 @@
+@@ -870,9 +872,9 @@
  namcona1.cpp
  namconb1.cpp
  namcond1.cpp
@@ -3455,7 +3456,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  namcos11.cpp
  namcos12.cpp
  namcos1b.cpp
-@@ -880,7 +882,7 @@
+@@ -881,7 +883,7 @@
  namcos21_c67.cpp
  namcos21_de.cpp
  namcos22.cpp
@@ -3464,7 +3465,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  namcos86.cpp
  naomi.cpp
  naughtyb.cpp
-@@ -893,11 +895,11 @@
+@@ -894,11 +896,11 @@
  neogeo.cpp
  neopcb.cpp
  neoprint.cpp
@@ -3480,7 +3481,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  nightgal.cpp
  nightmare.cpp
  ninjakd2.cpp
-@@ -906,13 +908,13 @@
+@@ -907,13 +909,13 @@
  niyanpai.cpp
  nmg5.cpp
  nmk16.cpp
@@ -3500,7 +3501,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  nss.cpp
  nwk-tr.cpp
  nycaptor.cpp
-@@ -936,7 +938,7 @@
+@@ -937,7 +939,7 @@
  pacland.cpp
  pacman.cpp
  pandoras.cpp
@@ -3509,7 +3510,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  panicr.cpp
  paradise.cpp
  paranoia.cpp
-@@ -952,19 +954,19 @@
+@@ -953,19 +955,19 @@
  pcxt.cpp
  pengadvb.cpp
  pengo.cpp
@@ -3537,7 +3538,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  pingpong.cpp
  pinkiri8.cpp
  pipedrm.cpp
-@@ -976,16 +978,16 @@
+@@ -977,16 +979,16 @@
  pktgaldx.cpp
  playch10.cpp
  playmark.cpp
@@ -3562,7 +3563,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  pokerout.cpp
  polepos.cpp
  policetr.cpp
-@@ -997,15 +999,15 @@
+@@ -998,15 +1000,15 @@
  popobear.cpp
  popper.cpp
  portrait.cpp
@@ -3582,7 +3583,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  psikyo.cpp
  psikyo4.cpp
  psikyosh.cpp
-@@ -1026,23 +1028,23 @@
+@@ -1027,71 +1029,71 @@
  quizdna.cpp
  quizo.cpp
  quizpani.cpp
@@ -3609,8 +3610,10 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
 +//rcorsair.cpp     // check
  re900.cpp
  realbrk.cpp
+-recel.cpp
++//recel.cpp
  redalert.cpp
-@@ -1050,46 +1052,46 @@
+ redclash.cpp
  relief.cpp
  renegade.cpp
  retofinv.cpp
@@ -3678,7 +3681,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  sanremo.cpp
  saturn.cpp
  sauro.cpp
-@@ -1099,30 +1101,30 @@
+@@ -1101,30 +1103,30 @@
  sbowling.cpp
  sbrkout.cpp
  sbugger.cpp
@@ -3717,7 +3720,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  segaorun.cpp
  segas16a.cpp
  segas16b.cpp
-@@ -1130,9 +1132,9 @@
+@@ -1132,9 +1134,9 @@
  segas18_astormbl.cpp
  segas24.cpp
  segas32.cpp
@@ -3730,7 +3733,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  segaxbd.cpp
  segaybd.cpp
  seibucats.cpp
-@@ -1144,8 +1146,8 @@
+@@ -1146,8 +1148,8 @@
  seta.cpp
  seta2.cpp
  sf.cpp
@@ -3741,7 +3744,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  sfkick.cpp
  sg1000a.cpp
  shadfrce.cpp
-@@ -1154,24 +1156,24 @@
+@@ -1156,24 +1158,24 @@
  shangkid.cpp
  shaolins.cpp
  shisen.cpp
@@ -3772,7 +3775,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  skimaxx.cpp
  skopro.cpp
  skullxbo.cpp
-@@ -1183,10 +1185,10 @@
+@@ -1185,10 +1187,10 @@
  skyraid.cpp
  slapfght.cpp
  slapshot.cpp
@@ -3786,7 +3789,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  smsmcorp.cpp
  sms_bootleg.cpp
  snesb.cpp
-@@ -1206,19 +1208,19 @@
+@@ -1208,19 +1210,19 @@
  spcforce.cpp
  spdheat.cpp
  spdodgeb.cpp
@@ -3813,7 +3816,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  spool99.cpp
  sprcros2.cpp
  sprint2.cpp
-@@ -1244,36 +1246,36 @@
+@@ -1246,36 +1248,36 @@
  stadhero.cpp
  starcrus.cpp
  starfire.cpp
@@ -3861,7 +3864,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  superqix.cpp
  supertnk.cpp
  superwng.cpp
-@@ -1282,29 +1284,29 @@
+@@ -1284,29 +1286,29 @@
  suprnova.cpp
  suprridr.cpp
  suprslam.cpp
@@ -3896,7 +3899,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  taito_x.cpp
  taito_z.cpp
  tank8.cpp
-@@ -1313,24 +1315,24 @@
+@@ -1315,24 +1317,24 @@
  taotaido.cpp
  tapatune.cpp
  targeth.cpp
@@ -3926,7 +3929,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  thedealr.cpp
  thedeep.cpp
  thepit.cpp
-@@ -1343,11 +1345,11 @@
+@@ -1345,11 +1347,11 @@
  tigeroad.cpp
  timelimt.cpp
  timeplt.cpp
@@ -3940,7 +3943,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  tnzs.cpp
  toaplan1.cpp
  toaplan2.cpp
-@@ -1366,7 +1368,7 @@
+@@ -1368,7 +1370,7 @@
  travrusa.cpp
  triforce.cpp
  triplhnt.cpp
@@ -3949,7 +3952,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  trivrus.cpp
  truco.cpp
  trucocl.cpp
-@@ -1382,10 +1384,10 @@
+@@ -1384,10 +1386,10 @@
  turbo.cpp
  turrett.cpp
  tutankhm.cpp
@@ -3962,7 +3965,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  twincobr.cpp
  twinkle.cpp
  twins.cpp
-@@ -1396,12 +1398,12 @@
+@@ -1398,12 +1400,12 @@
  ultrsprt.cpp
  umipoker.cpp
  undrfire.cpp
@@ -3978,7 +3981,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  usgames.cpp
  v0bowl.cpp
  vamphalf.cpp
-@@ -1409,7 +1411,7 @@
+@@ -1411,7 +1413,7 @@
  vastar.cpp
  vball.cpp
  vcombat.cpp
@@ -3987,7 +3990,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  vectrex.cpp
  vega.cpp
  vegaeo.cpp
-@@ -1418,19 +1420,19 @@
+@@ -1420,19 +1422,19 @@
  vertigo.cpp
  vicdual.cpp
  victory.cpp
@@ -4013,7 +4016,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  vroulet.cpp
  vsmjtria.cpp
  vsnes.cpp
-@@ -1447,26 +1449,26 @@
+@@ -1449,26 +1451,26 @@
  welltris.cpp
  wgp.cpp
  wheelfir.cpp
@@ -4053,7 +4056,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  wrally.cpp
  wwfsstar.cpp
  wyvernf0.cpp
-@@ -1475,7 +1477,7 @@
+@@ -1477,7 +1479,7 @@
  xmen.cpp
  xorworld.cpp
  xtheball.cpp
@@ -4062,7 +4065,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  xxmissio.cpp
  xybots.cpp
  xyonix.cpp
-@@ -1483,17 +1485,17 @@
+@@ -1485,17 +1487,17 @@
  yiear.cpp
  yunsun16.cpp
  yunsung8.cpp
@@ -4085,7 +4088,7 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  zr107.cpp
  zwackery.cpp
  //exceptions + to add - to remove from imported list
-@@ -1507,10 +1509,10 @@
+@@ -1509,10 +1511,10 @@
  -cdimono1
  -cdimono2
  //cps1.cpp
@@ -4101,8 +4104,8 @@ diff -u -r a/src/mame/arcade.flt b/src/mame/arcade.flt
  -jaguar
  -jaguarcd
 diff -u -r a/src/mame/drivers/aliens.cpp b/src/mame/drivers/aliens.cpp
---- a/src/mame/drivers/aliens.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/aliens.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/aliens.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/aliens.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -201,7 +201,7 @@
  	m_maincpu->set_addrmap(AS_PROGRAM, &aliens_state::aliens_map);
  	m_maincpu->line().set(FUNC(aliens_state::banking_callback));
@@ -4113,8 +4116,8 @@ diff -u -r a/src/mame/drivers/aliens.cpp b/src/mame/drivers/aliens.cpp
  
  	ADDRESS_MAP_BANK(config, "bank0000").set_map(&aliens_state::bank0000_map).set_options(ENDIANNESS_BIG, 8, 11, 0x400);
 diff -u -r a/src/mame/drivers/astrocde.cpp b/src/mame/drivers/astrocde.cpp
---- a/src/mame/drivers/astrocde.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/astrocde.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/astrocde.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/astrocde.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -1192,7 +1192,7 @@
  
  	SCREEN(config, m_screen, SCREEN_TYPE_RASTER);
@@ -4125,8 +4128,8 @@ diff -u -r a/src/mame/drivers/astrocde.cpp b/src/mame/drivers/astrocde.cpp
  	m_screen->set_palette(m_palette);
  }
 diff -u -r a/src/mame/drivers/btime.cpp b/src/mame/drivers/btime.cpp
---- a/src/mame/drivers/btime.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/btime.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/btime.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/btime.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -1373,7 +1373,7 @@
  
  	/* video hardware */
@@ -4137,8 +4140,8 @@ diff -u -r a/src/mame/drivers/btime.cpp b/src/mame/drivers/btime.cpp
  	m_screen->set_palette(m_palette);
  
 diff -u -r a/src/mame/drivers/crimfght.cpp b/src/mame/drivers/crimfght.cpp
---- a/src/mame/drivers/crimfght.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/crimfght.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/crimfght.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/crimfght.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -306,7 +306,7 @@
  	m_maincpu->set_addrmap(AS_PROGRAM, &crimfght_state::crimfght_map);
  	m_maincpu->line().set(FUNC(crimfght_state::banking_callback));
@@ -4149,8 +4152,8 @@ diff -u -r a/src/mame/drivers/crimfght.cpp b/src/mame/drivers/crimfght.cpp
  	m_audiocpu->set_irq_acknowledge_callback(FUNC(crimfght_state::audiocpu_irq_ack));
  
 diff -u -r a/src/mame/drivers/deniam.cpp b/src/mame/drivers/deniam.cpp
---- a/src/mame/drivers/deniam.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/deniam.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/deniam.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/deniam.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -263,8 +263,8 @@
  	screen.set_refresh_hz(60);
  	screen.set_vblank_time(ATTOSECONDS_IN_USEC(0));
@@ -4174,8 +4177,8 @@ diff -u -r a/src/mame/drivers/deniam.cpp b/src/mame/drivers/deniam.cpp
  	screen.set_palette(m_palette);
  
 diff -u -r a/src/mame/drivers/fcrash.cpp b/src/mame/drivers/fcrash.cpp
---- a/src/mame/drivers/fcrash.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/fcrash.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/fcrash.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/fcrash.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -1831,7 +1831,7 @@
  	ROM_LOAD16_BYTE( "3.bin", 0x80001, 0x20000, CRC(aba2aebe) SHA1(294109b5929ed63859a55bef16643e3ade7da16f) )
  	ROM_LOAD16_BYTE( "6.bin", 0xc0000, 0x20000, CRC(d4bf37f6) SHA1(f47e1cc9aa3b3019ee57f59715e3a611acf9fe3e) )
@@ -4203,8 +4206,8 @@ diff -u -r a/src/mame/drivers/fcrash.cpp b/src/mame/drivers/fcrash.cpp
  	ROM_REGION( 0x30000, "audiocpu", 0 ) /* Audio CPU + Sample Data */
  	ROM_LOAD( "1.bin", 0x00000, 0x20000, CRC(5b276c14) SHA1(73e53c077d4e3c1b919eee28b29e34176ee204f8) )
 diff -u -r a/src/mame/drivers/gng.cpp b/src/mame/drivers/gng.cpp
---- a/src/mame/drivers/gng.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/gng.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/gng.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/gng.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -367,23 +367,6 @@
  	m_scrolly[0] = 0;
  	m_scrolly[1] = 0;
@@ -4230,8 +4233,8 @@ diff -u -r a/src/mame/drivers/gng.cpp b/src/mame/drivers/gng.cpp
  
  void gng_state::gng(machine_config &config)
 diff -u -r a/src/mame/drivers/jailbrek.cpp b/src/mame/drivers/jailbrek.cpp
---- a/src/mame/drivers/jailbrek.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/jailbrek.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/jailbrek.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/jailbrek.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -266,7 +266,7 @@
  	/* basic machine hardware */
  	KONAMI1(config, m_maincpu, MASTER_CLOCK/12);
@@ -4242,8 +4245,8 @@ diff -u -r a/src/mame/drivers/jailbrek.cpp b/src/mame/drivers/jailbrek.cpp
  	WATCHDOG_TIMER(config, "watchdog");
  
 diff -u -r a/src/mame/drivers/m72.cpp b/src/mame/drivers/m72.cpp
---- a/src/mame/drivers/m72.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/m72.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/m72.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/m72.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -1975,7 +1975,7 @@
  
  void m72_state::m81_dbreed(machine_config &config)
@@ -4335,8 +4338,8 @@ diff -u -r a/src/mame/drivers/m72.cpp b/src/mame/drivers/m72.cpp
 +GAME( 1989, lohtb,       loht,     m72,          loht,         m72_state, init_lohtb,      ROT0,   "bootleg", "Legend of Hero Tonma (unprotected bootleg)", MACHINE_NO_COCKTAIL | MACHINE_SUPPORTS_SAVE )
 +// MAMEFX end
 diff -u -r a/src/mame/drivers/megasys1.cpp b/src/mame/drivers/megasys1.cpp
---- a/src/mame/drivers/megasys1.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/megasys1.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/megasys1.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/megasys1.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -184,11 +184,11 @@
  	// edfp: irq 1?, 2 sets vregs etc, 3 RTE
  
@@ -4353,8 +4356,8 @@ diff -u -r a/src/mame/drivers/megasys1.cpp b/src/mame/drivers/megasys1.cpp
  		m_maincpu->set_input_line(3, HOLD_LINE);
  }
 diff -u -r a/src/mame/drivers/midas.cpp b/src/mame/drivers/midas.cpp
---- a/src/mame/drivers/midas.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/midas.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/midas.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/midas.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -131,9 +131,12 @@
  	// fill with background color first
  	bitmap.fill(0x0, cliprect);
@@ -4372,8 +4375,8 @@ diff -u -r a/src/mame/drivers/midas.cpp b/src/mame/drivers/midas.cpp
  	return 0;
  }
 diff -u -r a/src/mame/drivers/mystwarr.cpp b/src/mame/drivers/mystwarr.cpp
---- a/src/mame/drivers/mystwarr.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/mystwarr.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/mystwarr.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/mystwarr.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -1026,7 +1026,7 @@
  	m_maincpu->set_addrmap(AS_PROGRAM, &mystwarr_state::metamrph_map);
  	subdevice<timer_device>("scantimer")->set_callback(FUNC(mystwarr_state::metamrph_interrupt));
@@ -4393,8 +4396,8 @@ diff -u -r a/src/mame/drivers/mystwarr.cpp b/src/mame/drivers/mystwarr.cpp
  
  	K054000(config, "k054000", 0);
 diff -u -r a/src/mame/drivers/namconb1.cpp b/src/mame/drivers/namconb1.cpp
---- a/src/mame/drivers/namconb1.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/namconb1.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/namconb1.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/namconb1.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -311,7 +311,8 @@
  
  	if (scanline == posirq_scanline)
@@ -4406,8 +4409,8 @@ diff -u -r a/src/mame/drivers/namconb1.cpp b/src/mame/drivers/namconb1.cpp
  		if (m_pos_irq_level != 0)
  			m_maincpu->set_input_line(m_pos_irq_level, ASSERT_LINE);
 diff -u -r a/src/mame/drivers/nemesis.cpp b/src/mame/drivers/nemesis.cpp
---- a/src/mame/drivers/nemesis.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/nemesis.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/nemesis.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/nemesis.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -1771,16 +1771,14 @@
  	GENERIC_LATCH_8(config, "soundlatch");
  
@@ -4449,8 +4452,8 @@ diff -u -r a/src/mame/drivers/nemesis.cpp b/src/mame/drivers/nemesis.cpp
  	FILTER_RC(config, m_filter1);
  	m_filter1->add_route(ALL_OUTPUTS, "mono", 1.0);
 diff -u -r a/src/mame/drivers/neogeo.cpp b/src/mame/drivers/neogeo.cpp
---- a/src/mame/drivers/neogeo.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/neogeo.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/neogeo.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/neogeo.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -676,6 +676,9 @@
  	void jockeygp(machine_config &config);
  	void vliner(machine_config &config);
@@ -5330,8 +5333,8 @@ diff -u -r a/src/mame/drivers/neogeo.cpp b/src/mame/drivers/neogeo.cpp
 +GAME( 2020, samsh5pf,   samsh5sp, neobase, neogeo, mvs_led_state, empty_init, ROT0, "Yuki Enterprise / SNK Playmore", "Samurai Shodown V Perfect", MACHINE_SUPPORTS_SAVE )
 +
 diff -u -r a/src/mame/drivers/pgm.cpp b/src/mame/drivers/pgm.cpp
---- a/src/mame/drivers/pgm.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/pgm.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/pgm.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/pgm.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -5598,7 +5598,7 @@
  //西遊釋厄傳Super/Xīyóu shì è chuán Super (Taiwan; Traditional Chinese)
  GAME( 1998, olds,         pgm,       pgm_028_025_ol,         olds,      pgm_028_025_state,    init_olds,    ROT0,   "IGS", "Oriental Legend Super / Xiyou Shi E Chuan Super (ver. 101, Korean Board)", MACHINE_IMPERFECT_SOUND | MACHINE_UNEMULATED_PROTECTION | MACHINE_SUPPORTS_SAVE ) /* region provided by protection device */
@@ -5342,8 +5345,8 @@ diff -u -r a/src/mame/drivers/pgm.cpp b/src/mame/drivers/pgm.cpp
  GAME( 1998, olds103t,     olds,      pgm,                    pgm,       pgm_state,            init_pgm,     ROT0,   "bootleg", "Xiyou Shi E Chuan Super (ver. 103, China, Tencent) (unprotected)", MACHINE_IMPERFECT_SOUND | MACHINE_SUPPORTS_SAVE ) // without overseas region
  
 diff -u -r a/src/mame/drivers/scregg.cpp b/src/mame/drivers/scregg.cpp
---- a/src/mame/drivers/scregg.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/scregg.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/scregg.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/scregg.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -281,7 +281,8 @@
  
  	/* video hardware */
@@ -5365,14 +5368,14 @@ diff -u -r a/src/mame/drivers/scregg.cpp b/src/mame/drivers/scregg.cpp
  	m_screen->set_palette(m_palette);
  
 diff -u -r a/src/mame/drivers/segac2.cpp b/src/mame/drivers/segac2.cpp
---- a/src/mame/drivers/segac2.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/segac2.cpp	2021-08-27 05:18:52.000000000 +0200
-@@ -2719,3 +2719,92 @@
- GAME( 1996, pclubjv4,  0,        segac2, pclubjv2,        segac2_pc_state, init_pclubjv4, ROT0, "Atlus", "Print Club (Japan Vol.4)", MACHINE_NOT_WORKING )
+--- a/src/mame/drivers/segac2.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/segac2.cpp	2021-09-29 07:17:52.000000000 +0200
+@@ -2916,3 +2916,92 @@
+ GAME( 1996, pclubjv4,   0,        segac2,     pclubjv2, pclub_state,     init_pclubjv4, ROT0,   "Atlus", "Print Club (Japan Vol.4)", MACHINE_NOT_WORKING )
  
- GAME( 1996, pclubjv5,  0,        segac2, pclubjv2,        segac2_pc_state, init_pclubjv5, ROT0, "Atlus", "Print Club (Japan Vol.5)", MACHINE_NOT_WORKING )
+ GAME( 1996, pclubjv5,   0,        segac2,     pclubjv2, pclub_state,     init_pclubjv5, ROT0,   "Atlus", "Print Club (Japan Vol.5)", MACHINE_NOT_WORKING )
 +
-+
++#if 0
 +// From here MAMEFX
 +
 +static INPUT_PORTS_START( ssonicbr )
@@ -5458,11 +5461,11 @@ diff -u -r a/src/mame/drivers/segac2.cpp b/src/mame/drivers/segac2.cpp
 +GAME( 1992, ssonicbr,  0, segac2, ssonicbr, segac2_state, init_bloxeedc, ROT0, "Sega", "SegaSonic Bros. (Japan, prototype)", 0 )
 +GAME( 1992, ooparts,   0, segac2, ooparts,  segac2_state, init_tantr,    ROT270, "Success", "OOParts", 0 )
 +GAME( 1994, headonch,  0, segac2, ichir,    segac2_state, init_tantr,    ROT0, "Sega", "Head On Channel (Japan)", 0 )
-+
++#endif
 +
 diff -u -r a/src/mame/drivers/simpsons.cpp b/src/mame/drivers/simpsons.cpp
---- a/src/mame/drivers/simpsons.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/simpsons.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/simpsons.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/simpsons.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -319,7 +319,7 @@
  	m_maincpu->set_vblank_int("screen", FUNC(simpsons_state::simpsons_irq)); /* IRQ triggered by the 052109, FIRQ by the sprite hardware */
  	m_maincpu->line().set(FUNC(simpsons_state::banking_callback));
@@ -5473,8 +5476,8 @@ diff -u -r a/src/mame/drivers/simpsons.cpp b/src/mame/drivers/simpsons.cpp
  
  	EEPROM_ER5911_8BIT(config, "eeprom");
 diff -u -r a/src/mame/drivers/ssv.cpp b/src/mame/drivers/ssv.cpp
---- a/src/mame/drivers/ssv.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/ssv.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/ssv.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/ssv.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -2642,7 +2642,7 @@
  	NVRAM(config, "nvram", nvram_device::DEFAULT_ALL_0);
  
@@ -5505,8 +5508,8 @@ diff -u -r a/src/mame/drivers/ssv.cpp b/src/mame/drivers/ssv.cpp
  
  void ssv_state::twineag2(machine_config &config)
 diff -u -r a/src/mame/drivers/thunderx.cpp b/src/mame/drivers/thunderx.cpp
---- a/src/mame/drivers/thunderx.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/thunderx.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/thunderx.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/thunderx.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -631,7 +631,7 @@
  	KONAMI(config, m_maincpu, XTAL(24'000'000)/2/4); /* 052001 (verified on pcb) */
  	m_maincpu->set_addrmap(AS_PROGRAM, &thunderx_state::scontra_map);
@@ -5535,8 +5538,8 @@ diff -u -r a/src/mame/drivers/thunderx.cpp b/src/mame/drivers/thunderx.cpp
  
  	m_bank5800->set_map(&thunderx_state::thunderx_bank5800_map).set_addr_width(13);
 diff -u -r a/src/mame/drivers/vegas.cpp b/src/mame/drivers/vegas.cpp
---- a/src/mame/drivers/vegas.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/vegas.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/vegas.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/vegas.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -1585,8 +1585,8 @@
  
  	PORT_MODIFY("IN1")
@@ -5549,8 +5552,8 @@ diff -u -r a/src/mame/drivers/vegas.cpp b/src/mame/drivers/vegas.cpp
  
  	PORT_MODIFY("AN.0")
 diff -u -r a/src/mame/drivers/vendetta.cpp b/src/mame/drivers/vendetta.cpp
---- a/src/mame/drivers/vendetta.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/vendetta.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/vendetta.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/vendetta.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -428,7 +428,7 @@
  	m_maincpu->set_vblank_int("screen", FUNC(vendetta_state::irq));
  	m_maincpu->line().set(FUNC(vendetta_state::banking_callback));
@@ -5561,8 +5564,8 @@ diff -u -r a/src/mame/drivers/vendetta.cpp b/src/mame/drivers/vendetta.cpp
  
  	EEPROM_ER5911_8BIT(config, "eeprom");
 diff -u -r a/src/mame/drivers/xmen.cpp b/src/mame/drivers/xmen.cpp
---- a/src/mame/drivers/xmen.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/drivers/xmen.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/drivers/xmen.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/drivers/xmen.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -326,7 +326,7 @@
  	m_screen->set_refresh_hz(59.17);   /* verified on pcb */
  	m_screen->set_vblank_time(ATTOSECONDS_IN_USEC(0));
@@ -5573,8 +5576,8 @@ diff -u -r a/src/mame/drivers/xmen.cpp b/src/mame/drivers/xmen.cpp
  	m_screen->set_palette("palette");
  
 diff -u -r a/src/mame/etc/opwolf_cchip.txt b/src/mame/etc/opwolf_cchip.txt
---- a/src/mame/etc/opwolf_cchip.txt	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/etc/opwolf_cchip.txt	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/etc/opwolf_cchip.txt	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/etc/opwolf_cchip.txt	2021-09-29 07:17:52.000000000 +0200
 @@ -106,11 +106,11 @@
      Bootleg doesn't support service switch
      If you die after round 6 then the bootleg fails to reset the difficulty
@@ -5725,8 +5728,8 @@ diff -u -r a/src/mame/etc/opwolf_cchip.txt b/src/mame/etc/opwolf_cchip.txt
  		m_triggeredLevel9 = 1;
  		m_cchip_ram[0x5f] = 3;
 diff -u -r a/src/mame/includes/cps1.h b/src/mame/includes/cps1.h
---- a/src/mame/includes/cps1.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/includes/cps1.h	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/includes/cps1.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/includes/cps1.h	2021-09-29 07:17:52.000000000 +0200
 @@ -280,6 +280,7 @@
  	void cps1_render_layer(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int layer, int primask);
  	void cps1_render_high_layer(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int layer);
@@ -5736,8 +5739,8 @@ diff -u -r a/src/mame/includes/cps1.h b/src/mame/includes/cps1.h
  	optional_shared_ptr<uint16_t> m_mainram;
  	required_shared_ptr<uint16_t> m_gfxram;
 diff -u -r a/src/mame/includes/m72.h b/src/mame/includes/m72.h
---- a/src/mame/includes/m72.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/includes/m72.h	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/includes/m72.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/includes/m72.h	2021-09-29 07:17:52.000000000 +0200
 @@ -102,6 +102,9 @@
  	void init_dbreedm72();
  	void init_airduelm72();
@@ -5749,8 +5752,8 @@ diff -u -r a/src/mame/includes/m72.h b/src/mame/includes/m72.h
  private:
  	required_device<cpu_device> m_maincpu;
 diff -u -r a/src/mame/includes/neogeo.h b/src/mame/includes/neogeo.h
---- a/src/mame/includes/neogeo.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/includes/neogeo.h	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/includes/neogeo.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/includes/neogeo.h	2021-09-29 07:17:52.000000000 +0200
 @@ -108,6 +108,7 @@
  	void neogeo_stereo(machine_config &config);
  
@@ -5760,9 +5763,9 @@ diff -u -r a/src/mame/includes/neogeo.h b/src/mame/includes/neogeo.h
  	void audio_map(address_map &map);
  
 diff -u -r a/src/mame/mame.lst b/src/mame/mame.lst
---- a/src/mame/mame.lst	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/mame.lst	2021-08-27 05:18:52.000000000 +0200
-@@ -17022,7 +17022,7 @@
+--- a/src/mame/mame.lst	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/mame.lst	2021-09-29 07:17:52.000000000 +0200
+@@ -17042,7 +17042,7 @@
  mgdha                           // (c) 1997
  sdmg2                           // (c) 1997
  slqz2                           // (c) 1998
@@ -5771,7 +5774,7 @@ diff -u -r a/src/mame/mame.lst b/src/mame/mame.lst
  starzan                         // (c) 2000?
  tarzan                          // (c) 1999
  tarzana                         // (c) 1999
-@@ -32698,6 +32698,7 @@
+@@ -32728,6 +32728,7 @@
  zedblade                        // 0076 (c) 1994 NMK
  zintrckb                        // 0211 hack - this is not a genuine MVS proto, its a bootleg made from the CD version
  zupapa                          // 0070 Zupapa - released in 2001, 1994 prototype probably exists
@@ -5779,7 +5782,7 @@ diff -u -r a/src/mame/mame.lst b/src/mame/mame.lst
  
  @source:neopcb.cpp
  kf2k3pcb                        // 0271 (c) 2003 Playmore - JAMMA PCB
-@@ -37168,6 +37169,9 @@
+@@ -37236,6 +37237,9 @@
  twinsqua                        // (c) 1991 Sega
  wwmarine                        // (c) 1992 Sega
  zunkyou                         // (c) 1994 Sega
@@ -5789,7 +5792,7 @@ diff -u -r a/src/mame/mame.lst b/src/mame/mame.lst
  
  @source:segacoin.cpp
  westdrm                         //
-@@ -39408,7 +39412,7 @@
+@@ -39479,7 +39483,7 @@
  st_vulkn                        //
  
  @source:stfight.cpp
@@ -5799,8 +5802,8 @@ diff -u -r a/src/mame/mame.lst b/src/mame/mame.lst
  empcityfr                       // (c) 1986 Seibu Kaihatsu (Norad license)
  empcityi                        // (c) 1986 Seibu Kaihatsu (Eurobed license)
 diff -u -r a/src/mame/video/cidelsa.cpp b/src/mame/video/cidelsa.cpp
---- a/src/mame/video/cidelsa.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/video/cidelsa.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/video/cidelsa.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/video/cidelsa.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -155,7 +155,8 @@
  	SPEAKER(config, "mono").front_center();
  	CDP1869(config, m_vis, DESTRYER_CHR2, &cidelsa_state::cidelsa_page_ram);
@@ -5822,8 +5825,8 @@ diff -u -r a/src/mame/video/cidelsa.cpp b/src/mame/video/cidelsa.cpp
  	m_vis->set_char_ram_read_callback(FUNC(cidelsa_state::cidelsa_charram_r));
  	m_vis->set_char_ram_write_callback(FUNC(cidelsa_state::cidelsa_charram_w));
 diff -u -r a/src/mame/video/cps1.cpp b/src/mame/video/cps1.cpp
---- a/src/mame/video/cps1.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/video/cps1.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/video/cps1.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/video/cps1.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -2679,9 +2679,15 @@
  
  				bright = 0x0f + ((palette >> 12) << 1);
@@ -5861,8 +5864,8 @@ diff -u -r a/src/mame/video/cps1.cpp b/src/mame/video/cps1.cpp
  	else
  	{
 diff -u -r a/src/mame/video/mystwarr.cpp b/src/mame/video/mystwarr.cpp
---- a/src/mame/video/mystwarr.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/video/mystwarr.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/video/mystwarr.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/video/mystwarr.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -228,10 +228,10 @@
  	konamigx_mixer_init(*m_screen, 0);
  
@@ -5879,8 +5882,8 @@ diff -u -r a/src/mame/video/mystwarr.cpp b/src/mame/video/mystwarr.cpp
  
  VIDEO_START_MEMBER(mystwarr_state, viostorm)
 diff -u -r a/src/mame/video/namconb1.cpp b/src/mame/video/namconb1.cpp
---- a/src/mame/video/namconb1.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/video/namconb1.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/video/namconb1.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/video/namconb1.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -83,6 +83,7 @@
  
  void namconb1_state::video_update_common(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
@@ -5919,8 +5922,8 @@ diff -u -r a/src/mame/video/namconb1.cpp b/src/mame/video/namconb1.cpp
  	}
  } /* video_update_common */
 diff -u -r a/src/mame/video/nemesis.cpp b/src/mame/video/nemesis.cpp
---- a/src/mame/video/nemesis.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/video/nemesis.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/video/nemesis.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/video/nemesis.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -164,9 +164,9 @@
  	{
  		RES_NET_VCC_5V | RES_NET_VBIAS_5V | RES_NET_VIN_OPEN_COL,
@@ -5935,8 +5938,8 @@ diff -u -r a/src/mame/video/nemesis.cpp b/src/mame/video/nemesis.cpp
  	};
  
 diff -u -r a/src/mame/video/neogeo_spr.cpp b/src/mame/video/neogeo_spr.cpp
---- a/src/mame/video/neogeo_spr.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/video/neogeo_spr.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/video/neogeo_spr.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/video/neogeo_spr.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -265,7 +265,7 @@
   *************************************/
  
@@ -5959,8 +5962,8 @@ diff -u -r a/src/mame/video/neogeo_spr.cpp b/src/mame/video/neogeo_spr.cpp
  
  	parse_sprites(scanline);
 diff -u -r a/src/mame/video/tc0100scn.cpp b/src/mame/video/tc0100scn.cpp
---- a/src/mame/video/tc0100scn.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/mame/video/tc0100scn.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/mame/video/tc0100scn.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/mame/video/tc0100scn.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -280,6 +280,14 @@
  	m_tilemap[2][0]->set_scrolldx(xd - 16, -m_flip_text_xoffs - xd - 16 - 7);
  	m_tilemap[2][0]->set_scrolldy(yd,      -m_flip_text_yoffs - yd);
@@ -5977,8 +5980,8 @@ diff -u -r a/src/mame/video/tc0100scn.cpp b/src/mame/video/tc0100scn.cpp
  	   extra chips, as MAME sees offsets from LHS of whole
  	   display not from the edges of individual screens.
 diff -u -r a/src/osd/modules/lib/osdobj_common.cpp b/src/osd/modules/lib/osdobj_common.cpp
---- a/src/osd/modules/lib/osdobj_common.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/osd/modules/lib/osdobj_common.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/osd/modules/lib/osdobj_common.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/modules/lib/osdobj_common.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -59,7 +59,6 @@
  	{ OSDOPTION_WINDOW ";w",                  "0",              OPTION_BOOLEAN,   "enable window mode; otherwise, full screen mode is assumed" },
  	{ OSDOPTION_MAXIMIZE ";max",              "1",              OPTION_BOOLEAN,   "default to maximized windows" },
@@ -6003,8 +6006,8 @@ diff -u -r a/src/osd/modules/lib/osdobj_common.cpp b/src/osd/modules/lib/osdobj_
  	{ OSDOPTION_SHADER_MAME "1",              OSDOPTVAL_NONE,   OPTION_STRING,    "custom OpenGL GLSL shader set mame bitmap 1" },
  	{ OSDOPTION_SHADER_MAME "2",              OSDOPTVAL_NONE,   OPTION_STRING,    "custom OpenGL GLSL shader set mame bitmap 2" },
 diff -u -r a/src/osd/modules/lib/osdobj_common.h b/src/osd/modules/lib/osdobj_common.h
---- a/src/osd/modules/lib/osdobj_common.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/osd/modules/lib/osdobj_common.h	2021-08-27 05:18:52.000000000 +0200
+--- a/src/osd/modules/lib/osdobj_common.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/modules/lib/osdobj_common.h	2021-09-29 07:17:52.000000000 +0200
 @@ -51,7 +51,6 @@
  #define OSDOPTION_WINDOW                "window"
  #define OSDOPTION_MAXIMIZE              "maximize"
@@ -6053,8 +6056,8 @@ diff -u -r a/src/osd/modules/lib/osdobj_common.h b/src/osd/modules/lib/osdobj_co
  	const char *shader_screen(int index) const { return value(string_format("%s%d", OSDOPTION_SHADER_SCREEN, index)); }
  
 diff -u -r a/src/osd/modules/osdwindow.h b/src/osd/modules/osdwindow.h
---- a/src/osd/modules/osdwindow.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/osd/modules/osdwindow.h	2021-08-27 05:18:52.000000000 +0200
+--- a/src/osd/modules/osdwindow.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/modules/osdwindow.h	2021-09-29 07:17:52.000000000 +0200
 @@ -291,6 +291,7 @@
  	int                 vbo;
  	int                 allowtexturerect;   // allow GL_ARB_texture_rectangle, default: no
@@ -6064,8 +6067,8 @@ diff -u -r a/src/osd/modules/osdwindow.h b/src/osd/modules/osdwindow.h
  	// dd, d3d
  	int                 triplebuf;                  // triple buffer
 diff -u -r a/src/osd/modules/render/drawd3d.cpp b/src/osd/modules/render/drawd3d.cpp
---- a/src/osd/modules/render/drawd3d.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/osd/modules/render/drawd3d.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/osd/modules/render/drawd3d.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/modules/render/drawd3d.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -1059,39 +1059,40 @@
  	// verify device capabilities
  	if (!(caps.DevCaps & D3DDEVCAPS_CANRENDERAFTERFLIP))
@@ -6138,8 +6141,8 @@ diff -u -r a/src/osd/modules/render/drawd3d.cpp b/src/osd/modules/render/drawd3d
  
  	m_gamma_supported = ((caps.Caps2 & D3DCAPS2_FULLSCREENGAMMA) != 0);
 diff -u -r a/src/osd/modules/render/drawogl.cpp b/src/osd/modules/render/drawogl.cpp
---- a/src/osd/modules/render/drawogl.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/osd/modules/render/drawogl.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/osd/modules/render/drawogl.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/modules/render/drawogl.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -1038,6 +1038,9 @@
  	}
  #endif
@@ -6151,8 +6154,8 @@ diff -u -r a/src/osd/modules/render/drawogl.cpp b/src/osd/modules/render/drawogl
  
  	osd_dim wdim = win->get_size();
 diff -u -r a/src/osd/windows/video.cpp b/src/osd/windows/video.cpp
---- a/src/osd/windows/video.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/osd/windows/video.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/osd/windows/video.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/windows/video.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -205,9 +205,11 @@
  		video_config.vbo         = options().gl_vbo();
  		video_config.pbo         = options().gl_pbo();
@@ -6188,8 +6191,8 @@ diff -u -r a/src/osd/windows/video.cpp b/src/osd/windows/video.cpp
  				} else {
  					video_config.glsl_shader_scrn[i] = nullptr;
 diff -u -r a/src/osd/windows/window.cpp b/src/osd/windows/window.cpp
---- a/src/osd/windows/window.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/osd/windows/window.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/osd/windows/window.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/windows/window.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -720,7 +720,7 @@
  		window->hide_pointer();
  
@@ -6200,8 +6203,8 @@ diff -u -r a/src/osd/windows/window.cpp b/src/osd/windows/window.cpp
  	else
  	{
 diff -u -r a/src/osd/windows/winmain.cpp b/src/osd/windows/winmain.cpp
---- a/src/osd/windows/winmain.cpp	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/osd/windows/winmain.cpp	2021-08-27 05:18:52.000000000 +0200
+--- a/src/osd/windows/winmain.cpp	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/windows/winmain.cpp	2021-09-29 07:17:52.000000000 +0200
 @@ -283,6 +283,50 @@
  //============================================================
  //  main
@@ -6254,8 +6257,8 @@ diff -u -r a/src/osd/windows/winmain.cpp b/src/osd/windows/winmain.cpp
  int main(int argc, char *argv[])
  {
 diff -u -r a/src/osd/windows/winmain.h b/src/osd/windows/winmain.h
---- a/src/osd/windows/winmain.h	2021-08-26 08:44:17.000000000 +0200
-+++ b/src/osd/windows/winmain.h	2021-08-27 05:18:52.000000000 +0200
+--- a/src/osd/windows/winmain.h	2021-09-28 04:48:17.000000000 +0200
++++ b/src/osd/windows/winmain.h	2021-09-29 07:17:52.000000000 +0200
 @@ -270,6 +270,7 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  	// Access to exception filter static method
