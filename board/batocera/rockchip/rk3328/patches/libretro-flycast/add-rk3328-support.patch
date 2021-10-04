@@ -10,8 +10,8 @@ index 0ee72599..ba01532c 100644
 +
 +#######################################
 +
-+# ARM64 SM1 Odroid C4
-+else ifeq ($(platform), odroidc4)
++# ARM64 RK3328
++else ifeq ($(platform), rk3328)
 +	EXT ?= so
 +	TARGET := $(TARGET_NAME)_libretro.$(EXT)
 +	SHARED += -shared -Wl,--version-script=link.T
@@ -22,8 +22,8 @@ index 0ee72599..ba01532c 100644
 +	FORCE_GLES = 1
 +	SINGLE_PREC_FLAGS = 1
 +	CPUFLAGS += -DHOST_CPU=0x20000006 -DTARGET_LINUX_ARMv8 -frename-registers
-+	CFLAGS += -mcpu=cortex-a55 -mtune=cortex-a55 $(CPUFLAGS)
-+	CXXFLAGS += -mcpu=cortex-a55 -mtune=cortex-a55 $(CPUFLAGS)
++	CFLAGS += -mcpu=cortex-a53 -mtune=cortex-a53 $(CPUFLAGS)
++	CXXFLAGS += -mcpu=cortex-a53 -mtune=cortex-a53 $(CPUFLAGS)
 +	ASFLAGS += $(CFLAGS) -c -frename-registers -fno-strict-aliasing -ffast-math -ftree-vectorize
 +	PLATFORM_EXT := unix
 +	WITH_DYNAREC=arm64

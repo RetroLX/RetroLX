@@ -126,7 +126,7 @@ case ${1,,} in
         fi
 
         if [[ "${1,,}" == "--update" && $ret -eq 0 ]]; then
-            URL="https://updates.batocera.org/$BOARD/$BRANCH/last/retrolx.version"
+            URL="https://updates.retrolx.org/$BOARD/$BRANCH/last/retrolx.version"
             NET_VERSION=$(wget -q -O - "$URL")
             [[ $? -eq 0 ]] || NET_VERSION="Connection failed!"
             NET_VER=$(echo "$NET_VER" | head -n1)
