@@ -3,7 +3,7 @@
 # MUPEN64PLUS
 #
 ################################################################################
-MUPEN64PLUS_VERSION = 20210821
+MUPEN64PLUS_VERSION = 20210905
 MUPEN64PLUS_DEPENDENCIES = mupen64plus-core mupen64plus-uiconsole mupen64plus-input-sdl mupen64plus-rsphle
 ifeq  ($(BR2_PACKAGE_RETROLX_TARGET_RPI2),y)
 MUPEN64PLUS_DEPENDENCIES += mupen64plus-omx
@@ -17,7 +17,7 @@ MUPEN64PLUS_DEPENDENCIES += mupen64plus-gles2
 endif
 else
 MUPEN64PLUS_DEPENDENCIES += mupen64plus-gliden64
-MUPEN64PLUS_DEPENDENCIES += mupen64plus-video-glide64mk2
+#MUPEN64PLUS_DEPENDENCIES += mupen64plus-video-glide64mk2
 endif
 
 ifeq ($(BR2_PACKAGE_RETROLX_IS_X86_ARCH)$(BR2_PACKAGE_RETROLX_PANFROST_MESA3D)$(BR2_PACKAGE_RETROLX_TARGET_RPI4),y)
