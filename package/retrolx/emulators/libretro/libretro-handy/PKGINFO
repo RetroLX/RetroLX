@@ -1,5 +1,5 @@
 pkgname = lr-handy
-pkgver = 20210730-1
+pkgver = 20211001-1
 pkgdesc = Handy (Atari Lynx) libretro core
 group = emulator
 packager = https://retrolx.org 

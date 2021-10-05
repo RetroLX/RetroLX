@@ -3,7 +3,7 @@
 # PX68K
 #
 ################################################################################
-LIBRETRO_PX68K_VERSION = 979a4a9fa33a309f12432b69fe5dc2bccd0aab8a
+LIBRETRO_PX68K_VERSION = a34e55f21393b28b85b49d3d4a5fbe97052c7a68
 LIBRETRO_PX68K_SITE = $(call github,libretro,px68k-libretro,$(LIBRETRO_PX68K_VERSION))
 LIBRETRO_PX68K_LICENSE = Unknown
 

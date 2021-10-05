@@ -3,8 +3,8 @@
 # LIBRETRO PC88
 #
 ################################################################################
-# Version. Commits on Sep, 8 2021
-LIBRETRO_PC88_VERSION = 328c47aa50ed1b9e84f452bd520df586cbca0d72
+# Version. Commits on Oct 3, 2021
+LIBRETRO_PC88_VERSION = fd38bbff2ecc2645aa40c5e30cf0bbe3fd45c498
 LIBRETRO_PC88_SITE = $(call github,libretro,quasi88-libretro,$(LIBRETRO_PC88_VERSION))
 LIBRETRO_PC88_LICENSE = BSD 3-Clause
 

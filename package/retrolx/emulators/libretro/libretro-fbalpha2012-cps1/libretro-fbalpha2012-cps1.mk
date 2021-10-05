@@ -3,8 +3,8 @@
 # FBALPHA2012_CPS1
 #
 ################################################################################
-# Version.: Commits on Jul 3, 2021
-LIBRETRO_FBALPHA2012_CPS1_VERSION = be40afecc52654a3c1b33c44e7a176ecd9f94f2e
+# Version.: Commits on Oct 2, 2021
+LIBRETRO_FBALPHA2012_CPS1_VERSION = fe9b06998cc332568678420f4ce866bbdc37115b
 LIBRETRO_FBALPHA2012_CPS1_SITE = $(call github,libretro,fbalpha2012_cps1,$(LIBRETRO_FBALPHA2012_CPS1_VERSION))
 LIBRETRO_FBALPHA2012_CPS1_LICENSE = Non-commercial
 

@@ -1,5 +1,5 @@
 pkgname = lr-fbalpha2012-cps1
-pkgver = 0.2.97.24-1
+pkgver = 0.2.97.24-2
 pkgdesc = Capcom CPS-1 (FBAlpha 0.2.97.24) libretro core
 group = emulator
 packager = https://retrolx.org 
