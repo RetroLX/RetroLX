@@ -25,8 +25,8 @@ HLSDK_XASH3D_CONF_OPTS += --64bits
 endif
 
 define HLSDK_XASH3D_INSTALL_TARGET_CMDS
-	$(INSTALL) -m 0755 -t $(TARGET_DIR)/usr/lib/xash3d/hlsdk/hl/cl_dlls/ -D $(@D)/build/cl_dll/*.so
-	$(INSTALL) -m 0755 -t $(TARGET_DIR)/usr/lib/xash3d/hlsdk/hl/dlls/ -D $(@D)/build/dlls/*.so
+	$(INSTALL) -m 0755 -t $(XASH3D_PKG_DIR)$(XASH3D_PKG_INSTALL_DIR)/lib/xash3d/hlsdk/hl/cl_dlls/ -D $(@D)/build/cl_dll/*.so
+	$(INSTALL) -m 0755 -t $(XASH3D_PKG_DIR)$(XASH3D_PKG_INSTALL_DIR)/lib/xash3d/hlsdk/hl/dlls/ -D $(@D)/build/dlls/*.so
 endef
 
 $(eval $(waf-package))

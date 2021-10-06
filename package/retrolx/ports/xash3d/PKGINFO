@@ -1,0 +1,6 @@
+pkgname = xash3d
+pkgver = 20211005-1
+pkgdesc = Half-Life Engine
+group = port
+packager = https://retrolx.org 
+url = https://github.com/FWGS/xash3d-fwgs/

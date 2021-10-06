@@ -15,7 +15,8 @@ XASH3D_FWGS_DEPENDENCIES = sdl2 sdl2_mixer sdl2_image sdl2_ttf freetype fontconf
 XASH3D_FWGS_CONF_OPTS += --build-type=release \
   --sdl2=$(STAGING_DIR)/usr/ \
   --disable-vgui \
-  --disable-menu-changegame
+  --disable-menu-changegame \
+  --prefix=/opt/retrolx/xash3d$(XASH3D_PKG_INSTALL_DIR)
 
 ifeq ($(BR2_ARCH_IS_64),y)
 XASH3D_FWGS_CONF_OPTS += --64bits

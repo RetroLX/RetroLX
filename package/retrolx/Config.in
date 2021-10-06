@@ -245,7 +245,7 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	select BR2_PACKAGE_SDLPOP                   # ALL
 
 	# Xash3D-FWGS (Half-Life 1)
-	select BR2_PACKAGE_XASH3D_FWGS              # ALL
+	select BR2_PACKAGE_XASH3D                   # ALL
 
 	help
 		Ports
