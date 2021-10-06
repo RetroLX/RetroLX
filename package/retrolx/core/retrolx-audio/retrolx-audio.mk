@@ -9,7 +9,7 @@ RETROLX_AUDIO_LICENSE = GPL
 RETROLX_AUDIO_SOURCE=
 
 # this one is important because the package erase the default pipewire config files, so it must be built after it
-RETROLX_AUDIO_DEPENDENCIES = pipewire
+RETROLX_AUDIO_DEPENDENCIES = sbc pulseaudio pipewire
 
 ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RK3326),y)
 ALSA_SUFFIX = "-rk3326"
