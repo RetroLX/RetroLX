@@ -4,7 +4,7 @@
 #
 ################################################################################
 # Version.: Commits on Sep 14, 2021
-DAPHNE_VERSION = v2.6.15
+DAPHNE_VERSION = v2.6.16
 DAPHNE_SITE = https://github.com/DirtBagXon/hypseus-singe
 DAPHNE_SITE_METHOD=git
 DAPHNE_LICENSE = GPLv3
