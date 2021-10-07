@@ -18,8 +18,8 @@ HLSDK_XASH3D_DMC_CONF_OPTS += -D64BIT=ON
 endif
 
 define HLSDK_XASH3D_DMC_INSTALL_TARGET_CMDS
-	$(INSTALL) -m 0755 -t $(TARGET_DIR)/usr/lib/xash3d/hlsdk/dmc/cl_dlls/ -D $(@D)/cl_dll/*.so
-	$(INSTALL) -m 0755 -t $(TARGET_DIR)/usr/lib/xash3d/hlsdk/dmc/dlls/ -D $(@D)/dlls/*.so
+	$(INSTALL) -m 0755 -t $(XASH3D_PKG_DIR)$(XASH3D_PKG_INSTALL_DIR)/lib/xash3d/hlsdk/dmc/cl_dlls/ -D $(@D)/cl_dll/*.so
+	$(INSTALL) -m 0755 -t $(XASH3D_PKG_DIR)$(XASH3D_PKG_INSTALL_DIR)/lib/xash3d/hlsdk/dmc/dlls/ -D $(@D)/dlls/*.so
 endef
 
 $(eval $(cmake-package))

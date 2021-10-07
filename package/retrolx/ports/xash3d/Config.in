@@ -1,0 +1,18 @@
+config BR2_PACKAGE_XASH3D
+        bool "xash3d"
+        depends on BR2_PACKAGE_SDL2
+        depends on BR2_PACKAGE_SDL2_IMAGE
+        depends on BR2_PACKAGE_SDL2_TTF
+        depends on BR2_PACKAGE_SDL2_MIXER
+        depends on BR2_PACKAGE_FREETYPE
+        depends on BR2_PACKAGE_FONTCONFIG
+        depends on BR2_PACKAGE_LIBSODIUM
+        depends on BR2_INSTALL_LIBSTDCPP
+
+        select BR2_PACKAGE_XASH3D_FWGS
+        select BR2_PACKAGE_HLSDK_XASH3D
+        # Xash3D requires additional client and/or server libraries for some games.
+        # Below are the packages for these libraries
+        # See https://github.com/FWGS/xash3d-fwgs/blob/master/Documentation/supported-mod-list.md#list-of-games-and-mods-with-custom-gamedll
+        select BR2_PACKAGE_HLSDK_XASH3D_DMC
+        select BR2_PACKAGE_HLSDK_XASH3D_OPFOR
