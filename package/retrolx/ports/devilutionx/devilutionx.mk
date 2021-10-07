@@ -31,6 +31,9 @@ endif
 DEVILUTIONX_INSTALL_TARGET_OPTS = DESTDIR="$(DEVILUTIONX_PKG_DIR)$(DEVILUTIONX_PKG_INSTALL_DIR)" install
 
 define DEVILUTIONX_MAKEPKG
+	# Tidy up package
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/devilutionx/*.py $(DEVILUTIONX_PKG_DIR)$(DEVILUTIONX_PKG_INSTALL_DIR)
+
 	# Build Pacman package
 	cd $(DEVILUTIONX_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
 	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/devilutionx/PKGINFO \

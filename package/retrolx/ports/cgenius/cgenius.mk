@@ -38,6 +38,9 @@ define CGENIUS_MAKEPKG
 	cp $(@D)/GsKit/widgets/libGsKit_widgets.so $(CGENIUS_PKG_DIR)$(CGENIUS_PKG_INSTALL_DIR)/usr/lib
 	cp $(@D)/GsKit/libGsKit.so $(CGENIUS_PKG_DIR)$(CGENIUS_PKG_INSTALL_DIR)/usr/lib
 
+	# Tidy up package
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/cgenius/*.py $(CGENIUS_PKG_DIR)$(CGENIUS_PKG_INSTALL_DIR)
+
 	# Build Pacman package
 	cd $(CGENIUS_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
 	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/cgenius/PKGINFO \

@@ -20,6 +20,7 @@ define XASH3D_MAKEPKG
 	# Tidy up package
 	mv $(XASH3D_PKG_DIR)$(XASH3D_PKG_INSTALL_DIR)/lib/xash3d/* $(XASH3D_PKG_DIR)$(XASH3D_PKG_INSTALL_DIR)/
 	rm -Rf $(XASH3D_PKG_DIR)$(XASH3D_PKG_INSTALL_DIR)/lib/
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/xash3d/*.py $(XASH3D_PKG_DIR)$(XASH3D_PKG_INSTALL_DIR)
 
 	# Build Pacman package
 	cd $(XASH3D_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
