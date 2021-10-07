@@ -3,8 +3,8 @@
 # SDLPOP
 #
 ################################################################################
-# Version.: Commits on Sep 4, 2021
-SDLPOP_VERSION = 98a3ac7a660e030b39388c9ff6e11d5395c48022
+# Version.: Commits on Sep 26, 2021
+SDLPOP_VERSION = 800129c09406beb2471074abf546b94e1cb5de47
 SDLPOP_SITE = $(call github,NagyD,SDLPoP,$(SDLPOP_VERSION))
 SDLPOP_SUBDIR = src
 SDLPOP_LICENSE = GPLv3
@@ -27,6 +27,7 @@ define SDLPOP_MAKEPKG
 	ln -sf /userdata/system/configs/sdlpop/SDLPoP.cfg $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)/configs/SDLPoP.cfg
 	ln -sf /userdata/screenshots $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)/screenshots
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/sdlpop/sdlpop.keys $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/sdlpop/*.py $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)
 
 	# Build Pacman package
 	cd $(SDLPOP_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
