@@ -3,8 +3,8 @@
 # VBA-M
 #
 ################################################################################
-# Version.: Commits on Oct 3, 2021
-LIBRETRO_VBA_M_VERSION = 4223c39c4c767c8cb08eaa82a4bee1b4c20ecc3e
+# Version.: Commits on Oct 5, 2021
+LIBRETRO_VBA_M_VERSION = 2ecfe09c6a4a3475b17b3339986cbc3d93b81a49
 LIBRETRO_VBA_M_SITE = $(call github,visualboyadvance-m,visualboyadvance-m,$(LIBRETRO_VBA_M_VERSION))
 
 LIBRETRO_VBA_M_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
