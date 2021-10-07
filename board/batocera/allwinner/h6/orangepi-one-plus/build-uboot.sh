@@ -11,7 +11,8 @@ export BL31="${IMAGES_DIR}/bl31.bin"
 export SCP="/dev/null"
 
 # U-Boot version
-export UBOOT_VERSION="v2021.01"
+#export UBOOT_VERSION="v2021.01"
+export UBOOT_VERSION="v2021.10"
 
 # Clone U-Boot specified version
 git clone --depth 1 https://source.denx.de/u-boot/u-boot.git -b "${UBOOT_VERSION}"

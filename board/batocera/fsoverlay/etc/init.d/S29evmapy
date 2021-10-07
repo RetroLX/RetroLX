@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+
+RETVAL=0
+
+start() {
+	"$(/usr/bin/batocera-evmapy start)"
+}
+
+stop() {
+	"$(/usr/bin/batocera-evmapy stop)"
+}
+
+restart() {
+	stop
+	start
+}
+
+reload() {
+	echo "not supported"
+}
+
+
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+  	restart
+	;;
+  reload)
+  	reload
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart|reload}"
+	exit 1
+esac
+
+exit 0

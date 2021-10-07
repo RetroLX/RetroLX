@@ -4,10 +4,13 @@ HOST_DIR=$1
 BOARD_DIR=$2
 IMAGES_DIR=$3
 
-# Clone U-Boot mainline
-wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.07.tar.bz2"
-tar xf u-boot-2021.07.tar.bz2
-cd u-boot-2021.07
+# ARM Trusted Firmware BL31
+export BL31="${IMAGES_DIR}/bl31.bin"
+
+# Download U-Boot mainline
+wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.10.tar.bz2"
+tar xf u-boot-2021.10.tar.bz2
+cd u-boot-2021.10
 
 # Apply patches
 PATCHES="${BOARD_DIR}/patches/uboot/*.patch"
@@ -38,7 +41,7 @@ AMLOGIC_FIP_DIR="amlogic-boot-fip/nanopi-k2"
 	"${AMLOGIC_FIP_DIR}/bl30_new.bin" \
 	bl30 || exit 1
 
-"${AMLOGIC_FIP_DIR}/fip_create" --bl30 "${AMLOGIC_FIP_DIR}/bl30_new.bin" --bl31 "${AMLOGIC_FIP_DIR}/bl31.img" --bl33 "u-boot.bin" "${AMLOGIC_FIP_DIR}/fip.bin" || exit 1
+"${AMLOGIC_FIP_DIR}/fip_create" --bl30 "${AMLOGIC_FIP_DIR}/bl30_new.bin" --bl31 "${IMAGES_DIR}/bl31.img" --bl33 "u-boot.bin" "${AMLOGIC_FIP_DIR}/fip.bin" || exit 1
 "${HOST_DIR}/bin/python" "${AMLOGIC_FIP_DIR}/acs_tool.py" "${AMLOGIC_FIP_DIR}/bl2.bin" "${AMLOGIC_FIP_DIR}/bl2_acs.bin" "${AMLOGIC_FIP_DIR}/acs.bin" 0 || exit 1
 
 "${AMLOGIC_FIP_DIR}/blx_fix.sh" \
