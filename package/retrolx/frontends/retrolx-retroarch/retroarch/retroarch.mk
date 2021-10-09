@@ -152,15 +152,18 @@ define RETROARCH_BUILD_CMDS
 endef
 
 define RETROARCH_INSTALL_TARGET_CMDS
-	$(MAKE) CXX="$(TARGET_CXX)" -C $(@D) DESTDIR=$(TARGET_DIR) install
+	# Create directories
+	mkdir -p $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)
 
-	mkdir -p $(TARGET_DIR)/usr/share/video_filters
-	cp $(@D)/gfx/video_filters/*.so $(TARGET_DIR)/usr/share/video_filters
-	cp $(@D)/gfx/video_filters/*.filt $(TARGET_DIR)/usr/share/video_filters
+	$(MAKE) CXX="$(TARGET_CXX)" -C $(@D) DESTDIR=$(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR) install
 
-	mkdir -p $(TARGET_DIR)/usr/share/audio_filters
-	cp $(@D)/libretro-common/audio/dsp_filters/*.so $(TARGET_DIR)/usr/share/audio_filters
-	cp $(@D)/libretro-common/audio/dsp_filters/*.dsp $(TARGET_DIR)/usr/share/audio_filters
+	mkdir -p $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/video_filters
+	cp $(@D)/gfx/video_filters/*.so $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/video_filters
+	cp $(@D)/gfx/video_filters/*.filt $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/video_filters
+
+	mkdir -p $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/audio_filters
+	cp $(@D)/libretro-common/audio/dsp_filters/*.so $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/audio_filters
+	cp $(@D)/libretro-common/audio/dsp_filters/*.dsp $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/audio_filters
 endef
 
 define RETROARCH_INSTALL_STAGING_CMDS

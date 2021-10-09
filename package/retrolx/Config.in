@@ -306,14 +306,6 @@ config BR2_PACKAGE_RETROLX_COMPUTER_SYSTEMS
 	help
 		Old computers
 
-config BR2_PACKAGE_RETROLX_RETROARCH
-	bool "RetroLX RetroArch frontend and integration"
-
-	# RetroArch frontend and core data
-	select BR2_PACKAGE_RETROARCH
-	select BR2_PACKAGE_RETROLX_BEZEL
-	select BR2_PACKAGE_RETROLX_SHADERS
-	select BR2_PACKAGE_RETROLX_RETROACHIEVEMENTS_SOUNDS
 
 config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 	bool "RetroLX console emulators/cores"

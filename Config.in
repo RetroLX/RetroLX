@@ -5,6 +5,15 @@ menu "Kernel"
 endmenu
 
 menu "Frontends"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/retroarch/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/retroarch-assets/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/retrolx-bezel/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/retrolx-retroachievements-sounds/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/shaders/retrolx-shaders/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/shaders/common-shaders/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/shaders/slang-shaders/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/shaders/glsl-shaders/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/retrolx-emulationstation/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/es-background-musics/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrofe/Config.in"
@@ -83,18 +92,7 @@ menu "Controllers"
 endmenu
 
 menu "Emulators"
-  menu "Retroarch"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/retroarch/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/retroarch-assets/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/retrolx-bezel/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/retrolx-retroachievements-sounds/Config.in"
-    menu "Shaders"
-      source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/shaders/retrolx-shaders/Config.in"
-      source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/shaders/common-shaders/Config.in"
-      source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/shaders/slang-shaders/Config.in"
-      source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/shaders/glsl-shaders/Config.in"
-     endmenu
-    menu "cores"
+  menu "Libretro"
       source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/libretro/libretro-desmume/Config.in"
       source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/libretro/libretro-blastem/Config.in"
       source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/libretro/libretro-bluemsx/Config.in"
@@ -128,8 +126,7 @@ menu "Emulators"
       source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/libretro/libretro-xmil/Config.in"
       source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/libretro/libretro-fmsx/Config.in"
       source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/libretro/libretro-ecwolf/Config.in"
-     endmenu
-  endmenu
+   endmenu
 
   menu "Standalone emulators"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/amiberry/Config.in"

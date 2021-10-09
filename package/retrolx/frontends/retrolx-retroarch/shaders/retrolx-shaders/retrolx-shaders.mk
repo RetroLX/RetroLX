@@ -44,23 +44,23 @@ else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_H6),y)
 	RETROLX_SHADERS_SYSTEM=h6
 endif
 
-RETROLX_SHADERS_DIRIN=$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/retroarch/shaders/retrolx-shaders/configs
+RETROLX_SHADERS_DIRIN=$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/retrolx-retroarch/shaders/retrolx-shaders/configs
 
 define RETROLX_SHADERS_INSTALL_TARGET_CMDS
-	mkdir -p $(TARGET_DIR)/usr/share/retrolx/shaders/configs
+	mkdir -p $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/retrolx/shaders/configs
 
 	# general
-	cp $(RETROLX_SHADERS_DIRIN)/rendering-defaults.yml           $(TARGET_DIR)/usr/share/retrolx/shaders/configs/
+	cp $(RETROLX_SHADERS_DIRIN)/rendering-defaults.yml           $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/retrolx/shaders/configs/
 	if test -e $(RETROLX_SHADERS_DIRIN)/rendering-defaults-$(RETROLX_SHADERS_SYSTEM).yml; then \
-		cp $(RETROLX_SHADERS_DIRIN)/rendering-defaults-$(RETROLX_SHADERS_SYSTEM).yml $(TARGET_DIR)/usr/share/retrolx/shaders/configs/rendering-defaults-arch.yml; \
+		cp $(RETROLX_SHADERS_DIRIN)/rendering-defaults-$(RETROLX_SHADERS_SYSTEM).yml $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/retrolx/shaders/configs/rendering-defaults-arch.yml; \
 	fi
 
 	# sets
 	for set in retro scanlines enhanced curvature zfast flatten-glow; do \
-		mkdir -p $(TARGET_DIR)/usr/share/retrolx/shaders/configs/$$set; \
-		cp $(RETROLX_SHADERS_DIRIN)/$$set/rendering-defaults.yml     $(TARGET_DIR)/usr/share/retrolx/shaders/configs/$$set/; \
+		mkdir -p $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/retrolx/shaders/configs/$$set; \
+		cp $(RETROLX_SHADERS_DIRIN)/$$set/rendering-defaults.yml     $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/retrolx/shaders/configs/$$set/; \
 		if test -e $(RETROLX_SHADERS_DIRIN)/$$set/rendering-defaults-$(RETROLX_SHADERS_SYSTEM).yml; then \
-			cp $(RETROLX_SHADERS_DIRIN)/$$set/rendering-defaults-$(RETROLX_SHADERS_SYSTEM).yml $(TARGET_DIR)/usr/share/retrolx/shaders/configs/$$set/rendering-defaults-arch.yml; \
+			cp $(RETROLX_SHADERS_DIRIN)/$$set/rendering-defaults-$(RETROLX_SHADERS_SYSTEM).yml $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/retrolx/shaders/configs/$$set/rendering-defaults-arch.yml; \
 		fi \
 	done
 
