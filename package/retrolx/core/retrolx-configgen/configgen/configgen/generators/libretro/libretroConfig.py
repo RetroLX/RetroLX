@@ -14,6 +14,8 @@ import utils.bezels as bezelsUtil
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
+retroarchPkg = batoceraFiles.retrolxPackages+'/retroarch'
+
 # return true if the option is considered defined
 def defined(key, dict):
     return key in dict and isinstance(dict[key], str) and len(dict[key]) > 0
@@ -460,7 +462,7 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
         # don't force any so that the user can choose
         #retroarchConfig['menu_driver'] = 'ozone'
         # force the assets directory while it was wrong in some beta versions
-        retroarchConfig['assets_directory'] = '/usr/share/libretro/assets'
+        retroarchConfig['assets_directory'] = retroarchPkg+'/usr/share/libretro/assets'
         retroarchConfig['width']  = gameResolution["width"]  # default value
         retroarchConfig['height'] = gameResolution["height"] # default value
 

@@ -62,9 +62,14 @@ else
 	RETROARCH_CONF_OPTS += --disable-alsa
 endif
 
-ifeq ($(BR2_PACKAGE_PULSEAUDIO),y)
+# Pipepwire or Pulseaudio provide both libpulse
+ifeq ($(BR2_PACKAGE_PULSEAUDIO)$(BR2_PACKAGE_PIPEWIRE),y)
 	RETROARCH_CONF_OPTS += --enable-pulse
+ifeq ($(BR2_PACKAGE_PULSEAUDIO),y)
 	RETROARCH_DEPENDENCIES += pulseaudio
+else ifeq ($(BR2_PACKAGE_PIPEWIRE),y)
+	RETROARCH_DEPENDENCIES += pipewire
+endif
 else
 	RETROARCH_CONF_OPTS += --disable-pulse
 endif
@@ -80,12 +85,6 @@ endif
 ifeq ($(BR2_PACKAGE_RETROLX_PANFROST_MESA3D)$(BR2_PACKAGE_RETROLX_TARGET_RPI4)$(BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422),y)
 	RETROARCH_CONF_OPTS += --enable-opengles3 --enable-opengles3_1
 endif
-
-# Enable pipewire if built (future)
-#ifeq ($(BR2_PACKAGE_PIPEWIRE),y)
-#    RETROARCH_CONF_OPTS += --enable-pipewire
-#    RETROARCH_DEPENDENCIES += pipewire
-#endif
 
 ifeq ($(BR2_PACKAGE_HAS_LIBEGL),y)
 	RETROARCH_CONF_OPTS += --enable-egl

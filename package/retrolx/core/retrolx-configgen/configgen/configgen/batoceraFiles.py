@@ -28,8 +28,8 @@ if (arch=="x86_64"):
 
 # This dict is indexed on the emulator name, not on the system
 batoceraBins = {
-                'libretro'       : '/usr/bin/retroarch'
-              , 'moonlight'      : retrolxPackages+'moonlight/moonlight'
+                'libretro'       : retrolxPackages+'/retroarch/usr/bin/retroarch'
+              , 'moonlight'      : retrolxPackages+'/moonlight/moonlight'
               , 'mupen64plus'    : retrolxPackages+'/mupen64plus/mupen64plus'
               , 'flycast'        : retrolxPackages+'/flycast/flycast'
               , 'scummvm'        : retrolxPackages+'/scummvm/scummvm'
@@ -54,7 +54,6 @@ retroarchRootInit = CONF_INIT + '/retroarch'
 retroarchCustom = retroarchRoot + '/retroarchcustom.cfg'
 retroarchCoreCustom = retroarchRoot + "/cores/retroarch-core-options.cfg"
 
-retroarchCores = "/usr/lib/libretro/"
 libretroExt = '_libretro.so'
 screenshotsDir = "/userdata/screenshots/"
 savesDir = "/userdata/saves/"

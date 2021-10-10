@@ -3,8 +3,8 @@
 # batocera bezel
 #
 ################################################################################
-# Version.: Commits on Sep 2, 2021
-RETROLX_BEZEL_VERSION = b98a9c06073af34f8fb12eaf74f9c929cafbb66d
+# Version.: Commits on Oct 5, 2021
+RETROLX_BEZEL_VERSION = c2365bcd1b9c2036543e2e7dc57d89c0e34df853
 RETROLX_BEZEL_SITE = $(call github,batocera-linux,batocera-bezel,$(RETROLX_BEZEL_VERSION))
 
 define RETROLX_BEZEL_INSTALL_TARGET_CMDS

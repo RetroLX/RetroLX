@@ -81,8 +81,9 @@ def generateRetroarchCustom():
 
 def generateRetroarchCustomPathes(retroarchSettings):
     # Path Retroarch
+    retroarchPkg = batoceraFiles.retrolxPackages+'/retroarch'
     retroarchSettings.save('core_options_path',             '"/userdata/system/configs/retroarch/cores/retroarch-core-options.cfg"')
-    retroarchSettings.save('assets_directory',              '"/usr/share/libretro/assets"')
+    retroarchSettings.save('assets_directory',              '"'+retroarchPkg+'"/usr/share/libretro/assets"')
     retroarchSettings.save('screenshot_directory',          '"/userdata/screenshots/"')
     retroarchSettings.save('recording_output_directory',    '"/userdata/screenshots/"')
     retroarchSettings.save('savestate_directory',           '"/userdata/saves/"')
@@ -92,7 +93,7 @@ def generateRetroarchCustomPathes(retroarchSettings):
     retroarchSettings.save('cheat_settings_path',           '"/userdata/cheats/saves/"')
     retroarchSettings.save('system_directory',              '"/userdata/bios/"')
     retroarchSettings.save('joypad_autoconfig_dir',         '"/userdata/system/configs/retroarch/inputs/"')
-    retroarchSettings.save('video_shader_dir',              '"/usr/share/retrolx/shaders/"')
+    retroarchSettings.save('video_shader_dir',              '"'+retroarchPkg+'"/usr/share/retrolx/shaders/"')
     retroarchSettings.save('video_font_path',               '"/usr/share/fonts/dejavu/DejaVuSansMono.ttf"')
-    retroarchSettings.save('video_filter_dir',              '"/usr/share/video_filters"')
-    retroarchSettings.save('audio_filter_dir',              '"/usr/share/audio_filters"')
+    retroarchSettings.save('video_filter_dir',              '"'+retroarchPkg+'"/usr/share/video_filters"')
+    retroarchSettings.save('audio_filter_dir',              '"'+retroarchPkg+'"/usr/share/audio_filters"')
