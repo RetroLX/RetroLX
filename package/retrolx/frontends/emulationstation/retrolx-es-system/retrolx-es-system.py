@@ -101,7 +101,7 @@ class EsSystemConf:
     @staticmethod
     def loadConfig(configFile):
         config = {}
-        if path.exists(configFile):
+        if path.exists(configFile) and path.isfile(configFile):
             with open(configFile) as fp:
                 line = fp.readline()
                 while line:
