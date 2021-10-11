@@ -7,9 +7,12 @@
 RETROARCH_VERSION = v1.9.11
 RETROARCH_SITE = $(call github,libretro,RetroArch,$(RETROARCH_VERSION))
 RETROARCH_LICENSE = GPLv3+
-RETROARCH_DEPENDENCIES = host-pkgconf dejavu retroarch-assets flac
+RETROARCH_DEPENDENCIES = host-pkgconf dejavu flac retroarch-assets common-shaders glsl-shaders slang-shaders
 # install in staging for debugging (gdb)
 RETROARCH_INSTALL_STAGING = YES
+
+RETROARCH_PKG_DIR = $(TARGET_DIR)/opt/retrolx/retroarch
+RETROARCH_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/retroarch
 
 RETROARCH_CONF_OPTS = --disable-oss --enable-zlib --disable-qt --enable-threads --enable-ozone --enable-xmb --disable-discord
 RETROARCH_CONF_OPTS += --enable-flac --enable-lua --enable-networking --enable-translate --enable-rgui --disable-cdrom
@@ -152,17 +155,32 @@ endef
 
 define RETROARCH_INSTALL_TARGET_CMDS
 	# Create directories
-	mkdir -p $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)
+	mkdir -p $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)
 
-	$(MAKE) CXX="$(TARGET_CXX)" -C $(@D) DESTDIR=$(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR) install
+	# Make install
+	$(MAKE) CXX="$(TARGET_CXX)" -C $(@D) DESTDIR=$(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR) install
 
-	mkdir -p $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/video_filters
-	cp $(@D)/gfx/video_filters/*.so $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/video_filters
-	cp $(@D)/gfx/video_filters/*.filt $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/video_filters
+	# Copy filters
+	mkdir -p $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/video_filters
+	cp $(@D)/gfx/video_filters/*.so $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/video_filters
+	cp $(@D)/gfx/video_filters/*.filt $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/video_filters
+	mkdir -p $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/audio_filters
+	cp $(@D)/libretro-common/audio/dsp_filters/*.so $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/audio_filters
+	cp $(@D)/libretro-common/audio/dsp_filters/*.dsp $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/audio_filters
 
-	mkdir -p $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/audio_filters
-	cp $(@D)/libretro-common/audio/dsp_filters/*.so $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/audio_filters
-	cp $(@D)/libretro-common/audio/dsp_filters/*.dsp $(RETROLX_RETROARCH_PKG_DIR)$(RETROLX_RETROARCH_PKG_INSTALL_DIR)/usr/share/audio_filters
+	# Copy achievements sounds
+	mkdir -p $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/assets/sounds
+        cp -r $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/retroarch/retroarch/sounds/*.ogg \
+              $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/assets/sounds/
+
+	# Build Pacman package
+	cd $(RETROARCH_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/retroarch/retroarch/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
 
 define RETROARCH_INSTALL_STAGING_CMDS

@@ -1,13 +1,12 @@
-config BR2_PACKAGE_RETROLX_RETROARCH
+config BR2_PACKAGE_RETROARCH
 	depends on (BR2_PACKAGE_HAS_LIBGLES || BR2_PACKAGE_HAS_LIBEGL || BR2_PACKAGE_HAS_LIBGL)
-	#select dejavu
-	select BR2_PACKAGE_RETROARCH
 	select BR2_PACKAGE_RETROARCH_ASSETS
 	select BR2_PACKAGE_COMMON_SHADERS
 	select BR2_PACKAGE_GLSL_SHADERS
 	select BR2_PACKAGE_SLANG_SHADERS
 	select BR2_PACKAGE_RETROLX_RETROACHIEVEMENTS_SOUNDS
-        bool "Retroarch RetroLX"
+	depends on BR2_PACKAGE_FLAC
+        bool "Retroarch"
         help
           A multi emulator frontend.
 

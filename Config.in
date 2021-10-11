@@ -4,16 +4,20 @@ menu "Kernel"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/kernels/retrolx-kernels/Config.in"
 endmenu
 
-menu "Frontends"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/retroarch/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/retroarch-assets/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/retrolx-retroachievements-sounds/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/shaders/common-shaders/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/shaders/slang-shaders/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-retroarch/shaders/glsl-shaders/Config.in"
+menu "RetroArch"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/retroarch/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/retroarch-assets/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/shaders/common-shaders/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/shaders/slang-shaders/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retroarch/shaders/glsl-shaders/Config.in"
+endmenu
+
+menu "EmulationStation"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/retrolx-emulationstation/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/es-background-musics/Config.in"
+endmenu
+
+menu "Alt frontends"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrofe/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/pegasus/Config.in"
 endmenu
@@ -261,7 +265,6 @@ menu "Emulators"
 
   menu "Wine"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/utils/evsieve/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/utils/pulseaudio-utils/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/utils/retrolx-wine/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/wine/dxvk/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/wine/faudio/Config.in"
