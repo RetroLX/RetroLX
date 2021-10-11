@@ -15,7 +15,7 @@ fi
 function dialogoutput()
 {
     local percent="$1"
-    local text="Do not switch off your device!"
+    local text="Do not switch off your device, it will reboot once done !"
 
     dialog --backtitle "RetroLX" --title " Installing base packages " \
            --mixedgauge "$text" 18 50 "$percent" "${arr[@]}" &>/dev/tty1
