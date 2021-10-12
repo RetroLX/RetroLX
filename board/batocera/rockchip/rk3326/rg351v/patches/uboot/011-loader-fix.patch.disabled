@@ -1,0 +1,23 @@
+--- a/tools/rk_tools/RKBOOT/RK3326MINIALL.ini	2021-10-12 11:33:18.457662195 +0200
++++ b/tools/rk_tools/RKBOOT/RK3326MINIALL.ini	2021-10-12 13:00:42.938874935 +0200
+@@ -5,16 +5,16 @@
+ MINOR=7
+ [CODE471_OPTION]
+ NUM=1
+-Path1=bin/rk33/rk3326_ddr_333MHz_v1.10.bin
++Path1=bin/rk33/rk3326_ddr_333MHz_v1.16.bin
+ Sleep=1
+ [CODE472_OPTION]
+ NUM=1
+-Path1=bin/rk33/rk3326_usbplug_v1.12.bin
++Path1=bin/rk33/rk3326_usbplug_v1.28.bin
+ [LOADER_OPTION]
+ NUM=2
+ LOADER1=FlashData
+ LOADER2=FlashBoot
+-FlashData=bin/rk33/rk3326_ddr_333MHz_v1.10.bin
+-FlashBoot=bin/rk33/rk3326_miniloader_v1.12.bin
++FlashData=bin/rk33/rk3326_ddr_333MHz_v1.16.bin
++FlashBoot=bin/rk33/rk3326_miniloader_v1.28.bin
+ [OUTPUT]
+ PATH=rk3326_loader_v1.10.112.bin

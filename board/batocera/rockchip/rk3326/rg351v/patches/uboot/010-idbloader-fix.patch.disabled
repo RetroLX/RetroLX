@@ -1,0 +1,11 @@
+--- a/make.sh	2021-10-12 11:22:51.427083558 +0200
++++ b/make.sh	2021-10-12 11:26:38.755480399 +0200
+@@ -801,7 +801,7 @@
+ 
+ pack_idbloader()
+ {
+-	tools/mkimage -n px30 -T rksd -d ${RKBIN}/bin/rk33/rk3326_ddr_333MHz_v1.10.bin ./sd_fuse/idbloader.img
++	tools/mkimage -n px30 -T rksd -d ${RKBIN}/bin/rk33/rk3326_ddr_333MHz_v1.16.bin ./sd_fuse/idbloader.img
+ 	cat ${RKBIN}/bin/rk33/rk3326_miniloader_v1.12.bin >> ./sd_fuse/idbloader.img
+ }
+ 

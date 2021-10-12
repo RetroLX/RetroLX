@@ -1,0 +1,16 @@
+--- a/tools/rk_tools/RKTRUST/RK3326TRUST.ini	2021-10-12 13:30:21.948710922 +0200
++++ b/tools/rk_tools/RKTRUST/RK3326TRUST.ini	2021-10-12 13:48:11.139994969 +0200
+@@ -5,11 +5,11 @@
+ SEC=0
+ [BL31_OPTION]
+ SEC=1
+-PATH=bin/rk33/rk3326_bl31_v1.14.elf
++PATH=bin/rk33/rk3326_bl31_v1.22.elf
+ ADDR=0x00010000
+ [BL32_OPTION]
+ SEC=1
+-PATH=bin/rk33/rk3326_bl32_v1.10.bin
++PATH=bin/rk33/rk3326_bl32_v1.15.bin
+ ADDR=0x08400000
+ [BL33_OPTION]
+ SEC=0
