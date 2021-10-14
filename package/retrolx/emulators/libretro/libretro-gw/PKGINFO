@@ -1,5 +1,5 @@
 pkgname = lr-gw
-pkgver = 20210802-1
+pkgver = 20211013-1
 pkgdesc = GW (Handheld Electronic) libretro core
 group = emulator
 packager = https://retrolx.org 

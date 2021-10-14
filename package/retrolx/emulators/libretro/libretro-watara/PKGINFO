@@ -1,5 +1,5 @@
 pkgname = lr-watara
-pkgver = 20210912-1
+pkgver = 20211012-1
 pkgdesc = Watara Supervision libretro core
 group = emulator
 packager = https://retrolx.org 
