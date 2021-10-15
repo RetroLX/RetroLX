@@ -331,6 +331,7 @@ config BR2_PACKAGE_RETROLX_FS_TOOLS
 	select BR2_PACKAGE_CIFS_UTILS                           # required for boot mounts
         select BR2_PACKAGE_HOST_GENIMAGE
         select BR2_PACKAGE_HOST_GENEXT2FS
+        select BR2_PACKAGE_HOST_MTOOLS
 	select BR2_PACKAGE_DOSFSTOOLS                           # fat
 	select BR2_PACKAGE_DOSFSTOOLS_FSCK_FAT                  # fat
 	select BR2_PACKAGE_DOSFSTOOLS_MKFS_FAT                  # fat
