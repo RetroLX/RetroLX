@@ -13,7 +13,6 @@ config BR2_PACKAGE_SCUMMVM
         depends on BR2_PACKAGE_FAAD2
         depends on BR2_PACKAGE_FREETYPE
 	depends on BR2_PACKAGE_ZLIB  
-	depends on BR2_PACKAGE_FLUIDSYNTH
 
         help
 		ScummVM point and click 

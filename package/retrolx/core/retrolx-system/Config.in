@@ -86,7 +86,7 @@ config BR2_PACKAGE_RETROLX_AUDIO
 	select BR2_PACKAGE_FAUDIO           if (BR2_i686 || BR2_x86_64)
 	select BR2_PACKAGE_FLAC
 	select BR2_PACKAGE_FDK_AAC
-	select BR2_PACKAGE_FLUIDSYNTH
+	select BR2_PACKAGE_FLUIDSYNTH       if !BR2_arm1176jzf_s && !BR2_cortex_a7 && !BR2_cortex_a35
 	select BR2_PACKAGE_LAME
 	select BR2_PACKAGE_LIBAIO
 	select BR2_PACKAGE_LIBMAD

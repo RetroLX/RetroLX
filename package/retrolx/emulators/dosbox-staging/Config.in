@@ -12,7 +12,6 @@ config BR2_PACKAGE_DOSBOX_STAGING
 	depends on BR2_PACKAGE_LIBCURL
 	depends on BR2_PACKAGE_HOST_PYTHON3
 	depends on BR2_PACKAGE_HOST_PYTHON3_SSL
-	depends on BR2_PACKAGE_FLUIDSYNTH
 
 	help
 	  Modernized DOSBox soft-fork
