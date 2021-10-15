@@ -316,4 +316,8 @@ menu "Libraries"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/libraries/python3-pyparsing/Config.in"
 endmenu
 
+menu "Soundfonts"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/soundfonts/retrolx-fluid-soundfont/Config.in"
+endmenu
+
 endmenu

@@ -11,13 +11,13 @@ RETROLX_AUDIO_SOURCE=
 # this one is important because the package erase the default pipewire config files, so it must be built after it
 RETROLX_AUDIO_DEPENDENCIES = pipewire
 
-ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RK3326),y)
-ALSA_SUFFIX = "-rk3326"
-PIPEWIRECONF_SUFFIX = "-rk3326"
-else
+#ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RK3326),y)
+#ALSA_SUFFIX = "-rk3326"
+#PIPEWIRECONF_SUFFIX = "-rk3326"
+#else
 ALSA_SUFFIX =
 PIPEWIRECONF_SUFFIX =
-endif
+#endif
 
 define RETROLX_AUDIO_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/usr/lib/python3.9 \

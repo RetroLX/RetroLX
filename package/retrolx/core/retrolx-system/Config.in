@@ -87,7 +87,6 @@ config BR2_PACKAGE_RETROLX_AUDIO
 	select BR2_PACKAGE_FLAC
 	select BR2_PACKAGE_FDK_AAC
 	select BR2_PACKAGE_FLUIDSYNTH
-	select BR2_PACKAGE_FLUID_SOUNDFONT
 	select BR2_PACKAGE_LAME
 	select BR2_PACKAGE_LIBAIO
 	select BR2_PACKAGE_LIBMAD
@@ -501,6 +500,7 @@ config BR2_PACKAGE_RETROLX_DEV
 	bool "add dev options"
 
 	select BR2_PACKAGE_TMUX
+	select BR2_PACKAGE_VIM
 	select BR2_PACKAGE_X11VNC   if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	select BR2_PACKAGE_KMSCUBE  if BR2_PACKAGE_MESA3D
 
@@ -538,7 +538,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "raspberrypi/rpi2"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI2
 	default "raspberrypi/rpi3"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI3
 	default "raspberrypi/rpi4"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI4
-	default "rockchip/rk3326/odroidgo rockchip/rk3326/gameforce rockchip/rk3326/rg351v rockchip/rk3326/rg351pm rockchip/rk3326/rg351mp"      if BR2_PACKAGE_RETROLX_TARGET_RK3326
+	default "rockchip/rk3326/odroidgo rockchip/rk3326/gameforce rockchip/rk3326/rg351"                                                       if BR2_PACKAGE_RETROLX_TARGET_RK3326
 	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"                                                                               if BR2_PACKAGE_RETROLX_TARGET_RK3288
 	default "rockchip/rk3328/rock64 rockchip/rk3328/roc-cc"				                                                         if BR2_PACKAGE_RETROLX_TARGET_RK3328
 	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/x99"				                                 if BR2_PACKAGE_RETROLX_TARGET_RK3399
@@ -632,7 +632,6 @@ config BR2_PACKAGE_RETROLX_TOOLS
 
 	select BR2_PACKAGE_JSTEST2          # joysticks tester
 	select BR2_PACKAGE_EVTEST           # joysticks tester
-	select BR2_PACKAGE_VIM              # basic vi emulator
 	select BR2_PACKAGE_NANO             # basic nano emulator
 	select BR2_PACKAGE_ZIP              # zip tool
 	select BR2_PACKAGE_P7ZIP            # zip tool

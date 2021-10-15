@@ -24,9 +24,6 @@ else ifeq ($(BR2_PACKAGE_RETROLX_SPLASH_FFPLAY),y)
 else ifeq ($(BR2_PACKAGE_RETROLX_SPLASH_MPV),y)
 	RETROLX_SPLASH_SCRIPT=S03splash-mpv.template
 	RETROLX_SPLASH_MEDIA=video
-else ifeq ($(BR2_PACKAGE_RETROLX_SPLASH_ROTATE_IMAGE),y)
-	RETROLX_SPLASH_SCRIPT=S03splash-image
-        RETROLX_SPLASH_MEDIA=rotate-image
 else
 	RETROLX_SPLASH_SCRIPT=S03splash-image
 	RETROLX_SPLASH_MEDIA=image
@@ -40,14 +37,6 @@ RETROLX_SPLASH_POST_INSTALL_TARGET_HOOKS += RETROLX_SPLASH_INSTALL_SCRIPT
 
 ifeq ($(RETROLX_SPLASH_MEDIA),image)
 	RETROLX_SPLASH_POST_INSTALL_TARGET_HOOKS += RETROLX_SPLASH_INSTALL_IMAGE
-endif
-
-ifeq ($(RETROLX_SPLASH_MEDIA),rotate-rk3326-image)
-	RETROLX_SPLASH_POST_INSTALL_TARGET_HOOKS += RETROLX_SPLASH_INSTALL_ROTATE_RK3326_IMAGE
-endif
-
-ifeq ($(RETROLX_SPLASH_MEDIA),rotate-image)
-	RETROLX_SPLASH_POST_INSTALL_TARGET_HOOKS += RETROLX_SPLASH_INSTALL_ROTATE_IMAGE
 endif
 
 ifeq ($(RETROLX_SPLASH_MEDIA),video)
@@ -70,18 +59,6 @@ endef
 define RETROLX_SPLASH_INSTALL_IMAGE
 	mkdir -p $(TARGET_DIR)/usr/share/retrolx/splash
 	convert "$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-splash/logo.png" -fill white -pointsize 30 -annotate +50+1020 "$(RETROLX_SPLASH_TGVERSION)" "${TARGET_DIR}/usr/share/retrolx/splash/logo-version.png"
-endef
-
-define RETROLX_SPLASH_INSTALL_ROTATE_RK3326_IMAGE
-	mkdir -p $(TARGET_DIR)/usr/share/retrolx/splash
-	convert "$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-splash/logo.png" -shave 150x0 -resize 480x320 -fill white -pointsize 15 -annotate +40+300 "$(RETROLX_SPLASH_TGVERSION)" -rotate -90 "${TARGET_DIR}/usr/share/retrolx/splash/logo-version-320x480.png"
-	convert "$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-splash/logo.png"              -resize 640x480 -fill white -pointsize 15 -annotate +40+440 "$(RETROLX_SPLASH_TGVERSION)" "${TARGET_DIR}/usr/share/retrolx/splash/logo-version-640x480.png"
-	convert "$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-splash/logo.png"              -resize 854x480 -fill white -pointsize 15 -annotate +40+440 "$(RETROLX_SPLASH_TGVERSION)" -rotate -90 "${TARGET_DIR}/usr/share/retrolx/splash/logo-version-480x854.png"
-endef
-
-define RETROLX_SPLASH_INSTALL_ROTATE_IMAGE
-	mkdir -p $(TARGET_DIR)/usr/share/retrolx/splash
-	convert "$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-splash/logo.png" -fill white -pointsize 30 -annotate +50+1020 "$(RETROLX_SPLASH_TGVERSION)" -rotate -90 "${TARGET_DIR}/usr/share/retrolx/splash/logo-version.png"
 endef
 
 $(eval $(generic-package))
