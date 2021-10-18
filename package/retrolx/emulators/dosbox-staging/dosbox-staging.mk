@@ -55,6 +55,8 @@ endif
 
 ifeq ($(BR2_PACKAGE_FLUIDSYNTH),y)
 DOSBOX_STAGING_DEPENDENCIES += fluidsynth
+else
+DOSBOX_STAGING_CONF_OPTS += -Duse_fluidsynth=false
 endif
 
 # No OpenGL for GLES boards
