@@ -55,12 +55,17 @@ endif
 
 ifeq ($(BR2_PACKAGE_FLUIDSYNTH),y)
 DOSBOX_STAGING_DEPENDENCIES += fluidsynth
+DOSBOX_STAGING_CONF_OPTS += -Duse_fluidsynth=true
 else
 DOSBOX_STAGING_CONF_OPTS += -Duse_fluidsynth=false
 endif
 
 # No OpenGL for GLES boards
+ifeq ($(BR2_i686)$(BR2_x86_64),y)
+DOSBOX_STAGING_CONF_OPTS += -Duse_opengl=true
+else
 DOSBOX_STAGING_CONF_OPTS += -Duse_opengl=false
+endif
 
 # SSL error
 DOSBOX_STAGING_CONF_OPTS += -Duse_mt32emu=false
