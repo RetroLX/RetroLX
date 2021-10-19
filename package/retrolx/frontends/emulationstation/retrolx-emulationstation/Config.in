@@ -23,14 +23,4 @@ config BR2_PACKAGE_RETROLX_EMULATIONSTATION
 
 	  https://github.com/RetroLX/EmulationStation
 
-if BR2_PACKAGE_RETROLX_EMULATIONSTATION
-choice
-    prompt "ES version to compile"
-    config BR2_PACKAGE_RETROLX_EMULATIONSTATION_STANDARD
-          bool "standard"
-    config BR2_PACKAGE_RETROLX_EMULATIONSTATION_ARCADE
-          bool "arcade"
- endchoice
-endif
-
 comment "Emulation station 2 needs a toolchain w/ C++"

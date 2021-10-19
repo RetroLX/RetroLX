@@ -1,5 +1,11 @@
 config BR2_PACKAGE_RETROLX_ES_SYSTEM
         bool "retrolx-es-system"
-	select BR2_PACKAGE_RETROLX_CONFIGGEN
+        select BR2_PACKAGE_RETROLX_EMULATIONSTATION
+        select BR2_PACKAGE_ES_THEME_CARBON
+        select BR2_PACKAGE_ES_THEME_MINIJAWN
+        select BR2_PACKAGE_ES_BACKGROUND_MUSICS
+        select BR2_PACKAGE_RETROLX_CONFIGGEN
+
         help
-          Generates the es_system.cfg file and the roms folder
+          EmulationStation + configgen glue
+	  Generates the es_system.cfg file and the roms folder

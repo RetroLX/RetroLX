@@ -355,11 +355,6 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_RETROLX_INITRAMFS                   # initramfs to boot the system
 	select BR2_PACKAGE_BASH                                 # bash shell, used as the interactive shell
 	select BR2_PACKAGE_RNG_TOOLS                            # system entropy
-	select BR2_PACKAGE_RETROLX_EMULATIONSTATION             # emulationstation
-	select BR2_PACKAGE_ES_THEME_CARBON                      # emulationstation theme
-	select BR2_PACKAGE_ES_BACKGROUND_MUSICS                 # emulationstation musics
-	select BR2_PACKAGE_RETROLX_ES_SYSTEM                    # emulation station es_systems.cfg generator + default roms
-	select BR2_PACKAGE_RETROLX_CONFIGGEN                   # emulation station external command launcher
 	select BR2_PACKAGE_RETROLX_TRIGGERHAPPY                # multimedia/power buttons
 	select BR2_TARGET_ROOTFS_SQUASHFS                       # tool to generate the target image
 	select BR2_PACKAGE_PM_UTILS                             # suspend

@@ -1,4 +1,4 @@
 config BR2_PACKAGE_ES_THEME_CARBON
-	bool "EmulationStation theme Carbon"
+	bool "es-theme-carbon"
 	help
 	  https://github.com/RetroPie/es-theme-carbon

@@ -1,4 +1,4 @@
 config BR2_PACKAGE_ES_THEME_MINIJAWN
-	bool "EmulationStation theme MiniJawn"
+	bool "es-theme-minijawn"
 	help
 	  https://github.com/pacdude/es-theme-minijawn
