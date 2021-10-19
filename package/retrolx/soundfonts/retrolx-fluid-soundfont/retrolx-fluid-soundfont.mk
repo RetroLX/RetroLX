@@ -25,8 +25,8 @@ define RETROLX_FLUID_SOUNDFONT_MAKEPKG
 	# Build Pacman package
 	cd $(RETROLX_FLUID_SOUNDFONT_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
 	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/soundfonts/retrolx-fluid-soundfont/PKGINFO \
-	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
-	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+	any $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/
 
 	# Cleanup
 	rm -Rf $(TARGET_DIR)/opt/retrolx/*

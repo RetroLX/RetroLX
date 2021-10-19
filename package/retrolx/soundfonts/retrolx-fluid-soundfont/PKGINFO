@@ -1,6 +1,6 @@
 pkgname = retrolx-fluid-soundfont
 pkgver = 3.1-1
 pkgdesc = FluidSynth sound font
-group = port
+group = data
 packager = https://retrolx.org 
 url = http://www.hammersound.net/
