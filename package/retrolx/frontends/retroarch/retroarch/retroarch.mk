@@ -7,7 +7,8 @@
 RETROARCH_VERSION = v1.9.11
 RETROARCH_SITE = $(call github,libretro,RetroArch,$(RETROARCH_VERSION))
 RETROARCH_LICENSE = GPLv3+
-RETROARCH_DEPENDENCIES = host-pkgconf dejavu flac retroarch-assets common-shaders glsl-shaders slang-shaders
+RETROARCH_DEPENDENCIES = host-pkgconf dejavu flac retroarch-assets common-shaders glsl-shaders
+
 # install in staging for debugging (gdb)
 RETROARCH_INSTALL_STAGING = YES
 
@@ -132,6 +133,7 @@ endif
 ifeq ($(BR2_PACKAGE_VULKAN_LOADER)$(BR2_PACKAGE_VULKAN_HEADERS),yy)
 	RETROARCH_CONF_OPTS += --enable-vulkan
 	RETROARCH_DEPENDENCIES += vulkan-headers vulkan-loader
+	RETROARCH_DEPENDENCIES += slang-shaders
 endif
 
 define RETROARCH_CONFIGURE_CMDS
