@@ -1,5 +1,5 @@
 pkgname = lr-ppsspp
-pkgver = 1.12.2-1
+pkgver = 1.12.3-1
 pkgdesc = PPSSPP libretro core
 group = emulator
 packager = https://retrolx.org 
