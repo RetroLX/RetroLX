@@ -25,7 +25,7 @@ do
 done
 
 # Build it
-./make.sh odroidgoa
+ARCH=aarch64 CROSS_COMPILE="${HOST_DIR}/bin/aarch64-buildroot-linux-gnu-" ./make.sh odroidgoa
 mkdir -p ../../uboot-odroidgo
 
 # Copy to appropriate place

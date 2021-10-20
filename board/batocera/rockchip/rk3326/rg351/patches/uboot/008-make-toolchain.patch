@@ -30,9 +30,9 @@
 -			echo "Can't find toolchain: ${TOOLCHAIN_ARM64} or ${TOOLCHAIN_ARM64_OPT}"
 -			exit 1
 -		fi
-+		TOOLCHAIN_GCC=${GCC_ARM64}
-+		TOOLCHAIN_OBJDUMP=${OBJ_ARM64}
-+		TOOLCHAIN_ADDR2LINE=${ADDR2LINE_ARM64}
++		TOOLCHAIN_GCC=${CROSS_COMPILE}
++		TOOLCHAIN_OBJDUMP=${CROSS_COMPILE}objdump
++		TOOLCHAIN_ADDR2LINE=${CROSS_COMPILE}addr2line
  	else
  		if [ -d ${TOOLCHAIN_ARM32} ]; then
  			absolute_path=$(cd `dirname ${TOOLCHAIN_ARM32}`; pwd)
