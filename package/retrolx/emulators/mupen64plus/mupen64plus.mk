@@ -3,7 +3,7 @@
 # MUPEN64PLUS
 #
 ################################################################################
-MUPEN64PLUS_VERSION = 20210905
+MUPEN64PLUS_VERSION = 20211020
 MUPEN64PLUS_DEPENDENCIES = mupen64plus-core mupen64plus-uiconsole mupen64plus-input-sdl mupen64plus-rsphle
 ifeq  ($(BR2_PACKAGE_RETROLX_TARGET_RPI2),y)
 MUPEN64PLUS_DEPENDENCIES += mupen64plus-omx
