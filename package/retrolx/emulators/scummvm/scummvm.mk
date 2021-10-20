@@ -33,6 +33,9 @@ SCUMMVM_CONF_OPTS += --disable-static --enable-c++11 --enable-opengl --disable-d
 SCUMMVM_MAKE_OPTS += RANLIB="$(TARGET_RANLIB)" STRIP="$(TARGET_STRIP)" AR="$(TARGET_AR) cru" AS="$(TARGET_AS)" LD="$(TARGET_CXX)" DESTDIR="$(SCUMMVM_PKG_DIR)"
 
 define SCUMMVM_MAKEPKG
+	# Strip binary
+	"$(TARGET_STRIP)" -s "$(SCUMMVM_PKG_DIR)$(SCUMMVM_PKG_INSTALL_DIR)/bin/scummvm"
+
 	# Add virtual keyboard files
 	mkdir -p $(SCUMMVM_PKG_DIR)$(SCUMMVM_PKG_INSTALL_DIR)/usr/share/scummvm
 	cp $(@D)/backends/vkeybd/packs/vkeybd_default.zip $(SCUMMVM_PKG_DIR)$(SCUMMVM_PKG_INSTALL_DIR)/usr/share/scummvm
