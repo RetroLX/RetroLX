@@ -159,8 +159,9 @@ define RETROARCH_INSTALL_TARGET_CMDS
 	# Create directories
 	mkdir -p $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)
 
-	# Make install
+	# Make install and strip binary
 	$(MAKE) CXX="$(TARGET_CXX)" -C $(@D) DESTDIR=$(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR) install
+	"$(TARGET_STRIP)" -s "$(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/bin/retroarch"
 
 	# Copy filters
 	mkdir -p $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/video_filters
