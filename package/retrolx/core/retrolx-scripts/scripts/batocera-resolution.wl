@@ -28,8 +28,7 @@ f_listModes() {
 	echo "max-1920x1080:maximum 1920x1080"
 	echo "max-640x480:maximum 640x480"
     fi
-    retrolx-wlinfo 
-"${1}" 2>/dev/null | sed -e s+"^\([0-9]*\):\([0-9]*\)x\([0-9]*\) \([0-9]*\)\(Hz .*\)$"+"\1.\2x\3.\4:\2x\3 \4\5"+
+    retrolx-wlinfo "${1}" 2>/dev/null | sed -e s+"^\([0-9]*\):\([0-9]*\)x\([0-9]*\) \([0-9]*\)\(Hz .*\)$"+"\1.\2x\3.\4:\2x\3 \4\5"+
 }
 
 f_currentResolution() {
