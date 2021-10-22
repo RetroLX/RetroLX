@@ -1,0 +1,3 @@
+config BR2_PACKAGE_RETROLX_WLINFO
+       bool "retrolx-wlinfo"
+       depends on BR2_PACKAGE_WAYLAND

@@ -263,8 +263,10 @@ config BR2_PACKAGE_RETROLX_WAYLAND
 	select BR2_PACKAGE_WAYLAND
 	select BR2_PACKAGE_WAYLANDPP
 	select BR2_PACKAGE_WAYLAND_PROTOCOLS
+	select BR2_PACKAGE_WAYLAND_UTILS
 	select BR2_PACKAGE_WESTON
 	select BR2_PACKAGE_WESTON_DRM
+	select BR2_PACKAGE_RETROLX_WLINFO
 	#select BR2_PACKAGE_WESTON_XWAYLAND
 	#select BR2_PACKAGE_XORG7
 
@@ -527,7 +529,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "s812"                                                                                                                           if BR2_PACKAGE_RETROLX_TARGET_S812
 	default "amlogic/s905/odroid-c2 amlogic/s905/nanopi-k2 amlogic/s905/tvbox"                                                               if BR2_PACKAGE_RETROLX_TARGET_S905
 	default "amlogic/s905gen2/x96-max"                                                                                                       if BR2_PACKAGE_RETROLX_TARGET_S905GEN2
-	default "amlogic/s905gen3/odroid-c4 amlogic/s905gen3/tvbox"                                                                              if BR2_PACKAGE_RETROLX_TARGET_S905GEN3
+	default "amlogic/s905gen3/odroid-c4 amlogic/s905gen3/tvbox"										 if BR2_PACKAGE_RETROLX_TARGET_S905GEN3
 	default "amlogic/s912"                                                                                                                   if BR2_PACKAGE_RETROLX_TARGET_S912
 	default "amlogic/s922x/odroid-n2 amlogic/s922x/odroid-n2-plus amlogic/s922x/khadas-vim3"                                                 if BR2_PACKAGE_RETROLX_TARGET_S922X
 	default "raspberrypi/rpi1"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI1
