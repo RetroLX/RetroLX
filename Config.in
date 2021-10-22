@@ -41,6 +41,7 @@ menu "System"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/core/retrolx-bluetooth/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/core/retrolx-notice/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/core/retrolx-drminfo/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/core/retrolx-wlinfo/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/core/retrolx-bezel/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/core/retrolx-shaders/Config.in"
 

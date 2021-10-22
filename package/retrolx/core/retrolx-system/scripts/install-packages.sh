@@ -13,6 +13,7 @@ lr-nestopia
 lr-gambatte
 lr-genesisplusgx
 lr-picodrive
+lr-snes9x
 lr-snes9x2010
 lr-stella
 devilutionx
