@@ -32,10 +32,10 @@ HOST_DIR=null
 # builddate = 1590539371 # epoch of creation
 
 ##### Valid "groups" for RetroLX packages #####
-GRP_ARRAY=(emulator port frontend tool)
+GRP_ARRAY=(emulator port frontend tool data)
 
 ##### Valid archs for RetroLX packages #####
-ARCH_ARRAY=(any s905 s905gen3 s912 s922x rk3288 rk3326 rk3399 rpi1 rpi2 rpi3 rpi4 x86 x86_64)
+ARCH_ARRAY=(any s905 s905gen3 s905gen2 s912 s922x rk3288 rk3326 rk3328 rk3399 rpi1 rpi2 rpi3 rpi4 x86 x86_64)
 
 ##### Function Calls #####
 
