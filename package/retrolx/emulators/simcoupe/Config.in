@@ -1,0 +1,9 @@
+config BR2_PACKAGE_SIMCOUPE
+    bool "simcoupe"
+    depends on BR2_PACKAGE_SDL2
+    depends on BR2_PACKAGE_ZLIB
+    depends on BR2_PACKAGE_LIBPNG
+    depends on BR2_PACKAGE_LIBCAPSIMAGE
+
+    help
+        SimCoupe emulates the SAM Coupé - a British Z80-based home computer released in 1989 by Miles Gordon Technology.

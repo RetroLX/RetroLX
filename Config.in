@@ -154,9 +154,10 @@ menu "Emulators"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/openbor/openbor6510/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/ppsspp/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/scummvm/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/simcoupe/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/solarus-engine/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/xemu/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/supermodel/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/xemu/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/yuzu/Config.in"
   endmenu
 
