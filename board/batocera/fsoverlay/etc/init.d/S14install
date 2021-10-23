@@ -71,5 +71,5 @@ dialogoutput 100
 clear > /dev/tty1
 sync
 reboot
-sleep infinity
+sleep 120
 exit 0
