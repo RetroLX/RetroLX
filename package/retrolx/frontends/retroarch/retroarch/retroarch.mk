@@ -67,13 +67,12 @@ else
 endif
 
 # Pipepwire or Pulseaudio provide both libpulse
-ifeq ($(BR2_PACKAGE_PULSEAUDIO)$(BR2_PACKAGE_PIPEWIRE),y)
-	RETROARCH_CONF_OPTS += --enable-pulse
 ifeq ($(BR2_PACKAGE_PULSEAUDIO),y)
+	RETROARCH_CONF_OPTS += --enable-pulse
 	RETROARCH_DEPENDENCIES += pulseaudio
 else ifeq ($(BR2_PACKAGE_PIPEWIRE),y)
+	RETROARCH_CONF_OPTS += --enable-pulse
 	RETROARCH_DEPENDENCIES += pipewire
-endif
 else
 	RETROARCH_CONF_OPTS += --disable-pulse
 endif
