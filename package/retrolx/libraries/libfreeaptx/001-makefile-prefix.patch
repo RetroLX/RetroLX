@@ -1,0 +1,11 @@
+--- a/Makefile	2021-08-10 05:51:49.000000000 +0200
++++ b/Makefile	2021-10-24 00:03:21.222474892 +0200
+@@ -12,7 +12,7 @@
+ LDFLAGS = -s
+ ARFLAGS = -rcs
+ 
+-PREFIX = /usr/local
++PREFIX = /usr
+ BINDIR = bin
+ LIBDIR = lib
+ INCDIR = include

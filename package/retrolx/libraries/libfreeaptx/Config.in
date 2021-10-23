@@ -1,0 +1,6 @@
+config BR2_PACKAGE_LIBFREEAPTX
+	bool "libfreeaptx"
+	help
+	  Open Source implementation of Audio Processing Technology codec (aptX)
+
+	  https://github.com/iamthehorker/libfreeaptx
