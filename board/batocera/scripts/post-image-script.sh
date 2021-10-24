@@ -87,6 +87,7 @@ do
 	cat "${GENIMAGEBOOTFILE}" | sed -e s+'@files'+"${FILES}"+ | tr '@' '\n' > "${RETROLX_BINARIES_DIR}/genimage-boot.cfg" || exit 1
     genimage --rootpath="${TARGET_DIR}" --inputpath="${RETROLX_BINARIES_DIR}/boot" --outputpath="${RETROLX_BINARIES_DIR}" --config="${RETROLX_BINARIES_DIR}/genimage-boot.cfg" --tmppath="${GENIMAGE_TMP}" || exit 1
     "${HOST_DIR}/bin/syslinux" -i "${RETROLX_BINARIES_DIR}/boot.vfat" -d "/boot/syslinux" || exit 1
+    #"/usr/bin/syslinux" -i "${RETROLX_BINARIES_DIR}/boot.vfat" -d "/boot/syslinux" || exit 1
     # remove genimage temp path as sometimes genimage v14 fails to start
     rm -rf ${GENIMAGE_TMP}
     mkdir ${GENIMAGE_TMP}
@@ -104,6 +105,9 @@ do
 
     # copy the version file needed for version check
     cp "${TARGET_DIR}/usr/share/retrolx/retrolx.version" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
+    # copy the board files
+    cp "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.board" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
+    cp "${RETROLX_PATHSUBTARGET}/board.png" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
 done
 
 #### md5 #######################
