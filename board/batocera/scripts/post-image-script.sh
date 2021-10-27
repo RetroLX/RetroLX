@@ -105,9 +105,10 @@ do
 
     # copy the version file needed for version check
     cp "${TARGET_DIR}/usr/share/retrolx/retrolx.version" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
+
     # copy the board files
-    cp "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.board" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
-    cp "${RETROLX_PATHSUBTARGET}/board.png" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
+    cp "${BOOTNAMEDDIR}/boot/retrolx.board" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
+    cp "${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/${RETROLX_PATHSUBTARGET}/board.png" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
 done
 
 #### md5 #######################
