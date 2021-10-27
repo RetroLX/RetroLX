@@ -1,8 +1,6 @@
 #!/bin/bash
 
 ### CONFIGURATION ###
-KODI_LANGUAGES="de_de es_es eu_es fr_fr it_it pt_br sv_se tr_tr zh_cn"
-
 
 ### GROUPS ###
 PACKAGES_RETROARCH="retroarch
@@ -153,10 +151,6 @@ PACKAGES_GROUPS="RETROARCH LIBRETRO MUPEN CONTROLLERS EMULATORS WINE"
 
 ## SPECIFICS ##
 
-# KODI
-kodi-superrepo-repositories_GETNET() { apachelistlast_GETNET "http://srp.nu/krypton/repositories/superrepo?C=M;O=A" | sed -e s+'superrepo.kodi.krypton.repositories-\(.*\).zip'+'\1'+; }
-kodi-resource-language_GETNET()      { apachelistlast_GETNET "http://mirrors.kodi.tv/addons/krypton/resource.language.${1}?C=M;O=A" | sed -e s+"resource.language.${1}-\(.*\).zip"+'\1'+; }
-
 # RETROARCH
 retroarch_GETNET()                   { githublasttag_GETNET "libretro/RetroArch"; }
 
@@ -213,21 +207,6 @@ apachelistlast_GETNET() {
 
 
 ## GENERATORS ##
-
-kodi_eval() {
-    test "$1" != ALL -a "$1" != "KODI" -a "$1" != "" && return 0
-
-    for lng in ${KODI_LANGUAGES}
-    do
-	eval "kodi-resource-language-${lng}_GETCUR() {
-	base_GETCUR \"\${1}\"
-    }"
-
-	eval "kodi-resource-language-${lng}_GETNET() {
-	kodi-resource-language_GETNET \"${lng}\"
-    }"
-    done
-}
 
 isFunction() { [[ "$(declare -Ff "$1")" ]]; }
 
@@ -317,7 +296,6 @@ setPGroups() {
 
 run() {
     setPGroups "$1"
-    kodi_eval "$1"
     github_eval
     current_base_eval
 
@@ -383,7 +361,6 @@ run_update() {
     fi
 
     setPGroups ""
-    kodi_eval ""
     github_eval
     current_base_eval
 
