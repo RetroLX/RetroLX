@@ -540,7 +540,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "raspberrypi/rpi1"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI1
 	default "raspberrypi/rpi2"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI2
 	default "raspberrypi/rpi3"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI3
-	default "raspberrypi/rpi4"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI4
+	default "raspberrypi/rpi4/rpi4 raspberrypi/rpi4/g4a"                                                                                     if BR2_PACKAGE_RETROLX_TARGET_RPI4
 	default "rockchip/rk3326/odroidgo rockchip/rk3326/gameforce rockchip/rk3326/rg351"                                                       if BR2_PACKAGE_RETROLX_TARGET_RK3326
 	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"                                                                               if BR2_PACKAGE_RETROLX_TARGET_RK3288
 	default "rockchip/rk3328/rock64 rockchip/rk3328/roc-cc"				                                                         if BR2_PACKAGE_RETROLX_TARGET_RK3328
