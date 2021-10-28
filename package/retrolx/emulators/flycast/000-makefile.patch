@@ -79,7 +79,7 @@
 +    CFLAGS += -fno-builtin-sqrtf -fpermissive -DGLES3 -DEGL_NO_X11 -fsingle-precision-constant
 +    CXXFLAGS += -fexceptions
 +    undefine USE_X11
-+    undefine USE_VULKAN
++    #undefine USE_VULKAN
 +
 +# ODROID n2 aarch64
 +else ifneq (,$(findstring odroidn2,$(platform)))
@@ -94,7 +94,7 @@
 +    CFLAGS += -fno-builtin-sqrtf -fpermissive -DGLES3 -DEGL_NO_X11 -fsingle-precision-constant
 +    CXXFLAGS += -fexceptions
 +    undefine USE_X11
-+    undefine USE_VULKAN
++    #undefine USE_VULKAN
 +
  # ODROIDs
  else ifneq (,$(findstring odroid,$(platform)))

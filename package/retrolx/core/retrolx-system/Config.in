@@ -47,6 +47,7 @@ config BR2_PACKAGE_RETROLX_VULKAN
 	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER_INTEL       if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER_AMD         if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER_BROADCOM    if BR2_PACKAGE_RETROLX_TARGET_RPI4
+	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER_PANFROST    if BR2_PACKAGE_RETROLX_PANFROST_MESA3D
 
 	help
 		Vulkan support for RetroLX
@@ -454,8 +455,9 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 
 	# Vulkan
 	select BR2_PACKAGE_RETROLX_VULKAN      if  BR2_PACKAGE_RETROLX_IS_X86_ARCH     || \
-                                                BR2_PACKAGE_RETROLX_TARGET_RPI4
-
+                                               BR2_PACKAGE_RETROLX_TARGET_RPI4 || \
+                                               BR2_PACKAGE_RETROLX_PANFROST_MESA3D
+                                               
 	# s905 tv-box firmwares
 	select BR2_PACKAGE_FIRMWARE_WLAN_AML   if BR2_PACKAGE_RETROLX_TARGET_S905     || \
 						  BR2_PACKAGE_RETROLX_TARGET_S905GEN2 || \
@@ -538,7 +540,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "raspberrypi/rpi1"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI1
 	default "raspberrypi/rpi2"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI2
 	default "raspberrypi/rpi3"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI3
-	default "raspberrypi/rpi4"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI4
+	default "raspberrypi/rpi4/rpi4 raspberrypi/rpi4/g4a"                                                                                     if BR2_PACKAGE_RETROLX_TARGET_RPI4
 	default "rockchip/rk3326/odroidgo rockchip/rk3326/gameforce rockchip/rk3326/rg351"                                                       if BR2_PACKAGE_RETROLX_TARGET_RK3326
 	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"                                                                               if BR2_PACKAGE_RETROLX_TARGET_RK3288
 	default "rockchip/rk3328/rock64 rockchip/rk3328/roc-cc"				                                                         if BR2_PACKAGE_RETROLX_TARGET_RK3328
