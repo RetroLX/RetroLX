@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CEMU_HOOK_VERSION = 1159_0573
+CEMU_HOOK_VERSION = 1251c_0575
 CEMU_HOOK_SOURCE = cemuhook_$(CEMU_HOOK_VERSION).zip
 CEMU_HOOK_SITE = https://files.sshnuke.net
 
@@ -13,10 +13,10 @@ define CEMU_HOOK_EXTRACT_CMDS
 endef
 
 define CEMU_HOOK_INSTALL_TARGET_CMDS
-	mkdir -p $(TARGET_DIR)/usr/cemu/
-	cp $(@D)/keystone.dll $(TARGET_DIR)/usr/cemu/
-	cp $(@D)/dbghelp.dll  $(TARGET_DIR)/usr/cemu/
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/cemu/cemu-hook/cemuhook.ini $(TARGET_DIR)/usr/cemu/
+	mkdir -p $(CEMU_PKG_DIR)$(CEMU_PKG_INSTALL_DIR)
+	cp $(@D)/keystone.dll $(CEMU_PKG_DIR)$(CEMU_PKG_INSTALL_DIR)
+	cp $(@D)/cemuhook.dll $(CEMU_PKG_DIR)$(CEMU_PKG_INSTALL_DIR)
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/cemu/cemu-hook/cemuhook.ini $(CEMU_PKG_DIR)$(CEMU_PKG_INSTALL_DIR)
 endef
 
 $(eval $(generic-package))

@@ -1,0 +1,6 @@
+pkgname = cemu
+pkgver = 1.25.6-1
+pkgdesc = Nintendo Wii U emulator
+group = emulator
+packager = https://retrolx.org 
+url = https://cemu.info/

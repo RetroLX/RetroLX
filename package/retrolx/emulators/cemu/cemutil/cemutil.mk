@@ -13,8 +13,8 @@ define CEMUTIL_EXTRACT_CMDS
 endef
 
 define CEMUTIL_INSTALL_TARGET_CMDS
-	mkdir -p $(TARGET_DIR)/usr/cemu/
-	cp -prn $(@D)/sharedFonts $(TARGET_DIR)/usr/cemu/
+	mkdir -p $(CEMU_PKG_DIR)$(CEMU_PKG_INSTALL_DIR)
+	cp -prn $(@D)/sharedFonts $(CEMU_PKG_DIR)$(CEMU_PKG_INSTALL_DIR)
 endef
 
 $(eval $(generic-package))
