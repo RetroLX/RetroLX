@@ -52,7 +52,7 @@ define RPCS3_MAKEPKG
 	$(INSTALL) -D -m 0644 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/rpcs3/evmapy.keys $(TARGET_DIR)/usr/share/evmapy/ps3.keys
 	
 	# Build Pacman package
-	cd $(SOLARUS_ENGINE_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	cd $(RPCS3_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
 	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/rpcs3/PKGINFO \
 	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
 	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
