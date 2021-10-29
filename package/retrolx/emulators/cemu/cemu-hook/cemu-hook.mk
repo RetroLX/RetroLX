@@ -13,10 +13,10 @@ define CEMU_HOOK_EXTRACT_CMDS
 endef
 
 define CEMU_HOOK_INSTALL_TARGET_CMDS
-	mkdir -p $(TARGET_DIR)/usr/cemu/
-	cp $(@D)/keystone.dll $(TARGET_DIR)/usr/cemu/
-	cp $(@D)/cemuhook.dll  $(TARGET_DIR)/usr/cemu/
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/cemu/cemu-hook/cemuhook.ini $(TARGET_DIR)/usr/cemu/
+	mkdir -p $(CEMU_PKG_DIR)$(CEMU_PKG_INSTALL_DIR)
+	cp $(@D)/keystone.dll $(CEMU_PKG_DIR)$(CEMU_PKG_INSTALL_DIR)
+	cp $(@D)/cemuhook.dll $(CEMU_PKG_DIR)$(CEMU_PKG_INSTALL_DIR)
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/cemu/cemu-hook/cemuhook.ini $(CEMU_PKG_DIR)$(CEMU_PKG_INSTALL_DIR)
 endef
 
 $(eval $(generic-package))
