@@ -1,0 +1,45 @@
+From a3bbf5137707abb548ff642826992b7069bef1de Mon Sep 17 00:00:00 2001
+From: Fabian Maurer <dark.shadow4@web.de>
+Date: Thu, 19 Aug 2021 00:53:56 +0200
+Subject: [PATCH] configure: Improve resolv lib test for glibc 2.34.
+
+res_init and res_query don't need lresolv on glibc 2.34.
+Added another test for ns_initparse and friends.
+
+Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=51635
+Signed-off-by: Fabian Maurer <dark.shadow4@web.de>
+Signed-off-by: Alexandre Julliard <julliard@winehq.org>
+---
+ configure    | 2 +-
+ configure.ac | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/configure b/configure
+index d7ae3b5f437..5608de31912 100755
+--- a/configure
++++ b/configure
+@@ -14156,7 +14156,7 @@ else
+ int
+ main ()
+ {
+-if (!(_res.options & RES_INIT)) res_init(); res_query("foo",ns_c_in,0,0,0)
++if (!(_res.options & RES_INIT)) res_init(); res_query("foo",ns_c_in,0,0,0); ns_initparse(0,0,0)
+   ;
+   return 0;
+ }
+diff --git a/configure.ac b/configure.ac
+index c58076ed1d6..53c1a36a169 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1498,7 +1498,7 @@ then
+          AC_LINK_IFELSE([AC_LANG_PROGRAM([[#ifdef HAVE_NETINET_IN_H
+ #include <netinet/in.h>
+ #endif
+-#include <resolv.h>]],[[if (!(_res.options & RES_INIT)) res_init(); res_query("foo",ns_c_in,0,0,0)]])],
++#include <resolv.h>]],[[if (!(_res.options & RES_INIT)) res_init(); res_query("foo",ns_c_in,0,0,0); ns_initparse(0,0,0)]])],
+            [ac_cv_have_resolv=${lib:-"none required"}],[ac_cv_have_resolv="not found"])
+          test "x$ac_cv_have_resolv" = "xnot found" || break
+        done
+-- 
+2.20.1
+
