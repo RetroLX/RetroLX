@@ -26,9 +26,9 @@ done
 
 # Build it
 ARCH=aarch64 CROSS_COMPILE="${HOST_DIR}/bin/aarch64-buildroot-linux-gnu-" ./make.sh odroidgoa
-mkdir -p ../../uboot-odroidgo
+mkdir -p ../../uboot-odroidgo2
 
 # Copy to appropriate place
-cp sd_fuse/idbloader.img ../../uboot-odroidgo/
-cp sd_fuse/uboot.img ../../uboot-odroidgo/
-cp sd_fuse/trust.img ../../uboot-odroidgo/
+cp sd_fuse/idbloader.img ../../uboot-odroidgo2/
+cp sd_fuse/uboot.img ../../uboot-odroidgo2/
+cp sd_fuse/trust.img ../../uboot-odroidgo2/
