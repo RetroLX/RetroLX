@@ -1,5 +1,5 @@
 pkgname = lr-easyrpg
-pkgver = 0.6.2.3-1
+pkgver = 0.7.0-1
 pkgdesc = EasyRPG (RPG Maker) libretro core
 group = emulator
 packager = https://retrolx.org 

@@ -1,0 +1,6 @@
+pkgname = easyrpg-player
+pkgver = 0.7.0-1
+pkgdesc = EasyRPG (RPG Maker) Player
+group = emulator
+packager = https://retrolx.org 
+url = https://easyrpg.org
