@@ -1,5 +1,5 @@
 pkgname = retroarch
-pkgver = 1.9.12-2
+pkgver = 1.9.12-3
 pkgdesc = RetroArch
 group = frontend
 packager = https://retrolx.org 
