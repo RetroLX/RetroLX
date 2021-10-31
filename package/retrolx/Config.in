@@ -54,7 +54,7 @@ config BR2_PACKAGE_RETROLX_FLASH_SYSTEMS
 	bool "RetroLX Flash support"
 
 	# Flash Player Emulator
-	select BR2_PACKAGE_RUFFLE           if BR2_PACKAGE_RETROLX_TARGET_X86_64 # depends on X11
+	#select BR2_PACKAGE_RUFFLE           if BR2_PACKAGE_RETROLX_TARGET_X86_64 # depends on X11
 	select BR2_PACKAGE_LIGHTSPARK       if BR2_x86_64 || BR2_aarch64
 
 #### Moonlight / Gamestream ####
@@ -385,7 +385,7 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_PLAY		if BR2_i686 || BR2_x86_64 || BR2_PACKAGE_RETROLX_TARGET_RPI4 || BR2_PACKAGE_RETROLX_PANFROST_MESA3D
 
 	# Sony PS3
-	select BR2_PACKAGE_RPCS3                        if BR2_x86_64
+	#select BR2_PACKAGE_RPCS3                        if BR2_x86_64
 
 	# Wii U (requires Wine layer)
 	select BR2_PACKAGE_CEMU                         if  BR2_x86_64 && BR2_PACKAGE_RETROLX_WINE_SYSTEMS
