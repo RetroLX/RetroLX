@@ -8,7 +8,7 @@ MANGOHUD_VERSION = 87f82215e83eeb805ffcb2c62b521d6f444e8966
 MANGOHUD_SITE = https://github.com/flightlessmango/MangoHud.git
 MANGOHUD_SITE_METHOD = git
 
-MANGOHUD_DEPENDENCIES = libdrm xserver_xorg-server vulkan-headers
+MANGOHUD_DEPENDENCIES = libdrm xserver_xorg-server vulkan-headers glslang
 
 MANGOHUD_CONF_OPTS = -Duse_system_vulkan=enabled -Dwith_xnvctrl=disabled -Dvkdatadir=$(STAGING_DIR)/usr/share
 

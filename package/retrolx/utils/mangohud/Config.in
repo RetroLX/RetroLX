@@ -3,6 +3,8 @@ config BR2_PACKAGE_MANGOHUD
 	depends on BR2_PACKAGE_LIBDRM
         depends on BR2_PACKAGE_XORG7
 	depends on BR2_PACKAGE_VULKAN_HEADERS
+	depends on BR2_PACKAGE_GLSLANG
+	
 	help
 	  Command line tool for injecting HUD / overlay in GL/Vulkan apps
 

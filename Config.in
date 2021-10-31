@@ -259,7 +259,6 @@ menu "Emulators"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/tsugaru/Config.in"
 
   menu "Wine"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/utils/evsieve/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/utils/retrolx-wine/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/wine/dxvk/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/wine/faudio/Config.in"
@@ -284,6 +283,8 @@ menu "Looks"
 endmenu
 
 menu "Utils"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/utils/mangohud/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/utils/evsieve/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/raspi2png/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/gpicase/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/rpigpioswitch/Config.in"
@@ -301,7 +302,6 @@ menu "Utils"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/switchres/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/flatpak/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/pm-utils/Config.in"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/utils/mangohud/Config.in"
 endmenu
 
 menu "Libraries"
