@@ -1,5 +1,5 @@
 pkgname = lr-yabasanshiro
-pkgver = 20210204-1
+pkgver = 20211101-1
 pkgdesc = Yabasanshiro (Sega Saturn) libretro core
 group = emulator
 packager = https://retrolx.org 
