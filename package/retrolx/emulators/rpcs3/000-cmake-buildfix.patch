@@ -1,0 +1,11 @@
+--- a/3rdparty/CMakeLists.txt	2021-11-01 04:05:52.000000000 +0100
++++ b/3rdparty/CMakeLists.txt	2021-11-01 11:28:58.384710050 +0100
+@@ -239,7 +239,7 @@
+ 	endif()
+ endif()
+ 
+-set_property(TARGET ${FAUDIO_TARGET} PROPERTY FOLDER "3rdparty/")
++#set_property(TARGET ${FAUDIO_TARGET} PROPERTY FOLDER "3rdparty/")
+ 
+ 
+ # FFMPEG

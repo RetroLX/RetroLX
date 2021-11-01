@@ -61,6 +61,11 @@ BR2_PACKAGE_RETROLX_PANFROST_MESA3D=y
 # Firmware 
 # TODO meson firmware
 
+# Bootloader
+# needed ? BR2_TARGET_UBOOT_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/s912/uboot-defconfig-fragment.config"
+#deprecated BR2_TARGET_UBOOT_BOOT_SCRIPT=y
+#deprecated BR2_TARGET_UBOOT_BOOT_SCRIPT_SOURCE="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/s912/boot/boot.cmd"
+
 # Required tools to create the SD image
 BR2_PACKAGE_HOST_DOSFSTOOLS=y
 BR2_PACKAGE_HOST_GENIMAGE=y
