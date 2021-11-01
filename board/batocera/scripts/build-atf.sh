@@ -26,5 +26,5 @@ CROSS_COMPILE="${HOST_DIR}/bin/aarch64-buildroot-linux-gnu-" make PLAT="${PLATFO
 
 # Copy to appropriate place
 mkdir -p "${BINARIES_DIR}/atf/${PLATFORM}"
-cp "build/${PLATFORM}/bl31.bin" "${BINARIES_DIR]/atf/${PLATFORM}/bl31.bin"
-cp "build/${PLATFORM}/bl31/bl31.elf" "${BINARIES_DIR]/atf/${PLATFORM}/bl31.elf"
+cp "build/${PLATFORM}/bl31.bin" "${BINARIES_DIR}/atf/${PLATFORM}/bl31.bin"
+cp "build/${PLATFORM}/bl31/bl31.elf" "${BINARIES_DIR}/atf/${PLATFORM}/bl31.elf"

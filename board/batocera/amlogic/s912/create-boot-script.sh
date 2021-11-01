@@ -17,6 +17,9 @@ BATOCERA_BINARIES_DIR=$6
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/packages" || exit 1
 cp -r "${BUILD_DIR}"/repo/* "${BATOCERA_BINARIES_DIR}/boot/packages/" || exit 1
 
+# ATF
+"${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/scripts/build-atf.sh" "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" gxl
+
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/boot"     || exit 1
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/extlinux" || exit 1
 

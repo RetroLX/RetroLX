@@ -17,6 +17,10 @@ BATOCERA_BINARIES_DIR=$6
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/packages" || exit 1
 cp -r "${BUILD_DIR}"/repo/* "${BATOCERA_BINARIES_DIR}/boot/packages/" || exit 1
 
+# ATF not available for this platform
+#"${BUILD_DIR}/board/batocera/scripts/build-atf.sh" "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" sm1
+
+# U-Boot
 mkdir -p "${BATOCERA_BINARIES_DIR}/build-uboot-khadas-vim3l"     || exit 1
 cp "${BOARD_DIR}/build-uboot.sh"          "${BATOCERA_BINARIES_DIR}/build-uboot-khadas-vim3l/" || exit 1
 cd "${BATOCERA_BINARIES_DIR}/build-uboot-khadas-vim3l/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
