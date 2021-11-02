@@ -27,9 +27,9 @@ cp -r "${BUILD_DIR}"/repo/* "${RETROLX_BINARIES_DIR}/boot/packages/" || exit 1
 #cd "${RETROLX_BINARIES_DIR}/crust/" && ./build-crust.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
 
 # Build U-Boot
-#mkdir -p "${RETROLX_BINARIES_DIR}/uboot" || exit 1
-#cp "${BOARD_DIR}/build-uboot.sh" "${RETROLX_BINARIES_DIR}/uboot/" || exit 1
-#cd "${RETROLX_BINARIES_DIR}/uboot/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
+mkdir -p "${RETROLX_BINARIES_DIR}/uboot" || exit 1
+cp "${BOARD_DIR}/build-uboot.sh" "${RETROLX_BINARIES_DIR}/uboot/" || exit 1
+cd "${RETROLX_BINARIES_DIR}/uboot/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
 
 # Create boot directories, copy boot files
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"     || exit 1

@@ -20,14 +20,20 @@ cp -r "${BUILD_DIR}"/repo/* "${RETROLX_BINARIES_DIR}/boot/packages/" || exit 1
 # ATF
 "${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/scripts/build-atf.sh" "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" sun50i_a64
 
-# U-Boot
+# Build Crust SCP firmware
+#mkdir -p "${RETROLX_BINARIES_DIR}/crust" || exit 1
+#cp "${BOARD_DIR}/build-crust.sh" "${RETROLX_BINARIES_DIR}/crust/" || exit 1
+#cp "${BOARD_DIR}/crust/orangepi_one_plus_defconfig" "${RETROLX_BINARIES_DIR}/crust/" || exit 1
+#cd "${RETROLX_BINARIES_DIR}/crust/" && ./build-crust.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
+
+# Build U-Boot
 mkdir -p "${RETROLX_BINARIES_DIR}/uboot"     || exit 1
 cp "${BOARD_DIR}/build-uboot.sh"          "${RETROLX_BINARIES_DIR}/uboot/" || exit 1
-cd "${RETROLX_BINARIES_DIR}/uboot/" && ./build-uboot.sh "${HOST_DIR}" "${BINARIES_DIR}" || exit 1
+cd "${RETROLX_BINARIES_DIR}/uboot/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
 
+# Create boot directories, copy boot files
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"     || exit 1
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
-
 cp "${BINARIES_DIR}/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
 cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/initrd.gz"       || exit 1
 cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/batocera.update" || exit 1
