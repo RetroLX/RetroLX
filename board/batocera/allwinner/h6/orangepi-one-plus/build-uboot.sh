@@ -16,6 +16,7 @@ export UBOOT_VERSION="v2021.01"
 
 # Clone U-Boot specified version
 wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.01.tar.bz2"
+tar xf u-boot-2021.01.tar.bz2
 cd u-boot-2021.01
 
 # Apply patches
