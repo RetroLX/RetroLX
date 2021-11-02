@@ -5,7 +5,7 @@ BOARD_DIR=$2
 IMAGES_DIR=$3
 
 # ARM Trusted Firmware BL31
-export BL31="${IMAGES_DIR}/bl31.bin"
+export BL31="${IMAGES_DIR}/atf/gxbb/bl31.bin"
 
 # Download U-Boot mainline
 wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.10.tar.bz2"

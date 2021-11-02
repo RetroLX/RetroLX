@@ -5,7 +5,7 @@ BOARD_DIR=$2
 IMAGES_DIR=$3
 
 # ARM Trusted Firmware BL31
-export BL31="${IMAGES_DIR}/bl31.elf"
+export BL31="${IMAGES_DIR}/atf/rk3399/bl31.elf"
 
 # Clone Rockchip U-Boot
 git clone https://github.com/rockchip-linux/u-boot/ -b next-dev

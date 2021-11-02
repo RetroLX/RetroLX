@@ -5,7 +5,7 @@ BOARD_DIR=$2
 IMAGES_DIR=$3
 
 # ARM Trusted Firmware BL31
-export BL31="${IMAGES_DIR}/bl31.elf"
+export BL31="${IMAGES_DIR}/atf/rk3328/bl31.elf"
 
 # Clone U-Boot mainline
 wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.10.tar.bz2"
