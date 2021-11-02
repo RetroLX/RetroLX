@@ -1,0 +1,5 @@
+config BR2_PACKAGE_SPIRV_TOOLS
+	bool "spirv-tools"
+	help
+	  SPIR-V Tools
+	  https://github.com/KhronosGroup/SPIRV-Tools
