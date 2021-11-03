@@ -1,5 +1,5 @@
 pkgname = lr-flycast
-pkgver = 20211004-1
+pkgver = 20211103-1
 pkgdesc = Flycast libretro core
 group = emulator
 packager = https://retrolx.org 
