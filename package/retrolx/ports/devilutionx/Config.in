@@ -2,9 +2,9 @@ config BR2_PACKAGE_DEVILUTIONX
 	bool "DevilutionX"
 	depends on BR2_PACKAGE_SDL2
 	depends on BR2_PACKAGE_SDL2_IMAGE
-	depends on BR2_PACKAGE_SDL2_TTF
-	depends on BR2_PACKAGE_SDL2_MIXER
+	depends on BR2_PACKAGE_FMT
 	depends on BR2_PACKAGE_LIBSODIUM
+	depends on BR2_PACKAGE_HOST_GETTEXT
 	help
 	  Diablo 1.
 

@@ -39,6 +39,7 @@ RUN dpkg --add-architecture i386 && \
 		g++-multilib \
 		xa65 \
 		dos2unix \
+		smpq \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
