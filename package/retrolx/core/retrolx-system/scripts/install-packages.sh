@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# UI Output with dialog, default colorset
+function dialogoutput()
+{
+    local percent="$1"
+    local footer="Do not switch off your device, it will reboot once done !"
+    dialog --hline "$footer" --backtitle "RetroLX" --title " Installing $2 " --mixedgauge "Please wait while installing $2 ..." 10 50 "$percent" #&> /dev/tty1
+}
+
 # Preparing packages array
 packages=(
 retroarch
@@ -21,5 +29,11 @@ sdlpop
 )
 
 /usr/bin/retrolx-pacman list
-/usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Sy ${packages[*]} --overwrite 'userdata/*'
-/usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Scc
+for i in "${packages[@]}"
+do
+    dialogoutput 0 "$i"
+    /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Sy "$i" --overwrite 'userdata/*'
+    dialogoutput 50 "$i"
+    /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Scc
+    dialogoutput 100 "$i"
+done

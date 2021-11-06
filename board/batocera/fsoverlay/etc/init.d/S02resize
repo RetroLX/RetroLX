@@ -109,10 +109,10 @@ else
     fi
 fi
 
-#Cleanup, restore screen, set progress of last item to 100%
+#Cleanup, restore screen, set progress of last item to 100%, reboot
 dialogoutput 100
 clear > /dev/tty1
 sync
-reboot
+shutdown -r now
 sleep 120
 exit 0

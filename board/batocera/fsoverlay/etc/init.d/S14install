@@ -11,65 +11,21 @@ then
     exit 0
 fi
 
-# UI Output with dialog, default colorset
-function dialogoutput()
-{
-    local percent="$1"
-    local text="Do not switch off your device, it will reboot once done !"
-
-    dialog --backtitle "RetroLX" --title " Installing base packages " \
-           --mixedgauge "$text" 18 50 "$percent" "${arr[@]}" &>/dev/tty1
-}
-
-# Executing parameters and watch background pid
-# Changes text messages parsed to dialog --mixedgauge
-function textoutput()
-{
-    local cmd="$3"
-    local percent="$2"
-    local pid ret
-    $cmd >> /tmp/pacman.log 2>&1 &
-    ret=$?
-    pid=$!
-    arr[$1]=7 #msg: In Progress
-    dialogoutput "$percent"
-    wait $pid
-    arr[$1]=$ret #msg: Depends from return value
-}
-
 # only when install is wanted
 if grep -qE '^[ ]*install[ ]*=[ ]*true[ ]*$' "${BOOTCONF}"
 then
-
-    # Preparing text arrays
-    arr=(
-	"Preparing install..................." "Pending"
-	"Starting install...................." "Pending"
-	"Installing base packages............" "Pending"
-	"Installing base content............." "Pending"
-	"Syncing filesystem.................." "Pending"
-    )
-
-    # --- BEGIN INSTALL ---
-    for i in 1 3 5 7 9; do
-	case $i in
-	    1) textoutput $i 01 "sleep 0.1";;
-	    3) textoutput $i 10 "sync";;
-	    5) textoutput $i 30 "/usr/share/retrolx/scripts/install-packages.sh";;
-	    7) textoutput $i 60 "/usr/share/retrolx/scripts/install-content.sh";;
-	    9) textoutput $i 90 "sync";;
-	esac
-    done
-    # --- END INSTALL ---
+    sync
+    /usr/share/retrolx/scripts/install-packages.sh
+    sync
+    /usr/share/retrolx/scripts/install-content.sh
+    sync
 
     # Remove the trigger
     mount -o remount,rw /boot && sed -i -e s+'^[ ]*install'+'#install'+ "${BOOTCONF}" && mount -o remount,ro /boot
 fi
 
-#Cleanup, restore screen, set progress of last item to 100%
-dialogoutput 100
+#Cleanup, restore screen, reboot
 clear > /dev/tty1
-sync
-reboot
+shutdown -r now
 sleep 120
 exit 0
