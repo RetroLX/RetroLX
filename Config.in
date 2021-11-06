@@ -48,8 +48,8 @@ menu "System"
   menu "Boot"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-initramfs/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-syslinux-efi/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/boot/uboot-odroid-xu4/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/boot/uboot-s905-tvbox/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/uboot-odroid-xu4/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/uboot-s905-tvbox/Config.in"
   endmenu
 
   menu "Fonts"
@@ -280,7 +280,7 @@ menu "Emulators"
 endmenu
 
 menu "Looks"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/batocera/looks/adwaita-icon-theme-light/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/looks/adwaita-icon-theme-light/Config.in"
 endmenu
 
 menu "Utils"
