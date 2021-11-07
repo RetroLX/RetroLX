@@ -5,7 +5,7 @@ function dialogoutput()
 {
     local percent="$1"
     local footer="Do not switch off your device, it will reboot once done !"
-    dialog --hline "$footer" --backtitle "RetroLX" --title " Installing $2 " --mixedgauge "Please wait while installing $2 ..." 10 50 "$percent" #&> /dev/tty1
+    dialog --hline "$footer" --backtitle "RetroLX" --title " Installing $2 " --mixedgauge "Please wait while installing $2 ..." 10 50 "$percent" &> /dev/tty1
 }
 
 # Preparing packages array
