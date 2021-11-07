@@ -160,6 +160,7 @@ config BR2_PACKAGE_RETROLX_COMMON
 	select BR2_PACKAGE_LIBCURL
 	select BR2_PACKAGE_LIBENET
 	select BR2_PACKAGE_LIBEVDEV
+	select BR2_PACKAGE_LIBGLIB2
 	select BR2_PACKAGE_LIBOPENSSL
 	select BR2_PACKAGE_LIBPCAP
 	select BR2_PACKAGE_LIBPNG
@@ -326,7 +327,9 @@ config BR2_PACKAGE_RETROLX_NETWORKING
 	select BR2_PACKAGE_DROPBEAR                             # ssh server
 	select BR2_PACKAGE_NTP
 	select BR2_PACKAGE_RSYNC
-	select BR2_PACKAGE_SAMBA4                               # samba
+	select BR2_PACKAGE_LIBNL                                # needed for ksmbd tools
+	select BR2_PACKAGE_KSMBD_TOOLS                          # SMB linux kernel server tools
+	#select BR2_PACKAGE_SAMBA4                               # samba
 	select BR2_PACKAGE_LIBOPENSSL_BIN                       # required to encode the wifi password
 	select BR2_PACKAGE_WGET                                 # download tools
 
@@ -346,8 +349,8 @@ config BR2_PACKAGE_RETROLX_FS_TOOLS
 	select BR2_PACKAGE_E2FSPROGS                            # ext4
 	select BR2_PACKAGE_MMC_UTILS                            # mmc utils
 	select BR2_PACKAGE_MTD                                  # spi flash utils
-	select BR2_PACKAGE_NTFS_3G                              # ntfs
-	select BR2_PACKAGE_NTFS_3G_NTFSPROGS                    # ntfs
+	#move to ntfs3 5.15 select BR2_PACKAGE_NTFS_3G                              # ntfs
+	#move to ntfs3 5.15 select BR2_PACKAGE_NTFS_3G_NTFSPROGS                    # ntfs
 	select BR2_PACKAGE_BTRFS_PROGS                          # btrfs
 	select BR2_PACKAGE_PARTED                               # partition management
 	select BR2_PACKAGE_GPTFDISK                             # fs resize
