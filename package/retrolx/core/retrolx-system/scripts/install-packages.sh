@@ -4,7 +4,7 @@
 function dialogoutput()
 {
     local percent="$1"
-    local footer="Do not switch off your device, it will reboot once done !"
+    local footer="Do not switch off your device !"
     dialog --hline "$footer" --backtitle "RetroLX" --title " Installing $2 " --mixedgauge "Please wait while installing $2 ..." 10 50 "$percent" &> /dev/tty1
 }
 
@@ -28,12 +28,15 @@ devilutionx
 sdlpop
 )
 
+length="${#packages[@]}"
+percent=$((100 / $length))
+progress=0;
+
 /usr/bin/retrolx-pacman list
 for i in "${packages[@]}"
 do
-    dialogoutput 0 "$i"
     /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Sy "$i" --overwrite 'userdata/*'
-    dialogoutput 50 "$i"
+    dialogoutput $progress "$i"
     /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Scc
-    dialogoutput 100 "$i"
+    progress=$(($progress+$percent))
 done

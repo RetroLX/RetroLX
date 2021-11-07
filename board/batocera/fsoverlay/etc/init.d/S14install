@@ -24,8 +24,6 @@ then
     mount -o remount,rw /boot && sed -i -e s+'^[ ]*install'+'#install'+ "${BOOTCONF}" && mount -o remount,ro /boot
 fi
 
-#Cleanup, restore screen, reboot
+#Cleanup, restore screen
 clear > /dev/tty1
-shutdown -r now
-sleep 120
 exit 0
