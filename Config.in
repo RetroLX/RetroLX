@@ -307,6 +307,7 @@ endmenu
 
 menu "Libraries"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/ecm/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/ksmbd-tools/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/libcapsimage/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/libxmp/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/libfreeaptx/Config.in"
