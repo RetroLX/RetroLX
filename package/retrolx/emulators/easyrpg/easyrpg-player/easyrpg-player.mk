@@ -15,7 +15,7 @@ EASYRPG_PLAYER_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/easyr
 EASYRPG_PLAYER_CONF_OPTS += -DCMAKE_BUILD_TYPE=Release
 EASYRPG_PLAYER_CONF_OPTS += -DPLAYER_BUILD_EXECUTABLE=ON
 
-EASYRPG_PLAYER_CONF_ENV += LDFLAGS=-lpthread
+EASYRPG_PLAYER_CONF_ENV += LDFLAGS=-lpthread SYSROOT="$(STAGING_DIR)"
 
 # Should be set when the package cannot be built inside the source tree but needs a separate build directory.
 EASYRPG_PLAYER_SUPPORTS_IN_SOURCE_BUILD = NO

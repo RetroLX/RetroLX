@@ -9,14 +9,14 @@ SCUMMVM_SITE = $(call github,scummvm,scummvm,$(SCUMMVM_VERSION))
 SCUMMVM_LICENSE = GPLv2
 SCUMMVM_DEPENDENCIES = sdl2 zlib jpeg libmpeg2 libogg libvorbis flac libmad libpng libtheora faad2 freetype
 
-SCUMMVM_ADDITIONAL_FLAGS= -I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/usr/include/interface/vcos/pthreads -I$(STAGING_DIR)/usr/include/interface/vmcs_host/linux -lpthread -lm -L$(STAGING_DIR)/usr/lib -lGLESv2 -lEGL
+SCUMMVM_ADDITIONAL_FLAGS= -I$(STAGING_DIR)/usr/include -lpthread -lm -L$(STAGING_DIR)/usr/lib -lGLESv2 -lEGL
 
 SCUMMVM_PKG_DIR = $(TARGET_DIR)/opt/retrolx/scummvm
 SCUMMVM_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/scummvm
 SCUMMVM_PREFIX_DIR = /opt/retrolx/scummvm$(SCUMMVM_PKG_INSTALL_DIR)
 
 ifeq ($(BR2_PACKAGE_RPI_USERLAND),y)
-	SCUMMVM_ADDITIONAL_FLAGS += -lbcm_host -lvchostif
+	SCUMMVM_ADDITIONAL_FLAGS += -I$(STAGING_DIR)/usr/include/interface/vcos/pthreads -I$(STAGING_DIR)/usr/include/interface/vmcs_host/linux -lbcm_host -lvchostif
 	SCUMMVM_CONF_OPTS += --host=raspberrypi
 endif
 
