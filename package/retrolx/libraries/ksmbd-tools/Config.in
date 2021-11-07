@@ -1,0 +1,8 @@
+config BR2_PACKAGE_KSMBD_TOOLS
+	bool "ksmbd-tools"
+	depends on BR2_PACKAGE_LIBGLIB2
+	depends on BR2_PACKAGE_LIBNL
+	help
+	  Tools to use KSMBD Linux kernel SMB server
+	
+	  https://github.com/namjaejeon/ksmbd-tools
