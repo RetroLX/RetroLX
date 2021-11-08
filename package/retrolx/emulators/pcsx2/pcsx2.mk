@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PCSX2_VERSION = 286b6448be332458c79f299736bb196ccc653659
+PCSX2_VERSION = v1.7.2015
 PCSX2_SITE = https://github.com/pcsx2/pcsx2.git
 PCSX2_LICENSE = GPLv2 GPLv3 LGPLv2.1 LGPLv3
 PCSX2_DEPENDENCIES = xserver_xorg-server alsa-lib freetype zlib libpng wxwidgets libaio portaudio libsoundtouch sdl2 libpcap yaml-cpp libgtk3 libsamplerate fmt
@@ -33,9 +33,12 @@ PCSX2_CONF_OPTS += -DUSE_VTUNE=OFF
 
 define PCSX2_INSTALL_TARGET_CMDS
 	$(INSTALL) -m 0755 -D $(@D)/pcsx2/PCSX2 $(TARGET_DIR)/usr/PCSX/bin/PCSX2
-	cp -pr $(@D)/bin/Langs      $(TARGET_DIR)/usr/PCSX/bin
-        mkdir -p $(TARGET_DIR)/usr/PCSX/bin/plugins
-	cp -pr $(@D)/plugins/*/*.so $(TARGET_DIR)/usr/PCSX/bin/plugins
+	cp -pr $(@D)/bin/Langs      	$(TARGET_DIR)/usr/PCSX/bin
+	cp -p  $(@D)/bin/GameIndex.yaml $(TARGET_DIR)/usr/PCSX/bin
+	cp -p  $(@D)/bin/cheats_ws.zip 	$(TARGET_DIR)/usr/PCSX/bin
+	mkdir -p $(TARGET_DIR)/usr/PCSX/lib
+	cp -pr $(@D)/common/libcommon.so      $(TARGET_DIR)/usr/PCSX/lib
+	cp -pr $(@D)/3rdparty/glad/libglad.so $(TARGET_DIR)/usr/PCSX/lib
 endef
 
 define PCSX2_EVMAPY
