@@ -236,6 +236,12 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	# Heroes of Might and Magic 3 engine
 	select BR2_PACKAGE_VCMI		            # ALL
 
+	# Hydra Castle Labyrinth
+	select BR2_PACKAGE_HCL		            # ALL
+
+	# Hurrican
+	select BR2_PACKAGE_HURRICAN		    if BR2_PACKAGE_RETROLX_WAYLAND || BR2_PACKAGE_RETROLX_XORG
+
 	# Wolfeinstein 3D / Spear of Destiny ports
 	select BR2_PACKAGE_LIBRETRO_ECWOLF          # ALL
 	#select BR2_PACKAGE_ECWOLF                   if BR2_PACKAGE_RETROLX_TARGET_X86_64
