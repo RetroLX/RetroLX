@@ -221,6 +221,7 @@ menu "Emulators"
   endmenu
 
   menu "Ports"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/ports/abuse/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/ports/cannonball/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/ports/cgenius/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/ports/devilutionx/Config.in"

@@ -218,6 +218,9 @@ config BR2_PACKAGE_RETROLX_MSDOS_SYSTEMS
 config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	bool "RetroLX ports packages"
 
+	# Abuse
+	select BR2_PACKAGE_ABUSE		   # ALL
+
 	# Cannonball (OutRun)
 	select BR2_PACKAGE_CANNONBALL               # ALL
 
