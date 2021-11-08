@@ -225,6 +225,9 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	# Cannonball (OutRun)
 	select BR2_PACKAGE_CANNONBALL               # ALL
 
+	# CDogs
+	select BR2_PACKAGE_CDOGS		    # ALL
+
 	# Commander Genius (Commander Keen series)
 	select BR2_PACKAGE_CGENIUS		    # ALL
 
