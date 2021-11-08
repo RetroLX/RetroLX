@@ -2,24 +2,27 @@ config BR2_PACKAGE_YUZU
     bool "yuzu"
     depends on BR2_x86_64
     depends on BR2_PACKAGE_XORG7
-    select BR2_PACKAGE_QT5
-    select BR2_PACKAGE_QT5_VERSION_LATEST
-    select BR2_PACKAGE_QT5BASE
-    select BR2_PACKAGE_QT5BASE_OPENGL
-    select BR2_PACKAGE_QT5BASE_XCB
-    select BR2_PACKAGE_QT5MULTIMEDIA
-    select BR2_PACKAGE_QT5BASE_FONTCONFIG
-    select BR2_PACKAGE_QT5TOOLS
-    select BR2_PACKAGE_QT5TOOLS_LINGUIST_TOOLS
-    select BR2_PACKAGE_FMT
-    select BR2_PACKAGE_BOOST
-    select BR2_PACKAGE_BOOST_CONTEXT
-    select BR2_PACKAGE_FFMPEG  
-    select BR2_PACKAGE_ZSTD
+    depends on BR2_PACKAGE_JSON_FOR_MODERN_CPP
+    depends on BR2_PACKAGE_RETROLX_QT
+    #select BR2_PACKAGE_QT5_VERSION_LATEST
+    #select BR2_PACKAGE_QT5BASE
+    #select BR2_PACKAGE_QT5BASE_OPENGL
+    #select BR2_PACKAGE_QT5BASE_XCB
+    #select BR2_PACKAGE_QT5MULTIMEDIA
+    #select BR2_PACKAGE_QT5BASE_FONTCONFIG
+    #select BR2_PACKAGE_QT5TOOLS
+    #select BR2_PACKAGE_QT5TOOLS_LINGUIST_TOOLS
+    depends on BR2_PACKAGE_SDL2
+    depends on BR2_PACKAGE_FMT
+    depends on BR2_PACKAGE_BOOST
+    depends on BR2_PACKAGE_FFMPEG  
+    depends on BR2_PACKAGE_ZSTD
+    depends on BR2_PACKAGE_ZLIB
+    depends on BR2_PACKAGE_LIBZIP
+    select BR2_PACKAGE_LZ4
     select BR2_PACKAGE_CATCH2
+    depends on BR2_PACKAGE_OPUS
     help
       A Emulator Yuzu core for Nintendo Switch.
 
 	    https://yuzu-emu.org/
-
-
