@@ -272,7 +272,7 @@ config BR2_PACKAGE_RETROLX_COMPUTER_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_VICE        if !BR2_arm1176jzf_s && !BR2_cortex_a7 
 
 	# Apple II computers range
-	# Deprecated LinApple to be replaced....
+	select BR2_PACKAGE_GSPLUS		# ALL
 
 	# Commodore Amiga
 	select BR2_PACKAGE_FSUAE                if BR2_PACKAGE_RETROLX_IS_X86_ARCH
