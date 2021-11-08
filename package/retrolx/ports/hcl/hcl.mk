@@ -21,8 +21,6 @@ define HCL_INSTALL_TARGET_CMDS
 	chmod 0754 $(TARGET_DIR)/usr/share/hcl/hcl
 	echo "cd /usr/share/hcl && ./hcl" > $(TARGET_DIR)/usr/share/hcl/hcl.sh
 	chmod 0754 $(TARGET_DIR)/usr/share/hcl/hcl.sh
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/hcl/hcl.bin $(TARGET_DIR)/usr/bin/hcl
-	chmod 0754 $(TARGET_DIR)/usr/bin/hcl
 	# evmap config
 	mkdir -p $(TARGET_DIR)/usr/share/evmapy
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/hcl/hcl.keys $(TARGET_DIR)/usr/share/evmapy
