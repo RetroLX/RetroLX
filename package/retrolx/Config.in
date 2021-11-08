@@ -143,6 +143,9 @@ config BR2_PACKAGE_RETROLX_ARCADE_SYSTEMS
 	# Naomi and Atomiswave
 	select BR2_PACKAGE_RETROLX_SEGADC
 
+	# Standalone Sega Model 2 emulator (through Wine)
+	select BR2_PACKAGE_MODEL2EMU            if BR2_x86_64
+
 	# Standalone Sega Model 3 emulator
 	select BR2_PACKAGE_SUPERMODEL           if BR2_x86_64
 
