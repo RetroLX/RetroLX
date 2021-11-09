@@ -1,0 +1,6 @@
+pkgname = hurrican
+pkgver = 20210730-1
+pkgdesc = Hurrican (Turrican clone) game
+group = port
+packager = https://retrolx.org
+url = https://github.com/drfiemost/Hurrican
