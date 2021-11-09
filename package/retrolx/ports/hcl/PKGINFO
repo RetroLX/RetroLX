@@ -1,0 +1,6 @@
+pkgname = hcl
+pkgver = 20210912-1
+pkgdesc = Hydra Castle Labyrinth game
+group = port
+packager = https://retrolx.org
+url = https://github.com/ptitSeb/hydracastlelabyrinth
