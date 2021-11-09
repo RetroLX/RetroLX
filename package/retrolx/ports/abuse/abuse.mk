@@ -9,32 +9,44 @@ ABUSE_SITE = $(call github,Xenoveritas,abuse,$(ABUSE_VERSION))
 
 ABUSE_DEPENDENCIES = sdl2 sdl2_mixer
 ABUSE_SUPPORTS_IN_SOURCE_BUILD = NO
-ABUSE_CONF_OPTS += -DASSETDIR=/usr/share/abuse
+ABUSE_CONF_OPTS += -DASSETDIR=$(ABUSE_PKG_DIR)$(ABUSE_PKG_INSTALL_DIR)
 
 ABUSE_DATA_SITE = abuse.zoy.org/raw-attachment/wiki/download
 ABUSE_DATA_SOURCE = abuse-data-2.00.tar.gz
 ABUSE_DATA_LICENSE = Public Domain
 
-define ABUSE_DATA_EXTRACT_CMDS
+ABUSE_PKG_DIR = $(TARGET_DIR)/opt/retrolx/abuse
+ABUSE_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/abuse
+
+# Install into package prefix
+ABUSE_INSTALL_TARGET_OPTS = DESTDIR="$(ABUSE_PKG_DIR)$(ABUSE_PKG_INSTALL_DIR)" install
+
+define ABUSE_MAKEDIR
+	# Create package directory
+	mkdir -p $(ABUSE_PKG_DIR)$(ABUSE_PKG_INSTALL_DIR)
+endef
+
+define ABUSE_MAKEPKG
+	# Copy data
 	cd $(ABUSE_DL_DIR) && wget $(ABUSE_DATA_SITE)/$(ABUSE_DATA_SOURCE)
-	tar -xf $(ABUSE_DL_DIR)/$(ABUSE_DATA_SOURCE) -C $(@D)
+	tar -xf $(ABUSE_DL_DIR)/$(ABUSE_DATA_SOURCE) -C $(ABUSE_PKG_DIR)$(ABUSE_PKG_INSTALL_DIR)
+	rm $(ABUSE_DL_DIR)/$(ABUSE_DATA_SOURCE)
+
+	# Tidy up package
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/abuse/*.py $(ABUSE_PKG_DIR)$(ABUSE_PKG_INSTALL_DIR)
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/abuse/abuse.keys  $(ABUSE_PKG_DIR)$(ABUSE_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(ABUSE_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/abuse/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
 
-define ABUSE_DATA_INSTALL_TARGET_CMDS
-	mkdir -p $(TARGET_DIR)/usr/share/abuse/
-	cp -pvr $(@D)/* $(TARGET_DIR)/usr/share/abuse
-endef
-
-define ABUSE_INSTALL_TARGET_CMDS
-    mkdir -p $(TARGET_DIR)/usr/share/abuse
-	$(INSTALL) -D -m 0755 $(@D)/buildroot-build/src/abuse $(TARGET_DIR)/usr/bin/abuse
-	cp -pvr $(@D)/data/* $(TARGET_DIR)/usr/share/abuse
-	rm $(TARGET_DIR)/usr/share/abuse/CMakeLists.txt
-	rm $(TARGET_DIR)/usr/share/abuse/READMD.md
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/abuse/abuse.keys $(TARGET_DIR)/usr/share/evmapy
-endef
-
-ABUSE_PRE_BUILD_HOOKS += ABUSE_DATA_EXTRACT_CMDS
-ABUSE_POST_BUILD_HOOKS += ABUSE_DATA_INSTALL_TARGET_CMDS
+ABUSE_POST_INSTALL_TARGET_HOOKS = ABUSE_MAKEPKG
+ABUSE_PRE_INSTALL_TARGET_HOOKS = ABUSE_MAKEDIR
 
 $(eval $(cmake-package))

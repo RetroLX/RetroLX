@@ -1,7 +1,7 @@
 config BR2_PACKAGE_ABUSE
 	bool "abuse"
-	select BR2_PACKAGE_SDL2
-	select BR2_PACKAGE_SDL2_MIXER
+	depends on BR2_PACKAGE_SDL2
+	depends on BR2_PACKAGE_SDL2_MIXER
 	help
 	  This is a fork of the original Abuse SDL port
 
