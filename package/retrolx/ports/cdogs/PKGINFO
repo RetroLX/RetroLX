@@ -1,0 +1,6 @@
+pkgname = cdogs
+pkgver = 1.1.1-1
+pkgdesc = CDogs-SDL game
+group = port
+packager = https://retrolx.org
+url = https://github.com/cxong/cdogs-sdl
