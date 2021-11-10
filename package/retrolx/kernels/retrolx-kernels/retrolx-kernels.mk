@@ -5,21 +5,8 @@
 ################################################################################
 
 # Mainline kernels
-ifeq ($(BR2_i686)$(BR2_x86_64),y)
-RETROLX_KERNELS_VERSION_VALUE = 5.14.15
-else
-RETROLX_KERNELS_VERSION_VALUE = 5.15-test
-endif
+RETROLX_KERNELS_VERSION_VALUE = 5.15.1
 
-# Raspberry Pi kernels
-ifeq ($(RETROLX_SYSTEM_ARCH),rpi1)
-RETROLX_KERNELS_VERSION_VALUE = 5.10.71
-else ifeq ($(RETROLX_SYSTEM_ARCH),rpi2)
-RETROLX_KERNELS_VERSION_VALUE = 5.10.71
-else ifeq ($(RETROLX_SYSTEM_ARCH),rpi3)
-RETROLX_KERNELS_VERSION_VALUE = 5.10.71
-else ifeq ($(RETROLX_SYSTEM_ARCH),rpi4)
-RETROLX_KERNELS_VERSION_VALUE = 5.10.71
 # Custom kernels
 else ifeq ($(RETROLX_SYSTEM_ARCH),rk356x)
 RETROLX_KERNELS_VERSION_VALUE = 20210914
