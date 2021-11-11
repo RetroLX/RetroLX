@@ -162,6 +162,7 @@ menu "Emulators"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/simcoupe/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/solarus-engine/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/supermodel/Config.in"
+    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/vita3k/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/xemu/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/yuzu/Config.in"
   endmenu

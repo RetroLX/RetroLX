@@ -199,6 +199,9 @@ config BR2_PACKAGE_RETROLX_HANDHELD_SYSTEMS
 	select BR2_PACKAGE_PPSSPP                   if !BR2_arm1176jzf_s && !BR2_cortex_a7
 	select BR2_PACKAGE_LIBRETRO_PPSSPP          if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
+	# PS Vita
+	select BR2_PACKAGE_VITA3K                   if BR2_x86_64
+
 	# Nintendo Switch
 	select BR2_PACKAGE_YUZU                     if BR2_x86_64
 
