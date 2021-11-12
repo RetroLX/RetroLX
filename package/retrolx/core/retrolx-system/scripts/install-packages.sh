@@ -10,6 +10,7 @@ function dialogoutput()
 
 # Preparing packages array
 packages=(
+emulationstation
 retroarch
 lr-mrboom
 lr-prboom
