@@ -3,12 +3,15 @@
 # CITRA
 #
 ################################################################################
-# Version.: Commits on Jul 08, 2020
+# Version.: Commits on Oct 3, 2021
 
 CITRA_DEPENDENCIES = fmt boost ffmpeg sdl2 fdk-aac
 CITRA_SITE_METHOD=git
 CITRA_GIT_SUBMODULES=YES
 CITRA_LICENSE = GPLv2
+
+CITRA_PKG_DIR = $(TARGET_DIR)/opt/retrolx/citra
+CITRA_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/citra
 
 # commit 55ec7031ccb2943c2c507620cf4613a86d160670 is reverted by patch, something wrong in it for perfs (patch 004-perf1-revert-core.patch)
 # patch 003-perf1.patch while NO_CAST_FROM_ASCII is causing perfs issues too
@@ -31,19 +34,29 @@ CITRA_CONF_OPTS += -DENABLE_FFMPEG_AUDIO_DECODER=ON
 CITRA_CONF_ENV += LDFLAGS=-lpthread
 
 define CITRA_INSTALL_TARGET_CMDS
-       	mkdir -p $(TARGET_DIR)/usr/bin
-        mkdir -p $(TARGET_DIR)/usr/lib
+	echo "Daphne built as pacman package, no rootfs install"
+endef
+
+define CITRA_MAKEPKG
+	# Create directories
+	mkdir -p $(CITRA_PKG_DIR)$(CITRA_PKG_INSTALL_DIR)
+
+	# Copy package files
 	$(INSTALL) -D $(@D)/buildroot-build/bin/Release/citra-qt \
-		$(TARGET_DIR)/usr/bin/
-endef
-
-define CITRA_EVMAP
-	mkdir -p $(TARGET_DIR)/usr/share/evmapy
-	
+	$(CITRA_PKG_DIR)$(CITRA_PKG_INSTALL_DIR)	
 	cp -prn $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/citra/3ds.citra.keys \
-		$(TARGET_DIR)/usr/share/evmapy
+	$(CITRA_PKG_DIR)$(CITRA_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(CITRA_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/citra/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
 
-CITRA_POST_INSTALL_TARGET_HOOKS = CITRA_EVMAP
+CITRA_POST_INSTALL_TARGET_HOOKS = CITRA_MAKEPKG
 
 $(eval $(cmake-package))

@@ -9,6 +9,9 @@ CITRA_ANDROID_SITE_METHOD=git
 CITRA_ANDROID_GIT_SUBMODULES=YES
 CITRA_ANDROID_LICENSE = GPLv2
 
+CITRA_ANDROID_PKG_DIR = $(TARGET_DIR)/opt/retrolx/citra-android
+CITRA_ANDROID_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/citra-android
+
 # Use citra-android for AArch64 (SDL2 only)
 CITRA_ANDROID_VERSION = 6f6f9a091085305154375028f3342aad16697f3c
 CITRA_ANDROID_SITE = https://github.com/citra-emu/citra-android.git
@@ -26,20 +29,29 @@ CITRA_ANDROID_CONF_OPTS += -DENABLE_FFMPEG_AUDIO_DECODER=ON
 CITRA_ANDROID_CONF_ENV += LDFLAGS=-lpthread
 
 define CITRA_ANDROID_INSTALL_TARGET_CMDS
-        mkdir -p $(TARGET_DIR)/usr/bin
-        mkdir -p $(TARGET_DIR)/usr/lib
+	echo "Daphne built as pacman package, no rootfs install"
+endef
 
+define CITRA_ANDROID_MAKEPKG
+	# Create directories
+	mkdir -p $(CITRA_ANDROID_PKG_DIR)$(CITRA_ANDROID_PKG_INSTALL_DIR)
+
+	# Copy package files
 	$(INSTALL) -D $(@D)/buildroot-build/bin/Release/citra \
-		$(TARGET_DIR)/usr/bin/
-endef
-
-define CITRA_ANDROID_EVMAP
-	mkdir -p $(TARGET_DIR)/usr/share/evmapy
-	
+	$(CITRA_ANDROID_PKG_DIR)$(CITRA_ANDROID_PKG_INSTALL_DIR)	
 	cp -prn $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/citra-android/3ds.citra.keys \
-		$(TARGET_DIR)/usr/share/evmapy
+	$(CITRA_ANDROID_PKG_DIR)$(CITRA_ANDROID_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(CITRA_ANDROID_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/citra-android/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
 
-CITRA_ANDROID_POST_INSTALL_TARGET_HOOKS = CITRA_ANDROID_EVMAP
+CITRA_ANDROID_POST_INSTALL_TARGET_HOOKS = CITRA_ANDROID_MAKEPKG
 
 $(eval $(cmake-package))
