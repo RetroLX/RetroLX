@@ -1,7 +1,6 @@
 config BR2_PACKAGE_DRASTIC
 	bool "drastic"
 	help
-          Drastic
-          Is a NDS emulateur for windows / mac / linux.
+          Drastic is a closed-source Nintedo DS emulator.
 
           https://www.drastic-ds.com/

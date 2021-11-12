@@ -3,16 +3,14 @@
 # tic80 - TIC-80 emulator
 #
 ################################################################################
-# Version.: Commits on Jan 29, 2021
-#LIBRETRO_TIC80_VERSION = acddaaad3ae5f5f403db9f1a69872697fb49efb5
-#LIBRETRO_TIC80_SITE = https://github.com/nesbox/TIC-80.git
-#LIBRETRO_TIC80_SITE_METHOD=git
-#LIBRETRO_TIC80_GIT_SUBMODULES=YES
+# Version.: Release on Jul 23, 2021
+LIBRETRO_TIC80_VERSION = v0.90.1723
+LIBRETRO_TIC80_SITE = https://github.com/nesbox/TIC-80.git
+LIBRETRO_TIC80_SITE_METHOD=git
+LIBRETRO_TIC80_GIT_SUBMODULES=YES
 
-# temporary access
-LIBRETRO_TIC80_VERSION = acddaaad3ae5f5f403db9f1a69872697fb49efb5
-LIBRETRO_TIC80_SOURCE = TIC-80-$(LIBRETRO_TIC80_VERSION).tar.gz
-LIBRETRO_TIC80_SITE = https://batocera.org/packages
+LIBRETRO_TIC80_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
+LIBRETRO_TIC80_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-tic80
 
 LIBRETRO_TIC80_LICENSE = MIT
 LIBRETRO_TIC80_PLATFORM = $(LIBRETRO_PLATFORM)
@@ -27,9 +25,24 @@ define LIBRETRO_TIC80_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/ -f Makefile platform="$(LIBRETRO_TIC80_PLATFORM)"
 endef
 
-define LIBRETRO_TIC80_INSTALL_TARGET_CMDS
+define LIBRETRO_TIC80_MAKEPKG
+	# Create directories
+	mkdir -p $(LIBRETRO_TIC80_PKG_DIR)$(LIBRETRO_TIC80_PKG_INSTALL_DIR)
+
+	# Copy package files
 	$(INSTALL) -D $(@D)/lib/tic80_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/tic80_libretro.so
+	$(LIBRETRO_TIC80_PKG_DIR)$(LIBRETRO_TIC80_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(LIBRETRO_TIC80_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-tic80/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
+
+LIBRETRO_TIC80_POST_INSTALL_TARGET_HOOKS = LIBRETRO_TIC80_MAKEPKG
 
 $(eval $(cmake-package))

@@ -8,6 +8,9 @@ LIBRETRO_PC98_VERSION = rev.22
 LIBRETRO_PC98_SITE = $(call github,AZO234,NP2kai,$(LIBRETRO_PC98_VERSION))
 LIBRETRO_PC98_LICENSE = GPLv3
 
+LIBRETRO_PC98_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
+LIBRETRO_PC98_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-pc98
+
 LIBRETRO_PC98_PLATFORM = $(LIBRETRO_PLATFORM)
 
 ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S922X),y)
@@ -30,10 +33,24 @@ define LIBRETRO_PC98_BUILD_CMDS
 	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/sdl2/ -f Makefile.libretro platform="$(LIBRETRO_PC98_PLATFORM)"
 endef
 
-define LIBRETRO_PC98_INSTALL_TARGET_CMDS
-	mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/bios/np2kai
+define LIBRETRO_PC98_MAKEPKG
+	# Create directories
+	mkdir -p $(LIBRETRO_PC98_PKG_DIR)$(LIBRETRO_PC98_PKG_INSTALL_DIR)
+
+	# Copy package files
 	$(INSTALL) -D $(@D)/sdl2/np2kai_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/np2kai_libretro.so
+	$(LIBRETRO_PC98_PKG_DIR)$(LIBRETRO_PC98_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(LIBRETRO_PC98_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/libretro/libretro-pc98/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
+
+LIBRETRO_PC98_POST_INSTALL_TARGET_HOOKS = LIBRETRO_PC98_MAKEPKG
 
 $(eval $(generic-package))

@@ -1,0 +1,6 @@
+pkgname = drastic
+pkgver = 1.0.0-1
+pkgdesc = DraStic Nintendo DS emulator
+group = emulator
+packager = https://retrolx.org 
+url = https://www.drastic-ds.com/

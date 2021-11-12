@@ -18,7 +18,6 @@ endef
 define LIBRETRO_PC88_MAKEPKG
 	# Create directories
 	mkdir -p $(LIBRETRO_PC88_PKG_DIR)$(LIBRETRO_PC88_PKG_INSTALL_DIR)
-	#mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/bios/quasi88
 
 	# Copy package files
 	$(INSTALL) -D $(@D)/quasi88_libretro.so \

@@ -1,0 +1,6 @@
+pkgname = es-theme-minijawn
+pkgver = 20190903-1
+pkgdesc = EmulationStation MiniJawn Theme
+group = data
+packager = https://retrolx.org 
+url = https://github.com/pacdude/es-theme-minijawn

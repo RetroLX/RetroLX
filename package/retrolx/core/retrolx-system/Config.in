@@ -318,6 +318,7 @@ config BR2_PACKAGE_RETROLX_NETWORKING
 	select BR2_PACKAGE_CONNMAN                              # network manager
 	select BR2_PACKAGE_CONNMAN_WIFI                         # network manager
 	select BR2_PACKAGE_CONNMAN_CLIENT                       # network manager
+	select BR2_PACKAGE_FPING                                # icmp tool
 	select BR2_PACKAGE_LIBCURL_CURL                         # download tools
 	select BR2_PACKAGE_WPA_SUPPLICANT                       # wifi
 	select BR2_PACKAGE_WPA_SUPPLICANT_CLI                   # wifi
@@ -375,6 +376,7 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_PM_UTILS                             # suspend
 	select BR2_PACKAGE_QTSIXA_SHANWAN                       # ps3 pad
 	select BR2_PACKAGE_XARCADE2JSTICK                       # keyboard events of the Xarcade Tankstick
+	select BR2_PACKAGE_NANUM_FONT				# some font
 	select BR2_PACKAGE_UTIL_LINUX_LIBMOUNT                  # for util-linux compilation to work (so, may be removed in the future)
     select BR2_PACKAGE_FBDUMP                               # tool to capture snapshots from the Linux kernel framebuffer device and write them out as a PPM file
     select BR2_PACKAGE_FBGRAB                               # framebuffer screenshot program, capturing the linux frambuffer and converting it to a png-picture
