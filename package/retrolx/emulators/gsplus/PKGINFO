@@ -1,0 +1,6 @@
+pkgname = gsplus
+pkgver = 0.14-1
+pkgdesc = Apple II / GS Emulator
+group = emulator
+packager = https://retrolx.org 
+url = https://apple2.gs/plus/
