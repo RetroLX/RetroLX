@@ -1,13 +1,8 @@
-2021/XX/XX - batocera.linux 32
-	* rpi3: Switch to driver mesa3d
-    * rpi3: Kodi enable (again)
-    * rpi3: Nintendo 64 (mupen64plus-video-glide64mk2)
-    * rpi3: PPSSPP to v1.11.3
-    * add: ECWolf a open source port for Wolfenstein 3D Games
-    * bump: Cemu to 1.23.1
-    * bump: Lutris to 6.10-6
-    * bump: DXVK to 1.9
-    * bump: Proton to 6.3-5
+2021/XX/XX - RetroLX 2021.08
+    * Fork point of batocera.linux project to RetroLX
+    * Based on Buildroot 2021.08.1
+    * Linux 5.15.x LTS (upgradable) kernel for all architectures
+    * Package-based OS (Linux distribution)
 
 2021/06/18 - batocera.linux 31
 	* Switch RockPro64 to AArch64 (full 64-bit)
