@@ -1,5 +1,5 @@
 RetroLX is built on the following main components :
-- Linux mainline kernel 5.10.y or newer
+- Linux mainline kernel 5.15.y or newer
 - Buildroot
 - Wayland for ARM / AArch64 devices, Xorg for Intel/AMD x86_64 based computers
 - Pacman package manager
