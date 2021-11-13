@@ -1,0 +1,15 @@
+--- a/Makefile.libretro	2021-11-07 20:58:38.000000000 +0100
++++ b/Makefile.libretro	2021-11-13 00:45:08.230353883 +0100
+@@ -161,7 +161,11 @@
+       else ifneq (,$(findstring rpi2,$(platform)))
+          PLATFORM_DEFINES += -DARM -marm -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard
+       else ifneq (,$(findstring rpi3,$(platform)))
+-         PLATFORM_DEFINES += -DARM -marm -mcpu=cortex-a53 -mfpu=neon-fp-armv8 -mfloat-abi=hard
++         ifneq (,$(findstring rpi3_64,$(platform)))
++            PLATFORM_DEFINES += -mcpu=cortex-a53 -mtune=cortex-a53
++         else
++            PLATFORM_DEFINES += -DARM -marm -mcpu=cortex-a53 -mfpu=neon-fp-armv8 -mfloat-abi=hard
++         endif
+       else ifneq (,$(findstring rpi4_64,$(platform)))
+          PLATFORM_DEFINES += -DARM -march=armv8-a+crc+simd -mtune=cortex-a72
+       endif
