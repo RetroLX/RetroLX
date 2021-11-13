@@ -5,7 +5,16 @@
 ################################################################################
 
 # Mainline kernels
+RETROLX_KERNELS_VERSION_VALUE = 5.15.2
+ifeq ($(RETROLX_SYSTEM_ARCH),rpi1)
 RETROLX_KERNELS_VERSION_VALUE = 5.15.1
+else ifeq ($(RETROLX_SYSTEM_ARCH),rpi2)
+RETROLX_KERNELS_VERSION_VALUE = 5.15.1
+else ifeq ($(RETROLX_SYSTEM_ARCH),rpi3)
+RETROLX_KERNELS_VERSION_VALUE = 5.15.1
+else ifeq ($(RETROLX_SYSTEM_ARCH),rpi4)
+RETROLX_KERNELS_VERSION_VALUE = 5.15.1
+endif
 
 # Custom kernels
 ifeq ($(RETROLX_SYSTEM_ARCH),rk356x)
