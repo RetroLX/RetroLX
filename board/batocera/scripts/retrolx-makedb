@@ -17,5 +17,5 @@ cp retrolx.db.tar.gz retrolx.db
 cp retrolx.files.tar.gz retrolx.files
 
 # Cleanup old files
-rm retrolx.db.tar.gz.old
-rm retrolx.files.tar.gz.old
+[ -f retrolx.db.tar.gz.old ] && rm retrolx.db.tar.gz.old
+[ -f retrolx.files.tar.gz.old ] && rm retrolx.files.tar.gz.old
