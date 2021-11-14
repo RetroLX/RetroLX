@@ -81,6 +81,7 @@ endef
 define AMIBERRY_MAKEPKG
 	# Create directories
 	mkdir -p $(AMIBERRY_PKG_DIR)$(AMIBERRY_PKG_INSTALL_DIR)/data
+    mkdir -p $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)
 
 	# Copy package files
 	cp -pr $(@D)/amiberry $(AMIBERRY_PKG_DIR)$(AMIBERRY_PKG_INSTALL_DIR)
