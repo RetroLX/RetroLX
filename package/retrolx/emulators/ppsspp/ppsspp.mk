@@ -62,7 +62,7 @@ ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86_64),y)
 	PPSSPP_CONF_OPTS += -DX86_64=ON
 endif
 
-# rpi4 vulkan support
+# rpi4 and panfrost vulkan support
 ifeq ($(BR2_PACKAGE_RETROLX_VULKAN),y)
 	PPSSPP_CONF_OPTS += -DARM_NO_VULKAN=OFF
 else
