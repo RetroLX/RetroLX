@@ -36,7 +36,8 @@ progress=0;
 /usr/bin/retrolx-pacman list
 for i in "${packages[@]}"
 do
-    /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Sy "$i" --overwrite 'userdata/*'
+    package=`ls /boot/packages/${i}*`
+    /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -U "${package}" --overwrite 'userdata/*'
     dialogoutput $progress "$i"
     /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Scc
     progress=$(($progress+$percent))
