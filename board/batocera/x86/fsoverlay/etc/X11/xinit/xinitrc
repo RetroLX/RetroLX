@@ -85,4 +85,4 @@ then
 fi
 
 cd /userdata # es needs a PWD
-openbox --config-file /etc/openbox/rc.xml --startup "emulationstation --windowed ${EXTRA_OPTS}"
+openbox --config-file /etc/openbox/rc.xml --startup "/userdata/packages/x86_64/emulationstation/emulationstation --windowed ${EXTRA_OPTS}"
