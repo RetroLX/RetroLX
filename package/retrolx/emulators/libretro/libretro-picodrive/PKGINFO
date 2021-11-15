@@ -1,5 +1,5 @@
 pkgname = lr-picodrive
-pkgver = 20210716-1
+pkgver = 1.99-1
 pkgdesc = PicoDrive libretro core
 group = emulator
 packager = https://retrolx.org 
