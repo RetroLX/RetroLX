@@ -33,10 +33,10 @@ cp "${BINARIES_DIR}/modules"         "${BATOCERA_BINARIES_DIR}/boot/boot/modules
 cp "${BOARD_DIR}/boot/boot-logo.bmp.gz"       		"${BATOCERA_BINARIES_DIR}/boot/"          || exit 1
 cp "${BINARIES_DIR}/meson-sm1-sei610.dtb"     		"${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
 cp "${BINARIES_DIR}/meson-sm1-h96-max.dtb"    		"${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
-cp "${BINARIES_DIR}/meson-sm1-a95xf3-air-2g.dtb"	"${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
-cp "${BINARIES_DIR}/meson-sm1-a95xf3-air-4g.dtb"        "${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
-cp "${BINARIES_DIR}/meson-sm1-x96-air-2g.dtb"           "${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
-cp "${BINARIES_DIR}/meson-sm1-x96-air-4g.dtb"           "${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
+cp "${BINARIES_DIR}/meson-sm1-a95xf3-air-100.dtb"	"${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
+cp "${BINARIES_DIR}/meson-sm1-a95xf3-air-1000.dtb"        "${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
+cp "${BINARIES_DIR}/meson-sm1-x96-air-100.dtb"           "${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
+cp "${BINARIES_DIR}/meson-sm1-x96-air-1000.dtb"           "${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf"          		"${BATOCERA_BINARIES_DIR}/boot/boot/"     || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf"          		"${BATOCERA_BINARIES_DIR}/boot/extlinux/" || exit 1
 

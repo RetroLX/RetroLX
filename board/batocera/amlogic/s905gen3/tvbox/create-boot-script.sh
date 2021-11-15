@@ -34,7 +34,7 @@ cp "${BINARIES_DIR}/modules"         "${BATOCERA_BINARIES_DIR}/boot/boot/modules
 cp "${BOARD_DIR}/boot/boot-logo.bmp.gz"                "${BATOCERA_BINARIES_DIR}/boot/"          || exit 1
 
 # Copy all DTBs
-for DTB in meson-sm1-h96-max.dtb meson-sm1-sei610.dtb meson-sm1-khadas-vim3l.dtb meson-sm1-odroid-c4.dtb meson-sm1-x96-air-2g.dtb meson-sm1-x96-air-4g.dtb meson-sm1-a95xf3-air-2g.dtb meson-sm1-a95xf3-air-4g.dtb
+for DTB in meson-sm1-h96-max.dtb meson-sm1-sei610.dtb meson-sm1-khadas-vim3l.dtb meson-sm1-odroid-c4.dtb meson-sm1-x96-air-100.dtb meson-sm1-x96-air-1000.dtb meson-sm1-a95xf3-air-100.dtb meson-sm1-a95xf3-air-1000.dtb
 do
         cp "${BINARIES_DIR}/${DTB}" "${BATOCERA_BINARIES_DIR}/boot/boot/" || exit 1
 done
