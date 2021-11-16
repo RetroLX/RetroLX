@@ -5,7 +5,7 @@ config BR2_PACKAGE_SUPERMODEL
         depends on BR2_PACKAGE_LIBZIP
         depends on BR2_PACKAGE_SDL2
         depends on BR2_PACKAGE_SDL2_NET
-        select BR2_PACKAGE_LIBGLEW if BR2_PACKAGE_RETROLX_IS_X86_ARCH
+        depends on BR2_PACKAGE_LIBGLEW 
 
         help
           Supermodel is a SEGA Model 3 emulator that uses the SDL-Library.
