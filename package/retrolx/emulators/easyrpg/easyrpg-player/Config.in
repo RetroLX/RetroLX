@@ -1,19 +1,19 @@
 config BR2_PACKAGE_EASYRPG_PLAYER
     bool "easyrpg-player"
     select BR2_PACKAGE_LIBLCF
-    select BR2_PACKAGE_SDL2
-    select BR2_PACKAGE_SDL2_MIXER
-    select BR2_PACKAGE_LIBPNG
-    select BR2_PACKAGE_ZLIB
-    select BR2_PACKAGE_FMT
-    select BR2_PACKAGE_FREETYPE
-    select BR2_PACKAGE_MPG123
-    select BR2_PACKAGE_LIBVORBIS
-    select BR2_PACKAGE_OPUSFILE
-    select BR2_PACKAGE_PIXMAN
-    select BR2_PACKAGE_SPEEXDSP
-    select BR2_PACKAGE_LIBXMP
-    select BR2_PACKAGE_WILDMIDI
+    depends on BR2_PACKAGE_SDL2
+    depends on BR2_PACKAGE_SDL2_MIXER
+    depends on BR2_PACKAGE_LIBPNG
+    depends on BR2_PACKAGE_ZLIB
+    depends on BR2_PACKAGE_FMT
+    depends on BR2_PACKAGE_FREETYPE
+    depends on BR2_PACKAGE_MPG123
+    depends on BR2_PACKAGE_LIBVORBIS
+    depends on BR2_PACKAGE_OPUSFILE
+    depends on BR2_PACKAGE_PIXMAN
+    depends on BR2_PACKAGE_SPEEXDSP
+    depends on BR2_PACKAGE_LIBXMP
+    depends on BR2_PACKAGE_WILDMIDI
     help
       EasyRPG Player is a game interpreter to play RPG Maker 2000, 2003 and EasyRPG games. It uses the LCF parser library (liblcf) to read RPG Maker game data.
 
