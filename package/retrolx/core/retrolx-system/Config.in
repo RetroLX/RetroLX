@@ -450,6 +450,9 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	# RetroLX Qt everywhere
 	select BR2_PACKAGE_RETROLX_QT		if !BR2_PACKAGE_RETROLX_RPI_VCORE 
 
+	# wxWidgets only for x86 world
+	select BR2_PACKAGE_WXWIDGETS		if BR2_x86_64
+
 	# RetroLX SDL2
 	select BR2_PACKAGE_RETROLX_SDL2
 
