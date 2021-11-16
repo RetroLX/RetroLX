@@ -3,8 +3,8 @@
 # MF
 #
 ################################################################################
-
-MF_VERSION = bd62c2c0d96b82f69707671d459c8802e1afa27c
+# Version.: Commits on Oct 4, 2021
+MF_VERSION = f8d24e9b600bad038911e8618721c8bfb83872e9
 MF_SITE = $(call github,z0z0z,mf-install,$(MF_VERSION))
 MF_LICENSE = zlib/libpng
 
