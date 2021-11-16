@@ -452,6 +452,8 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 
 	# wxWidgets only for x86 world
 	select BR2_PACKAGE_WXWIDGETS		if BR2_x86_64
+        select BR2_PACKAGE_LIBGLEW              if BR2_x86_64
+        select BR2_PACKAGE_LIBGLU               if BR2_x86_64
 
 	# RetroLX SDL2
 	select BR2_PACKAGE_RETROLX_SDL2
