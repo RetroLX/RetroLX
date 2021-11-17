@@ -3,7 +3,7 @@ BR2_aarch64=y
 BR2_cortex_a53=y
 BR2_ARM_FPU_NEON_FP_ARMV8=y
 BR2_PACKAGE_RETROLX_TARGET_S905GEN2=y
-BR2_ROOTFS_USERS_TABLES="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/users.txt"
+BR2_ROOTFS_USERS_TABLES="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/users.txt"
 
 # Toolchain definition
 BR2_GCC_VERSION_11_X=y
@@ -29,17 +29,17 @@ BR2_TARGET_GENERIC_GETTY_BAUDRATE_115200=y
 # BR2_TARGET_GENERIC_REMOUNT_ROOTFS_RW is not set
 BR2_TARGET_TZ_INFO=y
 BR2_TARGET_LOCALTIME="Europe/Paris"
-BR2_GLOBAL_PATCH_DIR="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/patches $(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/patches $(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/s905gen2/patches"
-BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/fsoverlay $(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/fsoverlay $(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/s905gen2/fsoverlay"
-BR2_ROOTFS_POST_BUILD_SCRIPT="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/scripts/post-build-script.sh"
-BR2_ROOTFS_POST_IMAGE_SCRIPT="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/scripts/post-image-script.sh"
+BR2_GLOBAL_PATCH_DIR="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/patches $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/amlogic/patches $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/amlogic/s905gen2/patches"
+BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/fsoverlay $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/amlogic/fsoverlay $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/amlogic/s905gen2/fsoverlay"
+BR2_ROOTFS_POST_BUILD_SCRIPT="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/scripts/post-build-script.sh"
+BR2_ROOTFS_POST_IMAGE_SCRIPT="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/scripts/post-image-script.sh"
 
 # RetroLX mainline kernel 5.10 (out-of-tree build)
 BR2_PACKAGE_RETROLX_KERNELS=y
 BR2_KERNEL_HEADERS_5_15=y
 
 # System
-BR2_PACKAGE_BUSYBOX_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/busybox.custom.config"
+BR2_PACKAGE_BUSYBOX_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/busybox.custom.config"
 BR2_SYSTEM_BIN_SH_DASH=y # /bin/sh implementation; set here because a `choice` cannot be `select`ed, e.g. from batocera-system/Config.in
 BR2_PACKAGE_RETROLX_TOOLS=y
 BR2_PACKAGE_RETROLX_EXTRAS=y
@@ -61,9 +61,9 @@ BR2_PACKAGE_RETROLX_PANFROST_MESA3D=y
 # TODO meson firmware
 
 # Bootloader
-# needed ? BR2_TARGET_UBOOT_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/s912/uboot-defconfig-fragment.config"
+# needed ? BR2_TARGET_UBOOT_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/amlogic/s912/uboot-defconfig-fragment.config"
 #deprecated BR2_TARGET_UBOOT_BOOT_SCRIPT=y
-#deprecated BR2_TARGET_UBOOT_BOOT_SCRIPT_SOURCE="$(BR2_EXTERNAL_RETROLX_PATH)/board/batocera/amlogic/s912/boot/boot.cmd"
+#deprecated BR2_TARGET_UBOOT_BOOT_SCRIPT_SOURCE="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/amlogic/s912/boot/boot.cmd"
 
 # Required tools to create the SD image
 BR2_PACKAGE_HOST_DOSFSTOOLS=y
