@@ -183,6 +183,7 @@ define RETROARCH_INSTALL_TARGET_CMDS
               $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/assets/sounds/
 
 	# Build Pacman package
+	mkdir -p $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)
 	cd $(RETROARCH_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
 	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/retroarch/retroarch/PKGINFO \
 	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
