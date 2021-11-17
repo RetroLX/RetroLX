@@ -24,7 +24,7 @@ VULKAN_TOOLS_DEPENDENCIES += mesa3d
 endif
 
 define VULKAN_TOOLS_SERVICE
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/batocera/gpu/vulkan/vulkan-tools/S55vulkaninfo $(TARGET_DIR)/etc/init.d/S55vulkaninfo
+	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/gpu/vulkan/vulkan-tools/S55vulkaninfo $(TARGET_DIR)/etc/init.d/S55vulkaninfo
 endef
 
 # remove (at least temporary) while it prevents es to open windows with some nvidia cards

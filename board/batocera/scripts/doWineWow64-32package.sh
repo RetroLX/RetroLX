@@ -73,7 +73,7 @@ cpLib() {
 
 G_TARGETDIR="${TARGET_DIR}"
 TMPOUT="${BINARIES_DIR}/wine"
-TARGET_IMAGE="${BINARIES_DIR}/batocera"
+TARGET_IMAGE="${BINARIES_DIR}/retrolx"
 
 if ! rm -rf "${TMPOUT}"
 then
@@ -215,7 +215,7 @@ else
     XTARGET_IMAGE="${PWD}/${TARGET_IMAGE}"
 fi
 
-XTARGET_VERSION=$(grep -E "^BATOCERA_SYSTEM_VERSION[ ]*=" "${BR2_EXTERNAL_BATOCERA_PATH}/package/batocera/core/batocera-system/batocera-system.mk" | sed -e s+"^BATOCERA_SYSTEM_VERSION[ ]*=[ ]*\(.*\)[ ]*$"+'\1'+)
+XTARGET_VERSION=$(grep -E "^RETROLX_SYSTEM_VERSION[ ]*=" "${BR2_EXTERNAL_RETROLX_PATH}/package/retrolx/core/retrolx-system/retrolx-system.mk" | sed -e s+"^RETROLX_SYSTEM_VERSION[ ]*=[ ]*\(.*\)[ ]*$"+'\1'+)
 XTARGET_ARCH="x86"
 XTARGET_FILE="wine-${XTARGET_ARCH}-${XTARGET_VERSION}.tar.lzma"
 
