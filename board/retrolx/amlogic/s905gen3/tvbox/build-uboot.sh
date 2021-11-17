@@ -19,7 +19,7 @@ do
 done
 
 # Make config
-make sei510_defconfig
+make sei610_defconfig
 
 # Build it
 ARCH=aarch64 CROSS_COMPILE="${HOST_DIR}/bin/aarch64-buildroot-linux-gnu-" make -j$(nproc)
