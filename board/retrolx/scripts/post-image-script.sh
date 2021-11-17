@@ -52,8 +52,8 @@ do
     #### prepare the boot dir ######
     BOOTNAMEDDIR="${RETROLX_BINARIES_DIR}/boot_${RETROLX_SUBTARGET}"
     rm -rf "${BOOTNAMEDDIR}" || exit 1 # remove in case or rerun
-    RETROLX_POST_IMAGE_SCRIPT="${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/${RETROLX_PATHSUBTARGET}/create-boot-script.sh"
-    bash "${RETROLX_POST_IMAGE_SCRIPT}" "${HOST_DIR}" "${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/${RETROLX_PATHSUBTARGET}" "${BUILD_DIR}" "${BINARIES_DIR}" "${TARGET_DIR}" "${RETROLX_BINARIES_DIR}" || exit 1
+    RETROLX_POST_IMAGE_SCRIPT="${BR2_EXTERNAL_RETROLX_PATH}/board/retrolx/${RETROLX_PATHSUBTARGET}/create-boot-script.sh"
+    bash "${RETROLX_POST_IMAGE_SCRIPT}" "${HOST_DIR}" "${BR2_EXTERNAL_RETROLX_PATH}/board/retrolx/${RETROLX_PATHSUBTARGET}" "${BUILD_DIR}" "${BINARIES_DIR}" "${TARGET_DIR}" "${RETROLX_BINARIES_DIR}" || exit 1
     cp     "${BINARIES_DIR}/retrolx-boot.conf" "${RETROLX_BINARIES_DIR}/boot/" || exit 1
     echo   "${RETROLX_SUBTARGET}" > "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.board" || exit 1
 
@@ -74,7 +74,7 @@ do
     fi
     echo "creating images/${RETROLX_SUBTARGET}/"$(basename "${RETROLXIMG}")"..." >&2
     rm -rf "${GENIMAGE_TMP}" || exit 1
-    GENIMAGEDIR="${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/${RETROLX_PATHSUBTARGET}"
+    GENIMAGEDIR="${BR2_EXTERNAL_RETROLX_PATH}/board/retrolx/${RETROLX_PATHSUBTARGET}"
     GENIMAGEFILE="${GENIMAGEDIR}/genimage.cfg"
     FILES=$(find "${RETROLX_BINARIES_DIR}/boot" -type f | sed -e s+"^${RETROLX_BINARIES_DIR}/boot/\(.*\)$"+"file \1 \{ image = '\1' }"+ | tr '\n' '@')
     cat "${GENIMAGEFILE}" | sed -e s+'@files'+"${FILES}"+ | tr '@' '\n' > "${RETROLX_BINARIES_DIR}/genimage.cfg" || exit 1
@@ -108,7 +108,7 @@ do
 
     # copy the board files
     cp "${BOOTNAMEDDIR}/boot/retrolx.board" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
-    cp "${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/${RETROLX_PATHSUBTARGET}/board.png" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
+    cp "${BR2_EXTERNAL_RETROLX_PATH}/board/retrolx/${RETROLX_PATHSUBTARGET}/board.png" "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}" || exit 1
 done
 
 #### md5 #######################
