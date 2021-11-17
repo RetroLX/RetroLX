@@ -16,7 +16,7 @@ ifdef PARALLEL_BUILD
 	MAKE_OPTS  += -j$(MAKE_JLEVEL)
 endif
 
-TARGETS := $(sort $(shell find $(PROJECT_DIR)/configs/ -name 'b*' | sed -n 's/.*\/retrolx-\(.*\)_defconfig/\1/p'))
+TARGETS := $(sort $(shell find $(PROJECT_DIR)/configs/ -name 'retrolx*' | sed -n 's/.*\/retrolx-\(.*\)_defconfig/\1/p'))
 
 UC = $(shell echo '$1' | tr '[:lower:]' '[:upper:]')
 
