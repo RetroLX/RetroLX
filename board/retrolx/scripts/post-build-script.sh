@@ -116,7 +116,7 @@ then
 fi
 
 # rebuild package db
-cd "${BR2_EXTERNAL_RETROLX_PATH}/repo/${RETROLX_TARGET,,}" && "${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/scripts/retrolx-makedb" "${HOST_DIR}"
+cd "${BR2_EXTERNAL_RETROLX_PATH}/repo/${RETROLX_TARGET,,}" && "${BR2_EXTERNAL_RETROLX_PATH}/board/retrolx/scripts/retrolx-makedb" "${HOST_DIR}"
 
 # link generated repo to build dir
 [ -L "${BUILD_DIR}/repo" ] && rm "${BUILD_DIR}/repo"
