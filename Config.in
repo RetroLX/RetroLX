@@ -19,7 +19,7 @@ menu "Kernels"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/kernels/kernel-s905gen3/Config.in" 
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/kernels/kernel-s922x/Config.in" 
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/kernels/kernel-sun50i/Config.in" 
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/kernels/kernel-x86-64/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/kernels/kernel-x86_64/Config.in"
 endmenu
 
 menu "RetroArch"
