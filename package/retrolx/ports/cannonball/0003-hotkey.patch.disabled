@@ -1,0 +1,34 @@
+diff --git a/src/main/frontend/config.hpp b/src/main/frontend/config.hpp
+index 9357caf..6a8b17b 100644
+--- a/src/main/frontend/config.hpp
++++ b/src/main/frontend/config.hpp
+@@ -69,7 +69,7 @@ struct controls_settings_t
+     int gear;
+     int steer_speed;   // Steering Digital Speed
+     int pedal_speed;   // Pedal Digital Speed
+-    int padconfig[8];  // Joypad Button Config
++    int padconfig[9];  // Joypad Button Config
+     int keyconfig[12]; // Keyboard Button Config
+     int pad_id;        // Use the N'th joystick on the system.
+     int analog;        // Use analog controls
+diff --git a/src/main/sdl2/input.cpp b/src/main/sdl2/input.cpp
+index ab1a9fc..b435719 100644
+--- a/src/main/sdl2/input.cpp
++++ b/src/main/sdl2/input.cpp
+@@ -11,6 +11,7 @@
+ #include <iostream>
+ #include <cstdlib> // abs
+ #include "sdl2/input.hpp"
++#include "main.hpp"
+ 
+ Input input;
+ 
+@@ -301,4 +302,8 @@ void Input::handle_joy(const uint8_t button, const bool is_pressed)
+ 
+     if (button == pad_config[7])
+         keys[VIEWPOINT] = is_pressed;
++
++    static int hotkey = 0;
++    if (button == pad_config[8]) hotkey = is_pressed ? 1: 0;
++    if (button == pad_config[4] && hotkey == 1) cannonball::state = cannonball::STATE_QUIT;
+ }

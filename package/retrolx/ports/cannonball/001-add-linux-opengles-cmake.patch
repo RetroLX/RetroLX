@@ -1,0 +1,15 @@
+--- /dev/null	2021-11-19 03:03:38.550622584 +0100
++++ b/cmake/linux-opengles.cmake	2021-11-19 09:43:54.774430122 +0100
+@@ -0,0 +1,12 @@
++# -----------------------------------------------------------------------------
++# CannonBall Linux Setup
++# -----------------------------------------------------------------------------
++
++# Use OpenGLES for rendering.
++set(OPENGLES 1)
++
++# Platform Specific Libraries
++set(platform_link_libs
++    SDL2
++    GLESv2
++)
