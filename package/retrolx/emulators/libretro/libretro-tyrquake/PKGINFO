@@ -1,5 +1,5 @@
 pkgname = lr-tyrquake
-pkgver = 20210923-1
+pkgver = 20211106-1
 pkgdesc = TyrQuake (Quake 1) libretro core
 group = port
 packager = https://retrolx.org

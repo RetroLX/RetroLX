@@ -1,5 +1,5 @@
 pkgname = lr-gambatte
-pkgver = 20211010-1
+pkgver = 20211117-1
 pkgdesc = Gambatte Game Boy / GB Color libretro core
 group = emulator
 packager = https://retrolx.org 
