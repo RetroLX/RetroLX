@@ -1,5 +1,5 @@
 pkgname = lr-mame2003-plus
-pkgver = 20211101-1
+pkgver = 20211119-1
 pkgdesc = MAME 2003 Plus libretro core
 group = emulator
 packager = https://retrolx.org 
