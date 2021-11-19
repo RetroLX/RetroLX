@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_X86_64
+        bool "retrolx-kernel-x86-64"
+        help
+          Generic x86-64 Linux kernel for RetroLX

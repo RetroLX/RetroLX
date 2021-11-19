@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_RPI2
+        bool "retrolx-kernel-rpi2"
+        help
+          Raspberry Pi 2 Linux kernel for RetroLX

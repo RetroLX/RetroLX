@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_SUN50I
+        bool "retrolx-kernel-sun50i"
+        help
+          Allwinner H5 / H6 Linux kernel for RetroLX

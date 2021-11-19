@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_I686
+        bool "retrolx-kernel-i686"
+        help
+          Generic i686 Linux kernel for RetroLX

@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_RPI3
+        bool "retrolx-kernel-rpi3"
+        help
+          Raspberry Pi 3 / CM3 / Zero 2 Linux kernel for RetroLX

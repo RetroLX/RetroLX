@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_MESON64
+        bool "retrolx-kernel-meson64"
+        help
+          Amlogic AArch64 (Cortex-A53) Linux kernel for RetroLX

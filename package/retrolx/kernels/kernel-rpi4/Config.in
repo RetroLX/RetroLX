@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_RPI4
+        bool "retrolx-kernel-rpi4"
+        help
+          Raspberry Pi 4 / CM4 / 400 Linux kernel for RetroLX

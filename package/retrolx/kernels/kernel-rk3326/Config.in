@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_RK3326
+        bool "retrolx-kernel-rk3326"
+        help
+          Rockchip RK3326 Linux kernel for RetroLX

@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_S922X
+        bool "retrolx-kernel-s922x"
+        help
+          Amlogic S922X / A311D Linux kernel for RetroLX

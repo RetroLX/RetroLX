@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_S905GEN3
+        bool "retrolx-kernel-s905gen3"
+        help
+          Amlogic S905X3/S905Y3/S905D3 Linux kernel for RetroLX

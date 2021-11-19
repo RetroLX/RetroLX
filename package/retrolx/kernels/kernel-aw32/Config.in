@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_AW32
+        bool "retrolx-kernel-aw32"
+        help
+          Allwinner 32-bit Linux kernel for RetroLX

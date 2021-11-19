@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_RK356X
+        bool "retrolx-kernel-rk356x"
+        help
+          Rockchip RK356x Linux kernel for RetroLX

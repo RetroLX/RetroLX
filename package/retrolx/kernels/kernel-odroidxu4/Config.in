@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_ODROIDXU4
+        bool "retrolx-kernel-odroidxu4"
+        help
+          HardKernel ODROID-XU3/4 (Samsung Exynos 5422) Linux kernel for RetroLX
