@@ -1,5 +1,5 @@
 pkgname = lr-beetle-psx
-pkgver = 20211011-1
+pkgver = 20211118-1
 pkgdesc = Beetle PSX (Sony PlayStation) libretro core
 group = emulator
 packager = https://retrolx.org 
