@@ -15,7 +15,7 @@ TARGET_DIR=$5
 RETROLX_BINARIES_DIR=$6
 
 # ATF
-"${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/scripts/build-atf.sh" "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" g12a
+"${BR2_EXTERNAL_RETROLX_PATH}/board/retrolx/scripts/build-atf.sh" "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" g12a
 
 # U-Boot
 mkdir -p "${RETROLX_BINARIES_DIR}/build-uboot-radxa-zero"     || exit 1

@@ -15,7 +15,7 @@ TARGET_DIR=$5
 RETROLX_BINARIES_DIR=$6
 
 # ATF
-"${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/scripts/build-atf.sh" "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" gxl
+"${BR2_EXTERNAL_RETROLX_PATH}/board/retrolx/scripts/build-atf.sh" "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" gxl
 
 # U-Boot
 mkdir -p "${RETROLX_BINARIES_DIR}/build-uboot-khadas-vim2"     || exit 1

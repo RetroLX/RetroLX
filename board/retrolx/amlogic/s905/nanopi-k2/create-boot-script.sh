@@ -18,7 +18,7 @@ mkdir -p "${RETROLX_BINARIES_DIR}/boot/packages" || exit 1
 cp -r "${BUILD_DIR}"/repo/* "${RETROLX_BINARIES_DIR}/boot/packages/" || exit 1
 
 # ATF
-"${BR2_EXTERNAL_RETROLX_PATH}/board/batocera/scripts/build-atf.sh" "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" gxbb
+"${BR2_EXTERNAL_RETROLX_PATH}/board/retrolx/scripts/build-atf.sh" "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" gxbb
 
 # U-Boot
 mkdir -p "${RETROLX_BINARIES_DIR}/build-uboot-nanopi-k2"     || exit 1
