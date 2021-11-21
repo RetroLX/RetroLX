@@ -31,7 +31,10 @@ menu "RetroArch"
 endmenu
 
 menu "EmulationStation"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/retrolx-es-system/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/retrolx-emulationstation/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/es-theme-carbon/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/es-theme-minijawn/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/es-background-musics/Config.in"
 endmenu
 
@@ -92,12 +95,6 @@ menu "System"
 
   menu "Device trees"
   endmenu
-endmenu
-
-menu "Emulationstation"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/retrolx-es-system/Config.in"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/es-theme-carbon/Config.in"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/es-theme-minijawn/Config.in"
 endmenu
 
 menu "Controllers"
@@ -285,6 +282,9 @@ menu "Emulators"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/easyrpg/easyrpg-player/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/redream/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/tsugaru/Config.in"
+
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/box86/box86/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/box86/box64/Config.in"
 
   menu "Wine"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/utils/retrolx-wine/Config.in"
