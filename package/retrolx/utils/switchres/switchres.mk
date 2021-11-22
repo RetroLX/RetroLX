@@ -16,10 +16,13 @@ define SWITCHRES_BUILD_CMDS
 	CC="$(TARGET_CC)" \
 	CXX="$(TARGET_CXX)" \
 	PREFIX="$(STAGING_DIR)/usr" \
-	PKG_CONFIG_PATH="$(STAGING_DIR)/usr/lib/pkgconfig" \
-	CPPFLAGS="-I$(STAGING_DIR)/usr/include" \
-	$(MAKE) all
+        PKG_CONFIG="$(HOST_DIR)/usr/bin/pkg-config --define-prefix" \
+        PKG_CONFIG_PATH="$(STAGING_DIR)/usr/lib/pkgconfig" \
+	CPPFLAGS="-I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/usr/include/SDL2 -I$(STAGING_DIR)/usr/include/drm -lSDL2" \
+	$(MAKE) PREFIX="$(STAGING_DIR)/usr" all
 endef
+
+#	LDFLAGS="-lSDL2 -ldrm"
 
 define SWITCHRES_INSTALL_STAGING_CMDS
 	cd $(@D) && \
@@ -27,7 +30,8 @@ define SWITCHRES_INSTALL_STAGING_CMDS
 	CXX="$(TARGET_CXX)" \
 	BASE_DIR="" \
 	PREFIX="$(STAGING_DIR)/usr" \
-	PKG_CONFIG_PATH="$(STAGING_DIR)/usr/lib/pkgconfig" \
+        PKG_CONFIG="$(HOST_DIR)/usr/bin/pkg-config --define-prefix" \
+        PKG_CONFIG_PATH="$(STAGING_DIR)/usr/lib/pkgconfig" \
 	$(MAKE) install
 endef
 
