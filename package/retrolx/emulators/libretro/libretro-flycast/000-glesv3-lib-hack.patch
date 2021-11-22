@@ -1,0 +1,11 @@
+--- a/CMakeLists.txt	2021-11-22 15:28:18.000000000 +0100
++++ b/CMakeLists.txt	2021-11-22 21:47:38.049794875 +0100
+@@ -92,7 +92,7 @@
+     target_compile_definitions(${PROJECT_NAME} PRIVATE LIBRETRO)
+     if(ANDROID OR USE_GLES)
+ 		target_compile_definitions(${PROJECT_NAME} PRIVATE GLES GLES3 HAVE_OPENGLES HAVE_OPENGLES3)
+-		target_link_libraries(${PROJECT_NAME} PRIVATE "-lGLESv3")
++		target_link_libraries(${PROJECT_NAME} PRIVATE "-lGLESv2")
+     elseif(USE_GLES2)
+ 		target_compile_definitions(${PROJECT_NAME} PRIVATE GLES GLES2 HAVE_OPENGLES HAVE_OPENGLES2)
+ 		target_link_libraries(${PROJECT_NAME} PRIVATE "-lGLESv2")
