@@ -30,7 +30,7 @@ cd "${RETROLX_BINARIES_DIR}/uboot/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_D
 
 cp "${BINARIES_DIR}/Image"                 "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
 cp "${BINARIES_DIR}/initrd.gz"             "${RETROLX_BINARIES_DIR}/boot/boot/initrd.gz"       || exit 1
-cp "${BINARIES_DIR}/rootfs.squashfs"       "${RETROLX_BINARIES_DIR}/boot/boot/batocera.update" || exit 1
+cp "${BINARIES_DIR}/rootfs.squashfs"       "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
 cp "${BINARIES_DIR}/modules"               "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
 
 cp "${BINARIES_DIR}/rk3399-hugsun-x99.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1

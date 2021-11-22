@@ -46,10 +46,10 @@ do_root() {
     fi
 
     # update the rootfs if needed
-    if test -e /boot_root/boot/batocera.update
+    if test -e /boot_root/boot/retrolx.update
     then
       mount -o remount,rw /boot_root || return 1
-      mv /boot_root/boot/batocera.update /boot_root/boot/batocera || return 1
+      mv /boot_root/boot/retrolx.update /boot_root/boot/retrolx || return 1
       # remove the overlay when updating
       if test -e /boot_root/boot/overlay
       then
@@ -74,7 +74,7 @@ do_root() {
     fi
 
     # mount the rootfs
-    mount /boot_root/boot/batocera /overlay_root/base || return 1
+    mount /boot_root/boot/retrolx /overlay_root/base || return 1
 
     # mount the future root in read write
     if ! mount -t overlay overlay -o rw,lowerdir=/overlay_root/base,upperdir=/overlay_root/overlay,workdir=/overlay_root/work /new_root

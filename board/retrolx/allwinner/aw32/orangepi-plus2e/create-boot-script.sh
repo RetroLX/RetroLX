@@ -5,7 +5,7 @@
 # BUILD_DIR = base dir/build
 # BINARIES_DIR = images dir
 # TARGET_DIR = target dir
-# RETROLX_BINARIES_DIR = batocera binaries sub directory
+# RETROLX_BINARIES_DIR = RetroLX binaries sub directory
 
 HOST_DIR=$1
 BOARD_DIR=$2
@@ -26,7 +26,7 @@ mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
 
 cp "${BINARIES_DIR}/zImage"          "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
 cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/initrd.gz"       || exit 1
-cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/batocera.update" || exit 1
+cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
 cp "${BINARIES_DIR}/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
 
 cp "${BINARIES_DIR}/sun8i-h3-orangepi-plus2e.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1

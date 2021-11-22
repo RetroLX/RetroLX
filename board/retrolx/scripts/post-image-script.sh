@@ -63,7 +63,7 @@ do
     #(cd "${RETROLX_BINARIES_DIR}/boot" && tar -I "xz -T0" -cf "${RETROLX_BINARIES_DIR}/images/${RETROLX_SUBTARGET}/boot.tar.xz" *) || exit 1
     
     # rename the squashfs : the .update is the version that will be renamed at boot to replace the old version
-    mv "${RETROLX_BINARIES_DIR}/boot/boot/batocera.update" "${RETROLX_BINARIES_DIR}/boot/boot/batocera" || exit 1
+    mv "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx" || exit 1
 
     # create *.img
     if test "${IMGMODE}" = "multi"
@@ -86,8 +86,8 @@ do
 	echo "installing syslinux" >&2
 	cat "${GENIMAGEBOOTFILE}" | sed -e s+'@files'+"${FILES}"+ | tr '@' '\n' > "${RETROLX_BINARIES_DIR}/genimage-boot.cfg" || exit 1
     genimage --rootpath="${TARGET_DIR}" --inputpath="${RETROLX_BINARIES_DIR}/boot" --outputpath="${RETROLX_BINARIES_DIR}" --config="${RETROLX_BINARIES_DIR}/genimage-boot.cfg" --tmppath="${GENIMAGE_TMP}" || exit 1
-    "${HOST_DIR}/bin/syslinux" -i "${RETROLX_BINARIES_DIR}/boot.vfat" -d "/boot/syslinux" || exit 1
-    #"/usr/bin/syslinux" -i "${RETROLX_BINARIES_DIR}/boot.vfat" -d "/boot/syslinux" || exit 1
+    #"${HOST_DIR}/bin/syslinux" -i "${RETROLX_BINARIES_DIR}/boot.vfat" -d "/boot/syslinux" || exit 1
+    "/usr/bin/syslinux" -i "${RETROLX_BINARIES_DIR}/boot.vfat" -d "/boot/syslinux" || exit 1
     # remove genimage temp path as sometimes genimage v14 fails to start
     rm -rf ${GENIMAGE_TMP}
     mkdir ${GENIMAGE_TMP}
@@ -97,7 +97,7 @@ do
  
     rm -f "${RETROLX_BINARIES_DIR}/boot.vfat" || exit 1
     rm -f "${RETROLX_BINARIES_DIR}/userdata.ext4" || exit 1
-    mv "${RETROLX_BINARIES_DIR}/batocera.img" "${RETROLXIMG}" || exit 1
+    mv "${RETROLX_BINARIES_DIR}/retrolx.img" "${RETROLXIMG}" || exit 1
     gzip "${RETROLXIMG}" || exit 1
 
     # rename the boot to boot_arch

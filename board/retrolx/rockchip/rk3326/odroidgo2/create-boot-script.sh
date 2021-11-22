@@ -28,7 +28,7 @@ cd "${RETROLX_BINARIES_DIR}/build-uboot-odroidgo2/" && ./build-uboot.sh "${HOST_
 
 "${HOST_DIR}/bin/mkimage" -A arm64 -O linux -T kernel -C none -a 0x1080000 -e 0x1080000 -n 5.x -d "${BINARIES_DIR}/Image" "${RETROLX_BINARIES_DIR}/boot/boot/linux" || exit 1
 cp "${BINARIES_DIR}/uInitrd"         "${RETROLX_BINARIES_DIR}/boot/boot/uInitrd"         || exit 1
-cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/batocera.update" || exit 1
+cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
 cp "${BINARIES_DIR}/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
 
 cp "${BINARIES_DIR}/rk3326-odroid-go2.dtb"     "${RETROLX_BINARIES_DIR}/boot/boot/rk3326-odroid-go2.dtb"     || exit 1

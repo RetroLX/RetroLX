@@ -56,7 +56,7 @@ then
     echo "***** No joystick found." >&2
 fi
 
-BATOCERA_IMG=$1
+RETROLX_IMG=$1
 SHARE_IMG=$2
 
 if test -n "${SHARE_IMG}"
@@ -67,4 +67,4 @@ else
     echo "***** no share disk set." >&2
 fi
 
-qemu-system-x86_64 -enable-kvm -device intel-hda -device hda-duplex -vga virtio -device virtio-gpu-pci -smp 2 -m 2048 -device e1000,netdev=net0 -netdev user,id=net0,hostfwd=tcp::5555-:22 -device nec-usb-xhci ${JOYSTICK_CMD} -drive "format=raw,file=${BATOCERA_IMG}" ${SHARE_CMD}
+qemu-system-x86_64 -enable-kvm -device intel-hda -device hda-duplex -vga virtio -device virtio-gpu-pci -smp 2 -m 2048 -device e1000,netdev=net0 -netdev user,id=net0,hostfwd=tcp::5555-:22 -device nec-usb-xhci ${JOYSTICK_CMD} -drive "format=raw,file=${RETROLX_IMG}" ${SHARE_CMD}
