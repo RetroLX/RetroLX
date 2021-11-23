@@ -38,7 +38,7 @@ config BR2_PACKAGE_RETROLX_MULTIEMU_SYSTEMS
 	bool "RetroLX multisystem emulators"
 
 	# Mednafen
-	select BR2_PACKAGE_MEDNAFEN
+	select BR2_PACKAGE_MEDNAFEN		if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
 
 #### Wine Layer ####
