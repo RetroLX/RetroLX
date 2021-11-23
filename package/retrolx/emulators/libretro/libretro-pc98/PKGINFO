@@ -1,6 +1,6 @@
-pkgname = lr-mgba
-pkgver = 0.9.2-1
-pkgdesc = mGBA libretro core
+pkgname = lr-pc98
+pkgver = 20211122-1
+pkgdesc = PC-98 / NP2KAI libretro core
 group = emulator
 packager = https://retrolx.org 
-url = https://docs.libretro.com/library/mgba/
+url = https://docs.libretro.com/library/np2kai/
