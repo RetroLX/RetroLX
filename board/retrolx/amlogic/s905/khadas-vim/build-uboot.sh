@@ -21,15 +21,15 @@ do
 done
 
 # Make config
-make nanopi-k2_defconfig
+make khadas-vim_defconfig
 
 # Build it
 ARCH=aarch64 CROSS_COMPILE="${HOST_DIR}/bin/aarch64-buildroot-linux-gnu-" make -j$(nproc)
-mkdir -p ../../uboot-nanopi-k2
+mkdir -p ../../uboot-khadas-vim
 
 # Clone LibreElec Amlogic FIP
 git clone --depth 1 https://github.com/LibreELEC/amlogic-boot-fip
-AMLOGIC_FIP_DIR="amlogic-boot-fip/nanopi-k2"
+AMLOGIC_FIP_DIR="amlogic-boot-fip/khadas-vim"
 
 # Sign U-Boot build with Amlogic process
 "${AMLOGIC_FIP_DIR}/blx_fix.sh" \
@@ -54,7 +54,7 @@ AMLOGIC_FIP_DIR="amlogic-boot-fip/nanopi-k2"
 	bl2 || exit 1
 
 cat "${AMLOGIC_FIP_DIR}/bl2_new.bin" "${AMLOGIC_FIP_DIR}/fip.bin" > "${AMLOGIC_FIP_DIR}/boot_new.bin" || exit 1
-"${AMLOGIC_FIP_DIR}/aml_encrypt_gxb" --bootsig --input "${AMLOGIC_FIP_DIR}/boot_new.bin" --output "${AMLOGIC_FIP_DIR}/uboot-nanopi-k2.img" || exit 1
+"${AMLOGIC_FIP_DIR}/aml_encrypt_gxl" --bootsig --input "${AMLOGIC_FIP_DIR}/boot_new.bin" --output "${AMLOGIC_FIP_DIR}/uboot-khadas-vim.img" || exit 1
 
 # Copy to appropriate place
-cp "${AMLOGIC_FIP_DIR}/uboot-nanopi-k2.img" ../../uboot-nanopi-k2/
+cp "${AMLOGIC_FIP_DIR}/uboot-khadas-vim.img" ../../uboot-khadas-vim/
