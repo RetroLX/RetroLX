@@ -29,32 +29,35 @@ mkdir -p ../../uboot-khadas-vim
 
 # Clone LibreElec Amlogic FIP
 git clone --depth 1 https://github.com/LibreELEC/amlogic-boot-fip
-AMLOGIC_FIP_DIR="amlogic-boot-fip/khadas-vim"
 
 # Sign U-Boot build with Amlogic process
-"${AMLOGIC_FIP_DIR}/blx_fix.sh" \
-	"${AMLOGIC_FIP_DIR}/bl30.bin" \
-	"${AMLOGIC_FIP_DIR}/zero_tmp" \
-	"${AMLOGIC_FIP_DIR}/bl30_zero.bin" \
-	"${AMLOGIC_FIP_DIR}/bl301.bin" \
-	"${AMLOGIC_FIP_DIR}/bl301_zero.bin" \
-	"${AMLOGIC_FIP_DIR}/bl30_new.bin" \
-	bl30 || exit 1
-
-"${AMLOGIC_FIP_DIR}/fip_create" --bl30 "${AMLOGIC_FIP_DIR}/bl30_new.bin" --bl31 "${AMLOGIC_FIP_DIR}/bl31.img" --bl33 "u-boot.bin" "${AMLOGIC_FIP_DIR}/fip.bin" || exit 1
-"${HOST_DIR}/bin/python" "${AMLOGIC_FIP_DIR}/acs_tool.py" "${AMLOGIC_FIP_DIR}/bl2.bin" "${AMLOGIC_FIP_DIR}/bl2_acs.bin" "${AMLOGIC_FIP_DIR}/acs.bin" 0 || exit 1
-
-"${AMLOGIC_FIP_DIR}/blx_fix.sh" \
-	"${AMLOGIC_FIP_DIR}/bl2_acs.bin" \
-    	"${AMLOGIC_FIP_DIR}/zero_tmp" \
-	"${AMLOGIC_FIP_DIR}/bl2_zero.bin" \
-	"${AMLOGIC_FIP_DIR}/bl21.bin" \
-	"${AMLOGIC_FIP_DIR}/bl21_zero.bin" \
-	"${AMLOGIC_FIP_DIR}/bl2_new.bin" \
-	bl2 || exit 1
-
-cat "${AMLOGIC_FIP_DIR}/bl2_new.bin" "${AMLOGIC_FIP_DIR}/fip.bin" > "${AMLOGIC_FIP_DIR}/boot_new.bin" || exit 1
-"${AMLOGIC_FIP_DIR}/aml_encrypt_gxl" --bootsig --input "${AMLOGIC_FIP_DIR}/boot_new.bin" --output "${AMLOGIC_FIP_DIR}/uboot-khadas-vim.img" || exit 1
+AML_FIP_DIR="amlogic-boot-fip/khadas-vim"
+AML_ENCRYPT_BIN="aml_encrypt_gxl"
+cp u-boot.bin ${AML_FIP_DIR}/bl33.bin
+${AML_FIP_DIR}/blx_fix.sh ${AML_FIP_DIR}/bl30.bin \
+  ${AML_FIP_DIR}/zero_tmp \
+  ${AML_FIP_DIR}/bl30_zero.bin \
+  ${AML_FIP_DIR}/bl301.bin \
+  ${AML_FIP_DIR}/bl301_zero.bin \
+  ${AML_FIP_DIR}/bl30_new.bin bl30
+${HOST_DIR}/bin/python ${AML_FIP_DIR}/acs_tool.py ${AML_FIP_DIR}/bl2.bin ${AML_FIP_DIR}/bl2_acs.bin ${AML_FIP_DIR}/acs.bin 0
+${AML_FIP_DIR}/blx_fix.sh ${AML_FIP_DIR}/bl2_acs.bin \
+  ${AML_FIP_DIR}/zero_tmp \
+  ${AML_FIP_DIR}/bl2_zero.bin \
+  ${AML_FIP_DIR}/bl21.bin \
+  ${AML_FIP_DIR}/bl21_zero.bin \
+  ${AML_FIP_DIR}/bl2_new.bin bl2
+${AML_FIP_DIR}/${AML_ENCRYPT_BIN} --bl3enc --input ${AML_FIP_DIR}/bl30_new.bin
+${AML_FIP_DIR}/${AML_ENCRYPT_BIN} --bl3enc --input ${AML_FIP_DIR}/bl31.img
+${AML_FIP_DIR}/${AML_ENCRYPT_BIN} --bl3enc --input ${AML_FIP_DIR}/bl33.bin
+${AML_FIP_DIR}/${AML_ENCRYPT_BIN} --bl2sig --input ${AML_FIP_DIR}/bl2_new.bin --output ${AML_FIP_DIR}/bl2.n.bin.sig
+${AML_FIP_DIR}/${AML_ENCRYPT_BIN} --bootmk \
+  --output ${AML_FIP_DIR}/u-boot.bin \
+  --bl2 ${AML_FIP_DIR}/bl2.n.bin.sig \
+  --bl30 ${AML_FIP_DIR}/bl30_new.bin.enc \
+  --bl31 ${AML_FIP_DIR}/bl31.img.enc \
+  --bl33 ${AML_FIP_DIR}/bl33.bin.enc
 
 # Copy to appropriate place
-cp "${AMLOGIC_FIP_DIR}/uboot-khadas-vim.img" ../../uboot-khadas-vim/
+cp ${AML_FIP_DIR}/u-boot.bin.sd.bin ../../uboot-khadas-vim/
+
