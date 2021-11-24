@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PCSX2_VERSION = v1.7.2015
+PCSX2_VERSION = v1.7.2076
 PCSX2_SITE = https://github.com/pcsx2/pcsx2.git
 PCSX2_LICENSE = GPLv2 GPLv3 LGPLv2.1 LGPLv3
 PCSX2_DEPENDENCIES = xserver_xorg-server alsa-lib freetype zlib libpng wxwidgets libaio portaudio libsoundtouch sdl2 libpcap yaml-cpp libgtk3 libsamplerate fmt
@@ -28,24 +28,40 @@ PCSX2_CONF_OPTS += -DBUILD_SHARED_LIBS=ON
 PCSX2_CONF_OPTS += -DDISABLE_ADVANCE_SIMD=ON
 PCSX2_CONF_OPTS += -DUSE_VTUNE=OFF
 
+PCSX2_PKG_DIR = $(TARGET_DIR)/opt/retrolx/pcsx2
+PCSX2_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/pcsx2
+
 # https://github.com/PCSX2/pcsx2/blob/51ceec74a351bd25a1066ec2c02c2aa3f8c813f4/cmake/BuildParameters.cmake#L215
 # PCSX2_CONF_OPTS += -DARCH_FLAG="-msse -msse2 -mfxsr -mxsave -march=x86_64"
 
 define PCSX2_INSTALL_TARGET_CMDS
-	$(INSTALL) -m 0755 -D $(@D)/pcsx2/PCSX2 $(TARGET_DIR)/usr/PCSX/bin/PCSX2
-	cp -pr $(@D)/bin/Langs      	$(TARGET_DIR)/usr/PCSX/bin
-	cp -p  $(@D)/bin/GameIndex.yaml $(TARGET_DIR)/usr/PCSX/bin
-	cp -p  $(@D)/bin/cheats_ws.zip 	$(TARGET_DIR)/usr/PCSX/bin
-	mkdir -p $(TARGET_DIR)/usr/PCSX/lib
-	cp -pr $(@D)/common/libcommon.so      $(TARGET_DIR)/usr/PCSX/lib
-	cp -pr $(@D)/3rdparty/glad/libglad.so $(TARGET_DIR)/usr/PCSX/lib
+	echo "PCSX2 built as pacman package, no rootfs install"
 endef
 
-define PCSX2_EVMAPY
-	mkdir -p $(TARGET_DIR)/usr/share/evmapy
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/pcsx2/ps2.pcsx2.keys $(TARGET_DIR)/usr/share/evmapy
+define PCSX2_MAKEPKG
+	# Create directories
+	mkdir -p $(PCSX2_PKG_DIR)$(PCSX2_PKG_INSTALL_DIR)
+	mkdir -p $(PCSX2_PKG_DIR)$(PCSX2_PKG_INSTALL_DIR)
+
+	# Copy package files
+	$(INSTALL) -m 0755 -D $(@D)/pcsx2/PCSX2 $(PCSX2_PKG_DIR)$(PCSX2_PKG_INSTALL_DIR)/PCSX2
+	cp -pr $(@D)/bin/Langs      	$(PCSX2_PKG_DIR)$(PCSX2_PKG_INSTALL_DIR)
+	cp -p  $(@D)/bin/GameIndex.yaml $(PCSX2_PKG_DIR)$(PCSX2_PKG_INSTALL_DIR)
+	cp -p  $(@D)/bin/cheats_ws.zip 	$(PCSX2_PKG_DIR)$(PCSX2_PKG_INSTALL_DIR)
+	cp -pr $(@D)/common/libcommon.so      $(PCSX2_PKG_DIR)$(PCSX2_PKG_INSTALL_DIR)
+	cp -pr $(@D)/3rdparty/glad/libglad.so $(PCSX2_PKG_DIR)$(PCSX2_PKG_INSTALL_DIR)
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/pcsx2/ps2.pcsx2.keys $(PCSX2_PKG_DIR)$(PCSX2_PKG_INSTALL_DIR)
+
+	# Build Pacman package
+	cd $(PCSX2_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/pcsx2/PKGINFO \
+	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+	# Cleanup
+	rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
 
-PCSX2_POST_INSTALL_TARGET_HOOKS += PCSX2_EVMAPY
+PCSX2_POST_INSTALL_TARGET_HOOKS += PCSX2_MAKEPKG
 
 $(eval $(cmake-package))
