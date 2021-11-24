@@ -1,0 +1,6 @@
+pkgname = pcsx2
+pkgver = 1.7.2076-1
+pkgdesc = PCSX2 Sony PlayStation 2 Emulator
+group = emulator
+packager = https://retrolx.org 
+url = https://pcsx2.net/
