@@ -1,6 +1,6 @@
 # Docs - https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-githubs-form-schema
 name: Feature request
-description: Suggest a new feature or improve an existing one
+description: Suggest a new feature or improve an existing one.
 title: "[Feature Request]: "
 labels: ["Enhancement / Feature Request"]
 # assignees:
