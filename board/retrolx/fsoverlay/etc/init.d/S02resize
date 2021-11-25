@@ -15,7 +15,7 @@ fi
 function dialogoutput()
 {
     local percent="$1"
-    local text="Do not switch off your device, it will reboot once done !"
+    local text="Do not switch off your device  !"
     dialog --backtitle "RetroLX" --title " Resizing Partition " \
            --mixedgauge "$text" 18 50 "$percent" "${arr[@]}" &>/dev/tty1
 }
@@ -35,6 +35,8 @@ function textoutput()
     dialogoutput "$percent"
     wait $pid
     arr[$1]=$ret #msg: Depends from return value
+    sync
+    partprobe
 }
 
 # only when resizing is wanted
@@ -43,13 +45,13 @@ then
 
     # Preparing text arrays
     arr=(
-	"Removing trigger............" "Pending"
 	"Syncing disk data..........." "Pending"
 	"Checking disk table........." "Pending"
 	"Resizing partition.........." "Pending"
 	"Aligning /userdata.........." "Pending"
 	"Checking /userdata.........." "Pending"
 	"Resizing /userdata.........." "Pending"
+	"Removing trigger............" "Pending"
     )
 
     # --- BEGIN RESIZE ---
@@ -66,21 +68,16 @@ then
     mount -o remount,rw /boot
 
     # textoutput "Message" "percentage" "command call" 
-    for i in 1 3 5 7 9 11 13 15 17 19 21 23 25; do
+    for i in 1 3 5 7 9 11 13 ; do
 	case $i in
-	    1)  textoutput $i 01 "sleep 0.1";;
-	    3)  textoutput $i 10 "sync";;
-	    5)  textoutput $i 30 "sgdisk -e ${DISK}";;
-	    7)  textoutput $i 40 "sync && partprobe";;
+	    1)  textoutput $i 10 "sleep 0.1";;
+	    3)  textoutput $i 20 "sgdisk -e ${DISK}";;
 	    # resizepart can't use 100% otherwise problem with GPT copied at the end of the disk/sdcard
-	    9)  textoutput $i 45 "parted -s -m ${DISK} resizepart 2 99%";;
-	    11) textoutput $i 50 "sync && partprobe";;
-	    13) textoutput $i 60 "parted -s -m ${DISK} align-check opt 2";;
-	    15) textoutput $i 70 "sync && partprobe";;
-	    17) textoutput $i 75 "e2fsck -f -p ${PART}";;
-	    19) textoutput $i 80 "sync && partprobe";;
-	    21) textoutput $i 85 "resize2fs -f ${PART}";;
-	    23) textoutput $i 90 "sync && partprobe";;
+	    5)  textoutput $i 30 "parted -s -m ${DISK} resizepart 2 99%";;
+	    7)  textoutput $i 50 "parted -s -m ${DISK} align-check opt 2";;
+	    9)  textoutput $i 60 "e2fsck -f -p ${PART}";;
+	    11) textoutput $i 70 "resize2fs -f ${PART}";;
+	    13) textoutput $i 70 "sleep 0.1";;
 	esac
     done
     # remove the trigger
@@ -123,4 +120,5 @@ fi
 dialogoutput 100
 clear > /dev/tty1
 sync
+echo "RetroLX init will not continue, please wait..."
 exit 0
