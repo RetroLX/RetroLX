@@ -8,6 +8,14 @@ function dialogoutput()
     dialog --hline "$footer" --backtitle "RetroLX" --title " Installing $2 " --mixedgauge "Please wait while installing $2 ..." 10 50 "$percent" &> /dev/tty1
 }
 
+# UI Output with dialog, default colorset
+function dialogoutput2()
+{
+    local percent="$1"
+    local footer="Do not switch off your device !"
+    dialog --hline "$footer" --backtitle "RetroLX" --title " Installing $2 " --mixedgauge "Please wait while finishing install..." 10 50 "$percent" &> /dev/tty1
+}
+
 # Preparing packages array
 packages=(
 emulationstation
@@ -30,15 +38,25 @@ sdlpop
 )
 
 length="${#packages[@]}"
-percent=$((100 / $length))
+percent=$((80 / $length))
 progress=0;
 
+# List packages to init db
 /usr/bin/retrolx-pacman list
+
+# Install all packages, skip hooks
 for i in "${packages[@]}"
 do
     package=`ls /boot/packages/${i}*`
-    /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -U "${package}" --overwrite 'userdata/*'
+    /usr/bin/pacman --hookdir /tmp --config /etc/retrolx_pacman.conf --noconfirm -U "${package}" --overwrite 'userdata/*'
     dialogoutput $progress "$i"
     progress=$(($progress+$percent))
 done
+
+dialogoutput $progress "95"
+
+# Cleanup DB
 /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Scc
+
+# Now we rebuild all systems at one
+/usr/bin/retrolx-rebuild-es-systems.sh
