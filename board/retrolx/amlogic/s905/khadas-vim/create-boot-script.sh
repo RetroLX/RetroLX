@@ -35,7 +35,7 @@ cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.
 cp "${BINARIES_DIR}/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
 
 cp "${BOARD_DIR}/boot/boot-logo.bmp.gz"      "${RETROLX_BINARIES_DIR}/boot/"          || exit 1
-cp "${BINARIES_DIR}/meson-gxbb-khadas-vim.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1
+cp "${BINARIES_DIR}/meson-gxl-s905x-khadas-vim.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf"         "${RETROLX_BINARIES_DIR}/boot/extlinux/" || exit 1
 
 exit 0
