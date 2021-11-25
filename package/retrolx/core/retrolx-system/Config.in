@@ -552,7 +552,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	config BR2_TARGET_RETROLX_IMAGES
 	string "target images"
 	default "allwinner/aw32/cubieboard2 allwinner/aw32/orangepi-one allwinner/aw32/orangepi-plus2e allwinner/aw32/orangepi-pc allwinner/aw32/orangepi-pc-plus allwinner/aw32/cha" if BR2_PACKAGE_RETROLX_TARGET_AW32
-	default "allwinner/h5/tritium-h5 allwinner/h5/orangepi-pc2 allwinner/h6/orangepi-one-plus"                                               if BR2_PACKAGE_RETROLX_TARGET_SUN50I
+	default "allwinner/sun50i/tritium-h5 allwinner/sun50i/orangepi-pc2 allwinner/sun50i/orangepi-one-plus"                                   if BR2_PACKAGE_RETROLX_TARGET_SUN50I
 	default "allwinner/h616/orangepi-zero2"                                                                                                  if BR2_PACKAGE_RETROLX_TARGET_H616
 	default "amlogic/s812"                                                                                                                   if BR2_PACKAGE_RETROLX_TARGET_S812
 	default "amlogic/s905/odroid-c2 amlogic/s905/nanopi-k2 amlogic/s905/khadas-vim amlogic/s905/s905-tvbox"                                  if BR2_PACKAGE_RETROLX_TARGET_S905
