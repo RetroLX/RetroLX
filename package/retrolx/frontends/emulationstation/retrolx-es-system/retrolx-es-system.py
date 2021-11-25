@@ -122,6 +122,7 @@ class EsSystemConf:
                     break
                 line = line.rstrip()
                 config[line] = 1
+            proc.wait()
         return config
 
     # Generate emulator system
@@ -181,7 +182,7 @@ class EsSystemConf:
                 else:
                     return data["path"]
         return system
-        
+
     # Returns the path to the rom folder for the emulator
     @staticmethod
     def systemPlatform(system, data):

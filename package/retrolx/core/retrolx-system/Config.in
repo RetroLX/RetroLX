@@ -20,6 +20,12 @@ if BR2_PACKAGE_RETROLX_TARGET_RK356X || BR2_PACKAGE_RETROLX_TARGET_RK3399 || BR2
 		Selected when a Rockchip platform is being built
 endif
 
+config BR2_PACKAGE_RETROLX_TARGET_HAS_GLES2
+	bool "target-gles2"
+
+config BR2_PACKAGE_RETROLX_TARGET_HAS_GLES3
+	bool "target-gles3"
+
 config BR2_PACKAGE_LIBCEC_EXYNOS_API
     bool "Exynos API in libcec"
 
@@ -546,8 +552,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	config BR2_TARGET_RETROLX_IMAGES
 	string "target images"
 	default "allwinner/aw32/cubieboard2 allwinner/aw32/orangepi-one allwinner/aw32/orangepi-plus2e allwinner/aw32/orangepi-pc allwinner/aw32/orangepi-pc-plus allwinner/aw32/cha" if BR2_PACKAGE_RETROLX_TARGET_AW32
-	default "allwinner/h5/tritium-h5 allwinner/h5/orangepi-pc2"                                                                              if BR2_PACKAGE_RETROLX_TARGET_H5
-	default "allwinner/h6/orangepi-one-plus"                                                                                                 if BR2_PACKAGE_RETROLX_TARGET_H6
+	default "allwinner/h5/tritium-h5 allwinner/h5/orangepi-pc2 allwinner/h6/orangepi-one-plus"                                               if BR2_PACKAGE_RETROLX_TARGET_SUN50I
 	default "allwinner/h616/orangepi-zero2"                                                                                                  if BR2_PACKAGE_RETROLX_TARGET_H616
 	default "amlogic/s812"                                                                                                                   if BR2_PACKAGE_RETROLX_TARGET_S812
 	default "amlogic/s905/odroid-c2 amlogic/s905/nanopi-k2 amlogic/s905/khadas-vim amlogic/s905/s905-tvbox"                                  if BR2_PACKAGE_RETROLX_TARGET_S905
@@ -624,11 +629,8 @@ config BR2_PACKAGE_RETROLX_TARGET_RK3288
 config BR2_PACKAGE_RETROLX_TARGET_AW32
 	bool "aw32"
 
-config BR2_PACKAGE_RETROLX_TARGET_H5
+config BR2_PACKAGE_RETROLX_TARGET_SUN50I
 	bool "h5"
-
-config BR2_PACKAGE_RETROLX_TARGET_H6
-	bool "h6"
 
 config BR2_PACKAGE_RETROLX_TARGET_H616
 	bool "h616"
