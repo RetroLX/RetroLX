@@ -11,13 +11,13 @@ export BL31="${IMAGES_DIR}/atf/sun50i_h6/bl31.bin"
 export SCP="/dev/null"
 
 # U-Boot version
-export UBOOT_VERSION="v2021.01"
-#not working so far export UBOOT_VERSION="v2021.10"
+# working version export UBOOT_VERSION="v2021.01"
+export UBOOT_VERSION="v2021.10"
 
 # Clone U-Boot specified version
-wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.01.tar.bz2"
-tar xf u-boot-2021.01.tar.bz2
-cd u-boot-2021.01
+wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.10.tar.bz2"
+tar xf u-boot-2021.10.tar.bz2
+cd u-boot-2021.10
 
 # Apply patches
 PATCHES="${BOARD_DIR}/patches/uboot/*.patch"
