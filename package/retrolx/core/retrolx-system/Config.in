@@ -321,6 +321,7 @@ config BR2_PACKAGE_RETROLX_NETWORKING
 	select BR2_PACKAGE_CONNMAN                              # network manager
 	select BR2_PACKAGE_CONNMAN_WIFI                         # network manager
 	select BR2_PACKAGE_CONNMAN_CLIENT                       # network manager
+	select BR2_PACKAGE_WIRELESS_REGDB                       # wireless regulatory database
 	select BR2_PACKAGE_FPING                                # icmp tool
 	select BR2_PACKAGE_LIBCURL_CURL                         # download tools
 	select BR2_PACKAGE_WPA_SUPPLICANT                       # wifi
