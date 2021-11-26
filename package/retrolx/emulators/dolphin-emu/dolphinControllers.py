@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import batoceraFiles
+import retrolxFiles
 import os
 import codecs
 from Emulator import Emulator
@@ -198,12 +198,12 @@ def generateControllerConfig_gamecube(system, playersControllers,rom):
     generateControllerConfig_any(system, playersControllers, "GCPadNew.ini", "GCPad", gamecubeMapping, gamecubeReverseAxes, gamecubeReplacements)
 
 def removeControllerConfig_gamecube():
-    configFileName = "{}/{}".format(batoceraFiles.dolphinConfig, "GCPadNew.ini")
+    configFileName = "{}/{}".format(retrolxFiles.dolphinConfig, "GCPadNew.ini")
     if os.path.isfile(configFileName):
         os.remove(configFileName)
 
 def generateControllerConfig_realwiimotes(filename, anyDefKey):
-    configFileName = "{}/{}".format(batoceraFiles.dolphinConfig, filename)
+    configFileName = "{}/{}".format(retrolxFiles.dolphinConfig, filename)
     f = codecs.open(configFileName, "w", encoding="utf_8_sig")
     nplayer = 1
     while nplayer <= 4:
@@ -214,7 +214,7 @@ def generateControllerConfig_realwiimotes(filename, anyDefKey):
     f.close()
 
 def generateHotkeys(playersControllers):
-    configFileName = "{}/{}".format(batoceraFiles.dolphinConfig, "Hotkeys.ini")
+    configFileName = "{}/{}".format(retrolxFiles.dolphinConfig, "Hotkeys.ini")
     f = codecs.open(configFileName, "w", encoding="utf_8_sig")
 
     hotkeysMapping = {
@@ -262,7 +262,7 @@ def generateHotkeys(playersControllers):
     f.close()
 
 def generateControllerConfig_any(system, playersControllers, filename, anyDefKey, anyMapping, anyReverseAxes, anyReplacements, extraOptions = {}):
-    configFileName = "{}/{}".format(batoceraFiles.dolphinConfig, filename)
+    configFileName = "{}/{}".format(retrolxFiles.dolphinConfig, filename)
     f = codecs.open(configFileName, "w", encoding="utf_8_sig")
     nplayer = 1
     nsamepad = 0

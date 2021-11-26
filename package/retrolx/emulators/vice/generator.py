@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 import os.path
 import glob
@@ -20,15 +20,15 @@ class ViceGenerator(Generator):
     # Return command
     def generate(self, system, rom, playersControllers, gameResolution):
 
-        if not os.path.exists(os.path.dirname(batoceraFiles.viceConfig)):
-            os.makedirs(os.path.dirname(batoceraFiles.viceConfig))
+        if not os.path.exists(os.path.dirname(retrolxFiles.viceConfig)):
+            os.makedirs(os.path.dirname(retrolxFiles.viceConfig))
 
         # configuration file
-        viceConfig.setViceConfig(batoceraFiles.viceConfig, system)
+        viceConfig.setViceConfig(retrolxFiles.viceConfig, system)
 
         # controller configuration
-        viceControllers.generateControllerConfig(batoceraFiles.viceConfig, playersControllers)
+        viceControllers.generateControllerConfig(retrolxFiles.viceConfig, playersControllers)
 
-        commandArray = [batoceraFiles.batoceraBins[system.config['emulator']] + system.config['core'], "-autostart", rom]
+        commandArray = [retrolxFiles.batoceraBins[system.config['emulator']] + system.config['core'], "-autostart", rom]
 
-        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":batoceraFiles.CONF})
+        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":retrolxFiles.CONF})

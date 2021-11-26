@@ -1,6 +1,6 @@
 import sys
 import os
-import batoceraFiles
+import retrolxFiles
 from settings.unixSettings import UnixSettings
 import xml.etree.ElementTree as ET
 import shlex
@@ -23,7 +23,7 @@ class Emulator():
         system_core     = self.config["core"]
 
         # load configuration from batocera.conf
-        recalSettings = UnixSettings(batoceraFiles.batoceraConf)
+        recalSettings = UnixSettings(retrolxFiles.batoceraConf)
         globalSettings = recalSettings.loadAll('global')
         systemSettings = recalSettings.loadAll(self.name)
         gameSettings = recalSettings.loadAll(self.name + "[\"" + os.path.basename(rom) + "\"]")
@@ -153,7 +153,7 @@ class Emulator():
     # fps value is from es
     def updateFromESSettings(self):
         try:
-            esConfig = ET.parse(batoceraFiles.esSettings)
+            esConfig = ET.parse(retrolxFiles.esSettings)
 
             # showFPS
             try:

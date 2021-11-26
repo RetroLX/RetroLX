@@ -5,7 +5,7 @@ import Command
 import os
 from os import path
 from os import environ
-import batoceraFiles
+import retrolxFiles
 from xml.dom import minidom
 import codecs
 import controllersConfig
@@ -13,11 +13,11 @@ import shutil
 import filecmp
 from . import cemuControllers
 
-cemuConfig  = batoceraFiles.CONF + '/cemu'
+cemuConfig  = retrolxFiles.CONF + '/cemu'
 cemuHomedir = 'Z:\\userdata\\roms\\wiiu'
 cemuMLC = 'C:\\cemu'
 cemuDatadir = '/usr/cemu'
-cemuSaves   = batoceraFiles.SAVES + '/cemu'
+cemuSaves   = retrolxFiles.SAVES + '/cemu'
 
 class CemuGenerator(Generator):
 
@@ -28,8 +28,8 @@ class CemuGenerator(Generator):
         cemu_hook = cemuConfig + "/cemuhook.ini"
         keystone_dll = cemuConfig + "/keystone.dll"
         dbghelp_dll = cemuConfig + "/dbghelp.dll"
-        if not path.isdir(batoceraFiles.BIOS + "/cemu"):
-            os.mkdir(batoceraFiles.BIOS + "/cemu")
+        if not path.isdir(retrolxFiles.BIOS + "/cemu"):
+            os.mkdir(retrolxFiles.BIOS + "/cemu")
         if not path.isdir(cemuConfig):
             os.mkdir(cemuConfig)
         if not os.path.exists(game_dir):
@@ -42,17 +42,17 @@ class CemuGenerator(Generator):
                 os.mkdir(cemuConfig + "/" + folder)
 
         # Create save folder
-        if not path.isdir(batoceraFiles.SAVES + "/cemu"):
-            os.mkdir(batoceraFiles.SAVES + "/cemu")
+        if not path.isdir(retrolxFiles.SAVES + "/cemu"):
+            os.mkdir(retrolxFiles.SAVES + "/cemu")
 
         # Check & Create mlc folders
-        if not path.isdir(batoceraFiles.SAVES + "/cemu/drive_c/cemu"):
-            os.makedirs(batoceraFiles.SAVES + "/cemu/drive_c/cemu/sys")
-            os.makedirs(batoceraFiles.SAVES + "/cemu/drive_c/cemu/usr")
+        if not path.isdir(retrolxFiles.SAVES + "/cemu/drive_c/cemu"):
+            os.makedirs(retrolxFiles.SAVES + "/cemu/drive_c/cemu/sys")
+            os.makedirs(retrolxFiles.SAVES + "/cemu/drive_c/cemu/usr")
 
         CemuGenerator.CemuConfig(cemuConfig + "/settings.xml", system)
         # Copy the file from where cemu reads it
-        shutil.copyfile(batoceraFiles.BIOS + "/cemu/keys.txt", cemuConfig + "/keys.txt")
+        shutil.copyfile(retrolxFiles.BIOS + "/cemu/keys.txt", cemuConfig + "/keys.txt")
         if not os.path.exists(cemu_exe) or not filecmp.cmp(cemuDatadir + "/Cemu.exe", cemu_exe):
             shutil.copyfile(cemuDatadir + "/Cemu.exe", cemu_exe)
         # Copy cemuhook for secure upgrade
@@ -69,7 +69,7 @@ class CemuGenerator(Generator):
         return Command.Command(
             array=commandArray,
             env={
-                "WINEPREFIX": batoceraFiles.SAVES + "/cemu",
+                "WINEPREFIX": retrolxFiles.SAVES + "/cemu",
                 "vblank_mode": "0",
                 "mesa_glthread": "true",
                 "SDL_GAMECONTROLLERCONFIG": controllersConfig.generateSdlGameControllerConfig(playersControllers),

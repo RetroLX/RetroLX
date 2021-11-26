@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 import os
 import re
@@ -17,11 +17,11 @@ class OpenborGenerator(Generator):
 
     # Main entry of the module
     def generate(self, system, rom, playersControllers, gameResolution):
-        configDir = batoceraFiles.CONF + '/openbor'
+        configDir = retrolxFiles.CONF + '/openbor'
         if not os.path.exists(configDir):
             os.makedirs(configDir)
 
-        savesDir = batoceraFiles.SAVES + '/openbor'
+        savesDir = retrolxFiles.SAVES + '/openbor'
         if not os.path.exists(savesDir):
             os.makedirs(savesDir)
 

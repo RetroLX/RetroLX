@@ -13,7 +13,7 @@ from generators.flatpak.flatpakGenerator import FlatpakGenerator
 
 import controllersConfig as controllers
 import signal
-import batoceraFiles
+import retrolxFiles
 import os
 import subprocess
 import utils.videoMode as videoMode
@@ -102,7 +102,7 @@ def main(args, maxnbplayers):
         eslog.log("resolution: {}x{}".format(str(gameResolution["width"]), str(gameResolution["height"])))
 
         # savedir: create the save directory if not already done
-        dirname = os.path.join(batoceraFiles.savesDir, system.name)
+        dirname = os.path.join(retrolxFiles.savesDir, system.name)
         if not os.path.exists(dirname):
             os.makedirs(dirname)
 

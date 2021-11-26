@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 import os.path, shutil
 from os.path import dirname
@@ -16,7 +16,7 @@ def getGeneratorClass():
 arch = Path('/usr/share/retrolx/retrolx.arch').read_text()
 retrolxPackages = '/userdata/packages/' + arch
 emulatorPath = retrolxPackages + '/dosbox-x/bin/dosbox-x'
-dosboxxCustom = batoceraFiles.CONF + '/dosbox-x'
+dosboxxCustom = retrolxFiles.CONF + '/dosbox-x'
 dosboxxConfig = dosboxxCustom + '/dosbox-x.conf'
 
 class DosBoxXGenerator(Generator):
@@ -62,4 +62,4 @@ class DosBoxXGenerator(Generator):
                         "-fastbioslogo",
                         "-conf {}".format(customConfFile)]
 
-        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":batoceraFiles.CONF})
+        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":retrolxFiles.CONF})

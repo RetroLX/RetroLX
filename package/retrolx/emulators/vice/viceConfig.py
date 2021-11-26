@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import batoceraFiles
+import retrolxFiles
 import os
 from Emulator import Emulator
 import configparser

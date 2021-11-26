@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 import sys
 import os
-import batoceraFiles
+import retrolxFiles
 import configparser
 from settings.unixSettings import UnixSettings
 
 def generateRetroarchCustom():
     # retroarchcustom.cfg
-    if not os.path.exists(os.path.dirname(batoceraFiles.retroarchCustom)):
-        os.makedirs(os.path.dirname(batoceraFiles.retroarchCustom))
+    if not os.path.exists(os.path.dirname(retrolxFiles.retroarchCustom)):
+        os.makedirs(os.path.dirname(retrolxFiles.retroarchCustom))
 
     try:
-        retroarchSettings = UnixSettings(batoceraFiles.retroarchCustom, separator=' ')
+        retroarchSettings = UnixSettings(retrolxFiles.retroarchCustom, separator=' ')
     except UnicodeError:
-        os.remove(batoceraFiles.retroarchCustom)
-        retroarchSettings = UnixSettings(batoceraFiles.retroarchCustom, separator=' ')
+        os.remove(retrolxFiles.retroarchCustom)
+        retroarchSettings = UnixSettings(retrolxFiles.retroarchCustom, separator=' ')
 
     # Use Interface
     retroarchSettings.save('menu_driver',                       '"ozone"')
@@ -81,7 +81,7 @@ def generateRetroarchCustom():
 
 def generateRetroarchCustomPathes(retroarchSettings):
     # Path Retroarch
-    retroarchPkg = batoceraFiles.retrolxPackages+'/retroarch'
+    retroarchPkg = retrolxFiles.retrolxPackages+'/retroarch'
     retroarchSettings.save('core_options_path',             '"/userdata/system/configs/retroarch/cores/retroarch-core-options.cfg"')
     retroarchSettings.save('assets_directory',              '"'+retroarchPkg+'"/usr/share/libretro/assets"')
     retroarchSettings.save('screenshot_directory',          '"/userdata/screenshots/"')

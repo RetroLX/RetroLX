@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import batoceraFiles
+import retrolxFiles
 import os
 from Emulator import Emulator
 import configparser

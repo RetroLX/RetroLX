@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os, sys
-import batoceraFiles
+import retrolxFiles
 import settings
 import subprocess
 import json
@@ -14,10 +14,10 @@ def setMupenConfig(iniConfig, system, controllers, gameResolution):
     if not iniConfig.has_section("Core"):
         iniConfig.add_section("Core")
     iniConfig.set("Core", "Version", "1.01") # Version is important for the .ini creation otherwise, mupen remove the section
-    iniConfig.set("Core", "ScreenshotPath", batoceraFiles.SCREENSHOTS)
-    iniConfig.set("Core", "SaveStatePath",  batoceraFiles.mupenSaves)
-    iniConfig.set("Core", "SaveSRAMPath",   batoceraFiles.mupenSaves)
-    iniConfig.set("Core", "SharedDataPath", batoceraFiles.mupenConf)
+    iniConfig.set("Core", "ScreenshotPath", retrolxFiles.SCREENSHOTS)
+    iniConfig.set("Core", "SaveStatePath",  retrolxFiles.mupenSaves)
+    iniConfig.set("Core", "SaveSRAMPath",   retrolxFiles.mupenSaves)
+    iniConfig.set("Core", "SharedDataPath", retrolxFiles.mupenConf)
     # TODO : Miss Mupen64Plus\hires_texture
 
     # 4MB RAM Extention Pack
@@ -133,7 +133,7 @@ def setMupenConfig(iniConfig, system, controllers, gameResolution):
         iniConfig.add_section("64DD")
     # Filename of the 64DD IPL ROM
     if (system.name == 'n64dd'):
-        iniConfig.set("64DD", "IPL-ROM", batoceraFiles.BIOS + "/64DD_IPL.bin")
+        iniConfig.set("64DD", "IPL-ROM", retrolxFiles.BIOS + "/64DD_IPL.bin")
     else:
         iniConfig.set("64DD", "IPL-ROM", "")
     iniConfig.set("64DD", "Disk", "")

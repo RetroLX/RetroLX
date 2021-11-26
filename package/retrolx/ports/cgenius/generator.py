@@ -3,7 +3,7 @@
 import Command
 from generators.Generator import Generator
 import controllersConfig
-import batoceraFiles
+import retrolxFiles
 import codecs
 import os
 

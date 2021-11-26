@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import batoceraFiles
+import retrolxFiles
 import os.path
 
 # Create the controller configuration file
@@ -26,12 +26,12 @@ def generateControllerConfig(system, playersControllers):
                                 'joystick2up': 'joystick2down', 'joystick2left': 'joystick2right',}
 
     # create the directory for the first time
-    confDirectory = batoceraFiles.fsuaeConfig + "/Controllers"
+    confDirectory = retrolxFiles.fsuaeConfig + "/Controllers"
     if not os.path.exists(confDirectory):
         os.makedirs(confDirectory)
 
     for playercontroller, pad in sorted(playersControllers.items()):
-        configFileName = "{}/{}".format(batoceraFiles.fsuaeConfig, "Controllers/" + pad.guid + "_linux.conf")
+        configFileName = "{}/{}".format(retrolxFiles.fsuaeConfig, "Controllers/" + pad.guid + "_linux.conf")
         f = open(configFileName, "w")
 
         # fs-uae-controller

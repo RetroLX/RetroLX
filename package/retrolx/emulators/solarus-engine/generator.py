@@ -3,7 +3,7 @@
 import Command
 from generators.Generator import Generator
 import controllersConfig
-import batoceraFiles
+import retrolxFiles
 import codecs
 import os
 import zipfile
@@ -69,7 +69,7 @@ class SolarusGenerator(Generator):
                 keymapping["left"]  = "joystick2left"
                 keymapping["right"] = "joystick2right"
 
-        configdir = "{}/{}".format(batoceraFiles.CONF, "solarus")
+        configdir = "{}/{}".format(retrolxFiles.CONF, "solarus")
         if not os.path.exists(configdir):
             os.makedirs(configdir)
         configFileName = "{}/{}".format(configdir, "pads.ini")

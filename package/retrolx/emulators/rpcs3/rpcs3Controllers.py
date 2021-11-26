@@ -1,5 +1,5 @@
 import os
-import batoceraFiles
+import retrolxFiles
 from os import path
 import codecs
 from utils.logger import eslog
@@ -9,9 +9,9 @@ def generateControllerConfig(system, controllers, rom):
     generateInputConfigs(controllers)
 
 def generateConfigInputYml(controllers):
-    configFileName = "{}/{}".format(batoceraFiles.CONF, "rpcs3/config_input.yml")
-    if not path.isdir(batoceraFiles.CONF + "/rpcs3"):
-        os.makedirs(batoceraFiles.CONF + "/rpcs3")
+    configFileName = "{}/{}".format(retrolxFiles.CONF, "rpcs3/config_input.yml")
+    if not path.isdir(retrolxFiles.CONF + "/rpcs3"):
+        os.makedirs(retrolxFiles.CONF + "/rpcs3")
     f = codecs.open(configFileName, "w", encoding="utf_8_sig")
 
     nplayer = 1
@@ -30,12 +30,12 @@ def generateConfigInputYml(controllers):
     f.close()
 
 def generateInputConfigs(controllers):
-    if not path.isdir(batoceraFiles.CONF + "/rpcs3/InputConfigs/Evdev"):
-        os.makedirs(batoceraFiles.CONF + "/rpcs3/InputConfigs/Evdev")
+    if not path.isdir(retrolxFiles.CONF + "/rpcs3/InputConfigs/Evdev"):
+        os.makedirs(retrolxFiles.CONF + "/rpcs3/InputConfigs/Evdev")
     nplayer = 1
     for controller, pad in sorted(controllers.items()):
         if nplayer <= 7:
-            configFileName = "{}/{}/pad{}.yml".format(batoceraFiles.CONF, "rpcs3/InputConfigs/Evdev", nplayer)
+            configFileName = "{}/{}/pad{}.yml".format(retrolxFiles.CONF, "rpcs3/InputConfigs/Evdev", nplayer)
             f = codecs.open(configFileName, "w", encoding="utf_8_sig")
             for inputIdx in pad.inputs:
                 input = pad.inputs[inputIdx]

@@ -5,7 +5,7 @@ import configparser
 from controllersConfig import Input
 from xml.dom import minidom
 
-import batoceraFiles
+import retrolxFiles
 
 # Must read :
 # http://mupen64plus.org/wiki/index.php?title=Mupen64Plus_Plugin_Parameters
@@ -18,7 +18,7 @@ mupenDoubleAxis = {0:'X Axis', 1:'Y Axis'}
 def getMupenMapping():
     # load system values and override by user values in case some user values are missing
     map = dict()
-    for file in [batoceraFiles.mupenMappingSystem, batoceraFiles.mupenMappingUser]:
+    for file in [retrolxFiles.mupenMappingSystem, retrolxFiles.mupenMappingUser]:
         if os.path.exists(file):
             dom = minidom.parse(file)
             for inputs in dom.getElementsByTagName('inputList'):

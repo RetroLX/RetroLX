@@ -7,7 +7,7 @@ sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 import settings.unixSettings as unixSettings
-import batoceraFiles
+import retrolxFiles
 
 mlMapping = {   'a' :             {'button': 'btn_east'},
                 'b' :             {'button': 'btn_south'},
@@ -41,7 +41,7 @@ def writeControllersConfig(system, rom, controllers):
     config = dict()
     for controller in controllers:
         playerConfig = generateControllerConfig(controller, controllers[controller])
-        confFile = batoceraFiles.moonlightMapping[int(controller)]
+        confFile = retrolxFiles.moonlightMapping[int(controller)]
         if os.path.isfile(confFile):
             os.remove(confFile)
         os.mknod(confFile)
