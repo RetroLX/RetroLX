@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import Command
+import os
+import os.path
 from generators.Generator import Generator
 import controllersConfig
 
@@ -9,8 +11,11 @@ def getGeneratorClass():
 
 class DevilutionXGenerator(Generator):
 
+    def executionDirectory(self, config, rom):
+        return os.path.dirname(os.path.abspath(__file__))
+
     def generate(self, system, rom, playersControllers, gameResolution):
-        commandArray = ['devilutionx', '--data-dir', '/userdata/roms/devilutionx',
+        commandArray = ['./devilutionx', '--data-dir', '/userdata/roms/devilutionx',
                         '--config-dir', '/userdata/system/config/devilutionx',
                         '--save-dir', '/userdata/saves/devilutionx']
         if rom.endswith('hellfire.mpq'):
