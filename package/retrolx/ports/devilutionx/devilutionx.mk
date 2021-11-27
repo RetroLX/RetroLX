@@ -8,14 +8,16 @@
 
 DEVILUTIONX_VERSION = cda80688e7353b0e8628cdf919586dc6be60cc7f
 DEVILUTIONX_SITE = $(call github,diasurgical,devilutionx,$(DEVILUTIONX_VERSION))
-DEVILUTIONX_DEPENDENCIES = sdl2 sdl2_image fmt libsodium host-gettext host-smpq
+DEVILUTIONX_DEPENDENCIES = sdl2 sdl2_image fmt libsodium host-gettext host-stormlib host-smpq
 
 DEVILUTIONX_PKG_DIR = $(TARGET_DIR)/opt/retrolx/devilutionx
 DEVILUTIONX_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/devilutionx
 
+# KO DEVILUTIONX_SUPPORTS_IN_SOURCE_BUILD = NO
+
 # Prefill the player name when creating a new character, in case the device does
 # not have a keyboard.
-DEVILUTIONX_CONF_OPTS += -DPREFILL_PLAYER_NAME=ON
+DEVILUTIONX_CONF_OPTS += -DPREFILL_PLAYER_NAME=ON -DBUILD_STATIC_LIBS=ON
 
 # Define VERSION_NUM so that DevilutionX build does not attempt to get it from
 # git, to which it doesn't have access here.
