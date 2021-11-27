@@ -229,12 +229,12 @@ config BR2_PACKAGE_RETROLX_PYTHON3
 	select BR2_PACKAGE_HOST_PYTHON3_SSL
 	select BR2_PACKAGE_HOST_PYTHON3_PROTOBUF
 
-# RetroLX emulation-specific libraries
+# RetroLX emulation-specific libraries (this should not exist on rootfs)
 config BR2_PACKAGE_RETROLX_EMULATION_LIBRARIES
 	bool "RetroLX emulation specific libraries"
 	select BR2_PACKAGE_LIBLCF       # EasyRPG library
 	select BR2_PACKAGE_LIBCAPSIMAGE # CAPS imaging support
-
+	select BR2_PACKAGE_SMPQ         # MPQ Diablo tools
 
 # RetroLX libarchive (needed for pacman)
 config BR2_PACKAGE_RETROLX_LIBARCHIVE
