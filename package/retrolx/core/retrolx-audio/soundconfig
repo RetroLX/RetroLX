@@ -119,44 +119,44 @@ mixer $card 'Power Amplifier Mute' on
 mixer $card Headphone 0db on
 mixer $card 'AIF1 Slot 0 Digital DAC' on
 
-ARCH=$(cat /usr/share/retrolx/retrolx.arch)
-# Amlogic G12 HDMI
-case ${ARCH} in
-	azw,gsking-x)
-		mixer $card 'FRDDR_A SINK 1 SEL' 'OUT 0'
-		mixer $card 'FRDDR_A SRC 1 EN' on
-		mixer $card 'TDMOUT_A SRC SEL' 'IN 0'
-		mixer $card 'FRDDR_B SINK 1 SEL' 'OUT 0'
-		mixer $card 'FRDDR_B SRC 1 EN' on
-		mixer $card 'TDMOUT_B SRC SEL' 'IN 0'
-		mixer $card 'TOHDMITX' on
-		mixer $card 'TOHDMITX I2S SRC' 'I2S A'
-		;;
-	vim3)
-		mixer $card 'FRDDR_A SINK 1 SEL' 'OUT 0'
-		mixer $card 'FRDDR_A SRC 1 EN' on
-		mixer $card 'TDMOUT_A SRC SEL' 'IN 0'
-		mixer $card 'TOHDMITX' on
-		mixer $card 'TOHDMITX I2S SRC' 'I2S A'
-		;;
-	*)
-		mixer $card 'FRDDR_A SINK 1 SEL' 'OUT 1'
-		mixer $card 'FRDDR_A SRC 1 EN' on
-		mixer $card 'TDMOUT_B SRC SEL' 'IN 0'
-		mixer $card 'TOHDMITX' on
-		mixer $card 'TOHDMITX I2S SRC' 'I2S B'
-		;;
-esac
-
-# Amlogic G12 S/PDIF
-mixer $card 'FRDDR_B SINK 1 SEL' 'OUT 3'
-mixer $card 'FRDDR_B SRC 1 EN' on
-mixer $card 'SPDIFOUT SRC SEL' 'IN 1'
-mixer $card 'SPDIFOUT Playback' on
-
-# Amlogic GX HDMI and S/PDIF
-mixer $card 'AIU HDMI CTRL SRC' 'I2S'
-mixer $card 'AIU SPDIF SRC SEL' 'SPDIF'
+# Amlogic audio devices
+  case $(dtsoc) in
+    amlogic,g12*|amlogic,sm1)
+      # AXG HDMI
+      TDMOUT=$(awk '/TDMOUT/ && $2=="OUT" {print substr($1,length($1),1)}' /sys/firmware/devicetree/base/sound/audio-routing)
+      if [ "${TDMOUT}" = "A" ]; then
+        mixer "$card" 'FRDDR_A SINK 1 SEL' 'OUT 0'
+        mixer "$card" 'FRDDR_A SRC 1 EN' on
+        mixer "$card" 'TDMOUT_A SRC SEL' 'IN 0'
+        mixer "$card" 'TOHDMITX' on
+        mixer "$card" 'TOHDMITX I2S SRC' 'I2S A'
+      elif [ "${TDMOUT}" = "B" ]; then
+        mixer "$card" 'FRDDR_A SINK 1 SEL' 'OUT 1'
+        mixer "$card" 'FRDDR_A SRC 1 EN' on
+        mixer "$card" 'TDMOUT_B SRC SEL' 'IN 0'
+        mixer "$card" 'TOHDMITX' on
+        mixer "$card" 'TOHDMITX I2S SRC' 'I2S B'
+      fi
+      # AXG S/PDIF
+      mixer "$card" 'FRDDR_B SINK 1 SEL' 'OUT 3'
+      mixer "$card" 'FRDDR_B SRC 1 EN' on
+      mixer "$card" 'SPDIFOUT SRC SEL' 'IN 1'
+      mixer "$card" 'SPDIFOUT Playback' on
+      # AXG ACODEC headphone jack
+      mixer "$card" 'ACODEC' 80% on
+      mixer "$card" 'AXG ACODEC SRC' 'I2S'
+      mixer "$card" 'AXG ACODEC OUT EN' on
+      ;;
+    amlogic,gx*)
+      # AIU HDMI and S/PDIF
+      mixer "$card" 'AIU HDMI CTRL SRC' 'I2S'
+      mixer "$card" 'AIU SPDIF SRC SEL' 'SPDIF'
+      # AIU ACODEC headphone jack
+      mixer "$card" 'ACODEC' 80% on
+      mixer "$card" 'AIU ACODEC SRC' 'I2S'
+      mixer "$card" 'AIU ACODEC OUT EN' on
+      ;;
+  esac
 
 # Amlogic S812
 mixer $card 'HDMI CTRL SRC' 'I2S'
