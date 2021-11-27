@@ -17,19 +17,20 @@ RETROLX_BINARIES_DIR=$6
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/packages" || exit 1
 cp -r "${BUILD_DIR}"/repo/* "${RETROLX_BINARIES_DIR}/boot/packages/" || exit 1
 
-mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot/extlinux" || exit 1
+mkdir -p "${RETROLX_BINARIES_DIR}/build-uboot-khadas-vim3"     || exit 1
+cp "${BOARD_DIR}/build-uboot.sh"          "${RETROLX_BINARIES_DIR}/build-uboot-khadas-vim3/" || exit 1
+cd "${RETROLX_BINARIES_DIR}/build-uboot-khadas-vim3/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
+
+# Create boot directories, copy boot files
+mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"     || exit 1
+mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
 
 cp "${BINARIES_DIR}/Image"                             "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
-cp "${BINARIES_DIR}/uInitrd"                           "${RETROLX_BINARIES_DIR}/boot/boot/uInitrd"         || exit 1
+cp "${BINARIES_DIR}/initrd.gz"                     "${RETROLX_BINARIES_DIR}/boot/boot/initrd.gz"                     || exit 1
 cp "${BINARIES_DIR}/rootfs.squashfs"                   "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
 cp "${BINARIES_DIR}/modules"                           "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
 
 cp "${BINARIES_DIR}/meson-g12b-a311d-khadas-vim3.dtb"  "${RETROLX_BINARIES_DIR}/boot/boot/"          || exit 1
-cp "${BINARIES_DIR}/boot.scr"                          "${RETROLX_BINARIES_DIR}/boot/"               || exit 1
-cp "${BOARD_DIR}/boot/logo.bmp"                        "${RETROLX_BINARIES_DIR}/boot/boot/"          || exit 1
-cp "${BOARD_DIR}/boot/extlinux.conf"                   "${RETROLX_BINARIES_DIR}/boot/boot/extlinux/" || exit 1
-
-dd if="${BINARIES_DIR}/u-boot.bin.sd-amlogic.bin" of="${BINARIES_DIR}/u-boot1.bin" bs=1   count=444 || exit 1
-dd if="${BINARIES_DIR}/u-boot.bin.sd-amlogic.bin" of="${BINARIES_DIR}/u-boot2.bin" bs=512 skip=1    || exit 1
+cp "${BOARD_DIR}/boot/extlinux.conf"                   "${RETROLX_BINARIES_DIR}/boot/extlinux/" || exit 1
 
 exit 0
