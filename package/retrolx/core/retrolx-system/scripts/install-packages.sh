@@ -53,10 +53,12 @@ do
     progress=$(($progress+$percent))
 done
 
-dialogoutput2 $progress "95"
+dialogoutput2 $progress "85"
 
 # Cleanup DB
 /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Scc
 
-# Now we rebuild all systems at one
+dialogoutput2 $progress "90"
+
+# Now we rebuild all systems at once
 /usr/bin/retrolx-rebuild-es-systems.sh
