@@ -13,7 +13,7 @@ function dialogoutput2()
 {
     local percent="$1"
     local footer="Do not switch off your device !"
-    dialog --hline "$footer" --backtitle "RetroLX" --title " Installing $2 " --mixedgauge "Please wait while finishing install..." 10 50 "$percent" &> /dev/tty1
+    dialog --hline "$footer" --backtitle "RetroLX" --title " $2 " --mixedgauge "Please wait while finishing install..." 10 50 "$percent" &> /dev/tty1
 }
 
 # Preparing packages array
@@ -48,17 +48,17 @@ progress=0;
 for i in "${packages[@]}"
 do
     package=`ls /boot/packages/${i}*`
-    /usr/bin/pacman --hookdir /tmp --config /etc/retrolx_pacman.conf --noconfirm -U "${package}" --overwrite 'userdata/*'
+    /usr/bin/pacman --config /usr/share/retrolx/scripts/install.conf --noconfirm -U "${package}" --overwrite 'userdata/*'
     dialogoutput $progress "$i"
     progress=$(($progress+$percent))
 done
 
-dialogoutput2 $progress "85"
+dialogoutput2 $progress "Cleanup..."
 
 # Cleanup DB
 /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Scc
 
-dialogoutput2 $progress "90"
+dialogoutput2 $progress "Building installed systems..."
 
 # Now we rebuild all systems at once
 /usr/bin/retrolx-rebuild-es-systems.sh
