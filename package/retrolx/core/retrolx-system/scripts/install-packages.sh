@@ -53,7 +53,7 @@ do
     progress=$(($progress+$percent))
 done
 
-dialogoutput $progress "95"
+dialogoutput2 $progress "95"
 
 # Cleanup DB
 /usr/bin/pacman --config /etc/retrolx_pacman.conf --noconfirm -Scc
