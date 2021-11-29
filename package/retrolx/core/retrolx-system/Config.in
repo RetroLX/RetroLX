@@ -12,7 +12,7 @@ if BR2_i686 || BR2_x86_64
 	default y
 endif
 
-if BR2_PACKAGE_RETROLX_TARGET_RK356X || BR2_PACKAGE_RETROLX_TARGET_RK3399 || BR2_PACKAGE_RETROLX_TARGET_RK3288 || BR2_PACKAGE_RETROLX_TARGET_RK3326 || BR2_PACKAGE_RETROLX_TARGET_RK3328
+if BR2_PACKAGE_RETROLX_TARGET_RK356X || BR2_PACKAGE_RETROLX_TARGET_RK3399 || BR2_PACKAGE_RETROLX_TARGET_RK3288 || BR2_PACKAGE_RETROLX_TARGET_RK3326 
 	config BR2_PACKAGE_RETROLX_ROCKCHIP_ANY
 	bool "rockchip_targets"
 	default y
@@ -379,7 +379,7 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	select BR2_PACKAGE_RETROLX_INITRAMFS                   # initramfs to boot the system
 	select BR2_PACKAGE_BASH                                 # bash shell, used as the interactive shell
-	select BR2_PACKAGE_RNG_TOOLS                            # system entropy
+        # TODO fix this select BR2_PACKAGE_RNG_TOOLS                            # system entropy
 	select BR2_PACKAGE_RETROLX_TRIGGERHAPPY                # multimedia/power buttons
 	select BR2_TARGET_ROOTFS_SQUASHFS                       # tool to generate the target image
 	select BR2_PACKAGE_PM_UTILS                             # suspend
@@ -481,11 +481,11 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	# Vulkan
 	select BR2_PACKAGE_RETROLX_VULKAN      if  BR2_PACKAGE_RETROLX_IS_X86_ARCH     || \
                                                BR2_PACKAGE_RETROLX_TARGET_RPI4 || \
-                                               BR2_PACKAGE_RETROLX_PANFROST_MESA3D
+                                               (BR2_PACKAGE_RETROLX_PANFROST_MESA3D && BR2_PACKAGE_RETROLX_HAS_GLES3)
                                                
 	# s905 tv-box firmwares
-	select BR2_PACKAGE_FIRMWARE_WLAN_AML   if BR2_PACKAGE_RETROLX_TARGET_S905     || \
-						  BR2_PACKAGE_RETROLX_TARGET_S905GEN2 || \
+	select BR2_PACKAGE_FIRMWARE_WLAN_AML   if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2 || \
+						  BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES3 || \
 						  BR2_PACKAGE_RETROLX_TARGET_S905GEN3 || \
 						  BR2_PACKAGE_RETROLX_TARGET_S812     || \
 						  BR2_PACKAGE_RETROLX_TARGET_S922X
@@ -552,11 +552,9 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	config BR2_TARGET_RETROLX_IMAGES
 	string "target images"
 	default "allwinner/aw32/cubieboard2 allwinner/aw32/orangepi-one allwinner/aw32/orangepi-plus2e allwinner/aw32/orangepi-pc allwinner/aw32/orangepi-pc-plus allwinner/aw32/cha" if BR2_PACKAGE_RETROLX_TARGET_AW32
-	default "allwinner/sun50i/tritium-h5 allwinner/sun50i/orangepi-pc2 allwinner/sun50i/orangepi-one-plus"                                   if BR2_PACKAGE_RETROLX_TARGET_SUN50I
-	default "allwinner/h616/orangepi-zero2"                                                                                                  if BR2_PACKAGE_RETROLX_TARGET_H616
+	default "allwinner/sun50i/tritium-h5 allwinner/sun50i/orangepi-pc2 allwinner/sun50i/orangepi-one-plus amlogic/s905/odroid-c2 amlogic/s905/nanopi-k2 amlogic/s905/khadas-vim amlogic/s905/s905-tvbox rockchip/rk3328/rock64 rockchip/rk3328/roc-cc" if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2
+	default "allwinner/h616/orangepi-zero2 amlogic/s905gen2/x96-max amlogic/s905gen2/khadas-vim2 amlogic/s905gen2/radxa-zero"                if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES3
 	default "amlogic/s812"                                                                                                                   if BR2_PACKAGE_RETROLX_TARGET_S812
-	default "amlogic/s905/odroid-c2 amlogic/s905/nanopi-k2 amlogic/s905/khadas-vim amlogic/s905/s905-tvbox"                                  if BR2_PACKAGE_RETROLX_TARGET_S905
-	default "amlogic/s905gen2/x96-max amlogic/s905gen2/khadas-vim2 amlogic/s905gen2/radxa-zero"                                              if BR2_PACKAGE_RETROLX_TARGET_S905GEN2
 	default "amlogic/s905gen3/odroid-c4 amlogic/s905gen3/khadas-vim3l amlogic/s905gen3/x96-max-plus amlogic/s905gen3/s905gen3-tvbox"         if BR2_PACKAGE_RETROLX_TARGET_S905GEN3
 	default "amlogic/s922x/odroid-n2 amlogic/s922x/odroid-n2-plus amlogic/s922x/khadas-vim3 amlogic/s922x/gtking amlogic/s922x/gtkingpro"    if BR2_PACKAGE_RETROLX_TARGET_S922X
 	default "raspberrypi/rpi1"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI1
@@ -565,7 +563,6 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "raspberrypi/rpi4/rpi4 raspberrypi/rpi4/retrodreamer"                                                                            if BR2_PACKAGE_RETROLX_TARGET_RPI4
 	default "rockchip/rk3326/odroidgo2 rockchip/rk3326/gameforce rockchip/rk3326/rg351"                                                      if BR2_PACKAGE_RETROLX_TARGET_RK3326
 	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"                                                                               if BR2_PACKAGE_RETROLX_TARGET_RK3288
-	default "rockchip/rk3328/rock64 rockchip/rk3328/roc-cc"				                                                         if BR2_PACKAGE_RETROLX_TARGET_RK3328
 	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/nanopi-m4 rockchip/rk3399/x99"				 if BR2_PACKAGE_RETROLX_TARGET_RK3399
 	default "rockchip/rk356x/firefly-station-m2 rockchip/rk356x/firefly-station-p2"				                                 if BR2_PACKAGE_RETROLX_TARGET_RK356X
 	default "odroidxu4"                                                                                                                      if BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
@@ -574,7 +571,6 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 
 choice
 	prompt "RetroLX target"
-	default BR2_PACKAGE_RETROLX_TARGET_RPI2
 	help
 		Select RetroLX target hardware
 
@@ -599,12 +595,6 @@ config BR2_PACKAGE_RETROLX_TARGET_S922X
 config BR2_PACKAGE_RETROLX_TARGET_RK3326
 	bool "rk3326"
 
-config BR2_PACKAGE_RETROLX_TARGET_S905
-	bool "s905"
-
-config BR2_PACKAGE_RETROLX_TARGET_S905GEN2
-	bool "s905gen2"
-
 config BR2_PACKAGE_RETROLX_TARGET_S905GEN3
 	bool "s905gen3"
 
@@ -613,9 +603,6 @@ config BR2_PACKAGE_RETROLX_TARGET_X86
 
 config BR2_PACKAGE_RETROLX_TARGET_X86_64
 	bool "x86_64"
-
-config BR2_PACKAGE_RETROLX_TARGET_RK3328
-	bool "rk3328"
 
 config BR2_PACKAGE_RETROLX_TARGET_RK3399
 	bool "rk3399"
@@ -629,14 +616,14 @@ config BR2_PACKAGE_RETROLX_TARGET_RK3288
 config BR2_PACKAGE_RETROLX_TARGET_AW32
 	bool "aw32"
 
-config BR2_PACKAGE_RETROLX_TARGET_SUN50I
-	bool "h5"
-
-config BR2_PACKAGE_RETROLX_TARGET_H616
-	bool "h616"
-
 config BR2_PACKAGE_RETROLX_TARGET_S812
 	bool "s812"
+
+config BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2
+	bool "arm64-a53-gles2"
+
+config BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES3
+	bool "arm64-a53-gles3"
 
 endchoice
 

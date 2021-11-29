@@ -84,8 +84,8 @@ else
 	RETROARCH_CONF_OPTS += --disable-opengles
 endif
 
-# Enable OpenGL ES 3.1 on Panfrost, Raspberry Pi 4 (Mesa V3D driver) and Odroid XU4
-ifeq ($(BR2_PACKAGE_RETROLX_PANFROST_MESA3D)$(BR2_PACKAGE_RETROLX_TARGET_RPI4)$(BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422),y)
+# Enable OpenGL ES 3.1 when possible
+ifeq ($(BR2_PACKAGE_RETROLX_HAS_GLES3),y)
 	RETROARCH_CONF_OPTS += --enable-opengles3 --enable-opengles3_1
 endif
 

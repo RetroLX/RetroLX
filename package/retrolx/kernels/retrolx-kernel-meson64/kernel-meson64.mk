@@ -12,7 +12,8 @@ RETROLX_KERNEL_MESON64_SOURCE = kernel-$(RETROLX_KERNEL_MESON64_ARCH)-$(RETROLX_
 RETROLX_KERNEL_MESON64_SITE = https://github.com/RetroLX/kernel/releases/download/$(RETROLX_KERNEL_MESON64_VERSION)
 
 define RETROLX_KERNEL_MESON64_INSTALL_TARGET_CMDS
-	cd $(@D) && tar xzvf $(DL_DIR)/$(RETROLX_KERNEL_MESON64_DL_SUBDIR)/$(RETROLX_KERNEL_MESON64_SOURCE) && cp $(@D)/*      $(BINARIES_DIR)/
+	mkdir -p $(BINARIES_DIR)/kernel-meson64
+	cd $(@D) && tar xzvf $(DL_DIR)/$(RETROLX_KERNEL_MESON64_DL_SUBDIR)/$(RETROLX_KERNEL_MESON64_SOURCE) && cp $(@D)/*      $(BINARIES_DIR)/kernel-meson64/
 endef
 
 $(eval $(generic-package))

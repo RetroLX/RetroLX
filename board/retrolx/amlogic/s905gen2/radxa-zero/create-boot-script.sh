@@ -25,14 +25,18 @@ cd "${RETROLX_BINARIES_DIR}/build-uboot-radxa-zero/" && ./build-uboot.sh "${HOST
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/packages" || exit 1
 cp -r "${BUILD_DIR}"/repo/* "${RETROLX_BINARIES_DIR}/boot/packages/" || exit 1
 
+# Create boot directories
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"     || exit 1
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
 
-cp "${BINARIES_DIR}/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
+# Copy kernel files
+cp "${BINARIES_DIR}/kernel-meson64/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
+cp "${BINARIES_DIR}/kernel-meson64/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
+cp "${BINARIES_DIR}/kernel-meson64/meson-g12a-radxa-zero.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1
+
+# Copy rootfs, initrd and extlinux
 cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/initrd.gz"       || exit 1
 cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
-
-cp "${BINARIES_DIR}/meson-g12a-radxa-zero.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf"                   "${RETROLX_BINARIES_DIR}/boot/extlinux/" || exit 1
 
 exit 0

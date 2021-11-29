@@ -31,15 +31,18 @@ mkdir -p "${RETROLX_BINARIES_DIR}/uboot"     || exit 1
 cp "${BOARD_DIR}/build-uboot.sh"          "${RETROLX_BINARIES_DIR}/uboot/" || exit 1
 cd "${RETROLX_BINARIES_DIR}/uboot/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
 
-# Create boot directories, copy boot files
+# Create boot directories
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"     || exit 1
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
-cp "${BINARIES_DIR}/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
+
+# Copy kernel files
+cp "${BINARIES_DIR}/kernel-sun50i/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
+cp "${BINARIES_DIR}/kernel-sun50i/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
+cp "${BINARIES_DIR}/kernel-sun50i/sun50i-h5-orangepi-pc2.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1
+
+# Copy rootfs, initrd and extlinux
 cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/initrd.gz"       || exit 1
 cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
-cp "${BINARIES_DIR}/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
-
-cp "${BINARIES_DIR}/sun50i-h5-orangepi-pc2.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf"            "${RETROLX_BINARIES_DIR}/boot/extlinux/" || exit 1
 
 exit 0
