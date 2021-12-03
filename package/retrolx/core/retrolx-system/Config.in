@@ -6,7 +6,7 @@ if BR2_PACKAGE_RETROLX_RPI_VCORE || BR2_PACKAGE_RETROLX_RPI_MESA3D
 	default y
 endif
 
-if BR2_i686 || BR2_x86_64
+if BR2_x86_i686 || BR2_x86_64
 	config BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	bool "any x86 or x86_64"
 	default y
@@ -88,7 +88,7 @@ config BR2_PACKAGE_RETROLX_BOOST
 config BR2_PACKAGE_RETROLX_AUDIO
 	bool "RetroLX audio packages"
 	select BR2_PACKAGE_FAAD2
-	select BR2_PACKAGE_FAUDIO           if (BR2_i686 || BR2_x86_64)
+	select BR2_PACKAGE_FAUDIO           if (BR2_x86_i686 || BR2_x86_64)
 	select BR2_PACKAGE_FLAC
 	select BR2_PACKAGE_FDK_AAC
 	select BR2_PACKAGE_FLUIDSYNTH       if !BR2_arm1176jzf_s && !BR2_cortex_a7 && !BR2_cortex_a35
@@ -106,7 +106,7 @@ config BR2_PACKAGE_RETROLX_AUDIO
 	select BR2_PACKAGE_MPG123
 	select BR2_PACKAGE_OPENAL
 	select BR2_PACKAGE_OPUS
-	select BR2_PACKAGE_OPUS_FIXED_POINT if (!BR2_i686 && !BR2_x86_64)
+	select BR2_PACKAGE_OPUS_FIXED_POINT if (!BR2_x86_i686 && !BR2_x86_64)
 	select BR2_PACKAGE_OPUSFILE
 	select BR2_PACKAGE_PORTAUDIO
 	select BR2_PACKAGE_PULSEAUDIO
@@ -138,8 +138,8 @@ config BR2_PACKAGE_RETROLX_VIDEO
 	select BR2_PACKAGE_MPV
 	#select BR2_PACKAGE_RTKIT fails to compile on sbc, not so required for the moment
 	select BR2_PACKAGE_VLC
-	select BR2_PACKAGE_X264             if (BR2_i686 || BR2_x86_64)
-	select BR2_PACKAGE_X265             if (BR2_i686 || BR2_x86_64)
+	select BR2_PACKAGE_X264             if (BR2_x86_i686 || BR2_x86_64)
+	select BR2_PACKAGE_X265             if (BR2_x86_i686 || BR2_x86_64)
 
 
 # RetroLX common libraries
@@ -742,7 +742,7 @@ config BR2_PACKAGE_RETROLX_GPU_X86
 	bool "RetroLX GPU support for x86 platform"
 
 	# nvidia
-	select BR2_PACKAGE_LIBGLVND                             if BR2_PACKAGE_RETROLX_TARGET_X86    # already set by nvidia for x86_64, but required on x86 for pcsx2
+	select BR2_PACKAGE_LIBGLVND                            if BR2_PACKAGE_RETROLX_TARGET_X86    # already set by nvidia for x86_64, but required on x86 for pcsx2
 	select BR2_PACKAGE_RETROLX_NVIDIA_DRIVER               if BR2_PACKAGE_RETROLX_TARGET_X86_64
 	select BR2_PACKAGE_RETROLX_NVIDIA_DRIVER_MODULE        if BR2_PACKAGE_RETROLX_TARGET_X86_64
 
