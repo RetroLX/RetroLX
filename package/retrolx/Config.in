@@ -16,6 +16,10 @@ config BR2_PACKAGE_RETROLX_PACKAGES
 	select BR2_PACKAGE_RETROLX_WINE_SYSTEMS        if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	select BR2_PACKAGE_RETROLX_FLASH_SYSTEMS       if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 
+	# Box86 / Box64 translation layer
+	select BR2_PACKAGE_BOX86               if BR2_arm
+	select BR2_PACKAGE_BOX64               if BR2_aarch64
+
 	# ES frontend and configgen
 	select BR2_PACKAGE_RETROLX_ES_SYSTEM
 
