@@ -67,11 +67,8 @@ BR2_PACKAGE_LUA_5_1=y
 BR2_PACKAGE_RETROLX_LIMA_MESA3D=y
 BR2_PACKAGE_RETROLX_PANFROST_MESA3D=y
 
-# Bootloader
-BR2_PACKAGE_UBOOT_S905_TVBOX=y
 # Firmware 
 # TODO meson firmware
-
 
 # Required tools to create the SD image
 BR2_PACKAGE_HOST_DOSFSTOOLS=y
