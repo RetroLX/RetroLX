@@ -61,7 +61,7 @@ DOSBOX_STAGING_CONF_OPTS += -Duse_fluidsynth=false
 endif
 
 # No OpenGL for GLES boards
-ifeq ($(BR2_i686)$(BR2_x86_64),y)
+ifeq ($(BR2_x86_i686)$(BR2_x86_64),y)
 DOSBOX_STAGING_CONF_OPTS += -Duse_opengl=true
 else
 DOSBOX_STAGING_CONF_OPTS += -Duse_opengl=false

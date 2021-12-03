@@ -103,11 +103,11 @@ config BR2_PACKAGE_RETROLX_SEGADC
 	# Dreamcast / Naomi / Atomiswave emulation
 	select BR2_PACKAGE_FLYCAST          if  !BR2_PACKAGE_RETROLX_TARGET_RPI1       && \
                                                 !BR2_PACKAGE_RETROLX_TARGET_RPI2       && \
-                                                !BR2_i686
+                                                !BR2_x86_i686
 
 	select BR2_PACKAGE_LIBRETRO_FLYCAST     if  !BR2_PACKAGE_RETROLX_TARGET_RPI1       && \
                                                 !BR2_PACKAGE_RETROLX_TARGET_RPI2       && \
-                                                !BR2_i686
+                                                !BR2_x86_i686
 
 	select BR2_PACKAGE_REDREAM              if BR2_x86_64
 
@@ -388,14 +388,14 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 
 	# Sony PS1
 	select BR2_PACKAGE_DUCKSTATION                  if !BR2_arm1176jzf_s && !BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_SWANSTATION         if !BR2_i686 && !BR2_arm1176jzf_s && !BR2_cortex_a7
+	select BR2_PACKAGE_LIBRETRO_SWANSTATION         if !BR2_x86_i686 && !BR2_arm1176jzf_s && !BR2_cortex_a7
 	select BR2_PACKAGE_LIBRETRO_PCSX                if !BR2_arm1176jzf_s && !BR2_cortex_a35
 	select BR2_PACKAGE_LIBRETRO_BEETLE_PSX          if !BR2_arm1176jzf_s && !BR2_cortex_a7 && !BR2_cortex_a35
 
 	# Sony PS2
 	select BR2_PACKAGE_PCSX2                        if BR2_x86_64
 	select BR2_PACKAGE_PLAY                         if BR2_x86_64 && BR2_PACKAGE_XORG7
-	select BR2_PACKAGE_LIBRETRO_PLAY		if BR2_i686 || BR2_x86_64 || BR2_PACKAGE_RETROLX_HAS_GLES3
+	select BR2_PACKAGE_LIBRETRO_PLAY		if BR2_x86_i686 || BR2_x86_64 || BR2_PACKAGE_RETROLX_HAS_GLES3
 
 	# Sony PS3
 	#select BR2_PACKAGE_RPCS3                        if BR2_x86_64
