@@ -1,0 +1,6 @@
+pkgname = box86
+pkgver = 0.2.4-1
+pkgdesc = Box86 emulator
+group = emulator
+packager = https://retrolx.org 
+url = https://github.com/ptitseb/box86

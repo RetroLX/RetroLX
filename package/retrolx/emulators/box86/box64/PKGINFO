@@ -1,6 +1,6 @@
 pkgname = box64
 pkgver = 0.1.6-1
-pkgdesc = Box64  emulator
+pkgdesc = Box64 emulator
 group = emulator
 packager = https://retrolx.org 
 url = https://github.com/ptitseb/box64
