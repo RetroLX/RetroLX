@@ -12,10 +12,7 @@ else
 fi
 
 # Make directories.
-mkdir -p /var/cache/samba
-mkdir -p /var/log/samba
 mkdir -p /var/lock/subsys
-mkdir -p /var/run/samba
 
 RETVAL=0
 
@@ -27,49 +24,49 @@ start() {
         fi
 
 	echo -n "Starting SMB services: "
-	smbd -D --configfile="${CONFIGFILE}"
+	modprobe ksmbd
+	ksmbd.adduser -a root
+	ksmbd.addshare -a RetroLX -o "guest ok = yes, writable = yes, path = /userdata"
 	RETVAL=$?
-	echo "done"
-
-	echo -n "Starting NMB services: "
-	nmbd -D --configfile="${CONFIGFILE}"
+	ksmbd.mountd
 	RETVAL2=$?
 	echo "done"
+
+	#echo -n "Starting NMB services: "
+	#nmbd -D --configfile="${CONFIGFILE}"
+	#echo "done"
 
 	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && touch /var/lock/subsys/smb || \
 	   RETVAL=1
 	return $RETVAL
-}	
+}
 
 stop() {
 	echo -n "Shutting down SMB services: "
-	kill -9 `pidof smbd`
+	ksmbd.control -s
 	RETVAL=$?
-	rm -f /var/run/samba/smbd.pid
-	echo "done"
-
-	echo -n "Shutting down NMB services: "
-	kill -9 `pidof nmbd`
+	rmmod ksmbd
 	RETVAL2=$?
-	rm -f /var/run/samba/nmbd.pid
+	echo "done"
 
 	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && rm -f /var/lock/subsys/smb
 	echo "done"
 	return $RETVAL
-}	
+}
 
 restart() {
 	stop
 	start
-}	
+}
 
 reload() {
         echo -n "Reloading smb.conf file: "
-	kill -HUP `pidof smbd`
+	ksmbd.control -s
+	ksmbd.mountd
 	RETVAL=$?
 	echo "done"
 	return $RETVAL
-}	
+}
 
 case "$1" in
   start)
