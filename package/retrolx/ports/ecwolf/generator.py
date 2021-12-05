@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 import controllersConfig
 import os
 from os import path
 
-ecwolfConfig  = batoceraFiles.CONF + "/ecwolf"
-ecwolfSaves   = batoceraFiles.SAVES + "/ecwolf"
+ecwolfConfig  = retrolxFiles.CONF + "/ecwolf"
+ecwolfSaves   = retrolxFiles.SAVES + "/ecwolf"
 
 def getGeneratorClass():
     return 'ECWolfGenerator'

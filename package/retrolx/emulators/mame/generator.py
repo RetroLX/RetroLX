@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from generators.Generator import Generator
-import batoceraFiles
+import retrolxFiles
 import Command
 import shutil
 import os
@@ -146,7 +146,7 @@ class MameGenerator(Generator):
         except:
             MameGenerator.writeBezelConfig(None, system.name, rom)
 
-        return Command.Command(array=commandArray, env={"PWD":"/usr/bin/mame/","XDG_CONFIG_HOME":batoceraFiles.CONF, "XDG_CACHE_HOME":batoceraFiles.SAVES})
+        return Command.Command(array=commandArray, env={"PWD":"/usr/bin/mame/","XDG_CONFIG_HOME":retrolxFiles.CONF, "XDG_CACHE_HOME":retrolxFiles.SAVES})
 
     @staticmethod
     def getRoot(config, name):

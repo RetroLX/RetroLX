@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 import shutil
 import os.path
@@ -29,11 +29,11 @@ class XemuGenerator(Generator):
             copyfile("/usr/share/xemu/data/xbox_hdd.qcow2", "/userdata/saves/xbox/xbox_hdd.qcow2")
 
         # the command to run
-        commandArray = [batoceraFiles.batoceraBins[system.config['emulator']]]
-        commandArray.extend(["-config_path", batoceraFiles.xemuConfig])
+        commandArray = [retrolxFiles.batoceraBins[system.config['emulator']]]
+        commandArray.extend(["-config_path", retrolxFiles.xemuConfig])
 
         env = {}
-        env["XDG_CONFIG_HOME"] = batoceraFiles.CONF
+        env["XDG_CONFIG_HOME"] = retrolxFiles.CONF
         env["SDL_GAMECONTROLLERCONFIG"] = controllersConfig.generateSdlGameControllerConfig(playersControllers)
 
         return Command.Command(array=commandArray, env=env)

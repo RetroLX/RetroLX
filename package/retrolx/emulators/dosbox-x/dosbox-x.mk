@@ -3,8 +3,8 @@
 # DosBox-X
 #
 ################################################################################
-# Version.: Commits on Nov 1, 2021
-DOSBOX_X_VERSION = dosbox-x-v0.83.19
+# Version.: Commits on Dec 1, 2021
+DOSBOX_X_VERSION = dosbox-x-v0.83.20
 DOSBOX_X_SITE = $(call github,joncampbell123,dosbox-x,$(DOSBOX_X_VERSION))
 DOSBOX_X_DEPENDENCIES = sdl2 sdl2_net sdl_sound zlib libpng libogg libvorbis ffmpeg
 DOSBOX_X_LICENSE = GPLv2
@@ -12,11 +12,15 @@ DOSBOX_X_LICENSE = GPLv2
 DOSBOX_X_PKG_DIR = $(TARGET_DIR)/opt/retrolx/dosbox-x
 DOSBOX_X_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/dosbox-x
 
+ifeq ($(BR2_arm)$(BR2_aarch64),y)
+DOSBOX_X_PLATFORM_CONF_OPTS += --disable-x11 --enable-scaler-full-line
+endif
+
 define DOSBOX_X_CONFIGURE_CMDS
 	# Create directories
 	mkdir -p $(DOSBOX_X_PKG_DIR)
 
-	cd $(@D); ./autogen.sh; $(TARGET_CONFIGURE_OPTS) CROSS_COMPILE="$(HOST_DIR)/usr/bin/" LIBS="-lvorbisfile -lvorbis -logg" \
+	cd $(@D); ./autogen.sh; $(TARGET_CONFIGURE_OPTS) CROSS_COMPILE="$(HOST_DIR)/usr/bin/" PREFIX="$(STAGING_DIR)" SYSROOT="$(STAGING_DIR)" LIBS="-lvorbisfile -lvorbis -logg" \
         ./configure --host="$(GNU_TARGET_NAME)" \
                     --enable-core-inline \
                     --enable-dynrec \
@@ -24,7 +28,8 @@ define DOSBOX_X_CONFIGURE_CMDS
                     --prefix=/opt/retrolx/dosbox-x$(DOSBOX_X_PKG_INSTALL_DIR) \
                     --disable-sdl \
                     --enable-sdl2 \
-                    --with-sdl2-prefix="$(STAGING_DIR)/usr";
+                    --with-sdl2-prefix="$(STAGING_DIR)/usr" \
+		    $(DOSBOX_PLATFORM_CONF_OPTS)
 endef
 
 define DOSBOX_X_CONFIGURE_CONFIG

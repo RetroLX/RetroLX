@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import Command
 #~ import flycastControllers
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 import shutil
 import os.path
@@ -23,9 +23,9 @@ class FlycastGenerator(Generator):
         # Write emu.cfg to map joysticks, init with the default emu.cfg
         Config = configparser.ConfigParser(interpolation=None)
         Config.optionxform = str
-        if os.path.exists(batoceraFiles.flycastConfig):
+        if os.path.exists(retrolxFiles.flycastConfig):
             try:
-                Config.read(batoceraFiles.flycastConfig)
+                Config.read(retrolxFiles.flycastConfig)
             except:
                 pass # give up the file
         
@@ -79,30 +79,30 @@ class FlycastGenerator(Generator):
                 Config.set(custom_section, custom_option, system.config[user_config])
 
         ### update the configuration file
-        if not os.path.exists(os.path.dirname(batoceraFiles.flycastConfig)):
-            os.makedirs(os.path.dirname(batoceraFiles.flycastConfig))
-        with open(batoceraFiles.flycastConfig, 'w+') as cfgfile:
+        if not os.path.exists(os.path.dirname(retrolxFiles.flycastConfig)):
+            os.makedirs(os.path.dirname(retrolxFiles.flycastConfig))
+        with open(retrolxFiles.flycastConfig, 'w+') as cfgfile:
             Config.write(cfgfile)        
             cfgfile.close()
             
         # internal config
         # vmuA1
-        if not isfile(batoceraFiles.flycastVMUA1):
-            if not isdir(dirname(batoceraFiles.flycastVMUA1)):
-                os.mkdir(dirname(batoceraFiles.flycastVMUA1))
-            copyfile(batoceraFiles.flycastVMUBlank, batoceraFiles.flycastVMUA1)
+        if not isfile(retrolxFiles.flycastVMUA1):
+            if not isdir(dirname(retrolxFiles.flycastVMUA1)):
+                os.mkdir(dirname(retrolxFiles.flycastVMUA1))
+            copyfile(retrolxFiles.flycastVMUBlank, retrolxFiles.flycastVMUA1)
         # vmuA2
-        if not isfile(batoceraFiles.flycastVMUA2):
-            if not isdir(dirname(batoceraFiles.flycastVMUA2)):
-                os.mkdir(dirname(batoceraFiles.flycastVMUA2))
-            copyfile(batoceraFiles.flycastVMUBlank, batoceraFiles.flycastVMUA2)
+        if not isfile(retrolxFiles.flycastVMUA2):
+            if not isdir(dirname(retrolxFiles.flycastVMUA2)):
+                os.mkdir(dirname(retrolxFiles.flycastVMUA2))
+            copyfile(retrolxFiles.flycastVMUBlank, retrolxFiles.flycastVMUA2)
 
         # the command to run  
-        commandArray = [batoceraFiles.batoceraBins[system.config['emulator']]]
+        commandArray = [retrolxFiles.batoceraBins[system.config['emulator']]]
         commandArray.append(rom)
         # Here is the trick to make flycast find files :
         # emu.cfg is in $XDG_CONFIG_DIRS or $XDG_CONFIG_HOME. The latter is better
         # VMU will be in $XDG_DATA_HOME because it needs rw access -> /userdata/saves/dreamcast
         # BIOS will be in $XDG_DATA_DIRS
         # controller cfg files are set with an absolute path, so no worry
-        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":batoceraFiles.CONF, "XDG_DATA_HOME":batoceraFiles.flycastSaves, "XDG_DATA_DIRS":batoceraFiles.flycastBios})
+        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":retrolxFiles.CONF, "XDG_DATA_HOME":retrolxFiles.flycastSaves, "XDG_DATA_DIRS":retrolxFiles.flycastBios})

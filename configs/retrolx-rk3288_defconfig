@@ -3,6 +3,7 @@ BR2_arm=y
 BR2_cortex_a17=y
 BR2_ARM_FPU_NEON_VFPV4=y
 BR2_PACKAGE_RETROLX_TARGET_RK3288=y
+BR2_PACKAGE_RETROLX_HAS_GLES3=y
 BR2_ROOTFS_USERS_TABLES="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/users.txt"
 
 # Toolchain definition
@@ -28,7 +29,7 @@ BR2_TARGET_GENERIC_GETTY_BAUDRATE_115200=y
 # BR2_TARGET_GENERIC_REMOUNT_ROOTFS_RW is not set
 BR2_TARGET_TZ_INFO=y
 BR2_TARGET_LOCALTIME="Europe/Paris"
-BR2_GLOBAL_PATCH_DIR="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/patches $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/rockchip/patches $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/rockchip/rk3288/patches"
+BR2_GLOBAL_PATCH_DIR="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/patches $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/patches/gles3 $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/rockchip/patches $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/rockchip/rk3288/patches"
 BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/fsoverlay $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/rockchip/fsoverlay $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/rockchip/rk3288/fsoverlay"
 BR2_ROOTFS_POST_BUILD_SCRIPT="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/scripts/post-build-script.sh"
 BR2_ROOTFS_POST_IMAGE_SCRIPT="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/scripts/post-image-script.sh"

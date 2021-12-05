@@ -3,13 +3,13 @@
 import sys
 import os
 import configparser
-import batoceraFiles
+import retrolxFiles
 from utils.logger import eslog
 
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-import batoceraFiles
+import retrolxFiles
 
 
 flycastMapping = { 'a' :             {'button': 'btn_b'},
@@ -45,7 +45,7 @@ sections = { 'emulator' : ['mapping_name', 'btn_escape'],
 # returns its name
 def generateControllerConfig(controller):
     # Set config file name
-    configFileName = "{}/evdev_{}.cfg".format(batoceraFiles.flycastMapping,controller.realName)
+    configFileName = "{}/evdev_{}.cfg".format(retrolxFiles.flycastMapping,controller.realName)
     Config = configparser.ConfigParser(interpolation=None)
 
     if not os.path.exists(os.path.dirname(configFileName)):

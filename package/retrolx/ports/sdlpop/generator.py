@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 from generators.Generator import Generator
+import os
+import os.path
 import Command
 import controllersConfig
 
@@ -9,8 +11,11 @@ def getGeneratorClass():
 
 class SdlPopGenerator(Generator):
 
+    def executionDirectory(self, config, rom):
+        return os.path.dirname(os.path.abspath(__file__))
+
     def generate(self, system, rom, playersControllers, gameResolution):
-        commandArray = ["SDLPoP"]
+        commandArray = ["./SDLPoP"]
 
         # pad number
         nplayer = 1

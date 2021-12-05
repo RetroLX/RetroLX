@@ -6,19 +6,25 @@ if BR2_PACKAGE_RETROLX_RPI_VCORE || BR2_PACKAGE_RETROLX_RPI_MESA3D
 	default y
 endif
 
-if BR2_i686 || BR2_x86_64
+if BR2_x86_i686 || BR2_x86_64
 	config BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	bool "any x86 or x86_64"
 	default y
 endif
 
-if BR2_PACKAGE_RETROLX_TARGET_RK356X || BR2_PACKAGE_RETROLX_TARGET_RK3399 || BR2_PACKAGE_RETROLX_TARGET_RK3288 || BR2_PACKAGE_RETROLX_TARGET_RK3326 || BR2_PACKAGE_RETROLX_TARGET_RK3328
+if BR2_PACKAGE_RETROLX_TARGET_RK3399 || BR2_PACKAGE_RETROLX_TARGET_RK3288 || BR2_PACKAGE_RETROLX_TARGET_RK3326 
 	config BR2_PACKAGE_RETROLX_ROCKCHIP_ANY
 	bool "rockchip_targets"
 	default y
 	help
 		Selected when a Rockchip platform is being built
 endif
+
+config BR2_PACKAGE_RETROLX_HAS_GLES2
+	bool "target-gles2"
+
+config BR2_PACKAGE_RETROLX_HAS_GLES3
+	bool "target-gles3"
 
 config BR2_PACKAGE_LIBCEC_EXYNOS_API
     bool "Exynos API in libcec"
@@ -82,7 +88,7 @@ config BR2_PACKAGE_RETROLX_BOOST
 config BR2_PACKAGE_RETROLX_AUDIO
 	bool "RetroLX audio packages"
 	select BR2_PACKAGE_FAAD2
-	select BR2_PACKAGE_FAUDIO           if (BR2_i686 || BR2_x86_64)
+	select BR2_PACKAGE_FAUDIO           if (BR2_x86_i686 || BR2_x86_64)
 	select BR2_PACKAGE_FLAC
 	select BR2_PACKAGE_FDK_AAC
 	select BR2_PACKAGE_FLUIDSYNTH       if !BR2_arm1176jzf_s && !BR2_cortex_a7 && !BR2_cortex_a35
@@ -100,7 +106,7 @@ config BR2_PACKAGE_RETROLX_AUDIO
 	select BR2_PACKAGE_MPG123
 	select BR2_PACKAGE_OPENAL
 	select BR2_PACKAGE_OPUS
-	select BR2_PACKAGE_OPUS_FIXED_POINT if (!BR2_i686 && !BR2_x86_64)
+	select BR2_PACKAGE_OPUS_FIXED_POINT if (!BR2_x86_i686 && !BR2_x86_64)
 	select BR2_PACKAGE_OPUSFILE
 	select BR2_PACKAGE_PORTAUDIO
 	select BR2_PACKAGE_PULSEAUDIO
@@ -132,8 +138,8 @@ config BR2_PACKAGE_RETROLX_VIDEO
 	select BR2_PACKAGE_MPV
 	#select BR2_PACKAGE_RTKIT fails to compile on sbc, not so required for the moment
 	select BR2_PACKAGE_VLC
-	select BR2_PACKAGE_X264             if (BR2_i686 || BR2_x86_64)
-	select BR2_PACKAGE_X265             if (BR2_i686 || BR2_x86_64)
+	select BR2_PACKAGE_X264             if (BR2_x86_i686 || BR2_x86_64)
+	select BR2_PACKAGE_X265             if (BR2_x86_i686 || BR2_x86_64)
 
 
 # RetroLX common libraries
@@ -223,12 +229,12 @@ config BR2_PACKAGE_RETROLX_PYTHON3
 	select BR2_PACKAGE_HOST_PYTHON3_SSL
 	select BR2_PACKAGE_HOST_PYTHON3_PROTOBUF
 
-# RetroLX emulation-specific libraries
+# RetroLX emulation-specific libraries (this should not exist on rootfs)
 config BR2_PACKAGE_RETROLX_EMULATION_LIBRARIES
 	bool "RetroLX emulation specific libraries"
 	select BR2_PACKAGE_LIBLCF       # EasyRPG library
 	select BR2_PACKAGE_LIBCAPSIMAGE # CAPS imaging support
-
+	select BR2_PACKAGE_SMPQ         # MPQ Diablo tools
 
 # RetroLX libarchive (needed for pacman)
 config BR2_PACKAGE_RETROLX_LIBARCHIVE
@@ -336,7 +342,6 @@ config BR2_PACKAGE_RETROLX_NETWORKING
 	select BR2_PACKAGE_RSYNC
 	select BR2_PACKAGE_LIBNL                                # needed for ksmbd tools
 	select BR2_PACKAGE_KSMBD_TOOLS                          # SMB linux kernel server tools
-	#select BR2_PACKAGE_SAMBA4                               # samba
 	select BR2_PACKAGE_LIBOPENSSL_BIN                       # required to encode the wifi password
 	select BR2_PACKAGE_WGET                                 # download tools
 
@@ -356,8 +361,6 @@ config BR2_PACKAGE_RETROLX_FS_TOOLS
 	select BR2_PACKAGE_E2FSPROGS                            # ext4
 	select BR2_PACKAGE_MMC_UTILS                            # mmc utils
 	select BR2_PACKAGE_MTD                                  # spi flash utils
-	#move to ntfs3 5.15 select BR2_PACKAGE_NTFS_3G                              # ntfs
-	#move to ntfs3 5.15 select BR2_PACKAGE_NTFS_3G_NTFSPROGS                    # ntfs
 	select BR2_PACKAGE_BTRFS_PROGS                          # btrfs
 	select BR2_PACKAGE_PARTED                               # partition management
 	select BR2_PACKAGE_GPTFDISK                             # fs resize
@@ -374,7 +377,6 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	select BR2_PACKAGE_RETROLX_INITRAMFS                   # initramfs to boot the system
 	select BR2_PACKAGE_BASH                                 # bash shell, used as the interactive shell
-	select BR2_PACKAGE_RNG_TOOLS                            # system entropy
 	select BR2_PACKAGE_RETROLX_TRIGGERHAPPY                # multimedia/power buttons
 	select BR2_TARGET_ROOTFS_SQUASHFS                       # tool to generate the target image
 	select BR2_PACKAGE_PM_UTILS                             # suspend
@@ -476,12 +478,12 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	# Vulkan
 	select BR2_PACKAGE_RETROLX_VULKAN      if  BR2_PACKAGE_RETROLX_IS_X86_ARCH     || \
                                                BR2_PACKAGE_RETROLX_TARGET_RPI4 || \
-                                               BR2_PACKAGE_RETROLX_PANFROST_MESA3D
+                                               (BR2_PACKAGE_RETROLX_PANFROST_MESA3D && BR2_PACKAGE_RETROLX_HAS_GLES3)
                                                
 	# s905 tv-box firmwares
-	select BR2_PACKAGE_FIRMWARE_WLAN_AML   if BR2_PACKAGE_RETROLX_TARGET_S905     || \
-						  BR2_PACKAGE_RETROLX_TARGET_S905GEN2 || \
-						  BR2_PACKAGE_RETROLX_TARGET_S905GEN3 || \
+	select BR2_PACKAGE_FIRMWARE_WLAN_AML   if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2 || \
+						  BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES3 || \
+						  BR2_PACKAGE_RETROLX_TARGET_ARM64_A55_GLES3 || \
 						  BR2_PACKAGE_RETROLX_TARGET_S812     || \
 						  BR2_PACKAGE_RETROLX_TARGET_S922X
 
@@ -547,13 +549,10 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	config BR2_TARGET_RETROLX_IMAGES
 	string "target images"
 	default "allwinner/aw32/cubieboard2 allwinner/aw32/orangepi-one allwinner/aw32/orangepi-plus2e allwinner/aw32/orangepi-pc allwinner/aw32/orangepi-pc-plus allwinner/aw32/cha" if BR2_PACKAGE_RETROLX_TARGET_AW32
-	default "allwinner/h5/tritium-h5 allwinner/h5/orangepi-pc2"                                                                              if BR2_PACKAGE_RETROLX_TARGET_H5
-	default "allwinner/h6/orangepi-one-plus"                                                                                                 if BR2_PACKAGE_RETROLX_TARGET_H6
-	default "allwinner/h616/orangepi-zero2"                                                                                                  if BR2_PACKAGE_RETROLX_TARGET_H616
+	default "allwinner/sun50i/tritium-h5 allwinner/sun50i/orangepi-pc2 allwinner/sun50i/orangepi-one-plus amlogic/s905/odroid-c2 amlogic/s905/nanopi-k2 amlogic/s905/khadas-vim amlogic/s905/s905-tvbox rockchip/rk3328/rock64 rockchip/rk3328/roc-cc" if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2
+	default "allwinner/h616/orangepi-zero2 amlogic/s905gen2/x96-max amlogic/s905gen2/khadas-vim2 amlogic/s905gen2/radxa-zero"                if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES3
 	default "amlogic/s812"                                                                                                                   if BR2_PACKAGE_RETROLX_TARGET_S812
-	default "amlogic/s905/odroid-c2 amlogic/s905/nanopi-k2 amlogic/s905/khadas-vim amlogic/s905/s905-tvbox"                                  if BR2_PACKAGE_RETROLX_TARGET_S905
-	default "amlogic/s905gen2/x96-max amlogic/s905gen2/khadas-vim2 amlogic/s905gen2/radxa-zero"                                              if BR2_PACKAGE_RETROLX_TARGET_S905GEN2
-	default "amlogic/s905gen3/odroid-c4 amlogic/s905gen3/khadas-vim3l amlogic/s905gen3/x96-max-plus amlogic/s905gen3/s905gen3-tvbox"         if BR2_PACKAGE_RETROLX_TARGET_S905GEN3
+	default "amlogic/s905gen3/odroid-c4 amlogic/s905gen3/bananapi-m5 amlogic/s905gen3/khadas-vim3l amlogic/s905gen3/x96-max-plus amlogic/s905gen3/s905gen3-tvbox rockchip/rk356x/firefly-station-m2 rockchip/rk356x/firefly-station-p2" if BR2_PACKAGE_RETROLX_TARGET_ARM64_A55_GLES3
 	default "amlogic/s922x/odroid-n2 amlogic/s922x/odroid-n2-plus amlogic/s922x/khadas-vim3 amlogic/s922x/gtking amlogic/s922x/gtkingpro"    if BR2_PACKAGE_RETROLX_TARGET_S922X
 	default "raspberrypi/rpi1"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI1
 	default "raspberrypi/rpi2"                                                                                                               if BR2_PACKAGE_RETROLX_TARGET_RPI2
@@ -561,16 +560,13 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "raspberrypi/rpi4/rpi4 raspberrypi/rpi4/retrodreamer"                                                                            if BR2_PACKAGE_RETROLX_TARGET_RPI4
 	default "rockchip/rk3326/odroidgo2 rockchip/rk3326/gameforce rockchip/rk3326/rg351"                                                      if BR2_PACKAGE_RETROLX_TARGET_RK3326
 	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"                                                                               if BR2_PACKAGE_RETROLX_TARGET_RK3288
-	default "rockchip/rk3328/rock64 rockchip/rk3328/roc-cc"				                                                         if BR2_PACKAGE_RETROLX_TARGET_RK3328
 	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/nanopi-m4 rockchip/rk3399/x99"				 if BR2_PACKAGE_RETROLX_TARGET_RK3399
-	default "rockchip/rk356x/firefly-station-m2 rockchip/rk356x/firefly-station-p2"				                                 if BR2_PACKAGE_RETROLX_TARGET_RK356X
 	default "odroidxu4"                                                                                                                      if BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
 	default "x86"                                                                                                                            if BR2_PACKAGE_RETROLX_TARGET_X86
 	default "x86_64"                                                                                                                         if BR2_PACKAGE_RETROLX_TARGET_X86_64
 
 choice
 	prompt "RetroLX target"
-	default BR2_PACKAGE_RETROLX_TARGET_RPI2
 	help
 		Select RetroLX target hardware
 
@@ -595,29 +591,14 @@ config BR2_PACKAGE_RETROLX_TARGET_S922X
 config BR2_PACKAGE_RETROLX_TARGET_RK3326
 	bool "rk3326"
 
-config BR2_PACKAGE_RETROLX_TARGET_S905
-	bool "s905"
-
-config BR2_PACKAGE_RETROLX_TARGET_S905GEN2
-	bool "s905gen2"
-
-config BR2_PACKAGE_RETROLX_TARGET_S905GEN3
-	bool "s905gen3"
-
 config BR2_PACKAGE_RETROLX_TARGET_X86
 	bool "x86"
 
 config BR2_PACKAGE_RETROLX_TARGET_X86_64
 	bool "x86_64"
 
-config BR2_PACKAGE_RETROLX_TARGET_RK3328
-	bool "rk3328"
-
 config BR2_PACKAGE_RETROLX_TARGET_RK3399
 	bool "rk3399"
-
-config BR2_PACKAGE_RETROLX_TARGET_RK356X
-	bool "rk356x"
 
 config BR2_PACKAGE_RETROLX_TARGET_RK3288
 	bool "rk3288"
@@ -625,17 +606,20 @@ config BR2_PACKAGE_RETROLX_TARGET_RK3288
 config BR2_PACKAGE_RETROLX_TARGET_AW32
 	bool "aw32"
 
-config BR2_PACKAGE_RETROLX_TARGET_H5
-	bool "h5"
-
-config BR2_PACKAGE_RETROLX_TARGET_H6
-	bool "h6"
-
-config BR2_PACKAGE_RETROLX_TARGET_H616
-	bool "h616"
-
 config BR2_PACKAGE_RETROLX_TARGET_S812
 	bool "s812"
+
+config BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2
+	bool "arm64-a53-gles2"
+
+config BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES3
+	bool "arm64-a53-gles3"
+
+config BR2_PACKAGE_RETROLX_TARGET_ARM64_A55_GLES3
+	bool "arm64-a55-gles3"
+
+config BR2_PACKAGE_RETROLX_TARGET_AARCH32_SUBSYSTEM
+	bool "aarch32-subsystem"
 
 endchoice
 
@@ -758,7 +742,7 @@ config BR2_PACKAGE_RETROLX_GPU_X86
 	bool "RetroLX GPU support for x86 platform"
 
 	# nvidia
-	select BR2_PACKAGE_LIBGLVND                             if BR2_PACKAGE_RETROLX_TARGET_X86    # already set by nvidia for x86_64, but required on x86 for pcsx2
+	select BR2_PACKAGE_LIBGLVND                            if BR2_PACKAGE_RETROLX_TARGET_X86    # already set by nvidia for x86_64, but required on x86 for pcsx2
 	select BR2_PACKAGE_RETROLX_NVIDIA_DRIVER               if BR2_PACKAGE_RETROLX_TARGET_X86_64
 	select BR2_PACKAGE_RETROLX_NVIDIA_DRIVER_MODULE        if BR2_PACKAGE_RETROLX_TARGET_X86_64
 

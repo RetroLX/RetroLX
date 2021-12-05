@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 import os.path
 import glob
@@ -12,7 +12,7 @@ def getGeneratorClass():
 arch = Path('/usr/share/retrolx/retrolx.arch').read_text()
 retrolxPackages = '/userdata/packages/' + arch
 emulatorPath = retrolxPackages + '/dosbox-staging/bin/dosbox'
-dosboxStagingCustom = batoceraFiles.CONF + '/dosbox'
+dosboxStagingCustom = retrolxFiles.CONF + '/dosbox'
 dosboxStagingConfig = dosboxStagingCustom + '/dosbox.conf'
 
 class DosBoxStagingGenerator(Generator):

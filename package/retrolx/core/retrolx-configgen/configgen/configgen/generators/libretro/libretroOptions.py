@@ -3,7 +3,7 @@ import sys
 import os
 import configparser
 from settings.unixSettings import UnixSettings
-import batoceraFiles
+import retrolxFiles
 
 def generateCoreSettings(coreSettings, system, rom):
 
@@ -556,8 +556,8 @@ def generateCoreSettings(coreSettings, system, rom):
     # TODO: Add CORE Options for 3DS
     if (system.config['core'] == 'citra'):
         # Set OpenGL rendering
-        if not os.path.exists(batoceraFiles.CONF + "/retroarch/3ds.cfg"):
-            f = open(batoceraFiles.CONF + "/retroarch/3ds.cfg", "w")
+        if not os.path.exists(retrolxFiles.CONF + "/retroarch/3ds.cfg"):
+            f = open(retrolxFiles.CONF + "/retroarch/3ds.cfg", "w")
             f.write("video_driver = \"glcore\"\n")
             f.close()
 

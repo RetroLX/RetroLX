@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from generators.Generator import Generator
-import batoceraFiles
+import retrolxFiles
 import Command
 import os
 from settings.unixSettings import UnixSettings
@@ -21,16 +21,16 @@ class Pcsx2Generator(Generator):
         sseLib = checkSseLib(isAVX2)
 
         # Config files
-        configureReg(batoceraFiles.pcsx2ConfigDir)
-        configureUI(batoceraFiles.pcsx2ConfigDir, batoceraFiles.BIOS, system.config, gameResolution)
-        configureVM(batoceraFiles.pcsx2ConfigDir, system)
-        configureGFX(batoceraFiles.pcsx2ConfigDir, system)
-        configureAudio(batoceraFiles.pcsx2ConfigDir)
+        configureReg(retrolxFiles.pcsx2ConfigDir)
+        configureUI(retrolxFiles.pcsx2ConfigDir, retrolxFiles.BIOS, system.config, gameResolution)
+        configureVM(retrolxFiles.pcsx2ConfigDir, system)
+        configureGFX(retrolxFiles.pcsx2ConfigDir, system)
+        configureAudio(retrolxFiles.pcsx2ConfigDir)
 
         if isAVX2:
-            commandArray = [batoceraFiles.batoceraBins['pcsx2_avx2'], rom]
+            commandArray = [retrolxFiles.batoceraBins['pcsx2_avx2'], rom]
         else:
-            commandArray = [batoceraFiles.batoceraBins['pcsx2'], rom]
+            commandArray = [retrolxFiles.batoceraBins['pcsx2'], rom]
 
         # Fullscreen
         commandArray.append("--fullscreen")
@@ -45,9 +45,9 @@ class Pcsx2Generator(Generator):
             commandArray.append("--fullboot")
 
         # Plugins
-        real_pluginsDir = batoceraFiles.pcsx2PluginsDir
+        real_pluginsDir = retrolxFiles.pcsx2PluginsDir
         if isAVX2:
-            real_pluginsDir = batoceraFiles.pcsx2Avx2PluginsDir
+            real_pluginsDir = retrolxFiles.pcsx2Avx2PluginsDir
         commandArray.append("--gs="   + real_pluginsDir + "/" + sseLib)
         
         # Arch
@@ -56,7 +56,7 @@ class Pcsx2Generator(Generator):
             arch = content_file.read()
 
         env = {}
-        env["XDG_CONFIG_HOME"] = batoceraFiles.CONF
+        env["XDG_CONFIG_HOME"] = retrolxFiles.CONF
         env["SDL_GAMECONTROLLERCONFIG"] = controllersConfig.generateSdlGameControllerConfig(playersControllers)
 
         env["SDL_PADSORDERCONFIG"] = controllersConfig.generateSdlGameControllerPadsOrderConfig(playersControllers)

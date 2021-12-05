@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import Command
-import batoceraFiles
+import retrolxFiles
 from . import libretroConfig
 from . import libretroRetroarchCustom
 from . import libretroControllers
@@ -15,8 +15,8 @@ import sys
 # Helper for package system
 # Find a core in the packages folder
 def findCore(core):
-    path = os.path.abspath(batoceraFiles.retrolxPackages)
-    file = core + batoceraFiles.libretroExt
+    path = os.path.abspath(retrolxFiles.retrolxPackages)
+    file = core + retrolxFiles.libretroExt
     for root, dirs, files in os.walk(path):
         for filename in files:
             if filename == file:
@@ -34,12 +34,12 @@ class LibretroGenerator(Generator):
         # Settings batocera default config file if no user defined one
         if not 'configfile' in system.config:
             # Using batocera config file
-            system.config['configfile'] = batoceraFiles.retroarchCustom
+            system.config['configfile'] = retrolxFiles.retroarchCustom
             # Create retroarchcustom.cfg if does not exists
-            if not os.path.isfile(batoceraFiles.retroarchCustom):
+            if not os.path.isfile(retrolxFiles.retroarchCustom):
                 libretroRetroarchCustom.generateRetroarchCustom()
             #  Write controllers configuration files
-            retroconfig = UnixSettings(batoceraFiles.retroarchCustom, separator=' ')
+            retroconfig = UnixSettings(retrolxFiles.retroarchCustom, separator=' ')
             libretroControllers.writeControllersConfig(retroconfig, system, playersControllers)
             # force pathes
             libretroRetroarchCustom.generateRetroarchCustomPathes(retroconfig)
@@ -63,36 +63,36 @@ class LibretroGenerator(Generator):
         # The command to run
         # For the NeoGeo CD (lr-fbneo) it is necessary to add the parameter: --subsystem neocd
         if system.name == 'neogeocd' and system.config['core'] == "fbneo":
-            commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--subsystem", "neocd", "--config", system.config['configfile']]
+            commandArray = [retrolxFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--subsystem", "neocd", "--config", system.config['configfile']]
         # PURE zip games uses the same commandarray of all cores. .pc and .rom  uses owns
         elif system.name == 'dos':
             romDOSName = os.path.splitext(romName)[0]
             romDOSName, romExtension = os.path.splitext(romName)
             if romExtension == '.dos' or romExtension == '.pc':
                 if os.path.isfile(os.path.join(rom, romDOSName + ".bat")):
-                    commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile'], os.path.join(rom, romDOSName + ".bat")]
+                    commandArray = [retrolxFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile'], os.path.join(rom, romDOSName + ".bat")]
                 else:
-                    commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile'], rom + "/dosbox.bat"]
+                    commandArray = [retrolxFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile'], rom + "/dosbox.bat"]
             else:
-                commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile']]
+                commandArray = [retrolxFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile']]
         else:
-            commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile']]
+            commandArray = [retrolxFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile']]
 
         configToAppend = []
 
 
         # Custom configs - per core
-        customCfg = "{}/{}.cfg".format(batoceraFiles.retroarchRoot, system.name)
+        customCfg = "{}/{}.cfg".format(retrolxFiles.retroarchRoot, system.name)
         if os.path.isfile(customCfg):
             configToAppend.append(customCfg)
 
         # Custom configs - per game
-        customGameCfg = "{}/{}/{}.cfg".format(batoceraFiles.retroarchRoot, system.name, romName)
+        customGameCfg = "{}/{}/{}.cfg".format(retrolxFiles.retroarchRoot, system.name, romName)
         if os.path.isfile(customGameCfg):
             configToAppend.append(customGameCfg)
 
         # Overlay management
-        overlayFile = "{}/{}/{}.cfg".format(batoceraFiles.OVERLAYS, system.name, romName)
+        overlayFile = "{}/{}/{}.cfg".format(retrolxFiles.OVERLAYS, system.name, romName)
         if os.path.isfile(overlayFile):
             configToAppend.append(overlayFile)
 
@@ -134,7 +134,7 @@ class LibretroGenerator(Generator):
         # Extension used by hypseus .daphne but lr-daphne starts with .zip
         if system.name == 'daphne':
             romName = os.path.splitext(os.path.basename(rom))[0]
-            rom = batoceraFiles.daphneDatadir + '/roms/' + romName +'.zip'
+            rom = retrolxFiles.daphneDatadir + '/roms/' + romName +'.zip'
 
         # The libretro core for EasyRPG requires to launch the RPG_RT.ldb file inside the .easyrpg folder
         if system.name == 'easyrpg' and system.config['core'] == "easyrpg":

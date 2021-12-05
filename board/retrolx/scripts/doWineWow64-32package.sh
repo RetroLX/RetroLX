@@ -217,11 +217,11 @@ fi
 
 XTARGET_VERSION=$(grep -E "^RETROLX_SYSTEM_VERSION[ ]*=" "${BR2_EXTERNAL_RETROLX_PATH}/package/retrolx/core/retrolx-system/retrolx-system.mk" | sed -e s+"^RETROLX_SYSTEM_VERSION[ ]*=[ ]*\(.*\)[ ]*$"+'\1'+)
 XTARGET_ARCH="x86"
-XTARGET_FILE="wine-${XTARGET_ARCH}-${XTARGET_VERSION}.tar.lzma"
+XTARGET_FILE="wine-${XTARGET_ARCH}-${XTARGET_VERSION}.tar.zst"
 
 echo "tar.lzma..."
 mkdir -p "${XTARGET_IMAGE}" || exit 1
-(cd "${TMPOUT}" && tar cf - * | lzma -c -9 > "${XTARGET_IMAGE}/${XTARGET_FILE}") || exit 1
+(cd "${TMPOUT}" && tar cf - * | zstd -9 > "${XTARGET_IMAGE}/${XTARGET_FILE}") || exit 1
 
 echo "${XTARGET_IMAGE}/${XTARGET_FILE}"
 exit 0

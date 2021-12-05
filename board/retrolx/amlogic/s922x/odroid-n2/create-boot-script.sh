@@ -33,6 +33,5 @@ cp "${BINARIES_DIR}/modules"                       "${RETROLX_BINARIES_DIR}/boot
 cp "${BOARD_DIR}/boot/boot-logo.bmp.gz"            "${RETROLX_BINARIES_DIR}/boot/"                                   || exit 1
 cp "${BINARIES_DIR}/meson-g12b-odroid-n2.dtb"      "${RETROLX_BINARIES_DIR}/boot/boot/meson-g12b-odroid-n2.dtb"      || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf"               "${RETROLX_BINARIES_DIR}/boot/extlinux/"                          || exit 1
-cp "${BOARD_DIR}/boot/extlinux.conf"               "${RETROLX_BINARIES_DIR}/boot/boot/"                              || exit 1
 
 exit 0

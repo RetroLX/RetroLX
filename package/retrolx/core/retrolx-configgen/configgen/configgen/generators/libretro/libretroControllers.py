@@ -6,7 +6,7 @@ sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from settings.unixSettings import UnixSettings
-import batoceraFiles
+import retrolxFiles
 
 # Map an emulationstation direction to the corresponding retroarch
 retroarchdirs = {'up': 'up', 'down': 'down', 'left': 'left', 'right': 'right'}

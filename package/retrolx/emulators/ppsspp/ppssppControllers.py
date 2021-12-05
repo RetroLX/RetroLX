@@ -4,10 +4,10 @@
 import sys
 import os
 import configparser
-import batoceraFiles
+import retrolxFiles
 
-ppssppControlsIni  = batoceraFiles.CONF + '/ppsspp/PSP/SYSTEM/controls.ini'
-ppssppControlsInit = batoceraFiles.HOME_INIT + 'configs/ppsspp/PSP/SYSTEM/controls.ini'
+ppssppControlsIni  = retrolxFiles.CONF + '/ppsspp/PSP/SYSTEM/controls.ini'
+ppssppControlsInit = retrolxFiles.HOME_INIT + 'configs/ppsspp/PSP/SYSTEM/controls.ini'
 
 
 # This configgen is based on PPSSPP 1.2.2. Therefore, all code/github references are valid at this version, and may not be valid with later updates

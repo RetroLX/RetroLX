@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import xml.etree.ElementTree as ET
-import batoceraFiles
+import retrolxFiles
 
-esInputs = batoceraFiles.esInputs
+esInputs = retrolxFiles.esInputs
 
 """Default mapping of Batocera keys to SDL_GAMECONTROLLERCONFIG keys."""
 _DEFAULT_SDL_MAPPING = {

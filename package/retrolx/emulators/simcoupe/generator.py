@@ -6,7 +6,7 @@ import controllersConfig
 from utils.logger import eslog
 import os
 import configparser
-import batoceraFiles
+import retrolxFiles
 
 def getGeneratorClass():
     return 'SimCoupeGenerator'
@@ -68,7 +68,7 @@ class SimCoupeGenerator(Generator):
             3: "a"
         }
 
-        configdir = "{}/{}".format(batoceraFiles.CONF, "hatari")
+        configdir = "{}/{}".format(retrolxFiles.CONF, "hatari")
         if not os.path.exists(configdir):
             os.makedirs(configdir)
         configFileName = "{}/{}".format(configdir, "hatari.cfg")

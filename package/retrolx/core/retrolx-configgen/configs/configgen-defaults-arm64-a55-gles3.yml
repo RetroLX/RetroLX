@@ -1,0 +1,9 @@
+dos:
+  emulator: dosbox
+  core:     dosbox
+nds:
+  emulator: libretro
+  core:     melonds
+psp:
+  options:
+    frameskip: automatic

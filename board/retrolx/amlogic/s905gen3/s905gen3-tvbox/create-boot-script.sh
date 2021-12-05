@@ -26,17 +26,17 @@ cd "${RETROLX_BINARIES_DIR}/build-uboot-sei610/" && ./build-uboot.sh "${HOST_DIR
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"     || exit 1
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
 
-cp "${BINARIES_DIR}/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
+cp "${BINARIES_DIR}/kernel-s905gen3/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
 cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/initrd.gz"       || exit 1
 cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
-cp "${BINARIES_DIR}/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
+cp "${BINARIES_DIR}/kernel-s905gen3/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
 
 cp "${BOARD_DIR}/boot/boot-logo.bmp.gz"                "${RETROLX_BINARIES_DIR}/boot/"          || exit 1
 
 # Copy all DTBs
 for DTB in meson-sm1-h96-max.dtb meson-sm1-sei610.dtb meson-sm1-khadas-vim3l.dtb meson-sm1-odroid-c4.dtb meson-sm1-x96-air-100.dtb meson-sm1-x96-air-1000.dtb meson-sm1-a95xf3-air-100.dtb meson-sm1-a95xf3-air-1000.dtb
 do
-        cp "${BINARIES_DIR}/${DTB}" "${RETROLX_BINARIES_DIR}/boot/boot/" || exit 1
+        cp "${BINARIES_DIR}/kernel-s905gen3/${DTB}" "${RETROLX_BINARIES_DIR}/boot/boot/" || exit 1
 done
 
 # Legacy/vendor uboot

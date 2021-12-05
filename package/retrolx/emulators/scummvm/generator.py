@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 import os.path
 import glob
@@ -29,12 +29,12 @@ class ScummVMGenerator(Generator):
           romPath = os.path.dirname(rom)
           romName = os.path.splitext(os.path.basename(rom))[0]
         # Get rom name without extension
-        commandArray = [batoceraFiles.batoceraBins[system.config['emulator']],
+        commandArray = [retrolxFiles.batoceraBins[system.config['emulator']],
                         "-f",
                         "--joystick=0", 
-                        "--screenshotspath="+batoceraFiles.screenshotsDir, 
+                        "--screenshotspath="+retrolxFiles.screenshotsDir, 
                         "--extrapath=/usr/share/scummvm",
-                        "--savepath="+batoceraFiles.scummvmSaves,
+                        "--savepath="+retrolxFiles.scummvmSaves,
                         "--path=""{}""".format(romPath)]
         commandArray.append("""{}""".format(romName))
 

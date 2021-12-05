@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 from utils.logger import eslog
 import controllersConfig

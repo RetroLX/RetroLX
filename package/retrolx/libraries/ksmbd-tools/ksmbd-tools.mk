@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-KSMBD_TOOLS_VERSION = 9b16a40931dee4bbad1f10124b6c72c529ddf83b
+KSMBD_TOOLS_VERSION = 402195f4f608f31dc630a71b27d0e1c767df8d17
 KSMBD_TOOLS_SITE =  $(call github,namjaejeon,ksmbd-tools,$(KSMBD_TOOLS_VERSION))
 KSMBD_TOOLS_INSTALL_STAGING = YES
 KSMBD_TOOLS_AUTORECONF = YES

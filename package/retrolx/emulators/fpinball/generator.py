@@ -4,7 +4,7 @@ from generators.Generator import Generator
 import Command
 import controllersConfig
 from utils.logger import eslog
-import batoceraFiles
+import retrolxFiles
 import os
 import subprocess
 import sys
@@ -15,7 +15,7 @@ def getGeneratorClass():
 class FpinballGenerator(Generator):
 
     def generate(self, system, rom, playersControllers, gameResolution):
-        wineprefix = batoceraFiles.SAVES + "/fpinball"
+        wineprefix = retrolxFiles.SAVES + "/fpinball"
 
         if not os.path.exists(wineprefix):
             os.makedirs(wineprefix)

@@ -23,7 +23,7 @@ define BOX64_MAKEPKG
 	mkdir -p $(BOX64_PKG_DIR)$(BOX64_PKG_INSTALL_DIR)
 
 	# Copy package files
-	$(INSTALL) -D $(@D)/Box64 $(BOX64_PKG_DIR)$(BOX64_PKG_INSTALL_DIR)
+	$(INSTALL) -D $(@D)/box64 $(BOX64_PKG_DIR)$(BOX64_PKG_INSTALL_DIR)
 
 	# Build Pacman package
 	cd $(BOX64_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import sys
 import os
-import batoceraFiles
+import retrolxFiles
 from . import libretroOptions
 from Emulator import Emulator
 import settings
@@ -14,7 +14,7 @@ import utils.bezels as bezelsUtil
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-retroarchPkg = batoceraFiles.retrolxPackages+'/retroarch'
+retroarchPkg = retrolxFiles.retrolxPackages+'/retroarch'
 
 # return true if the option is considered defined
 def defined(key, dict):
@@ -60,7 +60,7 @@ def writeLibretroConfig(retroconfig, system, controllers, rom, bezel, gameResolu
 def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     # retroarch-core-options.cfg
-    retroarchCore = batoceraFiles.retroarchCoreCustom
+    retroarchCore = retrolxFiles.retroarchCoreCustom
     if not os.path.exists(os.path.dirname(retroarchCore)):
         os.makedirs(os.path.dirname(retroarchCore))
 
@@ -77,7 +77,7 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     # Create/update hatari.cfg
     if system.name == 'atarist':
-        libretroOptions.generateHatariConf(batoceraFiles.hatariConf)
+        libretroOptions.generateHatariConf(retrolxFiles.hatariConf)
 
     retroarchConfig = dict()
     systemConfig = system.config
@@ -114,8 +114,8 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     retroarchConfig['video_fullscreen'] = 'true'                # Fullscreen is required at least for x86* and odroidn2
 
-    retroarchConfig['savestate_directory'] = batoceraFiles.savesDir + system.name
-    retroarchConfig['savefile_directory'] = batoceraFiles.savesDir + system.name
+    retroarchConfig['savestate_directory'] = retrolxFiles.savesDir + system.name
+    retroarchConfig['savefile_directory'] = retrolxFiles.savesDir + system.name
 
     # Forced values (so that if the config is not correct, fix it)
     if system.config['core'] == 'tgbdual':
@@ -512,7 +512,7 @@ def writeBezelConfig(bezel, retroarchConfig, systemName, rom, gameResolution, be
     # disable the overlay
     # if all steps are passed, enable them
     retroarchConfig['input_overlay_hide_in_menu'] = "false"
-    overlay_cfg_file  = batoceraFiles.overlayConfigFile
+    overlay_cfg_file  = retrolxFiles.overlayConfigFile
 
     # bezel are disabled
     # default values in case something wrong append

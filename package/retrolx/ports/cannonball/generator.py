@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from generators.Generator import Generator
-import batoceraFiles
+import retrolxFiles
 import os
 from xml.dom import minidom
 import codecs
@@ -15,7 +15,7 @@ def getGeneratorClass():
 class CannonballGenerator(Generator):
 
     def generate(self, system, rom, playersControllers, gameResolution):
-        configFile = batoceraFiles.CONF + '/cannonball/config.xml'
+        configFile = retrolxFiles.CONF + '/cannonball/config.xml'
         
         if not os.path.exists(os.path.dirname(configFile)):
             os.makedirs(os.path.dirname(configFile))

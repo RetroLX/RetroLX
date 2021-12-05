@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 import shutil
 import os.path
@@ -15,12 +15,12 @@ def getGeneratorClass():
 class DolphinGenerator(Generator):
 
     def generate(self, system, rom, playersControllers, gameResolution):
-        if not os.path.exists(os.path.dirname(batoceraFiles.dolphinIni)):
-            os.makedirs(os.path.dirname(batoceraFiles.dolphinIni))
+        if not os.path.exists(os.path.dirname(retrolxFiles.dolphinIni)):
+            os.makedirs(os.path.dirname(retrolxFiles.dolphinIni))
 
         # Dir required for saves
-        if not os.path.exists(batoceraFiles.dolphinData + "/StateSaves"):
-            os.makedirs(batoceraFiles.dolphinData + "/StateSaves")
+        if not os.path.exists(retrolxFiles.dolphinData + "/StateSaves"):
+            os.makedirs(retrolxFiles.dolphinData + "/StateSaves")
 
         dolphinControllers.generateControllerConfig(system, playersControllers, rom)
 
@@ -29,8 +29,8 @@ class DolphinGenerator(Generator):
         dolphinSettings = configparser.ConfigParser(interpolation=None)
         # To prevent ConfigParser from converting to lower case
         dolphinSettings.optionxform = str
-        if os.path.exists(batoceraFiles.dolphinIni):
-            dolphinSettings.read(batoceraFiles.dolphinIni)
+        if os.path.exists(retrolxFiles.dolphinIni):
+            dolphinSettings.read(retrolxFiles.dolphinIni)
 
         # Sections
         if not dolphinSettings.has_section("General"):
@@ -122,7 +122,7 @@ class DolphinGenerator(Generator):
         dolphinSettings.set("Core", "SIDevice3", '"6"')
 
         # Save dolphin.ini
-        with open(batoceraFiles.dolphinIni, 'w') as configfile:
+        with open(retrolxFiles.dolphinIni, 'w') as configfile:
             dolphinSettings.write(configfile)
 
         ## gfx.ini ##
@@ -130,7 +130,7 @@ class DolphinGenerator(Generator):
         dolphinGFXSettings = configparser.ConfigParser(interpolation=None)
         # To prevent ConfigParser from converting to lower case
         dolphinGFXSettings.optionxform = str
-        dolphinGFXSettings.read(batoceraFiles.dolphinGfxIni)
+        dolphinGFXSettings.read(retrolxFiles.dolphinGfxIni)
 
         # Add Default Sections
         if not dolphinGFXSettings.has_section("Settings"):
@@ -221,12 +221,12 @@ class DolphinGenerator(Generator):
             dolphinGFXSettings.set("Settings", "MSAA", '"0"')
 
         # Save gfx.ini
-        with open(batoceraFiles.dolphinGfxIni, 'w') as configfile:
+        with open(retrolxFiles.dolphinGfxIni, 'w') as configfile:
             dolphinGFXSettings.write(configfile)
 
         # Update SYSCONF
         try:
-            dolphinSYSCONF.update(system.config, batoceraFiles.dolphinSYSCONF, gameResolution)
+            dolphinSYSCONF.update(system.config, retrolxFiles.dolphinSYSCONF, gameResolution)
         except Exception:
             pass # don't fail in case of SYSCONF update
 
@@ -234,7 +234,7 @@ class DolphinGenerator(Generator):
         if system.isOptSet('platform'):
             commandArray = ["dolphin-emu-nogui", "-p", system.config["platform"], "-e", rom]
 
-        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":batoceraFiles.CONF, "XDG_DATA_HOME":batoceraFiles.SAVES, "QT_QPA_PLATFORM":batoceraFiles.qt_qpa_platform})
+        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":retrolxFiles.CONF, "XDG_DATA_HOME":retrolxFiles.SAVES, "QT_QPA_PLATFORM":retrolxFiles.qt_qpa_platform})
 
 # Ratio
 def getGfxRatioFromConfig(config, gameResolution):

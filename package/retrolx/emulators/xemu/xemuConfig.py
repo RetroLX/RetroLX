@@ -3,7 +3,7 @@
 import sys
 import os
 import io
-import batoceraFiles
+import retrolxFiles
 import settings
 from Emulator import Emulator
 import configparser
@@ -12,18 +12,18 @@ def writeIniFile(system, rom, playersControllers):
     iniConfig = configparser.ConfigParser(interpolation=None)
     # To prevent ConfigParser from converting to lower case
     iniConfig.optionxform = str
-    if os.path.exists(batoceraFiles.xemuConfig):
+    if os.path.exists(retrolxFiles.xemuConfig):
         try:
-            with io.open(batoceraFiles.xemuConfig, 'r', encoding='utf_8_sig') as fp:
+            with io.open(retrolxFiles.xemuConfig, 'r', encoding='utf_8_sig') as fp:
                 iniConfig.readfp(fp)
         except:
             pass
 
     createXemuConfig(iniConfig, system, rom, playersControllers)
     # save the ini file
-    if not os.path.exists(os.path.dirname(batoceraFiles.xemuConfig)):
-        os.makedirs(os.path.dirname(batoceraFiles.xemuConfig))
-    with open(batoceraFiles.xemuConfig, 'w') as configfile:
+    if not os.path.exists(os.path.dirname(retrolxFiles.xemuConfig)):
+        os.makedirs(os.path.dirname(retrolxFiles.xemuConfig))
+    with open(retrolxFiles.xemuConfig, 'w') as configfile:
         iniConfig.write(configfile)
 
 def createXemuConfig(iniConfig, system, rom, playersControllers):

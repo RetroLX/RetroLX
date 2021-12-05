@@ -3,12 +3,12 @@
 import sys
 import os
 import io
-import batoceraFiles
+import retrolxFiles
 import settings
 from Emulator import Emulator
 import configparser
 
-ppssppConf   = batoceraFiles.CONF + '/ppsspp/PSP/SYSTEM'
+ppssppConf   = retrolxFiles.CONF + '/ppsspp/PSP/SYSTEM'
 ppssppConfig = ppssppConf + '/ppsspp.ini'
 
 

@@ -70,7 +70,6 @@ menu "System"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-initramfs/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-syslinux-efi/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/uboot-odroid-xu4/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/uboot-s905-tvbox/Config.in"
   endmenu
 
   menu "Fonts"

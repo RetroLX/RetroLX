@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import Command
-import batoceraFiles # GLOBAL VARIABLES
+import retrolxFiles # GLOBAL VARIABLES
 from generators.Generator import Generator
 import shutil
 import os
@@ -15,15 +15,15 @@ class CitraGenerator(Generator):
 
     # Main entry of the module
     def generate(self, system, rom, playersControllers, gameResolution):
-        CitraGenerator.writeCITRAConfig(batoceraFiles.CONF + "/citra-emu/qt-config.ini", system, playersControllers)
+        CitraGenerator.writeCITRAConfig(retrolxFiles.CONF + "/citra-emu/qt-config.ini", system, playersControllers)
 
         commandArray = ['/usr/bin/citra-qt', rom]
         return Command.Command(array=commandArray, env={ \
-        "XDG_CONFIG_HOME":batoceraFiles.CONF, \
-        "XDG_DATA_HOME":batoceraFiles.SAVES + "/3ds", \
-        "XDG_CACHE_HOME":batoceraFiles.CACHE, \
-        "XDG_RUNTIME_DIR":batoceraFiles.SAVES + "/3ds/citra-emu", \
-        "QT_QPA_PLATFORM":batoceraFiles.qt_qpa_platform})
+        "XDG_CONFIG_HOME":retrolxFiles.CONF, \
+        "XDG_DATA_HOME":retrolxFiles.SAVES + "/3ds", \
+        "XDG_CACHE_HOME":retrolxFiles.CACHE, \
+        "XDG_RUNTIME_DIR":retrolxFiles.SAVES + "/3ds/citra-emu", \
+        "QT_QPA_PLATFORM":retrolxFiles.qt_qpa_platform})
 
     # Show mouse on screen
     def getMouseMode(self, config):

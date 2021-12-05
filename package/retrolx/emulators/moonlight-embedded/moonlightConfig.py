@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import batoceraFiles
+import retrolxFiles
 import os
 from Emulator import Emulator
 from settings.unixSettings import UnixSettings
@@ -8,11 +8,11 @@ from settings.unixSettings import UnixSettings
 def generateMoonlightConfig():
     # conf file
     try:
-        moonlightConfig = UnixSettings(batoceraFiles.moonlightConfigFile, separator=' ')
+        moonlightConfig = UnixSettings(retrolxFiles.moonlightConfigFile, separator=' ')
     except UnicodeError:
         # remove it and try again
-        os.remove(batoceraFiles.moonlightConfigFile)
-        moonlightConfig = UnixSettings(batoceraFiles.moonlightConfigFile, separator=' ')
+        os.remove(retrolxFiles.moonlightConfigFile)
+        moonlightConfig = UnixSettings(retrolxFiles.moonlightConfigFile, separator=' ')
 
     ## Hostname or IP-address of host to connect to
     ## By default host is autodiscovered using mDNS

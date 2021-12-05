@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 import shutil
 import os.path
@@ -11,7 +11,7 @@ import codecs
 from . import ppssppConfig
 from . import ppssppControllers
 
-ppssppControls = batoceraFiles.CONF + '/ppsspp/gamecontrollerdb.txt'
+ppssppControls = retrolxFiles.CONF + '/ppsspp/gamecontrollerdb.txt'
 
 def getGeneratorClass():
     return 'PPSSPPGenerator'
@@ -37,7 +37,7 @@ class PPSSPPGenerator(Generator):
             break
 
         # The command to run
-        commandArray = batoceraFiles.batoceraBins['ppsspp']
+        commandArray = retrolxFiles.batoceraBins['ppsspp']
         commandArray.append(rom)
         commandArray.append("--fullscreen")
 
@@ -47,8 +47,8 @@ class PPSSPPGenerator(Generator):
             commandArray.extend(["--dpi", "0.5"])
 
         # The next line is a reminder on how to quit PPSSPP with just the HK
-        #commandArray = [batoceraFiles.batoceraBins['ppsspp'], rom, "--escape-exit"]
-        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":batoceraFiles.CONF, "XDG_RUNTIME_DIR":batoceraFiles.HOME_INIT, "QT_QPA_PLATFORM":batoceraFiles.qt_qpa_platform, "PPSSPP_GAME_CONTROLLER_DB_PATH": ppssppControls})
+        #commandArray = [retrolxFiles.batoceraBins['ppsspp'], rom, "--escape-exit"]
+        return Command.Command(array=commandArray, env={"XDG_CONFIG_HOME":retrolxFiles.CONF, "XDG_RUNTIME_DIR":retrolxFiles.HOME_INIT, "QT_QPA_PLATFORM":retrolxFiles.qt_qpa_platform, "PPSSPP_GAME_CONTROLLER_DB_PATH": ppssppControls})
 
     @staticmethod
     def isLowResolution(gameResolution):

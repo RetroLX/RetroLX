@@ -6,7 +6,7 @@ import controllersConfig
 from utils.logger import eslog
 import os
 import configparser
-import batoceraFiles
+import retrolxFiles
 
 def getGeneratorClass():
     return 'TsugaruGenerator'

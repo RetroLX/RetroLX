@@ -19,24 +19,20 @@ LIBRETRO_PCSX_PLATFORM = CortexA73_G12B
 else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI4),y)
 LIBRETRO_PCSX_PLATFORM = rpi4_64
 
-else ifeq ($(BR2_aarch64),y)
-LIBRETRO_PCSX_PLATFORM = unix
-
-else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_H5),y)
+else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2),y)
 LIBRETRO_PCSX_PLATFORM = h5
 
 else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_RPI3),y)
-    ifeq ($(BR2_aarch64),y)
-        LIBRETRO_PCSX_PLATFORM = rpi3_64
-    else
-        LIBRETRO_PCSX_PLATFORM = rpi3
-    endif
+LIBRETRO_PCSX_PLATFORM = rpi3_64
 
 else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S812),y)
 LIBRETRO_PCSX_PLATFORM = armv cortexa9 neon hardfloat
 
 else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_AW32),y)
 LIBRETRO_PCSX_PLATFORM = rpi2
+
+else ifeq ($(BR2_aarch64),y)
+LIBRETRO_PCSX_PLATFORM = unix
 
 endif
 

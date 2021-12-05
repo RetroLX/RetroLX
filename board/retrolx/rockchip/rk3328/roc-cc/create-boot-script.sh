@@ -17,9 +17,6 @@ RETROLX_BINARIES_DIR=$6
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/packages" || exit 1
 cp -r "${BUILD_DIR}"/repo/* "${RETROLX_BINARIES_DIR}/boot/packages/" || exit 1
 
-mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"     || exit 1
-mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
-
 # ATF
 "${BR2_EXTERNAL_RETROLX_PATH}/board/retrolx/scripts/build-atf.sh" "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" rk3328
 
@@ -28,12 +25,18 @@ mkdir -p "${RETROLX_BINARIES_DIR}/uboot" || exit 1
 cp "${BOARD_DIR}/build-uboot.sh"          "${RETROLX_BINARIES_DIR}/uboot/" || exit 1
 cd "${RETROLX_BINARIES_DIR}/uboot/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
 
-cp "${BINARIES_DIR}/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
+# Create boot directories
+mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"     || exit 1
+mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
+
+# Copy kernel files
+cp "${BINARIES_DIR}/kernel-rk3328/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
+cp "${BINARIES_DIR}/kernel-rk3328/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
+cp "${BINARIES_DIR}/kernel-rk3328/rk3328-roc-cc.dtb"  "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1
+
+# Copy rootfs, initrd and extlinux
 cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/initrd.gz"       || exit 1
 cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
-cp "${BINARIES_DIR}/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
-
-cp "${BINARIES_DIR}/rk3328-roc-cc.dtb"  "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf"    "${RETROLX_BINARIES_DIR}/boot/extlinux/" || exit 1
 
 exit 0

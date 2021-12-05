@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import Command
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 from settings.unixSettings import UnixSettings
 import controllersConfig
@@ -8,7 +8,7 @@ import os
 from utils.logger import get_logger
 
 eslog = get_logger(__name__)
-CONFIGDIR  = batoceraFiles.CONF + '/GSplus'
+CONFIGDIR  = retrolxFiles.CONF + '/GSplus'
 CONFIGFILE = CONFIGDIR + '/config.txt'
 
 class GSplusGenerator(Generator):
@@ -92,7 +92,7 @@ class GSplusGenerator(Generator):
             config.save("bram3[d0]", '00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00')
             config.save("bram3[e0]", '00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00')
             config.save("bram3[f0]", '00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00')
-        config.save("g_cfg_rom_path", batoceraFiles.BIOS)
+        config.save("g_cfg_rom_path", retrolxFiles.BIOS)
         # config.save("g_limit_speed", "0")
 
         config.write()

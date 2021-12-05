@@ -6,13 +6,13 @@ import re
 import importlib.util
 import sys
 import tokenize
-import batoceraFiles
+import retrolxFiles
 from generators.Generator import Generator
 from settings.unixSettings import UnixSettings
 from utils.logger import eslog
 
 def importExternalGenerator(package):
-    externalGeneratorFilePath = batoceraFiles.retrolxPackages + '/' + package + '/generator.py'
+    externalGeneratorFilePath = retrolxFiles.retrolxPackages + '/' + package + '/generator.py'
     externalGeneratorModuleName = package
     if not os.path.exists(externalGeneratorFilePath):
         eslog.log('Cannot find external generator for package: ' + package)

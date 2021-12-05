@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import Command
-import batoceraFiles
+import retrolxFiles
 import zipfile
 import shutil
 from generators.Generator import Generator
@@ -51,11 +51,11 @@ class FsuaeGenerator(Generator):
     def generate(self, system, rom, playersControllers, gameResolution):
         fsuaeControllers.generateControllerConfig(system, playersControllers)
 
-        commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], "--fullscreen",
+        commandArray = [retrolxFiles.batoceraBins[system.config['emulator']], "--fullscreen",
                                                                                "--amiga-model="     + system.config['core'],
-                                                                               "--base_dir="        + batoceraFiles.fsuaeConfig,
-                                                                               "--kickstarts_dir="  + batoceraFiles.fsuaeBios,
-                                                                               "--save_states_dir=" + batoceraFiles.fsuaeSaves + "/" + system.config['core'] + "/" + self.filePrefix(rom),
+                                                                               "--base_dir="        + retrolxFiles.fsuaeConfig,
+                                                                               "--kickstarts_dir="  + retrolxFiles.fsuaeBios,
+                                                                               "--save_states_dir=" + retrolxFiles.fsuaeSaves + "/" + system.config['core'] + "/" + self.filePrefix(rom),
                                                                                "--zoom=auto"
                        ]
 

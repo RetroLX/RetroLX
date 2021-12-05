@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import batoceraFiles
+import retrolxFiles
 import os
 from os import path
 import codecs
@@ -10,7 +10,7 @@ from utils.logger import eslog
 import configparser
 import json
 
-cemuConfig  = batoceraFiles.CONF + '/cemu'
+cemuConfig  = retrolxFiles.CONF + '/cemu'
 
 # Create the controller configuration file
 # First controller will ALWAYS BE A Gamepad
