@@ -74,9 +74,9 @@ mkdir "${TARGET_DIR}/"{var,run,sys,tmp}  || exit 1
 
 # make /etc/shadow a file generated from /boot/retrolx-boot.conf for security
 rm -f "${TARGET_DIR}/etc/shadow" || exit 1
-touch "${TARGET_DIR}/run/batocera.shadow"
-(cd "${TARGET_DIR}/etc" && ln -sf "../run/batocera.shadow" "shadow") || exit 1
-# ln -sf "/run/batocera.shadow" "${TARGET_DIR}/etc/shadow" || exit 1
+touch "${TARGET_DIR}/run/retrolx.shadow"
+(cd "${TARGET_DIR}/etc" && ln -sf "../run/retrolx.shadow" "shadow") || exit 1
+# ln -sf "/run/retrolx.shadow" "${TARGET_DIR}/etc/shadow" || exit 1
 
 # fix pixbuf : Unable to load image-loading module: /lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-png.so
 # this fix is to be removed once fixed. i've not found the exact source in buildroot. it prevents to display icons in filemanager and some others
