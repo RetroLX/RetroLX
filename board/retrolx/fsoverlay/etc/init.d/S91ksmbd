@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# Stolen from RedHat FC5.
-#
+# KSMBD network share script
 
 securityenabled="$(/usr/bin/batocera-settings-get system.security.enabled)"
 
@@ -25,31 +24,33 @@ start() {
 
 	echo -n "Starting SMB services: "
 	modprobe ksmbd
-	ksmbd.adduser -a root
-	ksmbd.addshare -a RetroLX -o "guest ok = yes, writable = yes, path = /userdata"
-	RETVAL=$?
-	ksmbd.mountd
+	RETVAL1=$?
+	ksmbd.adduser -a retrolx -p retrolx
 	RETVAL2=$?
+	ksmbd.addshare -a RetroLX -o "guest ok = yes, writable = yes, path = /userdata"
+	RETVAL3=$?
+	ksmbd.mountd
+	RETVAL4=$?
 	echo "done"
 
-	#echo -n "Starting NMB services: "
-	#nmbd -D --configfile="${CONFIGFILE}"
-	#echo "done"
-
-	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && touch /var/lock/subsys/smb || \
+	[ $RETVAL1 -eq 0 -a $RETVAL2 -eq 0 -a $RETVAL3 -eq 0 -a $RETVAL4 -eq 0 ] && touch /var/lock/subsys/smb || \
 	   RETVAL=1
 	return $RETVAL
 }
 
 stop() {
 	echo -n "Shutting down SMB services: "
-	ksmbd.control -s
-	RETVAL=$?
-	rmmod ksmbd
+	ksmbd.addshare -d RetroLX
+	RETVAL1=$?
+	ksmbd.adduser -d retrolx
 	RETVAL2=$?
+	ksmbd.control -s
+	RETVAL3=$?
+	rmmod ksmbd
+	RETVAL4=$?
 	echo "done"
 
-	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && rm -f /var/lock/subsys/smb
+	[ $RETVAL1 -eq 0 -a $RETVAL2 -eq 0 -a $RETVAL3 -eq 0 -a $RETVAL4 -eq 0 ] && rm -f /var/lock/subsys/smb
 	echo "done"
 	return $RETVAL
 }
