@@ -1,1 +1,1 @@
-batocera 1000 batocera 1000 x /userdata/system /bin/bash -
+retrolx 1000 retrolx 1000 x /userdata/system /bin/bash -
