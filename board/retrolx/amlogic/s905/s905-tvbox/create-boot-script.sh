@@ -24,7 +24,7 @@ mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
 # Copy kernel files
 "${HOST_DIR}/bin/mkimage" -A arm64 -O linux -T kernel -C none -a 0x1080000 -e 0x1080000 -n linux -d "${BINARIES_DIR}/kernel-meson64/Image" "${RETROLX_BINARIES_DIR}/boot/boot/uImage" || exit 1
 cp "${BINARIES_DIR}/kernel-meson64/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
-for DTB in meson-gxbb-p200.dtb meson-gxbb-nexbox-a95x.dtb meson-gxl-s905d-p230.dtb meson-gxl-s905d-p231.dtb meson-gxl-s905w-p281.dtb meson-gxl-s905w-tx3-mini.dtb meson-gxl-s905x-p212.dtb
+for DTB in meson-gxbb-minix-neo-u1.dtb meson-gxbb-nexbox-a95x.dtb meson-gxl-s905d-p230.dtb meson-gxl-s905d-p231.dtb meson-gxl-s905w-p281.dtb meson-gxl-s905w-tx3-mini.dtb meson-gxl-s905x-p212.dtb
 do
 	cp "${BINARIES_DIR}/kernel-meson64/${DTB}" "${RETROLX_BINARIES_DIR}/boot/boot/" || exit 1
 done
