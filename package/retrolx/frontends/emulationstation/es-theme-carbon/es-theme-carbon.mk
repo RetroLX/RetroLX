@@ -3,8 +3,8 @@
 # EmulationStation theme "Carbon"
 #
 ################################################################################
-# Version.: Commits on Nov 22, 2021
-ES_THEME_CARBON_VERSION = 0edd2f235f5f3913d43985a9e7e5cfc6b9326244
+# Version.: Commits on Nov 30, 2021
+ES_THEME_CARBON_VERSION = 94c6322799fc543abf5205292002d1aedce89ffc
 ES_THEME_CARBON_SITE = $(call github,fabricecaruso,es-theme-carbon,$(ES_THEME_CARBON_VERSION))
 
 ES_THEME_CARBON_PKG_DIR = $(TARGET_DIR)/opt/retrolx/es-theme-carbon
