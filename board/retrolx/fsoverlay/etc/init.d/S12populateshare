@@ -25,7 +25,7 @@ do
 done
 
 # mount logs directory as tmpfs
-mount -t tmpfs tmpfs "$OUT""/""system/logs"
+mount -t tmpfs -o size=32M tmpfs "$OUT""/""system/logs"
 
 # directories / files to copy when initializing the user data
 #
