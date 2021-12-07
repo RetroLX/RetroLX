@@ -25,15 +25,17 @@ index 5064af0..60c3dd3 100644
  	endif (NOHQ)
    else(SDL)
  	if (NOHQ)
-@@ -519,9 +519,9 @@ if( CMAKE_BUILD_TYPE STREQUAL "Release")
- 
+--- a/src/CMakeLists.txt	2021-12-07 12:02:57.934167651 +0100
++++ b/src/CMakeLists.txt	2021-12-07 12:04:37.500269775 +0100
+@@ -573,9 +573,9 @@
+ else(GLIDEN64_BUILD_TYPE STREQUAL "Debug")
    if(SDL)
- 	if (NOHQ)
--	  target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal )
-+	  target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal )
- 	else (NOHQ)
--	  target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal GLideNHQ )
-+	  target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal GLideNHQ )
- 	endif (NOHQ)
+         if (NOHQ)
+-          target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal )
++          target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal )
+         else (NOHQ)
+-          target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal GLideNHQ )
++          target_link_libraries(${GLideN64_DLL_NAME} ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES} ${FREETYPE_LIBRARIES} ${LOG_LIB} ${GLIDENUI_LIBRARIES} osal GLideNHQ )
+         endif (NOHQ)
    else(SDL)
- 	if (NOHQ)
+         if (NOHQ)
