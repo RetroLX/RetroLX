@@ -102,6 +102,9 @@ dl-dir:
 	@sudo umount /tmp/mount
 	-@rmdir /tmp/mount
 
+%-legal: 
+	make O=$(OUTPUT_DIR)/$* BR2_EXTERNAL=$(PROJECT_DIR) -C $(PROJECT_DIR)/buildroot legal-info
+
 uart:
 	$(if $(shell which picocom 2>/dev/null),, $(error "picocom not found!"))
 	$(if $(SERIAL_DEV),,$(error "SERIAL_DEV not specified!"))
