@@ -29,7 +29,7 @@ CITRA_ANDROID_CONF_OPTS += -DENABLE_FFMPEG_AUDIO_DECODER=ON
 CITRA_ANDROID_CONF_ENV += LDFLAGS=-lpthread
 
 define CITRA_ANDROID_INSTALL_TARGET_CMDS
-	echo "Daphne built as pacman package, no rootfs install"
+	echo "Citra Android built as pacman package, no rootfs install"
 endef
 
 define CITRA_ANDROID_MAKEPKG
