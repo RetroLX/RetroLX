@@ -3,7 +3,7 @@
 # CITRA
 #
 ################################################################################
-# Version.: Commits on Oct 3, 2021
+# Version.: Commits on Nov 20, 2021
 
 CITRA_DEPENDENCIES = fmt boost ffmpeg sdl2 fdk-aac
 CITRA_SITE_METHOD=git
@@ -15,7 +15,7 @@ CITRA_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/citra
 
 # commit 55ec7031ccb2943c2c507620cf4613a86d160670 is reverted by patch, something wrong in it for perfs (patch 004-perf1-revert-core.patch)
 # patch 003-perf1.patch while NO_CAST_FROM_ASCII is causing perfs issues too
-CITRA_VERSION = 6183b5d76c30f62c09fc0940838f32458addfe28
+CITRA_VERSION = 64b502aad36a22a98e7adf69a1293b524e571125
 CITRA_SITE = https://github.com/citra-emu/citra.git
 CITRA_CONF_OPTS += -DENABLE_QT=ON
 CITRA_CONF_OPTS += -DENABLE_QT_TRANSLATION=ON
