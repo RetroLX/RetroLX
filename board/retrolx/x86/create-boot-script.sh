@@ -17,8 +17,8 @@ RETROLX_BINARIES_DIR=$6
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/packages" || exit 1
 cp -r "${BUILD_DIR}"/repo/* "${RETROLX_BINARIES_DIR}/boot/packages/" || exit 1
 
-#mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot/syslinux" || exit 1
-mkdir -p "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT"      || exit 1
+mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"      || exit 1
+mkdir -p "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT"  || exit 1
 
 cp "${BINARIES_DIR}/bzImage"         "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
 cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/"                || exit 1
