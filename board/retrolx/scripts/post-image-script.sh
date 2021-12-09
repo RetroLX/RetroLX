@@ -80,18 +80,18 @@ do
     cat "${GENIMAGEFILE}" | sed -e s+'@files'+"${FILES}"+ | tr '@' '\n' > "${RETROLX_BINARIES_DIR}/genimage.cfg" || exit 1
 
     # install syslinux
-    if grep -qE "^BR2_TARGET_SYSLINUX=y$" "${BR2_CONFIG}"
-    then
-	GENIMAGEBOOTFILE="${GENIMAGEDIR}/genimage-boot.cfg"
-	echo "installing syslinux" >&2
-	cat "${GENIMAGEBOOTFILE}" | sed -e s+'@files'+"${FILES}"+ | tr '@' '\n' > "${RETROLX_BINARIES_DIR}/genimage-boot.cfg" || exit 1
-    genimage --rootpath="${TARGET_DIR}" --inputpath="${RETROLX_BINARIES_DIR}/boot" --outputpath="${RETROLX_BINARIES_DIR}" --config="${RETROLX_BINARIES_DIR}/genimage-boot.cfg" --tmppath="${GENIMAGE_TMP}" || exit 1
+    #if grep -qE "^BR2_TARGET_SYSLINUX=y$" "${BR2_CONFIG}"
+    #then
+	#GENIMAGEBOOTFILE="${GENIMAGEDIR}/genimage-boot.cfg"
+	#echo "installing syslinux" >&2
+	#cat "${GENIMAGEBOOTFILE}" | sed -e s+'@files'+"${FILES}"+ | tr '@' '\n' > "${RETROLX_BINARIES_DIR}/genimage-boot.cfg" || exit 1
+    #genimage --rootpath="${TARGET_DIR}" --inputpath="${RETROLX_BINARIES_DIR}/boot" --outputpath="${RETROLX_BINARIES_DIR}" --config="${RETROLX_BINARIES_DIR}/genimage-boot.cfg" --tmppath="${GENIMAGE_TMP}" || exit 1
     #"${HOST_DIR}/bin/syslinux" -i "${RETROLX_BINARIES_DIR}/boot.vfat" -d "/boot/syslinux" || exit 1
-    "/usr/bin/syslinux" -i "${RETROLX_BINARIES_DIR}/boot.vfat" -d "/boot/syslinux" || exit 1
+    #"/usr/bin/syslinux" -i "${RETROLX_BINARIES_DIR}/boot.vfat" -d "/boot/syslinux" || exit 1
     # remove genimage temp path as sometimes genimage v14 fails to start
-    rm -rf ${GENIMAGE_TMP}
-    mkdir ${GENIMAGE_TMP}
-    fi
+    #rm -rf ${GENIMAGE_TMP}
+    #mkdir ${GENIMAGE_TMP}
+    #fi
     ###
     "${HOST_DIR}/bin/genimage" --rootpath="${TARGET_DIR}" --inputpath="${RETROLX_BINARIES_DIR}/boot" --outputpath="${RETROLX_BINARIES_DIR}" --config="${RETROLX_BINARIES_DIR}/genimage.cfg" --tmppath="${GENIMAGE_TMP}" || exit 1
  

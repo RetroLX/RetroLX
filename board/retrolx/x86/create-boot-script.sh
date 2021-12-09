@@ -17,26 +17,26 @@ RETROLX_BINARIES_DIR=$6
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/packages" || exit 1
 cp -r "${BUILD_DIR}"/repo/* "${RETROLX_BINARIES_DIR}/boot/packages/" || exit 1
 
-mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot/syslinux" || exit 1
+#mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot/syslinux" || exit 1
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT"      || exit 1
 
 cp "${BINARIES_DIR}/bzImage"         "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
 cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/"                || exit 1
-cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
+cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update"  || exit 1
 cp "${BINARIES_DIR}/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
 
-cp "${BOARD_DIR}/boot/syslinux.cfg"       "${RETROLX_BINARIES_DIR}/boot/boot/"          || exit 1
-cp "${BOARD_DIR}/boot/syslinux.cfg"       "${RETROLX_BINARIES_DIR}/boot/boot/syslinux/" || exit 1
-cp "${BINARIES_DIR}/syslinux/menu.c32"    "${RETROLX_BINARIES_DIR}/boot/boot/syslinux/" || exit 1
-cp "${BINARIES_DIR}/syslinux/libutil.c32" "${RETROLX_BINARIES_DIR}/boot/boot/syslinux/" || exit 1
+#cp "${BOARD_DIR}/boot/syslinux.cfg"       "${RETROLX_BINARIES_DIR}/boot/boot/"          || exit 1
+#cp "${BOARD_DIR}/boot/syslinux.cfg"       "${RETROLX_BINARIES_DIR}/boot/boot/syslinux/" || exit 1
+#cp "${BINARIES_DIR}/syslinux/menu.c32"    "${RETROLX_BINARIES_DIR}/boot/boot/syslinux/" || exit 1
+#cp "${BINARIES_DIR}/syslinux/libutil.c32" "${RETROLX_BINARIES_DIR}/boot/boot/syslinux/" || exit 1
 
-cp "${BOARD_DIR}/boot/syslinux.cfg"             "${RETROLX_BINARIES_DIR}/boot/EFI/"      || exit 1
-cp "${BOARD_DIR}/boot/syslinux.cfg"             "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
-cp "${BINARIES_DIR}/syslinux/efi64/menu.c32"    "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
-cp "${BINARIES_DIR}/syslinux/efi64/libutil.c32" "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
-cp "${BINARIES_DIR}/syslinux/ldlinux.e32"       "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
-cp "${BINARIES_DIR}/syslinux/ldlinux.e64"       "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
-cp "${BINARIES_DIR}/syslinux/bootx64.efi"       "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
-cp "${BINARIES_DIR}/syslinux/bootia32.efi"      "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
+#cp "${BOARD_DIR}/boot/syslinux.cfg"             "${RETROLX_BINARIES_DIR}/boot/EFI/"      || exit 1
+#cp "${BOARD_DIR}/boot/syslinux.cfg"             "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
+#cp "${BINARIES_DIR}/syslinux/efi64/menu.c32"    "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
+#cp "${BINARIES_DIR}/syslinux/efi64/libutil.c32" "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
+#cp "${BINARIES_DIR}/syslinux/ldlinux.e32"       "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
+#cp "${BINARIES_DIR}/syslinux/ldlinux.e64"       "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
+#cp "${BINARIES_DIR}/syslinux/bootx64.efi"       "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
+#cp "${BINARIES_DIR}/syslinux/bootia32.efi"      "${RETROLX_BINARIES_DIR}/boot/EFI/BOOT/" || exit 1
 
 exit 0
