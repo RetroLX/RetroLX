@@ -13,7 +13,6 @@ define GLSL_SHADERS_BUILD_CMDS
 endef
 
 define GLSL_SHADERS_INSTALL_TARGET_CMDS
-	mkdir -p $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/shaders
 	$(MAKE) CXX="$(TARGET_CXX)" -C $(@D) INSTALLDIR=$(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/shaders install
 
 	# Enable crt-pi curvature

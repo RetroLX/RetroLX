@@ -5,7 +5,7 @@
 ################################################################################
 
 # Mainline kernel
-RETROLX_KERNEL_RPI3_VERSION = 5.15.5
+RETROLX_KERNEL_RPI3_VERSION = 5.15.6
 RETROLX_KERNEL_RPI3_ARCH = rpi3
 RETROLX_KERNEL_RPI3_SOURCE = kernel-$(RETROLX_KERNEL_RPI3_ARCH)-$(RETROLX_KERNEL_RPI3_VERSION).tar.gz
 RETROLX_KERNEL_RPI3_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_RPI3_ARCH)/$(RETROLX_KERNEL_RPI3_VERSION)
