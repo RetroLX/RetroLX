@@ -109,7 +109,7 @@ class LibretroGenerator(Generator):
                 video_shader_dir = "/userdata/shaders"
                 eslog.log("shader {} found in /userdata/shaders".format(shaderFilename))
             else:
-                video_shader_dir = "/usr/share/retrolx/shaders"
+                video_shader_dir = retrolxFiles.retrolxPackages+"/retroarch/usr/share/shaders"
             video_shader = video_shader_dir + "/" + shaderFilename
             commandArray.extend(["--set-shader", video_shader])
 

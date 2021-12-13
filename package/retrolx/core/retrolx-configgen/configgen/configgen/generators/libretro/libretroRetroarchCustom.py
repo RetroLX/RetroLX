@@ -93,7 +93,7 @@ def generateRetroarchCustomPathes(retroarchSettings):
     retroarchSettings.save('cheat_settings_path',           '"/userdata/cheats/saves/"')
     retroarchSettings.save('system_directory',              '"/userdata/bios/"')
     retroarchSettings.save('joypad_autoconfig_dir',         '"/userdata/system/configs/retroarch/inputs/"')
-    retroarchSettings.save('video_shader_dir',              '"'+retroarchPkg+'"/usr/share/retrolx/shaders/"')
+    retroarchSettings.save('video_shader_dir',              '"'+retroarchPkg+'"/usr/share/shaders/"')
     retroarchSettings.save('video_font_path',               '"/usr/share/fonts/dejavu/DejaVuSansMono.ttf"')
     retroarchSettings.save('video_filter_dir',              '"'+retroarchPkg+'"/usr/share/video_filters"')
     retroarchSettings.save('audio_filter_dir',              '"'+retroarchPkg+'"/usr/share/audio_filters"')
