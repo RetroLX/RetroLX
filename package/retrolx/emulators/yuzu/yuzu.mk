@@ -3,8 +3,8 @@
 # YUZU
 #
 ################################################################################
-# Version.: Commits on Nov 15, 2021
-YUZU_VERSION = EA-2201
+# Version.: Commits on Dec 15, 2021
+YUZU_VERSION = EA-2316
 YUZU_SITE = https://github.com/pineappleEA/pineapple-src.git
 #YUZU_VERSION = mainline-0-775
 #YUZU_SITE = https://github.com/yuzu-emu/yuzu-mainline.git
@@ -22,6 +22,7 @@ YUZU_SUPPORTS_IN_SOURCE_BUILD = NO
 
 YUZU_CONF_OPTS += -DCMAKE_BUILD_TYPE=Release
 YUZU_CONF_OPTS += -DYUZU_USE_EXTERNAL_SDL2=OFF
+YUZU_CONF_OPTS += -DYUZU_USE_BUNDLED_SDL2=ON
 YUZU_CONF_OPTS += -DENABLE_SDL2=ON
 YUZU_CONF_OPTS += -DARCHITECTURE_x86_64=ON
 YUZU_CONF_OPTS += -DBUILD_SHARED_LIBS=OFF
