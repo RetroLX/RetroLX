@@ -595,7 +595,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "raspberrypi/rpi4/rpi4 raspberrypi/rpi4/retrodreamer"                                                                            if BR2_PACKAGE_RETROLX_TARGET_RPI4
 	default "rockchip/rk3326/odroidgo2 rockchip/rk3326/gameforce rockchip/rk3326/rg351"                                                      if BR2_PACKAGE_RETROLX_TARGET_RK3326
 	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"                                                                               if BR2_PACKAGE_RETROLX_TARGET_RK3288
-	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/nanopi-m4 rockchip/rk3399/x99"				 if BR2_PACKAGE_RETROLX_TARGET_RK3399
+	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/nanopi-m4 rockchip/rk3399/x99 rockchip/rk3399/rg552"		 if BR2_PACKAGE_RETROLX_TARGET_RK3399
 	default "odroidxu4"                                                                                                                      if BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
 	default "x86"                                                                                                                            if BR2_PACKAGE_RETROLX_TARGET_X86
 	default "x86_64"                                                                                                                         if BR2_PACKAGE_RETROLX_TARGET_X86_64
