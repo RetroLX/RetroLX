@@ -27,18 +27,3 @@
  // <$FLYCAST_BIOS_PATH>
  // ./
  // ./data
-@@ -309,14 +304,11 @@
- 		std::string path = (std::string)nowide::getenv("XDG_DATA_DIRS");
- 
- 		addDirectoriesFromPath(dirs, path, "/flycast/");
--		addDirectoriesFromPath(dirs, path, "/reicast/");
- 	}
- 	else
- 	{
- 		dirs.push_back("/usr/local/share/flycast/");
- 		dirs.push_back("/usr/share/flycast/");
--		dirs.push_back("/usr/local/share/reicast/");
--		dirs.push_back("/usr/share/reicast/");
- 	}
- 	if (nowide::getenv("FLYCAST_BIOS_PATH") != NULL)
- 	{
