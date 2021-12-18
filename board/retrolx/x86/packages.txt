@@ -1,0 +1,6 @@
+lr-beetle-pce-
+lr-beetle-saturn
+lr-bsnes
+lr-kronos
+pcsx2
+xemu
