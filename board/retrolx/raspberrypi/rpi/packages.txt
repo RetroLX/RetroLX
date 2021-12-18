@@ -1,0 +1,10 @@
+lr-fbalpha2012
+lr-fbalpha2012-cps1
+lr-fbalpha2012-cps2
+lr-fbalpha2012-cps3
+lr-fbalpha2012-neogeo
+lr-gpsp
+lr-mame2000
+lr-snes9x2002
+lr-snes9x2005
+es-theme-minijawn
