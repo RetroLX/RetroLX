@@ -34,13 +34,13 @@ define FLYCAST_INSTALL_TARGET_CMDS
 	echo "flycast built as package, no rootfs install"
 endef
 
-define FLYCAST_PATCH_VULKAN_WAYLAND
-	cd $(@D) && patch -p1 < $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/flycast/xxx-vulkan-wayland.diff
-endef
+#define FLYCAST_PATCH_VULKAN_WAYLAND
+#	cd $(@D) && patch -p1 < $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/flycast/xxx-vulkan-wayland.diff
+#endef
 
 ifeq ($(BR2_PACKAGE_RETROLX_VULKAN),y)
-	FLYCAST_PRE_BUILD_HOOKS += FLYCAST_PATCH_VULKAN_WAYLAND
-	FLYCAST_EXTRA_ARGS += USE_VULKAN=1
+#	FLYCAST_PRE_BUILD_HOOKS += FLYCAST_PATCH_VULKAN_WAYLAND
+	FLYCAST_CONF_OPTS += -DUSE_VULKAN=1
 	FLYCAST_EXTRA_ARGS += EXTRAFLAGS=-ldl
 endif
 
