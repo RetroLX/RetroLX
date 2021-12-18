@@ -1,5 +1,5 @@
 pkgname = emulationstation
-pkgver = 20211212-1
+pkgver = 20211216-1
 pkgdesc = EmulationStation frontend
 group = frontend
 packager = https://retrolx.org 
