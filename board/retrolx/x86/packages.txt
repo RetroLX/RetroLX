@@ -1,6 +1,13 @@
+citra
+dolphin
+duckstation
+flycast
 lr-beetle-pce-
 lr-beetle-saturn
 lr-bsnes
+lr-pcsx
+lr-flycast
 lr-kronos
+melonds
 pcsx2
 xemu

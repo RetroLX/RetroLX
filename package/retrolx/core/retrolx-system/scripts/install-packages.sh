@@ -16,27 +16,8 @@ function dialogoutput2()
     dialog --hline "$footer" --backtitle "RetroLX" --title " $2 " --mixedgauge "Please wait while finishing install..." 10 50 "$percent" &> /dev/tty1
 }
 
-# Preparing packages array
-packages=(
-emulationstation
-retroarch
-lr-mrboom
-lr-prboom
-lr-tyrquake
-lr-beetle-pce-fast
-lr-fceumm
-lr-mgba
-lr-nestopia
-lr-gambatte
-lr-genesisplusgx
-lr-picodrive
-lr-snes9x
-lr-snes9x2010
-lr-stella
-devilutionx
-sdlpop
-)
-
+# Preparing packages array (read from /boot/packages.txt)
+IFS=$'\n' GLOBIGNORE='*' command eval 'packages=($(cat /boot/packages.txt))'
 length="${#packages[@]}"
 percent=$((80 / $length))
 progress=0;

@@ -5,7 +5,7 @@
 ################################################################################
 
 # Mainline kernels
-RETROLX_KERNEL_RK3399_VERSION = 5.15.6
+RETROLX_KERNEL_RK3399_VERSION = 5.15.8
 RETROLX_KERNEL_RK3399_ARCH = rk3399
 RETROLX_KERNEL_RK3399_SOURCE = kernel-$(RETROLX_KERNEL_RK3399_ARCH)-$(RETROLX_KERNEL_RK3399_VERSION).tar.gz
 RETROLX_KERNEL_RK3399_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_RK3399_ARCH)/$(RETROLX_KERNEL_RK3399_VERSION)
