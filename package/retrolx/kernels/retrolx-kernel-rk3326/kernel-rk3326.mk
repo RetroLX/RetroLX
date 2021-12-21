@@ -5,7 +5,7 @@
 ################################################################################
 
 # Mainline kernels
-RETROLX_KERNEL_RK3326_VERSION = 5.15.6
+RETROLX_KERNEL_RK3326_VERSION = 5.15.10
 RETROLX_KERNEL_RK3326_ARCH = rk3326
 RETROLX_KERNEL_RK3326_SOURCE = kernel-$(RETROLX_KERNEL_RK3326_ARCH)-$(RETROLX_KERNEL_RK3326_VERSION).tar.gz
 RETROLX_KERNEL_RK3326_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_RK3326_ARCH)/$(RETROLX_KERNEL_RK3326_VERSION)
