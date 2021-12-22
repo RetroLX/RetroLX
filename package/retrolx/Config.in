@@ -393,7 +393,7 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 	# Sony PS1
 	select BR2_PACKAGE_DUCKSTATION                  if !BR2_arm1176jzf_s && !BR2_cortex_a7
 	select BR2_PACKAGE_LIBRETRO_SWANSTATION         if !BR2_x86_i686 && !BR2_arm1176jzf_s && !BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_PCSX                if !BR2_arm1176jzf_s && !BR2_cortex_a35
+	select BR2_PACKAGE_LIBRETRO_PCSX                if !BR2_arm1176jzf_s
 	select BR2_PACKAGE_LIBRETRO_BEETLE_PSX          if !BR2_arm1176jzf_s && !BR2_cortex_a7 && !BR2_cortex_a35
 
 	# Sony PS2

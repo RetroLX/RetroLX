@@ -3,8 +3,8 @@
 # PCSXREARMED
 #
 ################################################################################
-# Version.: Commits on Nov 10, 2021
-LIBRETRO_PCSX_VERSION = 589bd99ba31de8216624dbf0cbbc016f0663ce3d
+# Version.: Commits on Dec 21, 2021
+LIBRETRO_PCSX_VERSION = 12fc12797064599dfca2d44043d5c02a949711ef
 LIBRETRO_PCSX_SITE = $(call github,libretro,pcsx_rearmed,$(LIBRETRO_PCSX_VERSION))
 LIBRETRO_PCSX_LICENSE = GPLv2
 
@@ -12,6 +12,7 @@ LIBRETRO_PCSX_PKG_DIR = $(TARGET_DIR)/opt/retrolx/libretro
 LIBRETRO_PCSX_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/lr-pcsx
 
 LIBRETRO_PCSX_PLATFORM = $(LIBRETRO_PLATFORM)
+LIBRETRO_PCSX_DYNAREC = ari64
 
 ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S922X),y)
 LIBRETRO_PCSX_PLATFORM = CortexA73_G12B
@@ -31,13 +32,15 @@ LIBRETRO_PCSX_PLATFORM = armv cortexa9 neon hardfloat
 else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_AW32),y)
 LIBRETRO_PCSX_PLATFORM = rpi2
 
-else ifeq ($(BR2_aarch64),y)
-LIBRETRO_PCSX_PLATFORM = unix
+endif
 
+ifeq ($(BR2_aarch64),y)
+LIBRETRO_PCSX_PLATFORM = unix
+LIBRETRO_PCSX_DYNAREC = ari64
 endif
 
 define LIBRETRO_PCSX_BUILD_CMDS
-	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D) -f Makefile.libretro platform="$(LIBRETRO_PCSX_PLATFORM)"
+	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D) -f Makefile.libretro platform="$(LIBRETRO_PCSX_PLATFORM)" DYNAREC="$(LIBRETRO_PCSX_DYNAREC)"
 endef
 
 define LIBRETRO_PCSX_MAKEPKG
