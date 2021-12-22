@@ -5,7 +5,7 @@
 ################################################################################
 
 # Mainline kernels
-RETROLX_KERNEL_H616_VERSION = 5.15.10
+RETROLX_KERNEL_H616_VERSION = 5.15.11
 RETROLX_KERNEL_H616_ARCH = h616
 RETROLX_KERNEL_H616_SOURCE = kernel-$(RETROLX_KERNEL_H616_ARCH)-$(RETROLX_KERNEL_H616_VERSION).tar.gz
 RETROLX_KERNEL_H616_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_H616_ARCH)/$(RETROLX_KERNEL_H616_VERSION)
