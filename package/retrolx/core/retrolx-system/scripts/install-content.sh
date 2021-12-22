@@ -9,11 +9,7 @@ function dialogoutput()
 }
 
 # Preparing packages array
-packages=(
-es-theme-carbon
-es-theme-minijawn
-)
-
+IFS=$'\n' GLOBIGNORE='*' command eval 'XYZ=($(cat /home/romain/RetroLX/RetroLX/board/retrolx/content.txt))'
 length="${#packages[@]}"
 percent=$((100 / $length))
 progress=0;

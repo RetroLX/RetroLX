@@ -121,3 +121,7 @@ cd "${BR2_EXTERNAL_RETROLX_PATH}/repo/${RETROLX_TARGET,,}" && "${BR2_EXTERNAL_RE
 # link generated repo to build dir
 [ -L "${BUILD_DIR}/repo" ] && rm "${BUILD_DIR}/repo"
 [ ! -L "${BUILD_DIR}/repo" ] && ln -s "${BR2_EXTERNAL_RETROLX_PATH}/repo/${RETROLX_TARGET,,}" "${BUILD_DIR}/repo"
+
+# link board to build dir
+[ -L "${BUILD_DIR}/board" ] && rm "${BUILD_DIR}/board"
+[ ! -L "${BUILD_DIR}/board" ] && ln -s "${BR2_EXTERNAL_RETROLX_PATH}/board" "${BUILD_DIR}/board"
