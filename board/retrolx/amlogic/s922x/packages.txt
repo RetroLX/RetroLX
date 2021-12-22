@@ -1,0 +1,5 @@
+duckstation
+lr-pcsx
+flycast
+lr-flycast
+dolphin

@@ -14,6 +14,10 @@ BINARIES_DIR=$4
 TARGET_DIR=$5
 RETROLX_BINARIES_DIR=$6
 
+mkdir -p "${RETROLX_BINARIES_DIR}/boot/packages" || exit 1
+cat "${BUILD_DIR}/board/retrolx/packages.txt" "${BUILD_DIR}/board/retrolx/amlogic/s922x/packages.txt" > "${RETROLX_BINARIES_DIR}/boot/packages.txt"
+cat "${RETROLX_BINARIES_DIR}/boot/packages.txt" | while read line; do cp "${BUILD_DIR}/repo/${line}"* "${RETROLX_BINARIES_DIR}/boot/packages/"; done
+
 mkdir -p "${RETROLX_BINARIES_DIR}/build-uboot-gtkingpro"     || exit 1
 cp "${BOARD_DIR}/build-uboot.sh"          "${RETROLX_BINARIES_DIR}/build-uboot-gtkingpro/" || exit 1
 cd "${RETROLX_BINARIES_DIR}/build-uboot-gtkingpro/" && ./build-uboot.sh "${HOST_DIR}" "${BOARD_DIR}" "${BINARIES_DIR}" || exit 1
