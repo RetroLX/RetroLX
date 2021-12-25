@@ -1,5 +1,5 @@
 pkgname = duckstation
-pkgver = 20211129-1
+pkgver = 20211225-1
 pkgdesc = DuckStation Sony PS1 emulator
 group = emulator
 packager = https://retrolx.org 
