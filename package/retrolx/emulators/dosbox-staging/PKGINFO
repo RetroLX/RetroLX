@@ -1,6 +1,6 @@
 pkgname = dosbox-staging
-pkgver = 0.77.1-1
+pkgver = 0.78.0-1
 pkgdesc = DOS/x86 emulator focusing on ease of use
 group = emulator
 packager = https://retrolx.org 
-url = https://https://dosbox-staging.github.io/
+url = https://dosbox-staging.github.io/
