@@ -1,0 +1,11 @@
+--- a/src/libs/loguru/loguru.cpp	2021-12-25 13:42:08.000000000 +0100
++++ b/src/libs/loguru/loguru.cpp	2021-12-26 15:14:06.897699843 +0100
+@@ -1118,7 +1118,7 @@
+ 				long thread_id;
+ 				(void)thr_self(&thread_id);
+ 			#elif LOGURU_PTHREADS
+-				const auto thread_id = reinterpret_cast<uintptr_t>(pthread_self());
++				uint64_t thread_id = pthread_self();
+ 			#else
+ 				// This ID does not correllate to anything we can get from the OS,
+ 				// so this is the worst way to get the ID.
