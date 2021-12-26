@@ -1,5 +1,5 @@
 pkgname = lr-freeintv
-pkgver = 20210819-1
+pkgver = 20211214-1
 pkgdesc = FreeIntv (Mattel Intellivision) libretro core
 group = emulator
 packager = https://retrolx.org 
