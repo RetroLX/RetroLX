@@ -6,7 +6,7 @@ BINARIES_DIR=$3
 PLATFORM=$4
 
 # Define ATF version
-ATF_VERSION="2.5"
+ATF_VERSION="2.6"
 
 # Change working directory
 cd "${BINARIES_DIR}"
