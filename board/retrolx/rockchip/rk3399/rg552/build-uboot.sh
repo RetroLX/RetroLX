@@ -8,11 +8,11 @@ IMAGES_DIR=$3
 export BL31="${IMAGES_DIR}/atf/rk3399/bl31.elf"
 
 # Clone Rockchip U-Boot
-git clone https://github.com/rockchip-linux/u-boot/ -b next-dev
+git clone --depth 1 https://github.com/rockchip-linux/u-boot/ -b next-dev
 cd u-boot
 
 # Clone mrfixit2001 U-Boot Builder
-git clone https://github.com/mrfixit2001/uboot_builder
+git clone --depth 1 https://github.com/mrfixit2001/uboot_builder
 
 # Apply patches
 PATCHES="${BOARD_DIR}/patches/uboot/*.patch"
