@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if test $1 = start
+then
+	echo 0 > /sys/class/pwm/pwmchip3/export
+	echo 0 > /sys/class/pwm/pwmchip3/pwm0/enable
+	echo 1 > /sys/class/pwm/pwmchip3/pwm0/enable
+	echo 10000 > /sys/class/pwm/pwmchip3/pwm0/period
+	echo 10000 > /sys/class/pwm/pwmchip3/pwm0/duty_cycle
+fi
