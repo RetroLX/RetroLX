@@ -139,6 +139,7 @@ config BR2_PACKAGE_RETROLX_ARCADE_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_MAME2003_PLUS
 	select BR2_PACKAGE_LIBRETRO_MAME2010       if !BR2_arm1176jzf_s
 
+	# Mainline MAME
 	select BR2_PACKAGE_MAME                    if BR2_x86_64 || (!BR2_arm1176jzf_s && !BR2_cortex_a7 && !BR2_cortex_a35)
 
 	# Laserdic emulation
