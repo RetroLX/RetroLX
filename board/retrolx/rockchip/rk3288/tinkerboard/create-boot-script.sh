@@ -15,7 +15,8 @@ TARGET_DIR=$5
 RETROLX_BINARIES_DIR=$6
 
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/packages" || exit 1
-cp -r "${BUILD_DIR}"/repo/* "${RETROLX_BINARIES_DIR}/boot/packages/" || exit 1
+cat "${BUILD_DIR}/board/retrolx/packages.txt" "${BUILD_DIR}/board/retrolx/rockchip/rk3288/packages.txt" > "${RETROLX_BINARIES_DIR}/boot/packages.txt"
+cat "${RETROLX_BINARIES_DIR}/boot/packages.txt" | while read line; do cp "${BUILD_DIR}/repo/${line}"* "${RETROLX_BINARIES_DIR}/boot/packages/"; done
 
 mkdir -p "${RETROLX_BINARIES_DIR}/uboot" || exit 1
 cp "${BOARD_DIR}/build-uboot.sh"          "${RETROLX_BINARIES_DIR}/uboot/" || exit 1
