@@ -5,3 +5,4 @@ lr-flycast
 dolphin
 pcsx2
 rpcs3
+mame
