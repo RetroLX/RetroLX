@@ -9,13 +9,13 @@ config BR2_PACKAGE_PCSX2
 	depends on BR2_PACKAGE_LIBPNG
 	depends on BR2_PACKAGE_WXWIDGETS
 	depends on BR2_PACKAGE_LIBAIO
-	depends on BR2_PACKAGE_PORTAUDIO
+	#depends on BR2_PACKAGE_PORTAUDIO
 	depends on BR2_PACKAGE_LIBSOUNDTOUCH
 	depends on BR2_PACKAGE_LIBSAMPLERATE
 	depends on BR2_PACKAGE_SDL2
 	depends on BR2_PACKAGE_DEJAVU
 	depends on BR2_PACKAGE_LIBPCAP
-	depends on BR2_PACKAGE_YAML_CPP
+	#depends on BR2_PACKAGE_RAPIDYAML
 	depends on BR2_PACKAGE_LIBGTK3
         help
           A  pcsx2 emulator

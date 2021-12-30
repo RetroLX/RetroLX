@@ -1,0 +1,11 @@
+--- a/cmake/BuildParameters.cmake	2021-12-30 16:15:38.000000000 +0100
++++ b/cmake/BuildParameters.cmake	2021-12-30 22:30:53.629756010 +0100
+@@ -214,7 +214,7 @@
+ if(MSVC)
+ 	add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:/Zc:externConstexpr>")
+ else()
+-	add_compile_options(-pipe -fvisibility=hidden -pthread -fno-builtin-strcmp -fno-builtin-memcmp -mfpmath=sse)
++	add_compile_options(-pipe -pthread -fno-builtin-strcmp -fno-builtin-memcmp -mfpmath=sse)
+ 
+ 	# -fno-operator-names should only be for C++ files, not C files.
+ 	add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-fno-operator-names>)

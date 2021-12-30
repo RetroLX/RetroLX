@@ -27,10 +27,7 @@ class Pcsx2Generator(Generator):
         configureGFX(retrolxFiles.pcsx2ConfigDir, system)
         configureAudio(retrolxFiles.pcsx2ConfigDir)
 
-        if isAVX2:
-            commandArray = [retrolxFiles.batoceraBins['pcsx2_avx2'], rom]
-        else:
-            commandArray = [retrolxFiles.batoceraBins['pcsx2'], rom]
+        commandArray = [retrolxFiles.batoceraBins['pcsx2'], rom]
 
         # Fullscreen
         commandArray.append("--fullscreen")
