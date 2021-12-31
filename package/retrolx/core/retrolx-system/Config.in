@@ -599,6 +599,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	default "odroidxu4"                                                                                                                      if BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
 	default "x86"                                                                                                                            if BR2_PACKAGE_RETROLX_TARGET_X86
 	default "x86_64"                                                                                                                         if BR2_PACKAGE_RETROLX_TARGET_X86_64
+	default "ps4"                                                                                                                            if BR2_PACKAGE_RETROLX_TARGET_PS4
 
 choice
 	prompt "RetroLX target"
@@ -631,6 +632,9 @@ config BR2_PACKAGE_RETROLX_TARGET_X86
 
 config BR2_PACKAGE_RETROLX_TARGET_X86_64
 	bool "x86_64"
+
+config BR2_PACKAGE_RETROLX_TARGET_PS4
+	bool "ps4"
 
 config BR2_PACKAGE_RETROLX_TARGET_RK3399
 	bool "rk3399"

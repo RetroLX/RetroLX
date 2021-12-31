@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_PS4
+        bool "retrolx-kernel-ps4"
+        help
+          PS4 Linux kernel for RetroLX

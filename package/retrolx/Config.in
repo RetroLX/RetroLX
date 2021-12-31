@@ -51,14 +51,14 @@ config BR2_PACKAGE_RETROLX_WINE_SYSTEMS
 
 	# Wine (windows) layer
 	select BR2_PACKAGE_RETROLX_WINE    if BR2_PACKAGE_RETROLX_IS_X86_ARCH
-	#select BR2_PACKAGE_WINE_X86        if BR2_PACKAGE_RETROLX_TARGET_X86_64
+	#select BR2_PACKAGE_WINE_X86        if BR2_x86_64
 
 #### Flash Player ####
 config BR2_PACKAGE_RETROLX_FLASH_SYSTEMS
 	bool "RetroLX Flash support"
 
 	# Flash Player Emulator
-	#select BR2_PACKAGE_RUFFLE           if BR2_PACKAGE_RETROLX_TARGET_X86_64 # depends on X11
+	#select BR2_PACKAGE_RUFFLE           if BR2_x86_64 # depends on X11
 	select BR2_PACKAGE_LIGHTSPARK       if BR2_x86_64 || BR2_aarch64
 
 #### Moonlight / Gamestream ####
@@ -182,7 +182,7 @@ config BR2_PACKAGE_RETROLX_HANDHELD_SYSTEMS
 	# 3DS
 	select BR2_PACKAGE_CITRA                    if BR2_x86_64
 	select BR2_PACKAGE_CITRA_ANDROID            if (BR2_aarch64 && BR2_PACKAGE_RETROLX_HAS_GLES3 && !BR2_cortex_a35)
-	select BR2_PACKAGE_LIBRETRO_CITRA           if BR2_x86_64
+	#select BR2_PACKAGE_LIBRETRO_CITRA           if BR2_x86_64
 
 	# Neo Geo Pocket
 	select BR2_PACKAGE_LIBRETRO_BEETLE_NGP      # ALL
@@ -259,7 +259,7 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 
 	# Wolfeinstein 3D / Spear of Destiny ports
 	select BR2_PACKAGE_LIBRETRO_ECWOLF          # ALL
-	#select BR2_PACKAGE_ECWOLF                   if BR2_PACKAGE_RETROLX_TARGET_X86_64
+	#select BR2_PACKAGE_ECWOLF                   if BR2_x86_64
 
 	# PrBoom (Doom)
 	select BR2_PACKAGE_LIBRETRO_PRBOOM          # ALL

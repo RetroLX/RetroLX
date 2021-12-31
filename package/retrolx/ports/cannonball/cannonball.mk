@@ -9,7 +9,7 @@ CANNONBALL_SITE = $(call github,djyt,cannonball,$(CANNONBALL_VERSION))
 CANNONBALL_LICENSE = GPLv2
 CANNONBALL_DEPENDENCIES = sdl2 boost
 
-ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86)$(BR2_PACKAGE_RETROLX_TARGET_X86_64),y)
+ifeq ($(BR2_x86_i686)$(BR2_x86_64),y)
         CANNONBALL_TARGET = linux.cmake
 else
         CANNONBALL_TARGET = linux-opengles.cmake
