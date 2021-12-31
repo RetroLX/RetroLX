@@ -449,6 +449,7 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 
 	# Case
 	select BR2_PACKAGE_GPICASE              if BR2_PACKAGE_RETROLX_TARGET_RPI1 # retroflag gpicase
+	select BR2_PACKAGE_GPICASE2             if BR2_PACKAGE_RETROLX_TARGET_RPI4 # retroflag gpicase2
 	select BR2_PACKAGE_ROSHAMBO_CASE        if BR2_PACKAGE_RETROLX_TARGET_RK3399 # roshambo case
 	select BR2_PACKAGE_RPIGPIOSWITCH        if BR2_PACKAGE_RETROLX_RPI_ANY # gpio switchs
 	select BR2_PACKAGE_RETROGAME            if BR2_PACKAGE_RETROLX_RPI_ANY # gpio pads
