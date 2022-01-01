@@ -1,5 +1,5 @@
 pkgname = rpcs3
-pkgver = 0.0.18-1
+pkgver = 0.0.20-1
 pkgdesc = Sony PS3 emulator
 group = emulator
 packager = https://retrolx.org 
