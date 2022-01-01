@@ -25,9 +25,17 @@ cp -f  "${BINARIES_DIR}/bcm2711"*.dtb   "${RETROLX_BINARIES_DIR}/boot/" || exit 
 cp     "${BOARD_DIR}/boot/config.txt"   "${RETROLX_BINARIES_DIR}/boot/" || exit 1
 cp     "${BOARD_DIR}/boot/cmdline.txt"  "${RETROLX_BINARIES_DIR}/boot/" || exit 1
 
+# RetroDreamer G4A
+mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot/retrodreamer_g4a" || exit 1
+cp -pr "${BOARD_DIR}/boot/retrodreamer_g4a/"*     "${RETROLX_BINARIES_DIR}/boot/boot/retrodreamer_g4a/"   || exit 1
+
+# GPi Case 2
+mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot/gpicase2" || exit 1
+cp -pr "${BINARIES_DIR}/gpicase2/"*     "${RETROLX_BINARIES_DIR}/boot/boot/gpicase2/"   || exit 1
+
 cp "${BINARIES_DIR}/Image"          "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
-cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/"                || exit 1
+cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/"               || exit 1
 cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
-cp "${BINARIES_DIR}/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
+cp "${BINARIES_DIR}/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"        || exit 1
 
 exit 0
