@@ -34,6 +34,9 @@ RPCS3_CONF_OPTS += -DCMAKE_BUILD_TYPE=Release
 RPCS3_CONF_ENV += PATH="$(STAGING_DIR)/usr/bin:$$PATH"
 RPCS3_CONF_ENV += LD_LIBRARY_PATH="$(HOST_DIR)/lib:$(HOST_DIR)/usr/lib:$$LD_LIBRARY_PATH"
 
+# Should be set when the package cannot be built inside the source tree but needs a separate build directory.
+#RPCS3_SUPPORTS_IN_SOURCE_BUILD = NO
+
 # Install into package prefix
 RPCS3_INSTALL_TARGET_OPTS = DESTDIR="$(RPCS3_PKG_DIR)$(RPCS3_PKG_INSTALL_DIR)" install
 
