@@ -403,7 +403,7 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_PLAY		if BR2_x86_i686 || BR2_x86_64 || BR2_PACKAGE_RETROLX_HAS_GLES3
 
 	# Sony PS3
-	#select BR2_PACKAGE_RPCS3                        if BR2_x86_64
+	select BR2_PACKAGE_RPCS3                        if BR2_x86_64
 
 	# Wii U (requires Wine layer)
 	select BR2_PACKAGE_CEMU                         if  BR2_x86_64 && BR2_PACKAGE_RETROLX_WINE_SYSTEMS
