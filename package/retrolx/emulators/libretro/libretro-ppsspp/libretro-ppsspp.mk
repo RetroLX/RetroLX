@@ -54,12 +54,12 @@ ifeq ($(BR2_aarch64),y)
 endif
 
 # x86
-ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86),y)
+ifeq ($(BR2_x86_i686),y)
 	LIBRETRO_PPSSPP_CONF_OPTS += -DX86=ON
 endif
 
 # x86_64
-ifeq ($(BR2_PACKAGE_RETROLX_TARGET_X86_64),y)
+ifeq ($(BR2_x86_64),y)
 	LIBRETRO_PPSSPP_CONF_OPTS += -DX86_64=ON
 endif
 
