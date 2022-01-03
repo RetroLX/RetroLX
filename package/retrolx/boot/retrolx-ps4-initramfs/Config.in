@@ -1,0 +1,7 @@
+config BR2_PACKAGE_RETROLX_PS4_INITRAMFS
+	bool "RetroLX PS4 initramfs"
+	default n
+	help
+	  PS4 custom initramfs
+
+	  http://busybox.net/

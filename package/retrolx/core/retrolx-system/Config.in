@@ -400,7 +400,8 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 
 	# minimal system required packages
 	select BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
-	select BR2_PACKAGE_RETROLX_INITRAMFS                   # initramfs to boot the system
+	select BR2_PACKAGE_RETROLX_INITRAMFS                   if !BR2_PACKAGE_RETROLX_TARGET_PS4 # initramfs to boot the system
+	select BR2_PACKAGE_RETROLX_PS4_INITRAMFS               if BR2_PACKAGE_RETROLX_TARGET_PS4  # initramfs to boot the system
 	select BR2_PACKAGE_BASH                                 # bash shell, used as the interactive shell
 	select BR2_PACKAGE_RETROLX_TRIGGERHAPPY                # multimedia/power buttons
 	select BR2_TARGET_ROOTFS_SQUASHFS                       # tool to generate the target image
@@ -781,7 +782,7 @@ config BR2_PACKAGE_RETROLX_GPU_X86
 	bool "RetroLX GPU support for x86 platform"
 
 	# nvidia
-	select BR2_PACKAGE_LIBGLVND                            if BR2_PACKAGE_RETROLX_TARGET_X86    # already set by nvidia for x86_64, but required on x86 for pcsx2
+	select BR2_PACKAGE_LIBGLVND                            if BR2_PACKAGE_RETROLX_TARGET_X86 || BR2_PACKAGE_RETROLX_TARGET_PS4
 	select BR2_PACKAGE_RETROLX_NVIDIA_DRIVER               if BR2_PACKAGE_RETROLX_TARGET_X86_64
 	select BR2_PACKAGE_RETROLX_NVIDIA_DRIVER_MODULE        if BR2_PACKAGE_RETROLX_TARGET_X86_64
 
