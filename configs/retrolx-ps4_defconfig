@@ -1,5 +1,6 @@
 # Target definition
 BR2_x86_64=y
+BR2_x86_jaguar=y
 BR2_PACKAGE_RETROLX_TARGET_PS4=y
 BR2_ROOTFS_USERS_TABLES="$(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/users.txt"
 
