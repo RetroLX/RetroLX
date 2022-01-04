@@ -1,0 +1,1 @@
+label=RETROLX console=tty3 loglevel=9 vt.global_cursor_default=0 mitigations=off
