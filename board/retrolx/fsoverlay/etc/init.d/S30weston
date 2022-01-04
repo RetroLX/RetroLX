@@ -1,4 +1,20 @@
 #!/bin/bash
 
-XDG_RUNTIME_DIR=/var/run /usr/bin/weston --continue-without-input --backend=drm-backend.so --tty 1 --shell=desktop-shell.so --config=/etc/weston.ini &
-sleep 2
+BOOTCONF="/boot/retrolx-boot.conf"
+
+# only at start
+test "$1" != "start" && exit 0
+
+# true if triggers are not available or not set to do so
+if ! grep -qE '^[ ]*wayland[ ]*=[ ]*true[ ]*$' "${BOOTCONF}"
+then
+    exit 0
+fi
+
+# only when install is wanted
+if grep -qE '^[ ]*wayland[ ]*=[ ]*true[ ]*$' "${BOOTCONF}"
+then
+    XDG_RUNTIME_DIR=/var/run /usr/bin/weston --continue-without-input --backend=drm-backend.so --tty 1 --shell=desktop-shell.so --config=/etc/weston.ini &
+    sleep 2
+fi
+
