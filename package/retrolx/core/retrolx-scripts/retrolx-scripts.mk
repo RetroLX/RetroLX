@@ -28,11 +28,6 @@ ifeq ($(BR2_PACKAGE_XORG7),y)
   RETROLX_SCRIPT_SCREENSHOT_TYPE=xorg
 endif
 
-# doesn't work on odroidgoa with mali g31_gbm
-ifeq ($(BR2_PACKAGE_MALI_G31_GBM),y)
-  RETROLX_SCRIPT_RESOLUTION_TYPE=basic
-endif
-
 define RETROLX_SCRIPTS_INSTALL_TARGET_CMDS
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/bluetooth/bluezutils.py            $(TARGET_DIR)/usr/lib/python3.9/ # any variable ?
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/bluetooth/batocera-bluetooth       $(TARGET_DIR)/usr/bin/
