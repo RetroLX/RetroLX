@@ -139,11 +139,6 @@ RETROLX_EMULATIONSTATION_CMD = startx
 RETROLX_EMULATIONSTATION_ARGS =
 endif
 
-# # Run through Weston compositor on Wayland
-ifeq ($(BR2_PACKAGE_WAYLAND)$(BR2_PACKAGE_WESTON),yy)
-RETROLX_EMULATIONSTATION_PREFIX = SDL_NOMOUSE=1 SDL_VIDEODRIVER=wayland XDG_RUNTIME_DIR=/var/run
-endif
-
 define RETROLX_EMULATIONSTATION_BOOT
 	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/frontends/emulationstation/retrolx-emulationstation/S31emulationstation $(TARGET_DIR)/etc/init.d/S31emulationstation
 	sed -i -e 's;%RETROLX_EMULATIONSTATION_PREFIX%;${RETROLX_EMULATIONSTATION_PREFIX};g' \
