@@ -583,7 +583,7 @@ config BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	config BR2_TARGET_RETROLX_IMAGES
 	string "target images"
 	default "allwinner/aw32/cubieboard2 allwinner/aw32/orangepi-one allwinner/aw32/orangepi-plus2e allwinner/aw32/orangepi-pc allwinner/aw32/orangepi-pc-plus allwinner/aw32/cha" if BR2_PACKAGE_RETROLX_TARGET_AW32
-	default "allwinner/sun50i/tritium-h5 allwinner/sun50i/orangepi-pc2 allwinner/sun50i/orangepi-one-plus amlogic/s905/odroid-c2 amlogic/s905/nanopi-k2 amlogic/s905/khadas-vim amlogic/s905/s905-tvbox rockchip/rk3328/rock64 rockchip/rk3328/roc-cc" if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2
+	default "allwinner/sun50i/tritium-h5 allwinner/sun50i/orangepi-pc2 allwinner/sun50i/orangepi-one-plus allwinner/sun50i/orangepi-3 amlogic/s905/odroid-c2 amlogic/s905/nanopi-k2 amlogic/s905/khadas-vim amlogic/s905/s905-tvbox rockchip/rk3328/rock64 rockchip/rk3328/roc-cc" if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2
 	default "allwinner/h616/orangepi-zero2 amlogic/s905gen2/x96-max amlogic/s905gen2/khadas-vim2 amlogic/s905gen2/radxa-zero"                if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES3
 	default "amlogic/s812"                                                                                                                   if BR2_PACKAGE_RETROLX_TARGET_S812
 	default "amlogic/s905gen3/odroid-c4 amlogic/s905gen3/bananapi-m5 amlogic/s905gen3/khadas-vim3l amlogic/s905gen3/x96-max-plus amlogic/s905gen3/s905gen3-tvbox rockchip/rk356x/firefly-station-m2 rockchip/rk356x/firefly-station-p2" if BR2_PACKAGE_RETROLX_TARGET_ARM64_A55_GLES3
