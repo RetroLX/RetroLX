@@ -32,9 +32,7 @@ LIBRETRO_PCSX_PLATFORM = armv cortexa9 neon hardfloat
 else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_AW32),y)
 LIBRETRO_PCSX_PLATFORM = rpi2
 
-endif
-
-ifeq ($(BR2_arm)$(BR2_aarch64),y)
+else ifeq ($(BR2_arm)$(BR2_aarch64),y)
 LIBRETRO_PCSX_PLATFORM = unix
 LIBRETRO_PCSX_DYNAREC = ari64
 endif
