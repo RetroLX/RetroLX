@@ -56,6 +56,9 @@ define FLYCAST_MAKEPKG
 	# Create directories
 	mkdir -p $(FLYCAST_PKG_DIR)$(FLYCAST_PKG_INSTALL_DIR)
 
+	# Fix rpath
+	$(HOST_DIR)/bin/patchelf --remove-rpath $(@D)/buildroot-build/flycast
+
 	# Copy package files
 	$(INSTALL) -D -m 0755 $(@D)/buildroot-build/flycast $(FLYCAST_PKG_DIR)$(FLYCAST_PKG_INSTALL_DIR)/flycast
 
