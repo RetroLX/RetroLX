@@ -36,6 +36,9 @@ define LIBRETRO_FLYCAST_MAKEPKG
 	# Create directories
 	mkdir -p $(LIBRETRO_FLYCAST_PKG_DIR)$(LIBRETRO_FLYCAST_PKG_INSTALL_DIR)
 
+	# Fix rpath
+	$(HOST_DIR)/bin/patchelf --remove-rpath $(@D)/buildroot-build/flycast_libretro.so
+
 	# Copy package files
 	$(INSTALL) -D $(@D)/buildroot-build/flycast_libretro.so \
 	$(LIBRETRO_FLYCAST_PKG_DIR)$(LIBRETRO_FLYCAST_PKG_INSTALL_DIR)
