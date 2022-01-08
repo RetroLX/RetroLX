@@ -219,7 +219,7 @@ config BR2_PACKAGE_RETROLX_MSDOS_SYSTEMS
 
 	select BR2_PACKAGE_DOSBOX_X                 if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
-	select BR2_PACKAGE_DOSBOX_STAGING           # ALL 
+	select BR2_PACKAGE_DOSBOX_STAGING           if !BR2_arm1176jzf_s 
 
 	select BR2_PACKAGE_LIBRETRO_DOSBOX_PURE     # ALL
 
