@@ -3,8 +3,8 @@
 # SwitchRes
 #
 ################################################################################
-# Version: Commits from Jan 4, 2022
-SWITCHRES_VERSION = da818619778fa7056787e53d4791f4f60ade297c
+# Version: Commits from Jan 9, 2022
+SWITCHRES_VERSION = eaaa0f499ac54683a38c4048ef37ba7a84f09faa
 SWITCHRES_SITE = $(call github,antonioginer,switchres,$(SWITCHRES_VERSION))
 
 SWITCHRES_DEPENDENCIES = libdrm
