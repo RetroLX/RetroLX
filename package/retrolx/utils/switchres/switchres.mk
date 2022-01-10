@@ -27,8 +27,6 @@ define SWITCHRES_BUILD_CMDS
 	$(MAKE) PREFIX="$(STAGING_DIR)/usr" all grid
 endef
 
-#	LDFLAGS="-lSDL2 -ldrm"
-
 define SWITCHRES_INSTALL_STAGING_CMDS
 	cd $(@D) && \
 	CC="$(TARGET_CC)" \
