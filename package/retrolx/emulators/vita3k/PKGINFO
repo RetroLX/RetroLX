@@ -1,5 +1,5 @@
 pkgname = vita3k
-pkgver = 20211229-1
+pkgver = 20220105-1
 pkgdesc = Sony PS Vita Emulator
 group = emulator
 packager = https://retrolx.org 

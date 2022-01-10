@@ -27,7 +27,7 @@ start() {
 	RETVAL1=$?
 	ksmbd.adduser -a retrolx -p retrolx
 	RETVAL2=$?
-	ksmbd.addshare -a RetroLX -o "guest ok = yes, writable = yes, path = /userdata"
+	ksmbd.addshare -a retrolx -o "guest ok = yes, writable = yes, path = /userdata"
 	RETVAL3=$?
 	ksmbd.mountd
 	RETVAL4=$?
@@ -40,7 +40,7 @@ start() {
 
 stop() {
 	echo -n "Shutting down SMB services: "
-	ksmbd.addshare -d RetroLX
+	ksmbd.addshare -d retrolx
 	RETVAL1=$?
 	ksmbd.adduser -d retrolx
 	RETVAL2=$?
