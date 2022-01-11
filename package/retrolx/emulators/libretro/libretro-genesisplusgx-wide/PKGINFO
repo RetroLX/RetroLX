@@ -1,4 +1,4 @@
-pkgname = lr-genesisplusgx-wide
+pkgname = lr-gpgx-wide
 pkgver = 20211108-1
 pkgdesc = Genesis Plus GX Wide libretro core
 group = emulator
