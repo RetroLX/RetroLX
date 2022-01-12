@@ -1,4 +1,0 @@
-config BR2_PACKAGE_RETROLX_KERNEL_H616
-        bool "retrolx-kernel-h616"
-        help
-          Allwinner H616 Linux kernel for RetroLX
