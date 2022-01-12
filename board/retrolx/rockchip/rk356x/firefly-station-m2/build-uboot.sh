@@ -5,9 +5,9 @@ BOARD_DIR=$2
 IMAGES_DIR=$3
 
 # Clone U-Boot mainline
-#wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.10-rc4.tar.bz2"
-#tar xf u-boot-2021.10-rc4.tar.bz2
-#cd u-boot-2021.10-rc4
+#wget "https://ftp.denx.de/pub/u-boot/u-boot-2022.01.tar.bz2"
+#tar xf u-boot-2022.01.tar.bz2
+#cd u-boot-2022.01
 
 # Clone vendor U-Boot and rkbin
 git clone https://gitlab.com/firefly-linux/u-boot -b rk356x/firefly

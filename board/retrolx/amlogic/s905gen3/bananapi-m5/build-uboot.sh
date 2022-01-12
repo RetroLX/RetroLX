@@ -5,9 +5,9 @@ BOARD_DIR=$2
 IMAGES_DIR=$3
 
 # Download U-Boot mainline
-wget "https://ftp.denx.de/pub/u-boot/u-boot-2021.10.tar.bz2"
-tar xf u-boot-2021.10.tar.bz2
-cd u-boot-2021.10
+wget "https://ftp.denx.de/pub/u-boot/u-boot-2022.01.tar.bz2"
+tar xf u-boot-2022.01.tar.bz2
+cd u-boot-2022.01
 
 # Apply patches
 PATCHES="${BOARD_DIR}/patches/uboot/*.patch"
@@ -18,7 +18,7 @@ do
 done
 
 # Make config
-make bananapi-m5_defconfig
+make bananapi_m5_defconfig
 
 # Build it
 ARCH=aarch64 CROSS_COMPILE="${HOST_DIR}/bin/aarch64-buildroot-linux-gnu-" make -j$(nproc)
