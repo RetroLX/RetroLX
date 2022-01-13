@@ -24,9 +24,11 @@ endef
 # remove x86 world only firmware
 define ALLLINUXFIRMWARES_DELETE_X86_ONLY_FIRMWARE
 	rm -rf $(@D)/amdgpu
+	rm -rf $(@D)/bnx2x
 	rm -rf $(@D)/i915
 	rm -rf $(@D)/intel
 	rm -rf $(@D)/iwlwifi*
+	rm -rf $(@D)/nvidia
 	rm -rf $(@D)/radeon
 endef
 
