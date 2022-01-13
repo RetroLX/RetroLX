@@ -5,7 +5,7 @@
 ################################################################################
 
 # Mainline kernel
-RETROLX_KERNEL_RPI2_VERSION = 5.15.11
+RETROLX_KERNEL_RPI2_VERSION = 5.15.13
 RETROLX_KERNEL_RPI2_ARCH = rpi2
 RETROLX_KERNEL_RPI2_SOURCE = kernel-$(RETROLX_KERNEL_RPI2_ARCH)-$(RETROLX_KERNEL_RPI2_VERSION).tar.gz
 RETROLX_KERNEL_RPI2_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_RPI2_ARCH)/$(RETROLX_KERNEL_RPI2_VERSION)
