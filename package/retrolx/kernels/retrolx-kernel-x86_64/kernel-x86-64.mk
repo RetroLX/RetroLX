@@ -5,7 +5,7 @@
 ################################################################################
 
 # Mainline kernel
-RETROLX_KERNEL_X86_64_VERSION = 5.15.14
+RETROLX_KERNEL_X86_64_VERSION = 5.15.15
 RETROLX_KERNEL_X86_64_ARCH = x86_64
 RETROLX_KERNEL_X86_64_SOURCE = kernel-$(RETROLX_KERNEL_X86_64_ARCH)-$(RETROLX_KERNEL_X86_64_VERSION).tar.gz
 RETROLX_KERNEL_X86_64_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_X86_64_ARCH)/$(RETROLX_KERNEL_X86_64_VERSION)
