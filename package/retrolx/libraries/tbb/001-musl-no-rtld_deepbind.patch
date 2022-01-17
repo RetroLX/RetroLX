@@ -1,0 +1,14 @@
+--- a/src/tbb/dynamic_link.cpp	2021-12-17 14:40:54.000000000 +0100
++++ b/src/tbb/dynamic_link.cpp	2022-01-17 14:03:41.022576779 +0100
+@@ -56,6 +56,11 @@
+ 
+ #define __USE_STATIC_DL_INIT    ( !__ANDROID__ )
+ 
++#ifndef RTLD_DEEPBIND
++// musl neither defines nor can use RTLD_DEEPBIND
++#define RTLD_DEEPBIND 0
++#endif
++
+ 
+ /*
+ dynamic_link is a common interface for searching for required symbols in an
