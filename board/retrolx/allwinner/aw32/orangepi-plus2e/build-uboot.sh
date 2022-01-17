@@ -20,7 +20,7 @@ done
 make orangepi_plus2e_defconfig
 
 # Build it
-ARCH=arm CROSS_COMPILE="${HOST_DIR}/bin/arm-buildroot-linux-gnueabihf-" make -j$(nproc)
+ARCH=arm CROSS_COMPILE="${HOST_DIR}/bin/arm-buildroot-linux-musleabihf-" make -j$(nproc)
 mkdir -p ../../uboot-orangepi-plus2e
 
 # Copy to appropriate place

@@ -1,0 +1,10 @@
+--- a/src/pacman/package.c	2022-01-17 13:33:50.666267013 +0100
++++ b/src/pacman/package.c	2022-01-17 13:34:29.683852041 +0100
+@@ -146,7 +146,6 @@
+ #include <wchar.h>
+ 
+ #include <search.h>
+-#include <argz.h>
+ 
+ #include <alpm.h>
+ #include <alpm_list.h>

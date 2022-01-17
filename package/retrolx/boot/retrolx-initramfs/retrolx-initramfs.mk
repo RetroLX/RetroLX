@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-RETROLX_INITRAMFS_VERSION = 1.24.2
+RETROLX_INITRAMFS_VERSION = 1.35.0
 RETROLX_INITRAMFS_SITE = http://www.busybox.net/downloads
 RETROLX_INITRAMFS_SOURCE = busybox-$(RETROLX_INITRAMFS_VERSION).tar.bz2
 RETROLX_INITRAMFS_LICENSE = GPLv2

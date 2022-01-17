@@ -1,0 +1,21 @@
+--- a/GsKit/base/utils/Debug.cpp	2021-11-14 13:33:45.000000000 +0100
++++ b/GsKit/base/utils/Debug.cpp	2022-01-17 11:09:55.618563322 +0100
+@@ -396,17 +396,7 @@
+ // --------------- backtrace stuff start --------------
+ 
+ #ifndef HAVE_EXECINFO
+-#	if defined(__linux__)
+-#		if defined(DINGOO) || defined(ANDROID) // Dingoo's toolchain does not support execinfo
+-#			define HAVE_EXECINFO 0
+-#		else
+-#			define HAVE_EXECINFO 1
+-#		endif
+-#	elif defined(__DARWIN_VERS_1050)
+-#		define HAVE_EXECINFO 1
+-#	else
+-#		define HAVE_EXECINFO 0
+-#	endif
++#define HAVE_EXECINFO 0
+ #endif
+ 
+ #if HAVE_EXECINFO

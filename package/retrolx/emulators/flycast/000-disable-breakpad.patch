@@ -1,0 +1,19 @@
+--- a/CMakeLists.txt	2021-12-17 11:55:17.000000000 +0100
++++ b/CMakeLists.txt	2022-01-16 21:03:27.234965260 +0100
+@@ -171,11 +171,11 @@
+ #			core/deps/breakpad/src/client/mac/Framework)
+ ##		target_include_directories(${PROJECT_NAME} PRIVATE $<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}/Breakpad.framework>)
+ #		target_compile_definitions(${PROJECT_NAME} PRIVATE USE_BREAKPAD)
+-	elseif(UNIX AND NOT CMAKE_SYSTEM_NAME MATCHES "(FreeBSD|OpenBSD|NetBSD)" AND NOT IOS)
+-		add_subdirectory(core/deps/breakpad)
+-		target_link_libraries(${PROJECT_NAME} PRIVATE breakpad_client)
+-		target_include_directories(${PROJECT_NAME} PRIVATE core/deps/breakpad/src)
+-		target_compile_definitions(${PROJECT_NAME} PRIVATE USE_BREAKPAD)
++#	elseif(UNIX AND NOT CMAKE_SYSTEM_NAME MATCHES "(FreeBSD|OpenBSD|NetBSD)" AND NOT IOS)
++#		add_subdirectory(core/deps/breakpad)
++#		target_link_libraries(${PROJECT_NAME} PRIVATE breakpad_client)
++#		target_include_directories(${PROJECT_NAME} PRIVATE core/deps/breakpad/src)
++#		target_compile_definitions(${PROJECT_NAME} PRIVATE USE_BREAKPAD)
+ 	endif()
+ endif()
+ 

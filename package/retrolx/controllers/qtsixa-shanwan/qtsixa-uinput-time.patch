@@ -1,0 +1,30 @@
+--- a/sixad/uinput.cpp	2016-05-01 19:39:17.000000000 +0200
++++ b/sixad/uinput.cpp	2022-01-14 13:49:27.783307026 +0100
+@@ -285,15 +285,25 @@
+     return 0;
+ }
+ 
++#ifndef input_event_sec
++#define input_event_sec time.tv_sec
++#endif
++
++#ifndef input_event_usec
++#define input_event_usec time.tv_usec
++#endif
++
+ int uinput_send(int fd, unsigned short type, unsigned short code, int value)
+ {
+     struct input_event event;
++    struct timeval tv;
+     memset(&event, 0, sizeof(event));
+     event.type = type;
+     event.code = code;
+     event.value = value;
+-    gettimeofday(&(event.time), NULL);
+-
++    gettimeofday(&tv, NULL);
++    event.input_event_sec = tv.tv_sec;
++    event.input_event_usec = tv.tv_usec;
+     if (write(fd, &event, sizeof(event)) != sizeof(event)) {
+         syslog(LOG_ERR, "uinput_send::write(event) - failed to send uinput event (type %i, code %i, value %i)", type, code, value);
+         return -1;

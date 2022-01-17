@@ -1,0 +1,76 @@
+--- a/src/uinput_gamepad.c	2019-04-05 21:18:13.000000000 +0200
++++ b/src/uinput_gamepad.c	2022-01-14 23:26:21.517565407 +0100
+@@ -25,15 +25,26 @@
+ 
+ #include "uinput_gamepad.h"
+ 
++#ifndef input_event_sec
++#define input_event_sec time.tv_sec
++#endif
++
++#ifndef input_event_usec
++#define input_event_usec time.tv_usec
++#endif
++
+ /* sends a key event to the virtual device */
+ static void send_key_event(int fd, unsigned int keycode, int keyvalue,
+ 		unsigned int evtype) {
+ 	struct input_event event;
+-	gettimeofday(&event.time, NULL);
++	struct timeval tv;
++	gettimeofday(&tv, NULL);
+ 
+ 	event.type = evtype;
+ 	event.code = keycode;
+ 	event.value = keyvalue;
++	event.input_event_sec = tv.tv_sec;
++	event.input_event_usec = tv.tv_usec;
+ 
+ 	if (write(fd, &event, sizeof(event)) < 0) {
+ 		printf("[uinput_gamepad] Simulate key error\n");
+@@ -124,11 +124,14 @@
+ int16_t uinput_gpad_write(UINP_GPAD_DEV* const gpad, uint16_t keycode,
+ 		int16_t keyvalue, uint16_t evtype) {
+ 	struct input_event event;
+-	gettimeofday(&event.time, NULL);
++	struct timeval tv;
++	gettimeofday(&tv, NULL);
+ 
+ 	event.type = evtype;
+ 	event.code = keycode;
+ 	event.value = keyvalue;
++	event.input_event_sec = tv.tv_sec;
++	event.input_event_usec = tv.tv_usec;
+ 
+ 	if (write(gpad->fd, &event, sizeof(event)) < 0) {
+ 		printf("[uinput_gamepad] Simulate key error\n");
+--- a/src/uinput_kbd.c	2019-04-05 21:18:13.000000000 +0200
++++ b/src/uinput_kbd.c	2022-01-14 23:28:55.543697336 +0100
+@@ -66,15 +66,26 @@
+ 	return close(kbd->fd);
+ }
+ 
++#ifndef input_event_sec
++#define input_event_sec time.tv_sec
++#endif
++
++#ifndef input_event_usec
++#define input_event_usec time.tv_usec
++#endif
++
+ /* sends a key event to the virtual device */
+ int16_t uinput_kbd_write(UINP_KBD_DEV* const kbd, unsigned int keycode,
+ 		int keyvalue, unsigned int evtype) {
+ 	struct input_event event;
+-	gettimeofday(&event.time, NULL);
++	struct timeval tv;
++	gettimeofday(&tv, NULL);
+ 
+ 	event.type = evtype;
+ 	event.code = keycode;
+ 	event.value = keyvalue;
++	event.input_event_sec = tv.tv_sec;
++	event.input_event_usec = tv.tv_usec;
+ 
+ 	if (write(kbd->fd, &event, sizeof(event)) < 0) {
+ 		printf("[SNESDev-Rpi] Simulate key error\n");

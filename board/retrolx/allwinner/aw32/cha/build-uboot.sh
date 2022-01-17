@@ -20,7 +20,7 @@ done
 make libretech_all_h3_cc_h3_defconfig
 
 # Build it
-ARCH=arm CROSS_COMPILE="${HOST_DIR}/bin/arm-buildroot-linux-gnueabihf-" make -j$(nproc)
+ARCH=arm CROSS_COMPILE="${HOST_DIR}/bin/arm-buildroot-linux-musleabihf-" make -j$(nproc)
 mkdir -p ../../uboot-cha
 
 # Copy to appropriate place

@@ -17,7 +17,7 @@ config BR2_PACKAGE_RETROLX_PACKAGES
 	select BR2_PACKAGE_RETROLX_FLASH_SYSTEMS       if BR2_PACKAGE_RETROLX_IS_X86_ARCH
 
 	# Box86 / Box64 translation layer
-	select BR2_PACKAGE_BOX86               if BR2_arm
+	select BR2_PACKAGE_BOX86               if BR2_arm && !BR2_arm1176jzf_s && !BR2_cortex_a7
 	select BR2_PACKAGE_BOX64               if BR2_aarch64
 
 	# ES frontend and configgen
@@ -243,13 +243,13 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	select BR2_PACKAGE_CGENIUS		    # ALL
 
 	# Diablo 1 engine
-	select BR2_PACKAGE_DEVILUTIONX		    # ALL
+	#select BR2_PACKAGE_DEVILUTIONX		    # ALL
 
 	# Heroes of Might and Magic 2 engine
 	select BR2_PACKAGE_FHEROES2		    # ALL
 
 	# Heroes of Might and Magic 3 engine
-	select BR2_PACKAGE_VCMI		            # ALL
+	#select BR2_PACKAGE_VCMI		            # ALL
 
 	# Hydra Castle Labyrinth
 	select BR2_PACKAGE_HCL		            # ALL
