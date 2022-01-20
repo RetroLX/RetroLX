@@ -3,8 +3,8 @@
 # FBNEO
 #
 ################################################################################
-# Version.: Commits on Dec 26, 2021
-LIBRETRO_FBNEO_VERSION = 9a7bca5b12ea95d4b2142ef3740ac378084f1141
+# Version.: Commits on Jan 18, 2022
+LIBRETRO_FBNEO_VERSION = f340fd8e60b00b52fbe630370eb8133aabe4db1d
 LIBRETRO_FBNEO_SITE = $(call github,libretro,FBNeo,$(LIBRETRO_FBNEO_VERSION))
 LIBRETRO_FBNEO_LICENSE = Non-commercial
 
@@ -35,6 +35,9 @@ endef
 define LIBRETRO_FBNEO_MAKEPKG
 	# Create directories
 	mkdir -p $(LIBRETRO_FBNEO_PKG_DIR)$(LIBRETRO_FBNEO_PKG_INSTALL_DIR)/bios/samples
+
+	# Strip binary
+	$(TARGET_STRIP) -s $(@D)/src/burner/libretro/fbneo_libretro.so
 
 	# Copy package files
 	$(INSTALL) -D $(@D)/src/burner/libretro/fbneo_libretro.so $(LIBRETRO_FBNEO_PKG_DIR)$(LIBRETRO_FBNEO_PKG_INSTALL_DIR)
