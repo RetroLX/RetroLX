@@ -1,0 +1,14 @@
+--- a/dist/libzt-src/ext/ZeroTierOne/osdep/OSUtils.hpp	2021-11-27 20:16:29.851778000 +0100
++++ b/dist/libzt-src/ext/ZeroTierOne/osdep/OSUtils.hpp	2022-01-20 20:03:31.484275830 +0100
+@@ -211,11 +211,7 @@
+ 		return (int64_t)( ((tmp.QuadPart - 116444736000000000LL) / 10000L) + st.wMilliseconds );
+ #else
+ 		struct timeval tv;
+-#ifdef __LINUX__
+-		syscall(SYS_gettimeofday,&tv,0); /* fix for musl libc broken gettimeofday bug */
+-#else
+ 		gettimeofday(&tv,(struct timezone *)0);
+-#endif
+ 		return ( (1000LL * (int64_t)tv.tv_sec) + (int64_t)(tv.tv_usec / 1000) );
+ #endif
+ 	};

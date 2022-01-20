@@ -243,7 +243,7 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	select BR2_PACKAGE_CGENIUS		    # ALL
 
 	# Diablo 1 engine
-	#select BR2_PACKAGE_DEVILUTIONX		    # ALL
+	select BR2_PACKAGE_DEVILUTIONX		    # ALL
 
 	# Heroes of Might and Magic 2 engine
 	select BR2_PACKAGE_FHEROES2		    # ALL
