@@ -13,6 +13,10 @@ define COMMON_SHADERS_BUILD_CMDS
 endef
 
 define COMMON_SHADERS_INSTALL_TARGET_CMDS
+        # Create directories
+        mkdir -p $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/shaders
+
+	# Copy files
 	$(MAKE) CXX="$(TARGET_CXX)" -C $(@D) INSTALLDIR=$(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/shaders install
 endef
 
