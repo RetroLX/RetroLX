@@ -41,6 +41,8 @@ define ALLLINUXFIRMWARES_DELETE_OBSCURE_FIRMWARE
 	rm -rf $(@D)/qcom
 	rm -rf $(@D)/qed
 	rm -rf $(@D)/mrvl/prestera
+	rm -rf $(@D)/cxgb4
+	rm -rf $(@D)/cypress
 endef
 
 ifeq ($(BR2_PACKAGE_RETROLX_RPI_ANY),y)
