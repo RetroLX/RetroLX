@@ -3,8 +3,8 @@
 # MEDNAFEN
 #
 ################################################################################
-# Version.: Release on Jun 16, 2021
-MEDNAFEN_VERSION = 1.27.1
+# Version.: Release on Jan 20, 2022
+MEDNAFEN_VERSION = 1.29.0
 MEDNAFEN_SOURCE = mednafen-$(MEDNAFEN_VERSION).tar.xz
 MEDNAFEN_SITE = https://mednafen.github.io/releases/files
 MEDNAFEN_LICENSE = GPLv3
