@@ -161,7 +161,6 @@ config BR2_PACKAGE_RETROLX_VIDEO
 	select BR2_PACKAGE_LIBVPX
 	select BR2_PACKAGE_MPV
 	#select BR2_PACKAGE_RTKIT fails to compile on sbc, not so required for the moment
-	# only needed for ES VLC backend select BR2_PACKAGE_VLC
 	select BR2_PACKAGE_X264             if (BR2_x86_i686 || BR2_x86_64)
 	select BR2_PACKAGE_X265             if (BR2_x86_i686 || BR2_x86_64)
 
@@ -481,7 +480,9 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 
 	# RetroLX Wayland where possible
 	select BR2_PACKAGE_RETROLX_WAYLAND	if !BR2_PACKAGE_RETROLX_IS_X86_ARCH && \
-						   !BR2_PACKAGE_RETROLX_RPI_VCORE
+						   !BR2_PACKAGE_RETROLX_RPI_VCORE && \
+						   !BR2_PACKAGE_RETROLX_TARGET_AW32 
+
 
 	# RetroLX QT (almost everywhere)
 	select BR2_PACKAGE_RETROLX_QT		if !BR2_PACKAGE_RETROLX_RPI_VCORE && \
