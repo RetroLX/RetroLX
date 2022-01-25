@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if grep -qE '^[ ]*swapfile[ ]*=[ ]*512[ ]*$' "${BOOTCONF}"
+then
+  fallocate -l 512M /userdata/swapfile
+  mkswap /userdata/swapfile
+  swapon /userdata/swapfile
+fi
+
+if grep -qE '^[ ]*swapfile[ ]*=[ ]*256[ ]*$' "${BOOTCONF}"
+then
+  fallocate -l 256M /userdata/swapfile
+  mkswap /userdata/swapfile
+  swapon /userdata/swapfile
+fi
