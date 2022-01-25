@@ -3,12 +3,12 @@
 # Vice Emulation
 #
 ################################################################################
-# Version.: Dec 24, 2021
-VICE_VERSION = 3.6
+# Version.: Jan 22, 2022
+VICE_VERSION = 3.6.1
 VICE_SOURCE = vice-$(VICE_VERSION).tar.gz
 VICE_SITE = https://sourceforge.net/projects/vice-emu/files/releases
 VICE_LICENSE = GPLv2
-VICE_DEPENDENCIES = ffmpeg sdl2 libpng giflib zlib lame alsa-lib jpeg sdl2_image
+VICE_DEPENDENCIES = sdl2 libpng giflib zlib lame alsa-lib jpeg sdl2_image
 
 VICE_PKG_DIR = $(TARGET_DIR)/opt/retrolx/vice
 VICE_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/vice
@@ -16,9 +16,12 @@ VICE_PREFIX_DIR = /opt/retrolx/vice$(VICE_PKG_INSTALL_DIR)
 
 VICE_CONF_OPTS += --disable-option-checking --disable-pdf-docs --prefix=$(VICE_PREFIX_DIR) --exec-prefix=$(VICE_PREFIX_DIR)
 
-# FFMPEG
+ifeq ($(BR2_PACKAGE_FFMPEG),y)
 VICE_DEPENDENCIES += ffmpeg
 VICE_CONF_OPTS += --enable-external-ffmpeg
+else
+VICE_CONF_OPTS += --disable-ffmpeg
+endif
 
 VICE_CONF_OPTS += --enable-midi
 VICE_CONF_OPTS += --enable-lame
