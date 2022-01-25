@@ -1,5 +1,5 @@
 pkgname = mednafen
-pkgver = 1.27.1-1
+pkgver = 1.29.0-1
 pkgdesc = Multi-system emulator
 group = emulator
 packager = https://retrolx.org 
