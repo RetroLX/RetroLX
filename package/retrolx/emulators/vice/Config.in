@@ -1,6 +1,5 @@
 config BR2_PACKAGE_VICE
 	bool "vice"
-	depends on BR2_PACKAGE_FFMPEG
 	depends on BR2_PACKAGE_SDL2
 	depends on BR2_PACKAGE_SDL2_IMAGE
 	depends on BR2_PACKAGE_LIBPNG

@@ -66,7 +66,7 @@ config BR2_PACKAGE_RETROLX_GAMESTREAM_SYSTEMS
 	bool "RetroLX game streaming support"
 
 	# Game streaming
-	select BR2_PACKAGE_MOONLIGHT_EMBEDDED if !BR2_PACKAGE_RETROLX_ROCKCHIP_ANY
+	select BR2_PACKAGE_MOONLIGHT_EMBEDDED if !BR2_arm1176jzf_s && !BR2_cortex_a7 && !BR2_PACKAGE_RETROLX_ROCKCHIP_ANY
 
 #### ScummVM ####
 config BR2_PACKAGE_RETROLX_SCUMMVM_SYSTEMS
@@ -249,7 +249,7 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	select BR2_PACKAGE_FHEROES2		    # ALL
 
 	# Heroes of Might and Magic 3 engine
-	select BR2_PACKAGE_VCMI		            # ALL
+	select BR2_PACKAGE_VCMI		            if !BR2_arm1176jzf_s && !BR2_cortex_a7
 
 	# Hydra Castle Labyrinth
 	select BR2_PACKAGE_HCL		            # ALL
