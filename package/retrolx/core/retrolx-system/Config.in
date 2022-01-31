@@ -455,7 +455,7 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_RETROGAME            if BR2_PACKAGE_RETROLX_RPI_ANY # gpio pads
 
 	# entropy
-	select BR2_PACKAGE_HAVEGED
+	select BR2_PACKAGE_RNG_TOOLS
 
 	# irq balancing
 	select BR2_PACKAGE_IRQBALANCE
