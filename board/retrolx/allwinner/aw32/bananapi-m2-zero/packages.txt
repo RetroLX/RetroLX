@@ -1,0 +1,13 @@
+emulationstation
+retroarch
+lr-fbneo
+lr-picodrive
+lr-genesisplusgx
+lr-nestopia
+lr-fceumm
+lr-snes9x2010
+lr-stella
+lr-prosystem
+lr-mame2003plus
+lr-flycast
+es-theme-carbon
