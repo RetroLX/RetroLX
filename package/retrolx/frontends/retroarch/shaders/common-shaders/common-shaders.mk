@@ -9,15 +9,14 @@ COMMON_SHADERS_SITE = $(call github,libretro,common-shaders,$(COMMON_SHADERS_VER
 COMMON_SHADERS_LICENSE = GPL
 
 define COMMON_SHADERS_BUILD_CMDS
-	CFLAGS="$(TARGET_CFLAGS)" CXXFLAGS="$(TARGET_CXXFLAGS)" $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/ -f Makefile
 endef
 
 define COMMON_SHADERS_INSTALL_TARGET_CMDS
-        # Create directories
+        # Simple copy, remove Makefile / configure
         mkdir -p $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/shaders
-
-	# Copy files
-	$(MAKE) CXX="$(TARGET_CXX)" -C $(@D) INSTALLDIR=$(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/shaders install
+	cp -ar -t $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/shaders $(@D)/*
+	rm $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/shaders/Makefile
+	rm $(RETROARCH_PKG_DIR)$(RETROARCH_PKG_INSTALL_DIR)/usr/share/shaders/configure
 endef
 
 $(eval $(generic-package))
