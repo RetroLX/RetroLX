@@ -122,14 +122,14 @@ config BR2_PACKAGE_RETROLX_SEGADC
 config BR2_PACKAGE_RETROLX_ARCADE_SYSTEMS
 	bool "RetroLX arcade emulators packages selection"
 
-	# Final Burn Alpha
-	select BR2_PACKAGE_LIBRETRO_FBALPHA                if BR2_arm1176jzf_s || BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_FBALPHA2012            if BR2_arm1176jzf_s || BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS1       if BR2_arm1176jzf_s || BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS2       if BR2_arm1176jzf_s || BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS3       if BR2_arm1176jzf_s || BR2_cortex_a7
-	select BR2_PACKAGE_LIBRETRO_FBALPHA2012_NEOGEO     if BR2_arm1176jzf_s || BR2_cortex_a7
-	select BR2_PACKAGE_PIFBA                           if BR2_PACKAGE_RETROLX_RPI_VCORE
+	# Final Burn Alpha (deprecated)
+	#select BR2_PACKAGE_LIBRETRO_FBALPHA                if BR2_arm1176jzf_s || BR2_cortex_a7
+	#select BR2_PACKAGE_LIBRETRO_FBALPHA2012            if BR2_arm1176jzf_s || BR2_cortex_a7
+	#select BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS1       if BR2_arm1176jzf_s || BR2_cortex_a7
+	#select BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS2       if BR2_arm1176jzf_s || BR2_cortex_a7
+	#select BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS3       if BR2_arm1176jzf_s || BR2_cortex_a7
+	#select BR2_PACKAGE_LIBRETRO_FBALPHA2012_NEOGEO     if BR2_arm1176jzf_s || BR2_cortex_a7
+	#select BR2_PACKAGE_PIFBA                           if BR2_PACKAGE_RETROLX_RPI_VCORE
 
 	# Final Burn Neo
 	select BR2_PACKAGE_LIBRETRO_FBNEO
