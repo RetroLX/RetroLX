@@ -1,5 +1,5 @@
 pkgname = lr-hatari
-pkgver = 20210317-1
+pkgver = 20220119-1
 pkgdesc = Hatari (Atari ST/STE/TT/Falcon) libretro core
 group = emulator
 packager = https://retrolx.org 

@@ -1,5 +1,5 @@
 pkgname = lr-ecwolf
-pkgver = 20210816-1
+pkgver = 20220203-1
 pkgdesc = EcWolf (Wolfeinstein 3D) libretro core
 group = port
 packager = https://retrolx.org 

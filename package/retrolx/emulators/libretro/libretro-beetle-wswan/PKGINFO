@@ -1,5 +1,5 @@
 pkgname = lr-beetle-wsan
-pkgver = 20211125-1
+pkgver = 20220129-1
 pkgdesc = Beetle Wswan (WonderSwan / Color) libretro core
 group = emulator
 packager = https://retrolx.org 

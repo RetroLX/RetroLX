@@ -1,5 +1,5 @@
 pkgname = lr-lutro
-pkgver = 20210904-1
+pkgver = 20220102-1
 pkgdesc = Lutro (LÖVE Lua Engine) libretro core
 group = emulator
 packager = https://retrolx.org 
