@@ -8,6 +8,6 @@ lr-fceumm
 lr-snes9x2010
 lr-stella
 lr-prosystem
-lr-mame2003plus
+lr-mame2003-plus
 lr-flycast
 es-theme-carbon

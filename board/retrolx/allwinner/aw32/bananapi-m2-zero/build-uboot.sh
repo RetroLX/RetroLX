@@ -21,7 +21,7 @@ make bananapi_m2_zero_defconfig
 
 # Build it
 ARCH=arm CROSS_COMPILE="${HOST_DIR}/bin/arm-buildroot-linux-gnueabihf-" make -j$(nproc)
-mkdir -p ../../uboot-cha
+mkdir -p ../../uboot-bananapi-m2-zero
 
 # Copy to appropriate place
 cp u-boot-sunxi-with-spl.bin ../../uboot-bananapi-m2-zero/
