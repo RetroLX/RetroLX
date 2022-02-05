@@ -19,7 +19,7 @@ diff -u -r a/include/SDL_joystick.h b/include/SDL_joystick.h
 diff -u -r a/src/dynapi/SDL_dynapi_overrides.h b/src/dynapi/SDL_dynapi_overrides.h
 --- a/src/dynapi/SDL_dynapi_overrides.h	2021-08-10 17:34:07.000000000 +0200
 +++ b/src/dynapi/SDL_dynapi_overrides.h	2021-08-11 12:15:33.947898822 +0200
-@@ -815,3 +815,12 @@
+@@ -815,6 +815,15 @@
  #define SDL_GameControllerSendEffect SDL_GameControllerSendEffect_REAL
  #define SDL_JoystickSendEffect SDL_JoystickSendEffect_REAL
  #define SDL_GameControllerGetSensorDataRate SDL_GameControllerGetSensorDataRate_REAL
@@ -32,10 +32,13 @@ diff -u -r a/src/dynapi/SDL_dynapi_overrides.h b/src/dynapi/SDL_dynapi_overrides
 +#define SDL_JoystickAxisEventCodeById SDL_JoystickAxisEventCodeById_REAL
 +#define SDL_JoystickHatEventCodeById SDL_JoystickHatEventCodeById_REAL
 +
+ #define SDL_SetTextureUserData SDL_SetTextureUserData_REAL
+ #define SDL_GetTextureUserData SDL_GetTextureUserData_REAL
+ #define SDL_RenderGeometry SDL_RenderGeometry_REAL
 diff -u -r a/src/dynapi/SDL_dynapi_procs.h b/src/dynapi/SDL_dynapi_procs.h
 --- a/src/dynapi/SDL_dynapi_procs.h	2021-08-10 17:34:07.000000000 +0200
 +++ b/src/dynapi/SDL_dynapi_procs.h	2021-08-11 12:16:13.849089116 +0200
-@@ -880,3 +880,12 @@
+@@ -880,6 +880,15 @@
  SDL_DYNAPI_PROC(int,SDL_GameControllerSendEffect,(SDL_GameController *a, const void *b, int c),(a,b,c),return)
  SDL_DYNAPI_PROC(int,SDL_JoystickSendEffect,(SDL_Joystick *a, const void *b, int c),(a,b,c),return)
  SDL_DYNAPI_PROC(float,SDL_GameControllerGetSensorDataRate,(SDL_GameController *a, SDL_SensorType b),(a,b),return)
@@ -48,6 +51,9 @@ diff -u -r a/src/dynapi/SDL_dynapi_procs.h b/src/dynapi/SDL_dynapi_procs.h
 +SDL_DYNAPI_PROC(int,SDL_JoystickAxisEventCodeById,(int a, int b),(a,b),return)
 +SDL_DYNAPI_PROC(int,SDL_JoystickHatEventCodeById,(int a, int b),(a,b),return)
 +
+ SDL_DYNAPI_PROC(int,SDL_SetTextureUserData,(SDL_Texture *a, void *b),(a,b),return)
+ SDL_DYNAPI_PROC(void*,SDL_GetTextureUserData,(SDL_Texture *a),(a),return)
+ SDL_DYNAPI_PROC(int,SDL_RenderGeometry,(SDL_Renderer *a, SDL_Texture *b, const SDL_Vertex *c, int d, const int *e, int f),(a,b,c,d,e,f),return)
 diff -u -r a/src/joystick/linux/SDL_sysjoystick.c b/src/joystick/linux/SDL_sysjoystick.c
 --- a/src/joystick/linux/SDL_sysjoystick.c	2021-08-10 17:34:07.000000000 +0200
 +++ b/src/joystick/linux/SDL_sysjoystick.c	2021-08-11 12:57:04.951557247 +0200
