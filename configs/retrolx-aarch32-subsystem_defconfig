@@ -42,3 +42,4 @@ BR2_SYSTEM_ENABLE_NLS=y
 
 # Enables ccache
 BR2_CCACHE=y
+BR2_CCACHE_DIR="$(BR2_EXTERNAL_RETROLX_PATH)/buildroot-ccache"
