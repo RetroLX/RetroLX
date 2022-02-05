@@ -3,8 +3,8 @@
 # SNES9X2005
 #
 ################################################################################
-# Version.: Commits on Nov 3, 2021
-LIBRETRO_SNES9X2005_VERSION = 88a46f7c085f6e2accc4c777e264b9b5cd41cf0e
+# Version.: Commits on Jan 29, 2022
+LIBRETRO_SNES9X2005_VERSION = 01564ac5d9d7a6b910c6d2b4389cdf9076044787
 LIBRETRO_SNES9X2005_SITE = $(call github,libretro,snes9x2005,$(LIBRETRO_SNES9X2005_VERSION))
 LIBRETRO_SNES9X2005_LICENSE = Non-commercial
 

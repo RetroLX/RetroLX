@@ -1,5 +1,5 @@
 pkgname = lr-vba-m
-pkgver = 20211222-1
+pkgver = 20220205-1
 pkgdesc = VBA-M (GameBoy Advance) libretro core
 group = emulator
 packager = https://retrolx.org 
