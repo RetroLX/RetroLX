@@ -1,0 +1,81 @@
+--- a/config	2021-08-24 15:38:47.000000000 +0200
++++ b/config	2021-08-24 15:38:47.000000000 +0200
+@@ -50,10 +50,11 @@
+ __CNF_LDLIBS=
+ 
+ # First get uname entries that we use below
++# Microsoft Azure SYSTEM variable is read only and contain unrelated info. This results in broken builds, better rename it.
+ 
+ [ "$MACHINE" ] || MACHINE=`(uname -m) 2>/dev/null` || MACHINE="unknown"
+ [ "$RELEASE" ] || RELEASE=`(uname -r) 2>/dev/null` || RELEASE="unknown"
+-[ "$SYSTEM" ] || SYSTEM=`(uname -s) 2>/dev/null`  || SYSTEM="unknown"
++[ "$SYSTEM_OS" ] || SYSTEM_OS=`(uname -s) 2>/dev/null`  || SYSTEM_OS="unknown"
+ [ "$BUILD" ] || VERSION=`(uname -v) 2>/dev/null` || VERSION="unknown"
+ 
+ 
+@@ -102,9 +103,9 @@
+ 	esac
+     fi
+ fi
+-# Now we simply scan though... In most cases, the SYSTEM info is enough
++# Now we simply scan though... In most cases, the SYSTEM_OS info is enough
+ #
+-case "${SYSTEM}:${RELEASE}:${VERSION}:${MACHINE}" in
++case "${SYSTEM_OS}:${RELEASE}:${VERSION}:${MACHINE}" in
+     A/UX:*)
+ 	echo "m68k-apple-aux3"; exit 0
+ 	;;
+@@ -301,7 +302,7 @@
+ 	;;
+ 
+     machten:*)
+-       echo "${MACHINE}-tenon-${SYSTEM}"; exit 0;
++       echo "${MACHINE}-tenon-${SYSTEM_OS}"; exit 0;
+        ;;
+ 
+     library:*)
+@@ -309,7 +310,7 @@
+ 	;;
+ 
+     ConvexOS:*:11.0:*)
+-	echo "${MACHINE}-v11-${SYSTEM}"; exit 0;
++	echo "${MACHINE}-v11-${SYSTEM_OS}"; exit 0;
+ 	;;
+ 
+     # The following combinations are supported
+@@ -360,7 +361,7 @@
+ # At this point we gone through all the one's
+ # we know of: Punt
+ 
+-echo "${MACHINE}-whatever-${SYSTEM}"
++echo "${MACHINE}-whatever-${SYSTEM_OS}"
+ exit 0
+ ) 2>/dev/null | (
+ 
+@@ -386,7 +387,7 @@
+   fi
+ fi
+ GCCVER=${GCCVER:-0}
+-if [ "$SYSTEM" = "HP-UX" ];then
++if [ "$SYSTEM_OS" = "HP-UX" ];then
+   # By default gcc is a ILP32 compiler (with long long == 64).
+   GCC_BITS="32"
+   if [ $GCCVER -ge 30 ]; then
+@@ -399,7 +400,7 @@
+     fi
+   fi
+ fi
+-if [ "$SYSTEM" = "SunOS" ]; then
++if [ "$SYSTEM_OS" = "SunOS" ]; then
+   if [ $GCCVER -ge 30 ]; then
+     # 64-bit ABI isn't officially supported in gcc 3.0, but it appears
+     # to be working, at the very least 'make test' passes...
+@@ -424,7 +425,7 @@
+   fi
+ fi
+ 
+-if [ "${SYSTEM}" = "AIX" ]; then	# favor vendor cc over gcc
++if [ "${SYSTEM_OS}" = "AIX" ]; then	# favor vendor cc over gcc
+     (cc) 2>&1 | grep -iv "not found" > /dev/null && CC=cc
+ fi
+ 

@@ -1,0 +1,51 @@
+# Builds a RetroLX image
+
+#
+# These are the variables to edit
+#
+
+variables:
+- name: version
+  value: 5.15.17-1
+- name: arch
+  value: rpi4
+
+#
+# This is a template, all of them SHOULD look the same
+#
+
+trigger:
+  batch: true # batch changes if true; start a new build for every push if false (default)
+  branches:
+    include: [master]
+
+jobs:
+- job: build
+  timeoutInMinutes: 360
+  pool:
+    name : default
+    vmImage: ubuntu-20.04
+  container:
+    image: retrolx/build-environment-ubuntu-20.10:latest
+    options: --add-host invisible-mirror.net:1.1.1.1 # Blocked mirror workaround and local cache mount
+  steps:
+  - script: printenv
+  - script: git submodule init && git submodule update
+  - script: make ${{ variables.arch }}-build
+  - script: rm -rf publish
+  - script: mkdir publish
+  - script: mv output/${{ variables.arch }}/images/retrolx/images/* publish
+  # Legal task needs work
+  # - script: make ${{ variables.arch }}-legal
+  # - script: tar -czvf publish/${{ variables.arch }}-${{ variables.version }}-sources.tar.gz output/${{ variables.arch }}/legal-info
+  - task: CopyFilesOverSSH@0
+    inputs:
+      sshEndpoint: repository.retrolx.org
+      sourceFolder: publish
+      contents: '**' 
+      targetFolder: www/images/${{ variables.arch }}/${{ variables.version }}
+      cleanTargetFolder: true
+      overwrite: true
+      failOnEmptySource: true
+  - script: rm -rf publish
+  - script: rm -rf output
