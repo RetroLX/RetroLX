@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PLAY_VERSION = 0.47
+PLAY_VERSION = 0.49
 PLAY_SITE = https://github.com/jpd002/Play-.git
 PLAY_LICENSE = BSD
 PLAY_DEPENDENCIES = qt5base qt5x11extras xserver_xorg-server libglew
