@@ -98,7 +98,6 @@ config BR2_PACKAGE_RETROLX_HOMEBREW_SYSTEMS
 	# Fantasy consoles
 	select BR2_PACKAGE_LIBRETRO_TIC80   # ALL
 	select BR2_PACKAGE_LIBRETRO_RETRO8  # ALL
-	select BR2_PACKAGE_LEXALOFFLE_PICO8 # ALL
 
 #### Sega Dreamcast, Naomi and Atomiswave ####
 config BR2_PACKAGE_RETROLX_SEGADC
@@ -112,8 +111,6 @@ config BR2_PACKAGE_RETROLX_SEGADC
 	select BR2_PACKAGE_LIBRETRO_FLYCAST     if  !BR2_PACKAGE_RETROLX_TARGET_RPI1       && \
                                                 !BR2_PACKAGE_RETROLX_TARGET_RPI2       && \
                                                 !BR2_x86_i686
-
-	select BR2_PACKAGE_REDREAM              if BR2_x86_64
 
 	help
 		Sega Dreamcast and Naomi/Atomiswave emulation support
