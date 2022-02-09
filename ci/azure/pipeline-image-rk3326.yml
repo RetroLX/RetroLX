@@ -49,3 +49,5 @@ jobs:
       failOnEmptySource: true
   - script: rm -rf publish
   - script: rm -rf output
+  - script: rm -rf buildroot-ccache
+  - script: rm -rf buildroot-dlcache
