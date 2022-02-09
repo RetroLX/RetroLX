@@ -37,9 +37,9 @@ mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"     || exit 1
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
 
 # Copy kernel files
-cp "${BINARIES_DIR}/kernel-h616/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
-cp "${BINARIES_DIR}/kernel-h616/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
-cp "${BINARIES_DIR}/kernel-h616/sun50i-h616-orangepi-zero2.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1
+cp "${BINARIES_DIR}/kernel-sun50i/Image"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
+cp "${BINARIES_DIR}/kernel-sun50i/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
+cp "${BINARIES_DIR}/kernel-sun50i/sun50i-h616-orangepi-zero2.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/"     || exit 1
 
 # Copy rootfs, initrd and extlinux
 cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/initrd.gz"       || exit 1
