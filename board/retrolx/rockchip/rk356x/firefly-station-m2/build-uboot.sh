@@ -83,6 +83,6 @@ make clean
 ./make.sh loader
 
 # Copy generated files
-dd if="rk356x_spl_loader_v1.11.111.bin" of="../idbloader.img" bs=1 skip=444
+dd if="rk356x_spl_loader_v1.11.112.bin" of="../idbloader.img" bs=1 skip=444
 cp "uboot.img" "../uboot.img"
 #cp "../rkbin/trust.img" "../trust.img"
