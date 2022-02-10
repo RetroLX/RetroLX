@@ -51,9 +51,9 @@ define RPCS3_BUILD_CMDS
 endef
 
 define RPCS3_MAKEPKG
-	mkdir -p $(TARGET_DIR)/usr/share/evmapy
-	$(INSTALL) -D -m 0644 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/rpcs3/evmapy.keys $(TARGET_DIR)/usr/share/evmapy/ps3.keys
-	
+	 #evmapy config
+	$(INSTALL) -D -m 0644 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/rpcs3/evmapy.keys $(RPCS3_PKG_DIR)$(RPCS3_PKG_INSTALL_DIR)
+
 	# Build Pacman package
 	cd $(RPCS3_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
 	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/rpcs3/PKGINFO \

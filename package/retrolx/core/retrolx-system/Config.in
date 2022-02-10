@@ -388,6 +388,7 @@ config BR2_PACKAGE_RETROLX_FS_TOOLS
 	select BR2_PACKAGE_PARTED                               # partition management
 	select BR2_PACKAGE_GPTFDISK                             # fs resize
 	select BR2_PACKAGE_GPTFDISK_SGDISK                      # fs resize
+	select BR2_PACKAGE_LIBFUSE				# fuse (flatpak requirement)
 
 	# Amlogic eMMC needs a special tool to perform eMMC install (borrowed from CoreELEC)
 	select BR2_PACKAGE_AMLOGIC_CEEMMC			if BR2_aarch64
@@ -545,9 +546,6 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_MDADM # RAID
 	select BR2_PACKAGE_MC
 	select BR2_PACKAGE_FDUPES
-
-	# joy 2 pad
-	select BR2_PACKAGE_EVMAPY_SYSTEM_CONFIG
 
 	# required gcc flags
 	# required for different emulators, i suggest to enable it always to not have different behavior depending on boards

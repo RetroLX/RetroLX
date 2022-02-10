@@ -38,8 +38,8 @@ define YUZU_INSTALL_TARGET_CMDS
         $(INSTALL) -D $(@D)/buildroot-build/bin/yuzu-cmd $(TARGET_DIR)/usr/bin/
 
         #evmap config
-        mkdir -p $(TARGET_DIR)/usr/share/evmapy
-        cp -prn $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/yuzu/switch.yuzu.keys $(TARGET_DIR)/usr/share/evmapy
+        #mkdir -p $(TARGET_DIR)/usr/share/evmapy
+        #cp -prn $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/yuzu/switch.yuzu.keys $(TARGET_DIR)/usr/share/evmapy
 endef
 
 $(eval $(cmake-package))

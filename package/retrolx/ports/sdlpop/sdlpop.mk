@@ -20,7 +20,6 @@ endef
 define SDLPOP_MAKEPKG
 	mkdir -p $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)/data
 	mkdir -p $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)/configs
-	#mkdir -p $(TARGET_DIR)/usr/share/evmapy
 	$(INSTALL) -m 0755 $(@D)/prince -D $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)/SDLPoP
 	cp -pr $(@D)/data $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)
 	ln -sf /userdata/system/configs/sdlpop/SDLPoP.ini $(SDLPOP_PKG_DIR)$(SDLPOP_PKG_INSTALL_DIR)/configs/SDLPoP.ini

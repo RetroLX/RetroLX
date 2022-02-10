@@ -20,8 +20,8 @@ define MODEL2EMU_INSTALL_TARGET_CMDS
 	unzip -uo $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/model2emu/model2scripts.zip -d $(TARGET_DIR)/usr/model2emu/
 
 	# evmap config
-	mkdir -p $(TARGET_DIR)/usr/share/evmapy
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/model2emu/model2.model2emu.keys $(TARGET_DIR)/usr/share/evmapy
+	#mkdir -p $(TARGET_DIR)/usr/share/evmapy
+	#cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/model2emu/model2.model2emu.keys $(TARGET_DIR)/usr/share/evmapy
 endef
 
 $(eval $(generic-package))
