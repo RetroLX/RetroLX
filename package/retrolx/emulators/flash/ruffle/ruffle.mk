@@ -32,13 +32,12 @@ endef
 
 define RUFFLE_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/usr/bin
-	mkdir -p $(TARGET_DIR)/usr/share/evmapy
 
 	cp -pr $(@D)/target/x86_64-unknown-linux-gnu/release/ruffle_desktop $(TARGET_DIR)/usr/bin/ruffle
 
 	# evmap config
-	mkdir -p $(TARGET_DIR)/usr/share/evmapy
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/flash/ruffle/flash.ruffle.keys $(TARGET_DIR)/usr/share/evmapy
+	#mkdir -p $(TARGET_DIR)/usr/share/evmapy
+	#cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/flash/ruffle/flash.ruffle.keys $(TARGET_DIR)/usr/share/evmapy
 endef
 
 $(eval $(generic-package))

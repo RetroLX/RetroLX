@@ -14,8 +14,8 @@ define RETROLX_WINE_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/etc/X11/xorg.conf.d
 	ln -fs /userdata/system/99-nvidia.conf $(TARGET_DIR)/etc/X11/xorg.conf.d/99-nvidia.conf
 
-	mkdir -p $(TARGET_DIR)/usr/share/evmapy
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/utils/retrolx-wine/mugen.keys $(TARGET_DIR)/usr/share/evmapy
+	#mkdir -p $(TARGET_DIR)/usr/share/evmapy
+	#cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/utils/retrolx-wine/mugen.keys $(TARGET_DIR)/usr/share/evmapy
 endef
 
 $(eval $(generic-package))

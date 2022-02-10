@@ -59,7 +59,17 @@ define RETROLX_CONFIGGEN_CONFIGS
 	cp -pr $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-configgen/datainit $(TARGET_DIR)/usr/lib/python3.9/site-packages/configgen/
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-configgen/configs/configgen-defaults.yml $(TARGET_DIR)/usr/share/retrolx/configgen/configgen-defaults.yml
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-configgen/configs/configgen-defaults-$(RETROLX_CONFIGGEN_SYSTEM).yml $(TARGET_DIR)/usr/share/retrolx/configgen/configgen-defaults-arch.yml
+
+        #mkdir -p $(TARGET_DIR)/usr/share/evmapy
+        #cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/utils/evmapy-system-config/mouse.keys $(TARGET_DIR)/usr/share/evmapy/amiga500.keys
+        #cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/utils/evmapy-system-config/mouse.keys $(TARGET_DIR)/usr/share/evmapy/amiga1200.keys
+        #cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/utils/evmapy-system-config/mouse.keys $(TARGET_DIR)/usr/share/evmapy/atarist.keys
+        #cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/utils/evmapy-system-config/mouse.keys $(TARGET_DIR)/usr/share/evmapy/x68000.keys
+        #cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/utils/evmapy-system-config/hotkey.keys $(TARGET_DIR)/usr/share/evmapy/windows.keys
+        #cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/utils/evmapy-system-config/mouse.keys $(TARGET_DIR)/usr/share/evmapy/windows_installers.keys
+
 endef
+
 RETROLX_CONFIGGEN_POST_INSTALL_TARGET_HOOKS = RETROLX_CONFIGGEN_CONFIGS
 
 RETROLX_CONFIGGEN_SETUP_TYPE = distutils

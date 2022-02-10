@@ -32,7 +32,7 @@ define HURRICAN_MAKEPKG
 
 	# Tidy up package
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/hurrican/*.py $(HURRICAN_PKG_DIR)$(HURRICAN_PKG_INSTALL_DIR)
-	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/hurrican/hurrican.keys $(TARGET_DIR)/usr/share/evmapy
+	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/ports/hurrican/hurrican.keys $(HURRICAN_PKG_DIR)$(HURRICAN_PKG_INSTALL_DIR)
 
 	# Build Pacman package
 	cd $(HURRICAN_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
