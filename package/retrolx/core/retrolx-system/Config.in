@@ -389,6 +389,9 @@ config BR2_PACKAGE_RETROLX_FS_TOOLS
 	select BR2_PACKAGE_GPTFDISK                             # fs resize
 	select BR2_PACKAGE_GPTFDISK_SGDISK                      # fs resize
 
+	# Amlogic eMMC needs a special tool to perform eMMC install (borrowed from CoreELEC)
+	select BR2_PACKAGE_AMLOGIC_CEEMMC			if BR2_aarch64
+
 config BR2_PACKAGE_RETROLX_SYSTEM
 	bool "RetroLX minimal"
 

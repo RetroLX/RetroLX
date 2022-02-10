@@ -68,6 +68,7 @@ menu "System"
 endmenu
 
 menu "Boot"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/amlogic-ceemmc/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-initramfs/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-ps4-initramfs/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-syslinux-efi/Config.in"

@@ -1,0 +1,4 @@
+config BR2_PACKAGE_AMLOGIC_CEEMMC
+        bool "CoreELEC Amlogic eMMC install tool"
+        help
+          CoreELEC ceemmc tool (closed source)
