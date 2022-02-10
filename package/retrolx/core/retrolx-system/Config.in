@@ -389,6 +389,7 @@ config BR2_PACKAGE_RETROLX_FS_TOOLS
 	select BR2_PACKAGE_PARTED                               # partition management
 	select BR2_PACKAGE_GPTFDISK                             # fs resize
 	select BR2_PACKAGE_GPTFDISK_SGDISK                      # fs resize
+	select BR2_PACKAGE_LIBFUSE				# fuse (flatpak requirement)
 
 config BR2_PACKAGE_RETROLX_SYSTEM
 	bool "RetroLX minimal"
