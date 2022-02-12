@@ -22,6 +22,8 @@ trigger:
 jobs:
 - job: build
   timeoutInMinutes: 360
+  workspace:
+      clean: all
   pool:
     name : default
     vmImage: ubuntu-20.04
