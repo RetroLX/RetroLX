@@ -3,8 +3,8 @@
 # LIBRETRO-KRONOS
 #
 ################################################################################
-# Version.: Release on Feb 10, 2022
-LIBRETRO_KRONOS_VERSION = 2.3.0_official_release
+# Version.: Release on Feb 12, 2022
+LIBRETRO_KRONOS_VERSION = 2.3.1_official_release
 LIBRETRO_KRONOS_SITE = $(call github,FCare,kronos,$(LIBRETRO_KRONOS_VERSION))
 LIBRETRO_KRONOS_LICENSE = BSD-3-Clause
 
