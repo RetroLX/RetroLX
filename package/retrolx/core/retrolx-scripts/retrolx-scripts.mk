@@ -62,25 +62,18 @@ define RETROLX_SCRIPTS_INSTALL_TARGET_CMDS
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/system-timezone               $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/system-gameforce              $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/retrolx-pacman                  $(TARGET_DIR)/usr/bin/
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-rockchip-suspend $(TARGET_DIR)/usr/bin/
 endef
 
 define RETROLX_SCRIPTS_INSTALL_XORG
 	mkdir -p $(TARGET_DIR)/etc/X11/xorg.conf.d
 	cp -prn $(BR2_EXTERNAL_RETROLX_PATH)/board/retrolx/x86/fsoverlay/etc/X11/xorg.conf.d/20-amdgpu.conf $(TARGET_DIR)/etc/X11/xorg.conf.d/20-amdgpu.conf
 	ln -fs /userdata/system/99-nvidia.conf $(TARGET_DIR)/etc/X11/xorg.conf.d/99-nvidia.conf
-	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-record $(TARGET_DIR)/usr/bin/
-endef
-
-define RETROLX_SCRIPTS_INSTALL_ROCKCHIP
-	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-rockchip-suspend $(TARGET_DIR)/usr/bin/
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/system-record $(TARGET_DIR)/usr/bin/
 endef
 
 ifeq ($(BR2_PACKAGE_XSERVER_XORG_SERVER),y)
   RETROLX_SCRIPTS_POST_INSTALL_TARGET_HOOKS += RETROLX_SCRIPTS_INSTALL_XORG
-endif
-
-ifeq ($(BR2_PACKAGE_RETROLX_ROCKCHIP_ANY),y)
-  RETROLX_SCRIPTS_POST_INSTALL_TARGET_HOOKS += RETROLX_SCRIPTS_INSTALL_ROCKCHIP
 endif
 
 $(eval $(generic-package))
