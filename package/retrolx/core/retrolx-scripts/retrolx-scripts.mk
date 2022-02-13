@@ -1,10 +1,10 @@
 ################################################################################
 #
-# batocera scripts
+# system scripts
 #
 ################################################################################
 
-RETROLX_SCRIPTS_VERSION = 3
+RETROLX_SCRIPTS_VERSION = 4
 RETROLX_SCRIPTS_LICENSE = GPL
 RETROLX_SCRIPTS_DEPENDENCIES = pciutils
 RETROLX_SCRIPTS_SOURCE=
@@ -39,14 +39,14 @@ define RETROLX_SCRIPTS_INSTALL_TARGET_CMDS
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-encode                 $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-padsinfo               $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-info                   $(TARGET_DIR)/usr/bin/
-	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-install                $(TARGET_DIR)/usr/bin/
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/system-install                $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-format                 $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-mount                  $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-overclock              $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-part                   $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-support                $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-sync                   $(TARGET_DIR)/usr/bin/
-	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-upgrade                $(TARGET_DIR)/usr/bin/
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/system-upgrade                $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-systems                $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-config                 $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-es-thebezelproject     $(TARGET_DIR)/usr/bin/
@@ -60,7 +60,7 @@ define RETROLX_SCRIPTS_INSTALL_TARGET_CMDS
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-resolution.$(RETROLX_SCRIPT_RESOLUTION_TYPE) $(TARGET_DIR)/usr/bin/batocera-resolution
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-screenshot.$(RETROLX_SCRIPT_SCREENSHOT_TYPE) $(TARGET_DIR)/usr/bin/batocera-screenshot
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-timezone               $(TARGET_DIR)/usr/bin/
-	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-gameforce              $(TARGET_DIR)/usr/bin/
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/system-gameforce              $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/retrolx-pacman                  $(TARGET_DIR)/usr/bin/
 endef
 
