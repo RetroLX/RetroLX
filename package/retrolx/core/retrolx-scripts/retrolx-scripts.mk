@@ -59,7 +59,7 @@ define RETROLX_SCRIPTS_INSTALL_TARGET_CMDS
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-autologin              $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-resolution.$(RETROLX_SCRIPT_RESOLUTION_TYPE) $(TARGET_DIR)/usr/bin/batocera-resolution
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-screenshot.$(RETROLX_SCRIPT_SCREENSHOT_TYPE) $(TARGET_DIR)/usr/bin/batocera-screenshot
-	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/batocera-timezone               $(TARGET_DIR)/usr/bin/
+	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/system-timezone               $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/system-gameforce              $(TARGET_DIR)/usr/bin/
 	install -m 0755 $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-scripts/scripts/retrolx-pacman                  $(TARGET_DIR)/usr/bin/
 endef
