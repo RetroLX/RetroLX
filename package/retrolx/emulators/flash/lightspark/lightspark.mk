@@ -32,7 +32,7 @@ define LIGHTSPARK_MAKEPKG
 
 	# Build Pacman package
 	cd $(LIGHTSPARK_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
-	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/lightspark/PKGINFO \
+	$(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/emulators/flash/lightspark/PKGINFO \
 	$(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
 	mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
 
