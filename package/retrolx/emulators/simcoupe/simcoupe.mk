@@ -3,8 +3,8 @@
 # SIMCOUPE
 #
 ################################################################################
-# Version.: Release on Nov 8, 2021
-SIMCOUPE_VERSION = v1.2.8
+# Version.: Release on Mar 13, 2021
+SIMCOUPE_VERSION = v1.2.9
 SIMCOUPE_SITE = $(call github,simonowen,simcoupe,$(SIMCOUPE_VERSION))
 SIMCOUPE_LICENSE = GPLv2
 SIMCOUPE_DEPENDENCIES = sdl2 zlib libpng
