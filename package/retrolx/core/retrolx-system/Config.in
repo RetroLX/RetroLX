@@ -754,9 +754,6 @@ config BR2_PACKAGE_RETROLX_XORG
 	select BR2_PACKAGE_XDRIVER_XF86_INTEL
 	select BR2_PACKAGE_RETROLX_NVIDIA_DRIVER_XORG	if BR2_PACKAGE_RETROLX_TARGET_X86_64
 
-	# tools
-	select BR2_PACKAGE_XOSD                         # osd information display
-
 	# applications
 	select BR2_PACKAGE_XAPP_SETXKBMAP
 	select BR2_PACKAGE_XAPP_XEV
