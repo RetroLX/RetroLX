@@ -5,7 +5,7 @@
 ################################################################################
 
 # Mainline kernels
-RETROLX_KERNEL_S922X_VERSION = 5.15.25-1
+RETROLX_KERNEL_S922X_VERSION = 5.15.29-1
 RETROLX_KERNEL_S922X_ARCH = s922x
 RETROLX_KERNEL_S922X_SOURCE = kernel-$(RETROLX_KERNEL_S922X_ARCH)-$(RETROLX_KERNEL_S922X_VERSION).tar.gz
 RETROLX_KERNEL_S922X_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_S922X_ARCH)/$(RETROLX_KERNEL_S922X_VERSION)

@@ -3,8 +3,8 @@
 # MELONDS
 #
 ################################################################################
-# Version.: Relase on September 2, 2021
-MELONDS_VERSION = 0.9.3
+# Version.: Relase on Mar 8, 2022
+MELONDS_VERSION = 0.9.4
 MELONDS_SITE = https://github.com/Arisotura/melonDS.git
 MELONDS_SITE_METHOD=git
 MELONDS_GIT_SUBMODULES=YES
