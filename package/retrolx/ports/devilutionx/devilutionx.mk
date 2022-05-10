@@ -4,17 +4,20 @@
 #
 ################################################################################
 
-DEVILUTIONX_VERSION = 1.3.0
+DEVILUTIONX_VERSION = 1.4.0
 DEVILUTIONX_SITE = https://github.com/diasurgical/devilutionX/releases/download/$(DEVILUTIONX_VERSION)
 DEVILUTIONX_SOURCE = devilutionx-src.tar.xz
-DEVILUTIONX_DEPENDENCIES = sdl2 sdl2_image fmt libsodium
+DEVILUTIONX_DEPENDENCIES = sdl2 sdl2_image fmt libsodium bzip2
 
 DEVILUTIONX_PKG_DIR = $(TARGET_DIR)/opt/retrolx/devilutionx
 DEVILUTIONX_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/devilutionx
 
+# Should be set when the package cannot be built inside the source tree but needs a separate build directory.
+DEVILUTIONX_SUPPORTS_IN_SOURCE_BUILD = NO
+
 # Prefill the player name when creating a new character, in case the device does
 # not have a keyboard.
-DEVILUTIONX_CONF_OPTS += -DPREFILL_PLAYER_NAME=ON
+DEVILUTIONX_CONF_OPTS += -DPREFILL_PLAYER_NAME=ON -DNONET=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
 
 # Ensure that DevilutionX's vendored dependencies are not accidentally fetched from network.
 # They should all be present in the source package.
