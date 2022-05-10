@@ -1,5 +1,5 @@
 pkgname = simcoupe
-pkgver = 1.2.8-1
+pkgver = 1.2.11-1
 pkgdesc = SimCoupe -SAM Coupé home computer emulator
 group = emulator
 packager = https://retrolx.org 

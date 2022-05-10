@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-# Version 0.6.2
-XEMU_VERSION = xemu-v0.6.2
+# Version 0.7.2
+XEMU_VERSION = xemu-v0.7.2
 XEMU_SITE = https://github.com/mborgerson/xemu.git
 XEMU_SITE_METHOD=git
 XEMU_GIT_SUBMODULES=YES

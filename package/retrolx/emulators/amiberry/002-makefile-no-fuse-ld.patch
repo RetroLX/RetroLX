@@ -1,0 +1,14 @@
+--- a/Makefile	2022-05-09 14:25:22.653683642 +0200
++++ b/Makefile	2022-05-09 14:28:46.018055451 +0200
+@@ -19,11 +19,7 @@
+ 
+ CPPFLAGS = -MD -MT $@ -MF $(@:%.o=%.d) $(SDL_CFLAGS) -Iexternal/libguisan/include -Isrc -Isrc/osdep -Isrc/threaddep -Isrc/include -Isrc/archivers -Isrc/floppybridge -DAMIBERRY -D_FILE_OFFSET_BITS=64
+ CFLAGS=-pipe -Wno-shift-overflow -Wno-narrowing
+-USE_LD ?= gold
+ LDFLAGS = $(SDL_LDFLAGS) -lSDL2_image -lSDL2_ttf -lguisan -Lexternal/libguisan/lib
+-ifneq ($(strip $(USE_LD)),)
+-	LDFLAGS += -fuse-ld=$(USE_LD)
+-endif
+ LDFLAGS += -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -lpthread -lz -lpng -lrt -lFLAC -lmpg123 -ldl -lmpeg2convert -lmpeg2 -lstdc++fs
+ 
+ # Use libgpiod to control GPIO LEDs?

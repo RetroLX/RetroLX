@@ -5,7 +5,7 @@
 ################################################################################
 
 # Custom kernel
-RETROLX_KERNEL_RK356X_VERSION = 5.16.9-1
+RETROLX_KERNEL_RK356X_VERSION = 5.17.6-1
 RETROLX_KERNEL_RK356X_ARCH = rk356x
 RETROLX_KERNEL_RK356X_SOURCE = kernel-$(RETROLX_KERNEL_RK356X_ARCH)-$(RETROLX_KERNEL_RK356X_VERSION).tar.gz
 RETROLX_KERNEL_RK356X_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_RK356X_ARCH)/$(RETROLX_KERNEL_RK356X_VERSION)
