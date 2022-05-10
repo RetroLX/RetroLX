@@ -56,7 +56,7 @@ endef
 
 define RETROLX_CONFIGGEN_CONFIGS
 	mkdir -p $(TARGET_DIR)/usr/share/retrolx/configgen
-	cp -pr $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-configgen/datainit $(TARGET_DIR)/usr/lib/python3.9/site-packages/configgen/
+	cp -pr $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-configgen/datainit $(TARGET_DIR)/usr/lib/python3.10/site-packages/configgen/
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-configgen/configs/configgen-defaults.yml $(TARGET_DIR)/usr/share/retrolx/configgen/configgen-defaults.yml
 	cp $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/core/retrolx-configgen/configs/configgen-defaults-$(RETROLX_CONFIGGEN_SYSTEM).yml $(TARGET_DIR)/usr/share/retrolx/configgen/configgen-defaults-arch.yml
 

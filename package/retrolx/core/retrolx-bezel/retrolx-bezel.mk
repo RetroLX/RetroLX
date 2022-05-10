@@ -9,13 +9,6 @@ RETROLX_BEZEL_SITE = $(call github,batocera-linux,batocera-bezel,$(RETROLX_BEZEL
 
 define RETROLX_BEZEL_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/usr/share/retrolx/datainit/decorations
-	cp -r $(@D)/ambiance_broadcast 	      $(TARGET_DIR)/usr/share/retrolx/datainit/decorations
-	cp -r $(@D)/ambiance_gameroom 	      $(TARGET_DIR)/usr/share/retrolx/datainit/decorations
-	cp -r $(@D)/ambiance_monitor_1084s    $(TARGET_DIR)/usr/share/retrolx/datainit/decorations
-	cp -r $(@D)/ambiance_night 	      $(TARGET_DIR)/usr/share/retrolx/datainit/decorations
-	cp -r $(@D)/ambiance_vintage_tv	      $(TARGET_DIR)/usr/share/retrolx/datainit/decorations
-	cp -r $(@D)/arcade_1980s  	      $(TARGET_DIR)/usr/share/retrolx/datainit/decorations
-	cp -r $(@D)/arcade_1980s_vertical     $(TARGET_DIR)/usr/share/retrolx/datainit/decorations
 	cp -r $(@D)/arcade_vertical_default   $(TARGET_DIR)/usr/share/retrolx/datainit/decorations
 	cp -r $(@D)/default_unglazed          $(TARGET_DIR)/usr/share/retrolx/datainit/decorations
 
