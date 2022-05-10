@@ -3,8 +3,8 @@
 # MAME2000
 #
 ################################################################################
-# Version.: Commits on Oct 11, 2021
-LIBRETRO_MAME2000_VERSION = 4793742b457945afb74053c8a895e6ff0b36b033
+# Version.: Commits on Apr 13, 2022
+LIBRETRO_MAME2000_VERSION = dd9d6612c29bf5b29bc2f94cab2d43fe3dcd69ee
 LIBRETRO_MAME2000_SITE = $(call github,libretro,mame2000-libretro,$(LIBRETRO_MAME2000_VERSION))
 LIBRETRO_MAME2000_LICENSE = MAME
 

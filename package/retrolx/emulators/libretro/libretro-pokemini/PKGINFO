@@ -1,5 +1,5 @@
 pkgname = lr-pokemini
-pkgver = 20211125-1
+pkgver = 20220412-1
 pkgdesc = Pokemon Mini libretro core
 group = emulator
 packager = https://retrolx.org 

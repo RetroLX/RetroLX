@@ -1,5 +1,5 @@
 pkgname = lr-nestopia
-pkgver = 1.51.1-4
+pkgver = 1.51.1-5
 pkgdesc = Nestopia libretro core
 group = emulator
 packager = https://retrolx.org 

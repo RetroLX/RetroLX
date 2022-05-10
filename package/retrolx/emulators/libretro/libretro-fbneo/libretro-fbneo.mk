@@ -3,8 +3,8 @@
 # FBNEO
 #
 ################################################################################
-# Version.: Commits on Feb 5, 2022
-LIBRETRO_FBNEO_VERSION = 4d485e4ead0d7f50579e911c42c57fc35f8c44be
+# Version.: Commits on May 9, 2022
+LIBRETRO_FBNEO_VERSION = ae96b110c5938a48a9d712e04ce3a542e74ee186
 LIBRETRO_FBNEO_SITE = $(call github,libretro,FBNeo,$(LIBRETRO_FBNEO_VERSION))
 LIBRETRO_FBNEO_LICENSE = Non-commercial
 
@@ -42,7 +42,7 @@ define LIBRETRO_FBNEO_MAKEPKG
 	# Copy package files
 	$(INSTALL) -D $(@D)/src/burner/libretro/fbneo_libretro.so $(LIBRETRO_FBNEO_PKG_DIR)$(LIBRETRO_FBNEO_PKG_INSTALL_DIR)
 	$(INSTALL) -D $(@D)/metadata/* $(LIBRETRO_FBNEO_PKG_DIR)$(LIBRETRO_FBNEO_PKG_INSTALL_DIR)/bios/
-	$(INSTALL) -D $(@D)/dats/* $(LIBRETRO_FBNEO_PKG_DIR)$(LIBRETRO_FBNEO_PKG_INSTALL_DIR)/bios/
+	$(INSTALL) -D $(@D)/dats/*.dat $(LIBRETRO_FBNEO_PKG_DIR)$(LIBRETRO_FBNEO_PKG_INSTALL_DIR)/bios/
 
 	# Build Pacman package
 	cd $(LIBRETRO_FBNEO_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \

@@ -1,5 +1,5 @@
 pkgname = lr-beetle-pce
-pkgver = 20220204-1
+pkgver = 20220218-1
 pkgdesc = Beetle PCE (NEC PC Engine / CD) libretro core
 group = emulator
 packager = https://retrolx.org 

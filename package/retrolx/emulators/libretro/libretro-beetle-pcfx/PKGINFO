@@ -1,5 +1,5 @@
 pkgname = lr-beetle-pcfx
-pkgver = 20211124-1
+pkgver = 20220409-1
 pkgdesc = Beetle PC-FX libretro core
 group = emulator
 packager = https://retrolx.org 

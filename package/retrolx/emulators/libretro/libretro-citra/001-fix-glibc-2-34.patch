@@ -1,0 +1,49 @@
+From 7a4359436da6f08ba0a098995992da1b3912ed85 Mon Sep 17 00:00:00 2001
+From: Enrico Belleri <idesmi@protonmail.com>
+Date: Thu, 21 Oct 2021 20:03:15 +0200
+Subject: [PATCH 1/2] fix build on glibc 2.34
+
+---
+ externals/catch    | 2 +-
+ externals/dynarmic | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/externals/catch b/externals/catch
+index de6fe184a9a..42e368dd0ae 160000
+--- a/externals/catch
++++ b/externals/catch
+@@ -1 +1 @@
+-Subproject commit de6fe184a9ac1a06895cdd1c9b437f0a0bdf14ad
++Subproject commit 42e368dd0aedc122798008d8c4f583fea3296a97
+diff --git a/externals/dynarmic b/externals/dynarmic
+index 71e3553d781..edb00b680d9 160000
+--- a/externals/dynarmic
++++ b/externals/dynarmic
+@@ -1 +1 @@
+-Subproject commit 71e3553d78190be9edce0eb1ea06ba937640a0a8
++Subproject commit edb00b680d9560ce7070834e2b10cd9dd682abfb
+
+From e69b2384148146e22ccf16855986f20909e320e0 Mon Sep 17 00:00:00 2001
+From: Enrico Belleri <idesmi@protonmail.com>
+Date: Sat, 23 Oct 2021 08:38:50 +0200
+Subject: [PATCH 2/2] bump Catch to latest tag and update dynarmic
+
+---
+ externals/catch    | 2 +-
+ externals/dynarmic | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/externals/catch b/externals/catch
+index 42e368dd0ae..c4e3767e265 160000
+--- a/externals/catch
++++ b/externals/catch
+@@ -1 +1 @@
+-Subproject commit 42e368dd0aedc122798008d8c4f583fea3296a97
++Subproject commit c4e3767e265808590986d5db6ca1b5532a7f3d13
+diff --git a/externals/dynarmic b/externals/dynarmic
+index edb00b680d9..af0d4a7c18e 160000
+--- a/externals/dynarmic
++++ b/externals/dynarmic
+@@ -1 +1 @@
+-Subproject commit edb00b680d9560ce7070834e2b10cd9dd682abfb
++Subproject commit af0d4a7c18ee90d544866a8cf24e6a0d48d3edc4

@@ -1,5 +1,5 @@
 pkgname = lr-fuse
-pkgver = 20211221-1
+pkgver = 20220425-1
 pkgdesc = Fuse (ZX Spectrum) libretro core
 group = emulator
 packager = https://retrolx.org 

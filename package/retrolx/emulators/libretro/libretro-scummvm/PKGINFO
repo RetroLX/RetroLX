@@ -1,5 +1,5 @@
 pkgname = lr-scummvm
-pkgver = 2.1.1-6
+pkgver = 2.1.1-7
 pkgdesc = ScummVM 2.1.1 libretro core
 group = emulator
 packager = https://retrolx.org 

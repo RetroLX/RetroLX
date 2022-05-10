@@ -1,5 +1,5 @@
 pkgname = lr-desmume
-pkgver = 20210816-1
+pkgver = 20220405-1
 pkgdesc = DeSmuME (Nintendo DS) libretro core
 group = emulator
 packager = https://retrolx.org 
