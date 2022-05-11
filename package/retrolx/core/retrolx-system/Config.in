@@ -175,7 +175,7 @@ config BR2_PACKAGE_RETROLX_COMMON
 	select BR2_PACKAGE_DEJAVU
 	select BR2_PACKAGE_ECM
 	select BR2_PACKAGE_EXPAT
-	# does not build select BR2_PACKAGE_EVSIEVE
+	select BR2_PACKAGE_EVSIEVE
 	select BR2_PACKAGE_GIFLIB
 	select BR2_PACKAGE_GLM
 	select BR2_PACKAGE_GNUTLS
@@ -407,7 +407,8 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_RETROLX_TRIGGERHAPPY                # multimedia/power buttons
 	select BR2_TARGET_ROOTFS_SQUASHFS                       # tool to generate the target image
 	select BR2_PACKAGE_PM_UTILS                             # suspend
-	select BR2_PACKAGE_QTSIXA_SHANWAN                       # ps3 pad
+	select BR2_PACKAGE_QTSIXA                               # ps3 pad
+	select BR2_PACKAGE_QTSIXA_SHANWAN                       # ps3 pad (clone)
 	select BR2_PACKAGE_XARCADE2JSTICK                       # keyboard events of the Xarcade Tankstick
 	select BR2_PACKAGE_NANUM_FONT				# some font
 	select BR2_PACKAGE_UTIL_LINUX_LIBMOUNT                  # for util-linux compilation to work (so, may be removed in the future)
