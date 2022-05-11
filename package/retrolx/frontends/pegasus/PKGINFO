@@ -1,5 +1,5 @@
 pkgname = pegasus
-pkgver = 20210925-1
+pkgver = 20220328-1
 pkgdesc = Pegasus frontend
 group = frontend
 packager = https://retrolx.org 

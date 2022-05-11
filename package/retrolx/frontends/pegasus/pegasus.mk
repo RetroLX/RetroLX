@@ -3,8 +3,8 @@
 # Pegasus frontend
 #
 ################################################################################
-# Version.: Commits on Sep 25, 2021
-PEGASUS_VERSION = weekly_2021w37
+# Version.: Commits on Mar 28, 2022
+PEGASUS_VERSION = alpha16
 PEGASUS_SITE = https://github.com/mmatyas/pegasus-frontend
 PEGASUS_SITE_METHOD=git
 PEGASUS_GIT_SUBMODULES=YES
