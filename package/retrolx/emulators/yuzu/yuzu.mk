@@ -3,8 +3,8 @@
 # YUZU
 #
 ################################################################################
-# Version.: Commits on Jan 9, 2022
-YUZU_VERSION = EA-2382
+# Version.: Commits on May 12, 2022
+YUZU_VERSION = EA-2725
 YUZU_SITE = https://github.com/pineappleEA/pineapple-src.git
 #YUZU_VERSION = mainline-0-775
 #YUZU_SITE = https://github.com/yuzu-emu/yuzu-mainline.git
