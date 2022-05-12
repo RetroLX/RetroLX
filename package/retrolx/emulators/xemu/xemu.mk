@@ -4,13 +4,13 @@
 #
 ################################################################################
 
-# Version 0.7.2
-XEMU_VERSION = xemu-v0.7.2
+# Version 0.7.6
+XEMU_VERSION = v0.7.6
 XEMU_SITE = https://github.com/mborgerson/xemu.git
 XEMU_SITE_METHOD=git
 XEMU_GIT_SUBMODULES=YES
 XEMU_LICENSE = GPLv2
-XEMU_DEPENDENCIES = sdl2
+XEMU_DEPENDENCIES = sdl2 host-python-pyyaml
 
 XEMU_PKG_DIR = $(TARGET_DIR)/opt/retrolx/xemu
 XEMU_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/xemu
