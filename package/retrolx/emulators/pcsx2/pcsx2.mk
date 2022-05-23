@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PCSX2_VERSION = v1.7.2736
+PCSX2_VERSION = v1.7.2784
 PCSX2_SITE = https://github.com/pcsx2/pcsx2.git
 PCSX2_LICENSE = GPLv2 GPLv3 LGPLv2.1 LGPLv3
 PCSX2_DEPENDENCIES = xserver_xorg-server alsa-lib freetype zlib libpng wxwidgets libaio libsoundtouch sdl2 libpcap libgtk3 libsamplerate fmt

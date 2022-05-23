@@ -326,7 +326,6 @@ menu "Libraries"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/libxmp/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/libfreeaptx/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/libenet/Config.in"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/tbb/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/wildmidi/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/wxwidgets/Config.in"
 endmenu
