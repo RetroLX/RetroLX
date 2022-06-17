@@ -1,5 +1,5 @@
 pkgname = dosbox-x
-pkgver = 0.83.25-1
+pkgver = 0.84.0-1
 pkgdesc = DOSBox-X DOS and Windows emulator
 group = emulator
 packager = https://retrolx.org 

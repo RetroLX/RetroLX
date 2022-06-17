@@ -3,8 +3,8 @@
 # BOX64 emulator
 #
 ################################################################################
-# Version.: Release on Nov 19, 2021
-BOX64_VERSION = v0.1.6
+# Version.: Release on Apr 23, 2022
+BOX64_VERSION = v0.1.8
 BOX64_SITE = https://github.com/ptitseb/box64
 BOX64_SITE_METHOD=git
 BOX64_LICENSE = GPLv3
