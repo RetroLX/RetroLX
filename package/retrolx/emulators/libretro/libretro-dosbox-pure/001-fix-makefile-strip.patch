@@ -1,0 +1,22 @@
+--- a/Makefile	2022-06-17 18:42:18.587676140 +0200
++++ b/Makefile	2022-06-17 18:40:35.911344769 +0200
+@@ -24,6 +24,10 @@
+ ISMAC      := $(wildcard /Applications)
+ endif
+ 
++ifeq ($(STRIP),)
++STRIP      := strip
++endif
++
+ PIPETONULL := $(if $(ISWIN),>nul 2>nul,>/dev/null 2>/dev/null)
+ 
+ SOURCES := \
+@@ -37,7 +37,7 @@
+   src/*/*/*.cpp
+ 
+ CPUFLAGS := $(MAKE_CPUFLAGS)
+-STRIPCMD := strip --strip-all
++STRIPCMD := $(STRIP) --strip-all
+ ifneq ($(ISWIN),)
+   OUTNAME := dosbox_pure_libretro.dll
+   CXX     ?= g++

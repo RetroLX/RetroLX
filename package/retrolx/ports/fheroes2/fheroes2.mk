@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-FHEROES2_VERSION = 0.9.15
+FHEROES2_VERSION = 0.9.16
 FHEROES2_SITE = $(call github,ihhub,fheroes2,$(FHEROES2_VERSION))
 FHEROES2_DEPENDENCIES = sdl2 sdl2_image
 

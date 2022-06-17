@@ -14,7 +14,7 @@ config BR2_PACKAGE_RETROLX_PACKAGES
 	select BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	select BR2_PACKAGE_RETROLX_MULTIEMU_SYSTEMS
 	select BR2_PACKAGE_RETROLX_WINE_SYSTEMS        if BR2_PACKAGE_RETROLX_IS_X86_ARCH
-	select BR2_PACKAGE_RETROLX_FLASH_SYSTEMS       if BR2_PACKAGE_RETROLX_IS_X86_ARCH
+	select BR2_PACKAGE_RETROLX_FLASH_SYSTEMS       
 
 	# Box86 / Box64 translation layer
 	select BR2_PACKAGE_BOX86               if BR2_arm
@@ -81,17 +81,17 @@ config BR2_PACKAGE_RETROLX_HOMEBREW_SYSTEMS
 	bool "RetroLX homebrew systems"
 
 	# OpenBOR
-	select BR2_PACKAGE_OPENBOR # ALL
+	select BR2_PACKAGE_OPENBOR              # ALL
 
 	# Lutro Engine / LÖVE
-	select BR2_PACKAGE_LIBRETRO_LUTRO # ALL
+	select BR2_PACKAGE_LIBRETRO_LUTRO       # ALL
 
 	# RPG engine : Solarus
-	select BR2_PACKAGE_LUAJIT           if !BR2_aarch64 # for performance
-	select BR2_PACKAGE_LUA              if  BR2_aarch64
-	select BR2_PACKAGE_SOLARUS_ENGINE   # engine itself
+	#select BR2_PACKAGE_LUAJIT           if !BR2_aarch64 # for performance
+	#select BR2_PACKAGE_LUA              if  BR2_aarch64
+	#select BR2_PACKAGE_SOLARUS_ENGINE   # engine itself
 
-	# RPG engine : EasyRPG / RPG MAker
+	# RPG engine : EasyRPG / RPG Maker
 	select BR2_PACKAGE_EASYRPG_PLAYER   # standalone
 	select BR2_PACKAGE_LIBRETRO_EASYRPG # libretro core
 
@@ -289,7 +289,7 @@ config BR2_PACKAGE_RETROLX_COMPUTER_SYSTEMS
 	select BR2_PACKAGE_AMIBERRY             if !BR2_PACKAGE_RETROLX_IS_X86_ARCH
 	select BR2_PACKAGE_LIBRETRO_PUAE        # ALL
 
-	# Atari 800 computers
+	# Atari 800 computers / 5200 console
 	select BR2_PACKAGE_LIBRETRO_ATARI800    # ALL
 
 	# Sinclair ZX Spectrum
@@ -389,7 +389,7 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 	# Sony PS2
 	select BR2_PACKAGE_PCSX2                        if BR2_x86_64
 	select BR2_PACKAGE_PLAY                         if BR2_x86_64 && BR2_PACKAGE_XORG7
-	select BR2_PACKAGE_LIBRETRO_PLAY		if BR2_x86_i686 || BR2_x86_64 || BR2_PACKAGE_RETROLX_HAS_GLES3
+	select BR2_PACKAGE_LIBRETRO_PLAY		if BR2_x86_i686 || BR2_x86_64 || ( BR2_PACKAGE_RETROLX_HAS_GLES3  && !BR2_cortex_a35)
 
 	# Sony PS3
 	select BR2_PACKAGE_RPCS3                        if BR2_x86_64
@@ -422,6 +422,9 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 
 	# Atari 2600
 	select BR2_PACKAGE_LIBRETRO_STELLA              # ALL
+
+	# Atari 800 computers / 5200 console
+	select BR2_PACKAGE_LIBRETRO_ATARI800            # ALL
 
 	# Atari 7800
 	select BR2_PACKAGE_LIBRETRO_PROSYSTEM           # ALL
