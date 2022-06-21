@@ -18,5 +18,4 @@ lr-mame2003-plus
 devilutionx
 scummvm
 sdlpop
-solarus
 es-theme-carbon

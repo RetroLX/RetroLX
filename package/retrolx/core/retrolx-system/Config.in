@@ -146,7 +146,6 @@ config BR2_PACKAGE_RETROLX_VIDEO
 	bool "RetroLX video packages"
 	select BR2_PACKAGE_FFMPEG
 	select BR2_PACKAGE_FFMPEG_AVRESAMPLE
-	select BR2_PACKAGE_FFMPEG_FFPLAY
 	select BR2_PACKAGE_FFMPEG_GPL
 	select BR2_PACKAGE_FFMPEG_SWSCALE
 	select BR2_PACKAGE_FFMPEG_POSTPROC
@@ -173,6 +172,7 @@ config BR2_PACKAGE_RETROLX_COMMON
 	select BR2_PACKAGE_CATCH2
 	select BR2_PACKAGE_DBUS
 	select BR2_PACKAGE_DEJAVU
+	select BR2_PACKAGE_DIALOG
 	select BR2_PACKAGE_ECM
 	select BR2_PACKAGE_EXPAT
 	select BR2_PACKAGE_EVSIEVE
@@ -542,13 +542,7 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	# mangohud
 	select BR2_PACKAGE_MANGOHUD             if BR2_x86_64
 
-	# compression tools
-	select BR2_PACKAGE_UNZIP        # for /userdata/system/upgrade/share.zip
-	select BR2_PACKAGE_XZ           # for updates
-	select BR2_PACKAGE_ZSTD         # for btrfs compression
-
 	# script tool
-	select BR2_PACKAGE_DIALOG
 
 	# tools
 	select BR2_PACKAGE_I2C_TOOLS

@@ -407,38 +407,37 @@ index 39f11a26d37..925fd3042c0 100644
  #   elif BX_PLATFORM_OSX
     return wmi.info.cocoa.window;
  #   elif BX_PLATFORM_WINDOWS
-@@ -192,8 +197,15 @@
+@@ -263,8 +263,15 @@
+ 	}
  
-    bgfx::PlatformData pd;
  #   if BX_PLATFORM_LINUX || BX_PLATFORM_BSD
--	pd.ndt          = wmi.info.x11.display;
--	pd.nwh          = (void*)(uintptr_t)wmi.info.x11.window;
-+#ifdef SDLMAME_NO_X11
-+	pd.nwh      = (void*)_window;
-+#else
+-	platform_data.ndt          = wmi.info.x11.display;
+-	platform_data.nwh          = (void*)(uintptr_t)wmi.info.x11.window;
++#	ifdef SDLMAME_NO_X11
++	platform_data.nwh      = (void*)_window;
++#	else
 +	if (wmi.subsystem == SDL_SYSWM_X11)
 +	{
-+		pd.ndt      = wmi.info.x11.display;
-+		pd.nwh      = (void*)(uintptr_t)wmi.info.x11.window;
++		platform_data.ndt      = wmi.info.x11.display;
++		platform_data.nwh      = (void*)(uintptr_t)wmi.info.x11.window;
 +	}
-+#endif
++#	endif
  #   elif BX_PLATFORM_OSX
-    pd.ndt          = NULL;
-    pd.nwh          = wmi.info.cocoa.window;
+ 	platform_data.ndt          = NULL;
+ 	platform_data.nwh          = wmi.info.cocoa.window;
 diff --git a/src/osd/sdl/window.cpp b/src/osd/sdl/window.cpp
 index 9f07ce7cd49..814503f8427 100644
 --- a/src/osd/sdl/window.cpp
 +++ b/src/osd/sdl/window.cpp
-@@ -95,7 +95,8 @@ bool sdl_osd_interface::window_init()
- 	switch (video_config.mode)
- 	{
- 		case VIDEO_MODE_BGFX:
--			renderer_bgfx::init(machine());
-+			// LATER
-+			// renderer_bgfx::init(machine());
- 			break;
- #if (USE_OPENGL)
- 		case VIDEO_MODE_OPENGL:
+@@ -114,7 +114,7 @@
+ 		switch(current_mode)
+ 		{
+ 			case VIDEO_MODE_BGFX:
+-				error = renderer_bgfx::init(machine());
++				//LATER error = renderer_bgfx::init(machine());
+ 				break;
+ #if defined(USE_OPENGL) && USE_OPENGL
+ 			case VIDEO_MODE_OPENGL:
 @@ -665,6 +666,12 @@ int sdl_window_info::complete_create()
  {
  	osd_dim temp(0,0);

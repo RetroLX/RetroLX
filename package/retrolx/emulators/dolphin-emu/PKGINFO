@@ -1,5 +1,5 @@
 pkgname = dolphin
-pkgver = 5.0.16101-1
+pkgver = 5.0.16380-1
 pkgdesc = Dolphin Gamecube/Wii emulator
 group = emulator
 packager = https://retrolx.org 
