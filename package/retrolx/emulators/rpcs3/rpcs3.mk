@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-# 2022 May, 1 release
-RPCS3_VERSION = v0.0.22
+# 2022 Jul, 1 release
+RPCS3_VERSION = v0.0.23
 
 RPCS3_SITE = https://github.com/RPCS3/rpcs3.git
 RPCS3_SITE_METHOD=git
