@@ -3,8 +3,8 @@
 # RetroFE frontend
 #
 ################################################################################
-# Version.: Commits on Jan 02, 2022
-RETROFE_VERSION = d2de930d5c3b76e512ddb926c860a14cec6d53ff
+# Version.: Commits on Mar 27, 2022
+RETROFE_VERSION = 2ddd65a76210d241031c4ac9268255f311df25d1
 RETROFE_SITE = https://github.com/phulshof/RetroFE
 RETROFE_SITE_METHOD=git
 RETROFE_LICENSE = GPLv3
