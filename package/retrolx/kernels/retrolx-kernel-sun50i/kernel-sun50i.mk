@@ -5,7 +5,7 @@
 ################################################################################
 
 # Mainline kernels
-RETROLX_KERNEL_SUN50I_VERSION = 5.15.48-1
+RETROLX_KERNEL_SUN50I_VERSION = 5.15.51-1
 RETROLX_KERNEL_SUN50I_ARCH = sun50i
 RETROLX_KERNEL_SUN50I_SOURCE = kernel-$(RETROLX_KERNEL_SUN50I_ARCH)-$(RETROLX_KERNEL_SUN50I_VERSION).tar.gz
 RETROLX_KERNEL_SUN50I_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_SUN50I_ARCH)/$(RETROLX_KERNEL_SUN50I_VERSION)
