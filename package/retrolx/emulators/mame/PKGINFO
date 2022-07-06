@@ -1,5 +1,5 @@
 pkgname = mame
-pkgver = 0.238-1
+pkgver = 0.243-1
 pkgdesc = Multiple Arcade Machine Emulator
 group = emulator
 packager = https://retrolx.org 
