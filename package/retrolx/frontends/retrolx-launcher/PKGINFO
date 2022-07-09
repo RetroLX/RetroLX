@@ -1,0 +1,6 @@
+pkgname = retrolx-launcher
+pkgver = 20220708-1
+pkgdesc = RetroLX Launcher
+group = frontend
+packager = https://retrolx.org 
+url = https://github.com/retrolx/launcher/

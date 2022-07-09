@@ -313,6 +313,7 @@ config BR2_PACKAGE_RETROLX_WAYLAND
 	select BR2_PACKAGE_WESTON
 	select BR2_PACKAGE_WESTON_DRM
 	select BR2_PACKAGE_RETROLX_WLINFO
+	select BR2_PACKAGE_LIBGTK3_WAYLAND
 	#select BR2_PACKAGE_WESTON_XWAYLAND
 	#select BR2_PACKAGE_XORG7
 
@@ -341,9 +342,9 @@ config BR2_PACKAGE_RETROLX_QT
 	select BR2_PACKAGE_QT5TOOLS
 	select BR2_PACKAGE_QT5TOOLS_LINGUIST_TOOLS
 	# Qt5 platform specific packages
-	select BR2_PACKAGE_QT5BASE_EGLFS  if !BR2_PACKAGE_XORG7 && !BR2_PACKAGE_RETROLX_WAYLAND
+	select BR2_PACKAGE_QT5BASE_EGLFS  
 	select BR2_PACKAGE_QT5WAYLAND     if BR2_PACKAGE_RETROLX_WAYLAND
-	select BR2_PACKAGE_QT5BASE_XCB    if BR2_PACKAGE_XORG7 && !BR2_PACKAGE_RETROLX_WAYLAND
+	select BR2_PACKAGE_QT5BASE_XCB    if BR2_PACKAGE_XORG7 
 	select BR2_PACKAGE_QT5X11EXTRAS   if BR2_PACKAGE_XORG7
 
 # RetroLX networking stack
@@ -436,7 +437,7 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_RETROLX_NOTICE                      # boot pdf notice
 
 	select BR2_PACKAGE_LIBDRM                               if !BR2_PACKAGE_RETROLX_RPI_VCORE
-    select BR2_PACKAGE_LIBDRM_EXYNOS                        if BR2_PACKAGE_LIBDRM && BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
+        select BR2_PACKAGE_LIBDRM_EXYNOS                        if BR2_PACKAGE_LIBDRM && BR2_PACKAGE_RETROLX_TARGET_EXYNOS5422
 	select BR2_PACKAGE_RETROLX_DRMINFO                     if BR2_PACKAGE_LIBDRM
 	select BR2_PACKAGE_LIBCEC                               # libcec
 	select BR2_PACKAGE_EDID_DECODE                          # edid monitor/tv support
@@ -488,20 +489,11 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	# RetroLX networking stack
 	select BR2_PACKAGE_RETROLX_NETWORKING
 
-	# RetroLX Wayland where possible
-	select BR2_PACKAGE_RETROLX_WAYLAND	if !BR2_PACKAGE_RETROLX_IS_X86_ARCH && \
-						   !BR2_PACKAGE_RETROLX_RPI_VCORE && \
-						   !BR2_PACKAGE_RETROLX_TARGET_AW32 
+	# RetroLX Wayland (except rpi 0/1/2)
+	select BR2_PACKAGE_RETROLX_WAYLAND	if !BR2_PACKAGE_RETROLX_RPI_VCORE
 
-
-	# RetroLX QT (almost everywhere)
-	select BR2_PACKAGE_RETROLX_QT		if !BR2_PACKAGE_RETROLX_RPI_VCORE && \
-						   !BR2_PACKAGE_RETROLX_TARGET_AW32 
-
-	# wxWidgets only for x86 world
-	select BR2_PACKAGE_WXWIDGETS		if BR2_x86_64
-        select BR2_PACKAGE_LIBGLEW              if BR2_x86_64
-        select BR2_PACKAGE_LIBGLU               if BR2_x86_64
+	# RetroLX QT everywhere 
+	select BR2_PACKAGE_RETROLX_QT
 
 	# RetroLX SDL2
 	select BR2_PACKAGE_RETROLX_SDL2
@@ -525,6 +517,10 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_RETROLX_VULKAN      if  BR2_PACKAGE_RETROLX_IS_X86_ARCH     || \
                                                BR2_PACKAGE_RETROLX_TARGET_RPI4 || \
                                                (BR2_PACKAGE_RETROLX_PANFROST_MESA3D && BR2_PACKAGE_RETROLX_HAS_GLES3)
+
+	# GTK
+	select BR2_PACKAGE_CAIRO_PDF		if !BR2_PACKAGE_RETROLX_RPI_VCORE
+	select BR2_PACKAGE_LIBGTK3		if !BR2_PACKAGE_RETROLX_RPI_VCORE
                                                
 	# s905 tv-box firmwares
 	select BR2_PACKAGE_FIRMWARE_WLAN_AML   if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2 || \
@@ -542,7 +538,8 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	# mangohud
 	select BR2_PACKAGE_MANGOHUD             if BR2_x86_64
 
-	# script tool
+	# base launcher
+	select BR2_PACKAGE_RETROLX_LAUNCHER
 
 	# tools
 	select BR2_PACKAGE_I2C_TOOLS
@@ -766,7 +763,7 @@ config BR2_PACKAGE_RETROLX_XORG
 	select BR2_PACKAGE_XAPP_XSET                    # X11 Xset command
 
 	select BR2_PACKAGE_RETROLX_DESKTOPAPPS         # RETROLX applications config and scripts
-	select BR2_PACKAGE_LIBGTK3                      # gtk3 library
+	select BR2_PACKAGE_LIBGTK3_X11			
 	select BR2_PACKAGE_L3AFPAD                      # gtk3 text editor
 	select BR2_PACKAGE_PCMANFM                      # file manager
 	select BR2_PACKAGE_GVFS                         if BR2_PACKAGE_PCMANFM # file systems (trash, smb, ... in pcmanfm)
@@ -800,5 +797,9 @@ config BR2_PACKAGE_RETROLX_GPU_X86
 	select BR2_PACKAGE_MESA3D_OPENGL_GLX
 	select BR2_PACKAGE_MESA3D_LLVM
 	select BR2_PACKAGE_MESA3D_DEMOS
+
+	# glew / glu (desktop GL only)
+        select BR2_PACKAGE_LIBGLEW
+        select BR2_PACKAGE_LIBGLU
 
 ### ### ###

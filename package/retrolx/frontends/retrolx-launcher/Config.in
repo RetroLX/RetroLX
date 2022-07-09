@@ -1,0 +1,12 @@
+config BR2_PACKAGE_RETROLX_LAUNCHER
+    bool "retrolx-launcher"
+
+    depends on BR2_PACKAGE_SDL2
+    depends on BR2_PACKAGE_RETROLX_QT
+
+    help
+      RetroLX launcher / system manager
+
+      https://github.com/RetroLX/launcher
+
+

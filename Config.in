@@ -38,9 +38,10 @@ menu "EmulationStation"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/emulationstation/es-background-musics/Config.in"
 endmenu
 
-menu "Alt frontends"
+menu "Misc frontends"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrofe/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/pegasus/Config.in"
+  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/frontends/retrolx-launcher/Config.in"
 endmenu
 
 menu "Firmware"

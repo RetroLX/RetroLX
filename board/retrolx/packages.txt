@@ -19,3 +19,4 @@ devilutionx
 scummvm
 sdlpop
 es-theme-carbon
+pegasus
