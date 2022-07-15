@@ -1,6 +1,0 @@
-pkgname = citra-android
-pkgver = 20210908-1
-pkgdesc = Cita Nintendo 3DS Emulator
-group = emulator
-packager = https://retrolx.org 
-url = https://citra-emu.org/
