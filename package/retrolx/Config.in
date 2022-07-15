@@ -234,7 +234,7 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	select BR2_PACKAGE_HCL		            # ALL
 
 	# Hurrican
-	select BR2_PACKAGE_HURRICAN		    if BR2_PACKAGE_RETROLX_WAYLAND || BR2_PACKAGE_RETROLX_XORG
+	select BR2_PACKAGE_HURRICAN		    # ALL
 
 	# Wolfeinstein 3D / Spear of Destiny ports
 	select BR2_PACKAGE_LIBRETRO_ECWOLF          # ALL
