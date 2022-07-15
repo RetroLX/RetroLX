@@ -12,14 +12,6 @@ if BR2_x86_i686 || BR2_x86_64
 	default y
 endif
 
-if BR2_PACKAGE_RETROLX_TARGET_RK3399 || BR2_PACKAGE_RETROLX_TARGET_RK3288 || BR2_PACKAGE_RETROLX_TARGET_RK3326 
-	config BR2_PACKAGE_RETROLX_ROCKCHIP_ANY
-	bool "rockchip_targets"
-	default y
-	help
-		Selected when a Rockchip platform is being built
-endif
-
 config BR2_PACKAGE_RETROLX_HAS_GLES2
 	bool "target-gles2"
 
@@ -82,7 +74,14 @@ config BR2_PACKAGE_RETROLX_BOOST
 	select BR2_PACKAGE_BOOST_DATE_TIME
 	select BR2_PACKAGE_BOOST_LOCALE
 	select BR2_PACKAGE_BOOST_PROGRAM_OPTIONS
+	select BR2_PACKAGE_BOOST_SERIALIZATION
 	select BR2_PACKAGE_BOOST_THREAD
+
+# RetroLX GTK3
+config BR2_PACKAGE_RETROLX_GTK3
+	bool "RetroLX GTK3"
+	select BR2_PACKAGE_CAIRO_PDF
+	select BR2_PACKAGE_LIBGTK3
 
 # RetroLX audio libraries
 config BR2_PACKAGE_RETROLX_AUDIO
@@ -156,7 +155,8 @@ config BR2_PACKAGE_RETROLX_VIDEO
 	select BR2_PACKAGE_LIBTHEORA
 	select BR2_PACKAGE_LIBV4L           if !BR2_PACKAGE_RETROLX_RPI_VCORE
 	select BR2_PACKAGE_LIBVA	    if !BR2_PACKAGE_RETROLX_RPI_VCORE
-	select BR2_PACKAGE_LIBVDPAU         if BR2_PACKAGE_XORG7 && !BR2_PACKAGE_RETROLX_WAYLAND
+	select BR2_PACKAGE_LIBVDPAU         if BR2_PACKAGE_XORG7 
+#&& !BR2_PACKAGE_RETROLX_WAYLAND
 	select BR2_PACKAGE_LIBVPX
 	select BR2_PACKAGE_MPV
 	#select BR2_PACKAGE_RTKIT fails to compile on sbc, not so required for the moment
@@ -224,11 +224,11 @@ config BR2_PACKAGE_RETROLX_COMMON
 	select BR2_PACKAGE_SQLITE
 	select BR2_PACKAGE_UTF8PROC
 	select BR2_PACKAGE_TBB
-	select BR2_PACKAGE_TRANSMISSION
-	select BR2_PACKAGE_TRANSMISSION_CLI
+	#select BR2_PACKAGE_TRANSMISSION
+	#select BR2_PACKAGE_TRANSMISSION_CLI
 	select BR2_PACKAGE_WIREPLUMBER
-	select BR2_PACKAGE_WOLFSSL
-	select BR2_PACKAGE_WOLFSSL_ALL
+	#select BR2_PACKAGE_WOLFSSL
+	#select BR2_PACKAGE_WOLFSSL_ALL
         select BR2_PACKAGE_UNZIP
 	select BR2_PACKAGE_XZ
 	select BR2_PACKAGE_ZLIB
@@ -313,7 +313,7 @@ config BR2_PACKAGE_RETROLX_WAYLAND
 	select BR2_PACKAGE_WESTON
 	select BR2_PACKAGE_WESTON_DRM
 	select BR2_PACKAGE_RETROLX_WLINFO
-	select BR2_PACKAGE_LIBGTK3_WAYLAND
+	select BR2_PACKAGE_LIBGTK3_WAYLAND	if BR2_PACKAGE_RETROLX_GTK3
 	#select BR2_PACKAGE_WESTON_XWAYLAND
 	#select BR2_PACKAGE_XORG7
 
@@ -398,8 +398,6 @@ config BR2_PACKAGE_RETROLX_FS_TOOLS
 	select BR2_PACKAGE_GPTFDISK_SGDISK                      # fs resize
 	select BR2_PACKAGE_LIBFUSE				# fuse (flatpak requirement)
 
-	# Amlogic eMMC needs a special tool to perform eMMC install (borrowed from CoreELEC)
-	select BR2_PACKAGE_AMLOGIC_CEEMMC			if BR2_aarch64
 
 config BR2_PACKAGE_RETROLX_SYSTEM
 	bool "RetroLX minimal"
@@ -409,7 +407,7 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	# minimal system required packages
 	select BR2_TARGET_RETROLX_IMAGES_DEFINITIONS
 	select BR2_PACKAGE_RETROLX_INITRAMFS                   if !BR2_PACKAGE_RETROLX_TARGET_PS4 # initramfs to boot the system
-	select BR2_PACKAGE_RETROLX_PS4_INITRAMFS               if BR2_PACKAGE_RETROLX_TARGET_PS4  # initramfs to boot the system
+	#select BR2_PACKAGE_RETROLX_PS4_INITRAMFS               if BR2_PACKAGE_RETROLX_TARGET_PS4  # initramfs to boot the system
 	select BR2_PACKAGE_BASH                                 # bash shell, used as the interactive shell
 	select BR2_PACKAGE_RETROLX_TRIGGERHAPPY                # multimedia/power buttons
 	select BR2_TARGET_ROOTFS_SQUASHFS                       # tool to generate the target image
@@ -450,13 +448,6 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_LIBXKKBCOMMON			# requirement for xkb to work, xkb is used by kodi, even without x for the keyboard
 	select BR2_PACKAGE_XKEYBOARD_CONFIG                     if BR2_PACKAGE_LIBXKBCOMMON # requirement for xkb to work, xkb is used by kodi, even without x for the keyboard
 	select BR2_PACKAGE_FLATPAK                              if BR2_PACKAGE_RETROLX_IS_X86_ARCH # flatpak app packaging system
-
-	# RaspberryPi Firmwares
-        select BR2_PACKAGE_BRCMFMAC_SDIO_FIRMWARE_RPI           if BR2_PACKAGE_RETROLX_RPI_ANY
-        select BR2_PACKAGE_BRCMFMAC_SDIO_FIRMWARE_RPI_BT        if BR2_PACKAGE_RETROLX_RPI_ANY
-        select BR2_PACKAGE_BRCMFMAC_SDIO_FIRMWARE_RPI_WIFI      if BR2_PACKAGE_RETROLX_RPI_ANY
-	select BR2_PACKAGE_RPI_FIRMWARE                         if BR2_PACKAGE_RETROLX_RPI_ANY # rpi firmwares
-	select BR2_PACKAGE_RPI_FIRMWARE_BOOTCODE_BIN            if BR2_PACKAGE_RETROLX_TARGET_RPI1 || BR2_PACKAGE_RETROLX_TARGET_RPI2 || BR2_PACKAGE_RETROLX_TARGET_RPI3
 
 	# Case
 	select BR2_PACKAGE_GPICASE              if BR2_PACKAGE_RETROLX_TARGET_RPI1 # retroflag gpicase
@@ -519,8 +510,7 @@ config BR2_PACKAGE_RETROLX_SYSTEM
                                                (BR2_PACKAGE_RETROLX_PANFROST_MESA3D && BR2_PACKAGE_RETROLX_HAS_GLES3)
 
 	# GTK
-	select BR2_PACKAGE_CAIRO_PDF		if !BR2_PACKAGE_RETROLX_RPI_VCORE
-	select BR2_PACKAGE_LIBGTK3		if !BR2_PACKAGE_RETROLX_RPI_VCORE
+	select BR2_PACKAGE_RETROLX_GTK3		if BR2_PACKAGE_RETROLX_IS_X86_ARCH
                                                
 	# s905 tv-box firmwares
 	select BR2_PACKAGE_FIRMWARE_WLAN_AML   if BR2_PACKAGE_RETROLX_TARGET_ARM64_A53_GLES2 || \
@@ -762,12 +752,13 @@ config BR2_PACKAGE_RETROLX_XORG
 	select BR2_PACKAGE_XAPP_XRANDR                  # required for resolution manipulation
 	select BR2_PACKAGE_XAPP_XSET                    # X11 Xset command
 
-	select BR2_PACKAGE_RETROLX_DESKTOPAPPS         # RETROLX applications config and scripts
-	select BR2_PACKAGE_LIBGTK3_X11			
 	select BR2_PACKAGE_L3AFPAD                      # gtk3 text editor
 	select BR2_PACKAGE_PCMANFM                      # file manager
 	select BR2_PACKAGE_GVFS                         if BR2_PACKAGE_PCMANFM # file systems (trash, smb, ... in pcmanfm)
 	select BR2_PACKAGE_ADWAITA_ICON_THEME_LIGHT     if BR2_PACKAGE_PCMANFM # theme for file manager
+
+	select BR2_PACKAGE_RETROLX_DESKTOPAPPS         # RETROLX applications config and scripts
+	select BR2_PACKAGE_LIBGTK3_X11			if BR2_PACKAGE_RETROLX_GTK3			
 	select BR2_PACKAGE_XTERM                        # terminal
 	select BR2_PACKAGE_OPENBOX                      # window manager
 	select BR2_PACKAGE_UNCLUTTER                    # hide mouse

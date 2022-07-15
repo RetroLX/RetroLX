@@ -69,9 +69,8 @@ menu "System"
 endmenu
 
 menu "Boot"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/amlogic-ceemmc/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-initramfs/Config.in"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-ps4-initramfs/Config.in"
+  #source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-ps4-initramfs/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/retrolx-syslinux-efi/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/boot/uboot-odroid-xu4/Config.in"
 endmenu
@@ -168,7 +167,6 @@ menu "Emulators"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/hatari/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/mame/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/model2emu/Config.in"
-    source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/moonlight-embedded/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/mednafen/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/melonds/Config.in"
     source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/emulators/openbor/Config.in"
@@ -328,7 +326,6 @@ menu "Libraries"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/libfreeaptx/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/libenet/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/wildmidi/Config.in"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/wxwidgets/Config.in"
 endmenu
 
 menu "Soundfonts"

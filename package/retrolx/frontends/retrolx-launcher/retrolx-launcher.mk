@@ -3,8 +3,8 @@
 # RetroLX launcher
 #
 ################################################################################
-# Version.: Commits on Jul 8, 2022
-RETROLX_LAUNCHER_VERSION = 6a18fb6b84f8b2405c4d2fbcf82350257cd5e880
+# Version.: Commits on Jul 9, 2022
+RETROLX_LAUNCHER_VERSION = 146767c48f78e901aa5ec3e7ae3979990dcc956b
 RETROLX_LAUNCHER_SITE = https://github.com/RetroLX/launcher
 RETROLX_LAUNCHER_SITE_METHOD=git
 RETROLX_LAUNCHER_GIT_SUBMODULES=YES

@@ -1339,20 +1339,6 @@ zxspectrum:
 
     If you set a joystick along with the keyboard, the joystick will work just fine except for the bindings to RETURN and SPACE, and the keyboard won't register the keys assigned to the Cursor joystick, or to the L1 and R1 buttons for all other joystick types.
 
-moonlight:
-  name:       Moonlight Embedded
-  manufacturer: Misc. System
-  release:
-  hardware: system
-  extensions: [moonlight]
-  emulators:
-    moonlight:
-      moonlight: { requireAnyOf: [moonlight-embedded] }
-  comment_en: |
-    Find the documentation here: https://wiki.batocera.org/emulators:moonlight
-  comment_fr: |
-    Trouvez la documentation ici: https://wiki.batocera.org/emulators:moonlight
-
 apple2:
   name:       Apple II
   manufacturer: Apple

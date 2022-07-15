@@ -120,12 +120,11 @@ PACKAGES_EMULATORS="amiberry
 					linapple
 					mame
 					melonds
-					moonlight-embedded
 					pcsx2
 					ppsspp
 					rpcs3
 					ruffle
-					scummvm 
+					scummvm
 					sdlpop
 					solarus-engine
 					supermodel

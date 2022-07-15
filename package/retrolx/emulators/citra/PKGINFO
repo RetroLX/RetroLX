@@ -1,5 +1,5 @@
 pkgname = citra
-pkgver = 20211120-1
+pkgver = 20220707-1
 pkgdesc = Citra Nintendo 3DS Emulator
 group = emulator
 packager = https://retrolx.org 

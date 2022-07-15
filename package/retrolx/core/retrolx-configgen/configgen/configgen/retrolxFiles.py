@@ -29,7 +29,6 @@ if (arch=="x86_64"):
 # This dict is indexed on the emulator name, not on the system
 batoceraBins = {
                 'libretro'       : retrolxPackages+'/retroarch/usr/bin/retroarch'
-              , 'moonlight'      : retrolxPackages+'/moonlight/moonlight'
               , 'mupen64plus'    : retrolxPackages+'/mupen64plus/mupen64plus'
               , 'flycast'        : retrolxPackages+'/flycast/flycast'
               , 'scummvm'        : retrolxPackages+'/scummvm/scummvm'
@@ -64,15 +63,6 @@ mupenInput = mupenConf + "InputAutoCfg.ini"
 mupenSaves = SAVES + "/n64"
 mupenMappingUser    = mupenConf + 'input.xml'
 mupenMappingSystem  = '/usr/share/retrolx/datainit/system/configs/mupen64/input.xml'
-
-moonlightCustom = CONF+'/moonlight'
-moonlightConfigFile = moonlightCustom + '/moonlight.conf'
-moonlightGamelist = moonlightCustom + '/gamelist.txt'
-moonlightMapping = dict()
-moonlightMapping[1] = moonlightCustom + '/mappingP1.conf'
-moonlightMapping[2] = moonlightCustom + '/mappingP2.conf'
-moonlightMapping[3] = moonlightCustom + '/mappingP3.conf'
-moonlightMapping[4] = moonlightCustom + '/mappingP4.conf'
 
 dolphinConfig  = CONF + "/dolphin-emu"
 dolphinData    = SAVES + "/dolphin-emu"

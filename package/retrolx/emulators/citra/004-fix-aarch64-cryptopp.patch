@@ -1,0 +1,230 @@
+--- a/externals/cryptopp/CMakeLists.txt	2022-07-15 17:48:34.014338884 +0200
++++ b/externals/cryptopp/CMakeLists.txt	2022-07-15 17:50:31.545976400 +0200
+@@ -420,6 +420,227 @@
+         endif ()
+       endif ()
+     endif ()
++
++  elseif (CRYPTOPP_ARMV8)
++
++    # This checks for <arm_acle.h>
++    CheckCompileLinkOption("-march=armv8-a" CRYPTOPP_ARM_ACLE_HEADER
++                           "${TEST_PROG_DIR}/test_arm_acle_header.cxx")
++
++    # Use <arm_acle.h> if available
++    if (CRYPTOPP_ARM_NEON_HEADER)
++      CheckCompileOption("-march=armv8-a -DCRYPTOPP_ARM_ACLE_HEADER=1" CRYPTOPP_ARMV8A_ASIMD)
++      CheckCompileOption("-march=armv8-a+crc -DCRYPTOPP_ARM_ACLE_HEADER=1" CRYPTOPP_ARMV8A_CRC)
++      CheckCompileOption("-march=armv8-a+crypto -DCRYPTOPP_ARM_ACLE_HEADER=1" CRYPTOPP_ARMV8A_CRYPTO)
++    else ()
++      CheckCompileOption("-march=armv8-a" CRYPTOPP_ARMV8A_ASIMD)
++      CheckCompileOption("-march=armv8-a+crc" CRYPTOPP_ARMV8A_CRC)
++      CheckCompileOption("-march=armv8-a+crypto" CRYPTOPP_ARMV8A_CRYPTO)
++    endif ()
++
++    if (CRYPTOPP_ARMV8A_ASIMD)
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/aria_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/blake2s_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/blake2b_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/chacha_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/cham_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/lea_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/neon_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/simon128_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/speck128_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a")
++    else ()
++      list(APPEND CRYPTOPP_COMPILE_DEFINITIONS "-DCRYPTOPP_DISABLE_ARM_ASIMD")
++    endif ()
++    if (CRYPTOPP_ARMV8A_CRC)
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/crc_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a+crc")
++    else ()
++      list(APPEND CRYPTOPP_COMPILE_DEFINITIONS "-DCRYPTOPP_DISABLE_ARM_CRC32")
++    endif ()
++    #if (CRYPTOPP_ARMV8A_CRYPTO)
++    #  set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/gcm_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a+crypto")
++    #  set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/gf2n_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a+crypto")
++    #  set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/rijndael_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a+crypto")
++    #  set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/sha_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a+crypto")
++    #  set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/shacal2_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv8-a+crypto")
++    #else ()
++      list(APPEND CRYPTOPP_COMPILE_DEFINITIONS "-DCRYPTOPP_DISABLE_ARM_AES")
++      list(APPEND CRYPTOPP_COMPILE_DEFINITIONS "-DCRYPTOPP_DISABLE_ARM_PMULL")
++      list(APPEND CRYPTOPP_COMPILE_DEFINITIONS "-DCRYPTOPP_DISABLE_ARM_SHA")
++    #endif ()
++
++  elseif (CRYPTOPP_ARM32)
++
++    # This checks for <arm_neon.h>
++    CheckCompileLinkOption("-march=armv7-a -mfpu=neon" CRYPTOPP_ARM_NEON_HEADER
++                           "${TEST_PROG_DIR}/test_arm_neon_header.cpp")
++
++    # Use <arm_neon.h> if available
++    if (CRYPTOPP_ARM_NEON_HEADER)
++      CheckCompileLinkOption("-march=armv7-a -mfpu=neon -DCRYPTOPP_ARM_NEON_HEADER=1" CRYPTOPP_ARMV7A_NEON
++                             "${TEST_PROG_DIR}/test_arm_neon.cpp")
++    else ()
++      CheckCompileLinkOption("-march=armv7-a -mfpu=neon" CRYPTOPP_ARMV7A_NEON
++                             "${TEST_PROG_DIR}/test_arm_neon.cpp")
++    endif ()
++
++    if (CRYPTOPP_ARM32)
++
++      # Add Cryptogams ASM files for ARM on Linux. Linux is required due to GNU Assembler.
++      # AES requires -mthumb under Clang. Do not add -mthumb for SHA for any files.
++      if (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Android")
++        list(APPEND cryptopp_SOURCES ${CRYPTOPP_PROJECT_DIR}/aes_armv4.S)
++        list(APPEND cryptopp_SOURCES ${CRYPTOPP_PROJECT_DIR}/sha1_armv4.S)
++        list(APPEND cryptopp_SOURCES ${CRYPTOPP_PROJECT_DIR}/sha256_armv4.S)
++        list(APPEND cryptopp_SOURCES ${CRYPTOPP_PROJECT_DIR}/sha512_armv4.S)
++
++        set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/aes_armv4.S PROPERTIES LANGUAGE CXX)
++        set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/sha1_armv4.S PROPERTIES LANGUAGE CXX)
++        set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/sha256_armv4.S PROPERTIES LANGUAGE CXX)
++        set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/sha512_armv4.S PROPERTIES LANGUAGE CXX)
++
++    endif ()
++
++    if (CRYPTOPP_ARMV7A_NEON)
++
++        if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
++          set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/aes_armv4.S PROPERTIES COMPILE_FLAGS "-march=armv7-a -mthumb -mfpu=neon -Wa,--noexecstack")
++        else ()
++          set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/aes_armv4.S PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon -Wa,--noexecstack")
++        endif ()
++
++        set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/sha1_armv4.S PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon -Wa,--noexecstack")
++        set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/sha256_armv4.S PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon -Wa,--noexecstack")
++        set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/sha512_armv4.S PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon -Wa,--noexecstack")
++      endif ()
++
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/aria_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/blake2s_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/blake2b_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/chacha_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/cham_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/crc_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/lea_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/gcm_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/rijndael_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/neon_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/sha_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/simon128_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/speck128_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/sm4_simd.cpp PROPERTIES COMPILE_FLAGS "-march=armv7-a -mfpu=neon")
++    else ()
++      list(APPEND CRYPTOPP_COMPILE_DEFINITIONS "-DCRYPTOPP_DISABLE_ARM_NEON")
++    endif ()
++
++  elseif (CRYPTOPP_PPC32 OR CRYPTOPP_PPC64)
++
++    # XLC requires -qaltivec in addition to Arch or CPU option
++    # Disable POWER9 due to https://github.com/weidai11/cryptopp/issues/986.
++    if (CMAKE_CXX_COMPILER MATCHES "xlC")
++      set(CRYPTOPP_ALTIVEC_FLAGS "-qaltivec")
++      set(CRYPTOPP_POWER4_FLAGS "-qarch=pwr4 -qaltivec")
++      set(CRYPTOPP_POWER5_FLAGS "-qarch=pwr5 -qaltivec")
++      set(CRYPTOPP_POWER6_FLAGS "-qarch=pwr6 -qaltivec")
++      set(CRYPTOPP_POWER7_VSX_FLAG  "-qarch=pwr7 -qvsx -qaltivec")
++      set(CRYPTOPP_POWER7_PWR_FLAGS "-qarch=pwr7 -qaltivec")
++      set(CRYPTOPP_POWER8_FLAGS "-qarch=pwr8 -qaltivec")
++      #set(CRYPTOPP_POWER9_FLAGS "-qarch=pwr9 -qaltivec")
++    else ()
++      set(CRYPTOPP_ALTIVEC_FLAGS "-maltivec")
++      set(CRYPTOPP_POWER7_VSX_FLAGS "-mcpu=power7 -mvsx")
++      set(CRYPTOPP_POWER7_PWR_FLAGS "-mcpu=power7")
++      set(CRYPTOPP_POWER8_FLAGS "-mcpu=power8")
++      #set(CRYPTOPP_POWER9_FLAGS "-mcpu=power9")
++    endif ()
++
++    CheckCompileLinkOption("${CRYPTOPP_ALTIVEC_FLAGS}" PPC_ALTIVEC_FLAG
++                           "${TEST_PROG_DIR}/test_ppc_altivec.cpp")
++
++    # Hack for XLC. Find the lowest PWR architecture.
++    if (CMAKE_CXX_COMPILER MATCHES "xlC")
++      if (NOT PPC_ALTIVEC_FLAG)
++        CheckCompileLinkOption("${CRYPTOPP_POWER4_FLAGS}" PPC_POWER4_FLAG
++                               "${TEST_PROG_DIR}/test_ppc_altivec.cpp")
++        if (PPC_POWER4_FLAG)
++          set(PPC_ALTIVEC_FLAG 1)
++          set(CRYPTOPP_ALTIVEC_FLAGS "${CRYPTOPP_POWER4_FLAGS}")
++        endif ()
++      endif ()
++      if (NOT PPC_ALTIVEC_FLAG)
++        CheckCompileLinkOption("${CRYPTOPP_POWER5_FLAGS}" PPC_POWER5_FLAG
++                               "${TEST_PROG_DIR}/test_ppc_altivec.cpp")
++        if (PPC_POWER5_FLAG)
++          set(PPC_ALTIVEC_FLAG 1)
++          set(CRYPTOPP_ALTIVEC_FLAGS "${CRYPTOPP_POWER5_FLAGS}")
++        endif ()
++      endif ()
++      if (NOT PPC_ALTIVEC_FLAG)
++        CheckCompileLinkOption("${CRYPTOPP_POWER6_FLAGS}" PPC_POWER6_FLAG
++                               "${TEST_PROG_DIR}/test_ppc_altivec.cpp")
++        if (PPC_POWER6_FLAG)
++          set(PPC_ALTIVEC_FLAG 1)
++          set(CRYPTOPP_ALTIVEC_FLAGS "${CRYPTOPP_POWER6_FLAGS}")
++        endif ()
++      endif ()
++    endif ()
++
++    # Hack for XLC and GCC. Find the right combination for PWR7 and the VSX unit.
++    CheckCompileLinkOption("${CRYPTOPP_POWER7_VSX_FLAGS}" PPC_POWER7_FLAG
++                           "${TEST_PROG_DIR}/test_ppc_power7.cpp")
++    if (PPC_POWER7_FLAG)
++      set (CRYPTOPP_POWER7_FLAGS "${CRYPTOPP_POWER7_VSX_FLAGS}")
++    else ()
++      CheckCompileLinkOption("${CRYPTOPP_POWER7_PWR_FLAGS}" PPC_POWER7_FLAG
++                             "${TEST_PROG_DIR}/test_ppc_power7.cpp")
++      if (PPC_POWER7_FLAG)
++        set (CRYPTOPP_POWER7_FLAGS "${CRYPTOPP_POWER7_PWR_FLAGS}")
++      endif ()
++    endif ()
++
++    CheckCompileLinkOption("${CRYPTOPP_POWER8_FLAGS}" PPC_POWER8_FLAG
++                           "${TEST_PROG_DIR}/test_ppc_power8.cpp")
++
++    # Disable POWER9 due to https://github.com/weidai11/cryptopp/issues/986.
++    #CheckCompileLinkOption("${CRYPTOPP_POWER9_FLAGS}" PPC_POWER9_FLAG
++    #                       "${TEST_PROG_DIR}/test_ppc_power9.cpp")
++
++    if (PPC_POWER8_FLAG AND NOT DISABLE_POWER8)
++      #set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/aria_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/blake2b_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/cham_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      #set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/crc_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/gcm_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/gf2n_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/lea_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/rijndael_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/sha_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/shacal2_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/simon128_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/speck128_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_POWER8_FLAGS})
++    endif ()
++
++    if (PPC_ALTIVEC_FLAG AND NOT DISABLE_ALTIVEC)
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/ppc_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_ALTIVEC_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/blake2s_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_ALTIVEC_FLAGS})
++      set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/chacha_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_ALTIVEC_FLAGS})
++    endif ()
++
++    # Drop to Altivec if Power8 unavailable
++    if (NOT PPC_POWER8_FLAG)
++      if (PPC_ALTIVEC_FLAG)
++        set_source_files_properties(${CRYPTOPP_PROJECT_DIR}/gcm_simd.cpp PROPERTIES COMPILE_FLAGS ${CRYPTOPP_ALTIVEC_FLAGS})
++      endif ()
++    endif ()
++
++    if (NOT PPC_ALTIVEC_FLAG)
++      list(APPEND CRYPTOPP_COMPILE_DEFINITIONS "-DCRYPTOPP_DISABLE_ALTIVEC")
++    elseif (NOT PPC_POWER7_FLAG)
++      list(APPEND CRYPTOPP_COMPILE_DEFINITIONS "-DCRYPTOPP_DISABLE_POWER7")
++    elseif (NOT PPC_POWER8_FLAG)
++      list(APPEND CRYPTOPP_COMPILE_DEFINITIONS "-DCRYPTOPP_DISABLE_POWER8")
++    #elseif (NOT PPC_POWER9_FLAG)
++    #  list(APPEND CRYPTOPP_COMPILE_DEFINITIONS "-DCRYPTOPP_DISABLE_POWER9")
++    endif ()
++
+   endif ()
+ endif ()
+ 

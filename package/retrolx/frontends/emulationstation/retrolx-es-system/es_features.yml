@@ -3524,9 +3524,6 @@ linapple:
 melonds:
   features: []
 
-moonlight:
-  features: [ratio]
-
 mupen64plus:
   features: [ratio]
   cfeatures:

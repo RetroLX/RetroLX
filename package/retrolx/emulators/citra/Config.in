@@ -1,15 +1,8 @@
 config BR2_PACKAGE_CITRA
     bool "citra"
-    depends on BR2_PACKAGE_RETROLX_QT
-    #depends on BR2_PACKAGE_QT5BASE
-    #depends on BR2_PACKAGE_QT5BASE_OPENGL
-    #depends on BR2_PACKAGE_QT5MULTIMEDIA
-    #depends on BR2_PACKAGE_QT5BASE_FONTCONFIG
-    #depends on BR2_PACKAGE_QT5TOOLS
-    #depends on BR2_PACKAGE_QT5TOOLS_LINGUIST_TOOLS
     depends on BR2_PACKAGE_FMT
     depends on BR2_PACKAGE_BOOST
-    depends on BR2_PACKAGE_FFMPEG  
+    depends on BR2_PACKAGE_FDK_AAC
     depends on BR2_PACKAGE_SDL2
     help
       A Emulator Citra core for Nintendo 3DS.

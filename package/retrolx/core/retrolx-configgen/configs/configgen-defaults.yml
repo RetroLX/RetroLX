@@ -175,9 +175,6 @@ megadrive:
 model3:
   emulator: supermodel
   core:     supermodel
-moonlight:
-  emulator: moonlight
-  core: moonlight
 mrboom:
   emulator: libretro
   core:     mrboom

@@ -11,7 +11,7 @@ RPCS3_SITE = https://github.com/RPCS3/rpcs3.git
 RPCS3_SITE_METHOD=git
 RPCS3_GIT_SUBMODULES=YES
 RPCS3_LICENSE = GPLv2
-RPCS3_DEPENDENCIES = qt5declarative libxml2 mesa3d libglu openal alsa-lib libevdev libglew libusb ffmpeg faudio wolfssl
+RPCS3_DEPENDENCIES = qt5declarative libxml2 mesa3d libglu openal alsa-lib libevdev libglew libusb ffmpeg faudio
 
 RPCS3_PKG_DIR = $(TARGET_DIR)/opt/retrolx/rpcs3
 RPCS3_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/rpcs3

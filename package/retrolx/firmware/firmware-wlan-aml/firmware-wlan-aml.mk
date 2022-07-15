@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-FIRMWARE_WLAN_AML_VERSION = 8c76ac351014e569cba5a2e8dac64f1fa1840080
+FIRMWARE_WLAN_AML_VERSION = dd00e1ec46cab50ab915cd23ce15369f7459d722
 FIRMWARE_WLAN_AML_SITE = $(call github,retrolx,brcmfmac_sdio-firmware,$(FIRMWARE_WLAN_AML_VERSION))
 
 FIRMWARE_WLAN_AML_TARGET_DIR=$(TARGET_DIR)/lib/firmware/brcm
