@@ -11,12 +11,12 @@ export BL31="${IMAGES_DIR}/atf/sun50i_h6/bl31.bin"
 export SCP="/dev/null"
 
 # U-Boot version
-export UBOOT_VERSION="v2022.04"
+export UBOOT_VERSION="v2022.07"
 
 # Clone U-Boot specified version
-wget "https://ftp.denx.de/pub/u-boot/u-boot-2022.04.tar.bz2"
-tar xf u-boot-2022.04.tar.bz2
-cd u-boot-2022.04
+wget "https://ftp.denx.de/pub/u-boot/u-boot-2022.07.tar.bz2"
+tar xf u-boot-2022.07.tar.bz2
+cd u-boot-2022.07
 
 # Apply patches
 PATCHES="${BOARD_DIR}/patches/uboot/*.patch"

@@ -4,9 +4,9 @@ HOST_DIR=$1
 IMAGES_DIR=$2
 
 # Clone U-Boot mainline
-wget "https://ftp.denx.de/pub/u-boot/u-boot-2022.04.tar.bz2"
-tar xf u-boot-2022.04.tar.bz2
-cd u-boot-2022.04
+wget "https://ftp.denx.de/pub/u-boot/u-boot-2022.07.tar.bz2"
+tar xf u-boot-2022.07.tar.bz2
+cd u-boot-2022.07
 
 # Apply patches
 PATCHES="${BOARD_DIR}/patches/uboot/*.patch"
