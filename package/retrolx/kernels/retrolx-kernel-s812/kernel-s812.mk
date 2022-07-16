@@ -5,7 +5,7 @@
 ################################################################################
 
 # Mainline kernel
-RETROLX_KERNEL_S812_VERSION = 5.15.51-1
+RETROLX_KERNEL_S812_VERSION = 5.15.55-1
 RETROLX_KERNEL_S812_ARCH = s812
 RETROLX_KERNEL_S812_SOURCE = kernel-$(RETROLX_KERNEL_S812_ARCH)-$(RETROLX_KERNEL_S812_VERSION).tar.gz
 RETROLX_KERNEL_S812_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_S812_ARCH)/$(RETROLX_KERNEL_S812_VERSION)
