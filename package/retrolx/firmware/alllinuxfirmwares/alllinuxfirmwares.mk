@@ -3,8 +3,8 @@
 # alllinuxfirmwares
 #
 ################################################################################
-# Version from 2022-05-09
-ALLLINUXFIRMWARES_VERSION = 20220509
+# Version from 2022-07-08
+ALLLINUXFIRMWARES_VERSION = 20220708
 ALLLINUXFIRMWARES_SITE = http://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 ALLLINUXFIRMWARES_SITE_METHOD = git
 
