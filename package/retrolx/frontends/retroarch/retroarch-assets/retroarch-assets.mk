@@ -3,8 +3,8 @@
 # RETROARCH ASSETS
 #
 ################################################################################
-# Version.:Commits on Mar 21, 2022
-RETROARCH_ASSETS_VERSION = f45dd1351e6bfb9f01e12bee8d358ad22a2bb8f9
+# Version.:Commits on May 29, 2022
+RETROARCH_ASSETS_VERSION = 1daf54ede25763c3ae196303d9dc27610a2338a7
 RETROARCH_ASSETS_SITE = $(call github,libretro,retroarch-assets,$(RETROARCH_ASSETS_VERSION))
 RETROARCH_ASSETS_LICENSE = GPL
 
