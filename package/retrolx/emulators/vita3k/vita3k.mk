@@ -3,8 +3,8 @@
 # VITA3K
 #
 ################################################################################
-# Version.: Commits on Jul 6, 2022
-VITA3K_VERSION = 4cc25397ccd1352ad80a887fb940c8b10687a890
+# Version.: Commits on Jul 18, 2022
+VITA3K_VERSION = c03a488368c2c00f51f2665be971f7a091541d7d
 VITA3K_SITE = https://github.com/vita3k/vita3k
 VITA3K_SITE_METHOD=git
 VITA3K_GIT_SUBMODULES=YES
@@ -17,7 +17,7 @@ VITA3K_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/vita3k
 # Should be set when the package cannot be built inside the source tree but needs a separate build directory.
 VITA3K_SUPPORTS_IN_SOURCE_BUILD = NO
 
-VITA3K_CONF_OPTS = -DBUILD_SHARED_LIBS=OFF -DUSE_DISCORD_RICH_PRESENCE=OFF
+VITA3K_CONF_OPTS = -DBUILD_SHARED_LIBS=OFF -DUSE_DISCORD_RICH_PRESENCE=OFF -DUSE_VITA3K_UPDATE=OFF
 
 define VTA3K_INSTALL_TARGET_CMDS
 	echo "Vita3K built as package, no rootfs install"

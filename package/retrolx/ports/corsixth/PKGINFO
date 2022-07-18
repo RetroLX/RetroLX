@@ -1,0 +1,6 @@
+pkgname = corsixth
+pkgver = 0.66-1
+pkgdesc = CorsixTH - Theme Hospital Engine
+group = port
+packager = https://retrolx.org 
+url = https://github.com/CorsixTH/CorsixTH

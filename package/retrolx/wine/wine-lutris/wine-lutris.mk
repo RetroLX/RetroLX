@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-WINE_LUTRIS_VERSION = lutris-7.2
+WINE_LUTRIS_VERSION = lutris-7.2-2
 WINE_LUTRIS_SITE = $(call github,lutris,wine,$(WINE_LUTRIS_VERSION))
 WINE_LUTRIS_LICENSE = LGPL-2.1+
 WINE_LUTRIS_DEPENDENCIES = host-bison host-flex host-wine-lutris

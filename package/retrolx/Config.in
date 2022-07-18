@@ -221,6 +221,9 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	# Commander Genius (Commander Keen series)
 	select BR2_PACKAGE_CGENIUS		    # ALL
 
+	# CorsixTH (Theme Hospital engine)
+	select BR2_PACKAGE_CORSIXTH		    # ALL
+
 	# Diablo 1 engine
 	select BR2_PACKAGE_DEVILUTIONX		    # ALL
 
@@ -378,9 +381,9 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_BEETLE_PSX          if !BR2_arm1176jzf_s && !BR2_cortex_a7 && !BR2_cortex_a35
 
 	# Sony PS2
-	select BR2_PACKAGE_PCSX2                        if BR2_x86_64
+	#qt6 select BR2_PACKAGE_PCSX2                        if BR2_x86_64
 	select BR2_PACKAGE_PLAY                         if BR2_x86_64 && BR2_PACKAGE_XORG7
-	select BR2_PACKAGE_LIBRETRO_PLAY		if BR2_x86_i686 || BR2_x86_64 || ( BR2_PACKAGE_RETROLX_HAS_GLES3  && !BR2_cortex_a35)
+	select BR2_PACKAGE_LIBRETRO_PLAY		if BR2_x86_i686 || BR2_x86_64 || (BR2_PACKAGE_RETROLX_HAS_GLES3 && !BR2_cortex_a35)
 
 	# Sony PS3
 	select BR2_PACKAGE_RPCS3                        if BR2_x86_64

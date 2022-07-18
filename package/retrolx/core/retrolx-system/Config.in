@@ -191,7 +191,6 @@ config BR2_PACKAGE_RETROLX_COMMON
 	select BR2_PACKAGE_HIDAPI
 	select BR2_PACKAGE_LIBCEC
 	select BR2_PACKAGE_LIBCURL
-	select BR2_PACKAGE_LIBENET
 	select BR2_PACKAGE_LIBEVDEV
 	select BR2_PACKAGE_LIBEPOXY
 	select BR2_PACKAGE_LIBGLIB2
@@ -760,7 +759,7 @@ config BR2_PACKAGE_RETROLX_XORG
 	select BR2_PACKAGE_LIBGTK3_X11			if BR2_PACKAGE_RETROLX_GTK3			
 	select BR2_PACKAGE_XTERM                        # terminal
 	select BR2_PACKAGE_OPENBOX                      # window manager
-	select BR2_PACKAGE_UNCLUTTER                    # hide mouse
+	#select BR2_PACKAGE_UNCLUTTER                    # hide mouse
 
 
 config BR2_PACKAGE_RETROLX_GPU_X86
