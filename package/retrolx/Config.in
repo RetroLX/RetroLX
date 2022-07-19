@@ -256,6 +256,9 @@ config BR2_PACKAGE_RETROLX_PORTS_SYSTEMS
 	# Prince of Persia
 	select BR2_PACKAGE_SDLPOP                   # ALL
 
+	# OpenTyrian
+	select BR2_PACKAGE_TYRIAN                   # ALL
+
 	# Xash3D-FWGS (Half-Life 1)
 	select BR2_PACKAGE_XASH3D                   # ALL
 
