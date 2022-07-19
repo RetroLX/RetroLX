@@ -1,4 +1,6 @@
 emulationstation
+es-theme-carbon
+pegasus
 retroarch
 lr-mrboom
 lr-prboom
@@ -18,5 +20,4 @@ lr-mame2003-plus
 devilutionx
 scummvm
 sdlpop
-es-theme-carbon
-pegasus
+solarus
