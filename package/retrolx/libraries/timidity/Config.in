@@ -1,0 +1,11 @@
+config BR2_PACKAGE_TIMIDITY
+	bool "timidity"
+	help
+	  TiMidity is a MIDI to WAVE converter that uses Gravis
+	  Ultrasound(*)-compatible patch files to generate digital audio data
+	  from General MIDI files. The audio data can be played through any
+	  sound device or stored on disk. On a fast machine, music can be
+	  played in real time. TiMidity runs under Linux, FreeBSD, HP-UX, SunOS, and
+	  Win32, and porting to other systems with gcc should be easy.
+
+	  https://sourceforge.net/projects/libtimidity/

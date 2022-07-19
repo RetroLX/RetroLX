@@ -1,0 +1,10 @@
+--- a/Makefile.am	2017-10-25 16:04:00.000000000 +0200
++++ b/Makefile.am	2022-07-19 14:00:32.320966150 +0200
+@@ -1,6 +1,6 @@
+ ACLOCAL_AMFLAGS = -I m4
+ 
+-SUBDIRS = src tests
++SUBDIRS = src
+ 
+ pcdata_DATA= libtimidity.pc
+ pcdatadir = $(libdir)/pkgconfig
