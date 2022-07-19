@@ -15,8 +15,16 @@ RETROARCH_INSTALL_STAGING = YES
 RETROARCH_PKG_DIR = $(TARGET_DIR)/opt/retrolx/retroarch
 RETROARCH_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/retroarch
 
-RETROARCH_CONF_OPTS = --disable-oss --enable-zlib --disable-qt --enable-threads --enable-ozone --enable-xmb --disable-discord
+RETROARCH_CONF_OPTS = --disable-oss --enable-zlib --disable-qt --enable-threads --enable-xmb --disable-discord
 RETROARCH_CONF_OPTS += --enable-flac --enable-lua --enable-networking --enable-translate --enable-rgui --disable-cdrom
+RETROARCH_CONF_OPTS += --disable-online_updater --disable-update_cores --disable-update_assets
+RETROARCH_CONF_OPTS += --with-assets_dir=$(RETROARCH_PKG_INSTALL_DIR)/usr/share/libretro/assets
+
+ifeq ($(BR2_PACKAGE_HAS_GLES3)$(BR2_x86_64),y)
+RETROARCH_CONF_OPTS += --enable-ozone
+else
+RETROARCH_CONF_OPTS += --disable-ozone
+endif
 
 ifeq ($(BR2_PACKAGE_FFMPEG),y)
 	RETROARCH_CONF_OPTS += --enable-ffmpeg
