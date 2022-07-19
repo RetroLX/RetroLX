@@ -3,8 +3,8 @@
 # C-Dogs
 #
 ################################################################################
-# Version.: Release on Oct 4, 2021
-CDOGS_VERSION = 1.1.1
+# Version.: Release on Jun 13, 2022
+CDOGS_VERSION = 1.3.1
 CDOGS_SITE = $(call github,cxong,cdogs-sdl,$(CDOGS_VERSION))
 
 CDOGS_DEPENDENCIES = sdl2 host-python-protobuf
