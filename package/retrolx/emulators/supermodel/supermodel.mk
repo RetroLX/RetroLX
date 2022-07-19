@@ -4,9 +4,8 @@
 #
 ################################################################################
 
-SUPERMODEL_VERSION = r888
-SUPERMODEL_SITE = https://svn.code.sf.net/p/model3emu/code/trunk
-SUPERMODEL_SITE_METHOD=svn
+SUPERMODEL_VERSION = d60feab2ca7739b59de602e55729bf7ef958ab58
+SUPERMODEL_SITE = $(call github,trzy,Supermodel,$(SUPERMODEL_VERSION))
 SUPERMODEL_DEPENDENCIES = sdl2 libglew libzip sdl2_net
 SUPERMODEL_LICENSE = GPLv3
 

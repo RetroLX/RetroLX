@@ -1,5 +1,5 @@
 pkgname = supermodel
-pkgver = r875-1
+pkgver = 20220719-1
 pkgdesc = Sega Model 3 emulator
 group = emulator
 packager = https://retrolx.org 
