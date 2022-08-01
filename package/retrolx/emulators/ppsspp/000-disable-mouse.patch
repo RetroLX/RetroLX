@@ -12,35 +12,33 @@ index 85b4982..4aae124 100644
  
  	if (!useEmuThread) {
  		NativeInitGraphics(graphicsContext);
-@@ -608,14 +606,7 @@ int main(int argc, char *argv[]) {
+@@ -876,11 +876,11 @@
  					}
  
- 					// Set variable here in case fullscreen was toggled by hotkey
--					g_Config.bFullScreen = fullscreen;
--
--					// Hide/Show cursor correctly toggling fullscreen
+ 					// Hide/Show cursor correctly toggling fullscreen
 -					if (lastUIState == UISTATE_INGAME && fullscreen && !g_Config.bShowTouchControls) {
--						SDL_ShowCursor(SDL_DISABLE);
--					} else if (lastUIState != UISTATE_INGAME || !fullscreen) {
--						SDL_ShowCursor(SDL_ENABLE);
++					/*if (lastUIState == UISTATE_INGAME && fullscreen && !g_Config.bShowTouchControls) {
+ 						SDL_ShowCursor(SDL_DISABLE);
+ 					} else if (lastUIState != UISTATE_INGAME || !fullscreen) {
+ 						SDL_ShowCursor(SDL_ENABLE);
 -					}
-+					g_Config.bFullScreen = fullscreen;					
++					}*/
  					break;
  				}
  
-@@ -754,15 +745,6 @@ int main(int argc, char *argv[]) {
- 		}
+@@ -1141,13 +1141,13 @@
  		if (g_QuitRequested)
  			break;
--#if !defined(MOBILE_DEVICE)
+ #if !defined(MOBILE_DEVICE)
 -		if (lastUIState != GetUIState()) {
--			lastUIState = GetUIState();
--			if (lastUIState == UISTATE_INGAME && g_Config.bFullScreen && !g_Config.bShowTouchControls)
--				SDL_ShowCursor(SDL_DISABLE);
--			if (lastUIState != UISTATE_INGAME || !g_Config.bFullScreen)
--				SDL_ShowCursor(SDL_ENABLE);
++		/*if (lastUIState != GetUIState()) {
+ 			lastUIState = GetUIState();
+ 			if (lastUIState == UISTATE_INGAME && g_Config.UseFullScreen() && !g_Config.bShowTouchControls)
+ 				SDL_ShowCursor(SDL_DISABLE);
+ 			if (lastUIState != UISTATE_INGAME || !g_Config.UseFullScreen())
+ 				SDL_ShowCursor(SDL_ENABLE);
 -		}
--#endif
++		}*/
+ #endif
  
- 		if (framecount % 60 == 0) {
- 			// glsl_refresh(); // auto-reloads modified GLSL shaders once per second.
+ 		// Disabled by default, needs a workaround to map to psp keys.
