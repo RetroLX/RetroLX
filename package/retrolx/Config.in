@@ -428,6 +428,5 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_FREECHAF            # ALL
 
 	help
-		All avaible systems for the selected architecture
-
+		Classic and modern consoles emulators
 
