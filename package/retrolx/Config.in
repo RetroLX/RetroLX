@@ -281,7 +281,7 @@ config BR2_PACKAGE_RETROLX_COMPUTER_SYSTEMS
 
 	# Commodore Amiga
 	select BR2_PACKAGE_FSUAE                if BR2_PACKAGE_RETROLX_IS_X86_ARCH
-	select BR2_PACKAGE_AMIBERRY             if !BR2_PACKAGE_RETROLX_IS_X86_ARCH
+	select BR2_PACKAGE_AMIBERRY             # ALL
 	select BR2_PACKAGE_LIBRETRO_PUAE        # ALL
 
 	# Atari 800 computers / 5200 console
