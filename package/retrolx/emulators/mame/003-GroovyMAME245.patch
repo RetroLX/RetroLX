@@ -175,167 +175,6 @@ index 00000000000..ab8b9570aae
 +            ./binaries-linux-gcc/groovymame_*.tar.bz2
 +            ./GroovyMAME-patch/GroovyMAME*.patch
 +#            ./binaries-win32-mingw/groovymame-mingw-win32-64bits.7z
-diff --git a/.github/workflows/ci-linux.yml b/.github/workflows/ci-linux.yml
-deleted file mode 100644
-index 4d6bcc1a518..00000000000
---- a/.github/workflows/ci-linux.yml
-+++ /dev/null
-@@ -1,60 +0,0 @@
--name: CI (Linux)
--
--on:
--  push:
--    paths:
--    - '.github/**'
--    - '3rdparty/**'
--    - 'hash/**'
--    - 'scripts/**'
--    - 'src/**'
--    - 'COPYING'
--    - 'makefile'
--  pull_request:
--    paths:
--    - '.github/**'
--    - '3rdparty/**'
--    - 'hash/**'
--    - 'scripts/**'
--    - 'src/**'
--    - 'COPYING'
--    - 'makefile'
--
--jobs:
--  build-linux:
--    runs-on: ubuntu-latest
--    strategy:
--      matrix:
--        compiler: [gcc, clang]
--        include:
--          - compiler: gcc
--            cc: gcc
--            cxx: g++
--            archopts: -U_FORTIFY_SOURCE
--          - compiler: clang
--            cc: clang
--            cxx: clang++
--    steps:
--      - uses: actions/checkout@master
--      - name: Install dependencies
--        run: |
--          sudo apt-get update
--          sudo apt-get install -y libsdl2-dev libsdl2-ttf-dev libasound2-dev libxinerama-dev libxi-dev qt5-default
--      - name: Install clang
--        if: matrix.compiler == 'clang'
--        run: sudo apt-get install -y clang
--      - name: Build
--        env:
--          OVERRIDE_CC: ${{ matrix.cc }}
--          OVERRIDE_CXX: ${{ matrix.cxx }}
--          ARCHOPTS: ${{ matrix.archopts }}
--          TOOLS: 1
--        run: make -j2
--      - name: Validate
--        run: ./mame -validate
--      - name: ORM check
--        run: python scripts/minimaws/minimaws.py load --executable ./mame --softwarepath hash
--      - uses: actions/upload-artifact@master
--        with:
--          name: mame-linux-${{ matrix.compiler }}-${{ github.sha }}
--          path: mame
-diff --git a/.github/workflows/ci-macos.yml b/.github/workflows/ci-macos.yml
-deleted file mode 100644
-index bab39b826da..00000000000
---- a/.github/workflows/ci-macos.yml
-+++ /dev/null
-@@ -1,38 +0,0 @@
--name: CI (macOS)
--
--on:
--  push:
--    paths:
--    - '.github/**'
--    - '3rdparty/**'
--    - 'scripts/**'
--    - 'src/**'
--    - 'COPYING'
--    - 'makefile'
--  pull_request:
--    paths:
--    - '.github/**'
--    - '3rdparty/**'
--    - 'scripts/**'
--    - 'src/**'
--    - 'COPYING'
--    - 'makefile'
--
--jobs:
--  build-macos:
--    runs-on: macOS-latest
--    steps:
--      - uses: actions/checkout@master
--      - name: Install dependencies
--        run: brew install python3 sdl2
--      - name: Build
--        env:
--          USE_LIBSDL: 1
--          TOOLS: 1
--        run: make -j2
--      - name: Validate
--        run: ./mame -validate
--      - uses: actions/upload-artifact@master
--        with:
--          name: mame-macos-${{ github.sha }}
--          path: mame
-diff --git a/.github/workflows/ci-windows.yml b/.github/workflows/ci-windows.yml
-deleted file mode 100644
-index a08f15b03ef..00000000000
---- a/.github/workflows/ci-windows.yml
-+++ /dev/null
-@@ -1,45 +0,0 @@
--name: CI (Windows)
--
--on:
--  push:
--    paths:
--    - '.github/**'
--    - '3rdparty/**'
--    - 'scripts/**'
--    - 'src/**'
--    - 'COPYING'
--    - 'makefile'
--  pull_request:
--    paths:
--    - '.github/**'
--    - '3rdparty/**'
--    - 'scripts/**'
--    - 'src/**'
--    - 'COPYING'
--    - 'makefile'
--
--jobs:
--
--  build-windows-gcc:
--    runs-on: windows-latest
--    defaults:
--      run:
--        shell: msys2 {0}
--    steps:
--    - uses: msys2/setup-msys2@v2
--      with:
--        install: git make mingw-w64-x86_64-gcc mingw-w64-x86_64-python mingw-w64-x86_64-lld mingw-w64-x86_64-libc++
--    - uses: actions/checkout@master
--    - name: Build
--      env:
--        MINGW64: "/mingw64"
--        ARCHOPTS: "-fuse-ld=lld"
--        OVERRIDE_AR: "llvm-ar"
--        TOOLS: 1
--      run: make -j2
--    - name: Validate
--      run: ./mame -validate
--    - uses: actions/upload-artifact@master
--      with:
--        name: mame-windows-gcc-${{ github.sha }}
--        path: mame.exe
 diff --git a/.gitignore b/.gitignore
 index f5231d17f98..c1ba2c658b1 100644
 --- a/.gitignore
@@ -2651,8 +2490,8 @@ index 00000000000..220364bbbcb
 +
 +#endif
 diff --git a/3rdparty/switchres/custom_video_drmkms.cpp b/3rdparty/switchres/custom_video_drmkms.cpp
-new file mode 100644
-index 00000000000..d3e74ca0155
+new file mode 100755
+index 00000000000..1cdb7c22d71
 --- /dev/null
 +++ b/3rdparty/switchres/custom_video_drmkms.cpp
 @@ -0,0 +1,1258 @@
@@ -3393,7 +3232,7 @@ index 00000000000..d3e74ca0155
 +	while (auto f = readdir(dir))
 +	{
 +		// Skip everything that starts with a dot
-+		if (!f->d_name || f->d_name[0] == '.')
++		if (f->d_name[0] == '.')
 +			continue;
 +		// Only symlinks matter
 +		if (f-> d_type != DT_LNK)
@@ -3570,7 +3409,7 @@ index 00000000000..d3e74ca0155
 +	// If we can't be master, no need to go further
 +	drmSetMaster(m_drm_fd);
 +	if (!drmIsMaster(m_drm_fd))
-+		return true;
++		return false;
 +
 +	// Setup the DRM mode structure
 +	drmModeModeInfo dmode = {};
@@ -3597,7 +3436,7 @@ index 00000000000..d3e74ca0155
 +
 +	mode->type |= CUSTOM_VIDEO_TIMING_DRMKMS;
 +
-+	if (mode->platform_data == 4815162342)
++	if (mode->type & MODE_DESKTOP)
 +	{
 +		log_verbose("DRM/KMS: <%d> (set_timing) <debug> restore desktop mode\n", m_id);
 +		drmModeSetCrtc(m_drm_fd, mp_crtc_desktop->crtc_id, mp_crtc_desktop->buffer_id, mp_crtc_desktop->x, mp_crtc_desktop->y, &m_desktop_output, 1, &mp_crtc_desktop->mode);
@@ -3915,7 +3754,7 @@ index 00000000000..d3e74ca0155
 +	return false;
 +}
 diff --git a/3rdparty/switchres/custom_video_drmkms.h b/3rdparty/switchres/custom_video_drmkms.h
-new file mode 100644
+new file mode 100755
 index 00000000000..43e2a3acf47
 --- /dev/null
 +++ b/3rdparty/switchres/custom_video_drmkms.h
@@ -4742,7 +4581,7 @@ index 00000000000..d27a2b7326b
 +};
 diff --git a/3rdparty/switchres/custom_video_xrandr.cpp b/3rdparty/switchres/custom_video_xrandr.cpp
 new file mode 100644
-index 00000000000..7a7cdde30da
+index 00000000000..14b0d3bc05b
 --- /dev/null
 +++ b/3rdparty/switchres/custom_video_xrandr.cpp
 @@ -0,0 +1,1192 @@
@@ -4880,21 +4719,21 @@ index 00000000000..7a7cdde30da
 +		if (p_XOpenDisplay == NULL)
 +		{
 +			log_error("XRANDR: <%d> (xrandr_timing) [ERROR] missing func %s in %s\n", m_id, "XOpenDisplay", "X11_LIBRARY");
-+			throw new std::exception();
++			throw std::exception();
 +		}
 +		else
 +		{
 +			if (!XOpenDisplay(NULL))
 +			{
 +				log_verbose("XRANDR: <%d> (xrandr_timing) X server not found\n", m_id);
-+				throw new std::exception();
++				throw std::exception();
 +			}
 +		}
 +	}
 +	else
 +	{
 +		log_error("XRANDR: <%d> (xrandr_timing) [ERROR] missing %s library\n", m_id, "X11_LIBRARY");
-+		throw new std::exception();
++		throw std::exception();
 +	}
 +
 +	s_total_managed_screen++;
@@ -6999,7 +6838,7 @@ index 00000000000..f56faa84338
 +};
 diff --git a/3rdparty/switchres/display_sdl2.cpp b/3rdparty/switchres/display_sdl2.cpp
 new file mode 100644
-index 00000000000..5fa36c201bf
+index 00000000000..ede56ceae1e
 --- /dev/null
 +++ b/3rdparty/switchres/display_sdl2.cpp
 @@ -0,0 +1,301 @@
@@ -7097,13 +6936,13 @@ index 00000000000..5fa36c201bf
 +	else
 +	{
 +		log_verbose("Switchres/SDL2: (%s): SDL2 video wasn't initialized\n", __FUNCTION__);
-+		throw new std::exception();
++		throw std::exception();
 +	}
 +	// For now, only allow the SDL2 display manager for the KMSDRM backend
 +	if ( strcmp("KMSDRM", SDL_GetCurrentVideoDriver()) != 0 )
 +	{
 +		log_info("Switchres/SDL2: (%s): SDL2 is only available for KMSDRM for now.\n", __FUNCTION__);
-+		throw new std::exception();
++		throw std::exception();
 +	}
 +
 +	// Get display settings
@@ -8222,10 +8061,10 @@ index 00000000000..6c5de8104ae
 +#endif
 diff --git a/3rdparty/switchres/grid.cpp b/3rdparty/switchres/grid.cpp
 new file mode 100644
-index 00000000000..072c52ff8f1
+index 00000000000..0123fbebc10
 --- /dev/null
 +++ b/3rdparty/switchres/grid.cpp
-@@ -0,0 +1,228 @@
+@@ -0,0 +1,229 @@
 +/**************************************************************
 +
 +   grid.cpp - Simple test grid
@@ -8405,6 +8244,7 @@ index 00000000000..072c52ff8f1
 +
 +		// Create renderer
 +		display_array[disp].renderer = SDL_CreateRenderer(display_array[disp].window, -1, SDL_RENDERER_ACCELERATED);
++		SDL_RenderPresent(display_array[disp].renderer);
 +
 +		// Draw grid
 +		draw_grid(0, display_array[disp].width, display_array[disp].height, display_array[disp].renderer);
@@ -11573,10 +11413,10 @@ index a1fa4f5eb9d..4afdceb6db1 100644
  
  -- system lib options
 diff --git a/scripts/src/3rdparty.lua b/scripts/src/3rdparty.lua
-index 0c6c03663f6..5df34bac34b 100644
+index 1787fc09ad3..3193d48bbce 100644
 --- a/scripts/src/3rdparty.lua
 +++ b/scripts/src/3rdparty.lua
-@@ -2394,3 +2394,75 @@ project "asmjit"
+@@ -2401,3 +2401,75 @@ project "asmjit"
  		MAME_DIR .. "3rdparty/asmjit/src/asmjit/x86/x86rapass_p.h",
  	}
  end
@@ -11653,10 +11493,10 @@ index 0c6c03663f6..5df34bac34b 100644
 +	addoptionsfromstring(str)
 +end
 diff --git a/scripts/src/main.lua b/scripts/src/main.lua
-index c76fa1da227..2da2a2ad1ba 100644
+index ce31dd7f5c4..94ee2b32f17 100644
 --- a/scripts/src/main.lua
 +++ b/scripts/src/main.lua
-@@ -191,6 +191,7 @@ end
+@@ -189,6 +189,7 @@ end
  		"bgfx",
  		"bimg",
  		"bx",
@@ -11665,17 +11505,17 @@ index c76fa1da227..2da2a2ad1ba 100644
  	}
  
 diff --git a/scripts/src/osd/modules.lua b/scripts/src/osd/modules.lua
-index e431bb93d22..073a380665f 100644
+index 3a44a1c7d05..0b7cc213dc8 100644
 --- a/scripts/src/osd/modules.lua
 +++ b/scripts/src/osd/modules.lua
-@@ -117,6 +117,7 @@ function osdmodulesbuild()
+@@ -121,6 +121,7 @@ function osdmodulesbuild()
  		MAME_DIR .. "src/osd/modules/monitor/monitor_dxgi.cpp",
  		MAME_DIR .. "src/osd/modules/monitor/monitor_sdl.cpp",
  		MAME_DIR .. "src/osd/modules/monitor/monitor_mac.cpp",
 +		MAME_DIR .. "src/osd/modules/switchres/switchres_module.cpp",
  	}
  	includedirs {
- 		ext_includedir("asio"),
+ 		MAME_DIR .. "src/osd",
 diff --git a/scripts/src/osd/sdl.lua b/scripts/src/osd/sdl.lua
 index 25ef22fd3a5..2305e371ae8 100644
 --- a/scripts/src/osd/sdl.lua
@@ -11708,23 +11548,23 @@ index 26850d4ec85..4527fba1981 100644
  		buildoptions {
  			"-I" .. backtick(_OPTIONS["QT_HOME"] .. "/bin/qmake -query QT_INSTALL_HEADERS"),
 diff --git a/src/emu/emuopts.cpp b/src/emu/emuopts.cpp
-index 8959c00da03..43230bbaacc 100644
+index 0da23495dc8..bebfa7b298e 100644
 --- a/src/emu/emuopts.cpp
 +++ b/src/emu/emuopts.cpp
 @@ -90,7 +90,12 @@ const options_entry emu_options::s_option_entries[] =
- 	{ OPTION_SLEEP,                                      "1",         OPTION_BOOLEAN,    "enable sleeping, which gives time back to other applications when idle" },
- 	{ OPTION_SPEED "(0.01-100)",                         "1.0",       OPTION_FLOAT,      "controls the speed of gameplay, relative to realtime; smaller numbers are slower" },
- 	{ OPTION_REFRESHSPEED ";rs",                         "0",         OPTION_BOOLEAN,    "automatically adjust emulation speed to keep the emulated refresh rate slower than the host screen" },
--	{ OPTION_LOWLATENCY ";lolat",                        "0",         OPTION_BOOLEAN,    "draws new frame before throttling to reduce input latency" },
-+	{ OPTION_SYNCREFRESH ";srf",                         "0",         OPTION_BOOLEAN,    "enable using the start of VBLANK for throttling instead of the game time" },
-+	{ OPTION_SYNCAUDIO ";sau",                           "1",         OPTION_BOOLEAN,    "enable audio resampling to stay synchronized with video" },
-+	{ OPTION_LOWLATENCY ";lolat",                        "1",         OPTION_BOOLEAN,    "draws new frame before throttling to reduce input latency" },
-+	{ OPTION_FRAMEDELAY ";fd",                           "0",         OPTION_INTEGER,    "delays the start of each frame to minimize input lag (0-9)"},
-+	{ OPTION_VSYNC_OFFSET,                               "0",         OPTION_INTEGER,    "offset vsync position by this many lines to prevent tearing with frame_delay and high-resolution displays" },
-+	{ OPTION_BLACK_FRAME_INSERTION ";bfi",               "0",         OPTION_INTEGER,    "number of black frames to insert after each normal frame, intended to reduce motion blur on 120+ Hz monitors" },
+ 	{ OPTION_SLEEP,                                      "1",         core_options::option_type::BOOLEAN,    "enable sleeping, which gives time back to other applications when idle" },
+ 	{ OPTION_SPEED "(0.01-100)",                         "1.0",       core_options::option_type::FLOAT,      "controls the speed of gameplay, relative to realtime; smaller numbers are slower" },
+ 	{ OPTION_REFRESHSPEED ";rs",                         "0",         core_options::option_type::BOOLEAN,    "automatically adjust emulation speed to keep the emulated refresh rate slower than the host screen" },
+-	{ OPTION_LOWLATENCY ";lolat",                        "0",         core_options::option_type::BOOLEAN,    "draws new frame before throttling to reduce input latency" },
++	{ OPTION_SYNCREFRESH ";srf",                         "0",         core_options::option_type::BOOLEAN,    "enable using the start of VBLANK for throttling instead of the game time" },
++	{ OPTION_SYNCAUDIO ";sau",                           "1",         core_options::option_type::BOOLEAN,    "enable audio resampling to stay synchronized with video" },
++	{ OPTION_LOWLATENCY ";lolat",                        "1",         core_options::option_type::BOOLEAN,    "draws new frame before throttling to reduce input latency" },
++	{ OPTION_FRAMEDELAY ";fd",                           "0",         core_options::option_type::INTEGER,    "delays the start of each frame to minimize input lag (0-9)"},
++	{ OPTION_VSYNC_OFFSET,                               "0",         core_options::option_type::INTEGER,    "offset vsync position by this many lines to prevent tearing with frame_delay and high-resolution displays" },
++	{ OPTION_BLACK_FRAME_INSERTION ";bfi",               "0",         core_options::option_type::INTEGER,    "number of black frames to insert after each normal frame, intended to reduce motion blur on 120+ Hz monitors" },
  
  	// render options
- 	{ nullptr,                                           nullptr,     OPTION_HEADER,     "CORE RENDER OPTIONS" },
+ 	{ nullptr,                                           nullptr,     core_options::option_type::HEADER,     "CORE RENDER OPTIONS" },
 diff --git a/src/emu/emuopts.h b/src/emu/emuopts.h
 index 296e2e46590..7bdc04e57a8 100644
 --- a/src/emu/emuopts.h
@@ -11756,23 +11596,49 @@ index 296e2e46590..7bdc04e57a8 100644
  	// core render options
  	bool keep_aspect() const { return bool_value(OPTION_KEEPASPECT); }
 diff --git a/src/emu/render.cpp b/src/emu/render.cpp
-index b9a96e81fad..de71f428958 100644
+index b9a96e81fad..35ba5852eb1 100644
 --- a/src/emu/render.cpp
 +++ b/src/emu/render.cpp
-@@ -1275,7 +1275,7 @@ void render_target::compute_visible_area(s32 target_width, s32 target_height, fl
+@@ -377,6 +377,7 @@ void render_texture::set_bitmap(bitmap_t &bitmap, const rectangle &sbounds, text
+ 	m_bitmap = &bitmap;
+ 	m_sbounds = sbounds;
+ 	m_format = format;
++	m_curseq++;
+ 
+ 	// invalidate all scaled versions
+ 	for (auto & elem : m_scaled)
+@@ -433,7 +434,7 @@ void render_texture::get_scaled(u32 dwidth, u32 dheight, render_texinfo &texinfo
+ 		texinfo.width = swidth;
+ 		texinfo.height = sheight;
+ 		// palette will be set later
+-		texinfo.seqid = ++m_curseq;
++		texinfo.seqid = m_curseq;
+ 	}
+ 	else
+ 	{
+@@ -488,7 +489,7 @@ void render_texture::get_scaled(u32 dwidth, u32 dheight, render_texinfo &texinfo
+ 		texinfo.width = dwidth;
+ 		texinfo.height = dheight;
+ 		// palette will be set later
+-		texinfo.seqid = scaled->seqid;
++		texinfo.seqid = m_curseq;
+ 	}
+ }
+ 
+@@ -1275,7 +1276,7 @@ void render_target::compute_visible_area(s32 target_width, s32 target_height, fl
  						continue;
  
  					// score the result
 -					float new_diff = fabsf(aspect_ratio * (a / b) - (ab / bb));
-+					float new_diff = fabsf(aspect_ratio - (a / b) * (ab / bb));
++					float new_diff = fabsf(aspect_ratio - (a / b) / (ab / bb));
  
  					if (new_diff <= diff)
  					{
 diff --git a/src/emu/sound.cpp b/src/emu/sound.cpp
-index a4cb5041d8f..b717a563761 100644
+index b74ff652b65..10491988265 100644
 --- a/src/emu/sound.cpp
 +++ b/src/emu/sound.cpp
-@@ -1531,13 +1531,13 @@ void sound_manager::update(int param)
+@@ -1545,13 +1545,13 @@ void sound_manager::update(int param)
  	stream_buffer::sample_t lprev = 0, rprev = 0;
  
  	// now downmix the final result
@@ -11789,7 +11655,7 @@ index a4cb5041d8f..b717a563761 100644
  
  		// ensure that changing the compression won't reverse direction to reduce "pops"
  		stream_buffer::sample_t lsamp = m_leftmix[sampindex];
-@@ -1571,7 +1571,7 @@ void sound_manager::update(int param)
+@@ -1585,7 +1585,7 @@ void sound_manager::update(int param)
  			rsamp = -1.0;
  		finalmix[finalmix_offset++] = s16(rsamp * 32767.0);
  	}
@@ -11981,7 +11847,7 @@ index da57d6b8a98..2388ad6b7ca 100644
  
  	static const attoseconds_t ATTOSECONDS_PER_SPEED_UPDATE = ATTOSECONDS_PER_SECOND / 4;
 diff --git a/src/frontend/mame/ui/info.cpp b/src/frontend/mame/ui/info.cpp
-index 5d4b8c61cb2..e66aecfc4c5 100644
+index ce74942cbd2..27b98a49fe9 100644
 --- a/src/frontend/mame/ui/info.cpp
 +++ b/src/frontend/mame/ui/info.cpp
 @@ -19,6 +19,7 @@
@@ -12011,7 +11877,7 @@ index 5d4b8c61cb2..e66aecfc4c5 100644
  	}
  
 diff --git a/src/frontend/mame/ui/submenu.cpp b/src/frontend/mame/ui/submenu.cpp
-index 496201c1cc4..cb38898ebde 100644
+index 4e470251b7a..1b3bb57d090 100644
 --- a/src/frontend/mame/ui/submenu.cpp
 +++ b/src/frontend/mame/ui/submenu.cpp
 @@ -122,7 +122,6 @@ std::vector<submenu::option> submenu::video_options()
@@ -12031,17 +11897,17 @@ index 496201c1cc4..cb38898ebde 100644
  			{ option_type::OSD,  N_("Wait Vertical Sync"),                      OSDOPTION_WAITVSYNC } };
  }
  
-@@ -263,7 +262,7 @@ void submenu::handle(event const *ev)
+@@ -264,7 +263,7 @@ void submenu::handle(event const *ev)
  			{
- 			case OPTION_BOOLEAN:
+ 			case core_options::option_type::BOOLEAN:
  				changed = true;
 -				sm_option.options->set_value(sm_option.name, !strcmp(sm_option.entry->value(),"1") ? "0" : "1", OPTION_PRIORITY_CMDLINE);
 +				sm_option.options->set_value(sm_option.name, !strcmp(sm_option.entry->value(),"1") ? false : true, OPTION_PRIORITY_CMDLINE);
  				break;
- 			case OPTION_INTEGER:
+ 			case core_options::option_type::INTEGER:
  				if (ev->iptkey == IPT_UI_LEFT || ev->iptkey == IPT_UI_RIGHT)
 diff --git a/src/frontend/mame/ui/ui.cpp b/src/frontend/mame/ui/ui.cpp
-index 6c2f0d35286..53116bd7da6 100644
+index e0c0de0d4ab..3d5f7105c64 100644
 --- a/src/frontend/mame/ui/ui.cpp
 +++ b/src/frontend/mame/ui/ui.cpp
 @@ -43,6 +43,7 @@
@@ -12052,7 +11918,7 @@ index 6c2f0d35286..53116bd7da6 100644
  
  #include <chrono>
  #include <functional>
-@@ -229,6 +230,9 @@ void mame_ui_manager::init()
+@@ -227,6 +228,9 @@ void mame_ui_manager::init()
  			configuration_manager::load_delegate(&mame_ui_manager::config_load, this),
  			configuration_manager::save_delegate(&mame_ui_manager::config_save, this));
  
@@ -12062,7 +11928,7 @@ index 6c2f0d35286..53116bd7da6 100644
  	// create mouse bitmap
  	uint32_t *dst = &m_mouse_bitmap.pix(0);
  	memcpy(dst,mouse_bitmap,32*32*sizeof(uint32_t));
-@@ -1461,6 +1465,14 @@ std::vector<ui::menu_item> mame_ui_manager::slider_init(running_machine &machine
+@@ -1459,6 +1463,14 @@ std::vector<ui::menu_item> mame_ui_manager::slider_init(running_machine &machine
  	// add overall volume
  	slider_alloc(_("Master Volume"), -32, 0, 0, 1, std::bind(&mame_ui_manager::slider_volume, this, _1, _2));
  
@@ -12077,7 +11943,7 @@ index 6c2f0d35286..53116bd7da6 100644
  	// add per-channel volume
  	mixer_input info;
  	for (int item = 0; machine.sound().indexed_mixer_input(item, info); item++)
-@@ -1491,7 +1503,7 @@ std::vector<ui::menu_item> mame_ui_manager::slider_init(running_machine &machine
+@@ -1489,7 +1501,7 @@ std::vector<ui::menu_item> mame_ui_manager::slider_init(running_machine &machine
  		for (device_execute_interface &exec : execute_interface_enumerator(machine.root_device()))
  		{
  			std::string str = string_format(_("Overclock CPU %1$s"), exec.device().tag());
@@ -12086,7 +11952,7 @@ index 6c2f0d35286..53116bd7da6 100644
  		}
  		for (device_sound_interface &snd : sound_interface_enumerator(machine.root_device()))
  		{
-@@ -1499,7 +1511,7 @@ std::vector<ui::menu_item> mame_ui_manager::slider_init(running_machine &machine
+@@ -1497,7 +1509,7 @@ std::vector<ui::menu_item> mame_ui_manager::slider_init(running_machine &machine
  			if (!snd.device().interface(exec) && snd.device().unscaled_clock() != 0)
  			{
  				std::string str = string_format(_("Overclock %1$s sound"), snd.device().tag());
@@ -12095,7 +11961,7 @@ index 6c2f0d35286..53116bd7da6 100644
  			}
  		}
  	}
-@@ -1596,6 +1608,8 @@ std::vector<ui::menu_item> mame_ui_manager::slider_init(running_machine &machine
+@@ -1594,6 +1606,8 @@ std::vector<ui::menu_item> mame_ui_manager::slider_init(running_machine &machine
  	}
  #endif
  
@@ -12104,7 +11970,7 @@ index 6c2f0d35286..53116bd7da6 100644
  	std::vector<ui::menu_item> items;
  	for (auto &slider : m_sliders)
  	{
-@@ -1622,6 +1636,36 @@ int32_t mame_ui_manager::slider_volume(std::string *str, int32_t newval)
+@@ -1620,6 +1634,36 @@ int32_t mame_ui_manager::slider_volume(std::string *str, int32_t newval)
  }
  
  
@@ -12141,7 +12007,7 @@ index 6c2f0d35286..53116bd7da6 100644
  //-------------------------------------------------
  //  slider_mixervol - single channel volume
  //  slider callback
-@@ -1675,7 +1719,7 @@ int32_t mame_ui_manager::slider_overclock(device_t &device, std::string *str, in
+@@ -1673,7 +1717,7 @@ int32_t mame_ui_manager::slider_overclock(device_t &device, std::string *str, in
  	if (newval != SLIDER_NOCHANGE)
  		device.set_clock_scale((float)newval * 0.001f);
  	if (str)
@@ -12150,7 +12016,7 @@ index 6c2f0d35286..53116bd7da6 100644
  	return floor(device.clock_scale() * 1000.0 + 0.5);
  }
  
-@@ -2228,3 +2272,83 @@ void ui_colors::refresh(const ui_options &options)
+@@ -2226,3 +2270,83 @@ void ui_colors::refresh(const ui_options &options)
  	m_dipsw_color = options.dipsw_color();
  	m_slider_color = options.slider_color();
  }
@@ -12235,7 +12101,7 @@ index 6c2f0d35286..53116bd7da6 100644
 +	}
 +}
 diff --git a/src/frontend/mame/ui/ui.h b/src/frontend/mame/ui/ui.h
-index cec1ed67cfe..61d07b9d666 100644
+index e773e669cd6..020248ec666 100644
 --- a/src/frontend/mame/ui/ui.h
 +++ b/src/frontend/mame/ui/ui.h
 @@ -60,6 +60,64 @@ class laserdisc_device;
@@ -12329,65 +12195,65 @@ index cec1ed67cfe..61d07b9d666 100644
  
  
 diff --git a/src/osd/modules/lib/osdobj_common.cpp b/src/osd/modules/lib/osdobj_common.cpp
-index 52ddca76ca0..b9f7d9ad528 100644
+index 38d62aba8ae..2546abdaca9 100644
 --- a/src/osd/modules/lib/osdobj_common.cpp
 +++ b/src/osd/modules/lib/osdobj_common.cpp
 @@ -59,7 +59,7 @@ const options_entry osd_options::s_option_entries[] =
- 	{ OSDOPTION_WINDOW ";w",                  "0",              OPTION_BOOLEAN,   "enable window mode; otherwise, full screen mode is assumed" },
- 	{ OSDOPTION_MAXIMIZE ";max",              "1",              OPTION_BOOLEAN,   "default to maximized windows" },
- 	{ OSDOPTION_WAITVSYNC ";vs",              "0",              OPTION_BOOLEAN,   "enable waiting for the start of VBLANK before flipping screens (reduces tearing effects)" },
--	{ OSDOPTION_SYNCREFRESH ";srf",           "0",              OPTION_BOOLEAN,   "enable using the start of VBLANK for throttling instead of the game time" },
-+	{ OSDOPTION_SYNC_MODE "(0-4)",            "2",              OPTION_INTEGER,   "sync mode"},
- 	{ OSD_MONITOR_PROVIDER,                   OSDOPTVAL_AUTO,   OPTION_STRING,    "monitor discovery method: " },
+ 	{ OSDOPTION_WINDOW ";w",                  "0",              core_options::option_type::BOOLEAN,   "enable window mode; otherwise, full screen mode is assumed" },
+ 	{ OSDOPTION_MAXIMIZE ";max",              "1",              core_options::option_type::BOOLEAN,   "default to maximized windows" },
+ 	{ OSDOPTION_WAITVSYNC ";vs",              "0",              core_options::option_type::BOOLEAN,   "enable waiting for the start of VBLANK before flipping screens (reduces tearing effects)" },
+-	{ OSDOPTION_SYNCREFRESH ";srf",           "0",              core_options::option_type::BOOLEAN,   "enable using the start of VBLANK for throttling instead of the game time" },
++	{ OSDOPTION_SYNC_MODE "(0-4)",            "2",              core_options::option_type::INTEGER,   "sync mode"},
+ 	{ OSD_MONITOR_PROVIDER,                   OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "monitor discovery method: " },
  
  	// per-window options
 @@ -91,10 +91,46 @@ const options_entry osd_options::s_option_entries[] =
  
  	// full screen options
- 	{ nullptr,                                nullptr,          OPTION_HEADER,    "OSD FULL SCREEN OPTIONS" },
--	{ OSDOPTION_SWITCHRES,                    "0",              OPTION_BOOLEAN,   "enable resolution switching" },
-+	{ OSDOPTION_SWITCHRES,                    "1",              OPTION_BOOLEAN,   "enable resolution switching" },
-+	{ OSDOPTION_SWITCHRES_INI,                "0",              OPTION_BOOLEAN,   "read configuration from switchres.ini" },
-+	{ OSDOPTION_SWITCHRES_BACKEND,            "auto",           OPTION_STRING,    "Switchres backend to use (adl, ati, powerstrip, xrandr, drmkms)" },
-+	{ OSDOPTION_MODE_SETTING,                 "0",              OPTION_BOOLEAN,   "force resolution switching through Switchres backend" },
-+	{ OSDOPTION_MODELINE_GENERATION ";ml",    "1",              OPTION_BOOLEAN,   "Automatic generation of modelines based on the specified monitor type" },
-+	{ OSDOPTION_MONITOR ";m",                 "generic_15",     OPTION_STRING,    "Monitor type, e.g.: generic_15, arcade_15, lcd, custom, etc." },
-+	{ OSDOPTION_INTERLACE ";in",              "1",              OPTION_BOOLEAN,   "Enable interlaced scanning when necessary" },
-+	{ OSDOPTION_DOUBLESCAN ";ds",             "0",              OPTION_BOOLEAN,   "Enable double scanning when necessary (unsupported by some backends/gpus)" },
-+	{ OSDOPTION_SUPER_WIDTH ";cs",            "2560",           OPTION_INTEGER,   "Automatically apply -unevenstretchx if resolution width is equal or greater than this value" },
-+	{ OSDOPTION_CHANGERES ";cr",              "1",              OPTION_BOOLEAN,   "Enable dynamic in-game video mode switching" },
-+	{ OSDOPTION_LOCK_SYSTEM_MODES ";lsm",     "1",              OPTION_BOOLEAN,   "Lock system (non-custom) video modes, only use modes created by us" },
-+	{ OSDOPTION_LOCK_UNSUPPORTED_MODES ";lum","1",              OPTION_BOOLEAN,   "Lock video modes reported as unsupported by your monitor's EDID" },
-+	{ OSDOPTION_REFRESH_DONT_CARE ";rdc",     "0",              OPTION_BOOLEAN,   "Ignore video mode's refresh reported by OS when checking ranges" },
-+	{ OSDOPTION_DOTCLOCK_MIN ";dcm",          "0",              OPTION_FLOAT,     "Lowest pixel clock supported by video card, in MHz, default is 0" },
-+	{ OSDOPTION_V_SHIFT_CORRECT,              "0",              OPTION_INTEGER,   "Apply vertical shift correction for multi-standard consumer CRT TVs"},
-+	{ OSDOPTION_PIXEL_PRECISION,              "1",              OPTION_BOOLEAN,   "Calculate horizontal values with 1-pixel precision to improve horizontal centering" },
-+	{ OSDOPTION_SYNC_REFRESH_TOLERANCE ";srt","2.0",            OPTION_FLOAT,     "Maximum refresh difference, in Hz, allowed in order to synchronize" },
-+	{ OSDOPTION_INTERLACE_FORCE_EVEN,         "0",              OPTION_BOOLEAN,   "Calculate all vertical values of interlaced modes as even numbers. Required by AMD APU hardware on Linux" },
-+	{ OSDOPTION_AUTOSYNC,                     "1",              OPTION_BOOLEAN,   "automatically enable syncrefresh if refresh difference is below syncrefresh_tolerance" },
-+	{ OSDOPTION_AUTOFILTER,                   "1",              OPTION_BOOLEAN,   "automatically set bilinear filtering with fractional stretching or interlaced " },
-+	{ OSDOPTION_AUTOSTRETCH,                  "1",              OPTION_BOOLEAN,   "automatically set scaling mode (integer or fractional) based on the selected video mode " },
-+	{ OSDOPTION_SCREEN_COMPOSITING,           "0",              OPTION_BOOLEAN,   "Readjust relative screen positions of a multi-display setup after mode switching (Linux)" },
-+	{ OSDOPTION_SCREEN_REORDERING,            "0",              OPTION_BOOLEAN,   "Reallocates desktop multiple screens stacked vertically, so super-resolutions fit (Linux)" },
-+	{ OSDOPTION_ALLOW_HW_REFRESH,             "0",              OPTION_BOOLEAN,   "Allow on-the-fly mode addition (Windows)" },
-+	{ OSDOPTION_MODELINE ";mode",             "auto",           OPTION_STRING,    "Use custom defined modeline" },
-+	{ OSDOPTION_PS_TIMING ";pst",             "auto",           OPTION_STRING,    "Use custom Powertrip timing string" },
-+	{ OSDOPTION_LCD_RANGE ";lcd",             "auto",           OPTION_STRING,    "Add custom LCD range, VfreqMin-VfreqMax, in Hz, e.g.: 55.50-61.00" },
-+	{ OSDOPTION_CRT_RANGE "0",                "auto",           OPTION_STRING,    "Add custom CRT range, see documentation for details." },
-+	{ OSDOPTION_CRT_RANGE "1",                "auto",           OPTION_STRING,    "Add custom CRT range" },
-+	{ OSDOPTION_CRT_RANGE "2",                "auto",           OPTION_STRING,    "Add custom CRT range" },
-+	{ OSDOPTION_CRT_RANGE "3",                "auto",           OPTION_STRING,    "Add custom CRT range" },
-+	{ OSDOPTION_CRT_RANGE "4",                "auto",           OPTION_STRING,    "Add custom CRT range" },
-+	{ OSDOPTION_CRT_RANGE "5",                "auto",           OPTION_STRING,    "Add custom CRT range" },
-+	{ OSDOPTION_CRT_RANGE "6",                "auto",           OPTION_STRING,    "Add custom CRT range" },
-+	{ OSDOPTION_CRT_RANGE "7",                "auto",           OPTION_STRING,    "Add custom CRT range" },
-+	{ OSDOPTION_CRT_RANGE "8",                "auto",           OPTION_STRING,    "Add custom CRT range" },
-+	{ OSDOPTION_CRT_RANGE "9",                "auto",           OPTION_STRING,    "Add custom CRT range" },
+ 	{ nullptr,                                nullptr,          core_options::option_type::HEADER,    "OSD FULL SCREEN OPTIONS" },
+-	{ OSDOPTION_SWITCHRES,                    "0",              core_options::option_type::BOOLEAN,   "enable resolution switching" },
++	{ OSDOPTION_SWITCHRES,                    "1",              core_options::option_type::BOOLEAN,   "enable resolution switching" },
++	{ OSDOPTION_SWITCHRES_INI,                "0",              core_options::option_type::BOOLEAN,   "read configuration from switchres.ini" },
++	{ OSDOPTION_SWITCHRES_BACKEND,            OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Switchres backend to use (adl, ati, powerstrip, xrandr, drmkms)" },
++	{ OSDOPTION_MODE_SETTING,                 "0",              core_options::option_type::BOOLEAN,   "force resolution switching through Switchres backend" },
++	{ OSDOPTION_MODELINE_GENERATION ";ml",    "1",              core_options::option_type::BOOLEAN,   "Automatic generation of modelines based on the specified monitor type" },
++	{ OSDOPTION_MONITOR ";m",                 "generic_15",     core_options::option_type::STRING,    "Monitor type, e.g.: generic_15, arcade_15, lcd, custom, etc." },
++	{ OSDOPTION_INTERLACE ";in",              "1",              core_options::option_type::BOOLEAN,   "Enable interlaced scanning when necessary" },
++	{ OSDOPTION_DOUBLESCAN ";ds",             "0",              core_options::option_type::BOOLEAN,   "Enable double scanning when necessary (unsupported by some backends/gpus)" },
++	{ OSDOPTION_SUPER_WIDTH ";cs",            "2560",           core_options::option_type::INTEGER,   "Automatically apply -unevenstretchx if resolution width is equal or greater than this value" },
++	{ OSDOPTION_CHANGERES ";cr",              "1",              core_options::option_type::BOOLEAN,   "Enable dynamic in-game video mode switching" },
++	{ OSDOPTION_LOCK_SYSTEM_MODES ";lsm",     "1",              core_options::option_type::BOOLEAN,   "Lock system (non-custom) video modes, only use modes created by us" },
++	{ OSDOPTION_LOCK_UNSUPPORTED_MODES ";lum","1",              core_options::option_type::BOOLEAN,   "Lock video modes reported as unsupported by your monitor's EDID" },
++	{ OSDOPTION_REFRESH_DONT_CARE ";rdc",     "0",              core_options::option_type::BOOLEAN,   "Ignore video mode's refresh reported by OS when checking ranges" },
++	{ OSDOPTION_DOTCLOCK_MIN ";dcm",          "0",              core_options::option_type::FLOAT,     "Lowest pixel clock supported by video card, in MHz, default is 0" },
++	{ OSDOPTION_V_SHIFT_CORRECT,              "0",              core_options::option_type::INTEGER,   "Apply vertical shift correction for multi-standard consumer CRT TVs"},
++	{ OSDOPTION_PIXEL_PRECISION,              "1",              core_options::option_type::BOOLEAN,   "Calculate horizontal values with 1-pixel precision to improve horizontal centering" },
++	{ OSDOPTION_SYNC_REFRESH_TOLERANCE ";srt","2.0",            core_options::option_type::FLOAT,     "Maximum refresh difference, in Hz, allowed in order to synchronize" },
++	{ OSDOPTION_INTERLACE_FORCE_EVEN,         "0",              core_options::option_type::BOOLEAN,   "Calculate all vertical values of interlaced modes as even numbers. Required by AMD APU hardware on Linux" },
++	{ OSDOPTION_AUTOSYNC,                     "1",              core_options::option_type::BOOLEAN,   "automatically enable syncrefresh if refresh difference is below syncrefresh_tolerance" },
++	{ OSDOPTION_AUTOFILTER,                   "1",              core_options::option_type::BOOLEAN,   "automatically set bilinear filtering with fractional stretching or interlaced " },
++	{ OSDOPTION_AUTOSTRETCH,                  "1",              core_options::option_type::BOOLEAN,   "automatically set scaling mode (integer or fractional) based on the selected video mode " },
++	{ OSDOPTION_SCREEN_COMPOSITING,           "0",              core_options::option_type::BOOLEAN,   "Readjust relative screen positions of a multi-display setup after mode switching (Linux)" },
++	{ OSDOPTION_SCREEN_REORDERING,            "0",              core_options::option_type::BOOLEAN,   "Reallocates desktop multiple screens stacked vertically, so super-resolutions fit (Linux)" },
++	{ OSDOPTION_ALLOW_HW_REFRESH,             "0",              core_options::option_type::BOOLEAN,   "Allow on-the-fly mode addition (Windows)" },
++	{ OSDOPTION_MODELINE ";mode",             OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Use custom defined modeline" },
++	{ OSDOPTION_PS_TIMING ";pst",             OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Use custom Powertrip timing string" },
++	{ OSDOPTION_LCD_RANGE ";lcd",             OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom LCD range, VfreqMin-VfreqMax, in Hz, e.g.: 55.50-61.00" },
++	{ OSDOPTION_CRT_RANGE "0",                OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom CRT range, see documentation for details." },
++	{ OSDOPTION_CRT_RANGE "1",                OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom CRT range" },
++	{ OSDOPTION_CRT_RANGE "2",                OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom CRT range" },
++	{ OSDOPTION_CRT_RANGE "3",                OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom CRT range" },
++	{ OSDOPTION_CRT_RANGE "4",                OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom CRT range" },
++	{ OSDOPTION_CRT_RANGE "5",                OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom CRT range" },
++	{ OSDOPTION_CRT_RANGE "6",                OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom CRT range" },
++	{ OSDOPTION_CRT_RANGE "7",                OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom CRT range" },
++	{ OSDOPTION_CRT_RANGE "8",                OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom CRT range" },
++	{ OSDOPTION_CRT_RANGE "9",                OSDOPTVAL_AUTO,   core_options::option_type::STRING,    "Add custom CRT range" },
  
- 	{ nullptr,                                nullptr,          OPTION_HEADER,    "OSD ACCELERATED VIDEO OPTIONS" },
--	{ OSDOPTION_FILTER ";glfilter;flt",       "1",              OPTION_BOOLEAN,   "use bilinear filtering when scaling emulated video" },
-+	{ OSDOPTION_FILTER ";glfilter;flt",       "0",              OPTION_BOOLEAN,   "use bilinear filtering when scaling emulated video" },
- 	{ OSDOPTION_PRESCALE "(1-8)",             "1",              OPTION_INTEGER,   "scale emulated video by this factor before applying filters/shaders" },
+ 	{ nullptr,                                nullptr,          core_options::option_type::HEADER,    "OSD ACCELERATED VIDEO OPTIONS" },
+-	{ OSDOPTION_FILTER ";glfilter;flt",       "1",              core_options::option_type::BOOLEAN,   "use bilinear filtering when scaling emulated video" },
++	{ OSDOPTION_FILTER ";glfilter;flt",       "0",              core_options::option_type::BOOLEAN,   "use bilinear filtering when scaling emulated video" },
+ 	{ OSDOPTION_PRESCALE "(1-8)",             "1",              core_options::option_type::INTEGER,   "scale emulated video by this factor before applying filters/shaders" },
  
  #if USE_OPENGL
 @@ -652,6 +688,8 @@ void osd_common_t::init_subsystems()
@@ -12411,13 +12277,13 @@ diff --git a/src/osd/modules/lib/osdobj_common.h b/src/osd/modules/lib/osdobj_co
 index 3be82fd2ee9..45eecadaa87 100644
 --- a/src/osd/modules/lib/osdobj_common.h
 +++ b/src/osd/modules/lib/osdobj_common.h
-@@ -24,6 +24,7 @@
- #include "modules/midi/midi_module.h"
+@@ -17,6 +17,7 @@
+ #include "osdepend.h"
+ #include "modules/osdmodule.h"
  #include "modules/output/output_module.h"
- #include "modules/monitor/monitor_module.h"
 +#include "modules/switchres/switchres_module.h"
  #include "emuopts.h"
- #include "../frontend/mame/ui/menuitem.h"
+ #include "strformat.h"
  #include <list>
 @@ -51,7 +52,7 @@
  #define OSDOPTION_WINDOW                "window"
@@ -12503,7 +12369,7 @@ index 3be82fd2ee9..45eecadaa87 100644
 +	const char *modeline() const { return value(OSDOPTION_MODELINE); }
 +	const char *ps_timing() const { return value(OSDOPTION_PS_TIMING); }
 +	const char *lcd_range() const { return value(OSDOPTION_LCD_RANGE); }
-+	const char *crt_range(int index) const { return value(string_format("%s%d", OSDOPTION_CRT_RANGE, index).c_str()); }
++	const char *crt_range(int index) const { return value(util::string_format("%s%d", OSDOPTION_CRT_RANGE, index).c_str()); }
  
  	// accelerated video options
  	bool filter() const { return bool_value(OSDOPTION_FILTER); }
@@ -12544,7 +12410,7 @@ index 3244e7fd42b..583f47d4b34 100644
  	bool is_primary() const { return m_is_primary; }
  
 diff --git a/src/osd/modules/osdwindow.h b/src/osd/modules/osdwindow.h
-index e4b5db78f24..01e12d2e277 100644
+index 9cd05c29d17..0288a5cfafb 100644
 --- a/src/osd/modules/osdwindow.h
 +++ b/src/osd/modules/osdwindow.h
 @@ -230,6 +230,7 @@ public:
@@ -12588,6 +12454,151 @@ index f72197cb7b1..35854dc4e0c 100644
  	void toggle() { post_fx_enable = initialized && !post_fx_enable; }
  
  	void begin_draw();
+diff --git a/src/osd/modules/render/draw13.cpp b/src/osd/modules/render/draw13.cpp
+index af7c8559ca0..6d5f2534085 100644
+--- a/src/osd/modules/render/draw13.cpp
++++ b/src/osd/modules/render/draw13.cpp
+@@ -24,6 +24,13 @@
+ 
+ #include "draw13.h"
+ 
++#ifdef SDLMAME_X11
++// DRM
++#include <xf86drm.h>
++#include <xf86drmMode.h>
++#include <fcntl.h>
++#endif
++
+ //============================================================
+ //  DEBUGGING
+ //============================================================
+@@ -183,6 +190,12 @@ const copy_info_t renderer_sdl2::s_blit_info_default[] =
+ copy_info_t* renderer_sdl2::s_blit_info[SDL_TEXFORMAT_LAST+1] = { nullptr };
+ bool renderer_sdl2::s_blit_info_initialized = false;
+ 
++#ifdef SDLMAME_X11
++static int drm_open();
++static void drm_waitvblank(int crtc);
++static int fd = 0;
++#endif
++
+ //============================================================
+ //  INLINES
+ //============================================================
+@@ -436,8 +449,19 @@ int renderer_sdl2::create()
+ 
+ 	auto win = assert_window();
+ 
++	bool renderer_vsync = true;
++#ifdef SDLMAME_X11
++	if (win->index() == 0 && video_config.syncrefresh && video_config.sync_mode != 0)
++	{
++		// Try to open DRM device
++		fd = drm_open();
++		if (fd != 0)
++			renderer_vsync = (video_config.sync_mode == 2 || video_config.sync_mode == 4)? true : false;
++	}
++#endif
++
+ 	if (video_config.waitvsync)
+-		m_sdl_renderer = SDL_CreateRenderer(std::dynamic_pointer_cast<sdl_window_info>(win)->platform_window(), -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
++		m_sdl_renderer = SDL_CreateRenderer(std::dynamic_pointer_cast<sdl_window_info>(win)->platform_window(), -1, (renderer_vsync? SDL_RENDERER_PRESENTVSYNC : 0) | SDL_RENDERER_ACCELERATED);
+ 	else
+ 		m_sdl_renderer = SDL_CreateRenderer(std::dynamic_pointer_cast<sdl_window_info>(win)->platform_window(), -1, SDL_RENDERER_ACCELERATED);
+ 
+@@ -461,6 +485,68 @@ int renderer_sdl2::create()
+ 	return 0;
+ }
+ 
++#ifdef SDLMAME_X11
++//============================================================
++//  drm_open
++//============================================================
++
++static int drm_open()
++{
++	int fd = 0;
++	const char *node = {"/dev/dri/card0"};
++
++	fd = open(node, O_RDWR | O_CLOEXEC);
++	if (fd < 0)
++	{
++		fprintf(stderr, "cannot open %s\n", node);
++		return 0;
++	}
++	osd_printf_verbose("%s successfully opened\n", node);
++	return fd;
++}
++
++//============================================================
++//  drm_waitvblank
++//============================================================
++
++static void drm_waitvblank(int crtc)
++{
++
++	drmVBlank vbl;
++	memset(&vbl, 0, sizeof(vbl));
++	vbl.request.sequence = 1;
++
++	// handle vblank for all SR managed crtc
++	// this is a hack based on SDL reported screen index
++	// it won't work on multi-gpu
++	// TO DO: find a correct way to map screen to crtc
++
++	// single screen (default)
++	vbl.request.type = DRM_VBLANK_RELATIVE;
++
++	// two screens
++	if (crtc == 1) vbl.request.type = drmVBlankSeqType(DRM_VBLANK_RELATIVE | DRM_VBLANK_SECONDARY);
++
++	// multi-screen
++	else if (crtc > 1)
++	{
++		static uint64_t caps;
++		static bool caps_checked = false;
++
++		if (!caps_checked)
++		{
++			caps_checked = true;
++			if (drmGetCap(fd, DRM_CAP_VBLANK_HIGH_CRTC, &caps))
++				osd_printf_error("A newer kernel is needed for vblank syncing on multi screen\n");
++		}
++		if (caps)
++			vbl.request.type = drmVBlankSeqType(DRM_VBLANK_RELATIVE | ((crtc << DRM_VBLANK_HIGH_CRTC_SHIFT) & DRM_VBLANK_HIGH_CRTC_MASK));
++	}
++
++	if (drmWaitVBlank(fd, &vbl) != 0)
++		osd_printf_verbose("drmWaitVBlank failed\n");
++}
++#endif
+ 
+ //============================================================
+ //  drawsdl_xy_to_render_target
+@@ -595,11 +681,23 @@ int renderer_sdl2::draw(int update)
+ 
+ 	win->m_primlist->release_lock();
+ 
++#ifdef SDLMAME_X11
++	// wait for vertical retrace
++	if ((video_config.sync_mode == 3 || video_config.sync_mode == 4) && video_config.syncrefresh && fd)
++		drm_waitvblank(win->monitor()->oshandle());
++#endif
++
+ 	m_last_blit_pixels = blit_pixels;
+ 	m_last_blit_time = -osd_ticks();
+ 	SDL_RenderPresent(m_sdl_renderer);
+ 	m_last_blit_time += osd_ticks();
+ 
++#ifdef SDLMAME_X11
++	// wait for vertical retrace
++	if ((video_config.sync_mode == 1 || video_config.sync_mode == 2) && video_config.syncrefresh && fd)
++		drm_waitvblank(win->monitor()->oshandle());
++#endif
++
+ 	return 0;
+ }
+ 
 diff --git a/src/osd/modules/render/drawd3d.cpp b/src/osd/modules/render/drawd3d.cpp
 index cfc494a2be9..902d5112e0f 100644
 --- a/src/osd/modules/render/drawd3d.cpp
@@ -13244,10 +13255,10 @@ index 9e200f3817c..95e1366e6f3 100644
  
 diff --git a/src/osd/modules/switchres/switchres_module.cpp b/src/osd/modules/switchres/switchres_module.cpp
 new file mode 100644
-index 00000000000..5322fd11b9c
+index 00000000000..e9374f21c2f
 --- /dev/null
 +++ b/src/osd/modules/switchres/switchres_module.cpp
-@@ -0,0 +1,448 @@
+@@ -0,0 +1,452 @@
 +/**************************************************************
 +
 +   switchres_module.cpp - Switchres MAME module
@@ -13609,7 +13620,11 @@ index 00000000000..5322fd11b9c
 +	if (options.autostretch())
 +	{
 +		bool is_super_resolution = !(display->is_stretched()) && (display->width() >= display->super_width());
-+		bool force_aspect = (target->current_view().effective_aspect() != display->monitor_aspect());
++
++		bool target_is_rotated = (target->orientation() & machine_flags::MASK_ORIENTATION) & ORIENTATION_SWAP_XY? true : false;
++		float target_aspect = target->current_view().effective_aspect();
++		if (target_is_rotated) target_aspect = 1.0f / target_aspect;
++		bool force_aspect = (target_aspect != display->monitor_aspect());
 +
 +		set_option(OPTION_KEEPASPECT, force_aspect);
 +		set_option(OPTION_UNEVENSTRETCH, display->is_stretched());
@@ -14141,17 +14156,17 @@ index ac7ccf3277d..430cf397e6c 100644
  
  struct osd_draw_callbacks
 diff --git a/src/osd/windows/winmain.cpp b/src/osd/windows/winmain.cpp
-index 77eeeaf476e..e4a976308c7 100644
+index ab9ba5e9167..7fbc44dda7c 100644
 --- a/src/osd/windows/winmain.cpp
 +++ b/src/osd/windows/winmain.cpp
 @@ -269,7 +269,6 @@ const options_entry windows_options::s_option_entries[] =
  
  	// full screen options
- 	{ nullptr,                                        nullptr,    OPTION_HEADER,     "FULL SCREEN OPTIONS" },
--	{ WINOPTION_TRIPLEBUFFER ";tb",                   "0",        OPTION_BOOLEAN,    "enable triple buffering" },
- 	{ WINOPTION_FULLSCREENBRIGHTNESS ";fsb(0.1-2.0)", "1.0",      OPTION_FLOAT,      "brightness value in full screen mode" },
- 	{ WINOPTION_FULLSCREENCONTRAST ";fsc(0.1-2.0)",   "1.0",      OPTION_FLOAT,      "contrast value in full screen mode" },
- 	{ WINOPTION_FULLSCREENGAMMA ";fsg(0.1-3.0)",      "1.0",      OPTION_FLOAT,      "gamma value in full screen mode" },
+ 	{ nullptr,                                        nullptr,    core_options::option_type::HEADER,     "FULL SCREEN OPTIONS" },
+-	{ WINOPTION_TRIPLEBUFFER ";tb",                   "0",        core_options::option_type::BOOLEAN,    "enable triple buffering" },
+ 	{ WINOPTION_FULLSCREENBRIGHTNESS ";fsb(0.1-2.0)", "1.0",      core_options::option_type::FLOAT,      "brightness value in full screen mode" },
+ 	{ WINOPTION_FULLSCREENCONTRAST ";fsc(0.1-2.0)",   "1.0",      core_options::option_type::FLOAT,      "contrast value in full screen mode" },
+ 	{ WINOPTION_FULLSCREENGAMMA ";fsg(0.1-3.0)",      "1.0",      core_options::option_type::FLOAT,      "gamma value in full screen mode" },
 diff --git a/src/osd/windows/winmain.h b/src/osd/windows/winmain.h
 index 7c1689cff9f..24d2b0ebe69 100644
 --- a/src/osd/windows/winmain.h
