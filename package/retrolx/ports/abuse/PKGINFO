@@ -1,5 +1,5 @@
 pkgname = abuse
-pkgver = 0.9.0-1
+pkgver = 0.9.0-2
 pkgdesc = Abuse run'n'gun game
 group = port
 packager = https://retrolx.org
