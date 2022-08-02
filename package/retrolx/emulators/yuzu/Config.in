@@ -12,7 +12,6 @@ config BR2_PACKAGE_YUZU
     depends on BR2_PACKAGE_ZLIB
     depends on BR2_PACKAGE_LIBZIP
     depends on BR2_PACKAGE_LZ4
-    depends on BR2_PACKAGE_CATCH2
     depends on BR2_PACKAGE_OPUS
     help
       A Emulator Yuzu core for Nintendo Switch.

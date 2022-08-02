@@ -3,15 +3,15 @@
 # YUZU
 #
 ################################################################################
-# Version.: Commits on May 12, 2022
-YUZU_VERSION = EA-2725
+# Version.: Commits on Aug 1, 2022
+YUZU_VERSION = EA-2887
 YUZU_SITE = https://github.com/pineappleEA/pineapple-src.git
 #YUZU_VERSION = mainline-0-775
 #YUZU_SITE = https://github.com/yuzu-emu/yuzu-mainline.git
 YUZU_SITE_METHOD=git
 YUZU_GIT_SUBMODULES=YES
 YUZU_LICENSE = GPLv2
-YUZU_DEPENDENCIES = qt5base qt5tools qt5multimedia fmt boost ffmpeg zstd zlib libzip lz4 catch2 sdl2 opus
+YUZU_DEPENDENCIES = qt5base qt5tools qt5multimedia fmt boost ffmpeg zstd zlib libzip lz4 sdl2 opus
 
 ifeq ($(BR2_PACKAGE_VULKAN_HEADERS)$(BR2_PACKAGE_VULKAN_LOADER),yy)
 YUZU_DEPENDENCIES += host-glslang
@@ -23,6 +23,7 @@ YUZU_SUPPORTS_IN_SOURCE_BUILD = NO
 YUZU_CONF_OPTS += -DCMAKE_BUILD_TYPE=Release
 YUZU_CONF_OPTS += -DYUZU_USE_EXTERNAL_SDL2=OFF
 YUZU_CONF_OPTS += -DYUZU_USE_BUNDLED_SDL2=ON
+YUZU_CONF_OPTS += -DYUZU_TESTS=OFF
 YUZU_CONF_OPTS += -DENABLE_SDL2=ON
 YUZU_CONF_OPTS += -DARCHITECTURE_x86_64=ON
 YUZU_CONF_OPTS += -DBUILD_SHARED_LIBS=OFF

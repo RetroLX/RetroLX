@@ -318,7 +318,6 @@ endmenu
 
 menu "Libraries"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/appstream-glib/Config.in"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/catch2/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/ecm/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/faudio/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/libraries/libcapsimage/Config.in"
