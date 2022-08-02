@@ -1,0 +1,24 @@
+--- a/Makefile.am	2022-07-29 18:50:06.000000000 +0200
++++ b/Makefile.am	2022-08-02 23:01:46.878145741 +0200
+@@ -106,15 +106,15 @@
+ # endif
+ endif
+ 
+-if STATIC_BUILD
+-AM_LDFLAGS += -static
+-AM_CPPFLAGS += -DGLEW_STATIC
+-AM_CPPFLAGS += -DAL_LIBTYPE_STATIC
++#if STATIC_BUILD
++#AM_LDFLAGS += -static
++#AM_CPPFLAGS += -DGLEW_STATIC
++#AM_CPPFLAGS += -DAL_LIBTYPE_STATIC
+ # Hack for OpenAL static missing libcommon.a
+ # LIBS += ../openal-soft/libcommon.a
+ # One or more .pc files are missing -liconv
+-LIBS += -liconv
+-endif
++#LIBS += -liconv
++#endif
+ 
+ MSGFMT = @MSGFMT@
+ ZIP = @ZIP@
