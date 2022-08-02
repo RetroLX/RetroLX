@@ -182,7 +182,7 @@ define MAME_INSTALL_TARGET_CMDS
 
 	# Install binaries and default distro
 	$(INSTALL) -D $(@D)/mamearcade		$(MAME_PKG_DIR)$(MAME_PKG_INSTALL_DIR)/mame
-	$(INSTALL) -D $(@D)/mess		$(MAME_PKG_DIR)$(MAME_PKG_INSTALL_DIR)/mess
+	$(INSTALL) -D $(@D)/mamemess		$(MAME_PKG_DIR)$(MAME_PKG_INSTALL_DIR)/mess
 	cp $(@D)/COPYING			$(MAME_PKG_DIR)$(MAME_PKG_INSTALL_DIR)/
 	cp $(@D)/README.md			$(MAME_PKG_DIR)$(MAME_PKG_INSTALL_DIR)/
 	cp $(@D)/uismall.bdf			$(MAME_PKG_DIR)$(MAME_PKG_INSTALL_DIR)/
