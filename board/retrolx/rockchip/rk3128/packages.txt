@@ -1,4 +1,5 @@
-duckstation
+lr-gpsp
+lr-mame2000
 lr-pcsx
-flycast
-lr-flycast
+lr-snes9x2002
+lr-snes9x2005

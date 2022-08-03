@@ -25,12 +25,12 @@ cd "${RETROLX_BINARIES_DIR}/uboot/" && ./build-uboot.sh "${HOST_DIR}" "${BINARIE
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/boot"     || exit 1
 mkdir -p "${RETROLX_BINARIES_DIR}/boot/extlinux" || exit 1
 
-cp "${BINARIES_DIR}/zImage"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
+cp "${BINARIES_DIR}/kernel-aw32/zImage"           "${RETROLX_BINARIES_DIR}/boot/boot/linux"           || exit 1
 cp "${BINARIES_DIR}/initrd.gz"       "${RETROLX_BINARIES_DIR}/boot/boot/initrd.gz"       || exit 1
 cp "${BINARIES_DIR}/rootfs.squashfs" "${RETROLX_BINARIES_DIR}/boot/boot/retrolx.update" || exit 1
-cp "${BINARIES_DIR}/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
+cp "${BINARIES_DIR}/kernel-aw32/modules"         "${RETROLX_BINARIES_DIR}/boot/boot/modules"         || exit 1
 
-cp "${BINARIES_DIR}/sun8i-h2-plus-bananapi-m2-zero.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/sun8i-h2-plus-bananapi-m2-zero.dtb"     || exit 1
+cp "${BINARIES_DIR}/kernel-aw32/sun8i-h2-plus-bananapi-m2-zero.dtb" "${RETROLX_BINARIES_DIR}/boot/boot/sun8i-h2-plus-bananapi-m2-zero.dtb"     || exit 1
 cp "${BOARD_DIR}/boot/extlinux.conf"          "${RETROLX_BINARIES_DIR}/boot/extlinux/" || exit 1
 
 exit 0
