@@ -11,7 +11,8 @@ RETROLX_KERNEL_AW32_SOURCE = kernel-$(RETROLX_KERNEL_AW32_ARCH)-$(RETROLX_KERNEL
 RETROLX_KERNEL_AW32_SITE = https://repository.retrolx.org/kernel/$(RETROLX_KERNEL_AW32_ARCH)/$(RETROLX_KERNEL_AW32_VERSION)
 
 define RETROLX_KERNEL_AW32_INSTALL_TARGET_CMDS
-	cd $(@D) && tar xzvf $(DL_DIR)/$(RETROLX_KERNEL_AW32_DL_SUBDIR)/$(RETROLX_KERNEL_AW32_SOURCE) && cp $(@D)/*      $(BINARIES_DIR)/
+        mkdir -p $(BINARIES_DIR)/kernel-aw32
+	cd $(@D) && tar xzvf $(DL_DIR)/$(RETROLX_KERNEL_AW32_DL_SUBDIR)/$(RETROLX_KERNEL_AW32_SOURCE) && cp $(@D)/*      $(BINARIES_DIR)/kernel-aw32/
 endef
 
 $(eval $(generic-package))

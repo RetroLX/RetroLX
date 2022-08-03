@@ -23,9 +23,16 @@ make evb-rk3128_defconfig
 ARCH=arm CROSS_COMPILE="${HOST_DIR}/bin/arm-buildroot-linux-gnueabihf-" make -j$(nproc) all
 mkdir -p ../../uboot-xpi3128
 
-# Copy to appropriate place
-cp u-boot-dtb.img ../../uboot-xpi3128/
+# Rockchip process
+git clone https://github.com/rockchip-linux/rkbin.git
+cd rkbin
+"${HOST_DIR}/bin/mkimage" -n rk3128 -T rksd -d "bin/rk31/rk3128_ddr_300MHz_v2.12.bin" "../idbloader.img" || exit 1
+cat "bin/rk31/rk3128x_miniloader_v2.57.bin" >> "../idbloader.img"
+./tools/loaderimage --pack --uboot "../u-boot-dtb.bin" "../u-boot.img" --size 1024 4
+./tools/loaderimage --pack --trustos "bin/rk31/rk3126_tee_ta_v2.01.bin" "../trust.img" --size 1024 4
+cd ..
 
-# Generate Rockchip SPL image
-"${HOST_DIR}/bin/mkimage" -n rk3128 -T rksd -d "tpl/u-boot-tpl.bin" "../../uboot-tinkerboard/u-boot-tpl.img" || exit 1
-cat "spl/u-boot-spl-dtb.bin" >> "../../uboot-tinkerboard/u-boot-tpl.img" || exit 1
+# Copy to appropriate place
+cp idbloader.img ../../uboot-xpi3128/
+cp u-boot.img ../../uboot-xpi3128/
+cp trust.img ../../uboot-xpi3128/

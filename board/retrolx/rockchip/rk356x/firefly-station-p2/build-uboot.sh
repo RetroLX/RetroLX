@@ -28,11 +28,6 @@ do
   patch -p1 < $patch
 done
 
-# Make config and build
-#make firefly-rk3568_defconfig
-#ARCH=aarch64 CROSS_COMPILE="${HOST_DIR}/bin/aarch64-buildroot-linux-gnu-" make -j$(nproc)
-#mkdir -p ../../uboot-rk3568
-
 # Rockchip process
 #git clone https://github.com/rockchip-linux/rkbin.git
 #cd rkbin

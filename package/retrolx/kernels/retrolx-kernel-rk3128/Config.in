@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RETROLX_KERNEL_RK3128
+        bool "retrolx-kernel-rk3128"
+        help
+          Rockchip RK3128 Linux kernel for RetroLX
