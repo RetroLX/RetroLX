@@ -1,12 +1,10 @@
 #!/bin/bash
 
 # Multi builds
+make arm32-a7-gles2-build
 make arm64-a53-gles2-build
 make arm64-a53-gles3-build
 make arm64-a55-gles3-build
-
-# Allwinner
-make aw32-build
 
 # Amlogic
 make s812-build

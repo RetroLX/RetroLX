@@ -29,7 +29,7 @@ LIBRETRO_PCSX_PLATFORM = rpi3_64
 else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_S812),y)
 LIBRETRO_PCSX_PLATFORM = armv cortexa9 neon hardfloat
 
-else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_AW32),y)
+else ifeq ($(BR2_PACKAGE_RETROLX_TARGET_ARM32_A7_GLES2),y)
 LIBRETRO_PCSX_PLATFORM = rpi2
 
 else ifeq ($(BR2_arm)$(BR2_aarch64),y)

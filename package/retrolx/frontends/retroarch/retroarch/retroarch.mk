@@ -252,6 +252,6 @@ ifeq ($(BR2_cortex_a35)$(BR2_arm),yy)
 LIBRETRO_PLATFORM += classic_armv8_a35
 endif
 
-ifeq ($(BR2_PACKAGE_RETROLX_TARGET_AW32),y)
+ifeq ($(BR2_PACKAGE_RETROLX_TARGET_ARM32_A7_GLES2),y)
 	LIBRETRO_PLATFORM += classic_armv7_a7
 endif
