@@ -4,7 +4,7 @@ HOST_DIR=$1
 IMAGES_DIR=$2
 
 # Clone U-Boot mainline
-wget "https://ftp.denx.de/pub/u-boot/u-boot-2022.07.tar.bz2"
+[ ! -f "u-boot-2022.07.tar.bz2" ] && wget "https://ftp.denx.de/pub/u-boot/u-boot-2022.07.tar.bz2"
 tar xf u-boot-2022.07.tar.bz2
 cd u-boot-2022.07
 
@@ -15,6 +15,9 @@ do
   echo "Applying patch: $patch"
   patch -p1 < $patch
 done
+
+# Make clean
+make clean
 
 # Make config
 make Cubieboard2_defconfig
