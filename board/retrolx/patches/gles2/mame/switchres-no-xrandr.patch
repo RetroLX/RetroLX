@@ -1,6 +1,6 @@
---- a/scripts/src/3rdparty.lua	2022-06-21 11:18:09.152053569 +0200
-+++ b/scripts/src/3rdparty.lua2	2022-06-21 12:25:04.261526856 +0200
-@@ -2451,14 +2451,11 @@
+--- src/3rdparty.lua	2022-08-08 11:13:57.770937867 +0200
++++ src/3rdparty.lua2	2022-08-09 10:04:29.103342700 +0200
+@@ -2458,14 +2458,11 @@
  		MAME_DIR .. "3rdparty/switchres/display_linux.h",
  		MAME_DIR .. "3rdparty/switchres/display_sdl2.cpp",
  		MAME_DIR .. "3rdparty/switchres/display_sdl2.h",
@@ -15,3 +15,14 @@
  		"SR_WITH_KMSDRM",
  		"SR_WITH_SDL2",
  	}
+@@ -2475,10 +2472,6 @@
+ 		backtick("pkg-config --cflags sdl2"),
+ 	}
+ 
+-	links {
+-		"Xrandr",
+-	}
+-
+ 	local str = backtick("pkg-config --libs libdrm")
+ 	addlibfromstring(str)
+ 	addoptionsfromstring(str)
