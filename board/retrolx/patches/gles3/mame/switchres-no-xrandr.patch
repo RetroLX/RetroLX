@@ -1,5 +1,5 @@
---- src/3rdparty.lua	2022-08-08 11:13:57.770937867 +0200
-+++ src/3rdparty.lua2	2022-08-09 10:04:29.103342700 +0200
+--- a/scripts/src/3rdparty.lua	2022-08-08 11:13:57.770937867 +0200
++++ b/scripts/src/3rdparty.lua	2022-08-09 10:04:29.103342700 +0200
 @@ -2458,14 +2458,11 @@
  		MAME_DIR .. "3rdparty/switchres/display_linux.h",
  		MAME_DIR .. "3rdparty/switchres/display_sdl2.cpp",
