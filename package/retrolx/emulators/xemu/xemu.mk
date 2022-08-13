@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-# Version 0.7.58
-XEMU_VERSION = v0.7.58
+# Version 0.7.67
+XEMU_VERSION = v0.7.67
 XEMU_SITE = https://github.com/mborgerson/xemu.git
 XEMU_SITE_METHOD=git
 XEMU_GIT_SUBMODULES=YES
