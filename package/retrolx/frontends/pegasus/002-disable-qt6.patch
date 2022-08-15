@@ -1,0 +1,12 @@
+--- a/cmake/PegasusQtUtils.cmake	2022-07-29 10:30:17.000000000 +0200
++++ b/cmake/PegasusQtUtils.cmake	2022-08-15 15:05:46.046899993 +0200
+@@ -7,8 +7,5 @@
+         COMPONENTS
+         ${ARGN})
+ 
+-    find_package(Qt6 COMPONENTS ${QTREQ_COMPONENTS} QUIET)
+-    if (NOT Qt6_FOUND)
+-        find_package(Qt5 5.15 COMPONENTS ${QTREQ_COMPONENTS} REQUIRED)
+-    endif()
++    find_package(Qt5 5.15 COMPONENTS ${QTREQ_COMPONENTS} REQUIRED)
+ endmacro()

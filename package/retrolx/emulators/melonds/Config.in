@@ -2,7 +2,7 @@ config BR2_PACKAGE_MELONDS
     bool "melonDS"
     depends on BR2_PACKAGE_SDL2
     depends on BR2_PACKAGE_SLIRP
-    depends on BR2_PACKAGE_RETROLX_QT
+    depends on BR2_PACKAGE_RETROLX_QT5
     help
       Ninteno DS emulator, sorta
       http://melonds.kuribo64.net/

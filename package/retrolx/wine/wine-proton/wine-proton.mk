@@ -10,6 +10,9 @@ WINE_PROTON_LICENSE = LGPL-2.1+
 WINE_PROTON_DEPENDENCIES = host-bison host-flex host-wine-proton
 HOST_WINE_PROTON_DEPENDENCIES = host-bison host-flex
 
+WINE_PROTON_PKG_DIR = $(TARGET_DIR)/opt/retrolx/wine-proton
+WINE_PROTON_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/wine-proton
+
 # Configure Proton
 define WINE_PROTON_AUTOGEN
 	cd $(@D); autoreconf -fiv
@@ -19,7 +22,7 @@ endef
 
 # That create folder for install
 define WINE_PROTON_CREATE_WINE_FOLDER
-	mkdir -p $(TARGET_DIR)/usr/wine/proton
+	mkdir -p $(WINE_PROTON_PKG_DIR)$(WINE_PROTON_PKG_INSTALL_DIR)
 endef
 
 WINE_PROTON_PRE_CONFIGURE_HOOKS += WINE_PROTON_CREATE_WINE_FOLDER
@@ -40,8 +43,8 @@ WINE_PROTON_CONF_OPTS = CPPFLAGS="-DMPG123_NO_LARGENAME=1" \
 	--without-oss \
 	--without-vkd3d \
 	--without-vulkan \
-	--prefix=/usr/wine/proton \
-	--exec-prefix=/usr/wine/proton
+	--prefix=/opt/retrolx/wine-proton$(WINE_PROTON_PKG_INSTALL_DIR) \
+	--exec-prefix=/opt/retrolx/wine-proton$(WINE_PROTON_PKG_INSTALL_DIR)
 
 # batocera
 ifeq ($(BR2_x86_64),y)
@@ -120,13 +123,6 @@ WINE_PROTON_DEPENDENCIES += fontconfig
 else
 WINE_PROTON_CONF_OPTS += --without-fontconfig
 endif
-
-# Cleanup final directory
-define WINE_PROTON_REMOVE_INCLUDES_HOOK
-        rm -Rf $(TARGET_DIR)/usr/wine/proton/include
-endef
-
-WINE_PROTON_POST_INSTALL_TARGET_HOOKS += WINE_PROTON_REMOVE_INCLUDES_HOOK
 
 # To support freetype in wine we also need freetype in host-wine for the cross compiling tools
 ifeq ($(BR2_PACKAGE_FREETYPE),y)
@@ -373,6 +369,29 @@ WINE_PROTON_DEPENDENCIES += zlib
 else
 WINE_PROTON_CONF_OPTS += --without-zlib
 endif
+
+define WINE_PROTON_MAKEPKG
+        # Create directories
+        mkdir -p $(WINE_PROTON_PKG_DIR)$(WINE_PROTON_PKG_INSTALL_DIR)
+
+	# Cleanup final directory
+        rm -Rf $(WINE_PROTON_PKG_DIR)$(WINE_PROTON_PKG_INSTALL_DIR)/include
+        rm -Rf $(WINE_PROTON_PKG_DIR)$(WINE_PROTON_PKG_INSTALL_DIR)/lib/wine/x86_64-unix/*.a
+
+        # Copy package files
+	# TODO
+
+        # Build Pacman package
+        cd $(WINE_PROTON_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+        $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/wine/wine-proton/PKGINFO \
+        $(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+        mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+        # Cleanup
+        rm -Rf $(TARGET_DIR)/opt/retrolx/*
+endef
+
+WINE_PROTON_POST_INSTALL_TARGET_HOOKS += WINE_PROTON_MAKEPKG
 
 # host-gettext is essential for .po file support in host-wine wrc
 ifeq ($(BR2_SYSTEM_ENABLE_NLS),y)

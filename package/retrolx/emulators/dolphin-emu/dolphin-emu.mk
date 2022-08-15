@@ -3,7 +3,7 @@
 # DOLPHIN EMU
 #
 ################################################################################
-# Version: Commits on Jul 6, 2022 - 5.0-16380
+# Version: Commits on Jul 6, 2022 - 5.0-16793
 DOLPHIN_EMU_VERSION = 3cd82b619388d0877436390093a6edc2319a6904
 #8ecfa537a242de74d2e372e30d9d79b14584b2fb
 DOLPHIN_EMU_SITE = $(call github,dolphin-emu,dolphin,$(DOLPHIN_EMU_VERSION))
@@ -27,7 +27,7 @@ DOLPHIN_EMU_CONF_OPTS += -DENABLE_NOGUI=OFF
 DOLPHIN_EMU_CONF_OPTS += -DENABLE_EGL=OFF
 endif
 
-ifeq ($(BR2_PACKAGE_RETROLX_QT),y)
+ifeq ($(BR2_PACKAGE_RETROLX_QT5),y)
 DOLPHIN_EMU_DEPENDENCIES += qt5base
 DOLPHIN_EMU_CONF_OPTS += -DENABLE_QT=ON
 DOLPHIN_EMU_CONF_OPTS += -DENABLE_EGL=ON

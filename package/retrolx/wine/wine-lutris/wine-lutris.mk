@@ -10,9 +10,12 @@ WINE_LUTRIS_LICENSE = LGPL-2.1+
 WINE_LUTRIS_DEPENDENCIES = host-bison host-flex host-wine-lutris
 HOST_WINE_LUTRIS_DEPENDENCIES = host-bison host-flex
 
-# That create folder for install
+WINE_LUTRIS_PKG_DIR = $(TARGET_DIR)/opt/retrolx/wine-lutris
+WINE_LUTRIS_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/wine-lutris
+
+# That create folder for package
 define WINE_LUTRIS_CREATE_WINE_FOLDER
-	mkdir -p $(TARGET_DIR)/usr/wine/lutris
+	mkdir -p $(WINE_LUTRIS_PKG_DIR)$(WINE_LUTRIS_PKG_INSTALL_DIR)
 endef
 
 WINE_LUTRIS_PRE_CONFIGURE_HOOKS += WINE_LUTRIS_CREATE_WINE_FOLDER
@@ -33,8 +36,8 @@ WINE_LUTRIS_CONF_OPTS = CPPFLAGS="-DMPG123_NO_LARGENAME=1" \
 	--without-oss \
 	--without-vkd3d \
 	--without-vulkan \
-	--prefix=/usr/wine/lutris \
-	--exec-prefix=/usr/wine/lutris
+	--prefix=/opt/retrolx/wine-lutris$(WINE_LUTRIS_PKG_INSTALL_DIR) \
+	--exec-prefix=/opt/retrolx/wine-lutris$(WINE_LUTRIS_PKG_INSTALL_DIR)
 
 # batocera
 ifeq ($(BR2_x86_64),y)
@@ -360,12 +363,28 @@ else
 WINE_LUTRIS_CONF_OPTS += --without-zlib
 endif
 
-# Cleanup final directory
-define WINE_LUTRIS_REMOVE_INCLUDES_HOOK
-        rm -Rf $(TARGET_DIR)/usr/wine/lutris/include
+define WINE_LUTRIS_MAKEPKG
+        # Create directories
+        mkdir -p $(WINE_LUTRIS_PKG_DIR)$(WINE_LUTRIS_PKG_INSTALL_DIR)
+
+	# Cleanup final directory
+        rm -Rf $(WINE_LUTRIS_PKG_DIR)$(WINE_LUTRIS_PKG_INSTALL_DIR)/include
+        rm -Rf $(WINE_LUTRIS_PKG_DIR)$(WINE_LUTRIS_PKG_INSTALL_DIR)/lib/wine/x86_64-unix/*.a
+
+        # Copy package files
+	# TODO
+
+        # Build Pacman package
+        cd $(WINE_LUTRIS_PKG_DIR) && $(BR2_EXTERNAL_RETROLX_PATH)/scripts/retrolx-makepkg \
+        $(BR2_EXTERNAL_RETROLX_PATH)/package/retrolx/wine/wine-lutris/PKGINFO \
+        $(RETROLX_SYSTEM_ARCH) $(HOST_DIR)
+        mv $(TARGET_DIR)/opt/retrolx/*.zst $(BR2_EXTERNAL_RETROLX_PATH)/repo/$(RETROLX_SYSTEM_ARCH)/
+
+        # Cleanup
+        rm -Rf $(TARGET_DIR)/opt/retrolx/*
 endef
 
-WINE_LUTRIS_POST_INSTALL_TARGET_HOOKS += WINE_LUTRIS_REMOVE_INCLUDES_HOOK
+WINE_LUTRIS_POST_INSTALL_TARGET_HOOKS += WINE_LUTRIS_MAKEPKG
 
 # host-gettext is essential for .po file support in host-wine wrc
 ifeq ($(BR2_SYSTEM_ENABLE_NLS),y)

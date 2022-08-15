@@ -3,7 +3,7 @@
 # DosBox-X
 #
 ################################################################################
-# Version.: Commits on Jul 1, 2022
+# Version.: Commits on Aug 1, 2022
 DOSBOX_X_VERSION = dosbox-x-windows-v2022.08.0
 DOSBOX_X_SITE = $(call github,joncampbell123,dosbox-x,$(DOSBOX_X_VERSION))
 DOSBOX_X_DEPENDENCIES = sdl2 sdl2_net sdl_sound zlib libpng libogg libvorbis ffmpeg

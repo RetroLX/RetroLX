@@ -1,8 +1,7 @@
 config BR2_PACKAGE_PEGASUS
     bool "pegasus"
-
     depends on BR2_PACKAGE_SDL2
-    depends on BR2_PACKAGE_RETROLX_QT
+    depends on BR2_PACKAGE_RETROLX_QT5
 
     help
       Pegasus frontend

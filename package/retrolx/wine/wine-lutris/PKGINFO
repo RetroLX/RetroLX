@@ -1,0 +1,6 @@
+pkgname = wine-lutris
+pkgver = 7.2-2
+pkgdesc = Wine (Lutris)
+group = emulator
+packager = https://retrolx.org 
+url = https://lutris.net/
