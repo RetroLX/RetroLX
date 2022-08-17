@@ -1,5 +1,5 @@
 pkgname = wine-proton
-pkgver = 7.0-3
+pkgver = 7.0-4
 pkgdesc = Wine (Proton)
 group = emulator
 packager = https://retrolx.org 
