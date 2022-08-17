@@ -1,5 +1,5 @@
 pkgname = lr-citra
-pkgver = 20220611-1
+pkgver = 20210730-1
 pkgdesc = Citra (Nintendo 3DS) libretro core
 group = emulator
 packager = https://retrolx.org 
