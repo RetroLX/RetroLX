@@ -4,10 +4,10 @@
 #
 ################################################################################
 
-PCSX2_VERSION = v1.7.3055
+PCSX2_VERSION = v1.7.3218
 PCSX2_SITE = https://github.com/pcsx2/pcsx2.git
 PCSX2_LICENSE = GPLv2 GPLv3 LGPLv2.1 LGPLv3
-PCSX2_DEPENDENCIES = xserver_xorg-server alsa-lib freetype zlib libpng qt5base qt5declarative qt5svg libaio libsoundtouch sdl2 libpcap libsamplerate fmt
+PCSX2_DEPENDENCIES = xserver_xorg-server alsa-lib freetype zlib libpng qt6base qt6tools libaio libsoundtouch sdl2 libpcap libsamplerate fmt
 
 PCSX2_SITE_METHOD = git
 PCSX2_GIT_SUBMODULES = YES
