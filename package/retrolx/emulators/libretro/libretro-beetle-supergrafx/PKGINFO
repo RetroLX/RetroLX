@@ -1,5 +1,5 @@
 pkgname = lr-beetle-supergrafx
-pkgver = 20220218-1
+pkgver = 20220616-1
 pkgdesc = Beetle Supergrafx (NEC SuperGrafx) libretro core
 group = emulator
 packager = https://retrolx.org 

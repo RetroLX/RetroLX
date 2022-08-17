@@ -1,5 +1,5 @@
 pkgname = lr-fbneo
-pkgver = 1.0.0.2-29
+pkgver = 1.0.0.2-30
 pkgdesc = Final Burn Neo libretro core
 group = emulator
 packager = https://retrolx.org 

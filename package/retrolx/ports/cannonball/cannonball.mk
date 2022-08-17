@@ -3,8 +3,8 @@
 # cannonball
 #
 ################################################################################
-# Version.: Commits on Nov 9, 2021
-CANNONBALL_VERSION = 62feed27e6976818348035c660d506a2aed97b40
+# Version.: Commits on Jan 30, 2022
+CANNONBALL_VERSION = 27493ebf62be3498dff93ed6a45e8e2db819bae1
 CANNONBALL_SITE = $(call github,djyt,cannonball,$(CANNONBALL_VERSION))
 CANNONBALL_LICENSE = GPLv2
 CANNONBALL_DEPENDENCIES = sdl2 boost

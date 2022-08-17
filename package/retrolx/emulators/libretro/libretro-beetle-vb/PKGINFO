@@ -1,5 +1,5 @@
 pkgname = lr-beetle-vb
-pkgver = 20220409-1
+pkgver = 20220618-1
 pkgdesc = Beetle Virtual Boy libretro core
 group = emulator
 packager = https://retrolx.org 
