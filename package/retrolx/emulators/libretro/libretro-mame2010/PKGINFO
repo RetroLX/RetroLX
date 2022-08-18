@@ -1,5 +1,5 @@
 pkgname = lr-mame2010
-pkgver = 20210706-1
+pkgver = 20220614-1
 pkgdesc = MAME2010 libretro core
 group = emulator
 packager = https://retrolx.org 

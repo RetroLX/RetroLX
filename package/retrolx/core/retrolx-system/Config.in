@@ -451,7 +451,6 @@ config BR2_PACKAGE_RETROLX_SYSTEM
 	select BR2_PACKAGE_LIBCEC                               # libcec
 	select BR2_PACKAGE_EDID_DECODE                          # edid monitor/tv support
 	select BR2_PACKAGE_READ_EDID                            # edid monitor/tv support
-	select BR2_PACKAGE_XOW                                  # xbox receiver
 	select BR2_PACKAGE_WII_U_GC_ADAPTER                     # wii-u-gc-adapter
 	select BR2_SYSTEM_ENABLE_NLS                            # locales
 	select BR2_PACKAGE_ACPID                                if BR2_PACKAGE_RETROLX_IS_X86_ARCH

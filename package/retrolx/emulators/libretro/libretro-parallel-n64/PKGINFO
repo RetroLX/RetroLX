@@ -1,5 +1,5 @@
 pkgname = lr-parallel-n64
-pkgver = 20220406-1
+pkgver = 20220731-1
 pkgdesc = ParaLLEl N64 libretro core
 group = emulator
 packager = https://retrolx.org 

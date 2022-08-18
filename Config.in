@@ -102,7 +102,6 @@ menu "Controllers"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/controllers/retrogame/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/controllers/uinput-joystick/Config.in"
   source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/controllers/wii-u-gc-adapter/Config.in"
-  source "$BR2_EXTERNAL_RETROLX_PATH/package/retrolx/controllers/xow/Config.in"
 endmenu
 
 menu "Emulators"

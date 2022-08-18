@@ -1,5 +1,5 @@
 pkgname = lr-gpgx-wide
-pkgver = 20211108-1
+pkgver = 20220813-1
 pkgdesc = Genesis Plus GX Wide libretro core
 group = emulator
 packager = https://retrolx.org 

@@ -1,5 +1,5 @@
 pkgname = lr-nxengine
-pkgver = 20220301-1
+pkgver = 20220725-1
 pkgdesc = NxEngine (Cave Story) libretro core
 group = port
 packager = https://retrolx.org 

@@ -1,5 +1,5 @@
 pkgname = lr-pcsx
-pkgver = 20220504-1
+pkgver = 20220813-1
 pkgdesc = PCSX ReArmed (Sony PS1) libretro core
 group = emulator
 packager = https://retrolx.org 

@@ -1,5 +1,5 @@
 pkgname = lr-genesisplusgx
-pkgver = 20220501-1
+pkgver = 20220813-1
 pkgdesc = Genesis Plus GX libretro core
 group = emulator
 packager = https://retrolx.org 
