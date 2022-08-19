@@ -3,8 +3,8 @@
 # SNES9X2002
 #
 ################################################################################
-# Version.: Commits on Apr 9, 2022
-LIBRETRO_SNES9X2002_VERSION = c4397de75a5f11403d154abd935e39fe969bca94
+# Version.: Commits on Aug 6, 2022
+LIBRETRO_SNES9X2002_VERSION = 540baad622d9833bba7e0696193cb06f5f02f564
 LIBRETRO_SNES9X2002_SITE = $(call github,libretro,snes9x2002,$(LIBRETRO_SNES9X2002_VERSION))
 LIBRETRO_SNES9X2002_LICENSE = Non-commercial
 

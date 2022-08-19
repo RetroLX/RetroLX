@@ -1,5 +1,5 @@
 pkgname = lr-snes9x2002
-pkgver = 20220409-1
+pkgver = 20220806-1
 pkgdesc = Snes9x 2002 libretro core
 group = emulator
 packager = https://retrolx.org 

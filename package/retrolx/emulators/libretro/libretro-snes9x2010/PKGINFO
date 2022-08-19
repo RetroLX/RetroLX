@@ -1,5 +1,5 @@
 pkgname = lr-snes9x2010
-pkgver = 20220409-1
+pkgver = 20220725-1
 pkgdesc = Snes9x 2010 libretro core
 group = emulator
 packager = https://retrolx.org 
