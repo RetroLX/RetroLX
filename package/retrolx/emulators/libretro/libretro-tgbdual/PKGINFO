@@ -1,5 +1,5 @@
 pkgname = lr-tgbdual
-pkgver = 20210312-1
+pkgver = 20220806-1
 pkgdesc = TGB Dual libretro core
 group = emulator
 packager = https://retrolx.org 

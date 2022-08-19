@@ -1,5 +1,5 @@
 pkgname = lr-vecx
-pkgver = 20220327-1
+pkgver = 20220728-1
 pkgdesc = vecx (GCE Vectrex) libretro core
 group = emulator
 packager = https://retrolx.org 
