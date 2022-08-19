@@ -4,7 +4,7 @@
 #
 ################################################################################
 # Version.: Commits on Apr 23, 2022
-MUPEN64PLUS_GLIDEN64_VERSION = 4dc0a1fda457e5484a83ea64e0e9a982097961a6
+MUPEN64PLUS_GLIDEN64_VERSION = 2973f5351b6326ca588b60521522df34ed7a426e
 MUPEN64PLUS_GLIDEN64_SITE = $(call github,gonetz,GLideN64,$(MUPEN64PLUS_GLIDEN64_VERSION))
 MUPEN64PLUS_GLIDEN64_LICENSE = GPLv2
 MUPEN64PLUS_GLIDEN64_DEPENDENCIES = sdl2 alsa-lib mupen64plus-core
