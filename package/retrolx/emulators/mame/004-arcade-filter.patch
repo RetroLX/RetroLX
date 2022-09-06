@@ -1,5 +1,5 @@
---- a/src/mame/arcade.flt	2022-07-30 12:51:14.000000000 +0200
-+++ b/src/mame/arcade.flt	2022-08-12 11:09:40.542919857 +0200
+--- a/src/mame/arcade.flt	2022-08-30 19:14:51.000000000 +0200
++++ b/src/mame/arcade.flt	2022-09-02 21:37:48.936957112 +0200
 @@ -1,14 +1,14 @@
 -acorn/aristmk5.cpp
 +//acorn/aristmk5.cpp          // fruit, mnw
@@ -41,7 +41,7 @@
  aristocrat/caswin.cpp
  atari/akkaarrh.cpp
  atari/arcadecl.cpp
-@@ -37,40 +37,40 @@
+@@ -37,42 +37,42 @@
  atari/atarisy1.cpp
  atari/atarisy2.cpp
  atari/atarisy4.cpp
@@ -89,9 +89,12 @@
 -atari/gumrally.cpp
 +//atari/gumrally.cpp          // no screen
  atari/harddriv.cpp
+-atari/hitparade.cpp
++//atari/hitparade.cpp          // mechanical
  atari/irobot.cpp
  atari/jaguar.cpp
-@@ -79,8 +79,8 @@
+ atari/jedi.cpp
+@@ -80,8 +80,8 @@
  atari/liberatr.cpp
  atari/marblmd2.cpp
  atari/maxaflex.cpp
@@ -102,7 +105,7 @@
  atari/mgolf.cpp
  atari/mhavoc.cpp
  atari/missile.cpp
-@@ -90,7 +90,7 @@
+@@ -91,7 +91,7 @@
  atari/pong.cpp
  atari/poolshrk.cpp
  atari/quantum.cpp
@@ -111,7 +114,7 @@
  atari/rampart.cpp
  atari/relief.cpp
  atari/runaway.cpp
-@@ -108,58 +108,58 @@
+@@ -109,64 +109,64 @@
  atari/tank8.cpp
  atari/tempest.cpp
  atari/thunderj.cpp
@@ -132,6 +135,7 @@
  atlus/ohmygod.cpp
  atlus/patapata.cpp
 -atlus/rallypnt.cpp
+-barcrest/mpu1.cpp
 -barcrest/mpu2.cpp
 -barcrest/mpu3.cpp
 -barcrest/mpu4avan.cpp
@@ -151,6 +155,7 @@
 -barcrest/mpu4vid.cpp
 -barcrest/mpu5sw.cpp
 +//atlus/rallypnt.cpp          // no screen
++//barcrest/mpu1.cpp          // fruit, mech
 +//barcrest/mpu2.cpp          // fruit, no screen
 +//barcrest/mpu3.cpp          // fruit, mech
 +//barcrest/mpu4avan.cpp          // fruit, mech
@@ -204,7 +209,14 @@
  capcom/cbasebal.cpp
  capcom/commando.cpp
  capcom/cps1.cpp
-@@ -173,34 +173,34 @@
+-capcom/cps1bl_5205.cpp
+-capcom/cps1bl_pic.cpp
++//capcom/cps1bl_5205.cpp     // useless bootlegs
++//capcom/cps1bl_pic.cpp      // useless bootlegs
+ capcom/cps2.cpp
+ capcom/cps3.cpp
+ capcom/egghunt.cpp
+@@ -175,34 +175,34 @@
  capcom/gng.cpp
  capcom/gunsmoke.cpp
  capcom/higemaru.cpp
@@ -250,7 +262,7 @@
  comad/funybubl.cpp
  comad/galspnbl.cpp
  comad/zerozone.cpp
-@@ -227,14 +227,14 @@
+@@ -229,14 +229,14 @@
  dataeast/dec8.cpp
  dataeast/deco156.cpp
  dataeast/deco32.cpp
@@ -263,14 +275,14 @@
 +//dataeast/deshoros.cpp          // black screen
  dataeast/dietgo.cpp
 -dataeast/dreambal.cpp
-+dataeast/dreambal.cpp          // fruit
++//dataeast/dreambal.cpp          // poker
  dataeast/exprraid.cpp
 -dataeast/ffantasy_ms.cpp
 +//dataeast/ffantasy_ms.cpp          // black screen
  dataeast/firetrap.cpp
  dataeast/funkyjet.cpp
  dataeast/karnov.cpp
-@@ -267,10 +267,10 @@
+@@ -269,10 +269,10 @@
  dooyong/dooyong.cpp
  dooyong/gundealr.cpp
  dynax/ddenlovr.cpp
@@ -283,7 +295,7 @@
  edevices/diverboy.cpp
  edevices/fantland.cpp
  edevices/mugsmash.cpp
-@@ -287,8 +287,8 @@
+@@ -289,8 +289,8 @@
  eolith/ghosteo.cpp
  eolith/vegaeo.cpp
  excellent/aquarium.cpp
@@ -294,7 +306,7 @@
  excellent/gcpinbal.cpp
  excellent/lastbank.cpp
  excellent/witch.cpp
-@@ -296,36 +296,36 @@
+@@ -298,37 +298,37 @@
  exidy/circus.cpp
  exidy/exidy.cpp
  exidy/exidy440.cpp
@@ -318,6 +330,7 @@
 +//funworld/photoplys.cpp          // chd, mnw
 +//funworld/photoplysx.cpp          // chd, mnw
 +//funworld/snookr10.cpp          // poker
+ funworld/supercrd.cpp
  fuuki/fuukifg2.cpp
  fuuki/fuukifg3.cpp
 -gaelco/atvtrack.cpp
@@ -344,10 +357,10 @@
  gaelco/targeth.cpp
  gaelco/thoop2.cpp
  gaelco/wrally.cpp
-@@ -346,29 +346,29 @@
- gametron/sbugger.cpp
- gottlieb/exterm.cpp
- gottlieb/gottlieb.cpp
+@@ -357,29 +357,29 @@
+ ice/lethalj.cpp
+ ice/schexx4gen.cpp
+ ice/vp101.cpp
 -igs/cabaret.cpp
 -igs/dunhuang.cpp
 -igs/funtech.cpp
@@ -390,7 +403,7 @@
  irem/m10.cpp
  irem/m107.cpp
  irem/m14.cpp
-@@ -388,7 +388,7 @@
+@@ -399,7 +399,7 @@
  irem/travrusa.cpp
  irem/vigilant.cpp
  itech/capbowl.cpp
@@ -399,7 +412,7 @@
  itech/itech32.cpp
  itech/itech8.cpp
  jaleco/acommand.cpp
-@@ -397,7 +397,7 @@
+@@ -408,7 +408,7 @@
  jaleco/bestleag.cpp
  jaleco/bigstrkb.cpp
  jaleco/blueprnt.cpp
@@ -408,7 +421,7 @@
  jaleco/cischeat.cpp
  jaleco/citycon.cpp
  jaleco/ddayjlc.cpp
-@@ -405,7 +405,7 @@
+@@ -416,7 +416,7 @@
  jaleco/fcombat.cpp
  jaleco/ginganin.cpp
  jaleco/homerun.cpp
@@ -417,7 +430,7 @@
  jaleco/megasys1.cpp
  jaleco/momoko.cpp
  jaleco/ms32.cpp
-@@ -413,16 +413,16 @@
+@@ -424,16 +424,16 @@
  jaleco/pturn.cpp
  jaleco/skyfox.cpp
  jaleco/tetrisp2.cpp
@@ -442,7 +455,7 @@
  kaneko/airbustr.cpp
  kaneko/djboy.cpp
  kaneko/expro02.cpp
-@@ -436,7 +436,7 @@
+@@ -447,7 +447,7 @@
  kaneko/sandscrp.cpp
  kaneko/snowbros.cpp
  kaneko/suprnova.cpp
@@ -451,7 +464,7 @@
  kiwako/koikoi.cpp
  kiwako/mrjong.cpp
  konami/88games.cpp
-@@ -450,20 +450,20 @@
+@@ -461,20 +461,20 @@
  konami/bottom9.cpp
  konami/chqflag.cpp
  konami/circusc.cpp
@@ -476,7 +489,7 @@
  konami/gijoe.cpp
  konami/gradius3.cpp
  konami/gticlub.cpp
-@@ -476,21 +476,21 @@
+@@ -487,22 +487,22 @@
  konami/jackal.cpp
  konami/jailbrek.cpp
  konami/junofrst.cpp
@@ -502,15 +515,17 @@
 -konami/kontest.cpp
 -konami/kpontoon.cpp
 -konami/kpython.cpp
+-konami/kpython2.cpp
 -konami/ksys573.cpp
 +//konami/kontest.cpp          // stuck at crosshatch
 +//konami/kpontoon.cpp          // ingame stack overflow
 +//konami/kpython.cpp          // chd, mnw
++//konami/kpython2.cpp          // skel chd
 +konami/ksys573.cpp          // chd untested
  konami/labyrunr.cpp
  konami/lethal.cpp
  konami/mainevt.cpp
-@@ -501,7 +501,7 @@
+@@ -513,7 +513,7 @@
  konami/mystwarr.cpp
  konami/nemesis.cpp
  konami/nwk-tr.cpp
@@ -519,7 +534,7 @@
  konami/overdriv.cpp
  konami/pandoras.cpp
  konami/parodius.cpp
-@@ -509,7 +509,7 @@
+@@ -521,7 +521,7 @@
  konami/piratesh.cpp
  konami/plygonet.cpp
  konami/pooyan.cpp
@@ -528,7 +543,7 @@
  konami/quickpick5.cpp
  konami/rockrage.cpp
  konami/rocnrope.cpp
-@@ -521,8 +521,8 @@
+@@ -533,8 +533,8 @@
  konami/simpsons.cpp
  konami/spy.cpp
  konami/surpratk.cpp
@@ -539,7 +554,7 @@
  konami/thunderx.cpp
  konami/timeplt.cpp
  konami/tmnt.cpp
-@@ -530,39 +530,39 @@
+@@ -542,39 +542,39 @@
  konami/trackfld.cpp
  konami/tutankhm.cpp
  konami/twin16.cpp
@@ -598,7 +613,7 @@
  midcoin/wallc.cpp
  midcoin/wink.cpp
  midw8080/8080bw.cpp
-@@ -570,362 +570,362 @@
+@@ -582,354 +582,354 @@
  midw8080/mw8080bw.cpp
  midw8080/rotaryf.cpp
  midway/astrocde.cpp
@@ -636,9 +651,10 @@
  midway/wmg.cpp
  midway/zwackery.cpp
  miltonbradley/vectrex.cpp
- misc/39in1.cpp
+-misc/39in1.cpp
 -misc/3do.cpp
 -misc/4enlinea.cpp
++//misc/39in1.cpp	// MAME multigame bootlegs
 +//misc/3do.cpp          // MNW, chd
 +//misc/4enlinea.cpp          // mnw, hang at start
  misc/4enraya.cpp
@@ -662,9 +678,11 @@
 +//misc/amerihok.cpp          // mech, works
 +//misc/ampoker2.cpp          // poker, need setup
  misc/amspdwy.cpp
+-misc/amstarz80.cpp
 -misc/amusco.cpp
 -misc/anes.cpp
 -misc/arachnid.cpp
++//misc/amstarz80.cpp          // black screen
 +//misc/amusco.cpp          // poker
 +//misc/anes.cpp          // black screen
 +//misc/arachnid.cpp          // mech, seems to work, W=enter
@@ -713,7 +731,6 @@
 -misc/chameleonrx1.cpp
 -misc/chance32.cpp
 -misc/changyu.cpp
--misc/chexx.cpp
 -misc/chicago.cpp
 -misc/chsuper.cpp
 -misc/clowndwn.cpp
@@ -723,7 +740,6 @@
 +misc/chameleonrx1.cpp          // chd untested
 +//misc/chance32.cpp          // poker
 +//misc/changyu.cpp          // black screen
-+//misc/chexx.cpp          // mech
 +//misc/chicago.cpp          // black screen
 +//misc/chsuper.cpp          // poker, need setup
 +//misc/clowndwn.cpp          // no screen
@@ -815,12 +831,10 @@
 +misc/fortecar.cpp          // poker
  misc/freekick.cpp
 -misc/freeway.cpp
--misc/frenzyxprss.cpp
 -misc/fresh.cpp
 -misc/funeball.cpp
 -misc/fungames.cpp
 +//misc/freeway.cpp          // black screen
-+//misc/frenzyxprss.cpp          // chd, mnw
 +//misc/fresh.cpp          // fruit, reels don't roll
 +//misc/funeball.cpp          // no screen
 +//misc/fungames.cpp          // black screen
@@ -873,15 +887,9 @@
 -misc/hotchili.cpp
 -misc/hotstuff.cpp
 -misc/houseball.cpp
--misc/ice_bozopail.cpp
--misc/ice_hhhippos.cpp
--misc/ice_tbd.cpp
 +//misc/hotchili.cpp          // fruit
 +//misc/hotstuff.cpp          // poker, no inputs
 +//misc/houseball.cpp          // no screen
-+//misc/ice_bozopail.cpp          // no screen
-+//misc/ice_hhhippos.cpp          // no screen
-+//misc/ice_tbd.cpp          // no screen
  misc/imolagp.cpp
 -misc/intrscti.cpp
 -misc/island.cpp
@@ -920,7 +928,6 @@
 +//misc/laz_aftrshok.cpp          // no screen
 +//misc/laz_ribrac.cpp          // no screen
  misc/lependu.cpp
- misc/lethalj.cpp
  misc/limenko.cpp
 -misc/ltcasino.cpp
 -misc/luckybal.cpp
@@ -1046,7 +1053,6 @@
 -misc/sanremmg.cpp
 -misc/sanremo.cpp
 -misc/savquest.cpp
--misc/schexx4gen.cpp
 -misc/scm_500.cpp
 -misc/sealy.cpp
 -misc/sealy_fr.cpp
@@ -1072,7 +1078,6 @@
 +//misc/sanremmg.cpp          // black screen
 +//misc/sanremo.cpp          // gambling, one works, one not
 +//misc/savquest.cpp          // chd, mnw
-+//misc/schexx4gen.cpp          // no screen
 +//misc/scm_500.cpp          // no screen
 +//misc/sealy.cpp          // black screen
 +//misc/sealy_fr.cpp          // chd, mnw
@@ -1111,11 +1116,9 @@
 -misc/su2000.cpp
 -misc/summit.cpp
 -misc/sumt8035.cpp
--misc/supercrd.cpp
 +//misc/su2000.cpp          // mnw
 +//misc/summit.cpp          // fruit, how to use?
 +//misc/sumt8035.cpp          // no screen
-+//misc/supercrd.cpp          // fruit, mnw
  misc/supertnk.cpp
  misc/tapatune.cpp
  misc/tattack.cpp
@@ -1161,7 +1164,6 @@
 -misc/vlc.cpp
 -misc/vlc34010.cpp
 -misc/voyager.cpp
--misc/vp101.cpp
 -misc/vpoker.cpp
 +//misc/vcombat.cpp          // missing gfx
 +//misc/video21.cpp          // gambling
@@ -1169,7 +1171,6 @@
 +//misc/vlc.cpp          // green screen
 +//misc/vlc34010.cpp          // black screen
 +//misc/voyager.cpp          // chd, mnw
-+//misc/vp101.cpp          // chd, mnw
 +//misc/vpoker.cpp          // poker, mnw
  misc/vroulet.cpp
 -misc/wildpkr.cpp
@@ -1192,7 +1193,7 @@
  msx/forte2.cpp
  msx/pengadvb.cpp
  msx/sangho.cpp
-@@ -934,43 +934,43 @@
+@@ -938,43 +938,43 @@
  namco/30test.cpp
  namco/baraduke.cpp
  namco/cgang.cpp
@@ -1250,7 +1251,7 @@
  namco/warpwarp.cpp
  nasco/crgolf.cpp
  nasco/himesiki.cpp
-@@ -982,7 +982,7 @@
+@@ -986,7 +986,7 @@
  nichibutsu/cclimber.cpp
  nichibutsu/clshroad.cpp
  nichibutsu/cop01.cpp
@@ -1259,7 +1260,7 @@
  nichibutsu/dacholer.cpp
  nichibutsu/galivan.cpp
  nichibutsu/gomoku.cpp
-@@ -991,13 +991,13 @@
+@@ -995,13 +995,13 @@
  nichibutsu/magmax.cpp
  nichibutsu/nbmj8688.cpp
  nichibutsu/nbmj8891.cpp
@@ -1279,7 +1280,7 @@
  nichibutsu/seicross.cpp
  nichibutsu/terracre.cpp
  nichibutsu/tubep.cpp
-@@ -1010,33 +1010,33 @@
+@@ -1014,33 +1014,33 @@
  nintendo/mmagic.cpp
  nintendo/multigam.cpp
  nintendo/n8080.cpp
@@ -1322,7 +1323,7 @@
  omori/battlex.cpp
  omori/carjmbre.cpp
  omori/popper.cpp
-@@ -1052,112 +1052,112 @@
+@@ -1056,112 +1056,112 @@
  pacman/pacman.cpp
  pacman/pengo.cpp
  pacman/schick.cpp
@@ -1486,7 +1487,7 @@
 +//pinball/micropin.cpp          // pinball
 +//pinball/missamer.cpp          // no inputs
 +//pinball/mrgame.cpp          // pinball
-+//pinball/newcanasta.cpp          //to be checked
++//pinball/newcanasta.cpp          //pinball
 +//pinball/nsm.cpp          // pinball
 +//pinball/peyper.cpp          // pinball
 +//pinball/play_1.cpp          // pinball
@@ -1533,7 +1534,7 @@
  playmark/drtomy.cpp
  playmark/playmark.cpp
  playmark/powerbal.cpp
-@@ -1170,57 +1170,57 @@
+@@ -1174,57 +1174,57 @@
  psikyo/psikyo4.cpp
  psikyo/psikyosh.cpp
  ramtek/hitme.cpp
@@ -1620,7 +1621,7 @@
  sega/segaorun.cpp
  sega/segas16a.cpp
  sega/segas16b.cpp
-@@ -1229,37 +1229,37 @@
+@@ -1233,37 +1233,37 @@
  sega/segas18_astormbl.cpp
  sega/segas24.cpp
  sega/segas32.cpp
@@ -1671,7 +1672,7 @@
  seibu/goal92.cpp
  seibu/goodejan.cpp
  seibu/kncljoe.cpp
-@@ -1271,34 +1271,34 @@
+@@ -1275,34 +1275,34 @@
  seibu/raiden.cpp
  seibu/raiden2.cpp
  seibu/raiden_ms.cpp
@@ -1718,7 +1719,7 @@
  sigma/sigmab98.cpp
  sigma/spiders.cpp
  sigma/sub.cpp
-@@ -1318,18 +1318,18 @@
+@@ -1322,18 +1322,18 @@
  sony/zn.cpp
  stern/astinvad.cpp
  stern/berzerk.cpp
@@ -1741,7 +1742,7 @@
  sunelectronics/dai3wksi.cpp
  sunelectronics/ikki.cpp
  sunelectronics/kangaroo.cpp
-@@ -1344,22 +1344,22 @@
+@@ -1348,22 +1348,22 @@
  taito/ashnojoe.cpp
  taito/asuka.cpp
  taito/bigevglf.cpp
@@ -1771,7 +1772,7 @@
  taito/exzisus.cpp
  taito/fgoal.cpp
  taito/flstory.cpp
-@@ -1370,12 +1370,12 @@
+@@ -1374,12 +1374,12 @@
  taito/gsword.cpp
  taito/gunbustr.cpp
  taito/halleys.cpp
@@ -1786,7 +1787,7 @@
  taito/lkage.cpp
  taito/lsasquad.cpp
  taito/marinedt.cpp
-@@ -1393,7 +1393,7 @@
+@@ -1397,7 +1397,7 @@
  taito/rbisland.cpp
  taito/retofinv.cpp
  taito/rollrace.cpp
@@ -1795,7 +1796,7 @@
  taito/sbowling.cpp
  taito/scyclone.cpp
  taito/slapshot.cpp
-@@ -1401,31 +1401,31 @@
+@@ -1405,31 +1405,31 @@
  taito/ssrj.cpp
  taito/superchs.cpp
  taito/superqix.cpp
@@ -1838,17 +1839,8 @@
  tatsumi/lockon.cpp
  tatsumi/tatsumi.cpp
  tatsumi/tx1.cpp
-@@ -1457,7 +1457,7 @@
- technos/xain.cpp
- tehkan/bombjack.cpp
- tehkan/gaiden.cpp
--tehkan/lvcards.cpp
-+//tehkan/lvcards.cpp          // poker
- tehkan/pbaction.cpp
- tehkan/senjyo.cpp
- tehkan/solomon.cpp
-@@ -1471,9 +1471,9 @@
- tehkan/wc90b.cpp
+@@ -1475,9 +1475,9 @@
+ tecmo/wc90b.cpp
  thepit/thepit.cpp
  thepit/timelimt.cpp
 -toaplan/mjsister.cpp
@@ -1859,7 +1851,7 @@
  toaplan/toaplan1.cpp
  toaplan/toaplan2.cpp
  toaplan/twincobr.cpp
-@@ -1481,7 +1481,7 @@
+@@ -1485,7 +1485,7 @@
  unico/drgnmst.cpp
  unico/goori.cpp
  unico/silkroad.cpp
@@ -1868,7 +1860,7 @@
  unico/unico.cpp
  universal/cheekyms.cpp
  universal/cosmic.cpp
-@@ -1491,13 +1491,13 @@
+@@ -1495,13 +1495,13 @@
  universal/ladybug.cpp
  universal/mrdo.cpp
  universal/redclash.cpp
@@ -1884,7 +1876,7 @@
  ussr/tiamc1.cpp
  valadon/bagman.cpp
  valadon/tankbust.cpp
-@@ -1507,22 +1507,22 @@
+@@ -1511,22 +1511,22 @@
  vsystem/aerofgt.cpp
  vsystem/crshrace.cpp
  vsystem/f1gp.cpp
@@ -1915,7 +1907,7 @@
  wing/superwng.cpp
  yunsung/nmg5.cpp
  yunsung/paradise.cpp
-@@ -1532,7 +1532,6 @@
+@@ -1536,7 +1536,6 @@
  zaccaria/seabattl.cpp
  zaccaria/zac2650.cpp
  zaccaria/zaccaria.cpp

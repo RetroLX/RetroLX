@@ -3,8 +3,8 @@
 # Hypseus + Singe (a fork of Daphne)
 #
 ################################################################################
-# Version.: Release on Jul 20, 2022
-DAPHNE_VERSION = v2.8.2c
+# Version.: Release on Aug 30, 2022
+DAPHNE_VERSION = v2.8.3
 DAPHNE_SITE = https://github.com/DirtBagXon/hypseus-singe
 DAPHNE_SITE_METHOD=git
 DAPHNE_LICENSE = GPLv3

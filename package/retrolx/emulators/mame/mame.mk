@@ -3,8 +3,8 @@
 # MAME
 #
 ################################################################################
-# Version.: Release 0.246
-MAME_VERSION = mame0246
+# Version.: Release 0.247
+MAME_VERSION = mame0247
 MAME_SITE = $(call github,mamedev,mame,$(MAME_VERSION))
 MAME_DEPENDENCIES = sdl2 sdl2_ttf zlib libpng fontconfig sqlite jpeg flac rapidjson expat glm
 MAME_LICENSE = MAME
@@ -17,7 +17,7 @@ MAME_PKG_DIR = $(TARGET_DIR)/opt/retrolx/mame
 MAME_PKG_INSTALL_DIR = /userdata/packages/$(RETROLX_SYSTEM_ARCH)/mame
 
 # Limit number of jobs not to eat too much RAM....
-MAME_JOBS = $(shell expr $(shell nproc))
+MAME_JOBS = $(shell expr $(shell nproc) / 2)
 
 # x86_64 is desktop linux based on X11 and OpenGL
 ifeq ($(BR2_x86_64),y)

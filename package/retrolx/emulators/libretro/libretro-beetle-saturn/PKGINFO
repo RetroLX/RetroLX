@@ -1,5 +1,5 @@
 pkgname = lr-beetle-saturn
-pkgver = 20220803-1
+pkgver = 20220829-1
 pkgdesc = Beetle Saturn (Sega Saturn) libretro core
 group = emulator
 packager = https://retrolx.org 

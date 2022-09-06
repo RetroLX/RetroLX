@@ -15853,7 +15853,7 @@ index 26850d4ec85..4527fba1981 100644
  		buildoptions {
  			"-I" .. backtick(_OPTIONS["QT_HOME"] .. "/bin/qmake -query QT_INSTALL_HEADERS"),
 diff --git a/src/emu/emuopts.cpp b/src/emu/emuopts.cpp
-index 0da23495dc8..bebfa7b298e 100644
+index 5e0e5735a2e..538a5b07575 100644
 --- a/src/emu/emuopts.cpp
 +++ b/src/emu/emuopts.cpp
 @@ -90,7 +90,12 @@ const options_entry emu_options::s_option_entries[] =
@@ -15901,7 +15901,7 @@ index 296e2e46590..7bdc04e57a8 100644
  	// core render options
  	bool keep_aspect() const { return bool_value(OPTION_KEEPASPECT); }
 diff --git a/src/emu/render.cpp b/src/emu/render.cpp
-index b9a96e81fad..35ba5852eb1 100644
+index 6946a8de57d..40e26cc81b1 100644
 --- a/src/emu/render.cpp
 +++ b/src/emu/render.cpp
 @@ -377,6 +377,7 @@ void render_texture::set_bitmap(bitmap_t &bitmap, const rectangle &sbounds, text
@@ -16152,18 +16152,18 @@ index da57d6b8a98..2388ad6b7ca 100644
  
  	static const attoseconds_t ATTOSECONDS_PER_SPEED_UPDATE = ATTOSECONDS_PER_SECOND / 4;
 diff --git a/src/frontend/mame/ui/info.cpp b/src/frontend/mame/ui/info.cpp
-index f6fa969bbb4..23cdf0171a4 100644
+index da1bc11eb77..dee6a712ca7 100644
 --- a/src/frontend/mame/ui/info.cpp
 +++ b/src/frontend/mame/ui/info.cpp
-@@ -19,6 +19,7 @@
- #include "romload.h"
+@@ -20,6 +20,7 @@
  #include "screen.h"
  #include "softlist.h"
+ #include "speaker.h"
 +#include "osdepend.h"
  
  #include <set>
  #include <sstream>
-@@ -464,6 +465,7 @@ std::string machine_info::game_info_string() const
+@@ -465,6 +466,7 @@ std::string machine_info::game_info_string() const
  		buf << _("None\n");
  	else
  	{
@@ -16171,7 +16171,7 @@ index f6fa969bbb4..23cdf0171a4 100644
  		for (screen_device &screen : scriter)
  		{
  			std::string detail;
-@@ -492,6 +494,9 @@ std::string machine_info::game_info_string() const
+@@ -493,6 +495,9 @@ std::string machine_info::game_info_string() const
  			util::stream_format(buf,
  					(scrcount > 1) ? _("%1$s: %2$s\n") : _("%2$s\n"),
  					get_screen_desc(screen), detail);

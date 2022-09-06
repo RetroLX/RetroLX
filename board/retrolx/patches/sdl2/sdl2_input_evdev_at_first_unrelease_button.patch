@@ -4,8 +4,8 @@ index 3a0f44f..7f5933f 100644
 +++ b/src/joystick/SDL_joystick.c
 @@ -28,6 +28,8 @@
  #include "SDL_sysjoystick.h"
- #include "SDL_assert.h"
  #include "SDL_hints.h"
+ #include "../SDL_hints_c.h"
 +#include <sys/stat.h>
 +#include <sys/types.h>
  

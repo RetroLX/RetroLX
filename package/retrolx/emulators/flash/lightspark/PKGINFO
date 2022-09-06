@@ -1,5 +1,5 @@
 pkgname = lightspark
-pkgver = 20220618-1
+pkgver = 20220831-1
 pkgdesc = LightSpark Flash player
 group = emulator
 packager = https://retrolx.org 
