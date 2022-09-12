@@ -7,7 +7,7 @@
 CDOGS_VERSION = 1.3.1
 CDOGS_SITE = $(call github,cxong,cdogs-sdl,$(CDOGS_VERSION))
 
-CDOGS_DEPENDENCIES = sdl2 host-python-protobuf
+CDOGS_DEPENDENCIES = sdl2 python-protobuf
 CDOGS_LICENSE = GPL-2.0
 
 CDOGS_PKG_DIR = $(TARGET_DIR)/opt/retrolx/cdogs
