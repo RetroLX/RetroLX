@@ -1,5 +1,5 @@
 pkgname = lr-fceumm
-pkgver = 20220728-1
+pkgver = 20220905-1
 pkgdesc = FCEUmm libretro core
 group = emulator
 packager = https://retrolx.org 

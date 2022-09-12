@@ -11,10 +11,10 @@
      if (eeprom_path != NULL) {
          return eeprom_path;
      }
-@@ -97,7 +99,7 @@
+@@ -111,7 +111,7 @@
+     const char *base = xemu_settings_get_base_path();
      assert(base != NULL);
      eeprom_path = g_strdup_printf("%s%s", base, "eeprom.bin");
-     SDL_free(base);
 -    return eeprom_path;
 +    return eeprom_path;*/
  }

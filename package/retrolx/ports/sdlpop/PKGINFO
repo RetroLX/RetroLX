@@ -1,5 +1,5 @@
 pkgname = sdlpop
-pkgver = 20220710-1
+pkgver = 20220903-1
 pkgdesc = Prince of Persia port
 group = port
 packager = https://retrolx.org 

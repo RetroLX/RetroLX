@@ -1,5 +1,5 @@
 pkgname = vcmi
-pkgver = 0.99-2
+pkgver = 0.99-3
 pkgdesc = Heroes of Might & Magic 3 engine
 group = port
 packager = https://retrolx.org 
