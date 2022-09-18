@@ -296,7 +296,7 @@ config BR2_PACKAGE_RETROLX_COMPUTER_SYSTEMS
 
 	# Atari ST/TT/Falcon
 	select BR2_PACKAGE_HATARI               # ALL
-	select BR2_PACKAGE_LIBRETRO_HATARI      # ALL
+	#select BR2_PACKAGE_LIBRETRO_HATARI      # ALL
 
 	# MSX range
 	select BR2_PACKAGE_LIBRETRO_BLUEMSX     # ALL
@@ -374,6 +374,9 @@ config BR2_PACKAGE_RETROLX_CONSOLE_SYSTEMS
 
 	# Microsoft XBOX
 	select BR2_PACKAGE_XEMU                         if BR2_x86_64
+
+	# Microsoft XBOX 360
+	select BR2_PACKAGE_XENIA                        if BR2_x86_64
 
 	# Sony PS1
 	select BR2_PACKAGE_DUCKSTATION                  if !BR2_arm1176jzf_s && !BR2_cortex_a7
