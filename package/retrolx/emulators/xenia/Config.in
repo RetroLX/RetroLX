@@ -1,0 +1,8 @@
+config BR2_PACKAGE_XENIA
+    bool "xenia"
+    depends on BR2_x86_64
+
+    help
+      Experimental Xbox 360 emulator
+
+	    https://xenia.jp/
